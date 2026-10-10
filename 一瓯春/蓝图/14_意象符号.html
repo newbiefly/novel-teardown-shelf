@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>意象符号 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>意象符号</h1>
+<blockquote>
+<p>维度：贯穿性意象与符号系统（含名字寓意）<br>依据：章卡「金句／设定·名词／写作手法（以物写人）」+ 原文例句核校<br>写法规则：每条给「出现章号（带 <code>[第X章]</code>）+ 象征含义 + 用法 + 可复用建议」；只列本书<strong>确实出现</strong>的意象，不臆造。原文例句均标章号。<br>适用性强：本书文学性突出、意象成系统，续写/仿写时可直接照此&quot;以物写人、以物承情&quot;。</p>
+</blockquote>
+<hr>
+<h2>一、核心意象逐条</h2>
+<h3>1. 书名「一瓯春」</h3>
+<ul>
+<li><strong>出现</strong>：谢府前院宴客的厅苑名——家宴设于此，清圆在此向老太太回禀/来回穿行 <code>[第29、31章]</code>；清圆与沈润&quot;夹道初遇&quot;也发生在一瓯春夹道 <code>[第36章]</code>。</li>
+<li><strong>象征</strong>：「一瓯春」字面＝一盏春色／一壶春茶。它既是谢家<strong>宴客攀附、联姻博弈</strong>的核心舞台（门第与体面的实体），又与开篇「横塘的春天，总有下不完的雨」<code>[第1章]</code>的&quot;春&quot;呼应——<strong>以&quot;春&quot;点门庭之盛，暗含盛极而衰</strong>。</li>
+<li><strong>用法</strong>：把抽象的书名&quot;落地&quot;为一处反复出现的场景，让宅斗与联姻的关键场面都在此发生（第29家宴保媒、第31备银、第36夹道初遇）。</li>
+<li><strong>可复用建议</strong>：给长篇小说取&quot;器物＋时令&quot;式书名后，务必在文内造一处同名实景，让书名意象在&quot;盛—衰—散&quot;三个阶段各回扣一次。</li>
+</ul>
+<h3>2. 雨（横塘的雨）</h3>
+<ul>
+<li><strong>出现</strong>：开篇定调「横塘的春天，总有下不完的雨」<code>[第1章]</code>；幽州&quot;缠绵&quot;的雨 <code>[第37章]</code>；沈润冒雨寻清圆、清圆躲柜（雨夜）<code>[第52章]</code>；雨夜相拥、十指紧扣 <code>[第74章]</code>，&quot;雨后初晴&quot;；年末雨雪过后放晴 <code>[第98章]</code>。</li>
+<li><strong>象征</strong>：南方阴湿＝横塘（清圆旧家）的底色，象征<strong>压抑、隐忍的处境</strong>，也象征&quot;洗刷/涤清&quot;；同时是感情线的专属背景——<strong>雨落则沈润至</strong>（冒雨寻人 <code>[第52章]</code>、雨夜交心 <code>[第74章]</code>）。</li>
+<li><strong>用法</strong>：以雨景衬心境——清圆隐忍受辱时下缠绵细雨；离别重逢、情意升温时用雨作幕。</li>
+<li><strong>可复用建议</strong>：为一部书选定一种&quot;气候底色&quot;（本书是雨），让它反复出现并与主角情绪、CP出场绑定，形成条件反射式的氛围信号。</li>
+</ul>
+<h3>3. 茶／一瓯／煎茶</h3>
+<ul>
+<li><strong>出现</strong>：书名厅苑「一瓯春」<code>[第29、31、36章]</code>；清圆煎茶敲打皓雪——以&quot;头道茶&quot;喻正室独尊、当众拒与外人分茶 <code>[第91章]</code>。</li>
+<li><strong>象征</strong>：茶＝<strong>待人接物的分寸与身份尊卑</strong>。&quot;取之精华，弃之糟粕，好茶尝过一杯就够了&quot;<code>[第91章]</code>——用茶道写嫡庶尊卑与&quot;不容第三人&quot;的正室立场。</li>
+<li><strong>用法</strong>：以烹茶、分茶、让茶的动作，写人物的城府与立场，不必明说&quot;争宠&quot;。</li>
+<li><strong>可复用建议</strong>：给城府型女主配一门&quot;手艺&quot;（茶/针线/账目），让她的心计通过器物操作自然外露。</li>
+</ul>
+<h3>4. 梅子（清圆为祖母腌的梅子）</h3>
+<ul>
+<li><strong>出现</strong>：第1章清圆以自腌梅子抚平老太太药后苦味，&quot;老太太放下药碗就有了期待，看清圆揭开珐琅盒盖，把梅子喂过来&quot;<code>[第1章]</code>；换来老太太一句&quot;往后这种活计不必你亲自做&quot;。</li>
+<li><strong>象征</strong>：<strong>讨好与用心的道具</strong>，也是&quot;苦药之后的一点甜&quot;——是清圆向内宅示好的第一件武器，同时暴露她&quot;用尽心思仍被冷待&quot;的处境。</li>
+<li><strong>用法</strong>：以一件亲手做的小食写人物的细心与低姿态；紧接着写长辈的冷淡，制造&quot;用心—被拒&quot;的落差。</li>
+<li><strong>可复用建议</strong>：小食/手工小物是古言内宅最好用的&quot;示好道具&quot;，配合&quot;被冷言&quot;能一箭双雕地立住女主的隐忍与处境。</li>
+</ul>
+<h3>5. 珐琅盒</h3>
+<ul>
+<li><strong>出现</strong>：第1章&quot;托盘上另放着一只手掌大的珐琅盒子&quot;，清圆揭开盛梅子喂老太太 <code>[第1章]</code>。</li>
+<li><strong>象征</strong>：<strong>器物越精致，越显人情之凉</strong>——清圆用最体面的器物行礼尽孝，换来的是被划清界限的冷遇。</li>
+<li><strong>用法</strong>：以器物的精美对照态度的冷淡（&quot;体面&quot;与&quot;凉薄&quot;并置）。</li>
+<li><strong>可复用建议</strong>：让同一件贵重器物在前后两场戏里&quot;待遇不同&quot;，可无声地写出人物地位的变化。</li>
+</ul>
+<h3>6. 绒花</h3>
+<ul>
+<li><strong>出现</strong>：第1章小丫头为岔开&quot;靳姨娘旧案&quot;的敏感追问，随口夸&quot;四姑娘头上的绒花真好看&quot; <code>[第1章]</code>。</li>
+<li><strong>象征</strong>：<strong>装饰性、易损的&quot;外在体面&quot;</strong>；也作社交场合&quot;转移话题&quot;的润滑小物。本书未反复使用，属可延伸的轻符号。</li>
+<li><strong>用法</strong>：用小饰物作话题转场与场面调剂。</li>
+<li><strong>可复用建议</strong>：若想让&quot;绒花&quot;成为贯穿符号，可让它与女主&quot;易凋的处境&quot;绑定（被雨打湿、被夺、被赠），本书此处即写作时可扩写的接口。</li>
+</ul>
+<h3>7. 团扇</h3>
+<ul>
+<li><strong>出现</strong>：陶嬷嬷回禀&quot;那小丫头发了笔横财&quot;时&quot;清圆握紧团扇打定主意&quot;<code>[第7章]</code>；写法上&quot;以素净衣裙、团扇写清圆隐忍收敛&quot;&quot;以折扇（李从心）与团扇写衣着&quot;<code>[第7、9章]</code>。</li>
+<li><strong>象征</strong>：<strong>闺秀的矜持与隐忍的遮掩</strong>；&quot;握紧团扇&quot;是清圆下定决心的动作外化（心有波澜、面不动声色）。</li>
+<li><strong>用法</strong>：以手中扇的松紧、开合写情绪动作，替代直接的心理描写。</li>
+<li><strong>可复用建议</strong>：给内敛型女主一个&quot;手边物&quot;（扇/帕/簪），让她的内心风暴全部通过摆弄这件物品来表达。</li>
+</ul>
+<h3>8. 博山炉</h3>
+<ul>
+<li><strong>出现</strong>：「抱弦的视线落在案头那架小小的博山炉上，青烟袅袅无所依附，一阵风来就散了」<code>[第51章]</code>；老太太对着博山炉出神、望得眼睛发酸 <code>[第78章]</code>。</li>
+<li><strong>象征</strong>：<strong>无根无靠、飘摇易散</strong>——青烟写清圆&quot;孤身无援、谋划如烟&quot;的处境；也写长辈（老太太）的怅然与家族气数将尽。</li>
+<li><strong>用法</strong>：以一个静物（香炉青烟）的&quot;无所依附&quot;直喻人物的处境，是全书最见功力的一处&quot;以物写人&quot;。</li>
+<li><strong>可复用建议</strong>：让同一种&quot;易散之物&quot;（烟/雾/絮/雨）反复出现在主角真正孤立无援的时刻，做成处境的视觉化标签。</li>
+</ul>
+<h3>9. 玉佩（兽面透雕饕餮佩）</h3>
+<ul>
+<li><strong>出现</strong>：沈润醉酒强赠 <code>[第30章]</code>→ 清圆屡欲归还不得、藏于小荷包随身 <code>[第31-40章]</code>→ 射宝一箭射落清如胸前此佩 <code>[第41章]</code>→ 殿前司验佩 <code>[第45章]</code>→ 柜前相对 <code>[第52章]</code>→ 夜里抚佩眷恋 <code>[第62章]</code>→ 登门归还欲了断 <code>[第64章]</code>→ 夜里探枕寻佩不得、悲从中来 <code>[第65章]</code>→ 玉佩&quot;自己又回来&quot; <code>[第71章]</code>、成为较劲的道具 <code>[第73章]</code>。</li>
+<li><strong>象征</strong>：<strong>定情信物＋以貌写人</strong>。&quot;兽面透雕、饕餮纹&quot;，&quot;凶悍贪婪&quot;&quot;炯炯一双眼睛活像要吃人&quot;<code>[第30章]</code>——以饕餮之貌暗写沈润&quot;权臣狠厉&quot;的内核；而清圆&quot;从嫌弃到看久了能逗笑&quot;<code>[第62章]</code>，正是<strong>她对这段感情由抗拒到接受的外化</strong>。</li>
+<li><strong>用法</strong>：一件信物贯穿全书的流转链——&quot;赠与→归还→再得→贴身→归还→复得&quot;，每一环都对应关系的进退，是&quot;以物承情&quot;的最高密度写法。</li>
+<li><strong>可复用建议</strong>：让核心CP信物至少完成一次&quot;归还—复得&quot;的往返，归还写割舍、复得写不肯放手。</li>
+</ul>
+<h3>10. 猫（野猫 × 大圆子）</h3>
+<ul>
+<li><strong>出现</strong>：沈润赶驱扒窗的野猫、&quot;那只家境殷实的猫三更半夜爬到院墙上来叫……野猫配不上，横竖把大圆子看好了，别被那小子拐跑&quot;<code>[第90章]</code>；年节追猫、&quot;打大圆子主意&quot;的旧怨再续 <code>[第101章]</code>；沈润题&quot;大圆子&quot;之名（猫原名&quot;胭脂&quot;）<code>[第80章]</code>，&quot;猫随主人，仔细养着，将来必定更好&quot;<code>[第76章]</code>；沈润以猫喻清圆。</li>
+<li><strong>象征</strong>：<strong>&quot;野猫&quot;＝外来觊觎者</strong>（门第不配、来抢人/抢爱的外患，暗指皓雪、姚家一类）；<strong>&quot;大圆子&quot;＝夫妻共同守护的&quot;家&quot;</strong>，也是清圆的镜像（沈润&quot;猫随主人会更好&quot;&quot;别被拐跑&quot;均一语双关）。</li>
+<li><strong>用法</strong>：以夫妻养猫的日常戏为甜宠调味，同时把&quot;驱赶野猫&quot;写成护妻护家的隐喻。</li>
+<li><strong>可复用建议</strong>：给冷面男主安排一件&quot;恋物&quot;（猫/剑/旧物），让他在物件上的护短暴露其柔软，反差立现。</li>
+</ul>
+<h3>11. 灯／光／影</h3>
+<ul>
+<li><strong>出现</strong>：「那杳杳的光，一盏就是一个仇人」<code>[第34章]</code>（沈润&quot;十二灯树&quot;复仇名单）；「人就像这灯，有罩子的遇着风也不怕，没罩子的吹口气就灭了」<code>[第43章]</code>（喻主母之威与清圆之危）；「眼前的热闹就像除夕的那场烟火……最后各自散了，还剩下什么？满地冰凉的灰烬罢了」<code>[第48章]</code>。</li>
+<li><strong>象征</strong>：<strong>灯＝处境与权势的隐喻</strong>；烟火＝<strong>繁华易散、热闹终归寂灭</strong>。清圆在风暴将至时最清醒（&quot;满地冰凉的灰烬&quot;）。</li>
+<li><strong>用法</strong>：以灯/火/烟火的明灭写权力的对照与人物对盛衰的洞察。</li>
+<li><strong>可复用建议</strong>：把主角的&quot;人间清醒&quot;用一场烟火/灯会收束——众人沉醉、唯独她看见灰烬，是塑造&quot;冷静型女主&quot;的经典手法。</li>
+</ul>
+<h3>12. 荷包／衣裳／兽爪囊（以物传情）</h3>
+<ul>
+<li><strong>出现</strong>：小荷包装玉佩、&quot;长在身上似的，时间一久不是为应沈润的抽查，是成了习惯&quot;<code>[第56、45章]</code>；以镜花绫荷包转赠清如（假称李从心之物，为圈套）<code>[第38章]</code>；芳纯赠沈澈&quot;兽爪囊&quot;、清圆许诺&quot;往后你身上的小物件都由我准备，再也不用外头的东西了&quot;<code>[第95、101章]</code>；祖母为清圆置办衣裳嫁妆 <code>[第83章]</code>。</li>
+<li><strong>象征</strong>：<strong>贴身物件＝情意与归属的实体</strong>。&quot;装、挂、赠、佩&quot;的动作就是古言里&quot;承情&quot;的仪式；&quot;兽爪囊/荷包由妻亲手做&quot;写夫妻间的专属与占有。</li>
+<li><strong>用法</strong>：以衣物、荷包、香囊的赠受写关系推进与夫妻归属感；同一件物件也可作<strong>计谋的道具</strong>（荷包装玉佩转赠，即&quot;以物布陷&quot;）。</li>
+<li><strong>可复用建议</strong>：贴身物件既能&quot;承情&quot;也能&quot;布局&quot;——让同一件信物在甜戏与斗戏里各用一次，物尽其用。</li>
+</ul>
+<h3>13. 《女诫》《内训》</h3>
+<ul>
+<li><strong>出现</strong>：老太太罚清如抄《内训》十遍 <code>[第3章]</code>；众姐妹抄《女诫》呈交老太太、比较字迹（清如&quot;表面流丽没什么筋骨&quot;vs 清圆&quot;娟秀且具挺拔的骨架&quot;）<code>[第6章]</code>；清圆隐忍处事的通透之语也与此呼应 <code>[第6章]</code>。</li>
+<li><strong>象征</strong>：<strong>礼教规训的载体</strong>；抄写量与字迹成为&quot;淑德&quot;评分、嫡庶优劣的度量衡。字迹的筋骨之别暗写人物骨气之别。</li>
+<li><strong>用法</strong>：以抄书、查课业、比字迹写人物的教养与被评判，是古言宅斗的合规符号；也可作长辈考察晚辈、制造姐妹竞争的场景。</li>
+<li><strong>可复用建议</strong>：&quot;字如其人&quot;是古言最省力的性格暗示——让评判者当众比较两人字迹，一句话立住两人性格。</li>
+</ul>
+<h3>14. 青梅（试探的化名）</h3>
+<ul>
+<li><strong>出现</strong>：清圆以虚构人名&quot;青梅&quot;（&quot;伯府上长随的妹子、早前在府里当过差&quot;）设局试探各房，借灶房商嬷嬷探口风，莲姨娘&quot;全无印象&quot;，据此排除其嫌疑 <code>[第10章]</code>；后成勒索信疑云的一环 <code>[第13章]</code>。</li>
+<li><strong>象征</strong>：与&quot;梅子&quot;同源异用——<strong>梅子是示好的实物，青梅是投石问路的&quot;饵&quot;</strong>；象征主角的谋略与&quot;投饵识人&quot;。</li>
+<li><strong>用法</strong>：以一个虚构名号/旧人，向各方放风，据各方反应判断虚实——是&quot;钓鱼式探案&quot;的典型手法。</li>
+<li><strong>可复用建议</strong>：悬疑/探案类宅斗可复用此手法：造一个&quot;半真半假的旧线索&quot;，谁反应异常谁可疑，用最低成本推进推理。</li>
+</ul>
+<hr>
+<h2>二、名字寓意</h2>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>寓意</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>谢清圆</strong></td>
+<td>&quot;清&quot;是谢家女儿排辈（清和／清如／清容／清圆）；&quot;圆&quot;取<strong>圆满</strong>之意，老太太只一句&quot;回来就好&quot;<code>[第2章]</code></td>
+<td><code>[第2章]</code></td>
+</tr>
+<tr>
+<td><strong>云芽</strong>（清圆旧名）</td>
+<td>陈家所起，喻&quot;白腻腻软绵绵的云絮上长出了两片嫩叶子&quot;——<strong>真我、自由生长的象征</strong>；沈润说&quot;云芽，这个名字比清圆更适合你&quot;<code>[第57章]</code></td>
+<td><code>[第2、23、57章]</code></td>
+</tr>
+<tr>
+<td><strong>沈润</strong></td>
+<td>名&quot;润&quot;取温润；字<strong>守雅</strong>——父盼其&quot;守正儒雅&quot;<code>[第57章]</code>；&quot;润、雅&quot;的温文与其&quot;殿帅&quot;的狠厉形成核心反差</td>
+<td><code>[第57章]</code></td>
+</tr>
+<tr>
+<td><strong>沈澈</strong></td>
+<td>小字/名<strong>澄冰</strong> <code>[第35章]</code>，&quot;澄澈清冰&quot;的清冷气质，与其随性开朗的性格形成微反差</td>
+<td><code>[第35章]</code></td>
+</tr>
+<tr>
+<td><strong>李从心（李淳之）</strong></td>
+<td>名淳之、字<strong>从心</strong>——&quot;从心&quot;点其&quot;顺从本心&quot;，与其优柔、拖泥带水的性格相合（&quot;瞻前顾后、拖泥带水的人最可恶&quot;<code>[第67章]</code>）</td>
+<td><code>[第9、67章]</code></td>
+</tr>
+<tr>
+<td><strong>清如／清和／清容</strong></td>
+<td>同属&quot;清&quot;字排辈；名寓&quot;淑静／和顺／仪容&quot;，与其各自性格命运形成（反讽式）张力</td>
+<td><code>[第5、6章]</code></td>
+</tr>
+<tr>
+<td><strong>妾室命名</strong>（夏姨娘、靳姨娘〔靳春晴〕、梅姨娘、莲姨娘）</td>
+<td>妾室多以花木/节候为名，暗合&quot;妻妾如花草、命如草芥&quot;的后宅生态</td>
+<td><code>[第5、12章]</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、意象使用法则（可复用的写作方法）</h2>
+<ol>
+<li><strong>一物贯穿、多次流转</strong>：核心信物（玉佩）要完成&quot;赠→还→再得→贴→还→复得&quot;的完整流转，每流转一次关系推进一步。</li>
+<li><strong>以物写人</strong>：器物的形貌即人物的内核（饕餮佩之凶悍＝沈润之狠厉；博山炉青烟＝清圆之无依）。<strong>先想&quot;这人像什么物&quot;，再让物出场</strong>。</li>
+<li><strong>以物承情 / 以物布局</strong>：同一件物件既可用于甜戏（传情）也可用于斗戏（布陷）——荷包装玉佩既能表意，也能做&quot;转赠设套&quot;的凶器。</li>
+<li><strong>气候/景色与情绪绑定</strong>：全书底色是&quot;雨&quot;，雨落则情至、雨急则事危；把气候做成情绪信号。</li>
+<li><strong>器物对照写凉薄</strong>：用精致体面之物（珐琅盒、绒花）对照人情的冷淡，是写&quot;豪门凉薄&quot;最省力的手法。</li>
+<li><strong>意象回扣结构</strong>：让同一意象在&quot;盛—衰—散&quot;三阶段各回扣一次（如&quot;一瓯春&quot;的家宴、烟火、灰烬），给长篇一条隐形的情绪暗线。</li>
+</ol>
+<hr>
+<h2>四、续写红线（本书意象系统的规则）</h2>
+<ol>
+<li><strong>玉佩是唯一的CP核心信物</strong>，不可引入第二个同等分量的定情物来分散它；它的流转逻辑（&quot;送出去就是对方的&quot;&quot;我替你讨回来&quot;）须严格延续。</li>
+<li><strong>&quot;雨&quot;是横塘与感情线的专属底色</strong>，写清圆的旧家、写沈润的靠近时才用；不可用于无关场景，以免信号失效。</li>
+<li><strong>饕餮/兽面意象属于沈润</strong>，其余人物不宜共用&quot;凶兽&quot;符号，否则会稀释沈润&quot;狠厉外壳、温润内核&quot;的核心反差。</li>
+<li><strong>猫（大圆子）是婚后夫妻生活的固定道具</strong>，&quot;野猫&quot;始终是外患的隐喻，续写沈家日常时须保持这一隐喻关系。</li>
+<li><strong>名字寓意一旦定下不可改</strong>：云芽＝真我、清圆＝排辈圆满、守雅＝儒雅、从心＝优柔——这些是人物性格的&quot;命名级&quot;伏笔，续写对话/旁白时不得违背。</li>
+<li><strong>书名&quot;一瓯春&quot;是场所而非单纯抒情</strong>，续写须保留这处实景场景，并在家族兴衰节点回扣它。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

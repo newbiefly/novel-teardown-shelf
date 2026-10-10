@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伏笔规划表 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>伏笔规划表</h1>
+<blockquote>
+<p>数据源：伏笔台账（213条伏笔记录）<br>本篇按功能分类整理，标注埋/收跨度</p>
+</blockquote>
+<hr>
+<h2>一、统计总览</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>数量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>已回收</td>
+<td>~120条</td>
+<td>正常闭环</td>
+</tr>
+<tr>
+<td>自然消解</td>
+<td>~30条</td>
+<td>大结局后无需专门回收</td>
+</tr>
+<tr>
+<td>信息补完</td>
+<td>~15条</td>
+<td>背景信息随叙事自然补全</td>
+</tr>
+<tr>
+<td>全书级长线</td>
+<td>14条</td>
+<td>跨100+章的核心伏笔</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、全书级长线伏笔（TOP14）</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>内容</th>
+<th>埋</th>
+<th>收</th>
+<th>跨度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F03</td>
+<td>林昭祥议亲沈嘉兰无故中止</td>
+<td>ch2</td>
+<td>ch354(袒露前世)</td>
+<td>352章</td>
+</tr>
+<tr>
+<td>F14</td>
+<td>宋柯前世记忆→&quot;恍惚想起前世那个人&quot;</td>
+<td>ch14</td>
+<td>ch245(正面质问)</td>
+<td>231章</td>
+</tr>
+<tr>
+<td>F12</td>
+<td>芙蓉被奸杀悬案</td>
+<td>ch13</td>
+<td>ch109(赵月婵指使揭底)</td>
+<td>96章</td>
+</tr>
+<tr>
+<td>F36</td>
+<td>赵月婵↔钱文泽出轨暗线</td>
+<td>ch66</td>
+<td>ch108(捉奸和离)</td>
+<td>42章</td>
+</tr>
+<tr>
+<td>F62</td>
+<td>太子被暗送出关</td>
+<td>ch110</td>
+<td>ch303(密信销毁)</td>
+<td>193章</td>
+</tr>
+<tr>
+<td>F99</td>
+<td>孔雀屏风=前世陪嫁→两世缘分重合</td>
+<td>ch178</td>
+<td>ch354(意象消解)</td>
+<td>176章</td>
+</tr>
+<tr>
+<td>F121</td>
+<td>袁绍仁见香兰=&quot;莲娘&quot;</td>
+<td>ch224</td>
+<td>番外(沈家平反)</td>
+<td>130+章</td>
+</tr>
+<tr>
+<td>F148</td>
+<td>&quot;活了两辈子&quot;醉后泄露</td>
+<td>ch248</td>
+<td>ch354(全数袒露)</td>
+<td>106章</td>
+</tr>
+<tr>
+<td>F176</td>
+<td>姜丹云捡走断子丸</td>
+<td>ch277</td>
+<td>ch284(引爆)</td>
+<td>7章(短但致命)</td>
+</tr>
+<tr>
+<td>F61</td>
+<td>赵月婵&quot;日后必报仇&quot;</td>
+<td>ch109</td>
+<td>ch303(冻死)</td>
+<td>194章</td>
+</tr>
+<tr>
+<td>F60</td>
+<td>苏媚如&quot;日后惹出一段林家公案&quot;</td>
+<td>ch106</td>
+<td>ch343(自尽)</td>
+<td>237章</td>
+</tr>
+<tr>
+<td>F69</td>
+<td>定逸师太&quot;前世姻缘皆是前订&quot;</td>
+<td>ch118</td>
+<td>ch354(圆满)</td>
+<td>236章</td>
+</tr>
+<tr>
+<td>F93</td>
+<td>&quot;子嗣艰难&quot;=核心保护伞</td>
+<td>ch167</td>
+<td>ch284(断子丸打破)</td>
+<td>117章</td>
+</tr>
+<tr>
+<td>F210</td>
+<td>林长政&quot;除非我死&quot;</td>
+<td>ch337</td>
+<td>ch348(妥协)</td>
+<td>11章</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、按功能分类</h2>
+<h3>3.1 身世类（前世/重生）</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>内容</th>
+<th>埋→收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F03</td>
+<td>议亲中止</td>
+<td>ch2→ch354</td>
+</tr>
+<tr>
+<td>F14</td>
+<td>宋柯前世记忆</td>
+<td>ch14→ch245</td>
+</tr>
+<tr>
+<td>F46</td>
+<td>病中胡话&quot;满门抄斩&quot;</td>
+<td>ch82→未明确回收</td>
+</tr>
+<tr>
+<td>F121</td>
+<td>袁见&quot;莲娘&quot;</td>
+<td>ch224→番外</td>
+</tr>
+<tr>
+<td>F122</td>
+<td>林&quot;哪里是奴才种子&quot;</td>
+<td>ch225→ch354</td>
+</tr>
+<tr>
+<td>F144</td>
+<td>宋柯质问&quot;你是不是嘉兰&quot;</td>
+<td>ch245→ch246(当场)</td>
+</tr>
+<tr>
+<td>F148</td>
+<td>&quot;活了两辈子&quot;</td>
+<td>ch248→ch354</td>
+</tr>
+<tr>
+<td>F150</td>
+<td>德哥儿丹凤眼像沈嘉莲</td>
+<td>ch250→番外</td>
+</tr>
+<tr>
+<td>F169</td>
+<td>林说沈嘉莲+&quot;与你几分像&quot;</td>
+<td>ch264→ch354</td>
+</tr>
+</tbody></table>
+<h3>3.2 物件类（信物/道具推动情节）</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>物件</th>
+<th>功能</th>
+<th>埋→收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F13</td>
+<td>白绢花</td>
+<td>宋柯揣袖→二桃花物件</td>
+<td>ch14→ch22(还帕换花)</td>
+</tr>
+<tr>
+<td>F17</td>
+<td>翠玉小青蛙</td>
+<td>宋柯赠→前世信物</td>
+<td>ch22→ch173(扇碎)</td>
+</tr>
+<tr>
+<td>F45</td>
+<td>八宝簪被偷</td>
+<td>银蝶偷→日后爆发</td>
+<td>ch77→ch125(金马被发现)</td>
+</tr>
+<tr>
+<td>F55</td>
+<td>银簪&quot;考试绾发&quot;</td>
+<td>宋柯拔走</td>
+<td>ch102→未回收</td>
+</tr>
+<tr>
+<td>F63</td>
+<td>宫绦香囊</td>
+<td>林捡到→追踪线</td>
+<td>ch110→ch112(查到)</td>
+</tr>
+<tr>
+<td>F95</td>
+<td>孔雀屏风</td>
+<td>画眉献→赏给香兰</td>
+<td>ch170→ch178(赏出)</td>
+</tr>
+<tr>
+<td>F99</td>
+<td>屏风=前世陪嫁</td>
+<td>两世重合</td>
+<td>ch178→ch354</td>
+</tr>
+<tr>
+<td>F189</td>
+<td>小猫&quot;眼跟你像&quot;</td>
+<td>感情物件</td>
+<td>ch294→消解</td>
+</tr>
+</tbody></table>
+<h3>3.3 阴谋/暗算类</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>阴谋</th>
+<th>埋→收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F08</td>
+<td>赵操纵撞胎案</td>
+<td>ch8→ch10</td>
+</tr>
+<tr>
+<td>F22</td>
+<td>曹&quot;许配四顺儿&quot;毒计</td>
+<td>ch29→ch32(爆发)</td>
+</tr>
+<tr>
+<td>F36</td>
+<td>赵↔钱出轨</td>
+<td>ch66→ch108(捉奸)</td>
+</tr>
+<tr>
+<td>F41</td>
+<td>赵&quot;让青岚有哭那天&quot;</td>
+<td>ch70→ch75(逼死)</td>
+</tr>
+<tr>
+<td>F92</td>
+<td>画眉拉拢暖月暗算</td>
+<td>ch165→ch183(塞符)</td>
+</tr>
+<tr>
+<td>F97</td>
+<td>崔道姑给鸾儿绝命符</td>
+<td>ch175→ch182(搜出)</td>
+</tr>
+<tr>
+<td>F176</td>
+<td>姜丹云捡断子丸</td>
+<td>ch277→ch284(引爆)</td>
+</tr>
+<tr>
+<td>F211</td>
+<td>画眉+武彪策划刺杀</td>
+<td>ch338→ch342(败露)</td>
+</tr>
+</tbody></table>
+<h3>3.4 政治/权谋类</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>内容</th>
+<th>埋→收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F58</td>
+<td>林&quot;有大事要图谋/报仇&quot;</td>
+<td>ch103→ch110(和离)</td>
+</tr>
+<tr>
+<td>F62</td>
+<td>太子被暗送出关</td>
+<td>ch110→ch303(密信)</td>
+</tr>
+<tr>
+<td>F87</td>
+<td>&quot;等立太子再说&quot;不急娶</td>
+<td>ch160→ch271(立储)</td>
+</tr>
+<tr>
+<td>F157</td>
+<td>皇上抱恙→二皇子拉林</td>
+<td>ch249→ch298(叛乱)</td>
+</tr>
+<tr>
+<td>F190</td>
+<td>奸细&quot;前太子/谋反&quot;</td>
+<td>ch294→ch303(密信)</td>
+</tr>
+</tbody></table>
+<h3>3.5 感情线类</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>内容</th>
+<th>埋→收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F39</td>
+<td>香兰&quot;盼宋柯讨走脱籍&quot;</td>
+<td>ch61→ch121(破灭)</td>
+</tr>
+<tr>
+<td>F51</td>
+<td>宋柯犹豫&quot;正娶vs门第&quot;</td>
+<td>ch98→ch119(选门第)</td>
+</tr>
+<tr>
+<td>F100</td>
+<td>叫&quot;好老公&quot;+笑</td>
+<td>ch178→ch271(质变)</td>
+</tr>
+<tr>
+<td>F134</td>
+<td>偷听&quot;被强迫何必取命&quot;</td>
+<td>ch237→ch271(敬意)</td>
+</tr>
+<tr>
+<td>F149</td>
+<td>&quot;偏下不去手&quot;</td>
+<td>ch248→ch303(杀人救夫)</td>
+</tr>
+<tr>
+<td>F185</td>
+<td>袁绍仁倾诉→&quot;敬慕&quot;</td>
+<td>ch279→番外</td>
+</tr>
+<tr>
+<td>F196</td>
+<td>&quot;若她愿意出去由她&quot;</td>
+<td>ch301→ch348(正妻)</td>
+</tr>
+</tbody></table>
+<h3>3.6 脱籍/经营类</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>内容</th>
+<th>埋→收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F02</td>
+<td>卖画攒钱</td>
+<td>ch1→贯穿全书</td>
+</tr>
+<tr>
+<td>F80</td>
+<td>&quot;忍耐再找机会&quot;</td>
+<td>ch140→ch289(出府被拒)</td>
+</tr>
+<tr>
+<td>F84</td>
+<td>避子汤防孕</td>
+<td>ch151→ch284(断子丸)</td>
+</tr>
+<tr>
+<td>F93</td>
+<td>&quot;子嗣艰难&quot;保护伞</td>
+<td>ch167→ch284(打破)</td>
+</tr>
+<tr>
+<td>F94</td>
+<td>攒私房逃跑资金</td>
+<td>ch167→ch292(置庄子)</td>
+</tr>
+<tr>
+<td>F127</td>
+<td>&quot;名分一定脱身更难&quot;</td>
+<td>ch231→ch289(出府被拒)</td>
+</tr>
+<tr>
+<td>F191</td>
+<td>悄悄置小庄子</td>
+<td>ch292→ch348(正妻后消解)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、伏笔设计规律</h2>
+<h3>4.1 跨度分布</h3>
+<table>
+<thead>
+<tr>
+<th>跨度</th>
+<th>数量</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1-10章</td>
+<td>~80条</td>
+<td>短线伏笔，快速闭环，保持节奏</td>
+</tr>
+<tr>
+<td>11-50章</td>
+<td>~50条</td>
+<td>中线伏笔，跨卷回收，制造惊喜</td>
+</tr>
+<tr>
+<td>51-100章</td>
+<td>~20条</td>
+<td>长线伏笔，跨两卷以上</td>
+</tr>
+<tr>
+<td>100+章</td>
+<td>14条</td>
+<td>全书级伏笔，构成骨架</td>
+</tr>
+</tbody></table>
+<h3>4.2 物件伏笔链（金马案例）</h3>
+<pre><code>林锦楼赏金马坠 [ch44]
+  → 香兰被赶留下 [ch72]
+    → 银蝶偷金马 [ch77]
+      → 被发现赶走 [ch125]
+        → 送夏芸 [ch126]
+          → 诽谤 [ch127]
+            → 陈万全入狱 [ch130]
+              → 以身换父 [ch131]
+一件首饰跨87章引发7次连锁反应
+</code></pre>
+<h3>4.3 叙事者预告型伏笔</h3>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th>兑现</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;日后惹出一段林家公案&quot;</td>
+<td>苏媚如叔侄共妇→自尽</td>
+<td>ch106→ch343</td>
+</tr>
+<tr>
+<td>&quot;为日后埋下一段风波&quot;</td>
+<td>刘小川谢域设局</td>
+<td>ch253→未明确</td>
+</tr>
+<tr>
+<td>&quot;宋柯离家短短几月狂风骤起&quot;</td>
+<td>弹劾→订亲→决别</td>
+<td>ch102→ch121</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、未回收/自然消解伏笔清单</h2>
+<p>以下伏笔在正文355章完结后自然消解，不构成漏洞：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>内容</th>
+<th>消解原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F70</td>
+<td>严立文被外放</td>
+<td>已退场（工具人用完即弃）</td>
+</tr>
+<tr>
+<td>F143</td>
+<td>郑静娴不帮香兰</td>
+<td>郑家败落，此线自动终结</td>
+</tr>
+<tr>
+<td>F153</td>
+<td>刘小川谢域设局</td>
+<td>旁线收束</td>
+</tr>
+<tr>
+<td>F175</td>
+<td>夏姑姑听身世&quot;长叹&quot;</td>
+<td>过渡人物，知情但无后续动作</td>
+</tr>
+<tr>
+<td>F191</td>
+<td>庄子(林折价送)</td>
+<td>正妻后脱身需求消失</td>
+</tr>
+<tr>
+<td>F201</td>
+<td>林东绫进京</td>
+<td>已失踪(模糊终结)</td>
+</tr>
+<tr>
+<td>F203</td>
+<td>《兰香居士传》大热</td>
+<td>名声线随正名自然完成</td>
+</tr>
+<tr>
+<td>F205</td>
+<td>姜曦云出纳妾计</td>
+<td>旁线收束</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>六、伏笔手法规律总结（可复用的创作方法）</h2>
+<h3>6.1 埋收间隔规律</h3>
+<table>
+<thead>
+<tr>
+<th>间隔类型</th>
+<th>占比</th>
+<th>特征</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>短线（1-10章）</td>
+<td>~40%</td>
+<td>快速闭环，保持阅读节奏感，&quot;看到伏笔很快有回报&quot;</td>
+<td>赵操纵撞胎案(ch8→ch10) / 曹&quot;许配四顺儿&quot;(ch29→ch32)</td>
+</tr>
+<tr>
+<td>中线（11-50章）</td>
+<td>~25%</td>
+<td>跨一卷回收，制造&quot;原来如此&quot;的惊喜</td>
+<td>赵↔钱出轨(ch66→ch108，跨42章) / 鸾儿绝命符(ch175→ch182)</td>
+</tr>
+<tr>
+<td>长线（51-100章）</td>
+<td>~15%</td>
+<td>跨两卷以上，需要读者有耐心但回收时爽感加倍</td>
+<td>芙蓉被杀悬案(ch13→ch109，跨96章)</td>
+</tr>
+<tr>
+<td>全书级（100+章）</td>
+<td>~7%</td>
+<td>构成全书骨架，读者可能忘了但作者没忘</td>
+<td>议亲中止(ch2→ch354，跨352章) / 太子出关(ch110→ch303)</td>
+</tr>
+</tbody></table>
+<p><strong>作者的间隔策略</strong>：以短线为主保节奏，中线制造跨卷惊喜，长线做骨架。全书级伏笔只有14条但每条都是&quot;大结构&quot;级别。</p>
+<h3>6.2 惯用伏笔类型</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>占比</th>
+<th>手法</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>物件回收</strong></td>
+<td>~30%</td>
+<td>一件东西在多人手中流转，每次流转改变局势</td>
+<td>金马坠跨87章连锁7次 / 孔雀屏风跨176章 / 赵月婵账簿</td>
+</tr>
+<tr>
+<td><strong>一语成谶</strong></td>
+<td>~20%</td>
+<td>角色说过的话日后应验（正或反向）</td>
+<td>&quot;日后必报仇&quot;(赵)→冻死 / &quot;终归在富贵场中&quot;(师太)→正妻</td>
+</tr>
+<tr>
+<td><strong>叙事者预告</strong></td>
+<td>~10%</td>
+<td>作者跳出来直接告诉读者&quot;此事日后有戏&quot;</td>
+<td>&quot;日后惹出一段公案&quot;(苏媚如) / &quot;狂风骤起&quot;(宋柯)</td>
+</tr>
+<tr>
+<td><strong>身份/秘密延迟揭露</strong></td>
+<td>~25%</td>
+<td>先给线索，分多次递进揭露，直到最后才完全打开</td>
+<td>香兰前世(ch2→ch354，分10层揭) / 宋柯=萧杭(ch14→ch245)</td>
+</tr>
+<tr>
+<td><strong>因果连锁</strong></td>
+<td>~15%</td>
+<td>A导致B→B导致C→…→最后回到A</td>
+<td>画圈→猜忌→冷置→入罗雪坞→遇曹→被压榨→翻盘</td>
+</tr>
+</tbody></table>
+<h3>6.3 大伏笔的铺垫密度</h3>
+<p>以&quot;香兰前世身份&quot;为例（全书最大伏笔），铺垫了<strong>10次递进揭露</strong>：</p>
+<pre><code>ch1(香兰独白) → ch14(宋柯联想) → ch28(宋柯确认) → ch55-60(诗社才情泄露)
+→ ch224(袁绍仁&quot;莲娘&quot;) → ch225(林&quot;不像奴才种子&quot;) → ch245(宋柯正面质问)
+→ ch248(&quot;两辈子&quot;醉后泄露) → ch264(林说莲娘=沈嘉莲) → ch326(林昭祥&quot;可惜可叹&quot;)
+→ ch354(全数袒露)
+</code></pre>
+<p><strong>铺垫密度规律</strong>：全书级大伏笔平均每30-40章递进一次，每次只多揭一层（不一次揭完），让读者始终处于&quot;快知道了但还差一点&quot;的好奇态。</p>
+<h3>6.4 明暗配比</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>占比</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>明线伏笔</strong></td>
+<td>~60%</td>
+<td>读者第一遍就能注意到的（宋柯扇子、金马坠、&quot;日后报仇&quot;）</td>
+</tr>
+<tr>
+<td><strong>暗线伏笔</strong></td>
+<td>~40%</td>
+<td>重读才发现的（议亲中止→前世线、画圈的真正含义、德哥儿丹凤眼=沈家血脉）</td>
+</tr>
+</tbody></table>
+<p><strong>明暗策略</strong>：明线伏笔保证&quot;当下就有悬念感&quot;，暗线伏笔保证&quot;重读时有新发现&quot;——这是让读者愿意二刷的设计。本书暗线伏笔占比40%是相当高的（一般网文只有10-20%），说明作者有意设计了&quot;深层阅读体验&quot;。</p>
+<hr>
+<blockquote>
+<p>📌 本蓝图基于伏笔台账213条记录归纳，覆盖 [第1章] 至 [番外]。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

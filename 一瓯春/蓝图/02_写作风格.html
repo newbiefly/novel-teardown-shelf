@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写作风格（可模仿级定稿） · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>写作风格（可模仿级定稿）</h1>
+<blockquote>
+<p>维度：写作风格（两段式·定稿）｜书：《一瓯春》尤四姐<br>依据：全书 102 章原文（约 40.1 万字）逐章扫描 + 6 章代表章精读 + 全文字频脚本统计<br>引文一律<strong>原样引用</strong>，锚点标 <code>[第X章]</code></p>
+</blockquote>
+<hr>
+<h2>〇、精读选样（第3步）</h2>
+<table>
+<thead>
+<tr>
+<th>场景类型</th>
+<th>选中章节</th>
+<th>选择依据</th>
+<th>字数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开篇章（叙述腔调）</td>
+<td>第001章</td>
+<td>固定首章，定调：煎药、梅子、内宅群像</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>人物出场章（肖像）</td>
+<td>第009章</td>
+<td>李从心出场，以折扇/团扇/衣着写&quot;意气风发&quot;</td>
+<td>2997</td>
+</tr>
+<tr>
+<td>对白密集章（交锋）</td>
+<td>第021章</td>
+<td>清如扇耳光、清圆&quot;没有盐，卤也将就&quot;反唇（★4）</td>
+<td>3431</td>
+</tr>
+<tr>
+<td>心理独白章（虐/隐忍）</td>
+<td>第065章</td>
+<td>还佩后夜寻荷包未得、&quot;悲从中来&quot;（★3）</td>
+<td>4129</td>
+</tr>
+<tr>
+<td>日常过渡章（基准文风）</td>
+<td>第091章</td>
+<td>后宅煎茶、妯娌闲话、治家日常</td>
+<td>4677</td>
+</tr>
+<tr>
+<td>高潮章（最长/情绪峰）</td>
+<td>第102章</td>
+<td>终章 11319 字，沉冤得雪（★5）</td>
+<td>11319</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>一、初稿印象（扫描阶段）</h2>
+<ol>
+<li><strong>清淡克制</strong>：腔调冷静含蓄，几乎不直抒胸臆，情绪藏在器物与动作里。</li>
+<li><strong>白描见长</strong>：以物写人是核心手法（梅子、珐琅盒、团扇、玉佩、帕子、茶盏）。</li>
+<li><strong>水墨江南</strong>：开篇即&quot;横塘的春天，总有下不完的雨&quot;，景物写湿度、光影、声音。</li>
+<li><strong>短句碎切</strong>：逗号多、复句少，分句短促，偶插一句文言雅词压住白气。</li>
+<li><strong>第三人称限知</strong>：紧贴女主谢清圆，偶切老太太/月荃/沈润做侧写。</li>
+</ol>
+<hr>
+<h2>二、8 维度定稿</h2>
+<h3>1. 句式特征（长短配比 / 文白比例 / 段落结构）</h3>
+<p><strong>结论：以&quot;碎切分句&quot;为骨，7–14 字为主，短促（≤6 字）占三分之一，长句几近于无。</strong></p>
+<ul>
+<li>全文（去注释后）逗号级分句 <strong>49,587 句，平均 8.07 字</strong>；<code>≤6字</code> <strong>35.1%</strong>、<code>7–14字</code> <strong>60.6%</strong>、<code>15–25字</code> <strong>4.3%</strong>、<code>&gt;25字</code> <strong>0.0%</strong>。</li>
+<li>段落 6,099 段，<strong>平均 75.4 字/段</strong>（约 6–9 个分句）；<code>≤40字</code>的短段占 <strong>26.3%</strong>（多用于动作收束/单句对白），<code>&gt;120字</code>的长段占 <strong>15.6%</strong>（多用于背景交代与心理）。</li>
+<li><strong>逗号密度极高</strong>，靠逗号把一个长意群切成短拍：<ul>
+<li>「清圆坐在穿堂里煎药，药吊子里的药&quot;咕咚咕咚&quot;沸腾，蒸汽顶动盖子，咔嚓作响。」<code>[第1章]</code></li>
+<li>「屋檐上齐整的白线倾泻而下，浇在青石的地砖上，和着煎药的响动，共同组成了一个热闹的人间。」<code>[第1章]</code></li>
+</ul>
+</li>
+<li><strong>文白配比约 9:1</strong>：白话为底，每 200–300 字嵌 1 个文言/雅词调味（踅身、纳福、颔首、莞尔、抿唇、垂眼、搬、作头疼、合府）。<ul>
+<li>「她欠了欠身，从里间退出来，像这样的冷遇不是一朝两朝，咬碎了牙也得忍住。」<code>[第1章]</code></li>
+</ul>
+</li>
+<li><strong>排比偶用，克制</strong>：<ul>
+<li>「各人有各人的地头，各人有各人的势力。」<code>[第1章]</code></li>
+</ul>
+</li>
+<li><strong>单句成段</strong>用于转折/收束：<ul>
+<li>「所以身后有个名声不好的人撑腰，其实是件很轻省的事。」<code>[第91章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>2. 叙述腔调（冷热 / 反讽 / 距离感）</h3>
+<p><strong>结论：冷笔为主，热只一瞬；反讽与感慨常以&quot;旁白式判断句&quot;收尾，距离感保持在&quot;看破不说破&quot;。</strong></p>
+<ul>
+<li>侧写与冷嘲，绝少煽情：<ul>
+<li>「挨了打，怕人笑话的却是她，这样歪理，也只有扈夫人说得出口。」<code>[第21章]</code></li>
+<li>「倒只有这个中途收回来的孙女，还贴心些，老太太垂着眼皮想。」<code>[第1章]</code></li>
+</ul>
+</li>
+<li>感慨体收束，常用&quot;所以呀/所以……其实&quot;：<ul>
+<li>「所以呀，苦人儿就要善于开解自己。」<code>[第21章]</code></li>
+</ul>
+</li>
+<li>温柔处点到即止，不铺陈：<ul>
+<li>「午后的薰风啊，绕梁的燕子啊，都是这仲夏最美的点缀。」<code>[第65章]</code></li>
+</ul>
+</li>
+<li>残酷处用一句白话点破，不加渲染：<ul>
+<li>「也许失了脸面，让她再没有活下去的勇气了」<code>[第102章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>3. 视角与调度（限知 / 切换 / 留白）</h3>
+<p><strong>结论：第三人称限知，紧贴女主清圆（≥八成），每场最多借一个旁观者做侧写；切换以&quot;空行+新场景&quot;为界，不预告。</strong></p>
+<ul>
+<li>贴女主，全程只写她所见所感：<ul>
+<li>「抱弦上来迎她，她笑了笑，&quot;回去吧。&quot;」<code>[第1章]</code></li>
+</ul>
+</li>
+<li>借配角之眼侧写女主处境（老太太、月荃、沈润、李从心各切一段）：<ul>
+<li>「月荃心里向着四姑娘，亲自来传话，就是为了早一步提醒她提防。」<code>[第21章]</code></li>
+<li>切男主李从心视角，写他如何看女主：「他的目光静静流淌过谢四姑娘的脸，因为对她的来历有耳闻，因此不免多了几分探究。」<code>[第9章]</code></li>
+<li>沈润视角开篇：「沈指挥使恼了，通常是要死人的」<code>[第65章]</code></li>
+</ul>
+</li>
+<li><strong>留白</strong>：关键动机只写画面、不写结论：<ul>
+<li>「她笑了笑，没应他，&quot;快吃饭吧。&quot;」（清圆布局不点破）<code>[第91章]</code></li>
+<li>「只怕她太年轻，说得过多只怕会吓着她」（沈润欲言又止）<code>[第40章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>4. 对白特点（一人一腔 / 潜台词 / 标点分行）</h3>
+<p><strong>结论：全部用「&quot; &quot;」（半角直角引号 <code>“”</code>）——原文无一处 <code>「」</code>；标签惯用&quot;X道：&quot;或&quot;X+动作，道：“…”&quot;；一人一腔极清晰，潜台词重。</strong></p>
+<ul>
+<li>标签句式统计：<code>道：/道，</code> <strong>1,511 处</strong>；感叹号全书仅 <strong>603</strong>，问号 <strong>1,783</strong>，省略号 735。</li>
+<li><strong>一人一腔</strong>（对撞例 <code>[第21章]</code>）：<ul>
+<li>老太太·长篇威压+感叹号：「我还没死呢，如今都反了天了！」</li>
+<li>清如·短促尖刻+反问：「四妹妹真是能耐人儿，咱们的婚事都要凭父母之命，只有四妹妹，悄没声儿的，连女婿都找好了。」</li>
+<li>扈夫人·含笑藏刀：「四丫头，你心里也要有个成算，既明白了，及时抽身，死了这条心便是了。」</li>
+<li>抱弦·护主急切：「二姑娘做什么这样？我们姑娘有不到的地方，自有老太太和太太教训……」</li>
+</ul>
+</li>
+<li><strong>潜台词/潜锋</strong>（不说破、只递话）：<ul>
+<li>「二姐姐想，都是体面的大族人家，没有盐，卤也将就，闹出去岂不叫人笑话死？」<code>[第21章]</code></li>
+<li>「既见识了江海，如何看得上细流啊。」（以茶讽皓雪）<code>[第91章]</code></li>
+</ul>
+</li>
+<li><strong>语气词与口气贴合身份</strong>：罢、呢、么、嗳、哎哟、呀——老太太/suo 用&quot;罢&quot;&quot;哪&quot;，丫头用&quot;嗳&quot;&quot;嗐&quot;。</li>
+</ul>
+<h3>5. 描写手法（环境 / 外貌 / 动作 / 心理）</h3>
+<p><strong>结论：四面均衡，密度都不高；环境写&quot;湿度+光+声&quot;，外貌抓&quot;质感比喻&quot;，动作写细碎小动，心理只一两句。</strong></p>
+<ul>
+<li>环境（开篇/分场 1–3 句起兴，带地名时令）：<ul>
+<li>「才是惊蛰时分，天上的云层里裹着闷雷，老天爷偶尔清清嗓子……」<code>[第1章]</code></li>
+<li>「幽州入夏的天气，午后变得很闷热，池塘边上柳条轻摇，太阳从细长的枝叶间照过来，每一个叶片都镶上了一圈金边。」<code>[第29章]</code></li>
+</ul>
+</li>
+<li>外貌（一句质感比喻定性，不逐官）：<ul>
+<li>「她像一块打磨得极其光滑的玉璧，立在那里便有她本身的纹理。」<code>[第1章]</code></li>
+<li>「侧面看去眼睫乌浓稠密，倒比姑娘还细致三分。」<code>[第9章]</code></li>
+</ul>
+</li>
+<li>动作（细碎、有实物、无声）：<ul>
+<li>「她放下蒲扇，自己缚起袖子倒了一碗，蓬蓬的热气顺着盏壁升腾上来，苦香熏了满脸。」<code>[第1章]</code></li>
+<li>「他打开手里的折扇，也不说什么，徐徐地摇着，风从扇底流淌出来，拂动她鬓边的发丝，她却浑然不觉。」<code>[第9章]</code></li>
+</ul>
+</li>
+<li>心理（一问一叹，极短）：<ul>
+<li>「真的恼了么？」<code>[第65章]</code></li>
+<li>「悲从中来，心头发酸，酸得睡意全无」<code>[第65章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>6. 修辞偏好（标志性修辞）</h3>
+<p><strong>结论：比喻取材于&quot;器物+身体+天象&quot;，几乎不用排比夸张；最标志的是&quot;以物写人&quot;与&quot;对照&quot;。</strong></p>
+<ul>
+<li>比喻·器物化/身体化（首选取材）：<ul>
+<li>「老旧腐朽的气息从各个角落里扭动着，钻出来，网子似的把人网住。」<code>[第1章]</code></li>
+<li>「她那好看的脸即便在算计人的时候，也显出一副菩萨般慈悲的模样。」<code>[第59章]</code></li>
+<li>「一条笔直的嗓门发起怒来，简直铙钹一样」<code>[第21章]</code></li>
+<li>「那笑锋利如刀」<code>[第21章]</code></li>
+<li>「人像淬火的钢刃，断断不敢去招惹。」<code>[第91章]</code></li>
+<li>「那一字一句钢针般扎人」<code>[第91章]</code></li>
+<li>「姚绍像被雨淋坏的泥胎」<code>[第102章]</code></li>
+</ul>
+</li>
+<li>以物写人（本书签名手法，物承载情绪、不解释）：<ul>
+<li>自腌梅子/珐琅盒写清圆的细心与讨好 <code>[第1章]</code>；团扇写收敛 <code>[第9章]</code>；兽面透雕玉佩写沈润其人 <code>[第30章]</code>；荷包+玉佩写情意 <code>[第65章]</code>；煎茶写正室之尊 <code>[第91章]</code>。</li>
+</ul>
+</li>
+<li>对照（谢家凉薄 × 陈家温情；沈润冷面 × 独对她温柔）：<ul>
+<li>「至亲骨肉没有一个怜惜她，反倒是身边伺候的人，给了她亲人那里得不来的关爱。」<code>[第21章]</code></li>
+<li>「谢家的春风得意，马上会变成清如的噩梦。」<code>[第54章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>7. 高频词 / 标志性表达（全文实际统计）</h3>
+<blockquote>
+<p>口径：全书 102 章原文（含&quot;作者有话要说&quot;）× 精确子串计数。虚词/语气词与名词分开列。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>词</th>
+<th>频次</th>
+<th>备注/用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>面部/神态</td>
+<td>笑</td>
+<td>1369</td>
+<td>全书最高；&quot;笑&quot;是人物态度信号（浅笑、讥诮、失笑、含笑）</td>
+</tr>
+<tr>
+<td></td>
+<td>眼</td>
+<td>1218</td>
+<td>&quot;眼风&quot;&quot;着眼&quot;&quot;打眉眼官司&quot;；以眼写态度</td>
+</tr>
+<tr>
+<td></td>
+<td>泪</td>
+<td>70</td>
+<td>点到即止，不铺陈哭戏</td>
+</tr>
+<tr>
+<td></td>
+<td>叹</td>
+<td>192</td>
+<td>&quot;叹了口气&quot;= 转场/示弱/无奈</td>
+</tr>
+<tr>
+<td>语气/虚词</td>
+<td>倒</td>
+<td>537</td>
+<td>高频语气副词（&quot;倒好&quot;&quot;倒不如&quot;）</td>
+</tr>
+<tr>
+<td></td>
+<td>竟</td>
+<td>430</td>
+<td>意外与反讽标记</td>
+</tr>
+<tr>
+<td></td>
+<td>罢了</td>
+<td>129</td>
+<td>收束式自嘲/认命</td>
+</tr>
+<tr>
+<td></td>
+<td>似的</td>
+<td>128</td>
+<td>核心比喻助词（本书比喻几乎全用&quot;似的/一般/一样&quot;）</td>
+</tr>
+<tr>
+<td></td>
+<td>到底</td>
+<td>190 / 其实 170 / 只管 92</td>
+<td>判断句/宽慰句骨架</td>
+</tr>
+<tr>
+<td>自然天象</td>
+<td>月</td>
+<td>365</td>
+<td>夜色/时间刻度</td>
+</tr>
+<tr>
+<td></td>
+<td>风</td>
+<td>326 / 花 313 / 雪 193 / 雨 104</td>
+<td>水墨江南底噪；&quot;雨&quot;见 40 章</td>
+</tr>
+<tr>
+<td></td>
+<td>灯</td>
+<td>124 / 窗 137 / 园 124 / 廊 93 / 檐 57</td>
+<td>内宅空间坐标</td>
+</tr>
+<tr>
+<td>器物意象</td>
+<td>玉</td>
+<td>140 / 佩 123 / 玉佩 90</td>
+<td>情意与权柄的双关物</td>
+</tr>
+<tr>
+<td></td>
+<td>兽面 18 / 饕餮 11</td>
+<td></td>
+<td>沈润之佩（贯穿道具，&quot;凶悍贪婪&quot;写人）</td>
+</tr>
+<tr>
+<td></td>
+<td>团扇 32（25 章）/ 帕子 20（18 章）</td>
+<td></td>
+<td>女性收敛与遮掩的定点道具</td>
+</tr>
+<tr>
+<td></td>
+<td>香 146 / 茶 92（41 章）/ 药 77 / 梅 70（21 章）/ 猫 102 / 荷包 25</td>
+<td></td>
+<td>日常器物承载情绪</td>
+</tr>
+<tr>
+<td>低频定点道具</td>
+<td>珐琅 3 / 博山炉 2 / 绒花 1 / 风筝 1 / 石榴 2</td>
+<td></td>
+<td><strong>非贯穿意象</strong>，为单场戏&quot;以物写人&quot;的定点道具（绒花仅 <code>[第1章]</code> 一处）</td>
+</tr>
+<tr>
+<td>地名/专名</td>
+<td>云芽 27 / 一瓯春</td>
+<td></td>
+<td>&quot;云芽&quot;为旧名；&quot;一瓯春&quot;为园中花厅名，兼作书名 <code>[第29/31/36章]</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>提示：真正的&quot;贯穿性意象&quot;是 <strong>玉佩/兽面佩、团扇、帕子、茶、梅、猫、灯、雨</strong>；<code>博山炉/绒花/珐琅盒</code> 属低频点缀，仿写时可各用一两次，<strong>不必当母题反复编织</strong>。</p>
+</blockquote>
+<h3>8. 诗词 / 典故 / 俗谚（全列 + 出处）</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>原文</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>诗联（引）</td>
+<td>「闺秀名媛云鬓重，风流公子雪衫轻」</td>
+<td><code>[第7章]</code>（抱弦引春日宴旧句）</td>
+</tr>
+<tr>
+<td>诗谑（引）</td>
+<td>「悠哉情绪悠哉天，无事小神仙」</td>
+<td><code>[第9章]</code></td>
+</tr>
+<tr>
+<td>化典</td>
+<td>「蒹葭弥望看不到尽头」</td>
+<td><code>[第44章]</code>（化《诗经·蒹葭》）</td>
+</tr>
+<tr>
+<td>化典</td>
+<td>「草长莺飞二月天，柳条轻拂」</td>
+<td><code>[第102章]</code>（化&quot;江南草长、杂花生树、群莺乱飞&quot;）</td>
+</tr>
+<tr>
+<td>专名</td>
+<td>「一瓯春」（园中花厅，兼书名）</td>
+<td><code>[第29章]</code>/<code>[第31章]</code>/<code>[第36章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「人情留一线，日后好相见」</td>
+<td><code>[第21章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「躲得过初一，躲不过十五」</td>
+<td><code>[第38章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「宁拆十座庙，不毁一桩婚」</td>
+<td><code>[第89章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「尤物杀人不用刀，追魂夺命全在腰」</td>
+<td><code>[第90章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「取之精华，弃之糟粕」</td>
+<td><code>[第91章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「既见识了江海，如何看得上细流」</td>
+<td><code>[第91章]</code></td>
+</tr>
+<tr>
+<td>古语</td>
+<td>「水至清则无鱼」</td>
+<td><code>[第91章]</code></td>
+</tr>
+<tr>
+<td>古语</td>
+<td>「兼听则明，偏信则暗」</td>
+<td><code>[第94章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「三天为请，两天为叫，当天为提溜」</td>
+<td><code>[第95章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「一表三千里」</td>
+<td><code>[第102章]</code></td>
+</tr>
+<tr>
+<td>俗谚</td>
+<td>「善恶到头终有报」</td>
+<td><code>[第102章]</code></td>
+</tr>
+<tr>
+<td>自造格言</td>
+<td>「她纵是铁做的，又能打几个钉儿？」</td>
+<td><code>[第102章]</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>特点：<strong>典故密度低而精</strong>——诗联只作闲笔（角色口中引一句），俗谚嵌入人物口语（多为长辈/妇人训话，如&quot;三天为请两天为叫&quot;），化典只借意象不点出处。</p>
+</blockquote>
+<hr>
+<h2>三、可模仿清单（照着写就像）</h2>
+<p><strong>A. 句子与节奏</strong></p>
+<ol>
+<li>以 <strong>7–14 字分句为主（应占约六成）</strong>，<code>≤6字</code> 短分句占三分之一，<code>&gt;25字</code> 几乎不用——<strong>宁多逗号，不成大复句</strong>。</li>
+<li>段落平均 <strong>70–80 字</strong>；戏剧收束处允许 <code>≤40字</code> 单句成段（占约四分之一）；交代背景的长段控制在 120–180 字。</li>
+<li>每 200–300 字嵌 1 个雅词/文言词调味（踅身、纳福、颔首、莞尔、抿唇、垂眼、搬、作头疼、合府），配比约 <strong>9:1</strong>。</li>
+</ol>
+<p><strong>B. 视角与信息</strong><br>4. 第三人称限知贴女主；每场戏最多切 <strong>1 个</strong>旁观者视角做侧写/心理（老太太、丫头、男主），<strong>切换以&quot;空行+新场景&quot;为界，不做预告</strong>。<br>5. 关键动机<strong>留白</strong>：只写画面（一件物、一个动作、半句话），不下结论、不解释象征。</p>
+<p><strong>C. 对白</strong><br>6. 对话全部用 <code>“ ”</code>，<strong>禁用 <code>「」</code></strong>；标签用&quot;X道：“…”&quot;或&quot;X+小动作，道：“…”&quot;。<br>7. <strong>一人一腔</strong>：老太太=长句+感叹号威压；庶姐=短句+反问尖刻；主母=冷定语+含笑刀锋；忠仆=急切护主+反问。同一场戏里让四腔对撞。<br>8. 潜台词优先于把话说明——用递话、反问、旁敲（&quot;没有盐，卤也将就&quot;）。<br>9. 标点配比：问号多于感叹号（约 3:1），省略号用于沉吟/欲言/被打断；<strong>不用破折号破句</strong>，分场才用 <code>――</code>（全书 27 章出现）。</p>
+<p><strong>D. 描写与修辞</strong><br>10. 环境开篇/分场时起兴 <strong>1–3 句</strong>，写&quot;湿度+光+声&quot;三重，带时令地名（横塘的春天／惊蛰／幽州入夏）。<br>11. 外貌一句质感比喻定性即可（&quot;像一块打磨得极其光滑的玉璧&quot;），<strong>不逐官细描</strong>。<br>12. 比喻取材限定 <strong>器物 / 身体感官 / 自然天象</strong>（玉璧、网子、铙钹、刀、钢针、泥胎、钢刃、羽毛、蜜糖、薰风），<strong>禁用现代、西式意象</strong>。<br>13. 以物写人：给每场戏的主角配一件<strong>定点道具</strong>承载情绪（梅子/珐琅盒/团扇/兽面佩/荷包/茶盏），道具只写动作、不解释。</p>
+<p><strong>E. 情绪落点</strong><br>14. 不直写情绪名词，落在<strong>身体与器物</strong>上：寻物未得→心头发酸；拭泪→&quot;卷着帕子胡乱拭泪&quot;；隐忍→&quot;咬碎了牙也得忍住&quot;／&quot;垂着眼&quot;／&quot;抿唇&quot;。<br>15. 感慨式收束，用&quot;所以呀／所以……其实&quot;下一句判断，<strong>冷中带暖</strong>。<br>16. 章末用 <strong>1–2 句动作 + 一句留悬念</strong>收束（&quot;清圆脸上淡淡的，脚下步履未减，提裙迈出了门槛。&quot;<code>[第1章]</code>）。</p>
+<hr>
+<h2>四、崩风格红线（禁写项）</h2>
+<ol>
+<li><strong>禁大段抒情/内心独白渲泄</strong>：本书心理戏多为一句带过，最长的心理段也不超过 180 字。</li>
+<li><strong>禁现代词与网络语</strong>：情绪价值、共情、OK、性价比、官宣、绝了……一律出戏。</li>
+<li><strong>禁西式句法与全知旁白</strong>：不用&quot;她不知道的是……&quot;&quot;多年以后……&quot;这类剧透式全知。</li>
+<li><strong>禁对话用 <code>「」</code> 或 <code>——</code></strong>：本作对话统一 <code>“ ”</code>，破折号只作分场 <code>――</code>。</li>
+<li><strong>禁情绪名词堆砌</strong>：少用&quot;愤怒/悲伤/心如刀绞&quot;直陈，改以动作、器物、短句落点。</li>
+<li><strong>禁长复句与景物大段铺陈</strong>：景物描写不超过 3 句，且必须服务情绪或转场。</li>
+<li><strong>禁把器物当明喻说教</strong>：不写&quot;这枚玉佩象征着他的爱&quot;之类——物只在动作里，意由读者会。</li>
+<li><strong>禁粗俗化与直白情色/血腥</strong>：暴力点到为止（&quot;抬手遮住她的眼睛&quot;即可），情欲以含蓄动作与留白写。</li>
+<li><strong>禁把 <code>博山炉/绒花/珐琅盒</code> 当母题反复编织</strong>：它们是低频定点道具，滥用即失真。</li>
+<li><strong>禁在正文插入说明性按语</strong>：<code>作者有话要说</code> 是平台副文本（全书 12 章有），正文内不写。</li>
+</ol>
+<hr>
+<h2>五、一句话风格锚点</h2>
+<blockquote>
+<p><strong>以&quot;器物承载情绪、短句碎切、第三人称限知贴女主&quot;为骨，冷淡白描里偶落一句暖判断——这就是《一瓯春》的笔法。</strong></p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

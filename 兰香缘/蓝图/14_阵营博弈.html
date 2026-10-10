@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阵营博弈 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>阵营博弈</h1>
+<blockquote>
+<p>数据源：阵营博弈台账<br>林府各房 + 朝堂勋贵派系</p>
+</blockquote>
+<hr>
+<h2>一、府内阵营</h2>
+<h3>1.1 阵营势力图</h3>
+<pre><code>【大房·权力核心】
+  林昭祥(老太爷·最终裁决者)
+    └── 林长政(大老爷·保守派)
+         ├── 秦氏(大太太·实权管家)
+         └── 林锦楼(嫡长孙·武将/权力继承人)
+              └── 知春馆(妻妾战场)
+
+【二房·弱势】
+  林长敏(二老爷·暴烈武夫)
+    ├── 王氏(二太太·软心)
+    ├── 林锦亭(嫡子·渐靠拢大房)
+    ├── 林东绫(嫡女·除名)
+    └── 苏媚如(妾·前林锦楼外室→叔侄丑闻)
+
+【外部势力】
+  赵家(赵晋·内阁首辅) → 赵月婵线
+  姜家(姜学成) → 姜曦云议亲线
+  显国公府(郑百川) → 宋柯政治联姻
+  永昌侯(袁绍仁) → 林锦楼盟友
+  卢韶堂(永信侯·二皇子派) → 核心反派
+</code></pre>
+<h3>1.2 知春馆权力更迭</h3>
+<table>
+<thead>
+<tr>
+<th>时期</th>
+<th>掌权者</th>
+<th>势力格局</th>
+<th>关键事件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ch6-110</td>
+<td>赵月婵</td>
+<td>赵&gt;画眉&gt;鹦哥&gt;青岚</td>
+<td>操纵/逼死/和离</td>
+</tr>
+<tr>
+<td>ch110-137</td>
+<td>空窗</td>
+<td>画眉升姨娘+鸾儿通房</td>
+<td>赵出局·新四方</td>
+</tr>
+<tr>
+<td>ch137-189</td>
+<td>无明确主</td>
+<td>香兰vs画眉vs鸾儿vs鹦哥</td>
+<td>符咒案→大清洗</td>
+</tr>
+<tr>
+<td>ch189-290</td>
+<td>香兰</td>
+<td>香兰(姨奶奶)+书染+小鹃</td>
+<td>秦氏认可→管家</td>
+</tr>
+<tr>
+<td>ch290+</td>
+<td>香兰</td>
+<td>一家独大</td>
+<td>正妻</td>
+</tr>
+</tbody></table>
+<h3>1.3 秦氏的权术</h3>
+<p>秦氏是府内政治最精明的操盘手：</p>
+<table>
+<thead>
+<tr>
+<th>手段</th>
+<th>具体操作</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>分而治之</td>
+<td>减例涨银针对曹/但留曹做靶子</td>
+<td>ch17</td>
+</tr>
+<tr>
+<td>一石三鸟</td>
+<td>一场&quot;哑谜&quot;同时处理曹送信+试探宋柯+断绮念想</td>
+<td>ch24</td>
+</tr>
+<tr>
+<td>棋子操控</td>
+<td>送紫黛&quot;磨&quot;香兰/送雪凝当眼线</td>
+<td>ch195/320</td>
+</tr>
+<tr>
+<td>审时度势</td>
+<td>被香兰救命后180度转变</td>
+<td>ch207</td>
+</tr>
+<tr>
+<td>联合儿子</td>
+<td>前台审案+后台编造假消息</td>
+<td>ch32-37</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、朝堂阵营</h2>
+<h3>2.1 夺嫡格局</h3>
+<pre><code>大皇子阵营                    二皇子阵营
+  ├── 赵晋(内阁首辅·拥立)      ├── 卢韶堂(永信侯)
+  ├── 林家(暗中倾斜)            ├── 姜学成(被弹劾)
+  └── 最终胜出→太子→新君        └── 起事失败→覆灭
+
+林家策略：左右逢源·谁坐龙椅都低头
+  └── 林昭祥真传&quot;趋利避害&quot;
+</code></pre>
+<h3>2.2 权谋大事件</h3>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>涉及阵营</th>
+<th>结果</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>八王逼宫</td>
+<td>太子党vs八王</td>
+<td>太子失踪/沈家灭门</td>
+<td>ch2(前世)</td>
+</tr>
+<tr>
+<td>太子出关</td>
+<td>林锦楼私助</td>
+<td>太子安全/埋政治炸弹</td>
+<td>ch110</td>
+</tr>
+<tr>
+<td>做局和离</td>
+<td>林vs赵</td>
+<td>赵月婵出局/赵家损失</td>
+<td>ch108-110</td>
+</tr>
+<tr>
+<td>东宫立储</td>
+<td>大皇子胜</td>
+<td>赵晋拥立成/林圣眷浓</td>
+<td>ch271</td>
+</tr>
+<tr>
+<td>卢韶堂叛乱</td>
+<td>二皇子派</td>
+<td>叛军被灭/卢被杀</td>
+<td>ch298-303</td>
+</tr>
+<tr>
+<td>密信销毁</td>
+<td>赵晋密信</td>
+<td>林政治安全/香兰立功</td>
+<td>ch303</td>
+</tr>
+<tr>
+<td>新君继位</td>
+<td>太子即位</td>
+<td>沈家平反/林家更盛</td>
+<td>番外</td>
+</tr>
+</tbody></table>
+<h3>2.3 林锦楼的权力积累</h3>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>官职</th>
+<th>关键动作</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>入场</td>
+<td>武状元/千总</td>
+<td>经商养&quot;林家军&quot;</td>
+<td>ch5</td>
+</tr>
+<tr>
+<td>剿匪</td>
+<td>正四品指挥佥事</td>
+<td>凯旋升官</td>
+<td>ch103</td>
+</tr>
+<tr>
+<td>和离</td>
+<td>同上</td>
+<td>做局摆脱赵氏</td>
+<td>ch108-110</td>
+</tr>
+<tr>
+<td>京城</td>
+<td>从三品都督</td>
+<td>升官→林家权势最盛</td>
+<td>ch231</td>
+</tr>
+<tr>
+<td>立储后</td>
+<td>都督</td>
+<td>随王伴驾</td>
+<td>ch271</td>
+</tr>
+<tr>
+<td>叛乱后</td>
+<td>一品武将</td>
+<td>入阁在望</td>
+<td>ch305+</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、关键博弈事件详解</h2>
+<h3>3.1 曹丽环覆灭（ch6-134）</h3>
+<pre><code>曹压榨→献鞋抢功→苦肉计→送信钓鱼→桃汁案
+                                    ↓
+              ★三罪并发→被逐(第一次覆灭)
+                                    ↓
+              回归→勾搭知县→操纵银蝶→整香兰
+                                    ↓
+              ★被打→小月→卉儿反噬→病死(终覆灭)
+</code></pre>
+<h3>3.2 和离大戏（ch106-110）</h3>
+<p><strong>林锦楼做局步骤</strong>：</p>
+<ol>
+<li>发现赵↔钱出轨暗线 → 不打草惊蛇</li>
+<li>引赵学德父子入甘露寺&quot;搜反贼&quot;</li>
+<li>同时让钱文泽引郝卿到寺偷情</li>
+<li>踹门当场抓奸 → 三条路逼赵家接受和离</li>
+<li>顺手揭芙蓉被杀真相 → 撕破脸</li>
+<li>暗送太子出关 → 赵学德搜寺一无所获</li>
+</ol>
+<p><strong>博弈精妙</strong>：一局棋同时解决私仇(和离)、旧恨(芙蓉)、政治布局(太子)三件事。</p>
+<h3>3.3 符咒案（ch180-189）</h3>
+<pre><code>画眉布局：拉拢暖月→自备求子符洗白→指使塞&quot;死绝符&quot;枕头
+                                ↓
+附带收割：鸾儿绝命符翻出→一箭双雕
+                                ↓
+香兰反击：字体反证+不在场+反指暖月→辩赢
+                                ↓
+林锦楼站队：亲手扶+踹长发家的→明确表态
+                                ↓
+大清洗：鸾儿撞墙/画眉降格/暖月如霜发卖
+</code></pre>
+<h3>3.4 断子丸事件（ch277-290）</h3>
+<pre><code>赵月婵买药→谭露华拒下→彩凤擅用→药散落
+                                ↓
+姜丹云捡走→姜曦云设局让丹云下手→药入药锅
+                                ↓
+★★★★香兰服下→永久不孕→张太医检出
+                                ↓
+姜母命嫁祸春菱→林锦楼命抬姜丹云→卧室对决
+                                ↓
+朝露踢毽带出残药→揭穿→掐姜曦云脖子→退场
+</code></pre>
+<hr>
+<h2>四、阵营胜负总表</h2>
+<table>
+<thead>
+<tr>
+<th>阵营/势力</th>
+<th>最终结局</th>
+<th>胜/负</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>香兰</td>
+<td>正妻·一品诰命</td>
+<td>★全胜</td>
+</tr>
+<tr>
+<td>林锦楼</td>
+<td>一品武将·入阁在望</td>
+<td>★全胜</td>
+</tr>
+<tr>
+<td>秦氏</td>
+<td>儿子如愿·香兰管家</td>
+<td>胜（学会让步）</td>
+</tr>
+<tr>
+<td>林昭祥</td>
+<td>家族传承稳固</td>
+<td>胜</td>
+</tr>
+<tr>
+<td>赵月婵</td>
+<td>冻死</td>
+<td>全败</td>
+</tr>
+<tr>
+<td>画眉</td>
+<td>被押官</td>
+<td>全败</td>
+</tr>
+<tr>
+<td>曹丽环</td>
+<td>病死</td>
+<td>全败</td>
+</tr>
+<tr>
+<td>姜曦云</td>
+<td>赔钱退场</td>
+<td>败</td>
+</tr>
+<tr>
+<td>宋柯</td>
+<td>外放贵州·妻子</td>
+<td>平（有遗憾）</td>
+</tr>
+<tr>
+<td>赵家</td>
+<td>赵晋拥立成但和离丢脸</td>
+<td>平</td>
+</tr>
+<tr>
+<td>卢韶堂</td>
+<td>被杀</td>
+<td>全败</td>
+</tr>
+<tr>
+<td>二皇子</td>
+<td>起事失败</td>
+<td>全败</td>
+</tr>
+<tr>
+<td>林长政</td>
+<td>妥协</td>
+<td>败（观念输给时代）</td>
+</tr>
+<tr>
+<td>苏媚如</td>
+<td>自尽</td>
+<td>全败</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、博弈设计规律</h2>
+<table>
+<thead>
+<tr>
+<th>规律</th>
+<th>说明</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>以弱胜强靠信息差</td>
+<td>掌握信息的一方总赢</td>
+<td>林做局和离(掌握出轨证据)</td>
+</tr>
+<tr>
+<td>长线操盘者必胜</td>
+<td>急于求成者必败</td>
+<td>秦氏(长线)vs曹(急切)/画眉(精密但急)</td>
+</tr>
+<tr>
+<td>品格是终极武器</td>
+<td>所有手段都会过期，只有品格长期有效</td>
+<td>香兰境界论赢得林昭祥</td>
+</tr>
+<tr>
+<td>反派阶梯覆灭</td>
+<td>按毒性从低到高依次退场</td>
+<td>曹→赵→画眉→卢韶堂</td>
+</tr>
+<tr>
+<td>政治和个人交织</td>
+<td>每一场私斗都有政治背景</td>
+<td>和离=政治布局/断子丸=议亲博弈</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>📌 本蓝图基于阵营博弈台账归纳，覆盖 [第1章] 至 [番外]。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

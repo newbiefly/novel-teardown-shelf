@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拆解书架</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(255,255,255,0.08);--card:#111016;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:60px 60px;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,169,97,0.07),transparent 70%);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+/* 右上角作者二维码 */
+.qr{position:fixed;top:16px;right:20px;z-index:1000;display:flex;flex-direction:column;align-items:center;gap:5px;
+  background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;
+  backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}
+.qr img{width:74px;height:74px;display:block;border-radius:6px;background:#fff;}
+.qr span{font-size:9px;color:var(--gold);letter-spacing:0.5px;white-space:nowrap;}
+.qr:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}
+@media(max-width:820px){
+  .qr{position:static;margin:0 auto 18px;flex-direction:row;gap:10px;padding:7px 12px;width:max-content;}
+  .qr img{width:52px;height:52px;}
+  .qr span{font-size:10px;}
+}
+
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:64px 32px 90px;}
+
+/* 顶部一句话 */
+.hero{text-align:center;padding-bottom:38px;border-bottom:1px solid var(--line);}
+.hero h1{font-size:clamp(20px,2.6vw,26px);font-weight:500;letter-spacing:3px;line-height:1.7;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 45%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* 书架网格 · 卡片（略高于正方形，3:4 太瘦高） */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;}
+.book{display:flex;flex-direction:column;aspect-ratio:4/3.6;background:var(--card);border:1px solid var(--line);
+  border-radius:16px;padding:24px 22px 20px;text-decoration:none;transition:all .22s;position:relative;overflow:hidden;}
+.book::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .22s;}
+.book::after{content:'';position:absolute;right:-40px;top:-40px;width:130px;height:130px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,169,97,0.10),transparent 70%);pointer-events:none;}
+.book:hover{border-color:rgba(201,169,97,0.45);transform:translateY(-4px);box-shadow:0 16px 42px rgba(0,0,0,0.5);}
+.book:hover::before{background:var(--gold);}
+
+/* 题材标签 */
+.book .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;position:relative;z-index:1;}
+.book .pills span{font-size:10px;line-height:1;color:var(--gold);letter-spacing:0.5px;
+  border:1px solid rgba(201,169,97,0.32);background:rgba(201,169,97,0.08);border-radius:999px;padding:4px 9px;white-space:nowrap;}
+.book .pills span.more{color:#9a9a9a;border-color:rgba(255,255,255,0.14);background:rgba(255,255,255,0.04);}
+
+.book .bn{font-size:25px;font-weight:900;color:var(--gold2);letter-spacing:4px;line-height:1.28;position:relative;z-index:1;}
+.book .ba{font-size:12px;color:#999;margin-top:9px;letter-spacing:1px;position:relative;z-index:1;}
+.book .bl{font-size:12px;color:#a8a8a8;line-height:1.85;margin-top:14px;flex:1;position:relative;z-index:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.book .bm{display:flex;gap:16px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);position:relative;z-index:1;}
+.book .bm div{font-size:11px;color:#888;letter-spacing:0.5px;}
+.book .bm b{color:var(--gold2);font-weight:700;font-size:13px;margin-right:3px;}
+
+.empty{grid-column:1/-1;text-align:center;color:#777;font-size:14px;padding:70px 0;}
+
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}.wrap{padding:44px 18px 70px;}
+  .book{padding:20px 18px 16px;}.book .bn{font-size:22px;letter-spacing:3px;}}
+@media(max-width:560px){.grid{grid-template-columns:1fr;}.book{aspect-ratio:auto;min-height:0;}}
+</style>
+</head>
+<body>
+<div class="qr" title="作者微信二维码"><img src="./qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信：wuzhuv2</span></div>
+<div class="wrap">
+  <div class="hero">
+    <h1>把一部小说拆解成故事素材和可执行 skill</h1>
+  </div>
+  <div class="grid">
+<a class="book" href="./%E8%8A%B1%E5%BC%80%E9%94%A6%E7%BB%A3/index.html">
+      <div class="pills"><span>古代言情</span><span>世家宅斗</span><span>复仇成长</span><span>感情主线</span></div>
+      <div class="bn">花开锦绣</div>
+      <div class="ba">吱吱 · 310章 · 约86.2万字</div>
+      <div class="bl">- 一句话故事：华阴傅家九小姐傅庭筠遭表哥诬陷私情、被家族灌毒灭口，获军官赵凌舍命相救，二人患难相守成婚，终联袂复仇、扳倒构陷她的南京俞家。</div>
+      <div class="bm"><div><b>16</b>蓝图</div><div><b>6</b>台账</div><div><b>310</b>章卡</div></div>
+   </a>
+<a class="book" href="./%E4%B8%80%E7%93%AF%E6%98%A5/index.html">
+      <div class="pills"><span>古代言情</span><span>豪门世家</span><span>情有独钟</span><span>微宅斗</span><span class="more">+2</span></div>
+      <div class="bn">一瓯春</div>
+      <div class="ba">尤四姐 · 102章 · 约40.1万字</div>
+      <div class="bl">谢家庶女清圆被接回&quot;镇宅&quot;，暗查生母被诬下毒的冤案，与刑狱权臣沈润相斗相撩，终昭雪母冤、嫁作二品诰命。</div>
+      <div class="bm"><div><b>16</b>蓝图</div><div><b>6</b>台账</div><div><b>102</b>章卡</div></div>
+   </a>
+<a class="book" href="./%E8%8D%92%E8%85%94%E8%B5%B0%E6%9D%BF/index.html">
+      <div class="pills"><span>架空古代</span><span>权谋复仇</span><span>悬疑探案</span><span>群像</span><span class="more">+1</span></div>
+      <div class="bn">荒腔走板</div>
+      <div class="ba">风歌且行 · 99章 · 约54.5万字</div>
+      <div class="bl">将门孤女化名市井混混，以一桩密室命案为戏台，用八年布局引动民变、扳倒权臣、扶正统登基，为满门冤死的父亲昭雪复仇。</div>
+      <div class="bm"><div><b>16</b>蓝图</div><div><b>6</b>台账</div><div><b>99</b>章卡</div></div>
+   </a>
+<a class="book" href="./%E7%BC%BA%E5%8F%A3/index.html">
+      <div class="pills"><span>都市现实日常</span><span>言情甜宠</span></div>
+      <div class="bn">缺口</div>
+      <div class="ba">码代码的Gigi · 77章 · 约28.3万字</div>
+      <div class="bl">豪门之子江恒被父亲设局陷害入罪，为保护妻子陈昭而伪装出轨、逼她离婚；陈昭查明真相后倾力救他，两人跨越&quot;信任&quot;的裂痕破镜重圆。</div>
+      <div class="bm"><div><b>12</b>蓝图</div><div><b>5</b>台账</div><div><b>77</b>章卡</div></div>
+   </a>
+<a class="book" href="./%E5%85%B0%E9%A6%99%E7%BC%98/index.html">
+      <div class="pills"><span>重生</span><span>宅斗</span><span>种田经营</span><span>言情</span><span class="more">+1</span></div>
+      <div class="bn">兰香缘</div>
+      <div class="ba">禾晏山 · 355章 · 约112.3万字</div>
+      <div class="bl">首辅孙女重生为家生丫鬟，在林府宅斗中以画技谋生、历经四朵桃花，从泼辣防备蜕变为慈悲宽厚，终获正名圆满。</div>
+      <div class="bm"><div><b>16</b>蓝图</div><div><b>7</b>台账</div><div><b>64</b>章卡</div></div>
+   </a>
+<a class="book" href="./%E5%8D%97%E5%9F%8E%E5%B0%8F%E5%B7%B7/index.html">
+      <div class="pills"><span>现代言情</span><span>都市现实</span><span>救赎治愈</span><span>情有独钟</span><span class="more">+1</span></div>
+      <div class="bn">南城小巷</div>
+      <div class="ba">时玖远 · 70章 · 约26.4万字</div>
+      <div class="bl">被至亲嫌弃的女孩南久寄居爷爷的茶馆，恋上名义上的&quot;叔&quot;宋霆，历经逐门、商战与生死，终以事业与爱情重回南城。</div>
+      <div class="bm"><div><b>14</b>蓝图</div><div><b>5</b>台账</div><div><b>70</b>章卡</div></div>
+   </a>
+  </div>
+</div>
+</body>
+</html>

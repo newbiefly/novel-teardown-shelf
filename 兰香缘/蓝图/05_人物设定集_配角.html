@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人物设定集·配角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>人物设定集·配角</h1>
+<blockquote>
+<p>数据源：人物台账 · 关系台账<br>本篇写&quot;配角各自怎么活、怎么变&quot;，两人之间关系动态归「06_人物关系网」</p>
+</blockquote>
+<hr>
+<h2>一、妻妾群像</h2>
+<h3>1.1 赵月婵</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>林锦楼正妻 → 和离 → 嫁戴庆续弦 → 芦苇荡冻死</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>金陵第一美人</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>维持主母地位/报复</td>
+</tr>
+<tr>
+<td>性格标签·主</td>
+<td><strong>虚荣毒后</strong> — 外表金尊玉贵，内里阴毒狠辣。每次失势必反扑，直到死亡</td>
+</tr>
+<tr>
+<td>性格标签·辅①</td>
+<td><strong>嫉妒型控制者</strong> — 对任何受宠的女人都必须毁灭：操纵撞胎案[第8章]/逼死青岚[第75章]/密谋卖香兰[第78章]</td>
+</tr>
+<tr>
+<td>性格标签·辅②</td>
+<td><strong>虚荣表演者</strong> — &quot;金陵第一美人&quot;是她的全部自尊，林锦楼&quot;守四年活寡&quot;的羞辱让她崩溃[第9章]</td>
+</tr>
+<tr>
+<td>反差点</td>
+<td><strong>对外精明算计 vs 对林锦楼色令智昏</strong> — 她能布&quot;离间计&quot;[第65章]、能操纵偷情[第107章]，但一到林锦楼面前就心如雷击[第9章]，始终放不下这个侮辱她的男人</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>从正室主母 → 和离弃妇 → 续弦独宠 → 芦苇荡冻死</td>
+</tr>
+</tbody></table>
+<p><strong>阶段简表</strong>：</p>
+<ol>
+<li><strong>正妻期</strong>（ch6-110）：操纵撞胎案 [第8-10章] → 逼死青岚 [第75章] → 打关香兰卖窑子 [第77-78章] → 偷情被捉→和离 [第108-110章]</li>
+<li><strong>流落期</strong>（ch111-243）：暗恨&quot;必报仇&quot; [第109章] → 设计嫁戴庆续弦 [第243章] → 见香兰独宠更体面→怒</li>
+<li><strong>覆灭期</strong>（ch244-303）：甘露寺要挟 [第244章] → 操纵戴蓉搅局 [第247章] → 叛乱中冻死芦苇荡 → 密信被香兰销毁 [第303章]</li>
+</ol>
+<p><strong>关键抉择</strong>：操纵&quot;去母留子&quot;逼死青岚 [第75章] — 定义了她&quot;为保地位不惜人命&quot;的本质。</p>
+<hr>
+<h3>1.2 画眉</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>通房 → 姨娘 → 降格 → 家庙 → 离府 → 策划刺杀 → 被押官</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>精明妩媚</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>上位掌控命运</td>
+</tr>
+<tr>
+<td>性格标签·主</td>
+<td><strong>暗算型生存者</strong> — 全书最会算计的女配，每一步都有目的，但终究棋差一着</td>
+</tr>
+<tr>
+<td>性格标签·辅</td>
+<td><strong>精致利己者</strong> — 从不做无利之事：献荷包调情[第9章]是投资，捧杀青岚[第51章]是除敌，拉拢暖月[第165章]是借刀</td>
+</tr>
+<tr>
+<td>反差点</td>
+<td><strong>精密计算 vs 情绪失控</strong> — 布局时冷静如棋手，但被降格后&quot;不能让你好过&quot;[第190章]的恨意让她从理性滑向疯狂，最终走到策划绑架[第338章]的极端</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>从精明通房 → 姨娘得势 → 暗算败露降格 → 离府报复 → 被押官终结</td>
+</tr>
+</tbody></table>
+<p><strong>阶段简表</strong>：</p>
+<ol>
+<li><strong>自保上位期</strong>（ch8-105）：审案看戏 → 调情上位 → 捧杀青岚 [第51章] → 取账簿出逃 → 抬姨娘</li>
+<li><strong>暗算期</strong>（ch140-189）：推鸾儿当炮灰 → 拉拢暖月 [第165章] → 符咒大案栽赃香兰 [第180-184章] → 败露降格</li>
+<li><strong>离场与回归</strong>（ch204-342）：痘帕毒计害死鹦哥 [第204章] → 自请离府 → 策划绑架香兰 [第338章] → 被押官终结</li>
+</ol>
+<p><strong>设计精妙处</strong>：画眉是全书唯一一个&quot;自以为聪明到最后&quot;的角色——她每次布局都精密，但每次都因高估自己低估对手而败。</p>
+<hr>
+<h3>1.3 鹦哥</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>通房 → 染痘 → 死亡 → 追封姨娘</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>病美人</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>母凭子贵</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>隐忍求存者</strong> — 在妻妾倾轧中始终沉默伺机，最终死于画眉暗算</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>有孕 → 被害堕胎 → 沉寂 → 染痘 → 临终托付香兰 → 死亡</td>
+</tr>
+</tbody></table>
+<p><strong>关键时刻</strong>：临终托付香兰&quot;唯一信得过的&quot; [第205章] — 在妻妾群像中，鹦哥与香兰的关系是唯一从利益交换走向真实信任的。</p>
+<hr>
+<h3>1.4 鸾儿（原可人）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>书染堂妹 → 通房 → 被逐 → 撞墙重伤</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>莽撞幻灭者</strong> — 算卦&quot;鸾鸟托生&quot;自诩凤凰，实则是知春馆最悲的女性角色</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>摔玉佩闹脾气 → 挑衅香兰被怼 → 砸琵琶 → 绝命符被搜出 → 撞墙</td>
+</tr>
+</tbody></table>
+<p><strong>设计功能</strong>：鸾儿是&quot;底层女性幻想上位&quot;的反面教材——画眉用脑，鸾儿用蛮，结局天差地别。</p>
+<hr>
+<h3>1.5 青岚（王青岚）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>良妾（秦氏做主纳）→ 一尸两命</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>温顺被碾者</strong> — 温柔乖巧但经不起诱惑，得账簿起贪念导致灭顶之灾</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>有孕得宠 → 被赵月婵离间 → 得账簿 → 被赵&quot;去母留子&quot;逼迫 → 坠落死亡 [第75章]</td>
+</tr>
+</tbody></table>
+<p><strong>叙事功能</strong>：青岚之死是全书最重要的情节转折点之一——它让林锦楼对赵月婵恨入骨髓，直接推动和离线。</p>
+<hr>
+<h3>1.6 姜曦云</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>姜学成最小孙女 → 林锦楼议亲人选 → 被揭穿借刀</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>鹅蛋脸酒窝肤光如雪，&quot;眉眼通挑&quot;讨喜娇憨</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>&quot;非成不可&quot;——以婚姻改变家族命运</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>精明棋手·输在格局</strong> — 策略不输画眉，但借刀杀人太毒，踩了林锦楼底线</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>讨喜入场 → 好感建立 → 功利论被听见降温 → 借刀下药 → 被揭穿 → 赔钱退场</td>
+</tr>
+</tbody></table>
+<p><strong>关键抉择</strong>：借姜丹云下断子丸 [第283章] — 这一步从&quot;讨好竞争&quot;滑向了&quot;毒计害命&quot;，彻底葬送议亲。</p>
+<hr>
+<h3>1.7 苏媚如</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>扬州瘦马/盐商遗妾 → 林锦楼外室 → 嫁林长敏 → 毒杀后自尽</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>痴情覆灭者</strong> — 心高气傲，错付一生</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>投奔林锦楼做外室 → 被甩 → 嫁叔父(叔侄共妇) → 被囚两年 → 毒死林长敏 → 自尽 [第343章]</td>
+</tr>
+</tbody></table>
+<p><strong>叙事功能</strong>：苏媚如线是全书最惨烈的旁线结局，也是&quot;依附男人&quot;路径的极端反面。</p>
+<hr>
+<h2>二、四朵桃花相关</h2>
+<h3>2.1 宋柯（第二朵桃花）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>王氏外甥 / 宋芳之子 → 秀才 → 解元 → 进士·翰林院编修 → 外放贵州</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>俊秀儒雅</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>弥补前世（前世=萧杭，香兰前夫）</td>
+</tr>
+<tr>
+<td>核心矛盾</td>
+<td>真心 vs 门第：爱香兰但在仕途面前犹豫</td>
+</tr>
+<tr>
+<td>性格标签·主</td>
+<td><strong>儒雅负心人</strong> — 真心有余但担当不足，每次关键时刻选仕途不选她</td>
+</tr>
+<tr>
+<td>性格标签·辅</td>
+<td><strong>两世愧疚者</strong> — 前世萧杭流放中病亡留下妻子，今生宋柯再次辜负同一个女人——两世的愧疚驱动他在ch245正面质问、ch313选择成全</td>
+</tr>
+<tr>
+<td>反差点</td>
+<td><strong>文武双全的才子 vs 感情上的懦夫</strong> — 能中解元进翰林[第116章]、能分析朝局[第119章]，但面对&quot;正娶还是门第&quot;的抉择每次都选门第[第119章]——才华越高，怯懦越刺眼</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>偷听动心 → 截买养病 → 承诺正娶 → 被迫订亲郑家 → 决别 → 质问前世 → 诀别 → &quot;放下罢&quot;</td>
+</tr>
+</tbody></table>
+<p><strong>人生阶段</strong>：</p>
+<ol>
+<li><strong>暗恋期</strong>（ch14-22）：捡绢花 → 送翠玉蛙 → 联想前世</li>
+<li><strong>准夫妻期</strong>（ch81-121）：截买 → 共同生活 → 最甜日子 → 被迫订亲 → 痛苦决别</li>
+<li><strong>前世碰撞期</strong>（ch241-313）：鲁家再见 → 质问&quot;你是不是嘉兰&quot; → 表白被拒 → 驿站&quot;放下罢&quot; → 全书画句号</li>
+</ol>
+<p><strong>关键抉择</strong>：接受郑家政治联姻 [第119章] — 选仕途弃香兰，定义了他&quot;有情但不够勇敢&quot;的本质。</p>
+<p><strong>一句话弧光</strong>：</p>
+<blockquote>
+<p><strong>两世深情终不敌一句&quot;前程要紧&quot;——宋柯是香兰脱籍路上最美的幻觉。</strong></p>
+</blockquote>
+<hr>
+<h3>2.2 袁绍仁（第四朵桃花）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>永昌侯 / 林锦楼好友</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>剑眉星目面阔鼻直，年轻蓄须，权臣气度</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>弥补亡妾沈嘉莲（=沈嘉兰之妹/前世首辅孙女）</td>
+</tr>
+<tr>
+<td>性格标签·主</td>
+<td><strong>深情克制者</strong> — 全书最深情的男性角色之一，不近风月，一切克制收藏心底</td>
+</tr>
+<tr>
+<td>性格标签·辅</td>
+<td><strong>忠诚骑士</strong> — 对林锦楼忠诚（帮善后/传话/救人[第219/304/310章]），对香兰守望（从不越界/传达嘱托/承诺照顾），两种忠诚完美共存</td>
+</tr>
+<tr>
+<td>反差点</td>
+<td><strong>权臣武将 vs 因一个亡妾终身不近风月</strong> — 永昌侯的权势地位足以三妻四妾，但他因莲娘一人不近女色多年——直到番外娶林东绣，都是&quot;续弦&quot;而非&quot;忘旧&quot;</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>惊见&quot;莲娘&quot; → 心动压抑 → 倾诉莲娘之死 → &quot;敬慕油然而生&quot; → 帮林锦楼传话 → 娶林东绣（番外）</td>
+</tr>
+</tbody></table>
+<p><strong>设计精妙处</strong>：袁绍仁的存在让全书身世线形成闭环——香兰前世是沈嘉兰（首辅大孙女），袁的亡妾沈嘉莲是沈家二孙女。今生两世的血缘通过袁绍仁的视角，无声揭开。</p>
+<hr>
+<h2>三、林家核心长辈</h2>
+<h3>3.1 秦氏（大太太）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>大房大太太 / 林锦楼生母</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>掌控林府中馈 + 为儿子娶门当户对的正妻</td>
+</tr>
+<tr>
+<td>性格标签·主</td>
+<td><strong>精明母狮</strong> — 精准、狠辣、护犊，但格局足够大能承认错误</td>
+</tr>
+<tr>
+<td>性格标签·辅</td>
+<td><strong>秩序信徒</strong> — 信奉&quot;门当户对&quot;秩序：断绮念想[第24章]、送紫黛&quot;磨&quot;香兰[第195章]、为儿议亲姜曦云[第263章]——每一步都是维护阶层秩序</td>
+</tr>
+<tr>
+<td>反差点</td>
+<td><strong>铁腕管家 vs 被一次救命彻底软化</strong> — 能三罪并发逐曹[第36章]、能精准拿捏全府女眷，但香兰栖霞寺一次敲钟救命[第207章]就让她说出&quot;先前是我错待了她&quot;——说明她的&quot;铁腕&quot;底下是讲理讲恩的人</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>掌权整顿 → 对香兰戒心 → &quot;磨一磨&quot; → 被香兰救命 → 彻底转变 → 筹婚</td>
+</tr>
+</tbody></table>
+<p><strong>关键转折</strong>：栖霞寺大劫中香兰独自敲钟救她性命 [第207章] → &quot;先前是我错待了她&quot; — 从此态度180度转变。</p>
+<hr>
+<h3>3.2 林昭祥（老太爷）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>林家祖父 / 前大理寺卿</td>
+</tr>
+<tr>
+<td>核心信念</td>
+<td>&quot;趋利避害&quot; — 家族存续高于一切</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>老谋深算的家族掌舵人</strong> — 全书最有智慧的长辈</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>幕后掌控朝堂布局 → 始终不出面 → 进京后亲测香兰 → 赐茶认可 → 授意正名</td>
+</tr>
+</tbody></table>
+<p><strong>关键时刻</strong>：赐茶香兰 [第326章] — 全书最权威长辈的最终认可，正名从此成定局。秦氏可以反对，林长政可以反对，但老太爷点头=拍板。</p>
+<hr>
+<h3>3.3 林长政</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>林锦楼父亲 / 大学士</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>长方脸儒雅温文，眸光锐利</td>
+</tr>
+<tr>
+<td>核心信念</td>
+<td>&quot;奴才种子比不得官宦小姐&quot; — 传统门第观念</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>儒雅保守者</strong> — 全书正名路上最大阻力</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>外任不出面 → 回京反对 → &quot;除非我死&quot; [第337章] → 最终妥协</td>
+</tr>
+</tbody></table>
+<p><strong>叙事功能</strong>：林长政是&quot;社会阶层壁垒&quot;的人格化代表——他不是坏人，只是那个时代根深蒂固的门第观念。</p>
+<hr>
+<h2>四、林家同辈</h2>
+<h3>4.1 林锦亭（三弟）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>二房嫡子 → 心软 → 渐靠拢大哥</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>怨恨大哥 → 理解权势 → 接受&quot;长兄如父&quot;</td>
+</tr>
+</tbody></table>
+<h3>4.2 林锦轩（二弟）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>大房庶出 / 药罐子 / 体弱</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>拟订亲 → 娶谭氏 → 经济困窘 → 病重</td>
+</tr>
+</tbody></table>
+<h3>4.3 谭氏（林锦轩妻）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>谭思叶庶女 / 林锦轩妻</td>
+</tr>
+<tr>
+<td>核心矛盾</td>
+<td>暗恋大伯林锦楼（嫂叔禁忌）</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>危险的禁忌者</strong> — 婚姻不幸+暗恋失控=全书最危险的内部炸弹</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>脸红心跳 → 偷窥行房 → 荷包误会楚大鹏 → 被勾搭成奸（戴蓉）→ 被杀 [第297章]</td>
+</tr>
+</tbody></table>
+<h3>4.4 林东绮（大房嫡女）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>大房嫡女 → 嫁镇国公二公子陶鸿勋</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>精明善意者</strong> — 全书对香兰最真心的林家女性</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>茶会中立 → 桃汁案险被害 → 报恩 → 护送 → 真心友谊</td>
+</tr>
+</tbody></table>
+<h3>4.5 林东绣（大房庶女）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>庶出 → 换嫁永昌侯（袁绍仁）</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>精明利己者</strong> — 从不做亏本买卖，窥见偷情选择留筹码换婚事</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>刻薄挤兑 → 窥见偷情 → 换嫁侯府 → 示好香兰 → 番外嫁袁绍仁</td>
+</tr>
+</tbody></table>
+<h3>4.6 林东绫（二房嫡女）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>二房嫡女 / 泼辣 → 偷情杜宾 → 被除名 → 出逃失踪</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>叛逆覆灭者</strong> — 泼辣敢做但不计后果</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>泼辣争风 → 偷情杜宾 → 被堂审除名&quot;发丧暴毙&quot; → 踢苏媚如小产 → 出逃失踪</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、香兰阵营</h2>
+<h3>5.1 小鹃（梁娟子）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>知春馆丫鬟（买入）→ 香兰挚友 → 升二等</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>忠心到底的底层盟友</strong></td>
+</tr>
+<tr>
+<td>关键时刻</td>
+<td>符咒案中替香兰作证 [第184章] → 坦白&quot;可能是伪证&quot; [第191章] → &quot;人心换人心&quot;</td>
+</tr>
+</tbody></table>
+<h3>5.2 汀兰</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>知春馆二等 → 升一等</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>安分的情报盟友</strong> — 提供情报但从不出头</td>
+</tr>
+</tbody></table>
+<h3>5.3 书染</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>林锦楼五年心腹丫鬟 → 嫁管事徐福 → 降级回归给香兰</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>看透不争的聪明人</strong> — &quot;看透主子不争不攀&quot;，全书最清醒的丫鬟</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>林锦楼心腹 → 嫁人 → 被命回归伺候香兰 → 从林锦楼阵营转为香兰贴身人</td>
+</tr>
+</tbody></table>
+<h3>5.4 春菱</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>知春馆丫鬟 → 香兰亲信 → 出走 → 内奸 → 被嫁祸 → 出府</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>不甘心的背叛者</strong> — 因争一等失败心生不满，最终倒向姜曦云</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>护香兰 → 争功 → 出走被冷处理 → 投靠姜曦云 → 被当替罪羊 → 放出 [第289章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>六、反派群</h2>
+<h3>6.1 曹丽环</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>老太爷二妹外孙女 / 寄居表姑娘 → 嫁任羽 → 勾搭知县 → 病死</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>&quot;正头奶奶位子迟早是我的&quot;</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>小人物的大野心</strong> — 全书前半段最大反派，手段低劣但执着到可怕</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>压榨香兰 → 三罪被逐 → 嫁人 → 勾搭知县 → 操纵官府 → 被反噬病死 [第134章]</td>
+</tr>
+</tbody></table>
+<h3>6.2 卢韶堂</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>永信侯 / 林锦楼世仇 / 二皇子派</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>幕后黑手</strong> — 策划栖霞寺大劫、叛乱行刺</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>暗中谋划 → 栖霞寺勒索 → 叛乱 → 被香兰从背后击杀 [第303章]</td>
+</tr>
+</tbody></table>
+<h3>6.3 杜宾</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>画眉哥哥 / 林锦楼亲兵 → 卢韶堂暗棋</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>野心家</strong> — 多方图谋、左右逢源</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>偷情林东绫 → 窥视香兰 → 执行栖霞寺大劫 → 绑走香兰 → 被林锦楼暴打 → 灭口身亡</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>七、外围人物</h2>
+<h3>7.1 陈万全 / 薛氏（香兰父母）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>林家家生奴 → 脱籍良人 → 开铺置地 → 搬入林府卧云院</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>被女儿主导 → 脱籍 → 陈万全爱炫耀被训 → 父女争论&quot;做妾&quot; → 最终女儿嫁入豪门光耀门楣</td>
+</tr>
+</tbody></table>
+<h3>7.2 夏芸（第三朵桃花）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>邻居书生 → 举人 → 功名被革</td>
+</tr>
+<tr>
+<td>性格标签</td>
+<td><strong>自作多情的破坏者</strong> — 从暗恋变成名节破坏者</td>
+</tr>
+<tr>
+<td>弧光</td>
+<td>一见倾心 → 被二嫂骗 → 自作多情 → 恼羞成怒公开辱名 → 功名被革</td>
+</tr>
+</tbody></table>
+<h3>7.3 德哥儿（袁承德）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>袁绍仁小儿子 / 生母为官宦落罪被纳之妾（推测=沈嘉莲之子）</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>圆黑脸丹凤眼，虎头虎脑</td>
+</tr>
+<tr>
+<td>叙事功能</td>
+<td>身世线最终载体——通过德哥儿串联沈家/袁家/香兰三条线</td>
+</tr>
+<tr>
+<td>番外结局</td>
+<td>从四品指挥史 → 娶翰林乔氏 → 沈家平反后继承遗产 → 父亲迁母坟入袁家祖坟</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>八、配角群像设计规律</h2>
+<table>
+<thead>
+<tr>
+<th>规律</th>
+<th>说明</th>
+<th>典型代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>镜像对照</td>
+<td>与香兰构成命运对照</td>
+<td>苏媚如(依附男人的极端结局) / 春菱(不甘心的背叛)</td>
+</tr>
+<tr>
+<td>工具人→反噬</td>
+<td>被利用后反过来成为炸弹</td>
+<td>银蝶(从赠品到搅局) / 春菱(从内线到替罪羊)</td>
+</tr>
+<tr>
+<td>阶梯型退场</td>
+<td>反派按毒性从小到大依次覆灭</td>
+<td>曹丽环→赵月婵→画眉→卢韶堂</td>
+</tr>
+<tr>
+<td>全员有弧光</td>
+<td>即使最小的配角也有完整起承转合</td>
+<td>鸾儿(从幻想到撞墙) / 芳丝(从暗恋到自尽)</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>📌 本蓝图基于人物台账 + 关系台账归纳，覆盖 [第1章] 至 [番外]。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

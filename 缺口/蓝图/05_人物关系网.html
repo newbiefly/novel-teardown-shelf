@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 人物关系网 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>05 人物关系网</h1>
+<blockquote>
+<p>以主角陈昭×江恒为中心，按阵营分组，标关系/恩怨/立场及随剧情的变化。</p>
+</blockquote>
+<h2>核心CP</h2>
+<ul>
+<li><strong>陈昭 ↔ 江恒</strong>：全书主线关系。演变轨迹：<br>过去线：陌生→暧昧→主动错过→重逢→相恋→结婚。<br>现在线：夫妻→（江恒假出轨）决裂离婚→跪求真相被拒→查真相→陈昭救他→追妻拉扯→复合&quot;试试&quot;→信任重建→圆满。<br>核心矛盾：江恒&quot;自以为为她好替她做决定&quot;（不信任）vs 陈昭要的&quot;相互信任、共同面对&quot;。[第1/24/69/77章]</li>
+</ul>
+<h2>江家（男主家族·恩怨核心）</h2>
+<ul>
+<li><strong>江恒 ↔ 江亚洲</strong>：父子→立场对立→权斗→★被父设局送进去→彻底决裂（江恒&quot;连恨都快没有、只觉他可悲&quot;）。江亚洲结局：失势+确诊阿兹海默。[第22/62/76章]</li>
+<li><strong>江恒 ↔ 龚亦姗</strong>：母子。母亲逼他回国接班→他逼母与江亚洲离婚给她解脱→和解；母亲愧疚（设局戏害了他）、撮合他与陈昭复合。[第9/44/56章]</li>
+<li><strong>江亚洲 ↔ 龚亦姗</strong>：前夫妻。江亚洲有多个私生子女、长期伤害龚亦姗；车祸后忏悔被拒（&quot;死都不原谅&quot;）。[第44/56章]</li>
+<li><strong>江亚洲 ↔ 王丽莎</strong>：现任夫妻（小三上位）。王丽莎引产伤身上位、挤走龚亦姗；貌合神离、各有算计；江亚洲后暗弃她的儿子江云飞。[第21/29章]</li>
+<li><strong>江恒 ↔ 江云飞</strong>：同父异母兄弟→公司权斗（江恒完胜、把他逼出公司）。[第21/27章]</li>
+<li><strong>江恒 ↔ 江婕</strong>：同父异母姐弟→敌对→★江婕倒戈成盟友（救江恒、成他的军师）。江恒对她&quot;论迹不论心&quot;、曾帮过她、退休方案给她管管线。[第27/65/72章]</li>
+<li><strong>江婕 ↔ 王丽莎/江云飞</strong>：江婕鄙夷母亲的依附软弱、看不上弟弟的无能；与母渐离心。[第29章]</li>
+<li><strong>江婕 ↔ 江亚洲</strong>：父女。江婕崇拜/渴望其认同→被扶为新棋子→看清&quot;偏爱全是假&quot;心魔崩塌→倒戈。[第29/65章]</li>
+<li><strong>徐坤 → 江亚洲</strong>：手下/忠诚（利益绑定），医保骗保主导者、咬死江恒；后被江婕用其子逼翻供。[第62/67章]</li>
+</ul>
+<h2>陈昭家（女主家族·温暖港湾）</h2>
+<ul>
+<li><strong>陈昭 ↔ 董燕</strong>：母女情深。母亲通透慈爱、女儿的港湾；推动陈昭查真相、敲打江恒。陈昭恋爱/离婚都曾瞒母亲（&quot;背叛感&quot;），终坦白痛哭。[第23/51/52章]</li>
+<li><strong>陈昭 ↔ 陈志川</strong>：父女。父亲小气疼女儿、不放心她办事。[第12章]</li>
+</ul>
+<h2>江恒阵营（助力）</h2>
+<ul>
+<li><strong>江恒 ↔ 邓启政</strong>：亦师亦友/军师（生死信任）。邓叔稳局面/揭真相给陈昭/见高寒求助/点题信任。[第53/64/76章]</li>
+<li><strong>江恒 ↔ 李剑峰</strong>：老板↔心腹爱将（生死信任）。[第22章]</li>
+<li><strong>江恒 ↔ 高寒</strong>：借爷爷旧情结交的政界贵人，化解设局的关键外部助力。[第58/67章]</li>
+<li><strong>江恒 ↔ 张勇</strong>：掌舵者↔资本方（逐利支持）。[第27章]</li>
+<li><strong>陈昭 ↔ 邓启政</strong>：晚辈↔长辈→结盟救江恒；邓叔发自内心欣赏陈昭。[第53/66章]</li>
+<li><strong>陈昭 ↔ 江婕</strong>：敌对→陈昭拉拢她倒戈救江恒（以情义+退休方案打动）。[第65章]</li>
+</ul>
+<h2>过去线/外围关系</h2>
+<ul>
+<li><strong>陈昭 ↔ 周文宇（Alex）</strong>：多伦多同学、江恒好友、两人的媒介。[第2章]</li>
+<li><strong>陈昭 ↔ 孙萌</strong>：国内好友→因供应商事件（被人买通坑江恒公司）决裂。[第23章]</li>
+<li><strong>陈昭 ↔ 梁凌</strong>：圈中亦师亦友的姐姐。[第25章]</li>
+<li><strong>陈昭 ↔ 季子扬</strong>：离婚后结识的神经科学博士→骑行友谊（男二功能/搅动者，未成CP）；其学术造假讲述印证医保骗保设局。[第26/59章]</li>
+<li><strong>陈昭 ↔ 刘欣冉</strong>：帮其谋职的朋友→从她处套徐坤儿子线索（友谊或受损）。[第30/66章]</li>
+<li><strong>陈昭 ↔ 顾婉怡</strong>：现在线&quot;外室&quot;（实为设局伪装，无真实情感纠葛）。[第1章]</li>
+</ul>
+<h2>关系网演变的关键节点</h2>
+<ol>
+<li>过去线：陈昭×江恒从错过到相恋结婚（缺口初被填补）。</li>
+<li>江恒×江亚洲权斗白热化 → 江亚洲设局 → 江恒×陈昭被迫决裂（假出轨离婚）。</li>
+<li>江婕从江家反派阵营<strong>倒戈</strong>到江恒/陈昭一方（关系网最大变动）——被&quot;父亲的偏爱是假&quot;击碎心魔 + 陈昭的情义打动。</li>
+<li>陈昭从&quot;被保护者&quot;变为<strong>救援主导者</strong>，联合邓叔/江婕/高寒救出江恒。</li>
+<li>结局：江恒×陈昭复合、信任重建；江恒融入陈昭家（叫董燕&quot;妈&quot;）；江亚洲一支失势溃散。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

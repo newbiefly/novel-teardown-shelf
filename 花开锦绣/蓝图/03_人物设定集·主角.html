@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花开锦绣 · 人物设定集·主角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>花开锦绣 · 人物设定集·主角</h1>
+<blockquote>
+<p>本文档为《花开锦绣》创作蓝图第 03 号文件，归纳自 <code>人物台账</code>（傅庭筠、赵凌条目）+ <code>关系台账</code>涉及主角的条目 + 全部 310 张章卡「人物动态 / CP互动」（<code>.ext人物.md</code>）。<br>用途：AI 读完能&quot;扮演&quot;傅庭筠 / 赵凌写对白、写行动而不崩人设；续写时据此校准人物。<br>分工边界：本篇只写&quot;人物<strong>自身</strong>怎么变&quot;；两人之间关系怎么变、谁是谁，见 <code>05_人物关系网.md</code>。<br>阶段切分依据 = 全书剧情编年（以人物动态的章号跳变节点切分），共 <strong>7 段</strong>：碧云庵之变→避祸西行→西安府谋生→甘州守望→京都成家→与俞家对决→终局。<br>凡标 <code>[第X章]</code> 处均可在对应章卡溯源；引号内文字为原文/章卡原字。</p>
+</blockquote>
+<hr>
+<h1>一、傅庭筠（女主）</h1>
+<h2>1. 基础设定（不变核心）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>傅庭筠；闺名荃蕙（三堂姐唤&quot;荃蕙&quot;<code>[第230章]</code>）；排行第九，人称&quot;傅家九小姐&quot;&quot;九妹妹&quot;；成婚后称&quot;赵傅氏&quot;<code>[第146章]</code></td>
+</tr>
+<tr>
+<td>家世</td>
+<td>华阴傅氏九小姐；父傅五老爷（五品京官），母傅五太太<code>[第3/128章]</code>；自幼与南京俞家大公子俞敬修订亲<code>[第3章]</code></td>
+</tr>
+<tr>
+<td>年龄</td>
+<td>开篇碧云庵避祸时未嫁的闺秀 → 成婚<code>[第146章]</code> → 育四子 → 二十四岁、三品淑人<code>[第280章]</code></td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>断奶后身子渐复、&quot;比成亲更丰挺&quot;<code>[第178章]</code>；遭俞敬修觊觎、被觉&quot;妩媚&quot;<code>[第174章]</code>；却自认&quot;不漂亮&quot;<code>[第59章]</code></td>
+</tr>
+<tr>
+<td>身份轨迹</td>
+<td>华阴傅氏九小姐 → 世人眼中&quot;已死之人&quot;<code>[第16章]</code> → 赵凌之妻&quot;赵傅氏&quot;<code>[第146章]</code> → 三品淑人（命妇）<code>[第278章]</code></td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>洗清&quot;私情&quot;污名、活下去；守住清白与体面；终落于&quot;跟着他（赵凌）、守住这个家&quot;<code>[第155章]</code></td>
+</tr>
+<tr>
+<td>恐惧</td>
+<td>&quot;见不得光&quot;的隐匿身份与门第之差<code>[第74章]</code>；被娘家当作累赘/骗子的抛弃；拖累赵凌<code>[第34章]</code></td>
+</tr>
+<tr>
+<td>信念／准则</td>
+<td>&quot;死也要清白&quot;<code>[第17章]</code>；&quot;不管什么时候，人能依靠的只有自己&quot;<code>[第93章]</code>；孝期守礼（不能穿红）<code>[第59章]</code></td>
+</tr>
+<tr>
+<td>擅长</td>
+<td>针线女红（制衣、皮袄、行装 <code>[第61/71章]</code>）、持家理财（细算账目、量入为出 <code>[第79章]</code>）、周旋人心、通律典善布局<code>[第109/181章]</code>、层层推演<code>[第51章]</code></td>
+</tr>
+<tr>
+<td>信物</td>
+<td>母亲所授庚帖（赐婚凭证）<code>[第141/142章]</code>；团扇<code>[第44章]</code>；为赵凌缝的寒衣/头巾<code>[第70/71章]</code></td>
+</tr>
+</tbody></table>
+<h2>2. 性格标签（从行为拆出）</h2>
+<ul>
+<li><strong>主标签：外柔内刚的谋略型闺秀</strong>——礼数周全、言语温和，骨子里却有宁折不弯的刚烈与步步为营的算计。<ul>
+<li>行为佐证：碧云庵以利相诱、主动谋划，与危险人物周旋<code>[第10/12章]</code>；识破傅家毒计拼死求生<code>[第14章]</code>；被父掌掴仍倔强抗争<code>[第128章]</code>；被逼绝境&quot;我不做傅家的女儿就是了&quot;<code>[第176章]</code>；以当事人身份当众顶俞阁老、逼供左俊杰<code>[第172–173章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签一：绵里藏针的操盘手（以柔克刚）</strong>——出手绵软、一击致命，善借势、善设局。<ul>
+<li>行为佐证：诈供、推演<code>[第51章]</code>；劝赵凌改&quot;拼死&quot;为&quot;借势&quot;<code>[第54/56章]</code>；设局反制冯氏、以&quot;见颖川侯&quot;反将一军<code>[第86章]</code>；斗唐佩玲&quot;以从容压其锋芒&quot;<code>[第107/109章]</code>；借束妈妈之势敲打俞家<code>[第203章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签二：清醒的断舍离者</strong>——对至亲至仇都能亲手切割，不拖泥带水。<ul>
+<li>行为佐证：对傅家由期待→心寒→死心→恩断，称呼由&quot;父亲&quot;改&quot;老爷&quot;<code>[第163章]</code>、&quot;除了同占&#39;傅&#39;字，再无关系&quot;<code>[第199章]</code>；对俞敬修心结彻底放下<code>[第142章]</code>；对赵凌的犹疑&quot;去意已决&quot;、主动夜访索银<code>[第65/66章]</code>。</li>
+</ul>
+</li>
+<li><strong>反差点</strong>：<code>对家人慈悲（护丫鬟、疼幼子、悯旧仆、为外家奔走）</code> × <code>对仇敌狠厉（强睁眼逼供、当众决裂、共谋复仇）</code>；以及<code>一身闺阁礼数</code> × <code>临危当众编谎、拔剑摊牌的强悍</code>——她是最守规矩的闺秀，也是最敢破规矩的执棋者。</li>
+</ul>
+<h2>3. 人物弧光（一句话）</h2>
+<p><strong>从任人摆布、被家族当&quot;死人&quot;处置的华阴九小姐，变成能亲手执棋反杀、撑起一府门面、与丈夫并肩复仇的三品命妇。</strong></p>
+<hr>
+<h2>4. 分阶段成长卡（共 7 段）</h2>
+<h3>阶段一 · 碧云庵之变（第1–17章）｜从九小姐到&quot;已死之人&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>因族中是非被迫离府避祸碧云庵；表哥左俊杰持绣其字样的&quot;定情肚兜&quot;登门逼婚诽谤；傅家为保名声软禁、截留书信（陈妈妈、樊妈妈监视），终以&quot;大老爷送药&quot;为名下毒灭口<code>[第14章]</code>；后院撞见藏身养伤的赵凌（险遭掐死、智取脱身）<code>[第1章]</code></td>
+</tr>
+<tr>
+<td>心境变化</td>
+<td>由期待家族庇护 → 认清傅家态度而心寒<code>[第5/7章]</code> → 决意反击<code>[第6章]</code> → 识破毒计拼死求生<code>[第14章]</code> → 死里逃生（昏睡大半月，醒时七月二十一<code>[第15章]</code>）</td>
+</tr>
+<tr>
+<td>能力/身份跃迁</td>
+<td>闺阁规矩之外，学会&quot;以利相诱、主动谋划&quot;<code>[第10章]</code>、与危险人物周旋且守口如瓶<code>[第11/12章]</code>；身份剧变——由&quot;华阴傅氏九小姐&quot;成&quot;世人眼中已死之人&quot;<code>[第16章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>识破陈妈妈毒计、拼死求生，拒绝就地处死之局<code>[第14章]</code>；选择相信并依赖赵凌，把&quot;探听消息&quot;的主动交出去<code>[第12章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第1章碧云庵初遇（施暴者—人质）；第9章与陈妈妈正面对峙；第10章交换；第14章生死；第15章救命；第16章托付（身份剧变）</td>
+</tr>
+</tbody></table>
+<h3>阶段二 · 避祸西行（第18–45章）｜化名逃亡、患难相守</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>由&quot;赵九爷&quot;护送西行（渭南、李家凹、临潼、临春镇），扮堕民藏头露尾赶路；途中遇赵凌旧识十六爷（穆王）、陌毅一行，卷入其势力博弈；以&quot;未婚夫妻&quot;名分相处；东安村遭冯老四围杀<code>[第28–29章]</code>、城隍庙遭匪劫<code>[第33–34章]</code></td>
+</tr>
+<tr>
+<td>心境变化</td>
+<td>由依赖好奇<code>[第18章]</code> → 因赵凌&quot;事不关己&quot;而生置气/芥蒂<code>[第19/22章]</code> → 暗生关切 → 患难中心意相通，转向&quot;生死相依&quot;<code>[第34章]</code></td>
+</tr>
+<tr>
+<td>能力/身份跃迁</td>
+<td>学会言语周旋、借势解围<code>[第22章]</code>；第一次为自保当众编谎<code>[第35章]</code>；由纯&quot;受助者&quot;升为可&quot;共谋破局&quot;的伙伴<code>[第40章]</code>；临春镇小院&quot;主中馈&quot;、能当家理事<code>[第43章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>以&quot;留阿森&quot;试探赵凌是否肯安定（被婉拒）<code>[第21章]</code>；自刎获救后痛责自己&quot;胆小、未能先了断以免拖累赵凌&quot;<code>[第34章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第18章离开（身份跌落为堕民）；第34章初见（遇匪，赵凌一战毙匪首、力竭昏厥）；第39章改变（立&quot;有事好好说&quot;之约）；第41章郑三娘（有分寸的行善）；第45章承诺（抵西安府）</td>
+</tr>
+</tbody></table>
+<h3>阶段三 · 西安府谋生（第46–76章）｜杨柳巷扎根、情愫渐生</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>落脚西安府杨柳巷，靠针线／买卖谋生，与吕老爷、郑三一家结缘；赵凌从军（碾伯所），二人聚少离多；与恶霸冯家、陌毅一方初结暗怨，陌毅杀心渐明<code>[第47章]</code></td>
+</tr>
+<tr>
+<td>心境变化</td>
+<td>情愫渐生却&quot;自设藩篱&quot;（孝期身份、门第之差）<code>[第74章]</code>；由失落怀疑到心意明了（&quot;如果他们能在一起……那也是很好啊&quot;<code>[第75章]</code>）；由被守护者转为掌事决断者</td>
+</tr>
+<tr>
+<td>能力/身份跃迁</td>
+<td>理家、护郑三一家、诈供推演<code>[第51章]</code>；由被守护者→谋划者（杨玉成由轻慢转敬服<code>[第53章]</code>）；谋略外显、献策造势<code>[第75章]</code>；&quot;胡闹&quot;出的安排击中赵凌软肋、改其志<code>[第56章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>夜访索银、主动掌控自己去留（赵凌终妥协）<code>[第66/67章]</code>；拒绝&quot;事不关己&quot;的疏离，主动为他置办行装<code>[第61章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第50章相劝（迁入新居，赵凌家底初露）；第53章奔走（敬服）；第54章夏夜（计成）；第56章不上当（改志）；第75章认识（献策）；第76章感动（定分居张掖/庄浪）</td>
+</tr>
+</tbody></table>
+<h3>阶段四 · 甘州守望（第77–120章）｜张掖主事、患难定情</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>赵凌赴庄浪卫任总旗，傅庭筠独自留张掖主持中馈、理年货账目；周旋邻里（戚太太、鲁氏）与官眷（王夫人）；遭冯大虎觊觎骚扰<code>[第83章]</code>、遭冯氏诓&quot;赵凌阵亡&quot;图谋以她配冯大虎<code>[第85–86章]</code>；冯大虎夜袭反遭噬<code>[第90章]</code>；碾伯所醋海（唐佩玲）后与赵凌正式定情；决意东归探母<code>[第119章]</code></td>
+</tr>
+<tr>
+<td>心境变化</td>
+<td>由离别紧张→牵挂不安→临危不乱→定情后的笃定与依恋；悟&quot;人能依靠的只有自己&quot;、也学着&quot;相信别人、遇事先商议&quot;<code>[第93章]</code>；渐生&quot;妻&quot;的自觉（&quot;我总是要跟着你的&quot;）<code>[第113章]</code></td>
+</tr>
+<tr>
+<td>能力/身份跃迁</td>
+<td>由随行逃亡者→张掖宅内主事之人<code>[第77章]</code>；临危决断（投王夫人、藏银藏牌位）<code>[第87章]</code>、口才机锋、深藏不露<code>[第90章]</code>；通律典、绵里藏针斗唐佩玲<code>[第109章]</code>；主母气象渐显<code>[第112章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>撕破脸后果断避走、投王夫人<code>[第87章]</code>；&quot;这一次，谁也别想拦她&quot;——主动赴碾伯卫查真相<code>[第100章]</code>；&quot;定情&quot;（&quot;愿得一人心，白首不相离&quot;<code>[第105章]</code>）；决意东归重返故土<code>[第119章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第90章咬人（冯大虎夜袭反遭噬）；第93章谈笑（设局已成）；第100章冯大虎（决意赴碾伯所）；第102章狮吼（醋海失控）；第105章冰释（定情）；第110章从前（闻其身世、悲悯体谅）</td>
+</tr>
+</tbody></table>
+<h3>阶段五 · 京都成家（第121–166章）｜东归决裂、成婚生子</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>东归京都、四喜胡同安家；旧婢雨微重逢、揭碧云庵血案与傅家灭口内幕<code>[第122–124章]</code>；与生父傅五老爷、兄长傅庭筀公开决裂<code>[第128/138章]</code>；母亲傅五太太许婚授庚帖、送入宫觐见获认可<code>[第141/144章]</code>；与赵凌成婚、连生呦呦<code>[第165章]</code>；母亲病殁<code>[第166章]</code></td>
+</tr>
+<tr>
+<td>心境变化</td>
+<td>由认亲的喜悦→被父掌掴的屈辱抗争<code>[第128章]</code>→&quot;只能靠自己&quot;的清醒心硬<code>[第138章]</code>→获母亲祝福的甜蜜笃定（&quot;他去哪里，我就去哪里&quot;<code>[第150章]</code>）→母丧的哀恸与守礼<code>[第167章]</code></td>
+</tr>
+<tr>
+<td>能力/身份跃迁</td>
+<td>整肃家政、显主母之能<code>[第139章]</code>；正式出嫁为&quot;赵傅氏&quot;、由闺中待嫁女成&quot;太太&quot;、接触京都官宦女眷社交<code>[第147章]</code>；宫中应对得宜、人脉初结<code>[第144章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>越过父兄之辱、认母许婚，决意嫁赵凌<code>[第141章]</code>；对俞敬修心结彻底放下（&quot;不可与之比较&quot;之诫）<code>[第142章]</code>；正视与生父&quot;情断、形同陌路&quot;<code>[第138章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第121章驿站（雨微重逢）；第128章父亲（掌掴）；第140章争吵（赵凌受耳光提亲）；第141章尊严（母亲许婚）；第146章成亲；第150章甜蜜（&quot;他去哪里，我就去哪里&quot;）；第166章命殒（母丧）</td>
+</tr>
+</tbody></table>
+<h3>阶段六 · 与俞家对决（第167–275章）｜主母持家、外家奔走、旧怨拉扯</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>京中主母、广结人脉（陈石氏、陌夫人）；为外家三堂姐、三姐夫（沈任思）起复奔走、牵线肁先生<code>[第242–245章]</code>；与俞家（俞夫人、范氏、俞敬修）由撞见到正面交锋、彻底撕破脸<code>[第174/184章]</code>；审左俊杰、逼供&quot;父命杀己&quot;<code>[第172–173章]</code>；与傅家彻底看清决裂（祖母丧、当众顶父）；连生曦哥儿<code>[第195章]</code>、旭哥儿<code>[第248章]</code>、昀哥儿<code>[第246章]</code>；呦呦被议亲<code>[第299章]</code></td>
+</tr>
+<tr>
+<td>心境变化</td>
+<td>淡然虚名、心系征人；对傅家&quot;纸包不住火&quot;的惆怅渐趋释然<code>[第269章]</code>；对俞家&quot;隐忍的敌意&quot;<code>[第307章]</code>；对赵凌由思念转忧惧（怕其与西平侯结怨陷危境）<code>[第263章]</code></td>
+</tr>
+<tr>
+<td>能力/身份跃迁</td>
+<td>能推演朝局、护女审慎（&quot;宁不嫁勋贵&quot;）<code>[第299/301章]</code>；以命妇之身入宫受特招、名动外命妇圈<code>[第279章]</code>；第一次主动介入赵凌布局<code>[第263章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>强睁眼看逼供、直面&quot;父命杀己&quot;真相<code>[第172–173章]</code>；当众顶傅五老爷&quot;我不认识您&quot;<code>[第253章]</code>；为护女拒郭家求亲（宁不嫁勋贵）<code>[第301章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第172章问话（强睁眼）；第176章办法（当众顶父）；第181章夹道街（顶俞阁老）；第185章俞夫人（布局）；第244–245章门路/援手（访肁先生）；第274章絮语（与赵凌共谋复仇）</td>
+</tr>
+</tbody></table>
+<h3>阶段七 · 终局（第276–314章）｜同谋复仇、俞家坍塌、终局持家</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>赵凌暗中布局、傅庭筠辅夫并知情；随夫赴西安迁坟立祠、重返西安旧地（身份已由落难女子变三品命妇<code>[第223章]</code>）；入宫觐见受封淑人<code>[第278章]</code>；俞家恩怨落幕——俞敬修入狱革职、俞阁老流放病死、南京俞家没落<code>[第314章]</code></td>
+</tr>
+<tr>
+<td>心境变化</td>
+<td>与赵凌&quot;志同道合、共谋大局&quot;<code>[第276章]</code>；同心同德、夫唱妇随；对傅家彻底释然；终局&quot;持家&quot;的安稳</td>
+</tr>
+<tr>
+<td>能力/身份跃迁</td>
+<td>受封三品淑人、命妇身份确立<code>[第278章]</code>；由&quot;当事人&quot;升为&quot;共谋者&quot;（参与/知情复仇布局）<code>[第276/311章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>与赵凌坦诚交心、确立共谋复仇<code>[第274章]</code>；以情劝其勿铤而走险（&quot;有分寸&quot;）<code>[第274章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第274章絮语（坦诚交心）；第276章布局（辅夫）；第278章拜寿（受封淑人）；第310–314章（终局复仇、俞家坍塌）</td>
+</tr>
+</tbody></table>
+<h2>5. 人物弧光总结</h2>
+<blockquote>
+<p><strong>九小姐 → &quot;死人&quot; → 逃亡者 → 掌事者 → 主母 → 命妇 → 复仇共谋者。</strong> 傅庭筠的一生是一条&quot;被人安排→自己执棋&quot;的上升线：开篇她被家族当弃子&quot;处死&quot;，中段她学会以利相诱、以柔克刚、当众编谎，后段她敢顶父兄、斗情敌、审宿仇、布局复仇。她始终守着一件事——<strong>&quot;死也要清白&quot;</strong><code>[第17章]</code>，并在守住清白之上，长出了&quot;能依靠的只有自己&quot;的骨头<code>[第93章]</code>。</p>
+</blockquote>
+<h2>6. 关键抉择时刻（定义这个人）</h2>
+<ol>
+<li><strong>识破毒计、拼死求生</strong>[第14章]——家族要在庵中&quot;就地处死&quot;她，她不再隐忍退让，选择搏命。<strong>这是她&quot;刚烈&quot;人格的第一次出场。</strong></li>
+<li><strong>认母许婚、越过父兄之辱嫁赵凌</strong>[第141章]——父兄百般羞辱、赵凌受耳光，她仍昂首跨越，接过母亲授的庚帖。<strong>她第一次亲手为自己的命运做决定，且是逆父权而为。</strong></li>
+<li><strong>当众与生父决裂</strong>［&quot;我不做傅家的女儿就是了&quot;］[第176章] / <strong>当街恩断</strong>［&quot;除了同占&#39;傅&#39;字，再无关系&quot;］[第199章]——不是一时意气，而是看透傅家&quot;只求权势、重俞家颜面&quot;后的理性切割。</li>
+<li><strong>强睁眼看逼供、直面&quot;父命杀己&quot;真相</strong>[第172–173章]——由&quot;不敢看血&quot;到强睁眼，心性向&quot;敢直面酷烈&quot;转变；她不再逃避父母对她的冷酷真相。</li>
+<li><strong>坦诚交心、共谋复仇</strong>[第274章]——以柔克刚、以情逼真言，明大义，既参与复仇又劝其&quot;有分寸&quot;。<strong>她与赵凌从此是真正意义上的&quot;同谋&quot;。</strong></li>
+</ol>
+<blockquote>
+<p><strong>表演要点 / 续写红线</strong>：写傅庭筠时语速不急、句子稳，先算人心再动情；受辱时先忍、忍到临界才一次性爆发（掌掴后的倔强、母丧后的守礼）；对幼子、旧仆、姊妹语气软，对仇敌话术凌厉而留三分体面（&quot;礼貌足够&quot;<code>[第197章]</code>）。<strong>红线</strong>：①不可写成毫无主见、坐等拯救的柔弱女主——她全书都在&quot;自己执棋&quot;（诈供、设局、布局皆出她手）；②不可写成冷血无情的复仇机器——她对慈母、幼子、旧仆的柔软是其底色。</p>
+</blockquote>
+<hr>
+<h1>二、赵凌（男主）</h1>
+<h2>1. 基础设定（不变核心）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>赵凌；人称&quot;赵九爷&quot;（后称&quot;赵爷&quot;&quot;九爷&quot;）；赐字&quot;虎臣&quot;<code>[第190章]</code></td>
+</tr>
+<tr>
+<td>家世</td>
+<td>出身寒微（私盐贩、逃亡者旧底）；父赵祥（追封嘉议大夫）、母孟氏（追封夫人）<code>[第219章]</code>，父母早亡、数年未祭<code>[第80章]</code>；祖籍淞江宗族<code>[第232章]</code></td>
+</tr>
+<tr>
+<td>年龄</td>
+<td>与傅庭筠西行时二十一岁<code>[第50章]</code>；第180章二十五岁<code>[第180章]</code></td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>身材高大而瘦削、赤足破衣、身手矫捷（碧云庵初现，似见不得光之人）<code>[第1章]</code>；重振时&quot;脊背挺得笔直&quot;的沉静气度<code>[第116章]</code></td>
+</tr>
+<tr>
+<td>身份轨迹</td>
+<td>陌生逃亡男子 → 总旗 → 百户 → <strong>羽林卫左卫指挥使</strong>（正三品，从龙之功 <code>[第138章]</code>）→ 宣同副总兵（赐字&quot;虎臣&quot;）<code>[第190章]</code> → 贵州总兵<code>[第235章]</code> → 右军都督佥事（从一品）<code>[第287章]</code></td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>脱去&quot;见不得光&quot;的逃亡者身份，光明立世、为父母报仇；留住傅庭筠（私情与身世隐痛冲突）<code>[第66章]</code></td>
+</tr>
+<tr>
+<td>恐惧</td>
+<td>身世的自卑与家仇未报；因私盐旧底连累傅庭筠清名<code>[第159章]</code></td>
+</tr>
+<tr>
+<td>信念／准则</td>
+<td>&quot;我有分寸&quot;<code>[第72章]</code>；谋定后动、&quot;七成把握即动手&quot;<code>[第91章]</code>；对旧部&quot;愿同生共死&quot;<code>[第48章]</code>；对傅庭筠公开立誓保护、不纳他人<code>[第105章]</code></td>
+</tr>
+<tr>
+<td>擅长</td>
+<td>武功（点穴、翻墙无声 <code>[第8章]</code>、一战毙匪首 <code>[第34章]</code>）、行军布阵<code>[第40章]</code>、官场借势周旋（陌毅／鲁成／颖川侯）、暗中布局</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>赠傅庭筠的头巾<code>[第70章]</code>；佩剑（唐佩玲&quot;借剑&quot;之由）<code>[第102章]</code></td>
+</tr>
+</tbody></table>
+<h2>2. 性格标签（从行为拆出）</h2>
+<ul>
+<li><strong>主标签：深藏不露的谋略型枭雄</strong>——外谨内断、借势而为、谋定后动，冷硬之下深藏家仇。<ul>
+<li>行为佐证：碧云庵以点穴、翻墙无声的功夫周旋而不肯多言己身<code>[第8章]</code>；对十六爷以&quot;家学三脚猫功夫&quot;搪塞、不肯当场表态投军<code>[第36章]</code>；主动&quot;借势&quot;、善用陌毅/鲁成之关系造势，谋略形象确立<code>[第72章]</code>；借皇上&quot;飞鸟尽良弓藏&quot;之虑藏锋<code>[第153章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签一：铁石心肠却守良善（恩义型首领）</strong>——手段狠绝，却对部曲、对傅庭筠守底线。<ul>
+<li>行为佐证：为救傅庭筠与部众起争执仍决意留下<code>[第15章]</code>；为保全众人决意独自面对陌毅<code>[第48章]</code>；对旧部&quot;愿同生共死&quot;<code>[第48章]</code>；疑为暗杀冯大虎者（狠绝）<code>[第100章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签二：蛰伏的复仇执念者</strong>——复仇是驱动他往上走的第一引擎，且以&quot;活受罪&quot;为宗旨。<ul>
+<li>行为佐证：为妻受辱结怨西平侯·冯家<code>[第233章]</code>；暗查西安证据、幕后布局扳倒俞家<code>[第276/310章]</code>；第274章向傅庭筠坦白复仇决心而克制；第314章&quot;隐于幕后、以&#39;活受罪&#39;为复仇宗旨&quot;。</li>
+</ul>
+</li>
+<li><strong>反差点一</strong>：<code>对外冷静持重、寡言内敛</code> × <code>对内（傅庭筠）贪恋黏人、&quot;食髓知味&quot;、少年气</code>——初识时&quot;内敛沉稳&quot;与成婚后&quot;热情黏人&quot;判若两人<code>[第148/151章]</code>。</li>
+<li><strong>反差点二</strong>：<code>自认&quot;两个注定南辕北辙的人&quot;的克制退让</code>[第66章]<code>×</code>关键处比谁都果决的担当<code>（跪地提亲、受耳光不还手、拔刀镇场 </code>[第140/141章]`）。</li>
+</ul>
+<h2>3. 人物弧光（一句话）</h2>
+<p><strong>从身负家仇、藏身逃亡、连姓名都不敢说的寒微孤客，变成有从龙之功、能运筹朝局复仇的权臣，也终成能让妻子安稳持家、把家安在&quot;她所在之处&quot;的丈夫。</strong></p>
+<hr>
+<h2>4. 分阶段成长卡（共 7 段）</h2>
+<h3>阶段一 · 碧云庵藏身（第1–17章）｜逃亡者的初现</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>因故逃亡、藏身碧云庵后院养伤（肩背刀伤），险掐死撞破的傅庭筠<code>[第1章]</code>；与傅家、官府势力周旋；夜探傅府查明左俊杰被禁锢、傅家对外称傅庭筠&quot;病逝&quot;并退婚俞家<code>[第12/16章]</code>；后救下被傅家下毒的傅庭筠并护送西行</td>
+</tr>
+<tr>
+<td>心境/能力</td>
+<td>冷硬、防备、行事无常却仍守良善；身手高强（点穴、翻墙无声 <code>[第8章]</code>）；见识露出冰山一角<code>[第18章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>为救傅庭筠与部众起争执，仍决意留下<code>[第15章]</code>；以&quot;赵&quot;为姓、自居&quot;赵九爷&quot;护送她西行<code>[第16章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第1章碧云庵初遇（施暴者—人质）；第8章再见；第10章交换；第15章救命；第16章托付</td>
+</tr>
+</tbody></table>
+<h3>阶段二 · 西行结义（第18–45章）｜患难相守、身份浮现</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>护送傅庭筠西行，途中遇旧识十六爷（穆王）、陌毅一行，被招揽、被试探；东安村遭冯老四围杀、独赴临潼会冯三爷<code>[第28–30章]</code>；城隍庙抱病护主、力毙匪首<code>[第34章]</code>；与傅庭筠以&quot;未婚夫妻&quot;名分相处；西安府落脚</td>
+</tr>
+<tr>
+<td>心境/能力</td>
+<td>由&quot;念念不忘回江南&quot;转为&quot;或在关外另谋前程&quot;<code>[第56章]</code>；帷幄推演、攻守算计显露行伍底色<code>[第40章]</code>；对傅庭筠渐生&quot;他自己都不自知的溺爱&quot;<code>[第56章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>保护傅庭筠、与陌毅共进退的短暂同盟<code>[第44章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第34章初见（一战毙匪首）；第36章盘问（搪塞十六爷）；第39章改变（向她道歉立约）；第40章策略（推演）；第44章西安府（谋划转移）</td>
+</tr>
+</tbody></table>
+<h3>阶段三 · 西安从军（第46–76章）｜入军籍、借势开局</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>西安府安置部众（杨玉成、金元宝入军籍<code>[第46/68章]</code>）；赵凌入碾伯所从军、赴甘州/张掖；陌毅一方杀意渐明<code>[第47章]</code>、由暗斗转公开敌对<code>[第56章]</code>；与傅庭筠分居张掖/庄浪卫</td>
+</tr>
+<tr>
+<td>心境/能力</td>
+<td>由被动受制转为主动&quot;借势&quot;<code>[第72章]</code>；由&quot;拼死&quot;改&quot;借势&quot;、谋定后动<code>[第54章]</code>；对傅庭筠&quot;心里一热&quot;、情愫渐显而不自知<code>[第58章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>决意独自面对陌毅以求保全众人<code>[第48章]</code>；为她散尽盘缠、事事替她想到<code>[第45章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第48章取舍（保全众人）；第54章夏夜（改志）；第60章银子（剖白私盐旧事）；第72章借势（谋略确立）；第76章感动（与傅庭筠分居安排）</td>
+</tr>
+</tbody></table>
+<h3>阶段四 · 甘州借势征战（第77–120章）｜庄浪卫周旋、定情东归</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>庄浪卫任总旗，周旋于鲁成、陌毅、颖川侯之间；征战升迁（军中上下级总旗—小旗 <code>[第68章]</code>）；与傅庭筠聚少离多；自&quot;报喜不报忧&quot;转入秘密行动（查马贼、谋西平侯 <code>[第113章]</code>）；终与傅庭筠定情</td>
+</tr>
+<tr>
+<td>心境/能力</td>
+<td>由&quot;报喜不报忧&quot;转为对傅庭筠交底、信任加深<code>[第115章]</code>；以&quot;未婚妻&quot;名分为她掩护<code>[第73章]</code>；身世之痛在剖白中显露（母被诬自缢 <code>[第110章]</code>）</td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>公开立誓保护傅庭筠、立誓不纳他人<code>[第105章]</code>；借傅母之病促其东归、兼为旧事善后<code>[第119章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第80章来往（托祭父母）；第103章深情（狂奔百余里）；第105章冰释（定情）；第110章从前（剖白身世、逐唐佩玲）；第119章东去（促东归）</td>
+</tr>
+</tbody></table>
+<h3>阶段五 · 京都·羽林卫与成婚（第121–166章）｜从龙之功、成家出征</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>穆王入京、帝位更迭（皇上驾崩、庄王继统、穆王&quot;清君侧&quot;起兵破城 <code>[第132–134章]</code>），随穆王兵马进京、得&quot;请太皇太后赐婚&quot;之诺<code>[第136章]</code>；升羽林卫左卫指挥使（正三品）<code>[第138章]</code>；与傅庭筠成婚、连生呦呦；出征在外<code>[第167章]</code></td>
+</tr>
+<tr>
+<td>心境/能力</td>
+<td>追随穆王时的犹豫、分别后的担忧、战败时的自疑、胜利后的压力，见傅庭筠皆化为微不足道<code>[第136章]</code>；由纯情感转入忧患（&quot;飞鸟尽良弓藏&quot;）<code>[第153章]</code>；对傅家始终敬重<code>[第150章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>为傅庭筠甘受傅五老爷一耳光、跪地提亲<code>[第140章]</code>；为护妻拔刀镇场、又守晚辈之礼<code>[第141章]</code>；为她请主婚人、周全婚仪<code>[第143章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第136章重逢；第138章哥哥（升指挥使）；第140–142章争吵/尊严/婚事；第146章成亲；第148章小登科（圆房）；第165章初为父母（呦呦降生）</td>
+</tr>
+</tbody></table>
+<h3>阶段六 · 京都·布局出征（第167–275章）｜征战四方、暗布复仇之局</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>出征贵州（平苗夷）、宣府；受封世袭百户、升宣同副总兵<code>[第190章]</code>、贵州总兵<code>[第235章]</code>；在京周旋禁卫军、人望渐起；暗中布局反击西平侯/冯家/俞家<code>[第209/233章]</code>；与傅庭筠聚少离多</td>
+</tr>
+<tr>
+<td>心境/能力</td>
+<td>木秀于林、处事沉稳（有拒绝皇上调任一次的经历 <code>[第180章]</code>）；由隐忍到&quot;复仇决心坚定而克制&quot;（&quot;有分寸&quot;）<code>[第274章]</code>；暗查西安证据、借郭姓县丞告状、买凶等事端牵制俞家；平苗乱、节制云贵各卫所<code>[第301章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>由隐瞒到向傅庭筠坦白复仇<code>[第274章]</code>；与吴昕利益同盟、对付西平侯<code>[第233章]</code>；私回京都省亲犯险<code>[第273章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第178章回朝（离家十一个月归来）；第190章差事（升宣同副总兵）；第214章小别（凯旋）；第273章欢快（私回京都）；第274章絮语（坦白复仇）</td>
+</tr>
+</tbody></table>
+<h3>阶段七 · 终局（第276–314章）｜扳倒俞家、终局持家</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>借西安证据、买凶等事端牵制俞家；西平侯与俞阁老私卖战马事发；俞敬修入狱革职、俞阁老流放病死、南京俞家没落<code>[第314章]</code>；受命将迁右军都督佥事、佩征事将军印（从一品虚职）<code>[第287章]</code></td>
+</tr>
+<tr>
+<td>心境/能力</td>
+<td>隐于幕后、以&quot;活受罪&quot;为复仇宗旨<code>[第314章]</code>；布局既成、转享天伦（&quot;父子渐亲&quot;<code>[第310章]</code>）；志同道合、共谋大局<code>[第276章]</code></td>
+</tr>
+<tr>
+<td>关键抉择</td>
+<td>以&quot;活受罪&quot;代替&quot;取命&quot;为复仇宗旨<code>[第314章]</code>；携父母棺椁归乡、迁坟立祠、收拢赵家宗族<code>[第231/232章]</code></td>
+</tr>
+<tr>
+<td>代表场景</td>
+<td>第276章布局；第310章谋划（得西安证据）；第311章静好（布局既成转享天伦）；第314章坍塌（俞家没落，复仇完成）</td>
+</tr>
+</tbody></table>
+<h2>5. 人物弧光总结</h2>
+<blockquote>
+<p><strong>逃亡孤客 → 总旗/百户 → 从龙之臣（正三品）→ 贵州总兵/都督佥事 → 幕后执棋的复仇者 → 丈夫与父亲。</strong> 赵凌的成长由两条线拧成：一是<strong>身份翻盘线</strong>（从见不得光的亡命者，到赐字&quot;虎臣&quot;的宠臣）；二是<strong>复仇执念线</strong>（为父母家仇、为妻子受辱，从被动受制走到主动布局）。他的冷硬外壳下有两处柔软——对旧部的恩义（&quot;愿同生共死&quot;）和对傅庭筠的痴守（&quot;愿得一人心&quot;）。</p>
+</blockquote>
+<h2>6. 关键抉择时刻（定义这个人）</h2>
+<ol>
+<li><strong>为救傅庭筠与部众起争执、仍决意留下</strong>[第15章]——利益与义气冲突时，他选了人。<strong>&quot;铁石心肠却仍守良善&quot;的自证。</strong></li>
+<li><strong>为保全众人决意独自面对陌毅</strong>[第48章]——宁愿自己涉险，也要保住傅庭筠与旧部。<strong>他身上&quot;以己为盾&quot;的担当底色。</strong></li>
+<li><strong>为护妻拔刀镇场、又守晚辈之礼</strong>[第141章]（并受傅五老爷耳光不还手 <code>[第140章]</code>）——极致的&quot;能屈能伸&quot;：对外敢拔刀，对岳家守礼数。<strong>他懂得&quot;什么时候该硬、什么时候该忍&quot;。</strong></li>
+<li><strong>向傅庭筠坦白复仇、并听其劝守住&quot;分寸&quot;</strong>[第274章]——他把最隐秘的执念交给妻子，也接受她的约束。<strong>从&quot;独自扛&quot;到&quot;与她共谋&quot;的转折。</strong></li>
+<li><strong>以&quot;活受罪&quot;为复仇宗旨</strong>[第314章]——复仇完成时，他选择的不是取命而是让对方活受罪。<strong>冷硬之下仍有他自己的一套&quot;分寸&quot;。</strong></li>
+</ol>
+<blockquote>
+<p><strong>表演要点 / 续写红线</strong>：写赵凌时少言、决断，答话常只给结论不给过程（&quot;我有分寸&quot;）；情绪藏在动作里（赠头巾、夜访、狂奔百里的焦灼、成婚后的黏人）。对傅庭筠可由冷转热、忽而少年气，对官场与仇敌则全程冷静克制。<strong>红线</strong>：①不可写成恋爱脑的工具人男主——他全书是&quot;自己布局、自己扛&quot;的行动主体（借势、征战、复仇皆出他手）；②不可写成没有软肋的冷面枭雄——他对傅庭筠的痴守与&quot;食髓知味&quot;的少年气是他的反差萌点。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>附：本文件主角阶段数 = <strong>各 7 段</strong>（傅庭筠 7 段、赵凌 7 段，章号切分一致：第1–17 / 18–45 / 46–76 / 77–120 / 121–166 / 167–275 / 276–314 章）。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

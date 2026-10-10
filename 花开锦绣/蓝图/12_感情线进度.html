@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 · 感情线进度 · 花开锦绣</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc; --purple:#b197fc; --orange:#ffa94d;
+  --teal:#5eead4; --rose:#ef9fb0; --lime:#a9e34b; --yellow:#ffd43b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:#e8e6e3;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:360px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.12), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 28px;padding-right:200px;background:rgba(8,8,12,0.78);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:600;}
+
+.author-badge{position:fixed;top:14px;right:20px;z-index:200;font-size:12px;color:var(--gold);
+  letter-spacing:1px;font-weight:500;background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);
+  border-radius:16px;padding:4px 12px;white-space:nowrap;backdrop-filter:blur(10px);}
+.author-badge b{color:var(--gold2);font-weight:700;}
+
+.wrap{max-width:1400px;margin:0 auto;padding:26px 26px 90px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:5px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#b197fc 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:12px;font-size:12.5px;color:#8b93a7;letter-spacing:1.5px;line-height:2;}
+.hero .quote{margin:18px auto 0;max-width:840px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 22px;background:rgba(201,169,97,0.04);border-radius:6px;}
+.hero .quote span{display:block;font-size:11px;color:#6f788c;margin-top:6px;letter-spacing:1px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 28px 24px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.22);border:1px solid rgba(201,169,97,0.38);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;line-height:1.9;}
+
+/* ===== 阶段带总览（渐变阶梯） ===== */
+.ladder{padding:6px 0 2px;}
+.ladder .step{display:flex;align-items:center;gap:10px;margin-bottom:7px;height:32px;white-space:nowrap;}
+.ladder .fill{height:32px;border-radius:8px;position:relative;overflow:hidden;
+  display:flex;align-items:center;padding:0 12px;gap:10px;transition:.2s;}
+.ladder .fill:hover{filter:brightness(1.25);}
+.ladder .fill .lbl{font-size:12px;font-weight:600;letter-spacing:.5px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap;}
+.ladder .fill .rg{font-size:10.5px;color:rgba(255,255,255,0.65);letter-spacing:.5px;margin-left:auto;
+  flex:none;}
+
+/* ===== 甘特图 ===== */
+.graph-wrap{overflow-x:auto;border-radius:14px;background:rgba(0,0,0,0.24);
+  border:1px solid rgba(255,255,255,0.05);padding:6px 4px;}
+#gantt{width:100%;height:auto;display:block;min-width:720px;}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+.node{cursor:pointer;}
+.node .core{transition:.16s;}
+.node:hover .core{filter:drop-shadow(0 0 9px currentColor);}
+.bar-g{cursor:pointer;}
+.bar-g:hover .bar-rect{filter:brightness(1.4);}
+
+#tip{position:fixed;z-index:999;display:none;max-width:360px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+.tip-name{font-size:15px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.9;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-desc b{color:#e8c97a;font-weight:600;}
+.tip-desc .tag{display:inline-block;font-size:10px;color:#0b0b10;font-weight:700;
+  border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:1px;}
+
+/* ===== 质变节点书签卡 ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;}
+.bm{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);
+  border-left-width:3px;border-radius:14px;padding:15px 16px 14px;position:relative;transition:.2s;}
+.bm:hover{border-color:rgba(201,169,97,0.38);transform:translateY(-2px);}
+.bm-h{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.bm-n{font-size:11px;font-weight:700;color:#0b0b10;border-radius:6px;padding:1px 8px;}
+.bm-ch{font-size:11.5px;font-weight:700;letter-spacing:.5px;color:#dfe3ee;}
+.bm-tag{font-size:10px;color:#8b93a7;letter-spacing:1px;border:1px solid rgba(255,255,255,0.14);
+  border-radius:999px;padding:1px 9px;margin-left:auto;}
+.bm-ev{margin-top:11px;font-size:13.5px;font-weight:700;line-height:1.6;color:#e8e6e3;}
+.bm-mean{margin-top:6px;font-size:11.5px;line-height:1.8;color:#a9b0c4;}
+.bm-desc{margin-top:9px;font-size:12px;line-height:1.9;color:#c9d0e0;
+  border-top:1px dashed rgba(255,255,255,0.08);padding-top:9px;}
+.bm-desc em{font-style:normal;color:#7d869c;font-size:10.5px;letter-spacing:1px;margin-right:6px;}
+
+/* ===== 表格 ===== */
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 12px;color:#e8c97a;font-weight:600;letter-spacing:1px;
+  border-bottom:1px solid rgba(201,169,97,0.25);white-space:nowrap;font-size:11.5px;}
+td{padding:10px 12px;color:#b6bdd0;border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.8;vertical-align:top;}
+tr:hover td{background:rgba(177,151,252,0.05);}
+td.ch{color:#dfe3ee;font-weight:600;white-space:nowrap;}
+td.cp{color:#e8c97a;font-weight:600;white-space:nowrap;}
+td.anch{color:#8b93a7;font-size:11px;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+
+@media (max-width:900px){
+  .topbar{padding-right:28px;}
+  .author-badge{top:auto;bottom:14px;right:14px;}
+}
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:22px;letter-spacing:2px;}
+  .section{padding:30px 16px 20px;}
+  .cards{grid-template-columns:1fr;}
+  .ladder .step{margin-left:0 !important;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="dim">感情线进度</div>
+</div>
+<span class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</span>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>傅庭筠 × 赵凌 · 感情线进度</h1>
+    <div class="sub">《花开锦绣》· 吱吱 · 全 310 章 · 明代背景 · 患难相守 / 复仇主线交织 · 主 CP 跨度第 1 章 → 第 310 章</div>
+    <div class="quote">"愿得一人心，白首不相离……我们之间，不会有其他的人。"<span>—— 第 105 章 · 明定情</span></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">阶段带</div>
+    <h3 class="sec-title">感情线阶段带总览 · 11 阶段渐变阶梯</h3>
+    <p class="sec-note">横条位置按阶段起始章推进、长度按阶段跨度呈现（第 1 → 314 章刻度），颜色由冷（对抗）逐步过渡到暖（成婚、白首）；阶段十「生育」与阶段十一「聚少离多」在时间上长期并行，故两段几近同位。</p>
+    <div class="ladder" id="ladder"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">主图</div>
+    <h3 class="sec-title">CP 推进甘特图 · 11 阶段 / 26 质变节点 / 横轴 1–314 章</h3>
+    <p class="sec-note">11 个感情阶段各占一行，色条自阶段起始章延伸至结束章；色条上的发光圆点即 26 个关系质变节点，悬停「章节 + 阶段 + 质变事件 + 描述」。整图随容器自适应缩放，结局段无需横向滚动即可见。</p>
+    <div class="graph-wrap">
+      <svg id="gantt" viewBox="0 0 1360 520" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">质变清单</div>
+    <h3 class="sec-title">26 个质变节点清单 · 书签卡</h3>
+    <p class="sec-note">决定感情走向的 26 个关键落点，按章序排列；卡色对应该章所属阶段，右上角为节点类型。</p>
+    <div class="cards" id="bmWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">副线</div>
+    <h3 class="sec-title">次要 CP 简化轨迹</h3>
+    <p class="sec-note">主线之外的情感副线，映射「患难相守」的同一母题。</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>CP</th><th>轨迹</th><th>关键锚点</th></tr></thead>
+        <tbody id="cpTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">交织</div>
+    <h3 class="sec-title">感情线 × 主线 · 交织点</h3>
+    <p class="sec-note">感情线不是独立支线：它既被复仇／家族主线推动，也反过来成为主线的发动机。</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>交织点</th><th>感情 → 主线</th><th>锚点</th></tr></thead>
+        <tbody id="weaveTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">《花开锦绣》拆解 · 蓝图 12 · 感情线进度（傅庭筠 × 赵凌）· 11 阶段 / 26 质变节点</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ====================== 数据：11 阶段 ====================== */
+const STAGES = [
+  {id:1, roman:'一', name:'初遇对抗', a:1, b:9, color:'#74c0fc',
+   state:'陌生人 → 敌对', fu:'无 → 对抗（恐惧为主）',
+   desc:'他翻墙入庵被她撞见、掐颈胁迫，纯对抗无好感；夜访增多、她派寒烟送信败露，尚无信任基础。'},
+  {id:2, roman:'二', name:'交易与信任', a:10, b:13, color:'#5eead4',
+   state:'敌对 → 利益交换，初见人情温度', fu:'交易 → 升温；信任略增',
+   desc:'他替她送家信给母亲，讨茶揶揄、互动自然；她欲拉他衣袖又缩回，他瞥见其容貌"心中一动"，情愫初萌。'},
+  {id:3, roman:'三', name:'患难相护·情愫初动', a:14, b:34, color:'#69db7c',
+   state:'共患难萌发依赖与好感，试探又别扭', fu:'感激 → 情愫初动',
+   desc:'危急时她唯一指望他；他舍众护她、温柔喂药；城隍庙他抱病血战救她、力竭昏厥，她扑身哭喊，好感陡增。'},
+  {id:4, roman:'四', name:'患难相守·双向暗涌', a:35, b:66, color:'#a9e34b',
+   state:'以"未婚夫妻"名分相守，情意互藏', fu:'各自动情 → 双向暗涌',
+   desc:'她当众认下未婚妻身份以护他；他抓其手腕、主动道歉并立约，好感由暗转明；"蜀锦／青花"暗赞，她"心像风帆似的，鼓得满满的"。'},
+  {id:5, roman:'五', name:'暗定情·随行甘州', a:67, b:100, color:'#ffd43b',
+   state:'心意相许（暗定情），聚少离多中守望', fu:'暗定情 → 守望（深情与不安并存）',
+   desc:'她强随他赴张掖，他"恼"里含"喜"；首次详述父母旧事；"过门不入"是情感浓度最高处，她由怨、尖酸、自省到掩泣。'},
+  {id:6, roman:'六', name:'信任危机·最大误会与冰释', a:101, b:104, color:'#ff6b6b',
+   state:'全书最大误会 → 破冰', fu:'误会谷底 → 破冰',
+   desc:'她撞见"唐小姐"、闻"傅姑娘"之称，由爱生绝望，当众宣告"一刀两断"；他失态跌倒，她首次剖白醋意与深情，落水相救后冰释。'},
+  {id:7, roman:'七', name:'明定情·以身相许', a:105, b:116, color:'#ffa94d',
+   state:'正式定情（"明定情"），由试探转坦白', fu:'定情 → 甜蜜 → 信任稳固',
+   desc:'他装醉以"囡囡"相戏、郑重许诺"愿得一人心，白首不相离"；完整揭开身世之痛，他情动求婚；放灯许愿为全段最甜。'},
+  {id:8, roman:'八', name:'议婚·百年之约', a:117, b:145, color:'#e8c97a',
+   state:'边疆求婚 → 京都赐婚，层层推进', fu:'求婚 → 议婚 → 荣宠',
+   desc:'他改唤"阿筠"相拥求婚；久别重逢即拥吻；当众下跪提亲、跪对岳母，傅夫人许女并交换庚帖；太皇太后赐婚、赐金簪。'},
+  {id:9, roman:'九', name:'成亲·新婚燕尔', a:146, b:156, color:'#ef9fb0',
+   state:'名正言顺的夫妻，婚后最浓的甜', fu:'成亲 → 琴瑟和鸣',
+   desc:'挑盖头、共饮缠五彩线的交杯酒；圆房、回门路上定"回长安定居"之约；灯会赠桃木簪、他背她、打水泡脚，"琴瑟和鸣"。'},
+  {id:10, roman:'十', name:'生育·儿女满堂', a:157, b:298, color:'#b197fc',
+   state:'初为父母；一儿一女一子接续降生', fu:'初为父母 → 为对方担责',
+   desc:'产女呦呦（第165章）；他每天回来第一件事就是摸肚与未出生孩子说话；产长子曦哥儿、次子取名"昀"、三子晗哥儿。'},
+  {id:11, roman:'十一', name:'聚少离多·两地同心', a:167, b:300, color:'#c9a961',
+   state:'他一再出征升迁，夫妻长期两地', fu:'聚少离多 → 情笃（空间越远、牵挂越深）',
+   desc:'随征贵州、马车抱妻，嘱"要想着京都还有我和呦呦"；十余年书信银票往还、彼此体谅；终局重逢、他内疚示爱"阿筠，是我不好"。'}
+];
+
+/* ====================== 数据：26 质变节点 ====================== */
+const NODES = [
+  {n:1,  ch:1,     chLabel:'第1章',       ev:'初遇（掐颈胁迫）',        type:'起点',    mean:'纯对抗；二人命运首次交缠', desc:'碧云庵翻墙相遇，他掐颈胁迫，恐惧是两人之间唯一的底色。'},
+  {n:2,  ch:10,    chLabel:'第10章',      ev:'达成交易',                type:'转折',    mean:'由敌对进入利益交换，情感有了通道', desc:'他替她送家信给母亲，"交换"成为两人之间第一条情感通道。'},
+  {n:3,  ch:15,    chLabel:'第15章',      ev:'救命（服毒获救）',        type:'救命',    mean:'他救她于必死；"感激+好感"起', desc:'他舍众护她、请大夫、温柔喂药，她"无比感激这种坚持"。'},
+  {n:4,  ch:34,    chLabel:'第34章',      ev:'生死相护（城隍庙血战）',  type:'生死',    mean:'他抱病血战救她；好感陡增', desc:'城隍庙他抱病血战、力竭昏厥，她扑身哭喊。'},
+  {n:5,  ch:35,    chLabel:'第35章',      ev:'当众认"未婚妻"',          type:'定名分',  mean:'"未婚夫妻"名分成为后续相守的掩护', desc:'她当众认下未婚妻身份以护他、诊伤心痛，名分由此立。'},
+  {n:6,  ch:39,    chLabel:'第39章',      ev:'立约',                    type:'信任',    mean:'他道歉并立约，关系由暗转明', desc:'他抓其手腕护她、被其刚烈触动失笑松手，主动道歉并立约。'},
+  {n:7,  ch:67,    chLabel:'第67章',      ev:'暗定情（她强随、他妥协）', type:'定情·暗', mean:'"恼"里含"喜"，心意相许', desc:'她强随他赴张掖，他不忍却终妥协，二人暗定情。'},
+  {n:8,  ch:69,    chLabel:'第69章',      ev:'首次详述父母旧事',        type:'交心',    mean:'他主动向她敞开心事', desc:'他搀扶她下车、让其靠肩、赠未上身新皮袄，并首次详述父母旧事。'},
+  {n:9,  ch:101.5, chLabel:'第101–102章', ev:'最大误会（信任危机）',    type:'危机',    mean:'由爱生绝望，当众"一刀两断"', desc:'她闯内室，"唐小姐"与"傅姑娘"之称交叠，闻"傅姑娘"后彻底心冷。'},
+  {n:10, ch:104,   chLabel:'第104章',     ev:'冰释（心意确认）',        type:'反转',    mean:'相拥、落水相救，捅破窗户纸', desc:'他问"那个人不是我，你是否也如此"，二人落水相救、湿衣相对。'},
+  {n:11, ch:105,   chLabel:'第105章',     ev:'明定情（承诺"一生一人"）', type:'定情',    mean:'装醉以"囡囡"相戏、郑重许诺', desc:'"愿得一人心，白首不相离……我们之间，不会有其他的人"。'},
+  {n:12, ch:110,   chLabel:'第110章',     ev:'身世相托（完整揭开）',    type:'交心',    mean:'信任顶点；他情动求婚', desc:'完整揭开母被诬与周升有染、自缢于祠堂之痛，他情动求婚。'},
+  {n:13, ch:117,   chLabel:'第117章',     ev:'求婚（改唤"阿筠"）',      type:'求婚',    mean:'边疆求婚、百年之约', desc:'他改唤"阿筠"（老家对女子的称呼）、相拥求婚。'},
+  {n:14, ch:135,   chLabel:'第135章',     ev:'久别重逢拥吻',            type:'重逢',    mean:'别后重逢即拥吻，"一辈子护着你"', desc:'久别重逢即拥吻，许诺"一辈子护着你"。'},
+  {n:15, ch:140,   chLabel:'第140章',     ev:'提亲下跪',                type:'议婚',    mean:'当众下跪提亲、承其耳光', desc:'他当众下跪提亲、承其耳光，她扑护拽其后、痛悔落泪。'},
+  {n:16, ch:141,   chLabel:'第141章',     ev:'许女·交换庚帖',          type:'议婚',    mean:'傅夫人许女，名分缔结', desc:'他拔刀护她、跪对岳母，傅夫人许女、当面交换庚帖。'},
+  {n:17, ch:144,   chLabel:'第144章',     ev:'太皇太后赐婚',            type:'荣宠',    mean:'荣宠加身，婚事获最高认可', desc:'太皇太后赐婚、赐金簪，傅氏封三品淑人。'},
+  {n:18, ch:146,   chLabel:'第146章',     ev:'成亲',                    type:'成婚',    mean:'正式结为夫妻', desc:'他送来盖头、挑盖头"目光一动也不动地望着她"、共饮缠五彩线的交杯酒。'},
+  {n:19, ch:148,   chLabel:'第148章',     ev:'圆房',                    type:'成婚',    mean:'婚姻实质完成', desc:'圆房、晨起见牙印愧疚、暗誓节制。'},
+  {n:20, ch:150,   chLabel:'第150章',     ev:'定"回长安定居"之约',      type:'立誓',    mean:'夫妻共许同进退的根基', desc:'回门路上互诉"你去哪里我就去哪里"，定"回长安定居"之约。'},
+  {n:21, ch:165,   chLabel:'第165章',     ev:'生女呦呦',                type:'生子',    mean:'初为父母', desc:'隔帘焦灼一夜、连声唤"阿筠"，夫妻共议女名"呦呦"后产女。'},
+  {n:22, ch:167,   chLabel:'第167章',     ev:'生离（随征贵州）',        type:'生离',    mean:'聚少离多之始；"两情若是长久时"', desc:'随征贵州、马车抱妻，"要注意安全，要想着京都还有我和呦呦"。'},
+  {n:23, ch:195,   chLabel:'第195章',     ev:'生长子曦哥儿',            type:'生子',    mean:'长子降生（书信报喜）', desc:'产长子曦哥儿，他于军中书信报喜。'},
+  {n:24, ch:246,   chLabel:'第246章',     ev:'生次子旭哥儿',            type:'生子',    mean:'他得信为子取名"昀"', desc:'他得信为次子取名"昀"（乳名初一）。'},
+  {n:25, ch:298,   chLabel:'第298章',     ev:'生三子晗哥儿',            type:'生子',    mean:'三子降生、百日', desc:'产三子晗哥儿，百日喜庆。'},
+  {n:26, ch:310.5, chLabel:'第310–311章', ev:'终局重逢静好',            type:'白首',    mean:'半生风雨归于相守静好', desc:'重逢、打水服侍、紧握手、唤"囡囡"、亲额倚肩，他内疚示爱"阿筠，是我不好"。'}
+];
+
+/* ====================== 数据：次要 CP ====================== */
+const CPS = [
+  {cp:'俞敬修 ↔ 范氏', tr:'迁怒—赔礼—和好（夫妻磨合）→ 为妻请命、护孕妻 → 表面恩爱实有隐忧 → 夫妻生隙、范氏委屈隐忍 → 同心商议纳妾 → 表面和睦（实有隐忧）→ 话别／柔情 → 春衫风波夫嫌妻拙 → 隔阂初现 → 终局冷淡', an:'第194/205/206/209/264/265/266/267/268/271/272/312章'},
+  {cp:'俞敬修 ↔ 费氏', tr:'初相看印象转深 → 心防松动、印象转佳 → 新婚夜不侍夜、以退为进反得信任 → 讨好落空被冷落', an:'第264/265/266/267章'},
+  {cp:'俞敬修 ↔ 闵氏（外室）', tr:'暗助闵小姐寻弟（用银真因）→ 闵氏有未婚夫郭公子 → 郭公子被害、闵氏买凶 → 闵氏怀孕 → 搂抱抚腹、欲迎其进门', an:'第285/300/301/302/309/311/312章'},
+  {cp:'俞敬修 ↔ 吴姨娘（吴小姐）', tr:'被迫为妾、自愿"病逝"→ 失子、暗中查证成"内应" → 向俞夫人泄密被监视 → 险被卖 → 吴夫人赎身、离开俞家', an:'第195/218/237/238/239/240/252/262/305/306/307/308章'},
+  {cp:'三堂姐 ↔ 三姐夫（沈任思）', tr:'相惜互信 → 夫唱妇随共商家中大事 → 夫妻话别彼此体谅、以重金示厚意', an:'第234/254/259章'},
+  {cp:'阿森 ↔ 王靖潼（王家大小姐）', tr:'单向倾心／暗恋 → 王家答应入赘条件（不改姓） → 阿森定亲 → 结为夫妻（王靖潼有孕）', an:'第200/212/213/215/216/218/287章'},
+  {cp:'春饼 ↔ 呦呦', tr:'小儿女初遇生嫌隙 → 青梅情愫暗生 → 留桃花糕、分食 → 让糕就掌吞糕立誓', an:'第230/289/290/291/292章'},
+  {cp:'郑三 ↔ 郑三娘', tr:'次要线，映照主线夫妻（患难相守）', an:'第276章'},
+  {cp:'傅庭筠 ↔ 呦呦（母女）', tr:'母女定情（绒花）', an:'第200章'}
+];
+
+/* ====================== 数据：与主线交织 ====================== */
+const WEAVE = [
+  {p:'复仇动机', d:'赵凌"谋西平侯之动机系为她雪耻"——感情直接点燃复仇线', a:'第233章'},
+  {p:'智谋双打', d:'傅庭筠的谋略反哺赵凌脱困／立足：敲锣示警退敌、献"招赘"之议、行离间计、为三姐夫奔走引见', a:'第55/109/177/243章'},
+  {p:'护妻翻脸', d:'赵凌挡傅五老爷、捏其手腕，俞阁老赞"伉俪情深"，夫妻联手应对俞家', a:'第182章'},
+  {p:'身世合一', d:'俞家恩怨的根子即傅庭筠身世（她被诬、被"报死"），感情线与复仇线在同一条主线上合流', a:'第172–184章'},
+  {p:'荣宠联姻', d:'太皇太后赐婚、傅氏封三品淑人，婚事与朝局／内廷交织，抬升赵家政治地位', a:'第144/278章'},
+  {p:'夫唱妇随谋大事', d:'夫妻灯下共商迁坟、报复赵家之大局；她将吴夫人说项事告知他、听他定策"先拖着"', a:'第217/219章'},
+  {p:'内外呼应', d:'她连夜修书述朝局、问"是否上道密折谢恩"；他署信嘱"以静制动""见机行事"，两地同心推动扳倒俞家', a:'第250/269章'},
+  {p:'复仇收官', d:'郭家状告、俞家败落是主线终局，其间傅庭筠与赵凌全程同心协力；终局以"傅赵一家安居"侧写收束', a:'第312/314章'}
+];
+
+/* ====================== 工具 ====================== */
+function hexA(hex,a){ const n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')'; }
+
+/* ====================== 阶段带（渐变阶梯） ====================== */
+(function(){
+  const box=document.getElementById('ladder');
+  const MAXCH=314;
+  STAGES.forEach(function(s){
+    const ind=(s.a-1)/MAXCH*100;
+    const wid=(s.b-s.a+1)/MAXCH*100;
+    const row=document.createElement('div');
+    row.className='step';
+    row.style.marginLeft=ind.toFixed(2)+'%';
+    row.innerHTML='<div class="fill" style="width:'+Math.max(wid,24).toFixed(2)+'%;min-width:150px;'+
+      'background:linear-gradient(90deg,'+hexA(s.color,.34)+','+hexA(s.color,.12)+');'+
+      'border:1px solid '+hexA(s.color,.55)+'">'+
+      '<span class="lbl" style="color:'+s.color+'">'+s.roman+' · '+s.name+'</span>'+
+      '<span class="rg">'+s.a+'—'+s.b+'章</span></div>';
+    box.appendChild(row);
+  });
+})();
+
+/* ====================== 甘特图 SVG ====================== */
+const NS='http://www.w3.org/2000/svg';
+const W=1360, H=520, PADL=182, PADR=46;
+const plotW=W-PADL-PADR;
+const CH0=1, CH1=314;
+function cx(ch){ return PADL + (ch-CH0)/(CH1-CH0)*plotW; }
+function mk(tag,attrs,parent){ const e=document.createElementNS(NS,tag);
+  for(const k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+
+const RULER_Y=56, ROW_TOP=86, ROW_H=36, BAR_H=20;
+const svg=document.getElementById('gantt');
+const defs=mk('defs',{},svg);
+
+STAGES.forEach(function(s){
+  const g=mk('linearGradient',{id:'bg'+s.id,x1:'0',y1:'0',x2:'1',y2:'0'},defs);
+  mk('stop',{offset:'0','stop-color':s.color,'stop-opacity':'0.38'},g);
+  mk('stop',{offset:'1','stop-color':s.color,'stop-opacity':'0.14'},g);
+});
+
+/* 0. 章号刻度 + 网格 */
+const TICKS=[1,50,100,150,200,250,300,314];
+TICKS.forEach(function(ch){
+  const x=cx(ch);
+  mk('line',{x1:x.toFixed(1),y1:ROW_TOP-14,x2:x.toFixed(1),y2:ROW_TOP+STAGES.length*ROW_H-6,
+    stroke:'rgba(255,255,255,0.045)','stroke-width':1},svg);
+  mk('line',{x1:x.toFixed(1),y1:RULER_Y-5,x2:x.toFixed(1),y2:RULER_Y+5,
+    stroke:'rgba(201,169,97,0.5)','stroke-width':1},svg);
+  const t=mk('text',{x:x.toFixed(1),y:RULER_Y-11,'text-anchor':'middle',fill:'#8b93a7','font-size':10},svg);
+  t.textContent=ch+(ch===1?' 起':ch===314?' 终':'');
+});
+mk('line',{x1:PADL,y1:RULER_Y,x2:W-PADR,y2:RULER_Y,stroke:'rgba(255,255,255,0.14)','stroke-width':1},svg);
+const axL=mk('text',{x:PADL-14,y:RULER_Y+4,'text-anchor':'start',fill:'#6f788c','font-size':9.5,'letter-spacing':1},svg);
+axL.textContent='章号 →';
+
+/* 1. 每阶段一行：标签 + 色条 */
+function rowCenter(i){ return ROW_TOP + i*ROW_H + ROW_H/2; }
+function stageIndexOf(ch){ for(const s of STAGES){ if(ch>=s.a&&ch<=s.b) return s.id-1; } return 0; }
+
+STAGES.forEach(function(s,i){
+  const yc=rowCenter(i);
+  const x0=cx(s.a), x1=cx(s.b), w=Math.max(3,x1-x0);
+  mk('line',{x1:PADL,y1:(yc+ROW_H/2).toFixed(1),x2:W-PADR,y2:(yc+ROW_H/2).toFixed(1),
+    stroke:'rgba(255,255,255,0.03)','stroke-width':1},svg);
+  const nm=mk('text',{x:PADL-14,y:(yc-3).toFixed(1),'text-anchor':'end',fill:s.color,
+    'font-size':11.5,'font-weight':600,'letter-spacing':.3},svg);
+  nm.textContent=s.roman+' · '+s.name;
+  const rg=mk('text',{x:PADL-14,y:(yc+13).toFixed(1),'text-anchor':'end',fill:'#6f788c','font-size':9.5},svg);
+  rg.textContent=s.a+'—'+s.b+'章';
+  const g=mk('g',{class:'bar-g','data-si':i},svg);
+  mk('rect',{class:'bar-rect',x:x0.toFixed(1),y:(yc-BAR_H/2).toFixed(1),width:w.toFixed(1),height:BAR_H,
+    rx:9,fill:'url(#bg'+s.id+')',stroke:hexA(s.color,0.6),'stroke-width':1.2},g);
+  mk('rect',{x:x0.toFixed(1),y:(yc-BAR_H/2).toFixed(1),width:w.toFixed(1),height:2.4,rx:1.2,
+    fill:s.color,opacity:.95},g);
+  if(w>72){
+    const t=mk('text',{x:(x0+9).toFixed(1),y:(yc+BAR_H/2-5).toFixed(1),fill:hexA(s.color,.85),
+      'font-size':9.5,'letter-spacing':.5},g);
+    t.textContent=s.a+'—'+s.b+' 章';
+  }
+});
+
+/* 2. 质变节点圆点（同行近距离错位，避免重叠） */
+const byRow={};
+NODES.forEach(function(nd){
+  nd._si=stageIndexOf(nd.ch); nd._x=cx(nd.ch);
+  (byRow[nd._si]=byRow[nd._si]||[]).push(nd);
+});
+const OFFS=[0,-5.5,5.5];
+Object.keys(byRow).forEach(function(k){
+  const arr=byRow[k].sort(function(a,b){ return a._x-b._x; });
+  let prev=-1e9,k2=0;
+  arr.forEach(function(nd){
+    if(nd._x-prev<9){ k2=(k2+1)%3; } else { k2=0; }
+    nd._off=OFFS[k2]; prev=nd._x;
+  });
+});
+
+const nodeG=mk('g',{},svg);
+NODES.forEach(function(nd,i){
+  const s=STAGES[nd._si], color=s.color;
+  const y=(rowCenter(nd._si)+nd._off).toFixed(1);
+  const g=mk('g',{class:'node','data-ni':i},nodeG);
+  mk('circle',{cx:nd._x.toFixed(1),cy:y,r:7.5,fill:hexA(color,0.24)},g);
+  mk('circle',{class:'core',cx:nd._x.toFixed(1),cy:y,r:4,fill:color,stroke:'#08080c',
+    'stroke-width':1.3,style:'color:'+color},g);
+  mk('circle',{cx:nd._x.toFixed(1),cy:y,r:10,fill:'transparent',
+    style:'pointer-events:all'},g);
+});
+
+/* ====================== 悬停弹窗 ====================== */
+const tip=document.getElementById('tip');
+function moveTip(ev){
+  const pad=16,w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+pad, y=ev.clientY+pad;
+  if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+  if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+  if(x<8)x=8; if(y<8)y=8;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+nodeG.querySelectorAll('.node').forEach(function(el){
+  el.addEventListener('mouseenter',function(ev){
+    const nd=NODES[+el.getAttribute('data-ni')], s=STAGES[nd._si], color=s.color;
+    tip.innerHTML='<div class="tip-name" style="color:'+color+'">'+nd.chLabel+'</div>'+
+      '<div class="tip-role">质变节点 #'+nd.n+' · 阶段'+s.roman+' '+s.name+'（'+s.a+'—'+s.b+'章）</div>'+
+      '<div class="tip-desc"><b>质变事件</b>：'+nd.ev+
+      '<span class="tag" style="background:'+color+'">'+nd.type+'</span><br>'+
+      '<b>描述</b>：'+nd.desc+'</div>';
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){ tip.style.display='none'; });
+});
+svg.querySelectorAll('.bar-g').forEach(function(el){
+  el.addEventListener('mouseenter',function(ev){
+    const s=STAGES[+el.getAttribute('data-si')];
+    tip.innerHTML='<div class="tip-name" style="color:'+s.color+'">阶段'+s.roman+' · '+s.name+'</div>'+
+      '<div class="tip-role">第 '+s.a+'—'+s.b+' 章 · 共 '+(s.b-s.a+1)+' 章</div>'+
+      '<div class="tip-desc"><b>关系状态</b>：'+s.state+'<br><b>好感变化</b>：'+s.fu+
+      '<br><b>阶段概要</b>：'+s.desc+'</div>';
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){ tip.style.display='none'; });
+});
+
+/* ====================== 图例 ====================== */
+(function(){
+  const lg=document.getElementById('legend');
+  STAGES.forEach(function(s){
+    const d=document.createElement('div'); d.className='lg';
+    d.innerHTML='<i style="background:'+s.color+';box-shadow:0 0 8px '+hexA(s.color,.9)+'"></i>'+
+      s.roman+' · '+s.name+'（'+s.a+'—'+s.b+'）';
+    lg.appendChild(d);
+  });
+})();
+
+/* ====================== 26 质变书签卡 ====================== */
+(function(){
+  const box=document.getElementById('bmWrap');
+  NODES.forEach(function(nd){
+    const s=STAGES[nd._si], color=s.color;
+    const d=document.createElement('div'); d.className='bm';
+    d.style.borderLeftColor=color;
+    d.innerHTML=
+      '<div class="bm-h">'+
+        '<span class="bm-n" style="background:'+color+'">#'+nd.n+'</span>'+
+        '<span class="bm-ch">'+nd.chLabel+'</span>'+
+        '<span class="bm-tag">'+nd.type+'</span></div>'+
+      '<div class="bm-ev">'+nd.ev+'</div>'+
+      '<div class="bm-mean">'+nd.mean+'</div>'+
+      '<div class="bm-desc"><em>描述</em>'+nd.desc+'</div>'+
+      '<div class="bm-desc" style="border-top:none;padding-top:4px;color:#7d869c;font-size:11px;margin-top:4px">'+
+        '<em>阶段</em>阶段'+s.roman+' · '+s.name+'（'+s.a+'—'+s.b+'章）</div>';
+    box.appendChild(d);
+  });
+})();
+
+/* ====================== 表格 ====================== */
+(function(){
+  const tb=document.getElementById('cpTable');
+  CPS.forEach(function(r){
+    const tr=document.createElement('tr');
+    tr.innerHTML='<td class="cp">'+r.cp+'</td><td>'+r.tr+'</td><td class="anch">'+r.an+'</td>';
+    tb.appendChild(tr);
+  });
+  const wt=document.getElementById('weaveTable');
+  WEAVE.forEach(function(r){
+    const tr=document.createElement('tr');
+    tr.innerHTML='<td class="cp">'+r.p+'</td><td>'+r.d+'</td><td class="anch">'+r.a+'</td>';
+    wt.appendChild(tr);
+  });
+})();
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写作风格 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>写作风格</h1>
+<blockquote>
+<p><strong>两段式维度</strong>：初稿印象（扫描阶段）+ 8维度定稿（归纳阶段精读）<br>精读代表章：ch2（开篇/叙述腔调）· ch9（人物出场/肖像）· ch120（心理独白）· ch143（对白密集）· ch152（日常过渡）· ch248（高潮/情绪高峰）</p>
+</blockquote>
+<hr>
+<h2>初稿印象（扫描阶段记录）</h2>
+<ol>
+<li><strong>半文半白话本腔</strong>：叙事口吻像说书人，&quot;话说&quot;&quot;谁想&quot;&quot;且说&quot;频出</li>
+<li><strong>对话泼辣市井</strong>：骂人不带脏字但句句扎心，底层生存感极强</li>
+<li><strong>内心独白实用主义</strong>：不抒情，全是&quot;第一…第二…第三…&quot;的算计</li>
+<li><strong>衣饰描写极细</strong>：每个人物出场必写穿戴，以服饰标定阶层</li>
+<li><strong>节奏短平快</strong>：对话回合多、段落短，无长句堆砌</li>
+</ol>
+<hr>
+<h2>8维度定稿（精读6章）</h2>
+<h3>维度一：句式特征</h3>
+<p><strong>短句为主体，长句仅用于铺陈背景。</strong></p>
+<p>全书句式以10-25字的短句为核心节奏单元。对话句平均15字以内，叙事句平均20字左右。超过40字的长句极少，只在回忆前世（大段背景铺陈）时出现。</p>
+<p><strong>短句·行动/对白</strong>：</p>
+<blockquote>
+<p>&quot;香兰举着门闩仍要打，众人惊叫一声：&#39;了不得了！&#39;&quot; [第2章]</p>
+</blockquote>
+<blockquote>
+<p>&quot;&#39;够了！&#39;林锦楼大喝一声，&#39;来人，带她下去掌嘴！&#39;&quot; [第9章]</p>
+</blockquote>
+<blockquote>
+<p>&quot;&#39;我一不是戏子，二不是粉头，三不是奴才，凭什么让我唱曲儿给人取乐？&#39;&quot; [第143章]</p>
+</blockquote>
+<p><strong>长句·背景铺陈</strong>（全书罕见，仅回忆段）：</p>
+<blockquote>
+<p>&quot;沈嘉兰经历过抄家，知道主人家落难后那些奴才的下场更加悲惨——她听说原先她身边那几个大丫鬟尽数入了娼门。&quot; [第2章]</p>
+</blockquote>
+<p><strong>文白比例</strong>：约七白三文。白话为基底，文言元素以&quot;四字格&quot;和套语形式嵌入。</p>
+<blockquote>
+<p>四字格：&quot;凄声尖叫&quot;&quot;面如死灰&quot;&quot;张牙舞爪&quot;&quot;撕心裂肺&quot; [多章]<br>文言套语：&quot;不由&quot;&quot;因问道&quot;&quot;闻言&quot;&quot;谁想&quot;&quot;旋即&quot; [多章]</p>
+</blockquote>
+<p><strong>段落结构</strong>：段落极短，3-5行为主。高潮段落一句一段（如ch248的打耳光段），加速节奏。</p>
+<hr>
+<h3>维度二：叙述腔调</h3>
+<p><strong>话本腔说书人 + 冷眼旁观 + 偶尔破壁评论。</strong></p>
+<p><strong>话本套语</strong>（说书人入口）：</p>
+<blockquote>
+<p>&quot;话说香兰狠打了吕二婶子一记门闩&quot; [第3章开头]<br>&quot;且说香兰，日日担心宋柯之事&quot; [第120章开头]</p>
+</blockquote>
+<p><strong>叙事者评论</strong>（跳出角色直接议论）：</p>
+<blockquote>
+<p>&quot;众人瞪大了双眼：什么？！不但要杀吕二婶子，竟然还要宰人家的孩子？&quot; [第2章]<br>&quot;香兰抖了抖鸡皮疙瘩，暗想这一句诗就算放入淫词艳曲当中也不算高明&quot; [第9章]</p>
+</blockquote>
+<p><strong>冷讽腔</strong>（对反派/蠢人）：</p>
+<blockquote>
+<p>&quot;林锦楼实在没什么文采，难怪只考了个秀才就不再科举了，省得考不上举人嫌丢人&quot; [第9章]——香兰内心吐槽，实为叙事者借角色之口的调侃<br>&quot;这拍马经念得炉火纯青&quot; [第152章疏桐奉承段]——用夸张衬托讽刺</p>
+</blockquote>
+<p><strong>温情克制</strong>（对主角痛苦不煽情）：</p>
+<blockquote>
+<p>&quot;唯有一朵白色的兰，被风吹得在半空打个转儿落在泥土上，如同一声长长的叹息。&quot; [第120章末]——全书最痛苦的决别场景，不写&quot;她哭了&quot;，只写一朵花落</p>
+</blockquote>
+<hr>
+<h3>维度三：视角与调度</h3>
+<p><strong>主视角：香兰（70%+），以&quot;心道&quot;&quot;暗想&quot;&quot;暗道&quot;标注内心独白。</strong></p>
+<blockquote>
+<p>&quot;香兰心道：&#39;林锦楼是不打算留春燕了！&#39;&quot; [第9章]<br>&quot;香兰暗道：&#39;纵然鸾儿是个会弹会唱的……可这谈吐韵致和见地却远不及画眉了&#39;&quot; [第143章]</p>
+</blockquote>
+<p><strong>配角视角切换</strong>：偶尔切入配角内心，用于揭示阴谋或补充信息差。</p>
+<blockquote>
+<p>&quot;画眉暗道：&#39;香兰原是个丫头……鸾儿比谁都可恶……正巧让这两个人斗去，我好坐收渔翁之利。&#39;&quot; [第143章]——画眉视角揭示暗算策略<br>&quot;他知道鹦哥向来身子骨弱……新鲜劲儿一过，也便腻歪了&quot; [第9章]——林锦楼内心，罕见的男主心理直写</p>
+</blockquote>
+<p><strong>留白手法</strong>：林锦楼的情感转变几乎从不直写内心，而是通过行为暗示。</p>
+<blockquote>
+<p>&quot;林锦楼一见血，立时上前一把将香兰揪起来，他恨声骂道：&#39;他妈的！&#39;忙将伤着的那只手举高&quot; [第248章]——嘴上骂、手上救，不写&quot;心疼&quot;两个字</p>
+</blockquote>
+<hr>
+<h3>维度四：对白特点</h3>
+<p><strong>一人一腔，身份即语言。</strong></p>
+<table>
+<thead>
+<tr>
+<th>人物</th>
+<th>语言标签</th>
+<th>代表台词</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>香兰（泼辣面）</td>
+<td>市井骂功·句句扎心</td>
+<td>&quot;白刀子进红刀子出，先捅死你，再抹脖子自尽，也落得干净！&quot;</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>香兰（冷静面）</td>
+<td>一针见血·逻辑碾压</td>
+<td>&quot;我一不是戏子，二不是粉头，三不是奴才&quot; / 一连串反问逼宋柯哑口</td>
+<td>[第143章/120章]</td>
+</tr>
+<tr>
+<td>林锦楼（狠辣面）</td>
+<td>居高临下·绸缎语说刀子话</td>
+<td>&quot;我拿你当一坨屎，所以懒得搭理&quot; / &quot;摸你，都觉得恶心&quot;</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>林锦楼（纨绔面）</td>
+<td>轻佻·风流不羁</td>
+<td>&quot;快让我瞧瞧，是不是好了&quot; / &quot;就抿一口，这可是爷吃酒的杯子&quot;</td>
+<td>[第9章/143章]</td>
+</tr>
+<tr>
+<td>鸾儿</td>
+<td>莽撞·盛气凌人</td>
+<td>&quot;你是聋了还是哑了？&quot; / &quot;小妇养的，我听你再说一句，撕烂你的嘴！&quot;</td>
+<td>[第143章]</td>
+</tr>
+<tr>
+<td>画眉</td>
+<td>滴水不漏·表面客气</td>
+<td>&quot;香兰妹妹快坐近些，这有几道素菜极新鲜&quot;</td>
+<td>[第143章]</td>
+</tr>
+<tr>
+<td>春燕</td>
+<td>撒泼哭诉·情绪化</td>
+<td>&quot;大爷！我不走我不走，我宁可一头撞死也不出林府！&quot;</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>疏桐</td>
+<td>拍马精·精准奉承</td>
+<td>&quot;姑娘这没人教的，竟然也不比二姑娘差，我们冷眼瞧着还高出一筹去呢！&quot;</td>
+<td>[第152章]</td>
+</tr>
+<tr>
+<td>宋柯</td>
+<td>文弱·愧疚</td>
+<td>&quot;是我不对，我辜负了你……你打我骂我罢！&quot;</td>
+<td>[第120章]</td>
+</tr>
+</tbody></table>
+<p><strong>对白的潜台词密度极高</strong>：</p>
+<blockquote>
+<p>林锦楼对赵月婵：&quot;这红玛瑙耳坠子衬得你皮肤愈发的白了，不愧是金陵第一美人，连耳朵都生得这样美。可惜这样美的人，竟守了四年的活寡&quot; [第9章]——表面夸美，实际羞辱</p>
+</blockquote>
+<hr>
+<h3>维度五：描写手法</h3>
+<p><strong>衣饰描写=社会地位标签</strong>（出场必写穿戴）：</p>
+<blockquote>
+<p>&quot;穿着件藕色凤尾菊花纹的褙子，头上插着一支赤金滴珠步摇并两根玛瑙簪，耳上晃着碧玉耳环，手腕上套着金银绞丝镯&quot; [第3章·春燕]<br>&quot;穿着桃红绣金竹叶五彩花卉纹样的褂儿，月白的绫缎裙儿&quot; [第152章·香兰]</p>
+</blockquote>
+<p><strong>动作描写=性格外化</strong>（用动作代替形容词）：</p>
+<blockquote>
+<p>&quot;鹦哥……一手轻柔抓着林锦楼的手指，另一手却狠狠抓着身子底下的褥子，直抓到骨节泛白&quot; [第9章]——一句话写出&quot;表面温柔、内心绝望&quot;<br>&quot;香兰趴在床上，又直起身，捂着脸，看着林锦楼咯咯直笑，眼泪如断了线的珍珠&quot; [第248章]——笑着哭，写出醉后的崩溃</p>
+</blockquote>
+<p><strong>心理描写=实用主义盘算</strong>（不抒情只算计）：</p>
+<blockquote>
+<p>&quot;她第一要给她娘出气，第二震慑平日那些欺负她家的无耻小人，第三就是立一立自己彪悍的名声，把订亲的事缓下来再徐徐图之&quot; [第2章]<br>&quot;书染心里暗赞香兰高明，虽每次都送一点，可架不住隔三差五的一送，有道是拿人手短&quot; [第152章]——连旁人都在替她分析策略</p>
+</blockquote>
+<p><strong>环境描写=极简功能性</strong>（不铺景，只在需要时点一笔）：</p>
+<blockquote>
+<p>&quot;那菜刀在日光底下映得明晃晃耀人眼目，冷飕飕让人胆寒&quot; [第2章]——只写道具不写天气</p>
+</blockquote>
+<hr>
+<h3>维度六：修辞偏好</h3>
+<p><strong>最常用修辞：市井比喻 + 身体感觉 + 衣饰隐喻。</strong></p>
+<table>
+<thead>
+<tr>
+<th>修辞类型</th>
+<th>例句</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>市井粗比喻</td>
+<td>&quot;薛氏却说吕二婶子当年也美貌过，只是生了孩子之后，便肥如母猪一般了&quot;</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>身体感觉夸张</td>
+<td>&quot;五脏六腑都要震碎了&quot; / &quot;心如雷击，口干舌燥&quot; / &quot;汗毛都立了起来&quot;</td>
+<td>[第2/9/3章]</td>
+</tr>
+<tr>
+<td>以物代情</td>
+<td>&quot;唯有一朵白色的兰，被风吹得在半空打个转儿落在泥土上&quot;</td>
+<td>[第120章]</td>
+</tr>
+<tr>
+<td>对比反衬</td>
+<td>&quot;温柔的呢喃竟说出如此尖锐的话，仿佛一盆冰水兜头泼下来&quot;</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>白描细节</td>
+<td>&quot;香兰偷偷躲在窗后&quot; / &quot;鹦哥怯怯的拉着林锦楼的衣袖摇了摇&quot;</td>
+<td>[第9章]</td>
+</tr>
+</tbody></table>
+<p><strong>标志性修辞</strong>：本书不用华丽辞藻，最出彩的修辞是**&quot;反差对比&quot;**——行为与语言相反、表面与内心相反、身份与能力相反，构成全书基本张力。</p>
+<hr>
+<h3>维度七：高频词/标志性表达</h3>
+<blockquote>
+<p>以下为6章精读中出现≥3次的词汇/表达（实际统计）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>词/表达</th>
+<th>出现次数(6章)</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;心道&quot;/&quot;暗想&quot;/&quot;暗道&quot;</td>
+<td>12次+</td>
+<td>内心独白标记（全书最高频）</td>
+</tr>
+<tr>
+<td>&quot;不由&quot;</td>
+<td>9次+</td>
+<td>情绪/动作转折连接词</td>
+</tr>
+<tr>
+<td>&quot;笑道&quot;</td>
+<td>8次+</td>
+<td>对白说话方式（最常用）</td>
+</tr>
+<tr>
+<td>&quot;冷笑&quot;</td>
+<td>6次+</td>
+<td>香兰/反派标配表情</td>
+</tr>
+<tr>
+<td>&quot;忙不迭&quot;</td>
+<td>4次</td>
+<td>急切动作</td>
+</tr>
+<tr>
+<td>&quot;哽咽&quot;/&quot;哽住&quot;</td>
+<td>4次</td>
+<td>情感压抑</td>
+</tr>
+<tr>
+<td>&quot;嘴唇&quot;</td>
+<td>5次</td>
+<td>特写部位（咬唇/抖唇=紧张/委屈）</td>
+</tr>
+<tr>
+<td>&quot;掐/捏/攥/拽&quot;</td>
+<td>6次+</td>
+<td>手部动作词极丰富（林锦楼的暴力语汇）</td>
+</tr>
+<tr>
+<td>&quot;心里/心中&quot;</td>
+<td>10次+</td>
+<td>心理活动引导词</td>
+</tr>
+<tr>
+<td>&quot;谁想/谁知&quot;</td>
+<td>4次</td>
+<td>话本式转折</td>
+</tr>
+<tr>
+<td>&quot;了不得了&quot;</td>
+<td>3次</td>
+<td>惊叫套语</td>
+</tr>
+<tr>
+<td>&quot;好个&quot;</td>
+<td>3次</td>
+<td>反讽起手式（&quot;好个奴才&quot;&quot;好个蠢材&quot;）</td>
+</tr>
+</tbody></table>
+<p><strong>标志性句式</strong>：</p>
+<ul>
+<li><strong>&quot;一面…一面…&quot;</strong>：双线并叙（&quot;一面说，一面挽着袖子给林东绣研磨&quot; [第152章]）</li>
+<li><strong>&quot;……心道/暗道：&#39;……&#39;&quot;</strong>：内心独白嵌入叙事（全书核心句式）</li>
+<li><strong>&quot;谁想/谁知…却…&quot;</strong>：话本式反转（&quot;谁想春燕先&#39;哇&#39;的一声哭了出来&quot; [第3章]）</li>
+</ul>
+<hr>
+<h3>维度八：诗词/典故/俗谚</h3>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>类型</th>
+<th>说者</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;怒目金刚，垂首菩萨&quot;</td>
+<td>佛典</td>
+<td>香兰</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>&quot;巾帼不让须眉&quot;</td>
+<td>成语</td>
+<td>香兰</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>&quot;谁家玉笛音婉转，散入春风帐帷中&quot;</td>
+<td>自撰淫词</td>
+<td>林锦楼给春燕写</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>&quot;没到手的最惦心&quot;</td>
+<td>俗谚</td>
+<td>画眉内心</td>
+<td>[第143章]</td>
+</tr>
+<tr>
+<td>&quot;拿人手短&quot;</td>
+<td>俗谚</td>
+<td>书染内心</td>
+<td>[第152章]</td>
+</tr>
+<tr>
+<td>&quot;酒后吐真言&quot;</td>
+<td>俗谚</td>
+<td>林锦楼</td>
+<td>[第248章]</td>
+</tr>
+<tr>
+<td>&quot;病西施&quot;</td>
+<td>典故（西施病心）</td>
+<td>叙事者评鹦哥</td>
+<td>[第9/143章]</td>
+</tr>
+<tr>
+<td>&quot;热脸贴冷灶&quot;</td>
+<td>俗谚</td>
+<td>郑静娴内心</td>
+<td>[第120章]</td>
+</tr>
+<tr>
+<td>&quot;否极泰来&quot;</td>
+<td>成语</td>
+<td>香兰</td>
+<td>[第120章]</td>
+</tr>
+<tr>
+<td>&quot;坐收渔翁之利&quot;</td>
+<td>成语典故</td>
+<td>画眉内心</td>
+<td>[第143章]</td>
+</tr>
+<tr>
+<td>&quot;风流阵里的急先锋&quot;</td>
+<td>话本套语</td>
+<td>香兰内心吐槽</td>
+<td>[第9章]</td>
+</tr>
+</tbody></table>
+<p><strong>特征</strong>：全书用典以<strong>俗谚和市井套语</strong>为主，极少用高雅诗词——与&quot;话本腔&quot;的基底一致。唯一的&quot;诗&quot;是林锦楼给春燕写的淫词，被香兰吐槽&quot;放入淫词艳曲当中也不算高明&quot;——作者用角色评价诗来制造喜感。</p>
+<hr>
+<h2>可模仿清单（续写/仿写逐项对照）</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>话本腔开头</strong>：用&quot;话说&quot;&quot;且说&quot;&quot;却说&quot;起笔？</li>
+<li><input disabled="" type="checkbox"> <strong>短句为主</strong>：对话≤15字、叙事≤25字？长句只用于背景铺陈？</li>
+<li><input disabled="" type="checkbox"> <strong>&quot;心道/暗想&quot;标记内心</strong>：不用斜体/引号/破折号标心理，用&quot;心道&quot;？</li>
+<li><input disabled="" type="checkbox"> <strong>一人一腔</strong>：香兰泼辣+冷静？林锦楼居高临下+偶尔傻气？配角各有语言标签？</li>
+<li><input disabled="" type="checkbox"> <strong>衣饰出场</strong>：新人物登场写穿戴？以服饰标定阶层？</li>
+<li><input disabled="" type="checkbox"> <strong>动作代替形容</strong>：不说&quot;她很紧张&quot;而写&quot;直抓到骨节泛白&quot;？</li>
+<li><input disabled="" type="checkbox"> <strong>内心独白是算计</strong>：不抒情，列&quot;第一…第二…第三…&quot;？</li>
+<li><input disabled="" type="checkbox"> <strong>经济账</strong>：涉及钱必写具体数字（几两/月例/画价）？</li>
+<li><input disabled="" type="checkbox"> <strong>等级体感</strong>：谁给谁行礼/谁不敢坐/谁能说话谁不能？</li>
+<li><input disabled="" type="checkbox"> <strong>以物代情</strong>：高潮不写&quot;她很伤心&quot;而写一朵花落/一盏茶碎？</li>
+<li><input disabled="" type="checkbox"> <strong>&quot;谁想/谁知&quot;转折</strong>：反转用话本式而非&quot;然而/但是&quot;？</li>
+<li><input disabled="" type="checkbox"> <strong>手部动作丰富</strong>：掐/捏/攥/拽/拉/抓/扯/推/拍 区分使用？</li>
+<li><input disabled="" type="checkbox"> <strong>俗谚&gt;诗词</strong>：引用市井俗语多于高雅典故？</li>
+<li><input disabled="" type="checkbox"> <strong>环境极简</strong>：不铺景、不写天气，只在需要时点一笔道具？</li>
+<li><input disabled="" type="checkbox"> <strong>段落短</strong>：3-5行一段？高潮一句一段？</li>
+</ul>
+<hr>
+<h2>崩风格红线（续写严禁项）</h2>
+<table>
+<thead>
+<tr>
+<th>红线</th>
+<th>说明</th>
+<th>反例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>❌ 现代流行语</td>
+<td>原文无任何现代词汇</td>
+<td>&quot;OK&quot;&quot;尬&quot;&quot;emo&quot;</td>
+</tr>
+<tr>
+<td>❌ 长句堆砌</td>
+<td>原文句子短而有力</td>
+<td>&quot;她望着远方那一抹渐渐消散的晚霞，心中涌起了无尽的感慨和对命运的深深叹息&quot;</td>
+</tr>
+<tr>
+<td>❌ 文艺腔内心独白</td>
+<td>原文内心是&quot;盘算&quot;不是&quot;抒情&quot;</td>
+<td>&quot;她的心如同被撕裂了一般，无数碎片在胸腔里翻涌&quot;</td>
+</tr>
+<tr>
+<td>❌ 偶像剧式温柔</td>
+<td>林锦楼的温柔是&quot;武将式笨拙&quot;</td>
+<td>&quot;他温柔地凝视着她的眼睛，轻声说：你辛苦了&quot;</td>
+</tr>
+<tr>
+<td>❌ 省略等级制度</td>
+<td>谁对谁行礼是全书底层逻辑</td>
+<td>丫鬟跟主子平起平坐说话</td>
+</tr>
+<tr>
+<td>❌ 省略经济账</td>
+<td>每步行动有经济逻辑</td>
+<td>&quot;她决定脱籍&quot;（不写怎么攒钱/赎金多少）</td>
+</tr>
+<tr>
+<td>❌ 纯白莲香兰</td>
+<td>香兰的慈悲是经历苦难后长出来的</td>
+<td>开篇就善良宽容</td>
+</tr>
+<tr>
+<td>❌ 破折号过多</td>
+<td>原文极少用破折号</td>
+<td>&quot;她——那个曾经的首辅孙女——如今只能……&quot;</td>
+</tr>
+<tr>
+<td>❌ &quot;然而/但是&quot;开头</td>
+<td>原文用&quot;谁想/谁知/可巧&quot;</td>
+<td>&quot;然而，命运总是弄人&quot;</td>
+</tr>
+<tr>
+<td>❌ 叙事者煽情</td>
+<td>原文叙事者冷眼，不替角色叫屈</td>
+<td>&quot;可怜的香兰啊，她又怎么知道……&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>📌 本蓝图基于原文精读6章（ch2/ch9/ch120/ch143/ch152/ch248）+ 章卡写作手法字段归纳。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03 世界观设定集 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>03 世界观设定集</h1>
+<blockquote>
+<p>全书世界观的完整&quot;百科词条&quot;——地理/政治/军事/组织/习俗/道具，供续写时查证一致性。<br>核心创意设定的提炼见 02核心设定，本文求全。基于全书99章&quot;设定·名词&quot;字段归纳。</p>
+</blockquote>
+<h2>一、王朝与纪年</h2>
+<ul>
+<li><strong>大齐</strong>：架空王朝，故事发生地。</li>
+<li><strong>纪年</strong>：明宣年（先帝，如明宣二十六年立遗诏、明宣四十八年）；康平年（当朝齐宥，如康平二年地动、康平四年）。</li>
+<li><strong>正统脉络</strong>：先帝→（遗诏复齐煊太子位继统）→实际由齐宥篡位（先帝越三子传弟）→结局齐煊奉遗诏登基。</li>
+</ul>
+<h2>二、地理</h2>
+<table>
+<thead>
+<tr>
+<th>地名</th>
+<th>设定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>郸玉县</td>
+<td>故事开局地，贫瘠小县，许奉曾任知县</td>
+</tr>
+<tr>
+<td>泠州</td>
+<td>郸玉上级州府，知府李修德（赵执爪牙）</td>
+</tr>
+<tr>
+<td>泠京</td>
+<td>大运河沿线重镇，三月庆节盛地，大运河贪腐案发生地</td>
+</tr>
+<tr>
+<td>京城/皇城</td>
+<td>权力中心，翻案夺位决战地</td>
+</tr>
+<tr>
+<td>塞北</td>
+<td>赫连钦镇守地，八年前惨变全军覆没处，周幸母族/结局归处</td>
+</tr>
+<tr>
+<td>朔言城</td>
+<td>塞外之北被北虏抢占数十年的城池，齐人沦为奴隶，赵执故乡</td>
+</tr>
+<tr>
+<td>千路山</td>
+<td>郸玉北郊，山匪盘踞，生长神仙散菌类，周幸八年前占为据点</td>
+</tr>
+<tr>
+<td>成丘乡</td>
+<td>郸玉城北，邹业原籍，被征50人当矿工</td>
+</tr>
+<tr>
+<td>延丰县</td>
+<td>八年前扣押赫连援军军粮之地，县官吕鸿</td>
+</tr>
+<tr>
+<td>云明县</td>
+<td>周幸辞别郸玉后的中转地</td>
+</tr>
+<tr>
+<td>静嘉县</td>
+<td>比邻京城，京地最大外仓，紧邻大运河，周幸拜堂处</td>
+</tr>
+<tr>
+<td>死谷旧行宫</td>
+<td>齐煊被废后幽禁地，后暗挖地室藏兵器</td>
+</tr>
+<tr>
+<td>帝陵</td>
+<td>青鹰部借修陵调令藏身入京之处</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>泠京大运河</strong>：横跨大齐南北，通朝贡/税收/造物运输，冬结冰春融，贪腐洗钱通道。</li>
+</ul>
+<h2>三、政治格局</h2>
+<ul>
+<li><strong>朝堂两极</strong>：首辅赵执（权臣，遍布朝野贪腐官链）vs 都察院/左都御史（崔慧后台，与赵执分庭抗礼）。</li>
+<li><strong>皇帝齐宥</strong>：篡位者，与赵执早年盟友，后君相决裂。</li>
+<li><strong>大齐三大粮仓</strong>：京城最大（藏百官俸米、万军粮饷），另泠州、江南。</li>
+<li><strong>殿试与舞弊</strong>：读卷官选前十呈皇帝御定三甲；三十年前陆驰检举读卷官舞弊被龚泽构陷（陆酌光养父冤案）。</li>
+</ul>
+<h2>四、军事与兵力格局</h2>
+<table>
+<thead>
+<tr>
+<th>势力</th>
+<th>兵力</th>
+<th>归属</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>禁军</td>
+<td>虚额三十万，荣国公樊仲卓实掌约四万（占大头）</td>
+<td>荣国公→倒向齐煊</td>
+</tr>
+<tr>
+<td>亲兵卫</td>
+<td>两万余</td>
+<td>吕家（吕侯/吕魁，赵执岳父）→镇宁侯掌亲兵五军</td>
+</tr>
+<tr>
+<td>御马监</td>
+<td>三万（四营+锦衣卫）</td>
+<td>效忠皇帝</td>
+</tr>
+<tr>
+<td>龙影卫</td>
+<td>皇家死士精锐</td>
+<td>只效忠皇帝</td>
+</tr>
+<tr>
+<td>青鹰军/青鹰部</td>
+<td>四千精锐（柳容生旧部/齐煊母族）</td>
+<td>齐煊，藏岭南/帝陵，借调令入京</td>
+</tr>
+<tr>
+<td>无常司</td>
+<td>死士暗卫</td>
+<td>赵执</td>
+</tr>
+<tr>
+<td>神兵营</td>
+<td>荣国公禁军一部，指挥使楚铮（字金鸣）</td>
+<td>借兵驰援周幸</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>龙影卫</strong>：皇帝直属暗卫，鳞纹锦衣，自幼精神规训、为任务舍命的&quot;刀&quot;，手段残忍赶尽杀绝，以密集线人网互报信。</li>
+<li><strong>玄狼</strong>：龙影卫领队，当代第一高手，无正名，被周幸枪挑毙命[第90章]。</li>
+<li><strong>东宫事变</strong>（十二年前）：齐煊被寺丞伪造太子印调令诬陷逼宫→废太子幽禁十年→柳容生交兵下狱死、柳家覆灭。</li>
+</ul>
+<h2>五、组织：无常司（详见02核心设定）</h2>
+<p>令主（陆敛）&gt; 黑令/白令 &gt; 黑部（杀手）/白部（暗线美妾）；苗子营（收训幼童）；无常令牌；折令（处死掌令人）；据地在城外二十里山涧原养马场，前院&quot;千丝万缕&quot;铁丝毒针机关。<br>历任/成员：陆敛（令主）、郑琪（前令主/陆师父）、郑颖（郑琪养女/新令主）、孟长乐（白部）、李言归（黑部）、月明/雪晴（陆徒弟）、贾起胜（毒蛇/剔骨鞭）、甘俏（毒眼吹箭）、瞿水瞿木（双生子）。</p>
+<h2>六、习俗与文化</h2>
+<table>
+<thead>
+<tr>
+<th>习俗</th>
+<th>设定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>破台仪式</td>
+<td>新戏台开张：断活鸡头、洒铜钱生米、黑白二鬼游台，除秽破邪（书名点题）</td>
+</tr>
+<tr>
+<td>禁戏令</td>
+<td>许奉怒砸百年戏台下令禁戏</td>
+</tr>
+<tr>
+<td>粉戏</td>
+<td>民间荤演/情色剧目，律法明禁</td>
+</tr>
+<tr>
+<td>泠京三月庆节</td>
+<td>传承千年佳节，不禁夜，大运河商船连樯</td>
+</tr>
+<tr>
+<td>簪花祈福</td>
+<td>庆节风俗，男簪兰菊、女不拘，祈&quot;花满人间&quot;</td>
+</tr>
+<tr>
+<td>守岁/压岁钱</td>
+<td>除夕守岁，铜板有祈福之用</td>
+</tr>
+<tr>
+<td>折腰渡酒</td>
+<td>口衔酒杯旋转至人前弯腰送饮的技艺</td>
+</tr>
+<tr>
+<td>大齐禁金</td>
+<td>战时收缴民间金子充国库，民间几乎无金流通（邹业有金即破绽）</td>
+</tr>
+<tr>
+<td>灵官祭拜</td>
+<td>道教解厄赦罪之神，验尸前需祭拜</td>
+</tr>
+<tr>
+<td>破台（结局回扣）</td>
+<td>全书以&quot;破台开戏&quot;始、&quot;破台戏落幕好戏喝彩&quot;终</td>
+</tr>
+</tbody></table>
+<h2>七、关键道具·药物·特产</h2>
+<ul>
+<li><strong>药物（隗谷雨体系）</strong>：神仙散（言听计从）、软骨粉（致失明无力）、百味枯（麻痹痛感）、致幻烟（有问必答）、生幻迷香（乱心智惊梦）。</li>
+<li><strong>信物</strong>：玉青竹/玉竹项链（骨灰+身份钥匙+护命符）、守岁铜板、玉鸟（吴吉安，与玉竹同源武福所雕）、腊梅木雕、木雕小马、春带彩玉扳指、花簪。</li>
+<li><strong>兵器</strong>：竹叶刀（赫连钦亲铸）、赫连长枪。</li>
+<li><strong>特产/机关</strong>：神仙散菌类（仅千路山生长）、黑羽鸟（袁察培育/黑羽哨令含鲁班绝学）、机关锁舱房（云家防查抄死局，撞击锁死并引爆）、奇门八门阵（三吉门生/三凶门死/二平门）、千路山迷阵（一千人一千条路）。</li>
+<li><strong>凭证</strong>：无常令牌、无常令、皇帝之宝（尚宝监二十四方御宝之一/传位诏必用/底簿记录调取）、精微批（军令公文）、征兵名册。</li>
+</ul>
+<h2>八、超现实设定：巫 / 西域异虫（详见02核心设定）</h2>
+<p>西域更北化外之族世代秘术炼成的异虫；融合成功→异于常人（百毒不侵/自愈/体热），失败→行尸傀儡；需药方半年一服保沉睡，清醒即反噬千刀万剐；陆敛=七童唯一成功者；解药方由吕乡音所制。隗谷雨判为&quot;前朝清剿的塞外邪族邪物、失传已久被重炼&quot;。</p>
+<h2>九、重要机构/群体</h2>
+<ul>
+<li><strong>千里镖局</strong>：百年老字号，分局遍布大齐，重金必达，前朝公主和亲亦用其护送（总管百里求，泠京）。</li>
+<li><strong>天元银庄</strong>：洗钱链核心，赃银烧融重铸由&quot;赈灾银&quot;变&quot;干净银子&quot;送官员家。</li>
+<li><strong>抄报行</strong>：民间翻抄售卖邸报、汇聚奇闻旧事之所。</li>
+<li><strong>尚宝监/司礼监</strong>：尚宝监存御宝有底簿；司礼监秉笔太监（陈守善原任）、掌印太监（吴吉安/文喜）得见宫闱机密；百鸟房（先帝所设养珍稀鸟处，吴吉安打理）。</li>
+</ul>
+<h2>十、天象与舆论工具</h2>
+<ul>
+<li><strong>荧惑逆行</strong>：司天监所奏&quot;朝廷将乱、臣子谋反&quot;星象凶兆——被周幸利用配合礼库纵火造&quot;篡位&quot;舆论。</li>
+<li><strong>举祀祭天</strong>：借皇帝寿辰大祭（礼库纵火时机）。</li>
+</ul>
+<hr>
+<h2>世界观一致性提示（续写查证用）</h2>
+<ol>
+<li><strong>纪年别混</strong>：先帝用&quot;明宣&quot;，当朝用&quot;康平&quot;。遗诏立于明宣二十六年（第100章为准，第91章底簿&quot;明宣四十八年&quot;是调用/伪托说）。</li>
+<li><strong>兵力别写错归属</strong>：禁军=荣国公、亲兵卫=吕家、御马监+龙影卫=皇帝、青鹰军=齐煊、无常司=赵执。</li>
+<li><strong>药物归隗谷雨体系</strong>，别张冠李戴其功能。</li>
+<li><strong>&quot;巫&quot;只此一份</strong>（陆敛），别给其他人也安异体。</li>
+<li><strong>禁金设定</strong>是邹业案的逻辑基石（民间无金→有金即幕后供给）。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

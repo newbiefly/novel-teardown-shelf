@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界观设定集 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>世界观设定集</h1>
+<hr>
+<h2>时代背景</h2>
+<ul>
+<li><strong>朝代</strong>：架空&quot;大周&quot;（文化风俗仿明清，有科举/武举/夺嫡/官制）</li>
+<li><strong>主要地点</strong>：金陵（林家主宅，大部分故事）→ 京城（后期林家迁居）→ 扬州（中期养伤段）</li>
+</ul>
+<hr>
+<h2>一、林府结构</h2>
+<h3>家族谱系</h3>
+<table>
+<thead>
+<tr>
+<th>辈份</th>
+<th>人物</th>
+<th>身份</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>祖辈</td>
+<td>林昭祥</td>
+<td>曾任大理寺卿，老太爷</td>
+<td>全书最权威长辈[第305章详出]</td>
+</tr>
+<tr>
+<td>祖辈</td>
+<td>林老太太</td>
+<td>老太爷妻</td>
+<td>慈善心软[第14章]</td>
+</tr>
+<tr>
+<td>父辈·大房</td>
+<td>林长政</td>
+<td>大学士（入阁）</td>
+<td>香兰婚事最大障碍[第336章]</td>
+</tr>
+<tr>
+<td>父辈·大房</td>
+<td>秦氏</td>
+<td>大太太</td>
+<td>精明掌家[第13章]</td>
+</tr>
+<tr>
+<td>父辈·二房</td>
+<td>林长敏</td>
+<td>参将/暴烈武夫</td>
+<td>后被毒死[第343章]</td>
+</tr>
+<tr>
+<td>父辈·二房</td>
+<td>王氏</td>
+<td>二太太</td>
+<td>心软溺爱[第14章]</td>
+</tr>
+<tr>
+<td>子辈·大房</td>
+<td>林锦楼</td>
+<td>嫡长孙/武状元/主角</td>
+<td>—</td>
+</tr>
+<tr>
+<td>子辈·二房</td>
+<td>林锦轩</td>
+<td>心软</td>
+<td>谭露华夫[第91章]</td>
+</tr>
+<tr>
+<td>子辈·二房</td>
+<td>林锦亭</td>
+<td>人脉广</td>
+<td>李妙之夫[第316章]</td>
+</tr>
+<tr>
+<td>女辈·大房</td>
+<td>林东绮</td>
+<td>嫡女（长）</td>
+<td>精明[第18章]</td>
+</tr>
+<tr>
+<td>女辈·大房</td>
+<td>林东绣</td>
+<td>庶出三女</td>
+<td>后嫁袁绍仁[第290章]</td>
+</tr>
+<tr>
+<td>女辈·二房</td>
+<td>林东绫</td>
+<td>泼辣</td>
+<td>出逃失踪[第333章]</td>
+</tr>
+</tbody></table>
+<h3>林府主要院落</h3>
+<table>
+<thead>
+<tr>
+<th>院落</th>
+<th>归属</th>
+<th>叙事功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>知春馆</td>
+<td>林锦楼主院</td>
+<td>妻妾博弈主场[第37章起]</td>
+</tr>
+<tr>
+<td>罗雪坞</td>
+<td>针线丫鬟住处</td>
+<td>香兰入府初期[第6章]</td>
+</tr>
+<tr>
+<td>剪秋榭</td>
+<td>水榭</td>
+<td>命运转折地：桃汁案[第31章]/有孕圆满[第353章]</td>
+</tr>
+<tr>
+<td>卧云院</td>
+<td>原林锦轩居→陈家父母迁入</td>
+<td>[第352章]</td>
+</tr>
+<tr>
+<td>梦芳院</td>
+<td>林锦亭居（后赴京）</td>
+<td>[第352章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、奴籍制度</h2>
+<h3>奴籍种类 [第4章/第86章/第114章]</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>家生子</td>
+<td>主家出生的奴才子女，世代为奴，香兰即此身份</td>
+</tr>
+<tr>
+<td>买入奴</td>
+<td>外购（有身契），如小鹃[第5章]</td>
+</tr>
+<tr>
+<td>通房</td>
+<td>主人收用的丫鬟，名义高于一般奴婢但仍低于良人</td>
+</tr>
+<tr>
+<td>良妾/姨娘</td>
+<td>秦氏做主纳的妾，有名分</td>
+</tr>
+</tbody></table>
+<h3>脱籍规则</h3>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>条件</th>
+<th>本书实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主人放良</td>
+<td>主人主动给放籍文书</td>
+<td>宋柯帮陈万全夫妇办[第86章]</td>
+</tr>
+<tr>
+<td>赎身</td>
+<td>攒钱赎买</td>
+<td>香兰70两赎身[第114章]</td>
+</tr>
+<tr>
+<td>功劳放籍</td>
+<td>有功劳特赏</td>
+<td>报儿被林锦楼赐放籍文书升亲兵[第352章]</td>
+</tr>
+<tr>
+<td>嫁良人</td>
+<td>嫁给良籍男性</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3>奴籍的心理枷锁</h3>
+<ul>
+<li>林长政核心歧视：&quot;奴才种子比不得官宦小姐&quot;[第336章]——代表旧观念阶层偏见</li>
+<li>林锦楼反驳（内心）：&quot;大世家上百年积蕴，骨风教养皆在血肉里，哪是表皮儿学像了就是了&quot;[第354章]</li>
+</ul>
+<hr>
+<h2>三、妻妾礼法 [多处]</h2>
+<table>
+<thead>
+<tr>
+<th>地位</th>
+<th>名称</th>
+<th>权力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正妻</td>
+<td>大奶奶/太太</td>
+<td>执掌中馈，对妾有管教权</td>
+</tr>
+<tr>
+<td>良妾</td>
+<td>姨娘</td>
+<td>有名分，比通房高</td>
+</tr>
+<tr>
+<td>通房</td>
+<td>收用的丫鬟</td>
+<td>最低档，随时可打发</td>
+</tr>
+<tr>
+<td>姨奶奶（跳级）</td>
+<td>林锦楼特抬</td>
+<td>高于通房低于正妻[第231章]</td>
+</tr>
+</tbody></table>
+<h3>&quot;七出&quot;</h3>
+<p>丁素烟在族宴暗指香兰无子→暗示&quot;七出之条&quot;（无子出），香兰以喜脉回应[第351章]</p>
+<h3>诰命等级</h3>
+<p>林锦楼从一品武将正妻 = 从一品诰命夫人。太后召见香兰=极罕见的&quot;奴才出身获皇家认可&quot;[第348章前]</p>
+<hr>
+<h2>四、科举·功名 [多处]</h2>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>相关人物</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>秀才</td>
+<td>夏芸（后被革[第136章]）</td>
+</tr>
+<tr>
+<td>举人（解元）</td>
+<td>宋柯中解元[第102章]</td>
+</tr>
+<tr>
+<td>进士</td>
+<td>宋柯中进士七品编修[第116章]</td>
+</tr>
+<tr>
+<td>武状元</td>
+<td>林锦楼[第5章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、朝堂格局（夺嫡） [第2章回忆/第303章/第354章/番外]</h2>
+<table>
+<thead>
+<tr>
+<th>势力</th>
+<th>核心</th>
+<th>与林家关系</th>
+<th>结局</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>八王（前太子势力）</td>
+<td>已覆灭</td>
+<td>株连沈家→造成香兰前世惨案</td>
+<td>早已落败</td>
+</tr>
+<tr>
+<td>东宫（当朝太子）</td>
+<td>后来的新君</td>
+<td>林锦楼暗中相助</td>
+<td>即位→平反沈家[番外]</td>
+</tr>
+<tr>
+<td>林家</td>
+<td>林昭祥/林长政/林锦楼</td>
+<td>武将世家，偏支持东宫</td>
+<td>全书胜</td>
+</tr>
+<tr>
+<td>显国公府</td>
+<td>郑家</td>
+<td>郑静娴嫁宋柯</td>
+<td>倒台[第313章]</td>
+</tr>
+<tr>
+<td>沈家</td>
+<td>已全灭</td>
+<td>香兰前世家族</td>
+<td>新君平反[番外]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>六、话本·戏曲文化 [第317章/第354章]</h2>
+<table>
+<thead>
+<tr>
+<th>作品</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>《兰香居士传》</td>
+<td>十二折，香兰故事民间流传版本</td>
+</tr>
+<tr>
+<td>《兰香缘》（扩写版）</td>
+<td>十八折，添&quot;棒打鸳鸯&quot;情节，比《鸳鸯梦》更出名</td>
+</tr>
+<tr>
+<td>《留梦》</td>
+<td>《兰香缘》中一折：林锦楼强命香兰入府段落</td>
+</tr>
+</tbody></table>
+<p>叙事意义：香兰的人生在正文结束前就已被民间传颂——暗示她的命运是&quot;值得被记住的故事&quot;[第354章]</p>
+<hr>
+<h2>七、专有名词表</h2>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>释义</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>兰香居士</td>
+<td>香兰画作署名+话本名</td>
+<td>[第89章起]</td>
+</tr>
+<tr>
+<td>家生子</td>
+<td>在主家出生的世代奴才子女</td>
+<td>[第1章]</td>
+</tr>
+<tr>
+<td>放籍文书</td>
+<td>主人放奴自由的官方文件</td>
+<td>[第86章/第114章]</td>
+</tr>
+<tr>
+<td>天灯（祈天灯）</td>
+<td>中元节风俗，红色纸糊半人高，白色为亡者传信</td>
+<td>[第354章]</td>
+</tr>
+<tr>
+<td>甲士迎亲</td>
+<td>林锦楼派百名甲士接香兰进门，罕见排场</td>
+<td>[第348章]</td>
+</tr>
+<tr>
+<td>赤金蝙蝠吐珍珠簪</td>
+<td>林锦楼常用束发簪，武将形象标志</td>
+<td>[第352章等]</td>
+</tr>
+</tbody></table>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

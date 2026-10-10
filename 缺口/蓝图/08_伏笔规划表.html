@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>08 · 伏笔规划表 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>08 · 伏笔规划表</h1>
+<blockquote>
+<p>归纳来源：伏笔台账（按埋设章号流水）。本表提炼《缺口》的伏笔布局与手法规律，供续写/改写复用。每条带 [第X章] 锚点。</p>
+</blockquote>
+<hr>
+<h2>一、伏笔总量与配比</h2>
+<ul>
+<li><strong>登记条目</strong>：66 个编号（F01–F66），含大量&quot;同一伏笔多章深化&quot;的重复回写（如 F01 假出轨真相出现在 [第1章]/[第19章]/[第22-25章]/[第35章]/[第53章]）。</li>
+<li><strong>明线伏笔 : 暗线伏笔 ≈ 4 : 6</strong>。明线（读者可即时察觉需回收的钩子，如索赔七十万 [第12章]→[第13-14章] 解决）偏少；暗线（初读像日常细节，回看才是伏笔，如痴呆老人 [第2章]→阿兹海默 [第76章]）占多数——这是&quot;都市现实 + 反转&quot;混合题材的典型配比。</li>
+<li><strong>跨双时间线伏笔</strong>是本书特色：过去线埋、现在线收（或反之），占核心伏笔的一半以上。</li>
+</ul>
+<hr>
+<h2>二、五大伏笔链（全书骨架）</h2>
+<h3>链1 · 核心反转链（假出轨真相）★全书最大伏笔</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>章</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>埋种子</td>
+<td>[第1章]</td>
+<td>江恒面对铁证只答&quot;没有&quot;、抓手腕、问&quot;你不想问什么吗&quot;——只认不辩的反常</td>
+</tr>
+<tr>
+<td>深化动机</td>
+<td>[第19章]</td>
+<td>&quot;自己一团糟给不了幸福&quot;——退缩根源=怕连累她</td>
+</tr>
+<tr>
+<td>升级</td>
+<td>[第22/24/25章]</td>
+<td>&quot;不想让她变成我妈&quot;&quot;怕身陷囹圄连累她&quot;</td>
+</tr>
+<tr>
+<td>对读者揭</td>
+<td>[第35章] ★</td>
+<td>江亚洲设医保骗保局（篡改肿瘤药检测数据）陷害江恒，离婚=建防火墙隔离陈昭</td>
+</tr>
+<tr>
+<td>对陈昭揭</td>
+<td>[第53章] ★</td>
+<td>邓叔向陈昭讲出全部真相，反转正式达成</td>
+</tr>
+</tbody></table>
+<p><strong>手法</strong>：埋收间隔极长（1→53章），中途用 5 次&quot;深化回写&quot;维持张力不断线，且<strong>对读者先揭（35章）、对女主后揭（53章）</strong>——制造&quot;读者知情、女主蒙在鼓里&quot;的戏剧反讽，是本书最核心的悬念引擎。</p>
+<h3>链2 · 反转的反转（病房设局）</h3>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[第56章]</td>
+<td>江亚洲出ICU当众交权、向龚亦姗忏悔——伪装和解</td>
+</tr>
+<tr>
+<td>[第59章]</td>
+<td>季子扬揭数据造假 + 江恒识破交权是表演</td>
+</tr>
+<tr>
+<td>[第62章] ★</td>
+<td>江亚洲亲口承认&quot;给你绑了炸弹、感情能降低成本就拿来用&quot;——设局坐实</td>
+</tr>
+<tr>
+<td>[第64章]</td>
+<td>江恒被送进去（徐坤咬死）——黑暗高潮</td>
+</tr>
+</tbody></table>
+<p><strong>手法</strong>：在读者以为&quot;父亲忏悔=危机解除&quot;时反手坐实设局，形成第二层反转。假和解 [第56章] → 坐实阴谋 [第62章] 间隔仅 6 章，节奏比链1快，用于二次拉高危机。</p>
+<h3>链3 · 缺口母题链（书名点题）</h3>
+<p>戒指/圣诞树/花园房子/养狗的&quot;家&quot;愿景 [第3/46/57/60/66章] → 结局 [第77章] &quot;缺口只有她能填满&quot; + 真买圣诞树 + 将养土狗。首尾闭环，书名在最后一章才点破。</p>
+<h3>链4 · 遗忘母题链（反派因果报应）</h3>
+<p>痴呆老人&quot;找不到回家的路&quot; [第2章] → 爷爷失权极速衰老 [第16章] → 江亚洲确诊阿兹海默 [第76章]。三处铺垫全为最后一处报应服务，是&quot;暗线伏笔&quot;的范本——前两处初读纯是氛围白描。</p>
+<h3>链5 · 救人线索链（女主主导破局）</h3>
+<p>徐坤儿子=刘欣冉前男友 [第50/64/66章] + 江婕倒戈 [第65-67章] + 高寒政界助力 [第58/67章]。三条线索在 [第66-67章] 集中回收，构成&quot;陈昭救出江恒&quot;的合力。</p>
+<hr>
+<h2>三、伏笔手法规律（可复用清单）</h2>
+<ol>
+<li><strong>只认不辩式反常</strong>：让人物做出违反常识的选择（认罪却不解释），不给理由——制造最大悬念钩子。用于 [第1章] 假出轨。</li>
+<li><strong>对读者/对角色分层揭示</strong>：核心真相先对读者揭（[第35章]）再对女主揭（[第53章]），制造 18 章的戏剧反讽窗口。</li>
+<li><strong>氛围白描藏暗线</strong>：把伏笔藏进纯生活场景（痴呆老人、爷爷衰老），初读不觉是伏笔，回收时才&quot;原来早埋了&quot;。</li>
+<li><strong>同一伏笔多章深化</strong>：核心动机不一次说透，分 5 次逐层加码（F01/F16），避免读者中途遗忘，也维持追读欲。</li>
+<li><strong>跨双线物象缝合</strong>：同一物象在两条时间线各出现一次形成呼应（烂糊面 [第38-39章] ↔ [第63章]；圣诞树 [第3章] ↔ [第77章]），既是伏笔也是结构黏合剂。</li>
+<li><strong>台词即伏笔</strong>：把主题句伪装成日常台词（[第43章]&quot;是不是对我好该我自己判断&quot;），既是当下冲突，又预埋现在线假出轨的悲剧根源。</li>
+<li><strong>短埋短收（明线调节奏）</strong>：索赔七十万 [第12章]→[第13-14章]、心律失常公司 [第11章] 等明线伏笔快埋快收，在长线悬念中插入&quot;小满足&quot;，防止节奏拖沓。</li>
+</ol>
+<hr>
+<h2>四、续写/改写红线</h2>
+<ul>
+<li><strong>假出轨真相</strong>必须&quot;对读者先于对女主&quot;揭开，且离婚动机=保护（非真渣），否则崩人设。</li>
+<li><strong>遗忘母题</strong>的三处铺垫缺一不可，江亚洲的结局必须是&quot;遗忘&quot;而非普通失败（因果报应闭环）。</li>
+<li><strong>救人必须由陈昭主导</strong>（女主决断力人设），江恒不能自救脱困。</li>
+<li>跨线物象（面/圣诞树/戒指/番茄藤香水）一旦在过去线埋下，现在线必须回扣，反之亦然。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

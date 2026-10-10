@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 · 情绪曲线 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>09 · 情绪曲线</h1>
+<blockquote>
+<p>归纳来源：77 章章卡「情绪设计」字段。情绪字典：爽/虐/悬/燃/泪/反转/甜/谐/寒。强度 ★1–5。本书为<strong>双时间线交织</strong>，情绪曲线也呈&quot;过去线甜↔现在线虐&quot;双轨对照。</p>
+</blockquote>
+<hr>
+<h2>一、逐章情绪基调 + 强度表</h2>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>线</th>
+<th>基调</th>
+<th>★</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01 楔子</td>
+<td>现在</td>
+<td>虐/悬/寒</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>02</td>
+<td>双线</td>
+<td>甜/谐</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>03</td>
+<td>过去</td>
+<td>燃/泪</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>04</td>
+<td>过去</td>
+<td>甜/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>05</td>
+<td>过去</td>
+<td>爽/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>06</td>
+<td>过去</td>
+<td>甜/爽</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>07</td>
+<td>过去</td>
+<td>谐/甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>08</td>
+<td>过去</td>
+<td>爽/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>09</td>
+<td>过去</td>
+<td>虐/寒</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>10</td>
+<td>过去</td>
+<td>甜/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>11</td>
+<td>过去</td>
+<td>甜/悬</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>12</td>
+<td>过去</td>
+<td>虐/泪</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>13</td>
+<td>过去</td>
+<td>甜/燃</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>14</td>
+<td>过去</td>
+<td>燃/甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>15</td>
+<td>过去</td>
+<td>燃/甜</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>16</td>
+<td>过去</td>
+<td>甜/虐</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>17</td>
+<td>过去</td>
+<td>虐/泪</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>18</td>
+<td>过去</td>
+<td>虐/寒</td>
+<td>★3</td>
+</tr>
+<tr>
+<td><strong>19</strong></td>
+<td>过去</td>
+<td><strong>虐/泪</strong></td>
+<td><strong>★5</strong>（过去线错过·诀别）</td>
+</tr>
+<tr>
+<td>20</td>
+<td>现在</td>
+<td>虐/寒</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>21</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>22</td>
+<td>现在</td>
+<td>虐/悬/寒</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>23</td>
+<td>现在</td>
+<td>虐/泪</td>
+<td>★4</td>
+</tr>
+<tr>
+<td><strong>24</strong></td>
+<td>现在</td>
+<td><strong>虐/泪</strong></td>
+<td><strong>★5</strong>（跪求被拒·黑暗说爱）</td>
+</tr>
+<tr>
+<td>25</td>
+<td>现在</td>
+<td>虐/泪</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>26</td>
+<td>现在</td>
+<td>虐/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>27</td>
+<td>现在</td>
+<td>爽/燃</td>
+<td>★4（权斗反杀）</td>
+</tr>
+<tr>
+<td>28</td>
+<td>现在</td>
+<td>虐/甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>29</td>
+<td>现在</td>
+<td>虐/寒</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>30</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>31</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★4</td>
+</tr>
+<tr>
+<td><strong>32</strong></td>
+<td>现在</td>
+<td><strong>虐/泪</strong></td>
+<td><strong>★5</strong>（扇巴掌·世界抛弃感）</td>
+</tr>
+<tr>
+<td>33</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>34</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>35</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★4（★对读者揭真相）</td>
+</tr>
+<tr>
+<td><strong>36</strong></td>
+<td>现在</td>
+<td><strong>虐/泪</strong></td>
+<td><strong>★5</strong>（抢摘婚戒·&quot;我后悔遇到你了&quot;）</td>
+</tr>
+<tr>
+<td>37</td>
+<td>过去</td>
+<td>虐/甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>38</td>
+<td>过去</td>
+<td>甜/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>39</td>
+<td>过去</td>
+<td>甜/虐</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>40</td>
+<td>过去</td>
+<td>甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>41</td>
+<td>过去</td>
+<td>甜/虐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>42</td>
+<td>过去</td>
+<td>甜/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td><strong>43</strong></td>
+<td>过去</td>
+<td><strong>甜</strong></td>
+<td><strong>★4</strong>（过去线定情·雪夜初吻）</td>
+</tr>
+<tr>
+<td>44</td>
+<td>过去</td>
+<td>甜/虐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>45</td>
+<td>过去</td>
+<td>甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>46</td>
+<td>过去</td>
+<td>甜</td>
+<td>★4（过去线圆满亲密）</td>
+</tr>
+<tr>
+<td>47</td>
+<td>现在</td>
+<td>虐/泪</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>48</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★4（反转启动）</td>
+</tr>
+<tr>
+<td>49</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>50</td>
+<td>现在</td>
+<td>悬/虐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>51</td>
+<td>现在</td>
+<td>泪/虐</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>52</td>
+<td>现在</td>
+<td>悬/虐</td>
+<td>★4（反转正式启动）</td>
+</tr>
+<tr>
+<td><strong>53</strong></td>
+<td>现在</td>
+<td><strong>反转/虐</strong></td>
+<td><strong>★5</strong>（★对陈昭揭真相·全书最大反转）</td>
+</tr>
+<tr>
+<td>54</td>
+<td>现在</td>
+<td>虐/悬/寒</td>
+<td>★4（江亚洲车祸）</td>
+</tr>
+<tr>
+<td>55</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>56</td>
+<td>现在</td>
+<td>泪/虐</td>
+<td>★4（交权·假和解）</td>
+</tr>
+<tr>
+<td>57</td>
+<td>现在</td>
+<td>泪/甜</td>
+<td>★4（深度剖白·救赎）</td>
+</tr>
+<tr>
+<td>58</td>
+<td>现在</td>
+<td>虐/谐</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>59</td>
+<td>现在</td>
+<td>悬/虐</td>
+<td>★4（设局印证）</td>
+</tr>
+<tr>
+<td>60</td>
+<td>现在</td>
+<td>虐/甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>61</td>
+<td>现在</td>
+<td>虐</td>
+<td>★4（诀别·差点坦白）</td>
+</tr>
+<tr>
+<td><strong>62</strong></td>
+<td>现在</td>
+<td><strong>虐/寒/悬</strong></td>
+<td><strong>★5</strong>（★设局坐实·黑暗高潮前奏）</td>
+</tr>
+<tr>
+<td>63</td>
+<td>现在</td>
+<td>虐/甜</td>
+<td>★4（吃面呼应过去线）</td>
+</tr>
+<tr>
+<td><strong>64</strong></td>
+<td>现在</td>
+<td><strong>虐/悬</strong></td>
+<td><strong>★5</strong>（★江恒进去·黑暗高潮）</td>
+</tr>
+<tr>
+<td>65</td>
+<td>现在</td>
+<td>悬/反转</td>
+<td>★4（江婕心魔崩塌）</td>
+</tr>
+<tr>
+<td>66</td>
+<td>现在</td>
+<td>悬/燃</td>
+<td>★4（江婕倒戈·定策略）</td>
+</tr>
+<tr>
+<td>67</td>
+<td>现在</td>
+<td>燃/虐</td>
+<td>★4（救人成功·火葬场障碍起）</td>
+</tr>
+<tr>
+<td>68</td>
+<td>现在</td>
+<td>虐</td>
+<td>★4</td>
+</tr>
+<tr>
+<td><strong>69</strong></td>
+<td>现在</td>
+<td><strong>虐/泪</strong></td>
+<td><strong>★5</strong>（★摊牌·原谅但不复合·信任障碍）</td>
+</tr>
+<tr>
+<td>70</td>
+<td>现在</td>
+<td>虐/甜</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>71</td>
+<td>现在</td>
+<td>虐/甜</td>
+<td>★4（追妻拉扯白热化）</td>
+</tr>
+<tr>
+<td>72</td>
+<td>现在</td>
+<td>虐/悬</td>
+<td>★4（江恒自省）</td>
+</tr>
+<tr>
+<td>73</td>
+<td>现在</td>
+<td>虐/泪</td>
+<td>★4（坦诚剖白·信任松动）</td>
+</tr>
+<tr>
+<td>74</td>
+<td>现在</td>
+<td>虐/甜</td>
+<td>★3（依赖回流）</td>
+</tr>
+<tr>
+<td>75</td>
+<td>现在</td>
+<td>甜</td>
+<td>★4（正式复合）</td>
+</tr>
+<tr>
+<td>76</td>
+<td>现在</td>
+<td>甜/寒</td>
+<td>★4（复合后信任重建·江亚洲确诊）</td>
+</tr>
+<tr>
+<td><strong>77</strong></td>
+<td>现在</td>
+<td><strong>甜/泪</strong></td>
+<td><strong>★5</strong>（★大结局圆满·缺口点题）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、★4–5 高潮章清单（15 个情绪爆点）</h2>
+<p><strong>★5 高潮（8 个）</strong>：</p>
+<ol>
+<li>[第19章] 过去线错过诀别——公交站台笑着告别，&quot;他不会得到任何美好的东西&quot;</li>
+<li>[第24章] 现在线跪求被拒 + 黑暗里说&quot;昭昭我爱你&quot;——爱是真的却仍放手</li>
+<li>[第32章] 扇巴掌摊牌 + 车里嚎啕&quot;像被整个世界抛弃&quot;</li>
+<li>[第36章] 抢摘婚戒 + &quot;我后悔遇到你了&quot;——虐恋顶点</li>
+<li>[第53章] ★邓叔对陈昭揭真相——全书最大反转</li>
+<li>[第62章] ★江亚洲坐实设局&quot;感情能降低成本就拿来用&quot;</li>
+<li>[第64章] ★江恒进去——黑暗高潮谷底</li>
+<li>[第69章] ★摊牌&quot;你尊重过我吗&quot;——追妻火葬场情感高潮</li>
+<li>[第77章] 大结局圆满 + &quot;缺口只有她能填满&quot;点题</li>
+</ol>
+<p><strong>★4 高潮（密集分布）</strong>：01楔子/15/16/20/22/23/25/27/29/31/33/35/39/43/46/48/49/51/52/54/55/56/57/59/61/63/65/66/67/68/71/72/73/75/76。</p>
+<hr>
+<h2>三、情绪节奏规律（可复用）</h2>
+<ol>
+<li><strong>双轨交替降压</strong>：过去线（甜/谐/燃）与现在线（虐/寒/悬）交织排布，甜章为虐章&quot;充值&quot;,虐到极致就切回过去线的甜回忆——用甜反衬痛，也给读者喘息。典型：[第36章]★5虐恋顶点后，[第37-46章]整段切回过去线恋爱甜章。</li>
+<li><strong>虐先行、甜滞后</strong>：全书前半（1-36章）以现在线的&quot;虐/悬&quot;为主基调，过去线的&quot;甜&quot;作为记忆插叙缓冲；后半（53章反转后）情绪逐步由虐转甜，直到77章全甜圆满。</li>
+<li><strong>反转即情绪拐点</strong>：[第35章]对读者揭、[第53章]对女主揭，是两次情绪转向的枢纽——读者/女主&quot;知真相&quot;后，同样的虐场面读起来变成&quot;心疼&quot;而非&quot;愤怒&quot;。</li>
+<li><strong>黑暗谷底 → 燃起反攻</strong>：[第62-64章]连续三章★5/★5探底（设局坐实→江恒进去），紧接 [第65-67章]&quot;悬/反转→悬/燃→燃&quot;三连反攻（江婕倒戈→定策略→救人成功），谷底反弹曲线陡峭有力。</li>
+<li><strong>火葬场的锯齿状拉扯</strong>：[第67-74章]追妻阶段呈&quot;虐-甜-虐-甜&quot;锯齿（障碍起→暧昧回流→摊牌→松动），每次靠近就被信任障碍推开，反复 4 轮才复合，把甜熬到最浓。</li>
+<li><strong>首尾呼应闭环</strong>：[第01章]楔子（虐/悬/寒★4，离婚）↔ [第77章]结局（甜/泪★5，复合点题），情绪从最冷到最暖，圣诞树意象首尾扣合。</li>
+</ol>
+<hr>
+<h2>四、创作指导</h2>
+<ul>
+<li><strong>甜章的强度不必高（★2-3 即可）</strong>，作用是给虐章&quot;续命&quot;和反衬，不与★5高潮抢戏。</li>
+<li><strong>★5高潮平均每 8-10 章一个</strong>，节奏稳定；两个★5之间必须有情绪缓冲，不可连续堆砌同类★5。</li>
+<li><strong>虐的写法靠&quot;克制&quot;</strong>：★5虐场面（跪求、摘戒、诀别）都用平静语气+日常动作承载，不嚎啕、不狗血——痛在&quot;他说爱你却仍放手&quot;的反差里。</li>
+<li><strong>反转前必须先把虐做足</strong>：正因1-52章把&quot;渣男出轨&quot;的虐做到极致，53章真相揭开的情绪反冲才够强。续写务必保住&quot;误会期&quot;的虐浓度。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

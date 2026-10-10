@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CP互动台账 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>CP互动台账</h1>
+<blockquote>
+<p>供给蓝图：感情线进度（四朵桃花）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>CP组合</th>
+<th>互动事件</th>
+<th>好感/推拉变化</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>香兰↔萧杭(前世夫)</td>
+<td>前世新婚→流放→萧杭病亡→香兰病亡</td>
+<td>第一朵桃花·前世已逝</td>
+<td>[第2章回忆]</td>
+</tr>
+<tr>
+<td>香兰↔林锦楼</td>
+<td>前世议亲未果（林昭祥提、无故中止）</td>
+<td>第一朵桃花今生伏线</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>香兰↔林锦楼</td>
+<td>林锦楼相看时在香兰名字上画圈</td>
+<td>单向标记（用意未明），触发赵月婵猜忌</td>
+<td>[第5章]</td>
+</tr>
+<tr>
+<td>林锦楼↔画眉</td>
+<td>审案后门口献荷包+撒娇调情</td>
+<td>画眉上位，林锦楼受用</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>宋柯→香兰</td>
+<td>偷听香兰竹林自励&quot;被狗啃了……忍到最后有出头之日&quot;</td>
+<td>惊诧其心性→单向动心起点</td>
+<td>[第14章]</td>
+</tr>
+<tr>
+<td>宋柯→香兰</td>
+<td>捡起香兰掉落的白绢花揣袖</td>
+<td>物件伏线·单向牵念</td>
+<td>[第14章]</td>
+</tr>
+<tr>
+<td>宋柯→香兰</td>
+<td>&quot;恍惚想起前世……那个人也这样单柔倔强&quot;</td>
+<td>联想前世某人→情感深层触动</td>
+<td>[第14章]</td>
+</tr>
+<tr>
+<td>曹丽环→宋柯(?)</td>
+<td>茶会后看宋柯方向&quot;脸潮红双眼冒光&quot;</td>
+<td>疑似动心（潜在搅局者？）</td>
+<td>[第18章]</td>
+</tr>
+<tr>
+<td>香兰↔林锦楼</td>
+<td>簪花初遇：林锦楼醉酒偶见惊艳心动，香兰警惕闪避</td>
+<td>第一朵桃花正面发动：他心动、她防备</td>
+<td>[第19-20章]</td>
+</tr>
+<tr>
+<td>香兰↔宋柯</td>
+<td>帕子→补荷包→送翠玉小青蛙→以帕子换绢花</td>
+<td>第二朵桃花持续升温：她联想前世萧杭风采</td>
+<td>[第20-22章]</td>
+</tr>
+<tr>
+<td>林东绮→宋柯</td>
+<td>暗中拉拢宋檀钗→被母亲秦氏当面断念想→哭一宿</td>
+<td>碎</td>
+<td>[第21-24章]</td>
+</tr>
+<tr>
+<td>林东绣→宋柯</td>
+<td>精明分析&quot;瘦死骆驼比马大&quot;暗中竞争</td>
+<td>单方面算计</td>
+<td>[第21章]</td>
+</tr>
+<tr>
+<td>林东绫→宋柯</td>
+<td>&quot;奕飞哥哥&quot;直呼表字、热烈追求</td>
+<td>单方面热烈</td>
+<td>[第21章]</td>
+</tr>
+<tr>
+<td>曹丽环→林锦亭</td>
+<td>送信钓鱼+散布流言谋赖</td>
+<td>单方面谋算</td>
+<td>[第22-23章]</td>
+</tr>
+<tr>
+<td>香兰↔宋柯</td>
+<td>井边提水：宋柯微笑如萧杭新婚夜→两人联想前世伴侣对望</td>
+<td>确认宋柯前世=萧杭(读者视角)，两人尚未点破</td>
+<td>[第28章]</td>
+</tr>
+<tr>
+<td>香兰↔林锦楼</td>
+<td>暴怒救美(踹断四顺儿双腿)+向母亲要走香兰到身边</td>
+<td>第一朵桃花从&quot;单向心动&quot;进入&quot;直接行动/占有&quot;阶段</td>
+<td>[第32-37章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>&quot;来专门伺候我&quot;暗示+逼近扇风+赏赤金黄玉小马腰坠</td>
+<td>第一朵桃花&quot;明示收编&quot;；香兰心慌仍避</td>
+<td>[第42-44章]</td>
+</tr>
+<tr>
+<td>银蝶→林锦楼</td>
+<td>初见痴迷+抢扇子争风+撒谎</td>
+<td>单方面痴迷(搅局者)</td>
+<td>[第38-43章]</td>
+</tr>
+<tr>
+<td>香兰↔宋柯</td>
+<td>街上偶遇：听到扇上&quot;小楼闻夜笛岑寂已三更&quot;震惊(前世诗铁证)</td>
+<td>香兰视角确认宋柯=萧杭；欲罢不能</td>
+<td>[第46章]</td>
+</tr>
+<tr>
+<td>宋柯→香兰</td>
+<td>茶楼密议让林锦亭帮&quot;要走香兰一家&quot;</td>
+<td>第二朵桃花进入&quot;正式争夺&quot;阶段</td>
+<td>[第47章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>替赵赔不是+送银+宫药+夜间想到香兰推开琼脂</td>
+<td>第一朵桃花&quot;情已深于欲&quot;</td>
+<td>[第49-50章]</td>
+</tr>
+<tr>
+<td>宋柯↔香兰</td>
+<td>每日派绿豆送食+隔门遥望</td>
+<td>第二朵桃花在克制中升温</td>
+<td>[第54章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>因诗+字迹(簪花小楷)从&quot;美貌吸引&quot;升到&quot;才情欣赏&quot;；揣沈周字帖欲送</td>
+<td>第一朵桃花迷恋加深</td>
+<td>[第57-59章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>书房调戏(拉怀里+送八宝簪+亲脸)→赵月婵撞破→闹腾</td>
+<td>第一朵桃花强行推进；香兰恐惧抗拒</td>
+<td>[第62-64章]</td>
+</tr>
+<tr>
+<td>赵月婵↔钱文泽</td>
+<td>轿中调情+卖簪分赃+旧情人关系</td>
+<td>赵月婵的暗情人(婚前旧情·出轨线)</td>
+<td>[第66章]</td>
+</tr>
+<tr>
+<td>香兰(内心)</td>
+<td>明确规划&quot;盼宋柯讨走→脱籍&quot;，视宋柯为脱身希望</td>
+<td>心理定位：宋柯=脱籍路径+前世情缘</td>
+<td>[第61章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>截走+威胁&quot;一家都攥爷手里&quot;+&quot;识时务者为俊杰&quot;+切断宋柯线</td>
+<td>第一朵桃花进入&quot;强占/威胁&quot;阶段；香兰万念俱灰被迫妥协</td>
+<td>[第71-72章]</td>
+</tr>
+<tr>
+<td>宋柯↔香兰</td>
+<td>宋柯线被林锦楼发现并切断（林知道宋送食/送扇/托林锦亭讨人）</td>
+<td>第二朵桃花暂时死路</td>
+<td>[第71-72章]</td>
+</tr>
+<tr>
+<td>青岚→死亡</td>
+<td>林锦楼良妾/一尸两命</td>
+<td>第一朵桃花障碍之一消除(但林不在府中)</td>
+<td>[第75章]</td>
+</tr>
+<tr>
+<td>宋柯→香兰</td>
+<td>截买(六十两/高二宝)+到宋家养病+讨来全家+看她绣花发呆+摸头发簪花</td>
+<td>第二朵桃花进入&quot;共同生活·日常升温&quot;</td>
+<td>[第81-84章]</td>
+</tr>
+<tr>
+<td>赵月婵↔钱文泽</td>
+<td>私会云雨+密谋(放火/卖人)</td>
+<td>暗线持续加深</td>
+<td>[第79章]</td>
+</tr>
+<tr>
+<td>宋柯↔香兰</td>
+<td>月下牵手+共放荷花灯+&quot;不是美景也变美景&quot;</td>
+<td>全书最甜段之一·准夫妻阶段</td>
+<td>[第85/88章]</td>
+</tr>
+<tr>
+<td>夏芸→香兰</td>
+<td>邻居书生邂逅一见倾心→打听底细→避雨偶遇</td>
+<td>第三朵桃花发动·单向思慕</td>
+<td>[第87/89/90章]</td>
+</tr>
+<tr>
+<td>香兰→宋柯</td>
+<td>交底&quot;若无意明媒正娶放我出去&quot;+揭兰香居士身份</td>
+<td>全书级命运抉择：宋柯犹豫(真心vs门第)</td>
+<td>[第97-98章]</td>
+</tr>
+<tr>
+<td>郑静娴→宋柯</td>
+<td>丢帕接近+邀拜访+&quot;让爹给你走后门&quot;+小时候&quot;奕飞哥哥&quot;</td>
+<td>第四朵桃花?/最大身份竞争者(显国公千金)</td>
+<td>[第99-100章]</td>
+</tr>
+<tr>
+<td>宋柯(内心)</td>
+<td>骑马到香兰楼下遥望不进+嫉妒夏芸→犹豫加剧</td>
+<td>F51持续悬</td>
+<td>[第99章]</td>
+</tr>
+<tr>
+<td>宋柯↔香兰</td>
+<td>表白&quot;忍不了了看不进书睡不安稳&quot;→香兰感动回家→吃醋问夏芸→进京离别拔银簪约定</td>
+<td>第二朵桃花从&quot;摊牌僵持&quot;回到&quot;升温约定&quot;</td>
+<td>[第101-102章]</td>
+</tr>
+<tr>
+<td>郑静娴→宋柯</td>
+<td>帮倒忙被嫌→私送佩剑被退回→暂无声息</td>
+<td>第四朵桃花冷却但未弃</td>
+<td>[第101-102章]</td>
+</tr>
+<tr>
+<td>夏芸→香兰</td>
+<td>中举来贺乔迁→香兰未出来见→薛氏暗说&quot;配得起&quot;</td>
+<td>第三朵桃花后台发酵</td>
+<td>[第103章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>归家第一件事追问&quot;东厢香兰呢&quot;→赵撒谎→林暴怒</td>
+<td>第一朵桃花沉寂半年后重燃信号</td>
+<td>[第105章]</td>
+</tr>
+<tr>
+<td>林锦楼→苏媚如</td>
+<td>外室过夜(只歇不亲)→苏痴迷→林想到香兰的嘴</td>
+<td>消遣关系/叙事者预告&quot;日后公案&quot;</td>
+<td>[第106章]</td>
+</tr>
+<tr>
+<td>赵月婵↔郝卿</td>
+<td>寺庙偷情被抓→郝被沉江</td>
+<td>终结(郝已死)</td>
+<td>[第107-110章]</td>
+</tr>
+<tr>
+<td>赵月婵↔钱文泽</td>
+<td>幕后操盘→钱跑路</td>
+<td>终结(钱被追杀)</td>
+<td>[第107-111章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>想到&quot;香兰也有好看的小嘴儿&quot;+捡到香囊嘴型联想→命查</td>
+<td>第一朵桃花从&quot;寻找&quot;进入&quot;物件追踪&quot;</td>
+<td>[第106/110章]</td>
+</tr>
+<tr>
+<td>林锦楼↔赵月婵</td>
+<td>和离·终结</td>
+<td>第一朵桃花最大障碍清除</td>
+<td>[第108-110章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>登门掐脸&quot;让爷好生瞧瞧&quot;→要抬举→香兰拔钗以死抗拒→暂退→扑空</td>
+<td>第一朵桃花严重受挫</td>
+<td>[第112-115章]</td>
+</tr>
+<tr>
+<td>宋柯↔香兰</td>
+<td>归来拥抱→&quot;上京前请媒人提亲&quot;→香兰喜极而泣</td>
+<td>第二朵桃花确认正娶(全书级转折)</td>
+<td>[第116章]</td>
+</tr>
+<tr>
+<td>宋柯↔郑静娴</td>
+<td>宋以旧怨拒绝宋姨妈提议</td>
+<td>第四朵桃花再次被挡</td>
+<td>[第117章]</td>
+</tr>
+<tr>
+<td>乌亮→宋檀钗</td>
+<td>一见动心→提亲被拒→记恨宋柯</td>
+<td>新搅局者</td>
+<td>[第115/117章]</td>
+</tr>
+<tr>
+<td>宋柯↔香兰</td>
+<td>弹劾→被迫订亲郑家→窗下偷听→决别→求妾被连串反问拒绝→&quot;百年好合&quot;→留信&quot;珍重&quot;</td>
+<td><strong>第二朵桃花正式凋零</strong></td>
+<td>[第118-121章]</td>
+</tr>
+<tr>
+<td>宋柯↔郑静娴</td>
+<td>以订亲换出力→如愿→郑登门&quot;不准纳香兰&quot;→宋冷淡</td>
+<td>第四朵桃花以交易得手</td>
+<td>[第118-120章]</td>
+</tr>
+<tr>
+<td>夏芸→香兰</td>
+<td>金氏/夏二嫂算计提亲→&quot;生金蛋的老母鸡&quot;</td>
+<td>第三朵桃花从后台走向前台</td>
+<td>[第121-123章]</td>
+</tr>
+<tr>
+<td>夏芸→香兰</td>
+<td>被二嫂骗&quot;花=定情&quot;→自作多情→被揭穿→恼羞成怒公开辱名</td>
+<td><strong>第三朵桃花彻底毁灭+结仇</strong></td>
+<td>[第124-128章]</td>
+</tr>
+<tr>
+<td>银蝶↔夏芸</td>
+<td>林锦楼送妾→投怀成事→银蝶闹事→被打</td>
+<td>从&quot;赠品&quot;到&quot;祸源&quot;</td>
+<td>[第126-128章]</td>
+</tr>
+<tr>
+<td>曹丽环→夏芸</td>
+<td>暗中示好勾引→夏芸装不知</td>
+<td>伏笔</td>
+<td>[第124-125章]</td>
+</tr>
+<tr>
+<td>林锦楼→香兰</td>
+<td>金马独白→知宋柯订亲进京→仍不放手</td>
+<td>第一朵桃花持续</td>
+<td>[第125章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>趁火打劫→称&quot;心肝儿&quot;→训县令救父→以身换父的不平等交易</td>
+<td>第一朵桃花从&quot;追逐&quot;进入&quot;依附&quot;阶段</td>
+<td>[第131-132章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>给金马+&quot;五天后接&quot;→接入林府→住东次间</td>
+<td>第一朵桃花从&quot;依附&quot;进入&quot;同屋共处&quot;</td>
+<td>[第135/137章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>强行圆房→怒打→提宋柯刺激→设宴护短→递酒杯</td>
+<td>第一朵桃花从&quot;收用&quot;进入&quot;暴戾与柔情交替&quot;</td>
+<td>[第138-143章]</td>
+</tr>
+<tr>
+<td>鸾儿→林锦楼</td>
+<td>送汤被赶→作妖被踹→挑衅香兰被怼→单向痴恋不得</td>
+<td>通房的幻灭</td>
+<td>[第138-143章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>药膏柔情→搬回住→打丫鬟训弟妹→反复提宋柯→暴戾柔情交替</td>
+<td>第一朵桃花日常化</td>
+<td>[第144-149章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>给钥匙同睡→暴戾圆房→三天不在→回来软化&quot;赔不是&quot;→日常化</td>
+<td>从&quot;暴戾占有&quot;渐向&quot;粗糙的温柔&quot;过渡</td>
+<td>[第150-156章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>白日行房→&quot;再叫一声儿&quot;→赏首饰→日常化占有</td>
+<td>第一朵桃花日常化·暴戾中偶有温柔</td>
+<td>[第160章]</td>
+</tr>
+<tr>
+<td>鸾儿→林锦楼</td>
+<td>唱曲求宠→被当挡箭牌→林不来→砸琵琶</td>
+<td>梦碎</td>
+<td>[第158-159章]</td>
+</tr>
+<tr>
+<td>林东绫↔杜宾</td>
+<td>偷情→被窥→&quot;木已成舟&quot;→暗中推进</td>
+<td>暗线情人</td>
+<td>[第162-163章]</td>
+</tr>
+<tr>
+<td>画眉→暖月</td>
+<td>拉拢→密谋暗算香兰</td>
+<td>画眉阵营扩大</td>
+<td>[第165章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>夜访同床→发现扇子→掐脖→冷淡→仍同睡→矛盾占有</td>
+<td>暴戾中的执念</td>
+<td>[第171-174章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>赏孔雀屏风(前世陪嫁)→叫&quot;好老公&quot;→第一次笑→微妙回暖</td>
+<td>第一朵桃花出现真实暖意</td>
+<td>[第177-179章]</td>
+</tr>
+<tr>
+<td>林锦楼↔香兰</td>
+<td>夜谈→送银子铺路→戴项圈→&quot;有爷撑腰&quot;→调情</td>
+<td>从&quot;占有&quot;到&quot;经营&quot;→第一朵桃花新阶段</td>
+<td>[第190-193章]</td>
+</tr>
+</tbody></table>
+<p>| 林锦楼×香兰 | 追问→训斥→搂抱→&quot;既往不咎&quot;→衣裳首饰→默认&quot;奶奶&quot;→逛园→承诺见父母 | 第一朵桃花从&quot;暴力占有&quot;转向&quot;经营感情&quot;；香兰仍&quot;又恨又怕&quot;但微松动（偷看他俊朗/想说谢谢） | [第221-225章] |<br>| ★袁绍仁×香兰 | 庭院偶见→惊呼&quot;莲娘&quot;→外貌气度酷似亡妾→怔住失态 | <strong>第四朵桃花正式萌芽</strong>——单方面；香兰只注意到&quot;不似寻常之人&quot; | [第224章] |</p>
+<p>| 林锦楼×香兰 | 握手写字→亲吻→绣楼行房→带见父母→★★★宣布抬姨奶奶→夜间追问&quot;惦记宋柯&quot;→&quot;我没有&quot;化火 | 感情新高但不对等：林视为恩典，香兰视为枷锁 | [第226-231章] |<br>| 袁绍仁×香兰 | 近距离行礼→心跳加速→见林揽香兰→知无缘→情感压抑 | 第四朵桃花受阻·情深种 | [第226章] |</p>
+<p>| 林锦楼×香兰 | 做荷包讨好→带上京→偷听&quot;被强迫何必取命&quot;→内心触动→见哭消气→系荷包 | 林从&quot;占有&quot;开始隐隐理解香兰不甘，但仍不放手；&quot;日后时时带在身边&quot; | [第232-237章] |<br>| 谭氏→林锦楼 | 见面脸红→撞怀慌乱→★单方面暗恋（嫂叔禁忌） | 危险伏线 | [第234/237章] |</p>
+<p>| 林锦楼×香兰 | 求子调养→晚归脂粉→鲁家当宋柯面炫耀&quot;你小嫂子&quot; | 控制+真情+嫉妒交织 | [第238-242章] |<br>| ★★★宋柯×香兰 | 鲁家再见→&quot;脸肃起来&quot;→攥拳泛白→克制到极致→&quot;不再看一眼&quot;；香兰叹腰带→&quot;心如刀割&quot;→&quot;这样很好&quot; | <strong>第二朵桃花正式画句号</strong>——诀别式相遇 | [第241-243章] |<br>| 赵月婵×香兰 | 重逢→赵怒→坏名声→旧仇新恨 | 旧对手重燃 | [第241/243章] |</p>
+<p>| 林锦楼×香兰 | 假温柔→扇耳光→泼水→&quot;偏下不去手&quot;→止血包扎→卷回家 | ★★★全书最烈冲突——香兰正面对抗&quot;我也不稀罕&quot;；林首承认&quot;挟恩&quot;→感情质变 | [第247-248章] |<br>| ★★★宋柯×香兰 | &quot;你是不是嘉兰我的妻&quot;→表白→帮你摆脱→被拒→&quot;我过得很好&quot;→告别 | 前世线首次正面碰撞——悲剧诀别 | [第245-246章] |<br>| 郑静娴×宋柯 | 骂香兰→被训→婚姻裂痕(宋檀钗进宫+宋冷淡) | 裂痕加深 | [第247章] |</p>
+<p>| 林锦楼×香兰 | 追问&quot;两世&quot;→交账簿→主持中馈→假山行房 | 日常经营中暗含控制+给予+信任升级 | [第249-254章] |<br>| ★★★谭氏→楚大鹏 | 花园偶遇倾心→荷包误会&quot;恨不相逢未嫁时&quot; | 新暗恋对象（错位）→情感全面失控 | [第252-253章] |<br>| 谭氏→林锦楼 | 偷窥假山行房→&quot;浑身又燥又烫&quot; | 暗恋加深·失控 | [第254章] |</p>
+<p>| ★★★袁绍仁×香兰 | 帕子兰+莲→&quot;莲娘精魂附香兰&quot;→揽德哥儿→情感质变 | 第四桃花：从&quot;相似&quot;到&quot;认定&quot;；最大一步推进 | [第258章] |<br>| ★★★谭露华×戴蓉 | 簪子引诱→行房→私赁房幽会 | 全书最危险旁线正式开启 | [第257章] |</p>
+<p>| ★★★林锦楼×姜曦云 | 初见好感——姜讨喜奉茶剥果→林&quot;眉眼通挑&quot;&quot;当真讨喜&quot; | 大奶奶线正式启动；姜曦云策略性讨喜but内心不甘 | [第261章] |<br>| 林锦楼×香兰 | 救香兰出局→亲嘴→夜话说莲娘→香兰哭→林&quot;与你有几分像&quot; | 日常温情中藏身世巨雷 | [第264章] |</p>
+<p>| ★★★林锦楼×香兰 | 境界论触发→&quot;说不清道不明的敬意&quot;→&quot;心里软了一块&quot;→&quot;一动也不能动&quot; | 全书感情线最重要质变节点——从占有向真情 | [第271章] |<br>| 林锦楼×姜曦云 | 功利论被偷听→当众敲打→好感降温→&quot;八面玲珑但自作聪明&quot; | 议亲线：好感降温但不取消 | [第269章] |</p>
+<p>| ★★★林锦楼×香兰 | 当场把玉兰坠子给香兰——&quot;你诗写得好，应得的&quot; | 全书最直接公开表态·对香兰才情的认可 | [第276章] |<br>| 林锦楼×姜曦云 | 护膝互赠→给戒指but婉拒敬酒亲密→态度略有疏离 | 婚事七八成定但微妙 | [第275章] |<br>| ★香兰×姜曦云 | 正面摊牌——&quot;野草vs娇兰&quot;/&quot;出身是命&quot;/&quot;能平和相处&quot; | 各自拉开架势 | [第276章] |</p>
+<p>| ★★★★袁绍仁×香兰 | 正式倾诉莲娘之死→&quot;这是头一遭同外人提及&quot;→敬慕油然而生→&quot;袁某信得过姨奶奶人品&quot; | 第四桃花质变——从&quot;相似&quot;到&quot;心有灵犀&quot; | [第279章] |<br>| ★★★林锦楼×香兰 | 坠子&quot;特地留给你&quot;→拒绝搬房&quot;不行不能搬&quot;→摸额头哄她→第一次公开对抗秦氏 | 全书感情线最重要表态节点 | [第278-282章] |<br>| 林锦楼×秦氏 | ★★★第一次正面冲突——&quot;不行不能搬&quot;→&quot;就算搬也不该这样搬&quot; | 感情质变：为香兰对抗母亲 | [第282章] |</p>
+<p>| ★★★林锦楼×香兰 | 掐姜曦云脖子为香兰出头→&quot;该滚的不是你&quot;→拒绝出府请求 | 全书首次当众明确表态·感情线完成 | [第289章] |<br>| 香兰×姜曦云 | 正面摊牌终局：揭穿借刀→逼喝假药（实为滋阴汤）→今生不再见 | 博弈结局 | [第288章] |</p>
+<p>| ★★★★林锦楼×香兰 | 送猫&quot;那双眼跟你像&quot;→香兰哭环颈→&quot;想个知疼着热的人&quot;→感情线最重大质变；但宋柯问题当即引爆 | 感情线真正开始的节点 | [第294章] |<br>| 袁绍仁×香兰 | 偷偷询问宋柯下落→袁告知贵州→&quot;敬重&quot;→第四桃花加深 | [第296章] |</p>
+<p>| ★★★★★林锦楼×香兰 | 香兰杀人颤抖→守护漫夜→撕密信→林掉泪→&quot;只想让你好好的&quot;→林嘱咐田产地契 | 感情线最终确立——香兰选择保护林锦楼而非逃离 | [第300-304章] |<br>| 袁绍仁×香兰 | 危急时刻互相依赖→林嘱托&quot;若她愿意出去由她&quot;→袁承诺 | 第四桃花最深处 | [第301/304章] |</p>
+<p>| ★★★★★林锦楼×香兰 | &quot;敬她就是敬我&quot;公开表态→&quot;你还在厌我&quot;病床→送宋柯备好银票金子 | 全书感情线完成 | [第306-313章] |<br>| ★★★★★宋柯×香兰 | 送别驿站→&quot;喜欢不过把玩，爱是心头珍藏&quot;→香兰&quot;放下罢&quot; | 两世感情正式画句号 | [第313章] |<br>| 袁绍仁×香兰 | &quot;快闭眼时的嘱托&quot;传达→&quot;怕你像莲娘一般&quot;警醒 | 第四桃花深层关怀 | [第310章] |<br>| 宋柯×郑静娴 | 郑静娴崩溃→宋柯&quot;我不会离弃你&quot; | 修复 | [第313章] |</p>
+<p>| ★★★★★林锦楼×香兰 | &quot;抱我一会儿，别松开&quot;→香兰慢慢抱紧→&quot;只觉事事完满&quot; | 感情线最终节点——全书感情确立 | [第314章] |<br>| 林锦楼×林昭祥 | &quot;祖父，我真正爱重她，是入了心的&quot;→老太爷心软 | 向最权威长辈表态 | [第318章] |</p>
+<p>| ★★★★★林昭祥×香兰 | 赐茶香兰——全书最权威长辈最终认可 | 正名已成定局 | [第326章] |</p>
+<p>| ★★★★★林锦楼×香兰 | 祭拜谈心→&quot;你开始敬我了&quot;→&quot;傻妞儿&quot;→老太太兰花首饰（林昭祥授意） | 全书感情线最完美收束 | [第332章] |<br>| 林昭祥×香兰 | 命香兰处置→授意赐首饰→正名最后一步 | [第327/330章] |</p>
+<p>| ★★★★林锦楼×林长政 | &quot;妻子名分&quot;vs&quot;除非我死&quot;→父子最大冲突 | 正名最大阻力爆发 | [第337章] |</p>
+<p>| ★★★★★林锦楼×香兰 | 辞别信崩溃(&quot;书染发现他背对哭&quot;)→重逢倾诉→甲士迎亲→&quot;就对你不行&quot; | 全书感情线最终完成 | [第344-350章] |</p>
+<p>| 香兰×林锦楼 | 林锦楼横抱香兰入剪秋榭，&quot;别饿着我儿子和儿子他娘&quot;，殷勤夹菜喂饭 | 甜·林主动 | ch352 |<br>| 香兰×林锦楼 | <strong>香兰户外主动亲了林锦楼一口</strong>（全书香兰最主动的亲密动作）→林锦楼愣住大喜，忍住不打趣（怕她日后不肯） | 甜·香兰主动·里程碑 | ch353 |<br>| 香兰×林锦楼 | 香兰静看林锦楼喂饭憨态，内心感悟：&quot;此刻是全数倾注，不再战战兢兢&quot;——内心确认胜过一切言语表白 | 甜·内心确认 | ch353 |<br>| 香兰×林锦楼 | <strong>香兰正式向林锦楼袒露前世完整身世</strong>（沈嘉兰来历）→&quot;你说什么我都信&quot;——全书信任最终确认 | 甜·深度袒露 | ch354 |<br>| 香兰×林锦楼 | 天灯仪式，林锦楼吻香兰额角，&quot;翻篇，日后你有我了&quot;→<strong>&quot;我再也别无他求&quot;→&quot;她也别无他求&quot;</strong>，全书CP最终圆满 | 甜★5·终极落点 | ch354 |<br>| 香兰×林锦楼 | 番外：林锦楼一生未纳妾，拒绝美人，理由&quot;过命的交情，心里爱她，舍不得她难受&quot; | 甜·圆满证明·番外 | 番外 |</p>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

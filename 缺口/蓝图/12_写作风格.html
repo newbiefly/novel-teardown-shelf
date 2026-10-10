@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 · 写作风格（定稿） · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>12 · 写作风格（定稿）</h1>
+<blockquote>
+<p>两段式：配置.md 第1步扫描印象 6 条为基础，第3步精读代表章原文（[第1章]楔子·现在线离婚 / [第77章]结局·点题，及 [第19/24/43/53/69章] 高潮）补齐为 8 维度定稿。附可模仿清单 + 崩风格红线。</p>
+</blockquote>
+<hr>
+<h2>一、8 维度定稿</h2>
+<h3>1. 叙事视角</h3>
+<p>第三人称<strong>双视角贴身叙事</strong>，陈昭 / 江恒视角在章内自然切换，常&quot;一段陈昭视角、一段江恒视角&quot;对照同一事件。楔子 [第1章] 即典范：先写陈昭飞抵温哥华的漠然，中段忽然切到助理李明的视角（&quot;他心中苦笑，这是要变天了&quot;），用旁观者的凝重反衬女主的平静。视角切换不加标记，靠人物内心独白自然过渡。</p>
+<h3>2. 情绪处理：克制、留白、去戏剧化</h3>
+<p>最大特征。<strong>大情绪用日常细节和短对话消解</strong>。楔子里撞破出轨、提离婚这样的高冲突场面，全程&quot;平静如水&quot;——陈昭不哭不闹，反而&quot;无比仔细地观察一个女人的妆容&quot;（祖马龙蓝风铃香水、香奈儿塑料耳环、粉调眼影），痛藏在这种反常的细节专注里。离婚对话只有短短几句&quot;你有什么想解释的吗&quot;&quot;没有&quot;&quot;好，那就办手续吧&quot;，情绪的重量全靠留白。</p>
+<h3>3. 生活质感白描（以物写人、以景写情）</h3>
+<p>大量具体生活物象：樱花、圣诞树、越南粉、烂糊面、可乐、床垫、冰淇淋、陈皮白茶、松子、橘猫。景物承载心境——楔子开篇用&quot;樱花盛极将凋&quot;&quot;晦暗的海&quot;暗喻婚姻的凋零；结局 [第77章]用&quot;圣诞树在黑暗中发光&quot;收束团圆。<strong>物象即情感，不直接抒情。</strong></p>
+<h3>4. 对白：短句交锋、藏机锋带潜台词</h3>
+<p>对话短促、机关暗藏。楔子&quot;你不想问什么吗&quot;&quot;不想&quot;——六个字藏尽男主的欲言又止与女主的决绝。结局的斗嘴（&quot;谁是你岳父&quot;&quot;谁是你老婆&quot;）用轻快掩藏深情，潜台词密度高。江恒常用&quot;名不正则言不顺&quot;这类半正经的引用调情，是其&quot;隐富心机 + 少年感&quot;的语言标签。</p>
+<h3>5. 女主内心独白：冷幽默、苦中作乐</h3>
+<p>陈昭的独白清醒、带自嘲。楔子里她一边看情敌妆容一边&quot;想说教一句，大好青春何必如此。那自己呢，又何必如此&quot;——把痛苦转成冷幽默。面对卖圣诞树亏钱&quot;现在想起来我都心疼&quot;、跟橘猫争宠等，都是苦中作乐的活人感。</p>
+<h3>6. 男主内心独白：患得患失、自我克制</h3>
+<p>江恒的独白反复出现&quot;缺口&quot;&quot;安全感&quot;&quot;失去&quot;的焦虑。结局点题句&quot;他的心里始终有个缺口，只有她才能填满&quot;&quot;在失去她的那一刻，他生命中的一切又归于黯淡&quot;是全书情感总闸。他的克制体现在行动上——爱到极致却选择放手（假出轨）。</p>
+<h3>7. 双时间线穿插缝合</h3>
+<p>过去线 / 现在线交织，用<strong>同一物象或场景做跨线缝合</strong>（烂糊面、圣诞树、戒指、番茄藤香水、散步）。结局圣诞树直接勾连过去线&quot;明天就去买&quot;的旧约，完成首尾闭环。切换时间线不靠生硬标注，靠物象触发回忆自然滑入。</p>
+<h3>8. 节奏与结构</h3>
+<p>慢热日常 + 关键节点爆点。日常段落密（吃饭、散步、斗嘴），高潮章少而重（★5每8-10章一个）。反转采用&quot;对读者先揭、对女主后揭&quot;的双层结构（[第35章]→[第53章]），制造长达18章的戏剧反讽窗口。</p>
+<hr>
+<h2>二、可模仿清单（照着写就像《缺口》）</h2>
+<ol>
+<li><strong>高冲突场面反向处理</strong>：越是撕心裂肺的场面（离婚、诀别），越写得平静——让人物去观察无关的细节（对方的妆容、屋里的外卖盒），用&quot;注意力错位&quot;承载痛。</li>
+<li><strong>一句话点情绪，绝不铺陈</strong>：情绪高点用一句短独白收（&quot;那自己呢，又何必如此&quot;），不写大段心理分析。</li>
+<li><strong>物象埋两条线</strong>：任何有分量的物象都让它在过去线和现在线各出现一次，形成呼应。</li>
+<li><strong>对白留白</strong>：关键对话砍到最短，把该说的话咽回去，靠&quot;沉默片刻&quot;&quot;没有放手&quot;这类动作补潜台词。</li>
+<li><strong>女主冷幽默 / 男主患得患失</strong>的独白语气分工要稳定。</li>
+<li><strong>章内自由切视角</strong>，用内心独白做过渡，不加分隔符。</li>
+<li><strong>景物开合章</strong>：用天气、季节、花开花落起收章节，景即情。</li>
+</ol>
+<hr>
+<h2>三、崩风格红线（这样写就不像《缺口》了）</h2>
+<ul>
+<li>❌ <strong>狗血宣泄</strong>：离婚 / 诀别场面写成嚎啕大哭、扇耳光对骂、长篇控诉——本书的痛是&quot;克制&quot;的，一旦外放就崩。</li>
+<li>❌ <strong>直白抒情 / 心理长篇分析</strong>：用大段议论解释人物为什么痛，而不用细节和留白。</li>
+<li>❌ <strong>把江恒写成真渣</strong>：他所有&quot;渣&quot;的行为（出轨、冷漠）都必须有&quot;为她好&quot;的里子，语气始终藏着不舍。写成真无情就崩人设。</li>
+<li>❌ <strong>反转一次说透</strong>：真相若一次性对读者和女主同时揭开，就失去本书最核心的戏剧反讽张力。</li>
+<li>❌ <strong>物象堆砌象征</strong>：意象要克制且有跨线 / 母题功能，不为象征而象征。</li>
+<li>❌ <strong>金句轰炸</strong>：本书金句少而精（&quot;缺口只有她能填满&quot;&quot;放下不是放过他，是放过自己&quot;），不靠密集金句撑场。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

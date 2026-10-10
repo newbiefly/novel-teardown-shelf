@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>08 情绪曲线 ·《花开锦绣》 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc; --purple:#b197fc; --orange:#ffa94d;
+  --e-shuang:#ffd43b; --e-nve:#b197fc; --e-xuan:#74c0fc; --e-ran:#ffa94d; --e-lei:#66d9e8;
+  --e-fan:#ff6b6b; --e-tian:#f783ac; --e-xie:#69db7c; --e-han:#adb5bd; --e-nuan:#e8c97a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--bg);color:#e8e6e3;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
+  background-size:60px 60px; min-height:100vh;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:360px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(201,169,97,0.12),transparent 70%);}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+/* ---------- topbar ---------- */
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 28px;padding-right:200px;background:rgba(8,8,12,0.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12.5px;font-weight:600;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);
+  letter-spacing:1px;font-weight:500;background:rgba(8,8,12,0.75);
+  border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;
+  backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+
+.wrap{max-width:1400px;margin:0 auto;padding:26px 26px 80px;position:relative;z-index:1;}
+
+/* ---------- hero ---------- */
+.hero{text-align:center;padding:16px 0 26px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:2px;}
+.hero .quote{margin:18px auto 0;max-width:860px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+/* ---------- section（书签大卡片） ---------- */
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 28px 24px;margin-bottom:20px;position:relative;overflow:visible;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;font-weight:600;
+  background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;font-weight:700;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.4px;margin:0 0 18px;line-height:1.95;}
+.sec-note b{color:#c9b483;font-weight:600;}
+
+/* ---------- 主图 ---------- */
+.graph-wrap{border-radius:14px;background:rgba(0,0,0,0.24);
+  border:1px solid rgba(255,255,255,0.05);position:relative;padding:4px;}
+#chart{width:100%;height:auto;display:block;}
+#chart text{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;}
+.gl{animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.28;}50%{opacity:.62;}}
+.pt,.pt5{transition:r .12s;}
+.legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.lg.strong{color:#e8c97a;}
+.hint{font-size:11px;color:#6f788c;letter-spacing:.5px;margin:12px 0 0;}
+
+/* ---------- 阶段切片 ---------- */
+.stagebar{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:4px;}
+.stg{border-radius:10px;padding:11px 12px;border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.025);position:relative;overflow:hidden;}
+.stg::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sc);}
+.stg h5{margin:0 0 4px;font-size:11.5px;color:var(--sc);letter-spacing:.6px;font-weight:700;}
+.stg .rn{font-size:10px;color:#6f788c;letter-spacing:.5px;margin-bottom:5px;}
+.stg p{margin:0;font-size:10.5px;color:#8b93a7;line-height:1.7;}
+
+/* ---------- 情绪配比 ---------- */
+.ratio{display:flex;flex-direction:column;gap:9px;}
+.rrow{display:grid;grid-template-columns:56px 1fr 92px;align-items:center;gap:12px;}
+.rname{font-size:12px;letter-spacing:1px;text-align:right;font-weight:600;}
+.rtrack{height:15px;border-radius:4px;background:rgba(255,255,255,0.035);overflow:hidden;}
+.rfill{height:100%;border-radius:4px;transform-origin:left center;
+  animation:grow .8s cubic-bezier(.2,.7,.3,1) both;}
+@keyframes grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+.rval{font-size:11px;color:#8b93a7;letter-spacing:.3px;}
+
+/* ---------- ★5 Top 榜 ---------- */
+.tops{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
+.top{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:13px 15px;position:relative;transition:.18s;}
+.top:hover{background:rgba(201,169,97,0.07);border-color:rgba(201,169,97,0.3);transform:translateY(-2px);}
+.top .rank{position:absolute;top:11px;right:13px;font-size:11px;color:#8b93a7;letter-spacing:1px;font-weight:700;}
+.top .rk5{color:#0b0b10;background:linear-gradient(120deg,#fff2c9,#e8c97a);border-radius:999px;
+  padding:1px 8px;font-size:10px;box-shadow:0 0 10px rgba(232,201,122,.55);font-weight:700;}
+.top .ch{font-size:13px;font-weight:700;color:#e8c97a;letter-spacing:.5px;}
+.top .chm{font-size:11.5px;margin-left:6px;}
+.top .d{font-size:11.5px;color:#b6bdd0;line-height:1.85;margin-top:8px;padding-right:26px;}
+.chip{display:inline-block;font-size:10px;padding:0 6px;border-radius:999px;
+  border:1px solid currentColor;line-height:16px;}
+
+/* ---------- 节奏规律卡片 ---------- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.acc{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;overflow:hidden;}
+.acc-h{padding:13px 16px;font-size:12.5px;color:#e8e6e3;letter-spacing:.6px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;transition:.18s;gap:10px;}
+.acc-h:hover{background:rgba(201,169,97,0.06);}
+.acc-h .arw{color:var(--gold);font-size:11px;transition:transform .22s;flex:0 0 auto;}
+.acc.open .acc-h .arw{transform:rotate(90deg);}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .34s ease;}
+.acc.open .acc-b{max-height:900px;}
+.acc-b-in{padding:12px 16px 16px;font-size:11.8px;line-height:2;color:#b6bdd0;
+  border-top:1px dashed rgba(255,255,255,0.08);}
+.acc-b-in b{color:#e8c97a;font-weight:600;}
+.acc-b-in .ch{color:var(--gold);font-size:11px;white-space:nowrap;}
+.acc-b-in .ic{color:#7d869c;}
+
+/* ---------- tooltip ---------- */
+#tip{position:fixed;z-index:999;display:none;max-width:390px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.3);border-radius:12px;
+  padding:13px 15px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+.tip-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.tip-ch{font-size:17px;font-weight:700;color:#e8c97a;letter-spacing:.5px;}
+.tip-stage{font-size:11px;color:#8b93a7;letter-spacing:.4px;}
+.tag-star{display:inline-block;font-size:10px;padding:1px 7px;border-radius:999px;
+  color:#0b0b10;font-weight:700;letter-spacing:.5px;background:var(--gold2);}
+.tag-star.s5{background:linear-gradient(120deg,#fff2c9,#e8c97a);box-shadow:0 0 12px rgba(232,201,122,.7);}
+.tip-mood{font-size:12.5px;margin-top:9px;letter-spacing:.4px;}
+.tip-q{font-size:12px;line-height:1.9;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+
+@media (max-width:1100px){ .cards{grid-template-columns:1fr;} }
+@media (max-width:760px){
+  .wrap{padding:18px 12px 60px;}
+  .topbar{padding:11px 16px;padding-right:150px;}
+  .author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}
+  .hero h1{font-size:23px;letter-spacing:3px;}
+  .hero .quote{font-size:12px;padding:8px 12px;}
+  .section{padding:30px 14px 20px;}
+  .stagebar{grid-template-columns:repeat(2,1fr);}
+  .rrow{grid-template-columns:44px 1fr 74px;gap:8px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">情绪曲线</span>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>情绪曲线</h1>
+    <div class="sub">《花开锦绣》· 吱吱 · 314 章 · 约 86.2 万字 · 古代言情 · 世家宅斗 · 复仇成长</div>
+    <div class="quote">虐起 → 暖中 → 爽收：前 1/5 寒·悬·虐高压到底，中段暖·谐·甜回血，后 1/3 重新加寒，末章以「寒★5／反转★5／爽★4」三色叠加收束。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">主图</div>
+    <h3 class="sec-title">全 314 章情绪强度全景 · 折线＝段聚合峰值，散点＝★4–5 名场面</h3>
+    <p class="sec-note">横轴为本书第 <b>1–314 章</b>，纵轴情绪强度 <b>★1–★5</b>。金色折线连接 <b>32 段聚合</b>的强度峰值（段内最高强度）；图上 <b>160 个散点</b>为全部 <b>★4–★5 名场面</b>逐章落点，颜色＝该章主导情绪；<b>★5 顶级点</b>加发光脉冲与外环强调。底纹为六阶段情绪切片。悬停任意位置 → 查看该章的情绪类型、强度与名场面一句。</p>
+    <div class="graph-wrap">
+      <svg id="chart" viewBox="0 0 1360 620" preserveAspectRatio="xMidYMid meet" style="width:100%"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+    <p class="hint">提示：把鼠标移到图上任意一章的圆点附近，即可弹出「章节 + 名场面 + 情绪类型 + ★强度 + 一句话说明」；★5 点带金色光晕。</p>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">阶段切片</div>
+    <h3 class="sec-title">六个情绪阶段的基调漂移（虐起 → 暖中 → 爽收）</h3>
+    <p class="sec-note">阶段边界依数据源有效章对齐：① 华阴风波 1–22 ｜ ② 亡命西行 23–61 ｜ ③ 西安府扎根 64–100 ｜ ④ 京都成婚 101–155 ｜ ⑤ 京都·俞家恩怨 156–275 ｜ ⑥ 复仇·坍塌 276–314。全书有效章卡 <b>310 张</b>，第 23–33 章缺失数据已补齐并纳入统计。</p>
+    <div class="stagebar" id="stagebar"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">情绪配比</div>
+    <h3 class="sec-title">十二种情绪的出现频次（含主次基调，逐次计数）</h3>
+    <p class="sec-note">全书有效章卡 <b>310 张</b>（合并章计 1）。主力三元是 <b>暖／悬／寒</b>（合计 315 次，占绝对多数）；<b>虐、燃、爽、反转、泪</b>属「低频高强」型——出现少，却几乎每次都是 ★4–5 名场面。</p>
+    <div class="ratio" id="ratio"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">高潮 Top 榜</div>
+    <h3 class="sec-title">★5 顶级名场面榜（全书共 23 章）</h3>
+    <p class="sec-note">★5 专属「身份／命运级转折」：受诬灌药、解家灭门、城隍庙护主、群匪独当、误闻凶讯、定情许诺、旧案残指、提亲受辱、成婚蜜月、有孕、父女情断、生死相托、入阁反转、云雨缱绻、阖家静好、俞家坍塌。按章序排列。</p>
+    <div class="tops" id="tops"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">节奏规律</div>
+    <h3 class="sec-title">这本书是怎么排情绪的</h3>
+    <p class="sec-note">点击卡片展开——★5 分布与间隔、虐—暖—爽三拍循环、冷暖对照、双线并置、配比红线与 ★5 用法速查。</p>
+    <div class="cards" id="accWrap"></div>
+  </div>
+
+  <div class="foot">《花开锦绣》拆解 · 蓝图 08 · 情绪曲线 · 覆盖第 1–314 章 · 32 段聚合 / 160 名场面 / 23 个 ★5</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============================ 情绪字典（配色） ============================ */
+var EMO = {
+  '爽':'#ffd43b','虐':'#b197fc','悬':'#74c0fc','燃':'#ffa94d','泪':'#66d9e8',
+  '反转':'#ff6b6b','甜':'#f783ac','谐':'#69db7c','寒':'#adb5bd','暖':'#e8c97a',
+  '惊':'#868e96','悯':'#868e96'
+};
+var EMO_ORDER = ['爽','虐','悬','燃','泪','反转','甜','谐','寒','暖'];
+
+/* ============================ 六阶段 ============================ */
+var STAGES = [
+  {id:1, from:1,   to:22,  name:'① 华阴风波',    color:'#74c0fc', mood:'寒 · 悬 · 虐',   note:'被诬、幽禁、灌药、被迫出逃——压抑到底'},
+  {id:2, from:23,  to:61,  name:'② 亡命西行',    color:'#e8c97a', mood:'暖 · 悬 · 燃',   note:'解家灭门、李家凹休整、东安村恶战、临春镇群匪——由寒转暖'},
+  {id:3, from:64,  to:100, name:'③ 西安府扎根',   color:'#69db7c', mood:'暖 · 谐 · 悬',   note:'落脚谋生、斗恶霸——暖谐为主，暗藏杀机'},
+  {id:4, from:101, to:155, name:'④ 京都成婚',    color:'#f783ac', mood:'甜 · 暖 · 虐',   note:'冰释定情、成婚蜜月（★5 密集），夹旧案之虐'},
+  {id:5, from:156, to:275, name:'⑤ 京都·俞家恩怨', color:'#b197fc', mood:'悬 · 暖 · 寒',   note:'冷热交替、多线并进，俞家由盛转衰'},
+  {id:6, from:276, to:314, name:'⑥ 复仇·坍塌',    color:'#adb5bd', mood:'寒 · 反转 · 爽', note:'静好暗衬、俞家内乱到坍塌——冷收'}
+];
+function stageOf(c){ for(var i=0;i<STAGES.length;i++){ if(c>=STAGES[i].from && c<=STAGES[i].to) return STAGES[i]; } return null; }
+
+/* ============================ 32 段聚合（§二 全书情绪走势） ============================
+   [起章, 止章, 强度峰值, 段首主导情绪, 节拍标签]                                    */
+var SEG = [
+  [1,10,5,'寒','开局压迫：被诬·幽禁'],
+  [11,20,5,'寒','生死线·托付出逃'],
+  [21,30,5,'暖','亡命西行·李家凹休整'],
+  [31,40,5,'悬','城隍庙护主·临春镇群匪·改约同行'],
+  [41,50,4,'暖','落脚谋生·离别蓄势'],
+  [51,60,4,'暖','情愫渐生·中秋定意'],
+  [61,70,4,'暖','投军抉择·西行张掖'],
+  [71,80,4,'暖','张掖立足·斗嘴日常'],
+  [81,90,5,'暖','王夫人线·冯大虎登场'],
+  [91,100,4,'爽','冯案收束·暗杀落幕'],
+  [101,110,5,'甜','碾伯所醋斗·冰释定情'],
+  [111,120,4,'暖','相守·东行两地别'],
+  [121,130,5,'暖','旧案复现·父女决裂'],
+  [131,140,5,'悬','京变·重逢·提亲受辱'],
+  [141,150,5,'甜','尊严反击·成婚新婚'],
+  [151,160,5,'暖','蜜月·有孕喜讯'],
+  [161,170,5,'悬','左俊杰现身·丧母'],
+  [171,180,4,'悬','审讯俞家·朝堂反击'],
+  [181,190,4,'暖','俞赵对垒·侯府绝交'],
+  [191,200,4,'暖','生子·俞家纳妾·大堂嫂死'],
+  [201,210,4,'暖','傅家疏远·宣府大捷'],
+  [211,220,5,'爽','地位逆转·赵凌得势'],
+  [221,230,4,'暖','返长安·姊妹团聚'],
+  [231,240,4,'暖','迁坟·升迁·俞家追查'],
+  [241,250,5,'暖','起复角力·入阁变局'],
+  [251,260,4,'寒','三家恩怨外扩·真相坐实'],
+  [261,270,4,'悬','郝剑锋牵线·华阴分家'],
+  [271,280,5,'悬','寿诞·再别·献策'],
+  [281,290,4,'暖','温馨家风·小儿女'],
+  [291,300,4,'暖','教子日常·外室疑云起'],
+  [301,310,4,'寒','俞家内乱·状告前夜'],
+  [311,314,5,'悬','静好·状告·坍塌']
+];
+
+/* ============================ 160 个 ★4–★5 名场面（§三 逐章明细） ============================
+   [章号, 主导情绪(取最高★), 强度★, 一句话说明]                                            */
+var SCENES = [
+  [1,'悬',4,'扒开树叶陡然冒出一张男子脸，脸对脸、鼻尖对鼻尖；被掐颈威胁「拧断脖子」'],
+  [4,'虐',4,'母亲扬手将肚兜扔向傅庭筠；傅庭筠当众跪地自辩赌咒「天打五雷轰」'],
+  [5,'寒',4,'陈妈妈皮笑肉不笑带众婆子押走碧波家的'],
+  [6,'寒',4,'陈妈妈「苍蝇不叮无缝的蛋」；傅庭筠拍案决意送信'],
+  [7,'寒',5,'傅家回绝接她回府；夜半脖颈骤被捏住「别做声」'],
+  [8,'悬',4,'赵凌点倒绿萼，月下如燕翻窗而去'],
+  [9,'寒',5,'傅庭筠「成王败寇」冷对陈妈妈、「上下尊卑总是要守的」'],
+  [10,'悬',4,'赵凌藏身屋梁避陈妈妈；月下议定「交换」之约'],
+  [11,'悬',4,'赵凌道破「傅家有人通奸，还被抓了个现行」'],
+  [12,'悬',4,'傅庭筠就着一盏灯画傅家布局图，喊出「我，我是被冤枉的！」'],
+  [13,'悬',4,'果慧师傅慈善面孔冷了下来，道破「傅家是要借着我们庵堂行事呢！」'],
+  [14,'悬',5,'青花海碗里被染成黑色的药汁；傅庭筠摔碗、咬陈妈妈、爬窗尖叫「救命」'],
+  [15,'悬',4,'她被灌药时反复急呼「你怎么还不来」；赵凌蹲下平视「你还认得我吗？」'],
+  [16,'寒',5,'银镯一点油处刻玉兰花、拧开藏着两张千两银票；「我母亲让我再也别回傅家了？」'],
+  [17,'悬',4,'「好像一副被撕碎了的图…」；阿森「阿森的森字，就是三个木字」'],
+  [21,'暖',4,'傅庭筠省食水「你吃了喝了，就当是我吃了喝了一样」；阿森「爷说了，酉时才能吃东西」'],
+  [22,'悬',4,'阿森持齐眉棍独战七八饥民、「生龙活虎」；傅庭筠「三桃杀三士」引饥民反抢推车'],
+  [23,'寒',4,'正午烈日下横陈的母子尸体；少年报「解家满门已被流民屠杀殆尽了」'],
+  [24,'泪',5,'傅庭筠靠车痛哭、历数舅母表嫂旧事；投亲解家满门被屠，前路顿成死局'],
+  [28,'悬',4,'赵九爷把傅庭筠倒扣进破水缸藏身、迎战寻仇的冯老四；齐眉棍被削断'],
+  [29,'燃',4,'缸内听声推演战局；出缸见无头尸呕吐；智破冯四爷围杀、救回阿森'],
+  [32,'虐',4,'掀开衣襟见血透布带；赵九爷肩伤昏迷，临春镇城隍庙外四名神秘客逼近'],
+  [33,'燃',5,'断指、刺腿、匕首相颈；匪徒夜闯城隍庙，傅庭筠持匕首重伤来犯者、力竭置刃于颈'],
+  [34,'燃',5,'赵凌拄齐眉棍「渊渟岳峙」立于殿中独当群匪'],
+  [35,'悬',4,'傅庭筠瞥见明黄袜带、冷汗涔涔的瞬间'],
+  [36,'悬',4,'傅庭筠「十六爷是看赵九爷身手好，想收拢他」的瞬时了然'],
+  [39,'暖',4,'傅庭筠「我宁愿死，我宁愿先死！」；赵凌「…躲到我床下去」的玩笑回护'],
+  [40,'悬',4,'赵凌指窗析势、一语道破陌毅是「行军布阵的好手」'],
+  [41,'暖',4,'郑三娘把剩下的吃食塞到后院旮旯角里，「留着明天吃！」'],
+  [42,'谐',4,'陌毅称「弟妹」、赵凌窘迫飞瞥'],
+  [44,'燃',4,'赵凌「我们今天晚上就走……希望陌兄能和我们共进退」'],
+  [47,'悬',4,'陌毅屋中杀机密谈「宁可杀错，不可放过」'],
+  [48,'燃',4,'二人齐道「要走我们一起走，要不，我们都不走」；赵凌「我倒要看看，陌毅能把我怎样」'],
+  [49,'虐',4,'赵凌看傅庭筠「如风中玉兰，摇摇欲坠」而心志松动；「送君千里」之伤'],
+  [50,'暖',4,'傅庭筠赠银票、赵凌「就当是让她安心吧」'],
+  [52,'悬',4,'傅庭筠看破「化暗为明」落泪；陌毅拍碎茶几「必须阻杀」'],
+  [53,'燃',4,'傅庭筠以「文谏死」典故折服杨玉成'],
+  [54,'暖',4,'阿森偷帖被赵凌抓个正着；赵凌「突然很想看见」她的表情'],
+  [56,'燃',4,'月下林迟圆月弯刀劈落，赵凌「岳停渊峙」般举剑相迎，箭光如流星、剑光如白练'],
+  [57,'暖',4,'傅庭筠当众劝酒，赵凌一句「你们喝酒，我喝茶好了」替她解围'],
+  [58,'甜',4,'月光下二人隔小几分茶，赵凌一句「这样也挺好啊」'],
+  [64,'悬',4,'金元宝层层拆解陌毅「恩威并施」的算计'],
+  [66,'暖',4,'赵凌忆碧云庵一见，「竟然生出丝可惜来…找了个有树荫的地方把她放下」'],
+  [67,'甜',4,'傅庭筠「那我就自己去！」昂头从赵凌身边走过'],
+  [74,'虐',4,'傅庭筠抱枕无声痛哭、冷水敷眼遮泪'],
+  [76,'暖',4,'傅庭筠倚门而泣、「啪」地关门后靠门含笑带泪'],
+  [83,'悬',4,'大佛寺外浪荡子尾随、冯大虎勒马不紧不慢一路跟在车后'],
+  [85,'虐',5,'傅庭筠掩面大哭「他连冯四都杀了……他怎么会死」、生出「嫦娥夜盗灵药般的后悔」'],
+  [90,'悬',4,'冯大虎扑床遭噬、惨叫「我是冯大虎……我姐夫是甘肃副总兵刘大人」'],
+  [95,'暖',4,'黎娘一句「九爷有信了」，傅庭筠「喜不自胜地站了起来」'],
+  [99,'爽',4,'傅庭筠以「既信兰香、何就烂泥」反讽陌毅，陌毅脸色一红'],
+  [100,'悬',4,'戚太太报「黑衣人射杀冯大虎」，傅庭筠「全身的血液都往头顶上涌去」'],
+  [102,'虐',4,'傅庭筠翻遍内室后当众一句「你走你的阳关道，我走我的独木桥」'],
+  [103,'虐',4,'夕阳河畔傅庭筠濯足、平静说出「我害怕我自己会管不住我自己」'],
+  [104,'甜',4,'二人双双落水、赵凌湿衣辩解「我什么也没有看见」，傅庭筠躲进马车更衣'],
+  [105,'甜',5,'赵凌下炕正色许诺「愿得一人心，白首不相离……我们之间，不会有其他的人」'],
+  [106,'甜',4,'赵凌以屈子典猜生辰、「我改个生辰八字」的玩笑'],
+  [110,'寒',4,'赵凌平静道出母亲「腊月初九自缢于赵氏祠堂门外」（至亲相残之冷）'],
+  [111,'甜',4,'苏木河畔兔子灯、「那怎么可能？……我会让着你的」'],
+  [114,'悬',4,'萧氏车内一句「能让冯大虎不惜以身犯险…的女子有多漂亮」；傅庭筠大义凛然反诘'],
+  [116,'悬',4,'大雨中傅庭筠独立滴水檐下问「这雨什么时候才能停」；叶掌柜临别拱手立誓'],
+  [117,'甜',4,'赵凌背「母亲被诬」往事时声音苦涩；相拥「一辈子都不后悔」'],
+  [121,'泪',4,'雪地中雨微爬向傅庭筠「小姐……是我，是我害了您」，伏地大哭'],
+  [122,'虐',5,'傅庭筠厉喝「把手伸出来！」，见雨微残指后深深吸气、闭目'],
+  [123,'虐',5,'傅庭筠「觉得全身的力气都像被抽走了似的」；「杀人的，是赵凌吗？」'],
+  [124,'寒',4,'微雨供出墨香、傅庭筠立誓「好，我们去京都！」'],
+  [127,'寒',4,'傅庭筠自陈「我是傅庭筠」、茶盅打翻；嫂嫂塞私房钱赶人'],
+  [128,'虐',4,'追忆折柳剪草、「我是傅庭筠」；父亲一记耳光；「在家从夫，出嫁从夫」的控诉'],
+  [129,'虐',4,'傅庭筠院中高呼「娘，我是荃蕙」；被推出大门；公公威胁休儿媳'],
+  [132,'悬',4,'端午四喜胡同退礼节、傅庭筠冷笑「他既然无情也休怪我不孝」；翻地理志眼前一黑'],
+  [133,'悬',4,'叶三掌柜参破「穆王反了」；京都被围、吴家携箱逃难；傅庭筠为赵凌念经'],
+  [134,'悬',4,'叶三掌柜讲述废长立幼…；李惠开正阳门迎穆王兵入城'],
+  [135,'甜',4,'紫藤架下赵凌一声「阿筠」、两人重逢紧紧相拥'],
+  [136,'甜',4,'赵凌「囡囡，你既然跟了我，我怎么也不会让你孤苦伶仃一个人的！」'],
+  [138,'寒',4,'傅庭筠惊觉「她是他的女儿，他却任由她被自己的胞兄这样辱没！」'],
+  [139,'暖',4,'月夜赵凌坐凉床吃井水镇西瓜、劝傅庭筠「要不，明天我们去看看伯母吧？」'],
+  [140,'虐',5,'赵凌跪地朗声提亲、傅五老爷一巴掌扇在其脸；傅庭筠跪拜辞母'],
+  [141,'燃',4,'赵凌拔刀钉入青砖、傅庭筠昂首走过父兄之前'],
+  [142,'暖',4,'傅夫人「那俞家大公子再好，也是旁人，赵大人再不好，也是那个…白头偕老之人」'],
+  [145,'暖',4,'雨微「我不见到左俊杰，死不瞑目！」的自白；傅夫人「荃蕙…用不着留下来吃傅家的饭」'],
+  [146,'甜',4,'盖头挑开，傅庭筠望见「双目如晨星般明亮」的赵凌、「心神仿佛都被攫去」'],
+  [148,'甜',5,'赵凌烛下端详傅庭筠、又见她身上牙印而悔愧'],
+  [149,'甜',4,'赵凌舔牙印处问「还痛不痛」、愧疚「囡囡，我再也不会如此了」'],
+  [150,'甜',5,'傅庭筠「你去哪里，我就去哪里」与赵凌「那我们就回长安定居」的对答'],
+  [151,'甜',5,'赵凌「我疼自己的老婆，有什么可心虚的？」——傅庭筠哭笑不得'],
+  [152,'甜',5,'傅庭筠赠桃木簪、赵凌「你给我簪上」；归途赵凌半蹲「来，我背你」'],
+  [153,'暖',4,'赵凌背傅庭筠、「九爷，我们要好好过一辈子」；夫妻对弈'],
+  [157,'甜',5,'赵凌握住傅庭筠的手「阿筠，你怀了身孕，我们，我们要做父母了……」'],
+  [158,'暖',4,'傅夫人「你这是随了你祖母！你祖母生了六子三女，没一个折腾过你祖母」'],
+  [161,'甜',4,'傅庭筠引《女训》答先生、「男子汉大丈夫行事，怎能受掣于深宅内院的妇人」'],
+  [162,'悬',4,'山门外傅庭筠认出左俊杰，「快，快帮我把那人抓起来……他偷了我们的东西」'],
+  [163,'寒',5,'傅庭筠改称「老爷」、雨微含泪；傅五老爷「这件事，我会来处置的…」'],
+  [166,'泪',4,'修竹家的跪在帘前「姑爷，姑奶奶，昨天晚上戌初二刻，夫人没有了！」'],
+  [167,'泪',4,'广平街设祭坛，傅庭筠跪青石、灵柩渐近；「两情若是长久时，又岂在朝朝暮暮」'],
+  [168,'暖',4,'傅庭筠抱呦呦指外祖母牌位「这是你外祖母…她却一心惦记着你」'],
+  [175,'爽',4,'傅庭筠「我们一家是有从龙之功的三品武官…不知道顺天府尹…」；金元宝借皇上敲打'],
+  [178,'甜',4,'赵凌归家、傅庭筠「泪水模糊了视线」；赵凌抚摸熟睡之女'],
+  [179,'寒',4,'傅大老爷「老五当年点中会元的那篇时文，是柳叔同的练笔之作」；傅庭筠跌坐'],
+  [180,'甜',4,'赵凌贴脸低语「囡囡，我心里好快活……回家看见你抱着呦呦…」'],
+  [182,'反转',4,'赵凌箭步挡妻、捏住傅五老爷手腕「是来做客的，却不是来受辱的」'],
+  [183,'反转',4,'傅庭筠拍案而起、逐条揭穿「接受不了科场作弊，却拜了柳叔同为师」'],
+  [184,'燃',4,'赵凌临出门一句「左都御史叶碧」的旧怨，反将俞阁老一军'],
+  [186,'暖',4,'赵凌与傅庭筠闺中调笑（凑脸讨亲「只亲一下怎么行」）；阿森与杨玉成斗嘴'],
+  [187,'寒',4,'范氏双膝跪在佛堂团圃上问菩萨「难道这是天意？」'],
+  [188,'寒',4,'傅庭筠悟「颖川侯借着呦呦生辰送厚礼，是答谢赵凌换防…同时也是和赵凌绝交」'],
+  [189,'暖',4,'范氏「这天下哪有十全十美的事……否则，连菩萨都要妒忌我的福气了！」'],
+  [191,'暖',4,'傅庭筠跳上马车、「伏在迎枕上无声地哭了起来」'],
+  [195,'暖',4,'呦呦「他怎么这么大？他是哪棵树上结的果子？」满屋哄堂；俞夫人「有儿有女…」'],
+  [196,'寒',4,'雨微一句「大少奶奶没了！」；大堂嫂吊死祠堂横梁'],
+  [199,'爽',4,'傅庭筠端茶坐对、一句「你是我什么人啊？」，逼得生父哑口无言'],
+  [203,'爽',4,'傅庭筠虚报「一品红一百两」，逼俞家车夫来回搬花树'],
+  [204,'寒',4,'吴姨娘蜷被回忆入府受冷待、「像中元节糊的纸人」'],
+  [207,'悬',4,'傅庭筠读信「脸色大变」、闻「宣同打起来了」夜不成寐'],
+  [208,'反转',4,'俞阁老报「赵凌领榆林卫五千兵马俘获三万鞑子……立下了头功」'],
+  [209,'寒',4,'俞敬修献策「请人替冯老四担保……两案齐发」'],
+  [210,'甜',4,'陌夫人报「荃蕙大捷！……鞑子要求议和同意每年上贡」'],
+  [211,'爽',4,'潭柘寺殿门傅庭筠对俞夫人「视而不见、擦身而过」；正和大师独召傅庭筠'],
+  [212,'暖',4,'傅庭筠直问阿森「你是不是喜欢王家大小姐」，教其「是就是是……不要后悔」'],
+  [214,'甜',4,'赵凌晨起俯身吻傅庭筠额头、「等我回来用晚膳」'],
+  [216,'甜',5,'赵凌哽咽「囡囡……谢谢你……我会一辈子对你好的……我们会白头偕老」'],
+  [219,'悬',4,'吴大人点破「没有赵凌的示意，叶三掌柜敢把这件事告诉赵家的人吗」'],
+  [223,'暖',4,'吕老爷城门口见呦呦、曦哥儿热泪盈眶「…这可真是好人有好报」'],
+  [224,'暖',4,'依桐哽咽跪住傅庭筠面前「我以为再也见不到太太了」'],
+  [225,'寒',4,'傅庭筠顿悟「孙女固然重要……可比起儿子来，这些都不算什么」'],
+  [228,'暖',4,'傅庭筠报出五姐爱吃的清蒸鱼、七姐爱吃的酱肘子，堂姐「眼中却有水光闪烁」'],
+  [230,'谐',4,'呦呦与春饼「凤仙花／兰花」之辩、呦呦「我就喜欢凤仙花」扬颔而怒'],
+  [231,'暖',4,'赵凌披麻衣、消沉清瘦地迎上前喊「阿筠！」，夫妻正东门重逢'],
+  [235,'悬',4,'傅庭筠「难道他不是寻常的升迁而是要他去打仗……」的惊醒，坐立不宁'],
+  [236,'暖',4,'傅庭筠搂腰痛哭又撒娇唤「九爷」、抚腹笑谈胎动'],
+  [239,'寒',4,'俞夫人「赵太太？哪个赵太太？」追问后「平时稳若磐石的手竟然微微有些颤抖」'],
+  [243,'燃',4,'三姐夫「若论功行赏，他又是头一份……正是君子之风、国士之姿」'],
+  [244,'悬',4,'先生目光「锐利如箭」、冷冷道「难道赵太太有不同的见地？」'],
+  [245,'暖',4,'傅庭筠长篇陈情（城隍庙旧事＋汉文帝周勃之典）打动先生'],
+  [246,'反转',5,'七姐夫「沈阁老致仕，莫阁老…被革职查办，皇上点了钱东林、陈丹亭入阁……」'],
+  [248,'暖',4,'呦呦揭「二叔读书读错，脸比我身上穿的小袄还红」，母女拉钩'],
+  [252,'悬',4,'吴姨娘脱口「俞家和赵太太结仇…」，满室失声'],
+  [253,'寒',4,'傅庭筠「傅五老爷，我不认识您。我的父亲，早就死了……」当众斥父'],
+  [255,'悬',4,'吴大人「赵太太果然就是傅家的九小姐！」——三家旧怨关键身份坐实'],
+  [262,'悬',4,'吴姨娘向傅庭筠报信后「那笑容，如五月的好春光，灿烂而明亮」'],
+  [273,'甜',5,'赵凌咬耳朵逼问「想不想我」、傅庭筠柔声答「想」，眼波如春水'],
+  [274,'泪',4,'傅庭筠抚赵凌背疤垂泪逼问；赵凌「他是怎么待你的，我就要怎么待他」'],
+  [275,'暖',5,'旭哥儿闪电抓翻花生米、又屡抓赵凌玉佩流苏；曦哥儿「爹爹好可怜，都没有肉吃？」'],
+  [281,'暖',4,'赵凌肩顶呦呦、一家有说有笑，与俞敬修孤身怔立对照'],
+  [282,'暖',4,'傅庭筠揽赵凌腰、约「五年之后回到我和孩子身边，我们再也不分开」'],
+  [284,'悬',4,'雨夜费氏用力拍正屋大门、一把推开墨篆闯入的果决'],
+  [289,'暖',4,'春饼借「要用午膳」巧救呦呦免跪'],
+  [296,'悬',4,'傅庭筠与雨微推演「…这件事只怕还有文章！」'],
+  [298,'寒',4,'俞夫人「我自己的儿子我还不知道，他就是个狗肉，上不了正席…」'],
+  [300,'悬',4,'灶上婆子躲墙根窃听闵小姐与郭公子对质'],
+  [301,'悬',4,'安心「郭公子出事了……那妈妈就卖通了县里的一个闲帮…把那郭公子给打死了」'],
+  [303,'寒',4,'范氏昏倒醒来独坐，忆丈夫昔日柔情今尽付闵氏，「就像喝了半瓶醋似的」'],
+  [304,'寒',4,'范氏门外一句一句听婆婆骂自己「蠢货」「扶不上墙的东西」「丢人现眼」'],
+  [305,'寒',4,'俞敬修一句「把人卖到娼户去」，满屋震惊、吴姨娘瘫倒在地'],
+  [308,'寒',4,'俞夫人掌掴俞敬修并痛斥「当初我让你娶傅庭筠……现在人家旺夫又旺丁」'],
+  [309,'暖',4,'吴姑娘跪在傅庭筠脚下、哭诉自己「亲手害死了孩子」、求一句原谅'],
+  [310,'甜',4,'赵凌「囡囡」低唤、亲额、愧称「是我不好」，傅庭筠靠其肩闭目微笑'],
+  [311,'暖',4,'赵凌午睡、四子女横七竖八睡其周；傅庭筠「岁月安稳又宁静」'],
+  [312,'悬',4,'俞阁老书房昏倒、众仆潮水般涌去、独剩范氏孤身'],
+  [313,'寒',4,'俞夫人热茶砸范氏「你嚎什么嚎？德圃还没死呢」；俞槐安报「大爷被大理寺的人给带走了」'],
+  [314,'寒',5,'俞阁老「原来他的杀手锏在这里」、面如灰死；「至此，南京丰乐坊俞家开始没落」']
+];
+
+/* ============================ 情绪配比（§四，逐次计数） ============================ */
+var RATIO = [
+  ['暖',122],['悬',117],['寒',76],['谐',45],['甜',41],['虐',29],
+  ['燃',26],['泪',22],['爽',17],['反转',8],['惊',3],['悯',1]
+];
+
+/* ============================ 节奏规律卡片（§五 / §六） ============================ */
+var ACC = [
+  {h:'① 小高潮密度：每 2 章一个强节点，每 13.5 章一个 ★5', open:true, b:
+    '★4+ 共 <b>160 章</b> / 310 张有效章卡 ≈ <b>每 2 章一个强情绪节点</b>；★5 顶级名场面 <b>23 处</b> ≈ <b>每 13.5 章一个</b>。' +
+    '<br><span class="ic">换算到 86 万字体量，读者几乎每隔一章就能拿到一次情绪回报，而最高级别的「命运级」冲击平均十三四章一次。</span>'},
+  {h:'② ★5 分布与间隔：开篇连爆 + 三段长空档 + 结尾连爆', b:
+    '· <b>开篇连爆</b>：<span class="ch">[第7章]</span><span class="ch">[第9章]</span><span class="ch">[第14章]</span><span class="ch">[第16章]</span><span class="ch">[第24章]</span><span class="ch">[第33章]</span>——开篇 33 章内六次 ★5，虐起到底；<br>' +
+    '· <b>三处长空档</b>：<span class="ch">[第34章]</span>→<span class="ch">[第85章]</span>（51 章，西行—张掖立足期，靠暖/谐维系）、<span class="ch">[第163章]</span>→<span class="ch">[第216章]</span>（53 章，俞家恩怨铺垫期）、<span class="ch">[第275章]</span>→<span class="ch">[第314章]</span>（39 章，结局前静好蓄势）；<br>' +
+    '· <b>结尾连爆</b>：<span class="ch">[第273章]</span><span class="ch">[第275章]</span> 与 <span class="ch">[第314章]</span>（爽/反转收束）。'},
+  {h:'③「虐—暖—爽」循环节拍：8–12 章一小乐章', b:
+    '每约 <b>8–12 章</b>为一「小乐章」，走「<b>危机</b>（悬/寒/虐）→ <b>化解相守</b>（暖/甜/谐）→ <b>阶段性小胜</b>（爽）」。<br>' +
+    '典型样本：<span class="ch">[第83章]</span> 骚扰(悬★4) → <span class="ch">[第85章]</span> 噩耗(虐★5) → <span class="ch">[第87章]</span> 躲避(燃/暖) → <span class="ch">[第95章]</span> 音讯(暖★4) → <span class="ch">[第99章]</span> 告状(爽★4)，五章完成「危—虐—转—暖—爽」。' +
+    '<br><span class="ic">续写纪律：一段危机不要拖过 3 章不给回报，暖甜也不要连过 6–8 章不给钩子。</span>'},
+  {h:'④ 冷热对照：一条线收束即切另一条反差线', b:
+    '· <span class="ch">[第134章]</span> 惊变(悬★4) 紧接 <span class="ch">[第135章]</span> 重逢(甜★4)；<br>' +
+    '· <span class="ch">[第195章]</span> 得子(暖★4) 末段转俞家之寒；<br>' +
+    '· <span class="ch">[第310–311章]</span> 阖家静好(甜★4/暖★4) 暗衬 <span class="ch">[第312章]</span> 状告(悬★4)。' +
+    '<br><span class="ic">落差越大，冲击越强——把「最暖」与「最寒」压到相邻章，是本书高潮段的通用配方。</span>'},
+  {h:'⑤ 情绪双线并置：赵家之暖 × 俞家之寒', b:
+    '中后段常在同章写「赵家之暖 × 俞家之寒」（<span class="ch">[第193章]</span>、<span class="ch">[第195章]</span>、<span class="ch">[第204章]</span>、<span class="ch">[第225章]</span>），构成「甜收」对「寒落」的结构性对比。' +
+    '<br><span class="ic">主角线越圆满，反派线的崩塌就越有落差感——两条线的情绪互为反衬。</span>'},
+  {h:'⑥ 配比红线（§六 续写指导）', b:
+    '全书前 1/5 压（寒·悬·虐）→ 中段以暖·谐·甜回血 → 后 1/3 重新加寒 → 末章反转爽收。<br>' +
+    '· 暖/甜连续不得超约 <b>6–8 章</b>而无钩子（最长纯暖坡为 <span class="ch">[第171–217章]</span> 的回血段，仍每章挂「悬」尾钩）；<br>' +
+    '· <b>每约 10 章须安排一个 ★4–5 节点</b>；<br>' +
+    '· 暖章后须接悬/寒章做冷热交替。'},
+  {h:'⑦ ★5 的用法：只给「身份／命运级转折」', b:
+    '受诬灌药 <span class="ch">[第14章]</span>、解家灭门 <span class="ch">[第24章]</span>、城隍庙护主 <span class="ch">[第33章]</span>、群匪独当 <span class="ch">[第34章]</span>、误闻凶讯 <span class="ch">[第85章]</span>、定情许诺 <span class="ch">[第105章]</span>、旧案残指 <span class="ch">[第122–123章]</span>、跪地提亲受辱 <span class="ch">[第140章]</span>、成婚蜜月 <span class="ch">[第148–152章]</span>、有孕 <span class="ch">[第157章]</span>、父女情断 <span class="ch">[第163章]</span>、生死相托 <span class="ch">[第216章]</span>、入阁反转 <span class="ch">[第246章]</span>、云雨缱绻 <span class="ch">[第273章]</span>、阖家静好 <span class="ch">[第275章]</span>、俞家坍塌 <span class="ch">[第314章]</span>。' +
+    '<br><span class="ic">★5 不用于日常小胜——它是「命运拐点」的专属刻度，用一次就要有结构性意义。</span>'},
+  {h:'⑧ 情绪字典扩充：惊、悯与修饰性情', b:
+    '本书除标准十字典外，出现 <b>惊（3 次）</b>、<b>悯（1 次）</b>——分别见 <span class="ch">[第132章]</span><span class="ch">[第134章]</span><span class="ch">[第172章]</span> 与 <span class="ch">[第37章]</span> 饥荒惨象；另有「醋／怅／感伤／悔」等修饰性情。' +
+    '<br><span class="ic">续写可沿用，但须在该章卡内附一句释义（依总纲规范）。</span>'}
+];
+
+/* ============================ 主图渲染（原生 SVG，无外部库） ============================ */
+(function(){
+  var W=1360, H=620, padL=56, padR=32, padT=46, padB=132;
+  var plotW = W-padL-padR, plotH = H-padT-padB;
+  var slot = plotW/314;
+  var baseY = padT+plotH;
+  function xc(c){ return padL + (c-0.5)*slot; }
+  function yv(v){ return padT + plotH*(1-(v-1)/4); }
+
+  var s='';
+
+  /* --- 阶段底纹 --- */
+  STAGES.forEach(function(st){
+    var x0 = padL + (st.from-1)*slot, w = (st.to-st.from+1)*slot;
+    s += '<rect x="'+x0.toFixed(1)+'" y="'+padT+'" width="'+w.toFixed(1)+'" height="'+plotH+'" fill="'+st.color+'" opacity="0.05"/>';
+    if(st.from>1){
+      s += '<line x1="'+x0.toFixed(1)+'" y1="'+padT+'" x2="'+x0.toFixed(1)+'" y2="'+baseY+'" stroke="rgba(255,255,255,0.10)" stroke-dasharray="3 5"/>';
+    }
+  });
+
+  /* --- 横向网格 + Y 轴刻度 --- */
+  for(var v=1; v<=5; v++){
+    var y = yv(v);
+    s += '<line x1="'+padL+'" y1="'+y.toFixed(1)+'" x2="'+(padL+plotW)+'" y2="'+y.toFixed(1)+'" stroke="rgba(255,255,255,'+(v>=4?0.13:0.055)+')" stroke-width="1"/>';
+    s += '<text x="'+(padL-12)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end" font-size="11" fill="#7d869c">★'+v+'</text>';
+  }
+  /* ★4 基准虚线 */
+  s += '<line x1="'+padL+'" y1="'+yv(4).toFixed(1)+'" x2="'+(padL+plotW)+'" y2="'+yv(4).toFixed(1)+'" stroke="rgba(232,201,122,0.35)" stroke-width="1" stroke-dasharray="5 6"/>';
+  s += '<text x="'+(padL+6)+'" y="'+(yv(4)-7).toFixed(1)+'" font-size="10" fill="rgba(232,201,122,0.6)" letter-spacing="1">★4 基准线（★1–3 常规强度未在图中单列）</text>';
+
+  /* --- 段聚合折线（连接各段强度峰值） --- */
+  var vpts = SEG.map(function(g){ return [ xc((g[0]+g[1])/2), yv(g[2]) ]; });
+  var dLine = 'M'+vpts.map(function(p){ return p[0].toFixed(1)+' '+p[1].toFixed(1); }).join(' L ');
+  var dArea = dLine + ' L '+vpts[vpts.length-1][0].toFixed(1)+' '+yv(4).toFixed(1)+
+                      ' L '+vpts[0][0].toFixed(1)+' '+yv(4).toFixed(1)+' Z';
+  s += '<defs><linearGradient id="gfill" x1="0" y1="'+yv(5)+'" x2="0" y2="'+yv(4)+'" gradientUnits="userSpaceOnUse">'
+     +   '<stop offset="0" stop-color="#e8c97a" stop-opacity="0.42"/>'
+     +   '<stop offset="1" stop-color="#e8c97a" stop-opacity="0.03"/></linearGradient></defs>';
+  s += '<path d="'+dArea+'" fill="url(#gfill)"/>';
+  s += '<path d="'+dLine+'" fill="none" stroke="#e8c97a" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>';
+  s += '<path d="'+dLine+'" fill="none" stroke="#fff3cf" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" opacity="0.45" stroke-dasharray="1 6"/>';
+
+  /* 段聚合顶点（金色小菱形，hover 段信息） */
+  SEG.forEach(function(g,i){
+    var x=vpts[i][0], y=vpts[i][1];
+    s += '<g class="segmk" data-i="'+i+'">'
+       +   '<path d="M'+x.toFixed(1)+' '+(y-4.5).toFixed(1)+' L'+(x+4.5).toFixed(1)+' '+y.toFixed(1)+
+            ' L'+x.toFixed(1)+' '+(y+4.5).toFixed(1)+' L'+(x-4.5).toFixed(1)+' '+y.toFixed(1)+' Z" '
+       +   'fill="'+(EMO[g[3]]||'#e8c97a')+'" stroke="#0b0b10" stroke-width="0.8"/>'
+       + '</g>';
+  });
+
+  /* --- 160 个名场面散点（按情绪着色，★5 发光放大） --- */
+  SCENES.forEach(function(sc){
+    var c=sc[0], emo=sc[1], star=sc[2];
+    var x=xc(c), y=yv(star), col=EMO[emo]||'#8ea0bb';
+    if(star===5){
+      s += '<circle class="gl" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="11" fill="'+col+'"/>';
+      s += '<circle class="pt5" data-c="'+c+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="6" fill="'+col+'" stroke="#fff3cf" stroke-width="1.3"/>';
+      s += '<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="2" fill="#fff3cf"/>';
+    }else{
+      s += '<circle class="pt" data-c="'+c+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="3.4" fill="'+col+'" opacity="0.92"/>';
+    }
+  });
+
+  /* --- 悬停导轨 + 高亮环 --- */
+  s += '<line id="guide" x1="0" y1="'+padT+'" x2="0" y2="'+baseY+'" stroke="rgba(232,201,122,0.55)" stroke-width="1" stroke-dasharray="4 4" opacity="0"/>';
+  s += '<circle id="hl" r="9" fill="none" stroke="#fff3cf" stroke-width="1.6" opacity="0"/>';
+
+  /* --- 悬停热区（覆盖整个绘图区） --- */
+  s += '<rect id="plot" x="'+padL+'" y="'+padT+'" width="'+plotW+'" height="'+plotH+'" fill="rgba(0,0,0,0)" pointer-events="all"/>';
+
+  /* --- X 轴 --- */
+  s += '<line x1="'+padL+'" y1="'+baseY+'" x2="'+(padL+plotW)+'" y2="'+baseY+'" stroke="rgba(201,169,97,0.4)" stroke-width="1"/>';
+  var xset = {1:1,50:1,100:1,150:1,200:1,250:1,300:1,314:1};
+  for(var c2=1;c2<=314;c2++){
+    if(xset[c2]){
+      s += '<text x="'+xc(c2).toFixed(1)+'" y="'+(baseY+18)+'" text-anchor="middle" font-size="10.5" fill="#8b93a7">'+c2+'</text>';
+      s += '<line x1="'+xc(c2).toFixed(1)+'" y1="'+baseY+'" x2="'+xc(c2).toFixed(1)+'" y2="'+(baseY+4)+'" stroke="rgba(255,255,255,0.2)"/>';
+    }else if(c2%25===0){
+      s += '<line x1="'+xc(c2).toFixed(1)+'" y1="'+baseY+'" x2="'+xc(c2).toFixed(1)+'" y2="'+(baseY+4)+'" stroke="rgba(255,255,255,0.12)"/>';
+    }
+  }
+  s += '<text x="'+(padL+plotW+2)+'" y="'+(baseY+18)+'" text-anchor="end" font-size="10" fill="#6f788c">章</text>';
+
+  /* --- 阶段条 --- */
+  var sy = baseY+30;
+  STAGES.forEach(function(st){
+    var x0 = padL + (st.from-1)*slot, w = (st.to-st.from+1)*slot;
+    s += '<rect x="'+x0.toFixed(1)+'" y="'+sy+'" width="'+(w-3).toFixed(1)+'" height="26" rx="6" fill="'+st.color+'" opacity="0.13" stroke="'+st.color+'" stroke-opacity="0.4"/>';
+    s += '<text x="'+(x0+w/2-1.5).toFixed(1)+'" y="'+(sy+11)+'" text-anchor="middle" font-size="10.5" fill="'+st.color+'" letter-spacing="0.4">'+st.name+'</text>';
+    s += '<text x="'+(x0+w/2-1.5).toFixed(1)+'" y="'+(sy+22)+'" text-anchor="middle" font-size="9" fill="#7d869c">'+st.from+'–'+st.to+' 章</text>';
+  });
+
+  document.getElementById('chart').innerHTML = s;
+
+  /* ------- 图例 ------- */
+  var lg = document.getElementById('legend');
+  EMO_ORDER.forEach(function(k){
+    var d=document.createElement('div'); d.className='lg';
+    d.innerHTML='<i style="background:'+EMO[k]+';box-shadow:0 0 7px '+EMO[k]+'66"></i>'+k;
+    lg.appendChild(d);
+  });
+  var l1=document.createElement('div'); l1.className='lg strong';
+  l1.innerHTML='<i style="width:12px;height:12px;background:#ffd43b"></i>散点＝★4–5 名场面（共 160，色＝主导情绪）';
+  lg.appendChild(l1);
+  var l2=document.createElement('div'); l2.className='lg strong';
+  l2.innerHTML='<i style="width:12px;height:12px;border-radius:50%;border:2px solid #fff3cf;background:#e8c97a;box-shadow:0 0 10px #e8c97a"></i>★5 顶级点（共 23，发光）';
+  lg.appendChild(l2);
+  var l3=document.createElement('div'); l3.className='lg';
+  l3.innerHTML='<i style="width:16px;height:2px;background:#e8c97a"></i>段聚合峰值折线';
+  lg.appendChild(l3);
+  var l4=document.createElement('div'); l4.className='lg';
+  l4.innerHTML='<i style="width:0;height:0;border:5px solid transparent;border-left-color:#c9a961;margin-left:2px"></i>段聚合顶点（悬停看段信息）';
+  lg.appendChild(l4);
+
+  /* ------- 悬停交互（就近吸附） ------- */
+  var tip = document.getElementById('tip');
+  var guide = document.getElementById('guide');
+  var hl = document.getElementById('hl');
+  var ptMap = {};
+  SCENES.forEach(function(sc){ ptMap[sc[0]] = sc; });
+  var chList = SCENES.map(function(sc){ return sc[0]; });
+  var nodes = {};
+  Array.prototype.forEach.call(document.querySelectorAll('#chart .pt, #chart .pt5'), function(el){
+    nodes[parseInt(el.getAttribute('data-c'),10)] = el;
+  });
+
+  function nearestChapter(c){
+    var lo=0, hi=chList.length-1, best=chList[0], bd=1e9;
+    while(lo<=hi){ var m=(lo+hi)>>1, d=Math.abs(chList[m]-c);
+      if(d<bd){bd=d;best=chList[m];}
+      if(chList[m]<c) lo=m+1; else hi=m-1;
+    }
+    return {ch:best, d:bd};
+  }
+  function moveTip(ev){
+    var pad=16, w=tip.offsetWidth, h=tip.offsetHeight;
+    var x=ev.clientX+pad, y=ev.clientY+pad;
+    if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+    if(y+h>window.innerHeight-12) y=ev.clientY-h-12;
+    if(x<8) x=8; if(y<8) y=8;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  }
+  function restore(){
+    if(tip._cur){ tip._cur.setAttribute('r', tip._cur.dataset.r0); tip._cur=null; }
+  }
+  function show(c, ev){
+    var sc = ptMap[c]; if(!sc) return;
+    restore();
+    var emo=sc[1], star=sc[2], col=EMO[emo]||'#8ea0bb';
+    var st = stageOf(c);
+    var starTxt=''; for(var i=0;i<star;i++) starTxt+='★';
+    var badge = star>=5 ? '<span class="tag-star s5">★5 顶级</span>' : '<span class="tag-star">★4 高潮</span>';
+    tip.innerHTML =
+      '<div class="tip-top"><span class="tip-ch">第 '+c+' 章</span>'+
+      '<span class="tip-stage">'+(st?st.name:'（数据源缺）')+'</span>'+badge+'</div>'+
+      '<div class="tip-mood" style="color:'+col+'">情绪类型 '+
+      '<span class="chip" style="color:'+col+'">'+emo+'</span> '+
+      '<b style="color:'+col+'">'+starTxt+'</b></div>'+
+      '<div class="tip-q">'+sc[3]+'</div>';
+    tip.style.display='block';
+    if(ev) moveTip(ev);
+    var gx = xc(c);
+    guide.setAttribute('x1',gx.toFixed(1)); guide.setAttribute('x2',gx.toFixed(1));
+    guide.setAttribute('opacity','1');
+    hl.setAttribute('cx',gx.toFixed(1)); hl.setAttribute('cy',yv(star).toFixed(1));
+    hl.setAttribute('stroke',col); hl.setAttribute('opacity','1');
+    var n = nodes[c];
+    if(n){ if(!n.dataset.r0) n.dataset.r0 = n.getAttribute('r'); n.setAttribute('r', star>=5 ? '8' : '5.4'); tip._cur=n; }
+  }
+  function hide(){
+    tip.style.display='none';
+    guide.setAttribute('opacity','0');
+    hl.setAttribute('opacity','0');
+    restore();
+  }
+  var plot = document.getElementById('plot');
+  var svg = document.getElementById('chart');
+  function handle(ev){
+    var r = svg.getBoundingClientRect();
+    var x = (ev.clientX - r.left) / r.width * W;
+    var c = Math.round((x - padL)/slot + 0.5);
+    var nr = nearestChapter(c);
+    if(nr.d <= 10){ show(nr.ch, ev); } else { hide(); }
+  }
+  plot.addEventListener('mousemove', handle);
+  plot.addEventListener('click', handle);
+  plot.addEventListener('mouseleave', hide);
+
+  /* 段聚合顶点 hover */
+  Array.prototype.forEach.call(document.querySelectorAll('#chart .segmk'), function(el){
+    var i = parseInt(el.getAttribute('data-i'),10), g = SEG[i];
+    el.style.cursor='pointer';
+    el.addEventListener('mousemove', function(ev){
+      restore();
+      var mid=(g[0]+g[1])/2, gx=xc(mid);
+      guide.setAttribute('x1',gx.toFixed(1)); guide.setAttribute('x2',gx.toFixed(1));
+      guide.setAttribute('opacity','1');
+      hl.setAttribute('cx',gx.toFixed(1)); hl.setAttribute('cy',yv(g[2]).toFixed(1));
+      hl.setAttribute('stroke', EMO[g[3]]||'#e8c97a'); hl.setAttribute('opacity','1');
+      tip.innerHTML =
+        '<div class="tip-top"><span class="tip-ch">'+(g[0]+'–'+g[1])+' 章</span>'+
+        '<span class="tip-stage">段聚合</span><span class="tag-star">峰值 ★'+g[2]+'</span></div>'+
+        '<div class="tip-mood" style="color:'+(EMO[g[3]]||'#e8c97a')+'">主导情绪 '+
+        '<span class="chip" style="color:'+(EMO[g[3]]||'#e8c97a')+'">'+g[3]+'</span></div>'+
+        '<div class="tip-q">节拍：'+g[4]+'</div>';
+      tip.style.display='block'; moveTip(ev);
+      tip._cur=null;
+    });
+    el.addEventListener('mouseleave', hide);
+  });
+})();
+
+/* ============================ 阶段切片 ============================ */
+(function(){
+  var box = document.getElementById('stagebar');
+  STAGES.forEach(function(st){
+    var d=document.createElement('div'); d.className='stg';
+    d.style.setProperty('--sc', st.color);
+    d.innerHTML='<h5>'+st.name+'</h5>'+
+      '<div class="rn">第 '+st.from+'–'+st.to+' 章 · '+(st.to-st.from+1)+' 章</div>'+
+      '<p>'+st.mood+'<br>'+st.note+'</p>';
+    box.appendChild(d);
+  });
+})();
+
+/* ============================ 情绪配比 ============================ */
+(function(){
+  var box = document.getElementById('ratio');
+  var max = 122;
+  RATIO.forEach(function(r){
+    var k=r[0], n=r[1], col=EMO[k]||'#8ea0bb';
+    var d=document.createElement('div'); d.className='rrow';
+    d.innerHTML='<div class="rname" style="color:'+col+'">'+k+'</div>'+
+      '<div class="rtrack"><div class="rfill" style="width:'+(n/max*100).toFixed(1)+'%;background:linear-gradient(90deg,'+col+'55,'+col+')"></div></div>'+
+      '<div class="rval">'+n+' 次</div>';
+    box.appendChild(d);
+  });
+})();
+
+/* ============================ ★5 Top 榜 ============================ */
+(function(){
+  var box = document.getElementById('tops');
+  var rank = 0;
+  SCENES.filter(function(s){ return s[2]===5; }).forEach(function(s){
+    rank++;
+    var c=s[0], emo=s[1], col=EMO[emo]||'#e8c97a';
+    var d=document.createElement('div'); d.className='top';
+    d.innerHTML='<span class="rank">#'+rank+'</span>'+
+      '<div><span class="ch">第 '+c+' 章</span>'+
+      '<span class="chm"><span class="chip" style="color:'+col+'">'+emo+'</span> '+
+      '<span class="rk5">★5</span></span></div>'+
+      '<div class="d">'+s[3]+'</div>';
+    box.appendChild(d);
+  });
+})();
+
+/* ============================ 节奏规律卡片 ============================ */
+(function(){
+  var box = document.getElementById('accWrap');
+  ACC.forEach(function(a){
+    var d=document.createElement('div'); d.className='acc'+(a.open?' open':'');
+    d.innerHTML='<div class="acc-h"><span>'+a.h+'</span><span class="arw">▶</span></div>'+
+      '<div class="acc-b"><div class="acc-b-in">'+a.b+'</div></div>';
+    d.querySelector('.acc-h').addEventListener('click',function(){ d.classList.toggle('open'); });
+    box.appendChild(d);
+  });
+})();
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

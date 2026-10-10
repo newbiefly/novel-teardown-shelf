@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写作风格 · 南城小巷 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<!-- 作者：五竹　微信：wuzhuv2 -->
+<h1>写作风格 · 南城小巷</h1>
+<blockquote>
+<p>维度：写作风格（两段式：扫描初稿 → 归纳精读定稿）<br>依据：全书 70 章原文（<code>原文/</code>），选定 6 章代表章精读；高频词为全书 70 章原文脚本实际计数。<br>引文一律原样引用，锚点标 [第X章]。</p>
+</blockquote>
+<hr>
+<h2>一、选样说明（6 类代表章）</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>选章</th>
+<th>精读理由（据章卡&quot;写作手法/情绪设计&quot;字段）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开篇章</td>
+<td>[第1章] 初一那年</td>
+<td>叙述腔调定调；开篇即 6 章里唯一的大段追述 + 市井铺陈</td>
+</tr>
+<tr>
+<td>人物出场/肖像章</td>
+<td>[第5章] 高二那年</td>
+<td>&quot;一次化妆＝南久从&#39;野孩子&#39;到&#39;美艳轮廓&#39;的转折&quot;；周妍、宋霆同框出场肖像</td>
+</tr>
+<tr>
+<td>对白密集章</td>
+<td>[第33章] 大四那年</td>
+<td>民宿饭桌&quot;亲戚还是女朋友&quot;僵局 + 微信对白，对白密度全书前列</td>
+</tr>
+<tr>
+<td>高潮章</td>
+<td>[第42章] 人生旅途</td>
+<td>★5 情绪高峰（歪脖子树下被撞破），比喻群最密集，长句抒情最集中</td>
+</tr>
+<tr>
+<td>日常过渡章</td>
+<td>[第2章] 初一至高二</td>
+<td>茶馆日常基准文风：摆茶点、蒲葵扇、卫星锅、偷吃核桃糕（烟火气最足）</td>
+</tr>
+<tr>
+<td>心理独白章</td>
+<td>[第52章] 人生旅途</td>
+<td>★5 泪点；宋霆大段内心独白 + 南久&quot;行刑者&quot;式心理，情绪含虐/隐忍</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>脚本 <code>select-style-chapters.js</code> 仅自动匹配到开篇章（第1章）与高潮章（第14章，字数最长）；因本书章卡&quot;写作手法&quot;未用脚本预设关键词，其余四类为按字段人工择选。高潮章取情绪峰值 [第42章]（★5）而非字数最长的 [第14章]（★4），以聚焦情绪设计；[第14章]作为茶道意象样本另作补充引证。</p>
+</blockquote>
+<hr>
+<h2>二、初稿印象（扫描阶段·待精读补全 → 已由下文定稿校验）</h2>
+<ol>
+<li><strong>白描见长</strong>：几乎不做形容词堆叠，靠动作与物件推进，短句为主体。</li>
+<li><strong>腔调克制冷静、烟火气重</strong>：情绪被压在动作、器物、景物之后，作者很少出面说&quot;她很难过&quot;。</li>
+<li><strong>市井细节极密</strong>：茶点搭配、蒲葵扇、卫星锅、桂花糕、拐杖……年代感与生活流靠具象物撑起。</li>
+<li><strong>第三人称限知、紧贴女主</strong>，偶切宋霆/林颂耀/群像；大量&quot;以物写人&quot;。</li>
+<li><strong>对白口语化、一腔一人</strong>，宋霆极简（&quot;嗯&quot;&quot;开吧&quot;），南久牙尖嘴利反讽。</li>
+</ol>
+<hr>
+<h2>三、8 维度定稿（各带原文例句锚点）</h2>
+<h3>1. 句式特征（长短句配比 / 文白比例 / 段落结构）</h3>
+<ul>
+<li><strong>主体：中短句。</strong> 叙事推进几乎全由 8–20 字的短句与中句串成，一句一事、动作连贯；<strong>长句（30–60 字）只用于抒情段落收束或心理直陈</strong>，形成&quot;短促叙事 → 长句托情&quot;的呼吸节奏。<ul>
+<li>短句叙事：&quot;帕萨特引擎盖开着，里面不知哪里冒着烟，一个男人半个身子探进引擎盖下。&quot;[第1章]</li>
+<li>短句对白：&quot;开吧，剩下的交给命。&quot;[第33章]</li>
+<li>长句抒情：&quot;终究，这世间万物，都有离去的时候。亦如人生的每个十字路口，无论往左、还是往右，终归都会指向一个终点——告别。&quot;[第52章]</li>
+</ul>
+</li>
+<li><strong>文白比例：约 9 : 1。</strong> 叙事与对白全白话口语；仅在抒情/内心段落掺入二字雅词（氤氲、宛如、仿若、倏地、遒劲）与四字词组（浑然天成、不动声色、漫不经心）。<ul>
+<li>&quot;水汽蒸腾而上，茶香在沸水中苏醒过来。&quot;[第14章]（白话骨架 + 书面语动词&quot;苏醒&quot;）</li>
+</ul>
+</li>
+<li><strong>段落极短：1–3 句成段，独句段频繁</strong>；场景切换用&quot;……&quot;独占一行作柔性分隔（[第1章][第2章][第14章] 均有）。</li>
+<li><strong>&quot;——&quot;用于段内递进/揭底</strong>：&quot;至于少的糕点去了哪——都进了她的肚子里。&quot;[第2章]</li>
+</ul>
+<h3>2. 叙述腔调（冷热 / 煽情或克制 / 反讽 / 距离感）</h3>
+<ul>
+<li><strong>底色：克制、冷静、不煽情。</strong> 强烈情绪一律外化为动作或器物，作者不替人物抒发。<ul>
+<li>&quot;宋霆指节收紧，避开她的触碰，拿过公道杯。&quot;[第14章]（写心动与退避，全用动作）</li>
+<li>&quot;他转身前的最后一瞥，眼里不是愤怒，也不是惊诧，是被抽走所有温度的深渊，光亮彻底熄灭的枯井。&quot;[第42章]（写剧痛，仍不解说，只给比喻）</li>
+</ul>
+</li>
+<li><strong>反讽与幽默全部放在人物嘴里</strong>，作者不评论：南久的&quot;乖巧称呼行拆台之实&quot;——&quot;叔叔。&quot;&quot;这位就是我新婶婶吗？&quot;[第5章]；南老爷子的方言训斥——&quot;偷吃也不知道擦擦嘴。&quot;&quot;叫宋叔，没大没小。&quot;[第2章]</li>
+<li><strong>留白式距离感</strong>：&quot;他的视线在她脸上停留了一秒，或许更短，短到无人察觉这片刻的凝滞。&quot;[第5章]</li>
+<li><strong>仅在两处转为全知/高浓度抒情</strong>：①章末金句（&quot;初生牛犊的南久一路摸索到爷爷家，没有碰见人贩子，碰见了她的干叔叔，宋霆。&quot;[第1章]）；②宋霆内心独白段（&quot;他生活在暗巷里，她在舞台上熠熠生辉。&quot;[第42章]）。</li>
+</ul>
+<h3>3. 视角与调度（单一 / 多视角 / 切换规则 / 侧写 / 留白）</h3>
+<ul>
+<li><strong>第三人称限知，主贴南久</strong>；切换遵循&quot;<strong>谁在场情绪谁承担</strong>&quot;——南久的场合切南久，宋霆独处/她的心思需要被读者&quot;看穿&quot;时切宋霆。</li>
+<li><strong>宋霆视角多为&quot;沉默的内心补叙&quot;</strong>，用以揭示他当面不说的东西：<ul>
+<li>&quot;他知道，这方寸之地困不住她一生一世……他困住的，只是那个身陷废墟仍不肯放手的自己。&quot;[第52章]</li>
+<li>&quot;多年前那个动荡的夜，她急于寻求温暖，像走失的孩子。&quot;[第42章]</li>
+</ul>
+</li>
+<li><strong>旁观者侧写</strong>是重要调度手段：借李崇光、珍敏、民宿老板、郑坤之口/之眼转述与衬托。<ul>
+<li>借珍敏之口补叙：&quot;村里有这个说法，老狗知道自己活不了，不会死在家里，会出去找个地方结束掉。&quot;[第52章]</li>
+<li>民宿老板一句&quot;带女朋友来玩的？&quot;把关系推到台面——冲突不靠主角自陈，靠旁观者的嘴。[第33章]</li>
+</ul>
+</li>
+<li><strong>留白</strong>：关键心理常不写透，只留动作或一句悬置的话。<ul>
+<li>&quot;宋霆低下视线，语气变急：&#39;大黄是谁？&#39;&quot;→ 沉默几秒 → &quot;山头那条狗？&quot;（他不拆穿她的眼泪为谁而流）[第52章]</li>
+</ul>
+</li>
+</ul>
+<h3>4. 对白特点（功能 / 一人一腔 / 语气 / 标签 / 潜台词）</h3>
+<ul>
+<li><strong>一人一腔（最鲜明的四条声线）</strong>：<table>
+<thead>
+<tr>
+<th>人物</th>
+<th>声线特征</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>南久</td>
+<td>牙尖嘴利、反讽、反问，句短而冲</td>
+<td>&quot;干吗告诉你？&quot;[第1章]；&quot;这位就是我新婶婶吗？&quot;[第5章]；&quot;你信了？&quot;[第14章]</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>极简，常以单字/短句作答，答非所问</td>
+<td>&quot;嗯……&quot;[第14章]；&quot;不一定。&quot;[第1章]；&quot;开吧，剩下的交给命。&quot;[第33章]</td>
+</tr>
+<tr>
+<td>南老爷子</td>
+<td>方言训话、拐杖语气，长辈威压</td>
+<td>&quot;叫宋叔，没大没小。&quot;[第2章]；&quot;你要是不再爬起来把饭吃了，明天就给我卷铺盖走人。&quot;[第14章]</td>
+</tr>
+<tr>
+<td>林颂耀</td>
+<td>攻击性、试探、绵里藏针</td>
+<td>&quot;你爬上他床的时候多大？&quot;[第42章]</td>
+</tr>
+</tbody></table>
+</li>
+<li><strong>潜台词 &gt; 字面</strong>：一对白一动作即完成交锋——<ul>
+<li>&quot;好啊。&quot;（南久答应见相亲对象，眼睛却&quot;悠悠抬起视线，眼神似有若无地迎上宋霆的目光&quot;）[第33章]</li>
+<li>微信对白用【】、不加引号，短句直刺：【说什么？亲戚？我算你哪门子亲戚，你跟亲戚上床？】[第33章]</li>
+</ul>
+</li>
+<li><strong>标点与分行习惯</strong>：对白多用句号收束（少感叹号），句末&quot;。&quot;极多，渲染&quot;平静的杀伤力&quot;；情绪失控才用&quot;？&quot;&quot;！&quot;；对白独立成段，说话人提示语&quot;说/道/问/回&quot;后常紧跟动作。<ul>
+<li>&quot;南久一把甩开他的手……&#39;为了验证你那点猜忌，把心思动到他身上。&#39;&quot;[第42章]</li>
+</ul>
+</li>
+<li><strong>对白功能三分</strong>：推进关系（微信）、制造僵局（民宿饭桌）、抖包袱/解围（南久损周妍）。</li>
+</ul>
+<h3>5. 描写手法（环境 / 外貌 / 动作 / 心理 各自风格与密度）</h3>
+<ul>
+<li><strong>环境：写实白描 + 年代物象，密度高而克制。</strong> 常以茶/光/风/雨为底，出场即定情绪温度。<ul>
+<li>&quot;悬窗半推，落下一圈光晕，他靠坐在光晕之外，浮动的光影在他的白色翻领衫上悠悠荡荡。&quot;[第5章]</li>
+<li>&quot;出了茶馆，巷子里夜风肆虐，伴随着一场风雨欲来之势。&quot;[第42章]</li>
+</ul>
+</li>
+<li><strong>外貌：白描 + 一笔定性</strong>，不做整段静态肖像，而是随动作&quot;被看见&quot;。<ul>
+<li>&quot;男人头发略长，几缕碎发垂在鬓角，藏在发丝里的丹凤眼带着浑然天成的凌厉。&quot;[第1章]</li>
+<li>&quot;南久生了双窄眼皮柳叶眼，脸型不属于主流审美，甚至越长越有种厌世的味道。&quot;[第5章]</li>
+</ul>
+</li>
+<li><strong>动作：全书最核心的描写手段</strong>，连贯动词链、可拍成镜头；情绪全部塞进动作。<ul>
+<li>&quot;他将屋里扫了一遍，又拖了两遍。一会儿扛几个木凳，一会儿抬张木板，一会儿抱来垫被和毛毯，空荡的屋子凭空搭出一张床。&quot;[第1章]</li>
+<li>&quot;南久一把甩开他的手，抓住林颂耀的衣领一字一句警告他&quot;——写愤怒，不写&quot;她很愤怒&quot;。[第42章]</li>
+</ul>
+</li>
+<li><strong>心理：南久视角多&quot;动作化/留白&quot;，宋霆视角才大段直陈</strong>（全书内心直陈的高峰在 [第52章][第42章]）。<ul>
+<li>直陈（宋霆）：&quot;他不是非她不可，只是再也没有人给过他这样的感觉。&quot;[第42章]</li>
+</ul>
+</li>
+<li><strong>以物写人（贯穿全书第一手法）</strong>：物件＝关系与心事的物证——一包烟（经营人心）[第2章]、桂花糕（未说出口的关照，14 次）[第1章][第7章][第35章]、拐杖（南老爷子的威权与&quot;贺寿礼又成责打器&quot;）[第2章][第39章]、旧手机（他没换的用心）[第33章]、金镯子[第25章]、桌上&quot;协议、车钥匙、避孕药&quot;三样并列（成全与退场）[第52章]。</li>
+</ul>
+<h3>6. 修辞偏好（最常用 / 标志性）</h3>
+<p>按使用频次与辨识度排序：</p>
+<ol>
+<li><strong>以物/以茶为喻</strong>（招牌）：<ul>
+<li>&quot;就像这第二泡的茶，兼具醇厚和层次感，形成强劲的冲击力在唇齿间绽放。&quot;（以茶喻宋霆其人）[第14章]</li>
+<li>&quot;帽儿茶馆在帽儿巷的地位就如旧时的祠堂。&quot;[第1章]</li>
+</ul>
+</li>
+<li><strong>自然物喻情绪</strong>（深渊/枯井/苇草/火苗/网）：<ul>
+<li>&quot;是被抽走所有温度的深渊，光亮彻底熄灭的枯井。&quot;[第42章]</li>
+<li>&quot;宛如一株被风雪压弯的苇草。&quot;（写哭泣的南久）[第52章]</li>
+<li>&quot;好似在寒风中拢住一缕将熄的火苗。&quot;（写宋霆的抚背）[第52章]</li>
+<li>&quot;望着帽儿巷的上空，像一张巨大的黑网，排山倒海地压在她的胸口。&quot;[第42章]</li>
+</ul>
+</li>
+<li><strong>通感</strong>：&quot;冰凉而辛辣的液体从喉咙滑进身体，再啃咬着五脏六腑。&quot;[第42章]；&quot;带着苦涩的回甘在唇齿间弥漫。&quot;[第14章]</li>
+<li><strong>短句排比 / 层递</strong>：&quot;对这片土地，这缕茶香，这匆匆人世间……无声的告别。&quot;[第52章]；&quot;他心疼、自责、爱意萌生。&quot;[第42章]</li>
+<li><strong>反差对照</strong>（叛逆外表 vs 沉默妥帖；她在舞台 vs 他在暗巷）为场景层修辞，几乎每章一处。</li>
+</ol>
+<h3>7. 高频词 / 标志性表达（全书 70 章原文实际计数）</h3>
+<p><strong>（1）意象与器物词频表</strong></p>
+<table>
+<thead>
+<tr>
+<th>词</th>
+<th>次数</th>
+<th>用法/代表义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>茶（字）</td>
+<td><strong>1210</strong></td>
+<td>全书核心意象，含&quot;茶馆322 / 茶叶79 / 茶客33 / 喝茶24 / 茶点11 / 茶山74&quot;</td>
+</tr>
+<tr>
+<td>茶馆</td>
+<td>322</td>
+<td>主场景（帽儿巷）</td>
+</tr>
+<tr>
+<td>帽儿巷</td>
+<td>70</td>
+<td>地理母题、家的代称</td>
+</tr>
+<tr>
+<td>茶山</td>
+<td>74</td>
+<td>宋霆的事业线与精神原乡</td>
+</tr>
+<tr>
+<td>拐杖</td>
+<td>83</td>
+<td>南老爷子的标志物（威权/管教/贺寿礼）</td>
+</tr>
+<tr>
+<td>烟（字）</td>
+<td>50</td>
+<td>宋霆经营人心、成人世界的道具</td>
+</tr>
+<tr>
+<td>光（字）</td>
+<td>793</td>
+<td>贯穿意象：暖、希望、舞台（&quot;光晕&quot;&quot;光影&quot;&quot;光亮&quot;）</td>
+</tr>
+<tr>
+<td>风（字）</td>
+<td>238</td>
+<td>情绪载体（&quot;夜风肆虐&quot;&quot;被风吹乱的碎发&quot;）</td>
+</tr>
+<tr>
+<td>雨（字）</td>
+<td>110</td>
+<td>情绪转场（&quot;雨帘&quot;&quot;风雨欲来&quot;）</td>
+</tr>
+<tr>
+<td>香（字）</td>
+<td>94</td>
+<td>茶香/酒香/气息，常作情绪引子</td>
+</tr>
+<tr>
+<td>桂花 / 桂花糕</td>
+<td>14 / <strong>14</strong></td>
+<td>宋霆&quot;不说的照顾&quot;的固定信物</td>
+</tr>
+<tr>
+<td>猫（字）/ 三花猫</td>
+<td>45 / 10</td>
+<td>喻南久（&quot;野&quot;&quot;小久&quot;），映宋霆心事</td>
+</tr>
+<tr>
+<td>电脑</td>
+<td>32</td>
+<td>宋霆赠礼、南久成长的物证</td>
+</tr>
+<tr>
+<td>核桃糕 / 山药糕</td>
+<td>5 / 1</td>
+<td>茶点搭配的烟火细节</td>
+</tr>
+<tr>
+<td>雪糕</td>
+<td>5</td>
+<td>他悄悄留给她的那份</td>
+</tr>
+<tr>
+<td>机车</td>
+<td>11</td>
+<td>宋霆被压抑的少年气</td>
+</tr>
+<tr>
+<td>蒲葵扇 / 卫星锅 / 金镯子</td>
+<td>2 / 1 / 2</td>
+<td>低频但标志性的年代/信物细节</td>
+</tr>
+</tbody></table>
+<p><strong>（2）&quot;看&quot;与&quot;静&quot;的高频白描词（含蓄传情的支柱）</strong></p>
+<table>
+<thead>
+<tr>
+<th>词</th>
+<th>次数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目光</td>
+<td><strong>352</strong></td>
+<td>全书最标志性的&quot;以目传情&quot;动词载体</td>
+</tr>
+<tr>
+<td>视线</td>
+<td>275</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>眼神</td>
+<td>156</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>沉默</td>
+<td>59</td>
+<td>情绪不作为的标记</td>
+</tr>
+<tr>
+<td>无声</td>
+<td>50</td>
+<td>&quot;无声的告别&quot;&quot;无声滚落&quot;&quot;无声消散&quot;</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>三类&quot;看&quot;词合计 <strong>783 次</strong>——本书极少用&quot;爱/恨/难过&quot;直陈情绪，而用&quot;目光/视线/眼神&quot;的移动、停留、避开承载一切。</p>
+</blockquote>
+<p><strong>（3）书面语/雅词（构成 10% 文气）</strong>：仿佛23、仿若12、氤氲12、犹如10、宛如6、倏（字）19、怔19、轰然7、一寸寸5、一点点20、悄悄8、不动声色4、漫不经心8、若无其事6。</p>
+<p><strong>（4）口头/俗语标记</strong>：江湖5、人情世故2、规矩19、龙门阵2、初生牛犊1、&quot;三十年河东，三十年河西&quot;1。</p>
+<p><strong>（5）标志性句式模板</strong>（出现≥3 次的&quot;腔调&quot;）：</p>
+<ul>
+<li>&quot;某人的目光/视线 + 落在/掠过/穿透 + 某处&quot;（贯穿全书）</li>
+<li>&quot;宛如/仿若/好似 + 比喻&quot;（每章 1–2 处）</li>
+<li>&quot;X 不是 A，也不是 B，是 C&quot;（否定递进揭底）：&quot;他转身前的最后一瞥，眼里不是愤怒，也不是惊诧，是被抽走所有温度的深渊。&quot;[第42章]</li>
+<li>&quot;终究，……&quot;（抒情段起手式）：&quot;终究，这世间万物，都有离去的时候。&quot;[第52章]</li>
+</ul>
+<h3>8. 诗词 / 典故 / 俗谚（全部列出 + 章节）</h3>
+<table>
+<thead>
+<tr>
+<th>表达</th>
+<th>出处</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;和、静、怡、真&quot;</td>
+<td>[第14章]</td>
+<td>茶道四字，宋霆泡茶场景的标签，附于&quot;浸润在流淌的汤色里&quot;</td>
+</tr>
+<tr>
+<td>&quot;三十年河东，三十年河西&quot;</td>
+<td>[第2章]</td>
+<td>评南振东搬家的命运反噬（&quot;这都不要三十年&quot;）</td>
+</tr>
+<tr>
+<td>&quot;初生牛犊&quot;</td>
+<td>[第1章]</td>
+<td>&quot;初生牛犊的南久一路摸索到爷爷家&quot;</td>
+</tr>
+<tr>
+<td>&quot;达摩克利斯之剑&quot;</td>
+<td>[第7章]</td>
+<td>&quot;学费就是一把悬在她头顶的达摩克利斯之剑&quot;</td>
+</tr>
+<tr>
+<td>&quot;越俎代庖&quot;</td>
+<td>[第2章]</td>
+<td>写宋霆的分寸感（&quot;他要是较真才叫越俎代庖&quot;）</td>
+</tr>
+<tr>
+<td>&quot;摆龙门阵&quot;</td>
+<td>[第1章]</td>
+<td>川渝方言，写茶馆功能</td>
+</tr>
+<tr>
+<td>&quot;睁只眼闭只眼&quot;</td>
+<td>[第2章]</td>
+<td>南老爷子对宋霆放水的默许</td>
+</tr>
+<tr>
+<td>&quot;招子得放亮&quot;</td>
+<td>[第2章]</td>
+<td>江湖行话，写宋霆的世故</td>
+</tr>
+<tr>
+<td>&quot;受害者有罪论&quot;</td>
+<td>[第14章]</td>
+<td>现代概念，作南久代际控诉的论点</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>无古典诗词引文（全篇唯《市场战略与创新实践》等教科书名各 1 次，非文学用典）。典故极稀，属&quot;轻用典、重俗谚&quot;。</p>
+</blockquote>
+<hr>
+<h2>四、可模仿清单（照着这样写就能像这本书）</h2>
+<p><strong>句式与节奏</strong></p>
+<ol>
+<li>默认写中短句：单句 8–20 字，一句一个动作/信息，别叠形容词。</li>
+<li>抒情段落才放长句（30–60 字），并放在情绪段落的<strong>末尾收束</strong>，与前面短句形成&quot;抽紧—松开&quot;。</li>
+<li>段落 1–3 句即换行；独句段用于加重语气（如&quot;他沉默了。&quot;/&quot;她哭得喘不上气。&quot;）。</li>
+<li>场景转换用一行&quot;……&quot;分隔，不要写&quot;与此同时/另一边&quot;。</li>
+<li>段内递进/揭底用&quot;——&quot;引到句末（&quot;至于少的糕点去了哪——都进了她的肚子里。&quot;）。</li>
+</ol>
+<p><strong>腔调与情绪落点</strong><br>6. 情绪不写形容词，全部落到<strong>动作/器物/景</strong>：心动＝&quot;指节收紧，避开她的触碰&quot;，剧痛＝&quot;光亮彻底熄灭的枯井&quot;。<br>7. 反讽与幽默交给对白，叙述层保持冷静、不评判人物。<br>8. 关键情绪点留白：最重的心理只用一句悬置的话或一个动作带过，留给下一段（甚至下一章）。</p>
+<p><strong>视角</strong><br>9. 主贴女主第三人称限知；只有当&quot;某人的心思必须被读者看穿而他当面不说&quot;时，才切到他的内心（宋霆）。<br>10. 多用旁观者侧写：用配角的一句闲话/一次张望来推关系、造僵局，别让主角自己把话说破。</p>
+<p><strong>对白</strong><br>11. 一人一腔：男主用极简单/短句作答（&quot;嗯&quot;&quot;开吧&quot;），女主用反问+反讽，长辈用方言训话+标志物（拐杖）。<br>12. 对白用句号收束为主，少用感叹号；潜台词靠&quot;对白 + 紧接的一个动作/一个眼神&quot;完成。<br>13. 线上对白用【】包裹、不加引号、写得更直白更短。<br>14. 对白独立成段，提示语（说/道/问/回）后紧跟动作细节。</p>
+<p><strong>描写与修辞</strong><br>15. 出场肖像不做整段静态描写，靠一个动作把脸&quot;带&quot;出来，配一句定性（&quot;藏在发丝里的丹凤眼带着浑然天成的凌厉&quot;）。<br>16. 比喻取材<strong>优先三类</strong>：①茶（茶汤、回甘、第二泡）②自然（光、风、雨、深渊、枯井、苇草、火苗、网）③器物/建筑（闷锤、祠堂）。忌用网络梗与华丽飘渺的意象。<br>17. 固定使用&quot;以物写人&quot;：给每段关系配一件能反复出现的小物（桂花糕、旧手机、拐杖、金镯子）。<br>18. 环境出场即定温度：茶/光/风/雨四件套，一句写景 + 一句人物动作。</p>
+<p><strong>词汇与文白</strong><br>19. 白话为主，抒情处才掺 10% 典雅：常用&quot;宛如/仿若/氤氲/倏地/一点点/一寸寸/无声&quot;。<br>20. 高频&quot;看&quot;词（目光/视线/眼神）代替情绪直陈；&quot;沉默/无声&quot;用于标记&quot;不作为&quot;。<br>21. 器物名要具体、可考（帕萨特、卫星锅、蒲葵扇、立式电扇、挂机空调），撑起年代与生活流。<br>22. 章末可保留一句网文式&quot;作者有话说&quot;的口吻彩蛋（本书每章末尾均有），但要与正文腔调区分开。</p>
+<hr>
+<h2>五、崩风格红线（禁写项）</h2>
+<ol>
+<li><strong>禁堆砌形容词与四字成语</strong>——本书白描，形容词是稀缺品；连续两句以上华丽修饰即&quot;崩&quot;。</li>
+<li><strong>禁作者出面煽情/评论人物心情</strong>（&quot;她心如刀割&quot;&quot;他痛苦万分&quot;式直抒）——情绪必须落在动作、器物或景物上。</li>
+<li><strong>禁把潜台词说破</strong>：关键心理不许由叙述者或人物自己解释清楚，必须留白。</li>
+<li><strong>禁对白腔调混同</strong>：宋霆不许口若悬河、南久不许温吞客气、南老爷子不许讲普通话书面语。</li>
+<li><strong>禁现代网络梗/轻浮吐槽进入正文腔调</strong>（对白里偶尔有，叙述里绝不允许）。</li>
+<li><strong>禁古典诗词掉书袋</strong>：本书轻用典，强引用诗词会立刻跳戏。</li>
+<li><strong>禁长段落</strong>：大段不分行的叙述与本书&quot;短段 + 独句段&quot;的呼吸节奏相冲。</li>
+<li><strong>禁感叹号泛滥</strong>：本书以句号写平静的杀伤力，情绪靠留白而非标点。</li>
+<li><strong>禁脱离器物白描去写情绪</strong>：一旦没有茶/光/风/雨/烟/糕这类具体物作载体，风格即失真。</li>
+<li><strong>禁第三人称越权全知</strong>：不得在同一段落里同时钻进两个人的内心，须遵&quot;谁在场情绪谁承担&quot;。</li>
+</ol>
+<hr>
+<blockquote>
+<p>说明：本文件为 02 号维度定稿，仅覆盖&quot;写作风格&quot;；人物、伏笔、意象符号等维度见对应文件。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 · 阵营博弈 ·《一瓯春》</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --slate:#8ea0bb; --orange:#ffa94d;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:#dfe3ee;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:350px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.11), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:13px 26px;background:rgba(8,8,12,0.76);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:#8b93a7;letter-spacing:2px;}
+
+.wrap{max-width:1320px;margin:0 auto;padding:26px 26px 80px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:2px;}
+.hero .quote{margin:18px auto 0;max-width:820px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 26px 24px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.fbtn{font-size:11.5px;letter-spacing:1px;padding:5px 13px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#aab2c6;
+  transition:.18s;user-select:none;}
+.fbtn:hover{color:#fff;background:rgba(255,255,255,0.07);}
+.fbtn.active{color:#0b0b10;font-weight:600;}
+.hint{font-size:11px;color:#6f788c;letter-spacing:.5px;margin:0 0 12px;}
+
+.graph-wrap{overflow-x:auto;border-radius:14px;background:rgba(0,0,0,0.22);
+  border:1px solid rgba(255,255,255,0.05);position:relative;}
+#graph{min-width:1000px;width:100%;height:auto;display:block;}
+
+.node{cursor:pointer;transition:opacity .2s;}
+.node .shape{transition:stroke-width .18s, filter .18s;}
+.node:hover .shape{stroke-width:3.4;filter:drop-shadow(0 0 9px currentColor);}
+.node.off{opacity:0.1;}
+.node text{pointer-events:none;user-select:none;}
+.nname{font-weight:600;letter-spacing:.5px;}
+.ntag{font-size:10px;letter-spacing:.5px;font-weight:500;}
+.nsub{font-size:10px;letter-spacing:.5px;fill:#828ba1;}
+
+.zone{fill:none;stroke-dasharray:2 7;stroke-width:1;opacity:.5;}
+.zone-lb{font-size:11.5px;letter-spacing:5px;font-weight:700;opacity:.5;}
+
+.edge path{transition:stroke-opacity .18s;fill:none;}
+.edge .elabel{font-size:10.5px;letter-spacing:.3px;opacity:.55;transition:opacity .18s;
+  paint-order:stroke;stroke:#08080c;stroke-width:4.5px;stroke-linejoin:round;font-weight:500;}
+.edge.on path{stroke-opacity:1 !important;}
+.edge.on .elabel{opacity:1;font-weight:700;}
+.edge.off path{stroke-opacity:0.05 !important;}
+.edge.off .elabel{opacity:0.05;}
+
+.legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.lg.line i{width:16px;height:0;border-radius:0;border-top:2px solid;background:none!important;}
+.lg-sep{width:100%;height:0;}
+
+#tip{position:fixed;z-index:999;display:none;max-width:360px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+.tip-name{font-size:16px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.9;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-desc b{color:#e8e6e3;font-weight:600;}
+.tip-rel-cnt{font-size:10px;color:#6f788c;letter-spacing:1.5px;margin-top:11px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:9px;}
+
+.tl{position:relative;padding-left:30px;}
+.tl::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,#e8c97a,#b197fc 50%,#69db7c);border-radius:2px;opacity:.6;}
+.tl-item{position:relative;padding:0 0 16px 0;}
+.tl-item::before{content:'';position:absolute;left:-27px;top:8px;width:9px;height:9px;border-radius:50%;
+  background:#e8c97a;box-shadow:0 0 10px rgba(232,201,122,.85);}
+.tl-item.p2::before{background:#b197fc;box-shadow:0 0 10px rgba(177,151,252,.85);}
+.tl-item.p3::before{background:#69db7c;box-shadow:0 0 10px rgba(105,219,124,.85);}
+.acc{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;overflow:hidden;}
+.acc-h{padding:12px 16px;font-size:13px;color:#dfe3ee;letter-spacing:.5px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;transition:.18s;}
+.acc-h:hover{background:rgba(201,169,97,0.06);}
+.acc-h .no{color:var(--gold);font-weight:700;font-size:15px;}
+.acc-h .chp{font-size:10.5px;color:#7d869c;margin-left:8px;letter-spacing:.5px;}
+.acc-h .fld{font-size:10px;color:#8b93a7;padding:1px 8px;border-radius:999px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);white-space:nowrap;}
+.acc-h .arw{color:var(--gold);font-size:11px;transition:transform .22s;flex-shrink:0;}
+.acc.open .acc-h .arw{transform:rotate(90deg);}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .32s ease;}
+.acc.open .acc-b{max-height:600px;}
+.acc-b-in{padding:12px 16px 16px;font-size:12px;line-height:1.95;color:#b6bdd0;
+  border-top:1px dashed rgba(255,255,255,0.08);}
+.acc-b-in .k{color:var(--gold2);font-weight:600;}
+.acc-b-in .res{color:#9fe6ac;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+.grudge{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:16px 18px;}
+.grudge h4{margin:0 0 10px;font-size:13.5px;color:#ff9f9f;letter-spacing:1px;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.grudge h4 .tag{font-size:10px;color:#8b93a7;font-weight:400;padding:1px 8px;border-radius:999px;
+  background:rgba(255,255,255,0.05);white-space:nowrap;}
+.grudge .flow{font-size:11.5px;color:#dfe3ee;line-height:1.8;margin-bottom:9px;
+  padding:8px 10px;background:rgba(255,107,107,0.06);border-radius:8px;
+  border-left:2px solid rgba(255,107,107,0.5);}
+.grudge .flow b{color:#ff6b6b;}
+.grudge.orange .flow{background:rgba(255,169,77,0.06);border-left-color:rgba(255,169,77,0.55);}
+.grudge.orange .flow b{color:#ffa94d;}
+.grudge.blue .flow{background:rgba(116,192,252,0.06);border-left-color:rgba(116,192,252,0.55);}
+.grudge.blue .flow b{color:#74c0fc;}
+.grudge.blue h4{color:#9ecbff;}
+.grudge p{margin:0;font-size:12px;line-height:1.95;color:#b6bdd0;}
+.grudge .ch{color:#c9a961;font-size:11px;}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 12px;color:#e8c97a;font-weight:600;letter-spacing:1px;
+  border-bottom:1px solid rgba(201,169,97,0.25);white-space:nowrap;font-size:11.5px;}
+td{padding:10px 12px;color:#b6bdd0;border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.75;vertical-align:top;}
+tr:hover td{background:rgba(201,169,97,0.04);}
+td.camp{color:#dfe3ee;font-weight:600;white-space:nowrap;}
+td.camp i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;vertical-align:middle;}
+td.stance{white-space:normal;}
+
+.ml-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;}
+.ml-col{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:16px 18px;}
+.ml-col h4{margin:0 0 10px;font-size:12.5px;color:var(--gold2);letter-spacing:1.5px;}
+.ml-col ol{margin:0;padding-left:18px;}
+.ml-col li{font-size:12px;line-height:1.95;color:#b6bdd0;margin-bottom:6px;}
+.ml-col li b{color:#dfe3ee;}
+.ml-col.red h4{color:#ff9f9f;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:24px;letter-spacing:3px;}
+  .section{padding:30px 16px 20px;}
+}
+
+.tb-right{display:flex;align-items:center;gap:16px;}
+.author-badge{font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.6);border:1px solid rgba(201,169,97,0.3);border-radius:16px;
+  padding:4px 12px;white-space:nowrap;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="tb-right"><div class="dim">13 · 阵营博弈</div><span class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</span></div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>阵营博弈</h1>
+    <div class="sub">《一瓯春》· 尤四姐 · 102 章 · 势力格局与博弈走势 · 状态基准 全书终（第102章 母案昭雪）</div>
+    <div class="quote">她回府时是孤身一个庶女，身边没有一个可以依靠的人——直到把一个个摇摆的中间派，拉成自己的阵营。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">势力格局</div>
+    <h3 class="sec-title">以 谢清圆（孤身一方）× 沈润（殿前司）为双核心</h3>
+    <p class="sec-note">方框＝势力／阵营，椭圆＝两个核心。悬停任意势力节点 → 查看核心成员 · 核心诉求 · 对清圆立场；点下方色块 → 按立场筛选。</p>
+    <div class="filters" id="filters"></div>
+    <p class="hint">节点色 = 立场（金＝主角 · 蓝＝朝局 · 紫＝内廷 · 红＝敌对 · 绿＝盟友 · 灰蓝＝摇摆／中立 · 橙＝外家反派）；连线色 = 关系性质，悬停时高亮显示。虚线为间接／潜在线。</p>
+    <div class="graph-wrap">
+      <svg id="graph" viewBox="0 0 1320 1020" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">六幕走势</div>
+    <h3 class="sec-title">全书六幕 · 阵营博弈走势</h3>
+    <p class="sec-note">按章序推进，每幕标注主战场 · 关键动作 · 结果；点击展开。</p>
+    <div class="tl" id="tl"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">阵营一览</div>
+    <h3 class="sec-title">十六方势力 · 立场速查</h3>
+    <p class="sec-note">按 阵营 / 核心成员 / 核心诉求 / 对清圆立场 汇总，颜色对应上图立场。</p>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>阵营</th><th>核心成员</th><th>核心诉求</th><th>对清圆立场</th></tr></thead>
+        <tbody id="campTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">反派收束</div>
+    <h3 class="sec-title">三条反派线的终局</h3>
+    <p class="sec-note">内宅宿敌、外家入侵、朝局政敌——三条线各自的收束方式。</p>
+    <div class="cards" id="villainWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">方法论</div>
+    <h3 class="sec-title">阵营搭建方法论 · 续写红线</h3>
+    <p class="sec-note">左栏为可复用的搭建规律，右栏为本阵营体系的硬性规则。</p>
+    <div class="ml-grid" id="mlWrap"></div>
+  </div>
+
+  <div class="foot">《一瓯春》拆解 · 蓝图 13 · 阵营博弈</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============================ 立场 / 关系 色板 ============================ */
+const CAMP = {
+  core:     {name:'主角 · 孤身一方', color:'#e8c97a'},
+  court:    {name:'朝局 · 殿前司',   color:'#74c0fc'},
+  palace:   {name:'朝局 · 内廷',     color:'#b197fc'},
+  foe:      {name:'敌对',            color:'#ff6b6b'},
+  ally:     {name:'盟友',            color:'#69db7c'},
+  neutral:  {name:'摇摆 / 中立',     color:'#8ea0bb'},
+  outsider: {name:'外家反派',        color:'#ffa94d'}
+};
+const KIND = {
+  foe:  {name:'敌对', color:'#ff6b6b'},
+  ally: {name:'盟友', color:'#69db7c'},
+  use:  {name:'利用', color:'#8ea0bb'},
+  watch:{name:'监管', color:'#74c0fc'},
+  marry:{name:'联姻', color:'#e8c97a'},
+  sneak:{name:'渗透', color:'#ffa94d'}
+};
+
+/* ============================ 势力节点 ============================ */
+const NODES = [
+  {id:'qy', name:'谢清圆', sub:'庶出四姑娘 · 孤身一方', camp:'core', shape:'ellipse',
+   x:640,y:545,rx:112,ry:64,
+   members:'谢清圆（本人）；抱弦／春台／陶嬷嬷、灶房商嬷嬷、敌方眼线小喜',
+   demand:'查明母冤、为母雪冤、自保求活',
+   stance:'本人 · 孤身庶女，资源靠一个个拉拢（旧仆、灶房婆子、摇摆姨娘、敌方眼线）慢慢攒',
+   ch:'全书'},
+  {id:'shence', name:'殿前司 · 沈润', sub:'沈润 都指挥使／殿帅', camp:'court', shape:'ellipse',
+   x:640,y:235,rx:120,ry:62,
+   members:'沈润（殿帅）、弟沈澈（都使）、严复等',
+   demand:'掌禁中警备与全国侦缉刑狱、复仇、护清圆',
+   stance:'最强外援 / 男主（终成夫妻）· 本书唯一的“终极权力外援”',
+   ch:'第14、34、84、102'},
+
+  {id:'dafang', name:'谢家大房', sub:'嫡母房', camp:'foe', shape:'rect',
+   x:330,y:120,w:190,h:68,
+   members:'扈夫人（嫡母，掌中馈）、子正则＋媳邱氏、女清如、孙嬷嬷／彩练；娘家扈家（扈老将军、弟扈重宽）',
+   demand:'保嫡系体面与清如婚事、独揽中馈、压下靳姨娘旧案',
+   stance:'宿敌 · 母案主使，几番加害',
+   ch:'第3、43、59、96、102'},
+  {id:'lian', name:'莲姨娘房', sub:'长女清和之母', camp:'ally', shape:'rect',
+   x:168,y:248,w:180,h:64,
+   members:'莲姨娘、女清和（后嫁开国伯大公子李观灵）',
+   demand:'为清和争体面婚事、摆脱嫡母盘剥',
+   stance:'对立 → 盟友 · 清圆第一根“借刀”',
+   ch:'第33、94、96'},
+  {id:'mei', name:'梅姨娘房', sub:'次子正伦 · 三子正钧之母', camp:'ally', shape:'rect',
+   x:168,y:378,w:180,h:64,
+   members:'梅姨娘（原通房丫头）、子正伦（次子）／正钧（三子）、媳明氏',
+   demand:'生存、为儿子谋出身、少受嫡母苛待',
+   stance:'观望 → 暗结同盟',
+   ch:'第24、51、96'},
+  {id:'dongfu', name:'东府二房', sub:'谢训 / 蒋氏', camp:'ally', shape:'rect',
+   x:168,y:508,w:180,h:64,
+   members:'谢训、蒋氏（二太太）、子正元／正德',
+   demand:'争老宅份额、见风使舵谋前程',
+   stance:'摇摆 → 倒向清圆（告密结盟）',
+   ch:'第15、50、83'},
+  {id:'sanfang', name:'谢家三房', sub:'谢悯 / 裴氏', camp:'neutral', shape:'rect',
+   x:168,y:638,w:180,h:64,
+   members:'谢悯、裴氏（三太太）',
+   demand:'依附大房、不肯站队',
+   stance:'中立 · “刀切豆腐两面光”',
+   ch:'第58'},
+  {id:'laotaitai', name:'谢老太太', sub:'当家人 · 掌中馈', camp:'neutral', shape:'rect',
+   x:350,y:748,w:190,h:64,
+   members:'谢老太太（最高长辈、当家人）',
+   demand:'保谢家门楣、偏袒嫡脉、拿庶出孙女做筹码',
+   stance:'冷待 → 利用 → 决裂（外层定调权）',
+   ch:'第13、69、85'},
+  {id:'shu', name:'谢纾', sub:'谢家老爷', camp:'neutral', shape:'rect',
+   x:580,y:812,w:200,h:64,
+   members:'谢纾（剑南道节度使 → 幽州刺史 → 复职 → 卢龙军）',
+   demand:'官运、体面、“嫡妻不下堂”',
+   stance:'生疏 → 摊牌 → 当众认错',
+   ch:'第14、94、102'},
+
+  {id:'neiting', name:'朝局 · 内廷', sub:'禁中', camp:'palace', shape:'rect',
+   x:1092,y:192,w:200,h:64,
+   members:'圣人、皇后、内侍省（内侍监刘监）、掖庭令',
+   demand:'选妃、平衡朝局',
+   stance:'间接助清圆 · 清如落选、改户籍、皇后赏识',
+   ch:'第55、86、88'},
+  {id:'zhengdi', name:'朝局 · 政敌', sub:'朝堂', camp:'foe', shape:'rect',
+   x:1152,y:352,w:200,h:64,
+   members:'太傅、御史中丞刘昂、付春山（已倒）',
+   demand:'攻讦沈润、主斩谢纾',
+   stance:'敌 · 刘昂结仇未消',
+   ch:'第34、72、80'},
+  {id:'yaojia', name:'姚家', sub:'外家入侵势力', camp:'outsider', shape:'rect',
+   x:1100,y:700,w:200,h:64,
+   members:'姚绍（宣州少尹）、妻汪氏、女皓雪（姚九姑娘）、董家亲戚',
+   demand:'借皓雪入主沈家二房',
+   stance:'反派 · 挑拨滑胎、谋平妻',
+   ch:'第81、89、99、100'},
+  {id:'shener', name:'沈家二房', sub:'西府 · 沈澈 / 芳纯', camp:'ally', shape:'rect',
+   x:890,y:882,w:200,h:64,
+   members:'沈澈（都使，小字澄冰）、妻芳纯（董夫人，姚家外甥女）',
+   demand:'夫妻和合、子嗣',
+   stance:'妯娌盟友 · 芳纯被拉出姚家阵营',
+   ch:'第32、82、99、101'},
+
+  {id:'chenjia', name:'外家 · 陈家', sub:'横塘', camp:'ally', shape:'rect',
+   x:600,y:952,w:200,h:64,
+   members:'横塘陈老太爷、陈老太太（清圆养祖父母）',
+   demand:'护孙女、立“依礼求娶”之规',
+   stance:'坚实后盾 · 全书唯一“真骨肉情”',
+   ch:'第23、74、75、82'},
+  {id:'danyang', name:'姻亲 · 丹阳侯府', sub:'提亲 → 退亲', camp:'neutral', shape:'rect',
+   x:390,y:952,w:200,h:64,
+   members:'侯夫人、三公子李从心（名淳之）',
+   demand:'门第联姻',
+   stance:'由提亲 → 退亲',
+   ch:'第20、63、68'},
+  {id:'kaiguo', name:'姻亲 · 开国伯府', sub:'清和之夫家', camp:'neutral', shape:'rect',
+   x:176,y:882,w:200,h:64,
+   members:'开国伯夫人、大公子李观灵（兰山）',
+   demand:'与谢家联姻（清和）',
+   stance:'中立（清和之夫家）',
+   ch:'第6、8、65'}
+];
+
+/* ============================ 关系连线 ============================ */
+const EDGES = [
+  {a:'qy', b:'shence', k:'marry', hero:1, label:'联姻 · 最强外援', ch:'第72、74–76、102'},
+  {a:'dafang', b:'qy', k:'foe', hero:1, label:'敌对 · 母案主使／杀局', ch:'第43、59、102'},
+  {a:'lian', b:'qy', k:'ally', hero:1, label:'盟友 · 借刀告状', ch:'第33'},
+  {a:'mei', b:'qy', k:'ally', label:'暗结同盟', ch:'第24、96'},
+  {a:'dongfu', b:'qy', k:'ally', label:'告密结盟 · 倒向', ch:'第50、83'},
+  {a:'sanfang', b:'qy', k:'use', label:'中立 · 两面光', ch:'第58', curv:-1},
+  {a:'laotaitai', b:'qy', k:'use', label:'利用 · 当棋子', ch:'第13、69、85', curv:-1},
+  {a:'shu', b:'qy', k:'use', label:'生疏 → 当众认错', ch:'第14、102'},
+  {a:'laotaitai', b:'shu', k:'watch', label:'外层 · 定调权', ch:'第37、97'},
+  {a:'dafang', b:'lian', k:'foe', label:'主母摊派 · 结怨', ch:'第29、33'},
+  {a:'dafang', b:'mei', k:'foe', label:'摊派连坐', ch:'第29、34、51', curv:-1},
+  {a:'dafang', b:'dongfu', k:'foe', label:'妯娌暗斗', ch:'第16、17'},
+  {a:'dafang', b:'laotaitai', k:'use', label:'婆媳明和暗斗', ch:'第54、60'},
+  {a:'dafang', b:'shu', k:'foe', label:'夫妻决裂 · 休妻', ch:'第96、97'},
+  {a:'dafang', b:'shence', k:'foe', label:'被拿捏勒索', ch:'第62'},
+  {a:'shence', b:'zhengdi', k:'foe', hero:1, label:'敌对 · 攻讦结仇', ch:'第72、80'},
+  {a:'shence', b:'neiting', k:'watch', label:'暗通 · 监管协作', ch:'第55'},
+  {a:'qy', b:'neiting', k:'watch', label:'间接助力', ch:'第55、88', curv:-1},
+  {a:'qy', b:'chenjia', k:'ally', hero:1, label:'后盾 · 养育之恩', ch:'第23、74'},
+  {a:'qy', b:'danyang', k:'use', label:'提亲 → 退亲', ch:'第63、68', curv:1},
+  {a:'qy', b:'kaiguo', k:'use', label:'中立 · 清和夫家', ch:'第8、65', curv:-1},
+  {a:'shence', b:'yaojia', k:'foe', label:'敌对 · 押入大牢', ch:'第100、102'},
+  {a:'qy', b:'yaojia', k:'foe', label:'反派 · 设局捉奸', ch:'第99、100', curv:1},
+  {a:'qy', b:'shener', k:'ally', label:'妯娌盟友', ch:'第99、101'},
+  {a:'shener', b:'yaojia', k:'sneak', label:'外家渗透 · 挑拨滑胎', ch:'第81、82、99'},
+  {a:'shence', b:'shener', k:'ally', label:'兄弟同盟', ch:'第64、84、100'},
+  {a:'yaojia', b:'dafang', k:'sneak', label:'终章交汇 · 借案行凶', ch:'第102'},
+  {a:'shu', b:'shence', k:'watch', label:'同科故交 → 借力', ch:'第34、84', curv:1}
+];
+
+/* ============================ 六幕走势 ============================ */
+const TL = [
+  {no:'①', t:'归府布局', c:'1–21', field:'谢府内宅', p:1,
+   act:'清圆查母案 → 以“青梅”试探排除莲姨娘、锁定扈夫人[第10、12]；老太太定调“只配嫁寒门”[第13]、清如掌掴[第21]',
+   res:'敌明我暗，清圆单枪匹马被压制，暗结陶嬷嬷 → 商嬷嬷 → 陈家线索'},
+  {no:'②', t:'迁幽州 · 攀附', c:'22–26', field:'谢府 + 殿前司', p:1,
+   act:'谢家沦为受殿前司监管的犯官家眷[第22、25]；清圆献名册攀沈家[第26]、拉拢梅姨娘[第24]',
+   res:'清圆由被动转主动，把“求助沈家”变成自己的破局入口'},
+  {no:'③', t:'攀附沈润 · 宅斗升级', c:'27–45', field:'内宅 + 感情线', p:2,
+   act:'清圆暗借莲姨娘告状[第33]；扈夫人识破玉佩之计、定碧痕寺杀局[第43]；遇袭、沈润救场[第44、45]',
+   res:'清圆挟沈润之势，第一次拿到反制嫡母的把柄'},
+  {no:'④', t:'护国寺 · 勒索', c:'46–62', field:'内宅 + 朝局', p:2,
+   act:'扈夫人护国寺毒计反被将计就计、清如失贞[第59、60]；清容倒戈、扈夫人众叛亲离[第61]；沈润遣严复勒索五万两[第62]；选妃沈润暗护[第55]',
+   res:'大房势力崩塌，清圆主导权确立'},
+  {no:'⑤', t:'退亲 · 求娶', c:'63–76', field:'感情线 + 谢家', p:3,
+   act:'清圆退李从心亲事[第68]；沈润设局拆散[第64–68]；老太太把清圆“填窟窿”送沈府[第69、70]；沈润殿前请旨指婚、归陈家依礼求娶[第72、74、75]',
+   res:'清圆脱谢家、归陈家、婚事定'},
+  {no:'⑥', t:'大婚 · 执掌沈家 · 昭雪', c:'77–102', field:'沈家 + 朝局', p:3,
+   act:'谢家婚宴发难惨败、清圆封广阳郡夫人改入陈氏[第85、86]；休扈夫人[第96、97]；设局捉皓雪[第99]、押姚家[第100]；扈氏买凶事败斩决、母案昭雪[第102]',
+   res:'全部仇敌清算，母冤昭雪，主线上下一心'}
+];
+
+/* ============================ 反派收束 ============================ */
+const VILLAINS = [
+  {cls:'', h:'扈夫人 · 内宅宿敌', tag:'第102章 斩立决',
+   flow:'<b>宿敌</b> → 被休 → <b>斩立决</b>',
+   p:'掌家权柄稳固（1–60章）→ 护国寺反中计、女儿失贞、势力大跌[第60、61] → 被殿前司勒索、倾家[第62] → 被休弃、遣回娘家[第96、97] → 买凶伪造姚家母女自尽事败，<span class="ch">斩立决[第102]</span>。其行凶方式与结局对称呼应：当年“撵靳春晴出府”，终章自己被休遣时惊觉似曾相识。'},
+  {cls:'orange', h:'姚家 · 外家入侵', tag:'第100 / 102章 灭门',
+   flow:'<b>渗透</b> → 捉奸 → <b>灭门</b>',
+   p:'暗缠[第81] → 明面交锋[第82、91] → 被清圆设局当场捉奸[第99] → 母女押入卢龙军大牢[第100] → 牢中一死一伤[第101] → 终章揭为扈氏买凶伪造自尽：皓雪殒命、汪氏牢中上吊，<span class="ch">姚绍远贬蜀地[第102]</span>。姚家与扈夫人本为两条独立反派线，终章才交汇。'},
+  {cls:'blue', h:'朝局 · 政敌', tag:'第80章 结仇未消',
+   flow:'结仇 → <b>未消</b>（留待清算）',
+   p:'因沈润娶谢纾之女，御史中丞刘昂当众揶揄、并揭清圆生母“毒杀妾侍”旧案；沈润拔剑震慑并暗查其以权谋私之罪<span class="ch">[第80]</span>——<b>结仇、留待清算</b>。太傅主斩谢纾之局已由沈润力谏破解[第72]；付春山早已倒台[第34]。'}
+];
+
+/* ============================ 方法论 / 红线 ============================ */
+const METHOD = {
+  m:'<h4>阵营搭建方法论</h4><ol>'+
+    '<li><b>三层结构</b>：外层（家主＋最高长辈）掌定调权；中层（嫡母房 vs 孤身庶女）为主线；内层（妾室房、旁支）是可争取的变量。</li>'+
+    '<li><b>婆媳斗“斗而不破”</b>：老太太 vs 扈夫人明和暗斗，长辈权威只在“家丑外扬”时才真正动用。</li>'+
+    '<li><b>妻妾斗靠经济盘剥</b>：正妻摊派钱财是最有效的结怨装置，再用一个中间人传话／暗号点着。</li>'+
+    '<li><b>嫡庶羞辱戏</b>：受辱（隐忍）→ 以退为进（放低姿态）→ 长辈看清谁在欺负谁 → 施辱方失分。</li>'+
+    '<li><b>破局外援定律</b>：内宅斗争最终靠外部权力一击定胜负，但外援须节制，不可让男主提前下场摆平一切。</li>'+
+    '<li><b>反派收束因果对称</b>：结局优先回收“它当初加害主角的手法”，做成一报还一报的闭环。</li>'+
+  '</ol>',
+  r:'<h4>续写红线</h4><ol>'+
+    '<li>谢家内宅的裁判权在<b>老太太与谢纾</b>手里，任何判决都须经外层拍板。</li>'+
+    '<li>嫡母房的<b>娘家势力</b>是其行动力来源，写反派害人须先给她一个“府外执行者”。</li>'+
+    '<li><b>殿前司</b>是唯一“终极权力外援”，权能边界＝禁中警备＋全国侦缉刑狱。</li>'+
+    '<li><b>陈家（横塘）</b>永远是主角的退路与体面来源，任何一次“抽身”都以陈家为落点。</li>'+
+    '<li>姚家与扈夫人是<b>两条独立反派线</b>，终章才交汇，不要过早合流。</li>'+
+    '<li>全书<b>无“公婆”压力</b>（沈润父母双亡），婚后矛盾是“妯娌＋外家（姚家）”，非传统婆媳。</li>'+
+  '</ol>'
+};
+
+/* ============================ 渲染 ============================ */
+const NS='http://www.w3.org/2000/svg';
+const byId={}; NODES.forEach(function(n){byId[n.id]=n;});
+function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);
+  for(const k in attrs)e.setAttribute(k,attrs[k]); if(parent)parent.appendChild(e); return e;}
+function hexA(hex,a){const n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
+function solid(hex,t){
+  const n=parseInt(hex.slice(1),16), bg=[10,11,16];
+  const r=Math.round(bg[0]*(1-t)+(n>>16&255)*t),
+        g=Math.round(bg[1]*(1-t)+(n>>8&255)*t),
+        b=Math.round(bg[2]*(1-t)+(n&255)*t);
+  return 'rgb('+r+','+g+','+b+')';
+}
+function qpt(A,C,B,t){const u=1-t;
+  return [u*u*A.x+2*u*t*C.x+t*t*B.x, u*u*A.y+2*u*t*C.y+t*t*B.y];}
+
+const svg=document.getElementById('graph');
+const gZone=mk('g',{},svg), gE=mk('g',{},svg), gN=mk('g',{},svg);
+
+/* 分区（视觉分区框） */
+const ZONES=[
+  {x:40,y:44,w:400,h:686,  color:'#ff6b6b', label:'谢 家 内 宅'},
+  {x:880,y:120,w:400,h:640, color:'#74c0fc', label:'朝 局 ＋ 沈 家 外 家'},
+  {x:60,y:830,w:790,h:170, color:'#69db7c', label:'外 家 / 姻 亲'}
+];
+ZONES.forEach(function(z){
+  mk('rect',{class:'zone',x:z.x,y:z.y,width:z.w,height:z.h,rx:16,stroke:z.color},gZone);
+  const t=mk('text',{class:'zone-lb',x:z.x+14,y:z.y+20,fill:z.color},gZone);
+  t.textContent=z.label;
+});
+
+/* 连线 */
+const edgeEls=[], nodeEls={}, adj={}, nbr={};
+NODES.forEach(function(n){adj[n.id]=[]; nbr[n.id]=new Set();});
+
+EDGES.forEach(function(e,idx){
+  const A=byId[e.a], B=byId[e.b]; if(!A||!B) return;
+  const col=KIND[e.k].color;
+  const dx=B.x-A.x, dy=B.y-A.y, len=Math.hypot(dx,dy)||1;
+  const nx=-dy/len, ny=dx/len;
+  const mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+  const sign=(e.curv!==undefined)? e.curv : (idx%2? 1:-1);
+  const off=0.1*len*sign;
+  const C={x:mx+nx*off, y:my+ny*off};
+  const g=mk('g',{class:'edge','data-k':e.k,'data-a':e.a,'data-b':e.b},gE);
+  mk('path',{d:'M'+A.x+' '+A.y+' Q'+C.x.toFixed(1)+' '+C.y.toFixed(1)+' '+B.x+' '+B.y,
+    stroke:col,'stroke-width': e.hero?2.4:(e.k==='foe'?1.4:1.1),
+    'stroke-opacity': e.hero?0.6:0.34,'stroke-linecap':'round',
+    'stroke-dasharray': (e.k==='use'||e.k==='watch'||e.k==='sneak')?'5 5':'none'},g);
+  const lp=qpt(A,C,B,0.5);
+  const t=mk('text',{x:lp[0].toFixed(1), y:(lp[1]-5).toFixed(1), class:'elabel',
+    'text-anchor':'middle', fill:col},g);
+  t.textContent=e.label;
+  edgeEls.push({g:g,e:e,el:t});
+  adj[e.a].push(e); adj[e.b].push(e);
+  nbr[e.a].add(e.b); nbr[e.b].add(e.a);
+});
+
+/* 节点 */
+NODES.forEach(function(n){
+  const c=CAMP[n.camp];
+  const g=mk('g',{class:'node','data-id':n.id,'data-camp':n.camp},gN);
+  if(n.shape==='ellipse'){
+    mk('ellipse',{class:'shape',cx:n.x,cy:n.y,rx:n.rx,ry:n.ry,fill:solid(c.color,0.16),
+      stroke:c.color,'stroke-width':2.2},g);
+  }else{
+    mk('rect',{class:'shape',x:n.x-n.w/2,y:n.y-n.h/2,width:n.w,height:n.h,rx:13,
+      fill:solid(c.color,0.15),stroke:c.color,'stroke-width':1.8},g);
+  }
+  if(n.shape==='ellipse'){
+    const tn=mk('text',{x:n.x,y:n.y-4,class:'nname','text-anchor':'middle',fill:c.color,'font-size':15},g);
+    tn.textContent=n.name;
+    const ts=mk('text',{x:n.x,y:n.y+16,class:'nsub','text-anchor':'middle'},g);
+    ts.textContent=n.sub;
+  }else{
+    const tn=mk('text',{x:n.x,y:n.y-6,class:'nname','text-anchor':'middle',fill:c.color,'font-size':13.5},g);
+    tn.textContent=n.name;
+    const ts=mk('text',{x:n.x,y:n.y+15,class:'ntag','text-anchor':'middle',fill:hexA(c.color,0.85)},g);
+    ts.textContent=n.sub;
+  }
+  nodeEls[n.id]={g:g};
+});
+
+/* ============================ 交互 ============================ */
+const tip=document.getElementById('tip');
+let state={mode:'none',id:null};
+
+function apply(){
+  edgeEls.forEach(function(o){
+    let on=false;
+    if(state.mode==='node') on=(o.e.a===state.id||o.e.b===state.id);
+    if(state.mode==='camp') on=false;
+    o.g.classList.toggle('on',on);
+    o.g.classList.toggle('off',state.mode==='node' && !on);
+  });
+  NODES.forEach(function(n){
+    let on=true;
+    if(state.mode==='node') on=(n.id===state.id || nbr[state.id].has(n.id));
+    if(state.mode==='camp') on=(n.camp===state.camp);
+    nodeEls[n.id].g.classList.toggle('off',!on);
+  });
+}
+
+function moveTip(ev){
+  const pad=16,w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+pad,y=ev.clientY+pad;
+  if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+  if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+  if(x<8)x=8; if(y<8)y=8;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+
+function bindNode(el){
+  const id=el.getAttribute('data-id'), n=byId[id], c=CAMP[n.camp];
+  el.addEventListener('mouseenter',function(ev){
+    state={mode:'node',id:id}; apply();
+    tip.innerHTML='<div class="tip-name" style="color:'+c.color+'">'+n.name+'</div>'+
+      '<div class="tip-role">'+n.sub+' · <span style="color:'+c.color+'">'+c.name+'</span></div>'+
+      '<div class="tip-desc"><b>核心成员：</b>'+n.members+'<br>'+
+      '<b>核心诉求：</b>'+n.demand+'<br>'+
+      '<b>对清圆立场：</b>'+n.stance+'</div>'+
+      '<div class="tip-rel-cnt">关 系 线 · '+adj[id].length+' 条 · '+n.ch+'</div>';
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){
+    tip.style.display='none'; state={mode:curCamp?'camp':'none',camp:curCamp}; apply();
+  });
+}
+svg.querySelectorAll('.node').forEach(bindNode);
+
+/* 筛选 */
+let curCamp=null;
+const fw=document.getElementById('filters');
+Object.keys(CAMP).forEach(function(k){
+  const b=document.createElement('div');
+  b.className='fbtn'; b.textContent=CAMP[k].name;
+  b.style.borderColor=hexA(CAMP[k].color,.45);
+  b.addEventListener('click',function(){
+    curCamp=(curCamp===k)?null:k;
+    fw.querySelectorAll('.fbtn').forEach(function(x){
+      const on=x.dataset.camp===curCamp;
+      x.classList.toggle('active',on);
+      x.style.background=on? x.dataset.color : 'rgba(255,255,255,0.03)';
+      x.style.borderColor=on? x.dataset.color : hexA(x.dataset.color,.45);
+    });
+    state=curCamp? {mode:'camp',camp:curCamp} : {mode:'none'};
+    tip.style.display='none'; apply();
+  });
+  b.dataset.camp=k; b.dataset.color=CAMP[k].color;
+  fw.appendChild(b);
+});
+
+/* 图例 */
+const lg=document.getElementById('legend');
+Object.keys(CAMP).forEach(function(k){
+  const d=document.createElement('div'); d.className='lg';
+  d.innerHTML='<i style="background:'+CAMP[k].color+';box-shadow:0 0 7px '+hexA(CAMP[k].color,.9)+'"></i>'+CAMP[k].name;
+  lg.appendChild(d);
+});
+const sep=document.createElement('div'); sep.className='lg-sep'; lg.appendChild(sep);
+Object.keys(KIND).forEach(function(k){
+  const d=document.createElement('div'); d.className='lg line';
+  d.innerHTML='<i style="border-top-color:'+KIND[k].color+'"></i>'+KIND[k].name;
+  lg.appendChild(d);
+});
+
+/* 六幕走势 */
+const tl=document.getElementById('tl');
+TL.forEach(function(s,i){
+  const acc=document.createElement('div'); acc.className='acc'+(i===0?' open':'');
+  acc.innerHTML='<div class="acc-h"><span><span class="no">'+s.no+'</span> '+s.t+
+      '<span class="chp">第 '+s.c+' 章</span></span>'+
+      '<span style="display:flex;align-items:center;gap:10px"><span class="fld">'+s.field+'</span>'+
+      '<span class="arw">▶</span></span></div>'+
+    '<div class="acc-b"><div class="acc-b-in"><span class="k">关键动作：</span>'+s.act+
+      '<br><span class="k">结果：</span><span class="res">'+s.res+'</span></div></div>';
+  acc.querySelector('.acc-h').addEventListener('click',function(){ acc.classList.toggle('open'); });
+  const item=document.createElement('div');
+  item.className='tl-item'+(s.p===2?' p2':s.p===3?' p3':'');
+  item.appendChild(acc);
+  tl.appendChild(item);
+});
+
+/* 阵营一览表 */
+const ct=document.getElementById('campTable');
+NODES.forEach(function(n){
+  const c=CAMP[n.camp];
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td class="camp"><i style="background:'+c.color+'"></i>'+n.name+'</td>'+
+    '<td>'+n.members+'</td><td>'+n.demand+'</td><td class="stance">'+n.stance+'</td>';
+  ct.appendChild(tr);
+});
+
+/* 反派收束 */
+const vw=document.getElementById('villainWrap');
+VILLAINS.forEach(function(v){
+  const d=document.createElement('div'); d.className='grudge '+v.cls;
+  d.innerHTML='<h4>'+v.h+'<span class="tag">'+v.tag+'</span></h4>'+
+    '<div class="flow">'+v.flow+'</div><p>'+v.p+'</p>';
+  vw.appendChild(d);
+});
+
+/* 方法论 / 红线 */
+const mw=document.getElementById('mlWrap');
+const c1=document.createElement('div'); c1.className='ml-col'; c1.innerHTML=METHOD.m; mw.appendChild(c1);
+const c2=document.createElement('div'); c2.className='ml-col red'; c2.innerHTML=METHOD.r; mw.appendChild(c2);
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

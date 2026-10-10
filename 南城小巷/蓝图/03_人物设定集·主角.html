@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南城小巷 · 人物设定集·主角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>南城小巷 · 人物设定集·主角</h1>
+<blockquote>
+<p>本文档为《南城小巷》创作蓝图第 03 号文件，归纳自人物台账（主角条目）+ 全部 70 张章卡&quot;人物动态/关键行动/CP互动&quot; + 关系台账涉及主角条目。<br>用途：AI 读完能&quot;扮演&quot;南久 / 宋霆写对白、写行动而不崩人设；续写时据此校准人物。<br>分工边界：本篇只写&quot;人物自身怎么变&quot;；两人之间关系怎么变、谁是谁，见 <code>05_人物关系网.md</code>。<br>阶段切分依据 = 全书编年（章题即阶段名）：初一 → 高二 → 大二 → 大三 → 大四 → 进入社会 → 人生旅途 → 番外（回南城/完婚），共 8 段。</p>
+</blockquote>
+<hr>
+<h1>一、南久（女主）</h1>
+<h2>1. 基础设定（不变核心）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>南久</td>
+</tr>
+<tr>
+<td>身世</td>
+<td>南振东之女、郭文惠之女；父母离异后各自重组（父续弦廖虹、生弟南凯；母再婚后有同母异父的妹妹）。自幼被父母&quot;踢来踢去&quot;，12 岁起寄养在爷爷南老爷子的帽儿茶馆。[第1章]</td>
+</tr>
+<tr>
+<td>年龄</td>
+<td>初一时约 12–13 岁；全书主线 12 → 约 24 岁（大宋霆八岁）。</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>天生美艳轮廓，高一味叛逆：高二时短发、脐钉、一身&quot;野&quot;气，化全妆后美艳逼人；舞蹈出身、身材挺拔。腰部有旧伤（少年住校搓衣冻到没知觉）。[第1/3/5/9章]</td>
+</tr>
+<tr>
+<td>身份轨迹</td>
+<td>茶馆寄养女孩 → 茶馆帮工/管账 → 舞蹈社团长 → 星耀编舞导师/合伙人（&quot;铁三角&quot;核心）→ 自营&quot;南风艺境&quot;。</td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>一个真正属于自己的&quot;家&quot;与被爱的确定感；&quot;由自己主宰人生&quot;的事业。[第36章]</td>
+</tr>
+<tr>
+<td>恐惧</td>
+<td>被当成累赘、被抛弃；&quot;人不能既要又要&quot;的原生家庭旧伤。[第38章]</td>
+</tr>
+<tr>
+<td>信念／准则</td>
+<td>要强自立、不给任何人添麻烦；不趁人之危、不拿不属于自己的东西（拒捷径、拒贵重礼物、拒彩礼之名）。[第26/35/36章]</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>舞蹈（编舞/教学/活动策划）、管账（对钱敏感，天生做生意的料）、经营谈判、泡茶、茶山运营与抢采决断。</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>金镯子（宋霆定情物，主动收起又戴回）、那张卡（宋霆塞的银行卡，暗藏十万）、三花猫&quot;小九&quot;。</td>
+</tr>
+</tbody></table>
+<h2>2. 性格标签（从行为拆出）</h2>
+<ul>
+<li><strong>主标签：要强的自救者</strong>——被打碎也自己站起来，从不肯示弱求助。<ul>
+<li>行为佐证：12 岁只身百里寻爷爷[第1章]；替爷爷揪出逃单客显管账天赋[第9章]；独当一面拆穿假洋人李玮、抢先报警[第13章]；拒绝林颂耀 30 万入股捷径[第35章]；为 30 万四处碰壁也不肯白拿[第36章]；在茶山拍板&quot;与天争&quot;抢采、立军令状[第45章]。</li>
+</ul>
+</li>
+<li><strong>辅标签 1：机敏的实干家（生意人直觉）</strong>——对钱、对人心、对场面里的空子极敏感，出手快狠准。<ul>
+<li>行为佐证：逃单客一抓一个准[第9章]；当众识破假洋人口音硬刚[第13章]；提议茶馆上平台做 IP[第10章]；办成个人首场大型快闪舞蹈活动[第29章]；独自推算茶山抢采方案[第44章]。</li>
+</ul>
+</li>
+<li><strong>辅标签 2：清醒的克制者（断舍离者）</strong>——动情极深，却能主动叫停、亲手了断。<ul>
+<li>行为佐证：越界后主动划界、收起金镯子[第26章]；主动疏远&quot;别来学校找我&quot;[第29章]；领证当日在民政局掉头、以股权反将林颂耀[第53章]；签股权转让、应下&quot;离开酆市&quot;体面退场[第55章]。</li>
+</ul>
+</li>
+<li><strong>反差点</strong>：<code>叛野的&quot;野孩子&quot;外壳</code> × <code>骨子里极度渴望被爱、被收留的软肋</code>——她嘴上&quot;谁都不需要&quot;，行动上却一次次向&quot;能被兜住的角落&quot;奔赴（歪脖子树下等宋霆[第10章]、夜走红房子[第14章]）。<ul>
+<li>第二重反差：<code>对他人慷慨托底</code>（为救珍敏以身涉险[第23章]、庇护夏嫣然[第28章]、许诺带桑丫出山[第51章]、替宋霆主事救茶山[第43-52章]）× <code>对自己极狠</code>（隐忍硬扛、绝境磨尖木棍自救[第24章]）。</li>
+</ul>
+</li>
+</ul>
+<h2>3. 人物弧光（一句话）</h2>
+<p><strong>从被人踢来踢去、只求一个落脚处的累赘，长成能替别人托底、亲手选择并构成自己人生的&quot;南老板&quot;。</strong></p>
+<h2>4. 阶段卡</h2>
+<h3>阶段一 · 初一｜落难投亲（约 12–13 岁｜第1–2章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 12–13 岁，初一学生；父母双全却&quot;没人要&quot;的孩子</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>后妈生子、父亲忘女，被送去亲妈家受尽冷遇；只带双肩包只身百里投奔爷爷，荒道遇修车的宋霆，高烧住院后落脚帽儿茶馆一楼偏房</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>幼女的机灵与戒备并存，对&quot;爷爷何时收的干儿子&quot;一无所知；尚在&quot;摆茶点偷吃&quot;的学步期，被爷爷教茶馆规矩</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>被指定为&quot;名义叔侄&quot;（须叫他&quot;叔&quot;）[第1章]；茶馆日常建立&quot;叔侄式&quot;默契、偷藏爷爷拐杖、爬房顶修天线[第2章]</td>
+</tr>
+</tbody></table>
+<h3>阶段二 · 高二｜叛逆归巷（约 16–17 岁｜第3–7章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 16–17 岁；短发脐钉、一身叛逆的寄养少女</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>被父亲再次送回茶馆；与宋霆时隔四年重逢</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>由对立、戒备转向破冰，第一次对外吐露&quot;被当累赘&quot;的心声；确认了&quot;被记得&quot;这件事</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>当街爆发骂尽委屈、宋霆带她吃夜宵、坦白&quot;那年我开车是出去找你的&quot;[第4章]；为柳茵出头搅黄宋霆相亲[第5章]；得知宋霆身世愧疚请罪[第6章]；临别获赠电脑、递桂花糕指尖相触、倒视镜对视[第7章]</td>
+</tr>
+</tbody></table>
+<h3>阶段三 · 大二｜暧昧与初定情（约 19–20 岁｜第8–26章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 19–20 岁，大二在读；暑假随宋霆上茶山</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>正式喊&quot;宋叔&quot;、识破电脑是宋霆所买；从茶馆帮工到被爷爷教管账；茶山之夏初见珍敏、经历被掳与初夜</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>感情由暧昧质变为亲密，同时&quot;看见他小时候的自己&quot;；显出独立判断与经营才干（管账、护人、做主）</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>第一次正经喊&quot;宋叔&quot;[第8章]；揪逃单客[第9章]；隔门板听&quot;我在你身上能看见小时候的我&quot;[第18章]；为救珍敏被掳、被锁茅草屋磨尖木棍自救[第23–24章]；20 岁生日木屋&quot;我后悔了&quot;、越界共度初夜[第25章]；主动划界、收起金镯子[第26章]</td>
+</tr>
+</tbody></table>
+<h3>阶段四 · 大三｜清醒收手（约 20–21 岁｜第27–29章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 20–21 岁，大三；进入星耀视野的舞蹈生</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>校园流言（&quot;包养&quot;）刺痛，林颂耀以&quot;冷静的猎人&quot;姿态审视她</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>价值观确立——不肯为一次心动困于世俗，把全部力气投进事业；第一次独立起跳，办成个人首场大型舞蹈活动</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>为星耀泡茶留印象、撞见林颂耀[第27章]；庇护被传&quot;包养&quot;的夏嫣然[第28章]；主动疏远&quot;你以后别来学校找我了&quot;[第29章]</td>
+</tr>
+</tbody></table>
+<h3>阶段五 · 大四｜亲密坐实与分离宿命（约 21–22 岁｜第30–34章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 21–22 岁，大四毕业；星耀编舞导师</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>毕业季&quot;无家可归&quot;、返乡重逢疏离；柳家向宋霆提亲施压</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>直面&quot;我们要走的路不一样&quot;，一边深溺一边清醒；学会在父母安排的相亲里虚与委蛇</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>升任星耀编舞导师、识破三花猫&quot;小九&quot;[第30–31章]；齐宁山溪边半抱[第32章]；与宋霆越过界限、开房[第33章]；夹巷相拥被柳茵撞破、坦白&quot;我们不可能在一起&quot;[第34章]</td>
+</tr>
+</tbody></table>
+<h3>阶段六 · 进入社会｜创业起步（约 22 岁｜第35–36章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 22 岁，刚毕业进入社会；星耀合伙人候选人</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>为 30 万合伙人席位门槛四处碰壁：拒林颂耀捷径、亲妈家受冷嘲、后妈以&quot;彩礼&quot;相待</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>由&quot;要一个机会&quot;淬炼成&quot;由自己主宰人生&quot;；与原生家庭彻底割裂，立誓自立</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>拒绝 30 万入股捷径[第35章]；向宋霆开口获无条件相助、发现卡中原有十万、初雪中立誓[第36章]</td>
+</tr>
+</tbody></table>
+<h3>阶段七 · 人生旅途｜商战与主事茶山（约 22–23 岁｜第37–55章·正文完）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 22–23 岁；星耀&quot;铁三角&quot;核心 → 独当一面主事茶山 → 退股创业者</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>被卷入契约婚姻、私情撞破、被逐出南家；宋霆失联车祸，她反向接手茶山、替他抢采；终以退股返乡收束正文</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>全书最大跃迁：从&quot;被保护的人&quot;变成&quot;能保护别人的决策者&quot;；悟&quot;止损比赢更重要&quot;；学会对等的成人式摊牌与体面放手</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>拒林颂耀契约婚姻[第37章]；返乡咬唇一吻[第38章]；私情被撞破、遭爷爷杖责逐门[第39–40章]；被林颂耀强吻羞辱后夜奔茶馆[第42章]；赶回茶山主事、被珍敏认作&quot;宋老板爱人&quot;[第43章]；拍板抢采立军令状[第45章]；赴黑石洼村借工[第46章]；雨后与宋霆相拥[第47章]；以手机待办清单温柔摊牌、划星耀红线[第50章]；为犬&quot;大黄&quot;之死痛哭[第52章]；领证日在民政局掉头、反将林颂耀[第53章]；以律师团与人墙逼退审计队[第54章]；签股权转让、带全部行囊回帽儿巷[第55章]</td>
+</tr>
+</tbody></table>
+<h3>阶段八 · 番外｜回南城·完婚（约 23–24 岁｜第56–70章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 23–24 岁；南城定居/创业者，最终自营&quot;南风艺境&quot;、任全国舞蹈大赛评委</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>回帽儿巷定居，关系由私下转半公开、再向全家公开；婚事历经爷爷设限到默许</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>由&quot;要一个家&quot;到&quot;自己建设一个家&quot;；学会主动争取（求婚）、也学会与家人和解</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>回馆住下、打地铺[第56章]；饭局当众承认宋霆是男友[第58章]；送祛疤膏夜访阁楼、被额头吻定情[第59章]；吃姚洁的醋[第63章]；以&quot;老板娘&quot;身份登门获爷爷默许[第64章]；主动求婚&quot;我们结婚吧&quot;[第65章]；说动宋霆接桑丫出山[第67章]；中秋家宴爷爷宣布宋霆是&quot;自家人&quot;[第68章]；带宋霆回酆市见父母[第69章]；完婚、约定&quot;要个孩子&quot;[第70章]</td>
+</tr>
+</tbody></table>
+<h2>5. 关键抉择时刻（定义这个人）</h2>
+<ol>
+<li><strong>领证当日民政局掉头</strong>[第53章]——她本可以拿一纸婚约换来星耀经营权的&quot;安稳&quot;，却在最后一刻选择&quot;不把自己活成一笔交易&quot;，并以股权文件+林家把柄反将林颂耀。<strong>这就是她：宁可自己扛，也不肯委屈求全。</strong></li>
+<li><strong>主动划界、收起金镯子</strong>[第26章]——越界定情之后，她亲手把关系&quot;藏进阴影&quot;（&quot;山里的事别跟我爷爷说&quot;），用克制保护彼此。<strong>清醒得近乎残酷，是她最痛的成熟。</strong></li>
+<li><strong>茶山拍板&quot;与天争&quot;抢采、立军令状</strong>[第45章]——宋霆生死未卜，她以&quot;宋老板爱人&quot;的名分替他扛下整座茶山的赌局。<strong>她从被救者变成救人的那一个，全书双向救赎的兑现点。</strong></li>
+</ol>
+<blockquote>
+<p>表演要点：写南久时语速快、句子短、直给，遇事先算账再动情；脆弱只在独处或对宋霆时露，从不在父母/外人前掉泪。续写红线：<strong>不可写成靠男主上位的依附者，也不可写成毫无软肋的女强人</strong>——她始终是&quot;野孩子外壳 + 渴家的心&quot;。</p>
+</blockquote>
+<hr>
+<h1>二、宋霆（男主）</h1>
+<h2>1. 基础设定（不变核心）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>宋霆</td>
+</tr>
+<tr>
+<td>身世</td>
+<td>十七岁那年父亲杀死母亲，他站上河岸、前路尽毁，被南老爷子在堤坝上一把攥住手腕&quot;孩子，跟我回家&quot;救下，收为干儿子、安排做帽儿茶馆堂倌（南振东都不知情）。[第6/34章]</td>
+</tr>
+<tr>
+<td>年龄</td>
+<td>大南久八岁。第1章约 20–21 岁 → 全书主线约 20 → 32 岁。[第3章]&quot;比你大八岁&quot;</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>清寡冷淡、不像话的&quot;老派体面人&quot;；常年一身旧衣，骑重机车、开黑色帕萨特（后换 SUV）。</td>
+</tr>
+<tr>
+<td>身份轨迹</td>
+<td>帽儿茶馆堂倌/掌事 → 南乾山茶山承包人 → 老街茶叶店主（&quot;宋老板&quot;）。</td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>守住爷爷与茶馆（恩义），也想留住南久（私情）——两者天然冲突。[第48章]&quot;桥归桥、路归路……茶馆我会一直开着&quot;</td>
+</tr>
+<tr>
+<td>恐惧</td>
+<td>配不上她、毁了她、给不了她&quot;此刻想要的风景&quot;；身份的自卑（一个&quot;被爷爷救过的人&quot;）。[第34章]</td>
+</tr>
+<tr>
+<td>信念／准则</td>
+<td>报恩、克制、不动声色地替她托底；最终走向&quot;成全&quot;。[第52章]&quot;走吧&quot;</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>茶（泡茶/制茶/种茶/经营茶山）、茶馆掌事、修车/机车、打架护人。</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>桂花糕、金镯子、三花猫&quot;小九&quot;、手机屏保里她 20 岁时他拍下的旧照、那把被磨亮的旧车钥匙。</td>
+</tr>
+</tbody></table>
+<h2>2. 性格标签（从行为拆出）</h2>
+<ul>
+<li><strong>主标签：克制的深情者 / 隐忍的守护者</strong>——把&quot;叔&quot;这重身份当成一根缰绳，勒了自己整整八年；爱意全藏在动作里。<ul>
+<li>行为佐证：打烊后背手把核桃糕递到身后[第2章]；相亲被搅局不澄清、视线在她脸上停留一秒[第5章]；赠电脑却让她以为&quot;是旧的&quot;[第7–8章]；咬唇越界后冷声&quot;我会注意分寸&quot;关门而去[第15章]；匿名付清她家寿宴酒席[第39章]；目睹她被搂吻后说&quot;以后不要再见面了&quot;[第42章]；撕碎担保协议、备好避孕药，说&quot;走吧&quot;[第52章]。</li>
+</ul>
+</li>
+<li><strong>辅标签 1：沉默的行动派（托底型）</strong>——出手永远多于言语，从不解释、不居功。<ul>
+<li>行为佐证：偷塞银行卡[第27章]；不问缘由打款 30 万[第36章]；骑机车穿巷带她吃鸭头、跃拱桥[第11章]；彻夜寻她、砸锁破门[第22章]；为救被掳的她疯狂赶路、踹门救人[第23–24章]；车祸濒死获救后独身赶回茶山[第47章]。</li>
+</ul>
+</li>
+<li><strong>辅标签 2：压抑的占有欲（少年气的一面）</strong>——外表寡淡，骨子里极烈，越界时近乎失控。<ul>
+<li>行为佐证：凉亭咬吻&quot;标记&quot;[第33章]；木屋&quot;我后悔了&quot;主动破防[第25章]；撕下伪装强留她、&quot;桥归桥路归路&quot;自剖[第48章]；来电声中强行占有[第49章]；对她学生时代的&quot;男神&quot;单方面吃味[第60章]；车上索吻、与林颂耀视线悍然相撞[第69章]。</li>
+</ul>
+</li>
+<li><strong>反差点</strong>：<code>对外的克制、体面、守规矩</code> × <code>对内的极烈、独占、屡屡越界</code>——他是全场最讲&quot;分寸&quot;的人，也是全书越界最多的人。<ul>
+<li>第二重反差：<code>自认&quot;配不上、只能守&quot;的自卑</code> × <code>关键处比谁都果决的担当</code>（替她扛下所有，连&quot;我爱你&quot;都等到[第61章]才当众脱口）。</li>
+</ul>
+</li>
+</ul>
+<h2>3. 人物弧光（一句话）</h2>
+<p><strong>从把&quot;恩义/名分&quot;当作活着的全部、隐忍克制到近乎自囚的守巷人，变成挣脱身份缰绳、敢当众认爱、也敢放手成全的&quot;宋霆&quot;。</strong></p>
+<h2>4. 阶段卡</h2>
+<h3>阶段一 · 初一｜相遇与托举（约 20–21 岁｜第1–2章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 20–21 岁；帽儿茶馆堂倌、南老爷子干儿子</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>荒道修车偶遇只身寻亲的南久，送她回巷、折返医院守夜；被爷爷认作干儿子、被指定为&quot;名义叔&quot;</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>沉默可靠；对这个小姑娘先有&quot;看见过去的自己&quot;的恻隐；茶馆掌事的干练</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>送南久归巷、买盒饭守医院[第1章]；打烊后递核桃糕、被勒令&quot;叫宋叔&quot;[第2章]</td>
+</tr>
+</tbody></table>
+<h3>阶段二 · 高二｜重逢与破冰（约 24–25 岁｜第3–7章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 24–25 岁；茶馆掌事，兼管&quot;山里&quot;（茶山）生意</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>与叛逆归来的南久时隔四年重逢；在南久的旧事里露出自己身世的一角</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>由&quot;长辈式兜着&quot;渐渐掺杂隐秘在意（相亲桌上一秒停留的目光）</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>一句&quot;认得出&quot;[第3章]；当街被骂不还嘴、带她吃夜宵、坦白当年出门寻她[第4章]；婉拒周妍家入赘条件[第6章]；赠电脑亲自出钱、倒视镜对视[第7章]</td>
+</tr>
+</tbody></table>
+<h3>阶段三 · 大二｜暧昧与定情（约 27–28 岁｜第8–26章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 27–28 岁；茶馆掌事＋南乾山茶山承包人</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>与南久在茶馆/茶山朝夕相对，暧昧一路升级，直到越界</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>从&quot;我会注意分寸&quot;的自持，到雨夜余震里的压抑挣扎，再到&quot;我后悔了&quot;的破防——克制的壳一寸寸裂开</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>递茶指腹相触又避开、带她看旧居红房子[第14章]；背醉酒的她回馆、被咬破下唇后划界[第15章]；隔门板说&quot;我在你身上能看见小时候的我&quot;[第18章]；以身护她[第19–20章]；彻夜寻人砸锁破门[第22章]；为救她疯狂赶路、踹门救人[第23–24章]；木屋&quot;我后悔了&quot;、越界[第25章]；夜半为她套上金镯子[第26章]</td>
+</tr>
+</tbody></table>
+<h3>阶段四 · 大三｜克制与收手（约 28–29 岁｜第27–29章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 28–29 岁；茶馆＋茶山</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>送南久回校、偷塞银行卡；被南久主动断联</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>尊重她的选择、退回到&quot;暗处&quot;；以沉默守护代替纠缠</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>偷偷塞银行卡[第27章]；十一开车到校门口等她[第28章]；被&quot;别来学校找我&quot;后自此不再出现、守茶馆养三花猫[第29–30章]</td>
+</tr>
+</tbody></table>
+<h3>阶段五 · 大四｜重逢纠缠与分离定调（约 29–30 岁｜第30–34章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 29–30 岁；茶馆＋茶山，猫名&quot;小九&quot;</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>借助猫喻人、楼梯壁咚逼问；柳家正式提亲，他把选择权交还给她</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>明知&quot;她要走的路与他的巷子不同&quot;，仍一次次越界；也第一次学会&quot;不拿关系束缚她&quot;</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>借猫名&quot;小九&quot;逗她、楼梯壁咚[第31章]；溪边半抱、回绝柳家提亲[第32章]；凉亭咬吻&quot;标记&quot;、抱她开房[第33章]；夹巷默认恋情、茶堂夜谈、身世回溯[第34章]；留桂花糕、廊窗目送离巷、向爷爷否认恋情[第35章]</td>
+</tr>
+</tbody></table>
+<h3>阶段六 · 进入社会｜托底与隐忍（约 30–31 岁｜第35–36章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 30–31 岁；茶叶店主</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>南久为 30 万四处碰壁；他被打款相助却不问缘由、不解释</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>以&quot;无名&quot;的托底代替牵连；只问她&quot;吃过没&quot;</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>留桂花糕、廊窗目送[第35章]；不问缘由打款 30 万助她[第36章]；收到她还恩的茶订单不回信息[第37章]</td>
+</tr>
+</tbody></table>
+<h3>阶段七 · 人生旅途｜决裂·生死·成全（约 31–32 岁｜第37–55章·正文完）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 31–32 岁；茶山主、茶叶店主</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>南久私情被爷爷撞破，他受杖责&quot;断念&quot;；目睹她被林颂耀搂吻后破戒再决裂；离山出车祸、濒死获救</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>全书最重的自我拉扯：恩义与私情、独占与成全；最终以&quot;放手&quot;完成最深的爱</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>巷口咬唇一吻[第38章]；受爷爷两记拐杖不躲、暗付寿宴酒席[第39章]；饭桌以&quot;叔叔&quot;身份与林颂耀交锋[第41章]；目睹她被搂吻后破戒、说&quot;以后不要再见面了&quot;[第42章]；庭庄失联、出车祸[第43–44章]；濒死获救独身赶回茶山、雨中相拥[第47章]；&quot;桥归桥路归路&quot;自剖、撕伪装强留[第48章]；来电声中占有[第49章]；&quot;我戒不掉&quot;的坦白[第49–50章]；撕协议、备避孕药放她走[第52章]；换新手机、从恢复的旧相册发出她 20 岁的照片[第53章]</td>
+</tr>
+</tbody></table>
+<h3>阶段八 · 番外｜追认与成家（约 31–32 岁｜第56–70章）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄／身份</td>
+<td>约 31–32 岁；茶山主＋茶叶店主，后为南家女婿</td>
+</tr>
+<tr>
+<td>处境</td>
+<td>与回巷的南久同处一屋檐，关系从半公开到全家公开；婚事过爷爷一关</td>
+</tr>
+<tr>
+<td>心境／能力</td>
+<td>从&quot;守&quot;到&quot;要&quot;——学会主动争取、也学会在阳光下爱她；补齐&quot;当爷面表白&quot;的欠账</td>
+</tr>
+<tr>
+<td>关键事件</td>
+<td>扔掉为她买的旧床又重买新床、自陈十九岁动心[第56–57章]；骑车穿栾树小道、牵手[第58章]；额头吻定情[第59章]；当众接吻[第60章]；当众脱口&quot;我爱你&quot;兑现赌约[第61章]；向爷爷认&quot;我想娶南久&quot;[第63章]；坚持婚礼礼数、提亲[第66章]；家宴被宣布&quot;自家人&quot;、给南振东端茶[第68章]；登门酆市见丈人、与林颂耀正面交锋、车上索吻[第69章]；完婚、约定&quot;要个孩子&quot;[第70章]</td>
+</tr>
+</tbody></table>
+<h2>5. 关键抉择时刻（定义这个人）</h2>
+<ol>
+<li><strong>受爷爷两记拐杖不躲、暗付寿宴酒席</strong>[第39章]——被撞破私情后他既不辩解也不逃，&quot;是我没把握好分寸&quot;全揽在自己身上，还悄悄替她家付掉寿宴。<strong>他的爱从不喧哗，全在暗处扛。</strong></li>
+<li><strong>撕碎担保协议、备好避孕药，说&quot;走吧&quot;</strong>[第52章]——他最想留住她，却在能留住时选择放她走，把&quot;占有&quot;亲手换成&quot;成全&quot;。<strong>这一&quot;放&quot;才是全书情感分量的顶点。</strong></li>
+<li><strong>当众脱口&quot;我爱你&quot;兑现赌约</strong>[第61章]——藏了八年的心意，借一场卡丁车赌约，当着满堂茶客、也当着她爷爷的面说出口。<strong>他把&quot;叔&quot;的缰绳终于解开。</strong></li>
+</ol>
+<blockquote>
+<p>表演要点：写宋霆时少说、多做，语速慢、句子沉，回答常答非所问（问东说西）；情绪全在动作细节（递糕、点香、买床、修锁）。续写红线：<strong>不可写成&quot;因爱黑化&quot;的占有狂</strong>——他最终必须走向成全[第52章]；也不可写成没有欲望的圣人，他骨子里有极烈的独占欲[第48–49章]。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

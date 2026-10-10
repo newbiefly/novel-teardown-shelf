@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 人物设定集 · 主角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>04 人物设定集 · 主角</h1>
+<blockquote>
+<p>主角两位：<strong>谢清圆</strong>（女主）× <strong>沈润</strong>（男主）。<br>阶段划分（二人共用同一批章段，便于对照）：<br>① 横塘&quot;镇宅&quot;期（第1–30章）→ ② 迁幽州期（第31–62章）→ ③ 议亲退亲期（第63–84章）→ ④ 沈家主母期（第85–101章）→ ⑤ 终章（第102章）。<br>依据：人物台账 + 关系台账 + CP互动台账 + 章卡。每条带 <code>[第X章]</code> 锚点。<br><strong>本篇只写&quot;人物自身怎么变&quot;</strong>；两人关系怎么变归 <code>06_人物关系网.md</code>。</p>
+</blockquote>
+<hr>
+<h1>一、谢清圆（女主）</h1>
+<h2>1.1 基础设定（不变核心）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名／称谓</td>
+<td>谢清圆；旧名<strong>云芽</strong>（寄养陈家时所用）<code>[第2、57章]</code>；排行四，人称<strong>四姑娘／四丫头</strong>；婚后称&quot;沈夫人&quot;、诰命<strong>广阳郡夫人</strong></td>
+</tr>
+<tr>
+<td>身世</td>
+<td>谢家四姑娘（庶出），生母<strong>靳姨娘</strong>（靳春晴），生父谢纾；流落在外十四年，由横塘<strong>陈家</strong>抚育（陈老太爷、陈老太太养孙女）；上月被接回谢家认祖归宗，实为&quot;镇宅&quot;填入生母旧院淡月轩<code>[第1、2章]</code></td>
+</tr>
+<tr>
+<td>生母</td>
+<td>靳春晴，扬州人氏，升平九年二月初七生、乾元六年六月廿一卒；被诬&quot;毒死夏姨娘&quot;遭逐，郁结而亡<code>[第44章]</code></td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>面孔生得极好看（&quot;要么祸害人，要么被人祸害&quot;<code>[第1章]</code>）；一张团团脸、天真稚气<code>[第14章]</code></td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>查明母冤、为母昭雪；不做别人的玩物／妾，要当正室夫人、有尊严地活下去<code>[第40、52章]</code></td>
+</tr>
+<tr>
+<td>恐惧</td>
+<td>沦为工具／玩物；母亲罪名永难洗刷、自己&quot;天下哪一处容得下她&quot;<code>[第36章]</code></td>
+</tr>
+<tr>
+<td>信念</td>
+<td>隐忍而有城府；不做妾、自力更生；以退为进，借力打力</td>
+</tr>
+<tr>
+<td>准则</td>
+<td>&quot;我情愿一辈子不嫁，也绝不做别人的玩物&quot;<code>[第40章]</code>；&quot;睚眦必报，坏而坚定&quot;<code>[第102章]</code></td>
+</tr>
+<tr>
+<td>技能</td>
+<td>女红、煎药、持家；超强察言观色与心机；设局布局；话术套话（自芳纯口中套出沈润底细<code>[第72章]</code>）</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>兽面透雕玉佩（饕餮纹，沈润所赠）<code>[第30章]</code>；红木妆盒（陈家所赠、作将来退路）<code>[第23章]</code>→以妆奁换回春台、陶嬷嬷<code>[第94章]</code>；龙衔珠玉佩（母亲遗物）<code>[第94章]</code></td>
+</tr>
+</tbody></table>
+<h2>1.2 性格标签</h2>
+<ul>
+<li><strong>主标签：隐忍的谋局者（十年磨剑者）</strong> —— 外表天真稚气、内里极有城府；凡事先忍后退，再借力反击。<ul>
+<li>行为佐证：穿湿衣见客不告状，反博老太太为淡月轩添人手<code>[第3章]</code>；以&quot;青梅&quot;为名设局试探各房，排除莲姨娘、锁定扈夫人<code>[第10–13章]</code>；被清如当众掌掴后不硬碰、以退为进自请回陈家<code>[第21章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签①：以退为进的反击者（睚眦必报）</strong> —— 挨打时不还手，却步步反将一军。<ul>
+<li>行为佐证：以退为进反问沈润&quot;殿帅究竟落了什么&quot;<code>[第36章]</code>；反撩沈润&quot;难道不是殿帅馋我的美色&quot;<code>[第57章]</code>；识破护国寺毒计、将计就计反手得逞<code>[第59–60章]</code>；设局揭破皓雪<code>[第99章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签②：重情念旧的护家者</strong> —— 对养育之恩与真心待她的人极重情。<ul>
+<li>行为佐证：临别陈家情深、受赠妆盒<code>[第23章]</code>；与清和由排斥转交心结盟<code>[第94章]</code>；设团圆宴说合沈澈夫妇、真心护芳纯<code>[第87、99章]</code>。</li>
+</ul>
+</li>
+<li><strong>反差点：对谢家亲情的决绝 VS 对养育之恩的眷恋</strong> —— 同一场婚礼，她当众隔红纱痛数谢家生而不养、侵吞家产<code>[第86章]</code>，却对陈家祖父母&quot;热泪滚滚&quot;<code>[第85章]</code>；对生父&quot;心里留恋的只是父亲，不是谢纾&quot;<code>[第84章]</code>。</li>
+</ul>
+<h2>1.3 阶段卡</h2>
+<h3>阶段①　横塘&quot;镇宅&quot;期（第1–30章）</h3>
+<ul>
+<li><strong>年龄／身份／处境</strong>：14岁<code>[第1章]</code>（惊蛰回府月余）。流落在外十四年、上月才被接回的谢家四姑娘，庶出无根基、遭轻视；受&quot;镇宅&quot;之名填入生母旧院<strong>淡月轩</strong><code>[第1、2章]</code>。</li>
+<li><strong>心境与能力变化</strong>：由&quot;背负罪孽、有愧&quot;→确信母亲含冤，从愤懑委屈转<strong>隐忍坚定</strong><code>[第5章]</code>；掌握内宅生存术，学会以退为进、借力打力。</li>
+<li><strong>关键事件</strong>：<ul>
+<li>穿堂煎药献孝，退至门前听管事报知州夫人来访<code>[第1章]</code></li>
+<li>托月鉴从下房召回母亲旧仆<strong>陶嬷嬷</strong>，结为同盟<code>[第4章]</code></li>
+<li>听陶嬷嬷回溯旧案，推断&quot;一石二鸟&quot;，锁定真凶方向<code>[第5章]</code></li>
+<li>以&quot;青梅&quot;设局试探各房，排除莲姨娘；因匿名勒索信、陶嬷嬷暗查而<strong>锁定扈夫人</strong><code>[第10–13章]</code></li>
+<li>被老太太当众定调&quot;只配嫁门户过得去的寒门&quot;，对亲情决绝<code>[第13章]</code></li>
+<li>遭清如当众掌掴，以退为进自请回陈家<code>[第21章]</code>→回陈家道别、受赠<strong>红木妆盒作退路</strong><code>[第23章]</code></li>
+<li>迁幽州途中及笄（年十五），刻意亲近<strong>梅姨娘</strong>以牵制扈夫人<code>[第24章]</code></li>
+<li>初会沈润、遭冷淡审视，自认&quot;见识太浅&quot;<code>[第27章]</code>；家宴夜遇醉酒沈润，被赠<strong>兽面玉佩</strong><code>[第30章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>阶段②　迁幽州期（第31–62章）</h3>
+<ul>
+<li><strong>年龄／身份／处境</strong>：15岁。随谢家迁幽州，身为<strong>犯官家眷</strong>（受殿前司监管）<code>[第22章]</code>；成谢家与沈润周旋的&quot;引路石&quot;<code>[第26章]</code>。</li>
+<li><strong>心境与能力变化</strong>：由对权场的戒备退缩→能在权场中主动布局、反制；感情上由<strong>抗拒转暗许</strong><code>[第52–53章]</code>。</li>
+<li><strong>关键事件</strong>：<ul>
+<li>献李从心所赠<strong>泥金小册</strong>求见沈家兄弟、锁定破局路径<code>[第26章]</code></li>
+<li>密室摊牌&quot;<strong>不给人做妾</strong>&quot;，逼沈润应诺取回玉佩<code>[第36–40章]</code>；拒绝与李从心、沈润任一方将就</li>
+<li>碧痕寺遇伏、被沈润率殿前司救入殿前司，自设<strong>苦肉计被点破</strong><code>[第44–46章]</code></li>
+<li>被沈润当面求娶，由抗拒转<strong>暗许</strong><code>[第52–53章]</code></li>
+<li>反撩沈润，与其达成&quot;<strong>共谋</strong>&quot;处置清如<code>[第57章]</code></li>
+<li>识破扈夫人<strong>护国寺毒计</strong>，将计就计、反手得逞<code>[第59–60章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>阶段③　议亲退亲期（第63–84章）</h3>
+<ul>
+<li><strong>年龄／身份／处境</strong>：15岁。母亲忌日后，与<strong>李从心</strong>议亲在望<code>[第63章]</code>；后被谢家当&quot;<strong>填窟窿</strong>&quot;之物送入沈府、任人摆布<code>[第69–70章]</code>。</li>
+<li><strong>心境与能力变化</strong>：由守诺嫁李从心→撞破其私情<strong>彻底死心</strong>；由怨沈润→识破其苦心<strong>由怨转惜、认可其真心</strong><code>[第72章]</code>；由任人摆布→借陈家&quot;依礼求娶&quot;重获底气。</li>
+<li><strong>关键事件</strong>：<ul>
+<li>与李从心议亲、赴上京归还玉佩欲了断<code>[第63–65章]</code></li>
+<li>撞破李从心私情，当场决意<strong>退亲</strong><code>[第67–68章]</code></li>
+<li>被谢家送沈府、任人摆布<code>[第69–70章]</code></li>
+<li>识破&quot;定亲穆家&quot;系幌子、沈润<strong>殿前请旨指婚</strong><code>[第72章]</code>；&quot;全世界辜负她，还有一个沈润不会辜负她&quot;</li>
+<li>归陈家、依礼求娶、市集<strong>聘猫定情</strong><code>[第74–76章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>阶段④　沈家主母期（第85–101章）</h3>
+<ul>
+<li><strong>年龄／身份／处境</strong>：约15岁出阁（冬日）<code>[第85章]</code>。嫁入指挥使府，圣旨封<strong>广阳郡夫人</strong>（十五岁封诰命，本朝未有）<code>[第86章]</code>；沈润加幽州卢龙军节度使<code>[第85章]</code>。</li>
+<li><strong>心境与能力变化</strong>：由孤女→<strong>当家主母</strong>，能力从内宅生存升为持家、护族、布局对敌；&quot;睚眦必报&quot;渐转多愁善感<code>[第102章]</code>。</li>
+<li><strong>关键事件</strong>：<ul>
+<li>婚宴当众陈情、痛数谢家，与谢家<strong>公开决裂</strong><code>[第86章]</code></li>
+<li>执掌沈家<strong>东府</strong>，设团圆宴说合沈澈夫妇、立约护芳纯<code>[第87章]</code></li>
+<li>布防对付姚家皓雪、护住芳纯<code>[第89–91章]</code></li>
+<li>回谢府探病父、与<strong>清和结盟</strong>，助推谢纾<strong>休扈夫人</strong><code>[第93–97章]</code></li>
+<li>设局揭破皓雪，沈润押姚家母女入卢龙军大牢<code>[第99–100章]</code></li>
+</ul>
+</li>
+</ul>
+<h3>阶段⑤　终章（第102章）</h3>
+<ul>
+<li>朝堂<strong>昭雪母冤</strong>、扈氏一门斩决；清圆携母牌位观刑、沉冤得雪<code>[第102章]</code>。</li>
+<li>谢纾当众认错，清圆仍<strong>不认祖归宗</strong><code>[第102章]</code>。</li>
+<li>甘与沈润&quot;同富贵、可共患难&quot;；末句疑有孕（留白）<code>[第102章]</code>。</li>
+</ul>
+<h2>1.4 人物弧光（一句话）</h2>
+<p><strong>从&quot;寄人篱下、背负母罪、以孝与隐忍求存的孤女&quot;→&quot;正室当家、亲手为母昭雪、以&#39;坏而坚定&#39;守护所爱的广阳郡夫人&quot;。</strong></p>
+<h2>1.5 关键抉择时刻</h2>
+<ol>
+<li><strong>被清如当众掌掴后不硬碰，以退为进自请回陈家</strong>（退一步换全局主动）<code>[第21章]</code>。</li>
+<li><strong>密室对沈润摊牌&quot;我情愿一辈子不嫁，也绝不做别人的玩物&quot;</strong>（宁可孤身也不屈就）<code>[第40章]</code>。</li>
+<li><strong>撞破李从心私情后当场退亲</strong>（宁退婚不将就）<code>[第68章]</code>。</li>
+<li><strong>识破沈润&quot;定亲&quot;幌子后仍选择相信他</strong>（&quot;全世界辜负她，还有一个沈润不会辜负她&quot;）<code>[第72章]</code>。</li>
+<li><strong>婚宴当众隔红纱陈情、与谢家决裂</strong>（选择公道而非认亲）<code>[第86章]</code>。</li>
+</ol>
+<hr>
+<h1>二、沈润（男主）</h1>
+<h2>2.1 基础设定（不变核心）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名／称谓</td>
+<td>沈润，小字<strong>守雅</strong>（家父盼其守正儒雅）<code>[第35、57章]</code>；人称<strong>殿帅／沈指挥使</strong>；后加<strong>幽州卢龙军节度使／指挥使</strong><code>[第84、85章]</code>；清圆之夫</td>
+</tr>
+<tr>
+<td>身世</td>
+<td>沈知白之子、沈澈之兄。父因**立储案（懿王之乱）**被弃市斩首、罪及满门<code>[第14、34章]</code>；沈润、沈澈曾被罚入剑门关谢纾军中服役两年而未获关照<code>[第28章]</code>；后颈留&quot;<strong>充</strong>&quot;字黥印、险遭充军连坐<code>[第70章]</code></td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>眉目清雅的男子<code>[第26章]</code>；俊秀威严，红衣迎亲时&quot;一如初见般俊秀威严&quot;<code>[第85章]</code></td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>复仇（按&quot;<strong>十二灯树</strong>&quot;名单诛除政敌）；娶谢清圆；护住沈家一门</td>
+</tr>
+<tr>
+<td>恐惧</td>
+<td>连坐之祸重演；失去清圆</td>
+</tr>
+<tr>
+<td>信念</td>
+<td>&quot;我不是什么好人，只知道以命抵命&quot;<code>[第102章]</code>；以权术与布局护人</td>
+</tr>
+<tr>
+<td>准则</td>
+<td>对清圆&quot;一辈子只有她一个&quot;&quot;子嗣不健旺亦不纳妾&quot;<code>[第75章]</code>；&quot;我从来不知道什么叫成人之美&quot;<code>[第52章]</code></td>
+</tr>
+<tr>
+<td>技能</td>
+<td>殿前司侦缉、权术借势、借刀用人、军略</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>兽面透雕玉佩（赠清圆）<code>[第30章]</code>；猫&quot;<strong>大圆子</strong>&quot;（题名寄情）<code>[第80章]</code></td>
+</tr>
+</tbody></table>
+<h2>2.2 性格标签</h2>
+<ul>
+<li><strong>主标签：冷面权臣（幕后操盘手）</strong> —— 冷静狠辣、精于布局与借势。<ul>
+<li>行为佐证：借谢纾之名扳倒政敌付春山<code>[第34章]</code>；遣严复以梁翼供状勒索扈夫人五万两、逼其阻断清圆亲事<code>[第62章]</code>；设局拆散清圆与李从心<code>[第66–68章]</code>；以姚家母女为饵诱扈氏出手<code>[第102章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签①：执着的痴情种（专情）</strong> —— 认准一人便强硬求娶、绝不放手。<ul>
+<li>行为佐证：冒雨守柜、直言求娶&quot;要做正室夫人，我这里正好有个缺&quot;<code>[第52章]</code>；&quot;你别嫁给他，嫁给我成吗&quot;<code>[第64章]</code>；承诺&quot;一辈子只有她一个&quot;<code>[第75章]</code>。</li>
+</ul>
+</li>
+<li><strong>辅标签②：护短的护妻者</strong> —— 对敌狠辣、对妻宠溺纵容。<ul>
+<li>行为佐证：命班直将姚家母女押入卢龙军大牢<code>[第99–100章]</code>；&quot;我花了那么大的心思才抢来的夫人，不小心爱护着，怕你跑了&quot;<code>[第84章]</code>；把清圆所题&quot;大圆子&quot;引为爱称<code>[第80章]</code>。</li>
+</ul>
+</li>
+<li><strong>反差点：对清圆的&quot;俯首迁就&quot; VS 对敌人的&quot;以命抵命&quot;</strong> —— 被陈家&quot;依礼求娶&quot;之规拿捏、连连讨饶<code>[第74–75章]</code>；转脸对扈氏一案布局夺命，一案斩决三人<code>[第102章]</code>。</li>
+</ul>
+<h2>2.3 阶段卡</h2>
+<h3>阶段①　蛰伏身世·初遇（第14→30章）</h3>
+<ul>
+<li><strong>年龄／身份／处境</strong>：约25–26岁<code>[第18、85章]</code>，殿前司<strong>都指挥使（殿帅）</strong>，尚未娶亲<code>[第18章]</code>。父沈知白立储案弃市、家道蒙难<code>[第14章]</code>。</li>
+<li><strong>心境与能力变化</strong>：冷面城府、精于借刀用人<code>[第34章]</code>；对清圆由冷淡审视转暗生好感<code>[第30–31章]</code>。</li>
+<li><strong>关键事件</strong>：身世被正式点出<code>[第14章]</code>；初见清圆、反复追问其年纪婚配&quot;与李淳之定过亲没有&quot;、暗中探问起意<code>[第27章]</code>；家宴夜醉、赠清圆随身<strong>兽面玉佩</strong><code>[第30章]</code>（后揭醉态系真<code>[第41章]</code>）。</li>
+</ul>
+<h3>阶段②　撩拨试探·护她（第31–62章）</h3>
+<ul>
+<li><strong>心境与能力变化</strong>：由公事交涉转私密暧昧；由暗转明、公开庇护清圆。</li>
+<li><strong>关键事件</strong>：护国寺香炉旁&quot;好像落了东西在你这里&quot;起推拉<code>[第35章]</code>；推拒还佩、挑动情愫<code>[第36章]</code>；将清圆拽入密室逼问玉佩、许&quot;不给人做妾&quot;之约<code>[第39–40章]</code>；宴上一箭射落清如胸前玉佩<code>[第41章]</code>；率殿前司芦苇荡<strong>救场</strong>、点破苦肉计、耳语表白<code>[第44–46章]</code>；公开庇护清圆<code>[第49章]</code>；当面<strong>求娶</strong>、陪做母亲七日法事<code>[第52–53章]</code>;与内侍省默契令清如落选<code>[第55章]</code>；与清圆共谋处置清如、送胭脂震动谢府<code>[第56–57章]</code>。</li>
+</ul>
+<h3>阶段③　共谋强娶（第63–84章）</h3>
+<ul>
+<li><strong>心境与能力变化</strong>：为娶清圆不择手段、步步为营；对被陈家&quot;依礼求娶&quot;之规拿捏则俯首讨饶。</li>
+<li><strong>关键事件</strong>：遣严复勒索扈夫人五万两、逼其阻断清圆亲事<code>[第62章]</code>；以&quot;定亲穆家&quot;相激、强拥告白<code>[第64章]</code>；设局拆散清圆与李从心<code>[第66–68章]</code>；以&quot;救谢家&quot;为筹码将清圆纳入府中<code>[第69–70章]</code>；<strong>殿前请旨指婚</strong>、朝中力保谢纾<code>[第72章]</code>;受陈家依礼求娶约束、市集<strong>聘猫</strong>定情<code>[第74–76章]</code>。</li>
+</ul>
+<h3>阶段④　结发护妻·当家（第85–101章）</h3>
+<ul>
+<li><strong>心境与能力变化</strong>：得偿所愿，以夫权、军权护家；对敌由防备转为清算。</li>
+<li><strong>关键事件</strong>：当众宣示娶清圆、回怼谢家<code>[第77章]</code>；题猫名&quot;大圆子&quot;寄情<code>[第80章]</code>；加卢龙军指挥使、荫封母妻（清圆得二品诰命）<code>[第84章]</code>；与清圆成婚<code>[第85–86章]</code>；狠辣护妻、押姚家母女入狱<code>[第99–100章]</code>。</li>
+</ul>
+<h3>阶段⑤　终章（第102章）</h3>
+<ul>
+<li><strong>将计就计</strong>破扈氏买凶、以姚家母女为饵诱扈氏出手；朝堂博弈仅受&quot;罚奉半年、解职一月&quot;轻罚<code>[第102章]</code>；与清圆共患难。</li>
+</ul>
+<h2>2.4 人物弧光（一句话）</h2>
+<p><strong>从&quot;背负血仇、以权术复仇、冷眼看人的孤臣&quot;→&quot;以命护妻、家国俱守的当家人&quot;。</strong></p>
+<h2>2.5 关键抉择时刻</h2>
+<ol>
+<li><strong>醉赠玉佩、又推拒还佩</strong>——先动心却不明说，用一件信物把清圆&quot;拴住&quot;<code>[第30、36章]</code>。</li>
+<li><strong>当面求娶、许诺&quot;这里正好有个缺&quot;</strong>——为娶庶女，弃门第、得罪谢家与丹阳侯府<code>[第52章]</code>。</li>
+<li><strong>设局拆散清圆与李从心</strong>——坦承&quot;我从来不知道什么叫成人之美&quot;，为所爱用手段<code>[第52、68、71章]</code>。</li>
+<li><strong>以姚家母女为饵诱扈氏、将计就计护妻昭雪</strong>——以狠辣手段成全最后的公道<code>[第102章]</code>。</li>
+</ol>
+<hr>
+<h2>附：双主角对照速览</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>谢清圆</th>
+<th>沈润</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>起点身份</td>
+<td>庶出孤女（镇宅工具）</td>
+<td>罪臣之子（殿前司权臣）</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>为母昭雪、不做玩物</td>
+<td>复仇、娶清圆、护家</td>
+</tr>
+<tr>
+<td>主标签</td>
+<td>隐忍的谋局者</td>
+<td>冷面权臣</td>
+</tr>
+<tr>
+<td>反差点</td>
+<td>对谢家决绝／对养育之恩眷恋</td>
+<td>对清圆迁就／对敌人以命抵命</td>
+</tr>
+<tr>
+<td>弧光终点</td>
+<td>当家主母·亲手昭雪母冤</td>
+<td>以命护妻·家国俱守</td>
+</tr>
+<tr>
+<td>关键信物</td>
+<td>兽面玉佩／妆盒／龙衔珠玉佩</td>
+<td>兽面玉佩／猫&quot;大圆子&quot;</td>
+</tr>
+</tbody></table>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

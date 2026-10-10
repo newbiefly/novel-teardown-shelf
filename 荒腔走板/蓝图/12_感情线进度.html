@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 感情线进度 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>12 感情线进度</h1>
+<blockquote>
+<p>主CP感情线的逐节点推进——每一步好感/关系的量变与质变，附典型名场面。<br>人物自身成长见 04主角，关系全景见 06关系网。基于CP互动台账全书100章归纳。</p>
+</blockquote>
+<h2>主CP：周幸（赫连筠）× 陆酌光（陆敛）</h2>
+<p><strong>关系公式</strong>：两个顶级伪装者互相识破 → 女追男（周幸主动）+ 男后知后觉习得深情（陆酌光）→ 生死相护 → 卸下伪装的夫妻。<br><strong>情感底色</strong>：不是一见钟情的甜宠，是&quot;两个不敢真心的人，被对方磨出真心&quot;的救赎向双强恋。</p>
+<h2>感情进度条（六阶段）</h2>
+<h3>阶段一：单向追求·女攻男受（第3-13章）</h3>
+<p>周幸主动出击、陆酌光耳红婉拒但已心动。</p>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>名场面</th>
+<th>关系值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[第3章]</td>
+<td>初次对视&quot;蜻蜓点水&quot;，周幸夸他&quot;才高八斗&quot;，陆&quot;笑意顿生&quot;</td>
+<td>互相注意</td>
+</tr>
+<tr>
+<td>[第4章]</td>
+<td>倒茶摸手背+&quot;更中意乡间清泉&quot;暗表好感→陆&quot;耳朵薄红&quot;婉拒</td>
+<td>周幸主动试探</td>
+</tr>
+<tr>
+<td>[第5章]</td>
+<td>马车紧挨（他挪一点她追一点）；陆引《荀子》论欲望，难得&quot;心情愉悦&quot;主动聊</td>
+<td>陆放松防备</td>
+</tr>
+<tr>
+<td>[第8章]</td>
+<td><strong>醉后摔入陆怀中上下摸索</strong>&quot;不会有肾气亏虚&quot;，陆&quot;耳尖红如涂胭脂&quot;</td>
+<td>全阶段最高互动</td>
+</tr>
+<tr>
+<td>[第11章]</td>
+<td><strong>按心口测心跳→陆脸红但心跳毫无变化</strong>（发现他演技出神入化）；墙上&quot;牡丹花下死&quot;字→陆&quot;痴相移不开眼&quot;（书法是软肋）</td>
+<td>关键：识破+抓软肋</td>
+</tr>
+<tr>
+<td>[第13章]</td>
+<td><strong>折腰渡酒</strong>——周幸口衔酒杯旋转弯腰送饮，陆被迫咬杯沿，酒淌入衣领&quot;唇上水光潋滟赧赧不语&quot;</td>
+<td>全书最具视觉冲击CP名场面</td>
+</tr>
+</tbody></table>
+<p><strong>本阶段特征</strong>：周幸的&quot;追&quot;一半是真好感、一半是试探陆身份（摸体温/测心跳）。<strong>言情与谍战合一</strong>。</p>
+<h3>阶段二：识破·暗杀·转折（第14-27章）</h3>
+<p>发现彼此真身，从&quot;要杀他&quot;到&quot;他救她&quot;。</p>
+<ul>
+<li>[第14-17章]：周幸目睹陆枭首邹业→下令&quot;必除之&quot;→投毒行刺失败，反发现陆=无常司令主。感情线一度归零。</li>
+<li>[第25章]：赵恪逼陆射杀陶缨，<strong>陆故意射偏</strong>&quot;不善射术&quot;——第一次为周幸阵营违抗命令。</li>
+<li>[第26-27章]：周幸反杀孟长乐中毒针，<strong>陆提灯现身为她解毒治伤</strong>，除夕木屋共处、生火捡棉衣、守护宣言&quot;有我守着&quot;。<strong>立场倒向她。</strong></li>
+</ul>
+<h3>阶段三：结盟·情动·拉扯（第28-49章）</h3>
+<p>从盟友到暧昧确认，一步步试探。</p>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>名场面</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[第28章]</td>
+<td>陆守岁塞给周幸压岁铜板（=老陆给他的守岁铜板，最珍贵之物）</td>
+</tr>
+<tr>
+<td>[第40章]</td>
+<td>周幸雨中招揽&quot;这次不谈风月，只谈正事&quot;→陆言&quot;救世&quot;之志留下</td>
+</tr>
+<tr>
+<td>[第43章]</td>
+<td>周幸畏寒惊梦（塞北旧伤），陆夜探，<strong>二人第一次接吻</strong></td>
+</tr>
+<tr>
+<td>[第47章]</td>
+<td>陆向李言归&quot;求教如何回吻周幸&quot;（情感外化，笨拙可爱）</td>
+</tr>
+<tr>
+<td>[第49章]</td>
+<td><strong>陆以&quot;亲吻缓解寒疾&quot;为名治病之吻</strong>，周幸终答应用药（七天一服）</td>
+</tr>
+</tbody></table>
+<h3>阶段四：赠信物·约法三章·清账式表白（第62-74章）</h3>
+<p>陆酌光用他特有的&quot;清账&quot;逻辑表白。</p>
+<ul>
+<li>[第64章]：陆赠&quot;春带彩&quot;扳指（回应&quot;缺一枚指环&quot;）、约法三章、替她取回银镯清旧债、接吻——<strong>用&quot;清账&quot;包装的表白</strong>（他不会说情话，只会&quot;把账算清&quot;）。</li>
+<li>[第69章]：周幸酒后自陈&quot;雪后茶馆一眼看中白衣执卷的陆酌光&quot;、主动覆吻——<strong>女主揭底自己是先动心的那个</strong>。</li>
+<li>[第74章]：陆为周幸剃眉、扮亲昵情侣入宴设局——伪装的亲密里有了真的默契。</li>
+</ul>
+<h3>阶段五：命数·疏冷·以命相护（第79-88章）</h3>
+<p>最虐的一段——得知他命将尽，她用&quot;疏远&quot;来深爱。</p>
+<ul>
+<li>[第79-80章]：火药山道<strong>陆搂周幸入怀护身、洞口炸塌</strong>；周幸邀他同回塞北，陆沉默不答（自知命不久）。</li>
+<li>[第81章]：陆背周幸走山道一夜、强吻喂吊命药，暗中摸到她颈上守岁铜板（她一直戴着他给的铜板）。</li>
+<li>[第83章]：周幸得知陆=陆敛、命将尽，<strong>表面疏冷实为深情回护</strong>（M117：疏冷是误导，实为不敢深爱）。</li>
+<li>[第85章]：赵府&quot;玉竹vs解药&quot;二选一，<strong>陆弃解药选玉竹（周幸父母骨灰）</strong>&quot;没给你留下烂摊子&quot;，濒死递玉竹。</li>
+<li>[第87章]：周幸将玉竹反戴陆颈&quot;愿爹娘保佑你，好好活着&quot;——<strong>互相把最重要的东西给对方护命</strong>。</li>
+</ul>
+<h3>阶段六：拜堂·痊愈·圆满（第93-100章）</h3>
+<p>卸下所有伪装的圆满。</p>
+<ul>
+<li>[第93章]：<strong>周幸夜设喜堂逼陆吐露爱意→拜堂饮合卺酒圆房→立誓解毒</strong>&quot;生同眠死同穴&quot;；陆吐露巫虫是自请种下、说出&quot;我爱你&quot;。</li>
+<li>[第99章]：吕乡音授解药方，<strong>陆服药异虫沉睡痊愈</strong>。</li>
+<li>[第100章]：陆为白莲簪/海棠簪吃醋（嫌自己的海棠是&quot;挑剩的&quot;），周幸哄&quot;往后每年亲手给你做花簪&quot;；定余生之约、同回塞北。</li>
+</ul>
+<h2>感情线的三个独特设计（供仿写）</h2>
+<ol>
+<li><strong>女主是主动方+先动心方</strong>：全程周幸主动追、主动吻、主动揭底&quot;我先看中你的&quot;，打破古言&quot;男追女&quot;套路。</li>
+<li><strong>男主的深情是&quot;后天习得&quot;</strong>：陆不是天生痴情种，是&quot;不像人的异体&quot;被周幸磨出了活人的心；他不会说情话，只会用&quot;清账/约法三章/塞铜板&quot;这种笨拙方式表达——<strong>反差萌+高级感</strong>。</li>
+<li><strong>信物承载命运</strong>：守岁铜板（陆最珍贵之物→给周幸→她一直戴）、玉竹（周幸父母骨灰→护陆命）、扳指（清账表白）、花簪（余生之约）——每个信物都是感情质变的锚点。</li>
+</ol>
+<h2>感情节奏规律</h2>
+<ul>
+<li><strong>每5-8章一个感情小高潮</strong>（对视→摸手→折腰渡酒→初吻→治病吻→赠扳指→拜堂）</li>
+<li><strong>甜虐交替</strong>：阶段一甜（追）→阶段二虐（识破暗杀）→阶段三甜（情动）→阶段五虐（命数）→阶段六甜（圆满），<strong>大虐前必有大甜垫底，圆满前必经生死</strong></li>
+<li><strong>感情线始终服务主线</strong>：约会=设局，接吻=治病，拜堂=解毒立誓，从不脱离权谋主线单独谈情</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

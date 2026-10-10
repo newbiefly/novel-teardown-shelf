@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>第48章 人生旅途 · 章卡</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(255,255,255,0.07);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.layout{display:flex;min-height:100vh;}
+
+/* 左侧章卡目录 */
+.toc{width:250px;min-width:250px;height:100vh;position:sticky;top:0;display:flex;flex-direction:column;
+  background:rgba(255,255,255,0.02);border-right:1px solid var(--line);}
+.toc-head{padding:20px 18px 14px;border-bottom:1px solid var(--line);flex-shrink:0;
+  background:linear-gradient(180deg,rgba(201,169,97,0.05),transparent);}
+.toc-head a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;}
+.toc-head a:hover{opacity:0.75;}
+.toc-head .ttl{font-size:14px;color:var(--gold2);letter-spacing:3px;font-weight:900;margin-top:10px;}
+.toc-head .cnt{font-size:11px;color:#999;margin-top:4px;}
+.toc-list{flex:1;overflow-y:auto;padding:6px 0;}
+.toc-item{display:flex;align-items:center;gap:10px;padding:9px 18px;text-decoration:none;color:#ccc;font-size:13px;transition:all 0.15s;border-left:2px solid transparent;}
+.toc-item:hover{background:rgba(201,169,97,0.07);color:#fff;}
+.toc-item .n{font-size:11px;color:var(--gold);opacity:0.45;font-weight:700;min-width:30px;}
+.toc-item .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.toc-item.cur{background:rgba(201,169,97,0.12);border-left-color:var(--gold);color:var(--gold2);}
+.toc-item.cur .n{opacity:0.9;}
+
+/* 右侧正文 */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:50%;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+.nav{display:flex;gap:16px;align-items:center;}
+
+.content{max-width:820px;margin:0 auto;padding:36px 32px 80px;position:relative;z-index:1;width:100%;}
+.content h1{font-size:22px;color:var(--gold2);margin-bottom:20px;padding-bottom:12px;
+  border-bottom:2px solid rgba(201,169,97,0.2);letter-spacing:3px;font-weight:900;}
+.content h2{font-size:16px;color:var(--gold2);margin:28px 0 10px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:1px;font-weight:700;}
+.content p,.content li{font-size:13px;line-height:2;color:#ddd;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content ul,.content ol{padding-left:20px;margin:6px 0;}
+.content li{margin-bottom:2px;}
+.content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px;}
+.content th{background:rgba(201,169,97,0.15);color:var(--gold2);padding:10px 14px;text-align:left;font-weight:700;letter-spacing:1px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;}
+.content tr:hover td{background:rgba(201,169,97,0.03);}
+
+/* 移动端菜单按钮 + 抽屉 */
+.toc-toggle{display:none;background:none;border:1px solid rgba(201,169,97,0.35);color:var(--gold2);
+  font-size:12px;padding:5px 12px;border-radius:7px;cursor:pointer;font-family:inherit;}
+.toc-mask{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;}
+@media(max-width:860px){
+  .toc{position:fixed;left:0;top:0;z-index:300;transform:translateX(-100%);transition:transform 0.25s;}
+  .toc.open{transform:translateX(0);}
+  .toc-mask.open{display:block;}
+  .toc-toggle{display:inline-block;}
+  .topbar{padding-right:28px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style></head><body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="layout">
+  <aside class="toc" id="toc">
+    <div class="toc-head">
+      <a class="back-link" href="../index.html">← 返回总览</a>
+      <div class="ttl">章 卡 目 录</div>
+      <div class="cnt">共 70 张</div>
+    </div>
+    <div class="toc-list">
+<a class="toc-item" href="%E7%AC%AC001%E7%AB%A0_%E5%88%9D%E4%B8%80%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">001</span><span class="t">初一那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC002%E7%AB%A0_%E5%88%9D%E4%B8%80%E8%87%B3%E9%AB%98%E4%BA%8C.html" >
+       <span class="n">002</span><span class="t">初一至高二</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC003%E7%AB%A0_%E9%AB%98%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">003</span><span class="t">高二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC004%E7%AB%A0_%E9%AB%98%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">004</span><span class="t">高二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC005%E7%AB%A0_%E9%AB%98%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">005</span><span class="t">高二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC006%E7%AB%A0_%E9%AB%98%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">006</span><span class="t">高二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC007%E7%AB%A0_%E9%AB%98%E4%BA%8C%E8%87%B3%E5%A4%A7%E4%BA%8C.html" >
+       <span class="n">007</span><span class="t">高二至大二</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC008%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">008</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC009%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">009</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC010%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">010</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC011%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">011</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC012%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">012</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC013%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">013</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC014%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">014</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC015%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">015</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC016%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">016</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC017%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">017</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC018%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">018</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC019%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">019</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC020%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">020</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC021%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">021</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC022%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">022</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC023%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">023</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC024%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">024</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC025%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">025</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC026%E7%AB%A0_%E5%A4%A7%E4%BA%8C%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">026</span><span class="t">大二那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC027%E7%AB%A0_%E5%A4%A7%E4%B8%89%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">027</span><span class="t">大三那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC028%E7%AB%A0_%E5%A4%A7%E4%B8%89%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">028</span><span class="t">大三那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC029%E7%AB%A0_%E5%A4%A7%E4%B8%89%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">029</span><span class="t">大三那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC030%E7%AB%A0_%E5%A4%A7%E5%9B%9B%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">030</span><span class="t">大四那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC031%E7%AB%A0_%E5%A4%A7%E5%9B%9B%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">031</span><span class="t">大四那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC032%E7%AB%A0_%E5%A4%A7%E5%9B%9B%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">032</span><span class="t">大四那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC033%E7%AB%A0_%E5%A4%A7%E5%9B%9B%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">033</span><span class="t">大四那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC034%E7%AB%A0_%E5%A4%A7%E5%9B%9B%E9%82%A3%E5%B9%B4.html" >
+       <span class="n">034</span><span class="t">大四那年</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC035%E7%AB%A0_%E8%BF%9B%E5%85%A5%E7%A4%BE%E4%BC%9A.html" >
+       <span class="n">035</span><span class="t">进入社会</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC036%E7%AB%A0_%E8%BF%9B%E5%85%A5%E7%A4%BE%E4%BC%9A.html" >
+       <span class="n">036</span><span class="t">进入社会</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC037%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">037</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC038%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">038</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC039%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">039</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC040%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">040</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC041%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">041</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC042%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">042</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC043%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">043</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC044%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">044</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC045%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">045</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC046%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">046</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC047%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">047</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item cur" href="%E7%AC%AC048%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" id="curToc">
+       <span class="n">048</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC049%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">049</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC050%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">050</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC051%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">051</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC052%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">052</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC053%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">053</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC054%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html" >
+       <span class="n">054</span><span class="t">人生旅途</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC055%E7%AB%A0_%EF%BC%88%E6%AD%A3%E6%96%87%E5%AE%8C%EF%BC%89%20%E6%8A%B5%E8%BE%BE%E7%BB%88%E7%82%B9.html" >
+       <span class="n">055</span><span class="t">（正文完） 抵达终点</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC056%E7%AB%A0_%E7%95%AA%E5%A4%96%E4%B8%80.html" >
+       <span class="n">056</span><span class="t">番外一</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC057%E7%AB%A0_%E7%95%AA%E5%A4%96%E4%BA%8C.html" >
+       <span class="n">057</span><span class="t">番外二</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC058%E7%AB%A0_%E7%95%AA%E5%A4%96%E4%B8%89.html" >
+       <span class="n">058</span><span class="t">番外三</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC059%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%9B%9B.html" >
+       <span class="n">059</span><span class="t">番外四</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC060%E7%AB%A0_%E7%95%AA%E5%A4%96%E4%BA%94.html" >
+       <span class="n">060</span><span class="t">番外五</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC061%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%85%AD.html" >
+       <span class="n">061</span><span class="t">番外六</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC062%E7%AB%A0_%E7%95%AA%E5%A4%96%E4%B8%83.html" >
+       <span class="n">062</span><span class="t">番外七</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC063%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%85%AB.html" >
+       <span class="n">063</span><span class="t">番外八</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC064%E7%AB%A0_%E7%95%AA%E5%A4%96%E4%B9%9D.html" >
+       <span class="n">064</span><span class="t">番外九</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC065%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%8D%81.html" >
+       <span class="n">065</span><span class="t">番外十</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC066%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%8D%81%E4%B8%80.html" >
+       <span class="n">066</span><span class="t">番外十一</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC067%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%8D%81%E4%BA%8C.html" >
+       <span class="n">067</span><span class="t">番外十二</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC068%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%8D%81%E4%B8%89.html" >
+       <span class="n">068</span><span class="t">番外十三</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC069%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%8D%81%E5%9B%9B.html" >
+       <span class="n">069</span><span class="t">番外十四</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC070%E7%AB%A0_%E7%95%AA%E5%A4%96%E5%8D%81%E4%BA%94.html" >
+       <span class="n">070</span><span class="t">番外十五</span>
+     </a>
+    </div>
+  </aside>
+  <div class="toc-mask" id="tocMask"></div>
+  <div class="main">
+    <div class="topbar">
+      <div class="nav">
+        <button class="toc-toggle" id="tocToggle">☰ 目录</button>
+        <a href="%E7%AC%AC047%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html">← 上一章</a>
+      </div>
+      <div class="nav">
+        <a href="%E7%AC%AC049%E7%AB%A0_%E4%BA%BA%E7%94%9F%E6%97%85%E9%80%94.html">下一章 →</a>
+      </div>
+    </div>
+    <div class="content"><h1>第48章 人生旅途</h1>
+<ul>
+<li><strong>字数</strong>：3089</li>
+<li><strong>一句话剧情</strong>：雨夜木屋，宋霆以&quot;婚姻之问&quot;步步紧逼、坦承独占之欲，二人再度越界。</li>
+<li><strong>本章事件</strong>：<ol>
+<li>宋霆 因 南久真空着、别别扭扭 → 以&quot;真把自己当嫂子了&quot;&quot;领子都拽变形了&quot;连番噎她，一屋之内的暧昧复燃</li>
+<li>南久 因 回避&quot;为何还要结婚&quot;的追问 → 翻看医院袋子里的诊断报告与交通事故认定书，搁置回电林颂耀，试图以&quot;把衣服吹干去珍敏那&quot;撤退</li>
+<li>宋霆 因 见衣服将干、意识到她即将离开 → 夺下吹风机，坦白自己早已拟好&quot;桥归桥、路归路、替他赡养老爷子、茶馆分产&quot;的打算，第三次嘶声追问&quot;你为什么又要跑过来&quot;</li>
+<li>宋霆 因 认定她以不顾一切的豪赌替他夺回茶山 → 撕下所有伪装、以占有之欲强留她，二人再度越界；桌旁手机骤响&quot;林颂耀&quot;</li>
+</ol>
+</li>
+<li><strong>登场人物</strong>：南久、宋霆、林颂耀（来电）、姜清（提及）、珍敏（提及）、南老爷子（提及）</li>
+<li><strong>人物动态</strong>：① 时间：宋霆归山的当晚。② 身份：宋霆由守礼长辈彻底转为&quot;不再放手&quot;的索取者。③ 心境：南久在清醒与沉溺间来回挣扎、心防溃散；宋霆由自我审判转向不顾体面的独占。</li>
+<li><strong>伏笔</strong>：埋：① 林颂耀的三通来电（婚事压力逼近）；② 宋霆右臂伤口在越界时再度受痛（绷开隐患）；③ 宋霆&quot;即便用最卑劣的手段也要将她据为己有&quot;的执念。收：领证倒计时的&quot;婚事之问&quot;[呼应第43章]。</li>
+<li><strong>秘密·信息流动</strong>：宋霆向南久摊开自己已做的&quot;了断安排&quot;（赡养、茶馆分产）；南久对宋霆隐瞒与林颂耀契约婚姻的实情，仅以&quot;我回去问问&quot;搪塞。</li>
+<li><strong>人物关系变动</strong>：南久↔宋霆：由克制复归缠绵、再越界，界限彻底消融；南久↔林颂耀：婚事名存实亡，来电成为悬顶之剑。</li>
+<li><strong>情绪设计</strong>：基调：虐（★4）、甜（★3）、燃（★2）。名场面：宋霆自剖&quot;桥归桥、路归路……茶馆我会一直开着&quot;、嘶哑三问&quot;你为什么又要跑过来&quot;（★5）；他撕下伪装、以掠夺之吻&quot;将彼此的灵魂撕碎、重组&quot;（★4）。</li>
+<li><strong>章末钩子</strong>：桌边手机骤响，屏幕跳动着三个字——林颂耀。</li>
+<li><strong>线索归属</strong>：感情线、家族线、事业线</li>
+<li><strong>写作手法</strong>：反转（宋霆由&quot;决绝放手&quot;翻转为&quot;不惜卑劣也要占有&quot;）；留白（三次问句的答案始终悬置）；以物写人（吹风机＝两人缘分的存续）</li>
+<li><strong>金句</strong>：「人生一世，短短数年，哪有什么大度、体面？」</li>
+<li><strong>CP互动</strong>：强推——宋霆喂面加蛋、代洗她贴身的衣物、夺吹风机、掐腰扔床，以&quot;桥归桥路归路&quot;的自剖与占有之吻强留南久；南久别扭、试探、心防溃散，在担心他伤口与沉溺之间来回。</li>
+<li><strong>视角标注</strong>：第三人称，南久视角为主，尾段切入宋霆内心（自剖与占有之欲）。</li>
+</ul>
+</div>
+  </div>
+</div>
+<script>
+// 当前章滚动到目录可视区
+var cur=document.getElementById('curToc');
+if(cur)cur.scrollIntoView({block:'center'});
+// 移动端目录抽屉
+var toc=document.getElementById('toc'),mask=document.getElementById('tocMask'),tg=document.getElementById('tocToggle');
+function openToc(){toc.classList.add('open');mask.classList.add('open');}
+function closeToc(){toc.classList.remove('open');mask.classList.remove('open');}
+if(tg)tg.onclick=openToc;
+if(mask)mask.onclick=closeToc;
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body></html>

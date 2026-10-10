@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 分卷大纲 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>06 分卷大纲</h1>
+<blockquote>
+<p>本书双时间线交织叙事，按&quot;主角关系/目标的阶段变化&quot;切分为若干幕。过去线与现在线在章节中穿插呈现，下按&quot;故事内逻辑幕&quot;归纳，标注对应章节区间与篇幅占比。</p>
+</blockquote>
+<h2>全书结构总览</h2>
+<ul>
+<li><strong>现在线闭环</strong>：楔子（三月末温哥华撞破&quot;出轨&quot;离婚）→ 一年后圣诞/跨年复合圆满（樱花盛极凋零 → 圣诞树新生圆满，首尾呼应）。</li>
+<li><strong>双线配比</strong>：过去线（多伦多相恋）主要集中在第2-19章、第37-46章；现在线（离婚→复合）贯穿第1章及第20-77章；两线以回忆/穿插交织，用同一物象缝合。</li>
+</ul>
+<hr>
+<h2>第一幕·过去线相遇相恋（第2-19章，约22%）</h2>
+<ul>
+<li><strong>核心事件</strong>：多伦多留学，打工女陈昭与隐富青年江恒相遇（地铁英雄救美）→ 聚会/炸鸡/纽约谈判中暧昧升温 → 暧昧顶点因各自怯懦（江恒&quot;给不了幸福&quot;、陈昭阶层自卑）主动错过诀别。</li>
+<li><strong>目标</strong>：江恒动心想接近；陈昭克制心动。</li>
+<li><strong>因果链</strong>：家中变故→陈昭打工（引出打工女身份）→ 江恒暗中留意→数次相助→暧昧→江恒退缩拒绝→陈昭主动疏远诀别。</li>
+<li><strong>高潮章</strong>：第19章（意餐还房费/公交站台诀别，★过去线情感★5高潮）。<strong>转折章</strong>：第16章（酒店交心，江恒暗定退缩）。</li>
+<li><strong>卷末钩子</strong>：两人主动错过——留下&quot;他们如何走到结婚&quot;的巨大悬念。</li>
+</ul>
+<h2>第二幕·过去线重逢定情（第37-46章，约13%·插叙）</h2>
+<ul>
+<li><strong>核心事件</strong>：错过后各自疗伤 → 江恒发烧、陈昭送药做烂糊面重逢回暖 → 江恒告白（被赌气拒）→ 追人、番茄藤气氛回暖 → 雪夜车里初吻定情 → 恋爱甜蜜、第一次亲密圆满。（此后复合回国、结婚——经回忆补全）</li>
+<li><strong>目标</strong>：江恒追回陈昭；陈昭放下阶层顾虑接受。</li>
+<li><strong>因果链</strong>：烂糊面（家的温暖）催化江恒告白→陈昭因旧伤赌气拒→江恒追人→番茄藤定情信物→车里定情→在一起。</li>
+<li><strong>高潮章</strong>：第43章（雪夜车里定情，★过去线甜点高潮）。<strong>转折章</strong>：第40章（江恒吃面尝到&quot;家的温暖&quot;、按捺不住告白）。</li>
+<li><strong>卷末钩子</strong>：第一次亲密&quot;他只有她、需要的空间很小&quot;——缺口初被填满（反衬现在线离婚之痛）。</li>
+</ul>
+<h2>第三幕·现在线婚姻期·设局与假出轨（第22/35/53-62章的婚姻期内容，穿插）</h2>
+<ul>
+<li><strong>核心事件</strong>（多以回忆/揭示呈现）：江恒进集团掌权、与父亲权斗升级 → 被父亲江亚洲设医保骗保局陷害 → 江亚洲车祸后设局交权表演绑炸弹 → 江恒为保护陈昭、建防火墙而假出轨离婚。</li>
+<li><strong>目标</strong>：江恒收权/扳倒父亲；江亚洲控制江恒/保权。</li>
+<li><strong>因果链</strong>：江恒创新药成功→权斗升级→江亚洲设骗保局绑炸弹→江恒预判会出事→假出轨逼陈昭离婚（保护）。</li>
+<li><strong>高潮章</strong>：第62章（父子撕破脸、江亚洲承认设局绑炸弹，★设局反转坐实）。<strong>转折章</strong>：第56章（病房交权表演）。</li>
+<li><strong>卷末钩子</strong>：江亚洲喊老徐反扑、江恒安排后事——江恒将被送进去。</li>
+</ul>
+<h2>第四幕·现在线·离婚与查真相（第1/20-52章，约30%）</h2>
+<ul>
+<li><strong>核心事件</strong>：楔子撞破&quot;出轨&quot;离婚 → 陈昭独居疗伤、跪求真相被拒（最低谷）→ 现在线权斗（江恒反杀江云飞）→ 江婕透露出轨细节→陈昭起疑→母亲点破&quot;故意离婚&quot;→陈昭决意查真相→邓叔揭全部真相。</li>
+<li><strong>目标</strong>：陈昭切割止痛→逐渐转为查明真相；江恒放手保护她。</li>
+<li><strong>因果链</strong>：撞破出轨→离婚→江恒拖字诀/给全部财产（陈昭觉违和）→江婕说漏细节→陈昭抓线头→母亲点破→查真相→邓叔揭底。</li>
+<li><strong>高潮章</strong>：第24章（跪求真相被拒，★现在线情感★5最低谷）、第53章（邓叔揭真相，★反转对女主揭开★5）。<strong>转折章</strong>：第48章（陈昭抓线头起疑，反转启动）。</li>
+<li><strong>卷末钩子</strong>：陈昭知真相后自责&quot;算不算罪人&quot;——将如何救他。</li>
+</ul>
+<h2>第五幕·现在线·救援与黑暗高潮（第54/62-67章，穿插）</h2>
+<ul>
+<li><strong>核心事件</strong>：江亚洲车祸/交权（婚姻期前因）→ 江恒逼宫失败被送进去（黑暗高潮）→ 陈昭主动救援（威胁徐坤翻供+拉拢江婕倒戈+高寒助力）→ 江恒被放出、江亚洲失势。</li>
+<li><strong>目标</strong>：陈昭救出江恒；江亚洲困死江恒。</li>
+<li><strong>因果链</strong>：江恒点燃反腐清算→江亚洲引爆炸弹送他进去→陈昭抓徐坤儿子线索威胁+拉拢江婕倒戈+邓叔见高寒→徐坤翻供+政界暗示→江恒被放出。</li>
+<li><strong>高潮章</strong>：第64章（江恒被送进去，★黑暗高潮★5）、第67章（江恒被放出、局势逆转）。<strong>转折章</strong>：第65章（江婕倒戈）。</li>
+<li><strong>卷末钩子</strong>：江恒&quot;我配不上她&quot;不敢找陈昭——追妻火葬场的障碍。</li>
+</ul>
+<h2>第六幕·现在线·追妻火葬场与圆满（第68-77章，约13%）</h2>
+<ul>
+<li><strong>核心事件</strong>：江恒出来后&quot;配不上&quot;不敢找→天天送花/演奏会偶遇/强吻示爱→车里摊牌被点破&quot;信任&quot;障碍→找江婕请教自省→深夜送红薯真诚剖白→复合&quot;试试&quot;→信任重建→大结局圆满（圣诞树/跨年/养狗/缺口被填满）。</li>
+<li><strong>目标</strong>：江恒追回陈昭并证明改变；陈昭跨越&quot;信任&quot;裂痕。</li>
+<li><strong>因果链</strong>：江恒追妻→陈昭点破&quot;信任&quot;障碍→江恒经江婕点破自省→真诚剖白→陈昭想通&quot;选让自己舒服的方式&quot;→复合→信任重建→圆满。</li>
+<li><strong>高潮章</strong>：第69章（车里摊牌点破信任，★火葬场情感★5高潮）、第77章（大结局圆满点题&quot;缺口&quot;，★★5）。<strong>转折章</strong>：第73章（江恒真诚剖白自省）、第75章（复合&quot;试试&quot;）。</li>
+<li><strong>卷末钩子</strong>：无（大结局）。作者标&quot;正文完结&quot;（另有番外）。</li>
+</ul>
+<hr>
+<h2>节奏配比参考（续写/仿写用）</h2>
+<ul>
+<li>过去线（甜）约占35%，现在线（虐+救+火葬场+甜）约占65%——虐感与反转是主体，甜作对照与铺垫。</li>
+<li>情绪循环：过去线是&quot;暧昧甜→错过虐→重逢甜&quot;；现在线是&quot;离婚虐→查真相悬→黑暗高潮虐→救援燃→火葬场虐→复合甜&quot;。</li>
+<li>每幕结尾都用&quot;悬念/反转/新危机&quot;勾读者（错过悬念→设局反转→江恒进去→火葬场障碍）。</li>
+<li>★结构精髓：用双时间线让&quot;过去多相爱&quot;与&quot;现在多痛&quot;实时对照，把假出轨的虐感和反转揭开时的后劲放到最大。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

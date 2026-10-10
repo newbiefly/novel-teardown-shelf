@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 故事概要 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>01 故事概要</h1>
+<h2>作品信息</h2>
+<ul>
+<li><strong>书名</strong>：缺口</li>
+<li><strong>作者</strong>：码代码的Gigi</li>
+<li><strong>章数</strong>：77章</li>
+<li><strong>字数</strong>：约28.3万字</li>
+<li><strong>题材</strong>：都市现实日常 + 言情甜宠（双题材混合）</li>
+</ul>
+<h2>一句话故事（logline）</h2>
+<p>豪门之子江恒被父亲设局陷害入罪，为保护妻子陈昭而伪装出轨、逼她离婚；陈昭查明真相后倾力救他，两人跨越&quot;信任&quot;的裂痕破镜重圆。</p>
+<h2>题材标签</h2>
+<p>都市言情 / 追妻火葬场 / 破镜重圆 / 豪门恩怨 / 双时间线 / 假出轨 / 先婚后爱（过去线是恋爱→婚姻）</p>
+<h2>情感基调</h2>
+<p>克制、隐忍、留白；大情绪藏在日常细节里（离婚场面平静如水，痛在细节）；甜（过去线）与虐（现在线）双线交织，苦中带暖，终归圆满。</p>
+<h2>核心矛盾</h2>
+<ul>
+<li><strong>要什么</strong>：江恒要保护陈昭不受江家权斗牵连（怕她一起沉船/为他坐牢煎熬）→ 陈昭要的是&quot;相互信任、共同面对&quot;而非被单方面保护。</li>
+<li><strong>谁挡</strong>：① 反派江亚洲（江恒之父）设医保骗保局陷害江恒，是外部大boss；② 江恒自身&quot;自以为为她好、替她做决定&quot;的自私/不信任，是内部核心障碍。</li>
+<li><strong>怎么升级</strong>：江恒假出轨离婚（保护）→ 陈昭痛苦离婚 → 江恒逼宫父亲失败被送进去 → 陈昭查明真相主动救他 → 江恒被放出却&quot;配不上&quot;不敢复合 → 摊牌点破&quot;信任&quot;障碍 → 江恒自省坦诚 → 复合、信任重建、圆满。</li>
+</ul>
+<h2>核心创意/卖点</h2>
+<ol>
+<li><strong>&quot;假出轨&quot;的反转设计</strong>：男主的&quot;出轨/渣&quot;全是保护女主的伪装，真相是被父亲设局陷害入罪——把&quot;追妻火葬场&quot;的火，烧在一个&quot;其实无辜且深情&quot;的男主身上，虐感与反转张力拉满。</li>
+<li><strong>双时间线交织</strong>：过去线（多伦多留学甜蜜相恋）与现在线（婚后离婚追妻）穿插，用同一物象（面/戒指/圣诞树/番茄藤）跨线缝合，今昔甜与痛的对照极具后劲。</li>
+<li><strong>&quot;信任&quot;而非&quot;原谅&quot;的和解内核</strong>：区别于普通追妻文&quot;男主受苦→女主心软原谅&quot;，本书点破真正的障碍是&quot;信任重建&quot;——女主要的不是保护，是共同面对；把&quot;为你好式的爱&quot;当成需要反思的自私来写。</li>
+</ol>
+<h2>一句话主题/故事内核</h2>
+<p>真正的爱不是&quot;我替你做决定、为你好&quot;，而是&quot;相互信任、共同面对危机&quot;——书名&quot;缺口&quot;即江恒内心的情感缺口（不被爱、被当工具、习惯一个人），只有陈昭能填满；而填满它的前提是他学会信任与坦诚，不再以&quot;保护&quot;之名剥夺她共担的权利。[第69章][第76章][第77章]</p>
+<h2>爽点/泪点公式</h2>
+<ul>
+<li><strong>泪点公式（核心）</strong>：深情男主隐忍受苦（假出轨/坐牢）→ 女主被蒙在鼓里痛苦决绝 → 真相揭开（原来他一直深爱且为她牺牲）→ 女主心疼倾力相助 → 意难平后破镜重圆。（&quot;误会式虐恋 + 真相反转 + 双向奔赴&quot;）</li>
+<li><strong>爽点公式（辅）</strong>：女主隐藏富家女/能力强（谈判/理财/救人）→ 关键时刻决断力爆表（&quot;他毁我就毁他儿子&quot;）→ 主导救出男主，反客为主。</li>
+<li><strong>甜点公式（过去线）</strong>：隐富男主 × 通透女主，异国相遇 → 英雄救美/日常照顾 → 番茄藤/烂糊面式的以物传情 → 双向奔赴的初恋甜。</li>
+</ul>
+<h2>卖点标签组合（商业视角）</h2>
+<ul>
+<li>题材标签：都市豪门追妻火葬场 + 破镜重圆 + 双时间线</li>
+<li>人设标签：<ul>
+<li>女主：<strong>隐藏富家女 × 通透决断的&quot;清醒恋爱脑&quot;</strong>（打工攒钱不占便宜、离婚净身出户不贪、救夫时狠辣有担当）</li>
+<li>男主：<strong>深情隐忍的&quot;缺口男&quot;× 假出轨的&quot;伪渣真痴&quot;</strong>（心狠手辣的商业强人 vs 对妻子极致占有与守护、内心有情感缺口）</li>
+</ul>
+</li>
+</ul>
+<h2>文案/开篇钩子类型</h2>
+<ul>
+<li><strong>好奇钩（主）</strong>：楔子——女主平静飞去温哥华当面撞破丈夫&quot;出轨&quot;、冷静提离婚，丈夫却只认不辩、抓她手腕问&quot;你不想问什么吗&quot;——反常的&quot;出轨&quot;制造巨大悬念（他为何不辩解？）。</li>
+<li><strong>情绪钩（辅）</strong>：女主克制到极致的痛（点评外室妆容转移痛苦、深夜等丈夫两小时提离婚），代入感与意难平。</li>
+<li>开篇即抛&quot;看似狗血出轨、实则大有隐情&quot;的谜面，勾读者追真相。</li>
+</ul>
+<h2>核心梗 + 创新点</h2>
+<ul>
+<li><strong>核心梗</strong>：假出轨/为爱放手（男主主动做恶人逼女主离开以保护她）+ 追妻火葬场 + 豪门设局。</li>
+<li><strong>创新点（旧元素新组合）</strong>：<ol>
+<li>把&quot;假出轨&quot;的动机从常见的&quot;绝症/身世&quot;换成&quot;父亲设医保骗保局陷害入罪&quot;，落到都市商战/豪门权斗的真实肌理，比狗血更有说服力。</li>
+<li>用<strong>双时间线</strong>让&quot;曾经多相爱&quot;与&quot;现在多痛&quot;实时对照，放大虐感。</li>
+<li>和解内核从&quot;原谅&quot;升级为&quot;信任重建&quot;，女主不是被动原谅的圣母，而是主导救人、并要求平等信任的清醒者——对&quot;为你好式的爱&quot;做批判性反思，比传统追妻文有深度。</li>
+</ol>
+</li>
+<li><strong>生命周期判断</strong>：追妻火葬场/破镜重圆是长青梗，&quot;假出轨保护&quot;稍显套路但仍有市场；本书的差异化在&quot;双线缝合的文学质感&quot;和&quot;信任内核&quot;，是可借鉴的微创新方向。</li>
+</ul>
+<h2>阅读蓝图顺序建议</h2>
+<ol>
+<li>先读本篇（01故事概要）把握全局</li>
+<li>→ 12写作风格（定调）</li>
+<li>→ 03/04人物设定集（立住人物）</li>
+<li>→ 07时间线（★理清双线交织+信息差，本书命根子）</li>
+<li>→ 06分卷大纲（剧情骨架）</li>
+<li>→ 10感情线进度（★感情主线的推拉节奏）</li>
+<li>→ 08伏笔规划表（★假出轨反转的伏笔链）</li>
+<li>→ 05人物关系网 / 09情绪曲线 / 11意象符号 / 02核心设定（补充）</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

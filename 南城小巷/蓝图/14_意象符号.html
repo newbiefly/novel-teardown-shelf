@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14 意象符号 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>14 意象符号</h1>
+<blockquote>
+<p>本书意象系统：现代市井题材，<strong>没有奇幻符号，全靠&quot;生活实物 + 光/暖感知&quot;承载情感</strong>。<br>归纳自 70 张章卡与原文；每条给「出现章号 → 象征含义 → 用法 → 可复用建议」。<br>用法说明：本书几乎不使用心理直白，<strong>情感一律交给物象与动作</strong>（&quot;以物写人／以物承情&quot;），这是其最可学的手艺。</p>
+</blockquote>
+<hr>
+<h2>一、核心贯穿意象（全书级）</h2>
+<h3>1. 茶 / 茶香 / &quot;回甘&quot;</h3>
+<ul>
+<li><strong>出现</strong>：第1章（帽儿茶馆立世）、第2章（茶点搭配与摆盘的讲究）、<strong>第14章（&quot;第二泡的茶，兼具醇厚和层次感&quot;——宋霆的隐喻；她&quot;第一次品出茶香中深沉而复杂的味道&quot;）</strong>、第18章（隔淋浴间门板）、第55章（茶香把两人拉回多年前那一幕）</li>
+<li><strong>象征</strong>：宋霆本人——初泡微苦、久处耐品；也是两人关系的温度计（越懂茶越懂他）。</li>
+<li><strong>用法</strong>：以味觉写人、以&quot;回甘&quot;写感情的后置性回报。</li>
+<li><strong>可复用</strong>：给男主找一个&quot;需要慢慢品&quot;的日常物件／手艺，让女主对它的认知进阶＝对男主的认知进阶。</li>
+</ul>
+<h3>2. 桂花糕</h3>
+<ul>
+<li><strong>出现</strong>：第1章（他下车买两块热腾腾的桂花糕）、<strong>第7章（临别把桂花糕递给她，指骨不经意相触，&quot;从指尖直抵心脏&quot;）</strong></li>
+<li><strong>象征</strong>：他沉默的关照的最小单位；每次&quot;递&quot;都是一次没说出口的靠近。</li>
+<li><strong>用法</strong>：重复出现的小食＝关系的刻度；用&quot;递物时的手&quot;代替表白。</li>
+<li><strong>可复用</strong>：设定一个&quot;只在特定场景出现&quot;的小食，让它成为两人之间的暗号。</li>
+</ul>
+<h3>3. 帽儿茶馆 / 帽儿巷</h3>
+<ul>
+<li><strong>出现</strong>：第1章（&quot;帽儿茶馆在帽儿巷的地位就如旧时的祠堂&quot;）、全书</li>
+<li><strong>象征</strong>：庇护所与&quot;静止的河&quot;；宋霆自我放逐的容器，也是南久的家。</li>
+<li><strong>用法</strong>：空间即人物状态——茶馆越安静，宋霆越封闭；南久越闯入，它越活。</li>
+<li><strong>可复用</strong>：为主角配一个&quot;旧行业的老店&quot;，让空间本身承担&quot;时代与人&quot;的对照。</li>
+</ul>
+<h3>4. 拐杖（南老爷子的）</h3>
+<ul>
+<li><strong>出现</strong>：第2章（南久偷藏拐杖泄愤，老人&quot;压根忘了拐杖的存在&quot;）、第3章（敲她小腿罚她&quot;没大没小&quot;）、第38章（寿礼拐杖寄达）、第39章（老爷子识破来路，牵出风暴）</li>
+<li><strong>象征</strong>：老爷子的权威与疆界；南久对权威的&quot;偷藏式反抗&quot;。</li>
+<li><strong>用法</strong>：同一件道具在&quot;罚—藏—送—识破&quot;四步里完成从权力到亲情的转义。</li>
+<li><strong>可复用</strong>：给家长一个标志性随身物，让它经历&quot;权力物→情感物&quot;的转换。</li>
+</ul>
+<h3>5. 点香驱蚊 / 二楼廊窗那点暗红的火</h3>
+<ul>
+<li><strong>出现</strong>：<strong>第16章</strong>（南久撞见二楼廊窗嵌着一道人影、指尖一星暗红明灭；后才发现是拐角点的盘香——&quot;她已经很久没被蚊子骚扰过了&quot;）</li>
+<li><strong>象征</strong>：宋霆&quot;不说只做&quot;的守护；她的迟钝与他的隐忍。</li>
+<li><strong>用法</strong>：先让女主误读（以为是烟、以为是蚊香），再让她自己发现真相——读者与女主同步&quot;顿悟&quot;。</li>
+<li><strong>可复用</strong>：把好意藏成&quot;可被误读&quot;的痕迹，延后揭晓。</li>
+</ul>
+<h3>6. 烟（随身带烟却从不抽）</h3>
+<ul>
+<li><strong>出现</strong>：第2章（南老爷子解释：递根烟摸来头、点烟缓和口角，&quot;这烟他可以不抽，身上不能没有&quot;）</li>
+<li><strong>象征</strong>：三教九流的处世术；宋霆&quot;为别人而备&quot;的人格。</li>
+<li><strong>用法</strong>：以物写人的教科书式一笔——一件他自己不用的东西，写出他的职业与性情。</li>
+</ul>
+<h3>7. 笔记本电脑</h3>
+<ul>
+<li><strong>出现</strong>：<strong>第7章</strong>（临别&quot;你爷爷给你的&quot;）、<strong>第8章</strong>（她识破实为宋霆出钱所买，&quot;不那样说，你收了也有心理负担&quot;）、第25章（他竟早知道她用这台电脑看过小视频）</li>
+<li><strong>象征</strong>：他给她的&quot;独立的起点&quot;；也是他&quot;善意的谎言&quot;的物证。</li>
+<li><strong>用法</strong>：贵重物＋谎言＝爱的密度；后续回收成两人之间的私密笑点。</li>
+<li><strong>可复用</strong>：让&quot;赠物&quot;附带一句谎，日后再拆穿，一次埋两条线。</li>
+</ul>
+<h3>8. 金镯子</h3>
+<ul>
+<li><strong>出现</strong>：<strong>第25章</strong>（她20岁生日，他备了礼物）、<strong>第26章</strong>（趁她熟睡给她套上，她返城前收起）</li>
+<li><strong>象征</strong>：越界之后的&quot;锚&quot;；不容拒绝的占有。</li>
+<li><strong>用法</strong>：在关系质变章出现，用&quot;戴上去&quot;这个动作替代承诺。</li>
+</ul>
+<h3>9. 歪脖子树（巷口）</h3>
+<ul>
+<li><strong>出现</strong>：<strong>第10章</strong>（&quot;母亲还在世时，下雨天总会撑伞站在歪脖子树下等他&quot;）、<strong>第42章</strong>（林颂耀在此强吻南久）</li>
+<li><strong>象征</strong>：宋霆的等候与被等候；同一地点被男二&quot;污染&quot;，制造刺痛。</li>
+<li><strong>用法</strong>：一处地点承载&quot;温情记忆&quot;与&quot;背叛现场&quot;的双重意义。</li>
+<li><strong>可复用</strong>：给男主一个私人记忆地标，然后让冲突在此地爆发。</li>
+</ul>
+<h3>10. 坡子上的红房子（宋霆旧居）</h3>
+<ul>
+<li><strong>出现</strong>：<strong>第14章</strong>（&quot;外立面经年累月被雨水冲刷，暗红和褐黄层层叠叠，宛如凝固的血泪&quot;；他自房子出手后再没往坡子上走）</li>
+<li><strong>象征</strong>：他的创伤原点（父杀母）。</li>
+<li><strong>用法</strong>：空间描写直接写成&quot;伤口&quot;；&quot;不靠近&quot;本身就是叙事。</li>
+<li><strong>可复用</strong>：把创伤做成一个&quot;主角绕行&quot;的地点，比回忆更省笔墨也更痛。</li>
+</ul>
+<h3>11. 光 / 暖 / &quot;骄阳&quot;与&quot;砒霜的糖&quot;</h3>
+<ul>
+<li><strong>出现</strong>：第7章（&quot;她深陷的迷途，不过是长久凝视深渊，忽略了自己头顶，正骄阳高悬&quot;）、第10章（歪脖子树下&quot;昏黄的光藏在枝桠间&quot;）、第12章（&quot;他筑起的安全感像披着砒霜的糖&quot;）、第70章（&quot;孤岛尽数沉没，唯见朝阳为他轰然降临&quot;）</li>
+<li><strong>象征</strong>：救赎与被救赎；全书的情绪总基调。</li>
+<li><strong>用法</strong>：用光的形容词变动标记人物状态（暗→亮）。</li>
+<li><strong>可复用</strong>：选定一种自然现象（光/雨/风）作为主角情绪的长期外部化装置。</li>
+</ul>
+<h3>12. 雨</h3>
+<ul>
+<li><strong>出现</strong>：第10章（她撑黑伞在歪脖子树下等他归）、<strong>第15-16章</strong>（雨夜与点香）、第21章（大雨三日，两人冷战）</li>
+<li><strong>象征</strong>：情感的临界天气——下雨＝关系要变。</li>
+<li><strong>用法</strong>：把关键情感转折安排在雨里。</li>
+</ul>
+<h3>13. 空白微信对话框</h3>
+<ul>
+<li><strong>出现</strong>：<strong>第16章</strong>（她大一加上他微信，他从不点赞、从不留言，对话框始终是空的）</li>
+<li><strong>象征</strong>：他的&quot;在场但不打扰&quot;。</li>
+<li><strong>用法</strong>：用一个&quot;没有内容&quot;的物象承载最浓的情感。</li>
+</ul>
+<h3>14. 孤岛 / 朝阳（终章收束）</h3>
+<ul>
+<li><strong>出现</strong>：<strong>第70章</strong>（&quot;生命完整的形态，是遇见她之前，尽是漂泊的孤岛；遇见她之后，孤岛尽数沉没，唯见朝阳为他轰然降临&quot;）</li>
+<li><strong>象征</strong>：全书主题句的落点。</li>
+<li><strong>用法</strong>：开篇埋的&quot;孤岛&quot;意象在终章升华，形成闭环。</li>
+</ul>
+<hr>
+<h2>二、次要但好用的意象</h2>
+<table>
+<thead>
+<tr>
+<th>意象</th>
+<th>出现章</th>
+<th>象征/用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>多买的一根雪糕</td>
+<td>第20章</td>
+<td>他不说的照顾；用&quot;多买一根&quot;写偏心</td>
+</tr>
+<tr>
+<td>软垫 / 冰丝凉席 / 新衣柜 / 单装空调</td>
+<td>第8章</td>
+<td>他把她的房间悄悄翻新＝无声的告白</td>
+</tr>
+<tr>
+<td>提成转账（备注只有两个字）</td>
+<td>第16章</td>
+<td>他的关心永远走&quot;工作口径&quot;</td>
+</tr>
+<tr>
+<td>摩托头盔（儿童卡通款）</td>
+<td>第11章</td>
+<td>他孩子气的另一面，与沉稳形成反差</td>
+</tr>
+<tr>
+<td>大黄狗的衰老与离群</td>
+<td>第44、46、52章</td>
+<td>时间流逝与死亡的隐喻</td>
+</tr>
+<tr>
+<td>茶山仓库的木屋</td>
+<td>第17、21、25、62章</td>
+<td>两人关系的私密容器；后被他推倒重建</td>
+</tr>
+<tr>
+<td>香槟</td>
+<td>第17、25章</td>
+<td>南久带去的&quot;城里物件&quot;，勾连她与茶山的两个世界</td>
+</tr>
+<tr>
+<td>手机屏保（她20岁的照片）</td>
+<td>第57、60章</td>
+<td>他藏了很久的心思被&quot;捉赃&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、名字寓意</h2>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>寓意（据原文语境推断）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>南久</td>
+<td>&quot;南&quot;＝南家/南城根脉；&quot;久&quot;＝长久（她与他的关系是&quot;熬&quot;出来的）</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>&quot;霆&quot;＝雷霆，对应他&quot;初看凌厉、久处耐看&quot;与压抑的爆发力</td>
+</tr>
+<tr>
+<td>林颂耀</td>
+<td>&quot;耀&quot;＝光耀，家族企业的继承人，与宋霆形成&quot;明面光鲜 vs 暗处隐忍&quot;的对照</td>
+</tr>
+<tr>
+<td>丁骏</td>
+<td>商人身份的普通感，衬托林颂耀圈子的&quot;上位者&quot;色彩</td>
+</tr>
+<tr>
+<td>南风艺境</td>
+<td>南久自营的舞蹈工作室＝&quot;南&quot;（家族/南城）+ 舞之&quot;艺境&quot;，她最终把事业落回家乡</td>
+</tr>
+<tr>
+<td>桑丫</td>
+<td>山里的聋哑女孩，全书的&quot;纯真支点&quot;</td>
+</tr>
+<tr>
+<td>帽儿茶馆 / 帽儿巷</td>
+<td>市井感的命名，与人物&quot;接地气&quot;的生存状态一致</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、可复用的意象设计法（从本书提炼）</h2>
+<ol>
+<li><strong>一物一线</strong>：每个核心意象只承担一条情感线，不重复挪用（桂花糕＝靠近；点香＝守护；拐杖＝权威→亲情）。</li>
+<li><strong>先误读后揭晓</strong>：让女主先误解物象（以为是烟/以为是蚊香），再自行发现，读者与她同步震动。</li>
+<li><strong>物象承担表白</strong>：全书几乎不写&quot;我爱你&quot;，所有心意都由递、放、修、买、点、洗这些动作完成。</li>
+<li><strong>意象闭环</strong>：开篇的&quot;孤岛&quot;、终章的&quot;朝阳&quot;，一开一合收全书。</li>
+<li><strong>地点双重化</strong>：歪脖子树既是母亲的温情，也是男二的冒犯现场，让同一处空间同时携带两段情感。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

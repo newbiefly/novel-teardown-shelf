@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人物关系网 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>人物关系网</h1>
+<blockquote>
+<p>数据源：关系台账 · 人物台账<br>本篇写&quot;人与人之间怎么连、怎么变&quot;，人物自身怎么变归「04/05_人物设定集」</p>
+</blockquote>
+<hr>
+<h2>一、核心三角：香兰 × 林锦楼 × 宋柯</h2>
+<h3>1.1 香兰 ↔ 林锦楼（第一朵桃花·全书主线）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>关系定义</th>
+<th>关键事件</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标记期</td>
+<td>主奴·单向标记</td>
+<td>画圈 → 醉酒心动 → 暴怒救美踹断四顺儿</td>
+<td>ch5-37</td>
+</tr>
+<tr>
+<td>占有期</td>
+<td>主奴·强占</td>
+<td>截走威胁 → 切断宋柯线 → 强行圆房</td>
+<td>ch71-143</td>
+</tr>
+<tr>
+<td>经营期</td>
+<td>姨奶奶·不平等依附</td>
+<td>给钥匙同睡 → 赏屏风&quot;好老公&quot; → 抬姨奶奶</td>
+<td>ch150-271</td>
+</tr>
+<tr>
+<td>质变期</td>
+<td>从占有到真情</td>
+<td>境界论&quot;说不清道不明的敬意&quot; → 送猫&quot;眼跟你像&quot; → 香兰环颈哭</td>
+<td>ch271-294</td>
+</tr>
+<tr>
+<td>确立期</td>
+<td>生死相依</td>
+<td>香兰杀卢韶堂 → 撕密信 → 林嘱托田产 → &quot;敬她就是敬我&quot;</td>
+<td>ch300-314</td>
+</tr>
+<tr>
+<td>圆满期</td>
+<td>正妻</td>
+<td>甲士迎亲 → 袒露前世 → &quot;别无他求&quot;</td>
+<td>ch348-354</td>
+</tr>
+</tbody></table>
+<p><strong>关系本质</strong>：权力不对等下的&quot;追妻火葬场&quot;——他用283章学会从&quot;占有&quot;变&quot;放手&quot;，她用283章从&quot;防备&quot;变&quot;倾心&quot;。</p>
+<hr>
+<h3>1.2 香兰 ↔ 宋柯（第二朵桃花）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>关系定义</th>
+<th>关键事件</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>暗生期</td>
+<td>单向动心</td>
+<td>偷听自励 → 捡绢花 → 送翠玉蛙</td>
+<td>ch14-22</td>
+</tr>
+<tr>
+<td>升温期</td>
+<td>双向·准夫妻</td>
+<td>截买养病 → 月下牵手 → 共放荷灯</td>
+<td>ch81-102</td>
+</tr>
+<tr>
+<td>凋零期</td>
+<td>诀别</td>
+<td>被迫订亲郑家 → 窗下偷听 → &quot;百年好合&quot;</td>
+<td>ch118-121</td>
+</tr>
+<tr>
+<td>碰撞期</td>
+<td>前世揭底</td>
+<td>&quot;你是不是嘉兰我的妻&quot; → 表白被拒</td>
+<td>ch245-246</td>
+</tr>
+<tr>
+<td>终结期</td>
+<td>放下</td>
+<td>驿站送别 → &quot;爱是心头珍藏&quot; → &quot;放下罢&quot;</td>
+<td>ch313</td>
+</tr>
+</tbody></table>
+<p><strong>关系本质</strong>：两世深情败给一次&quot;前程要紧&quot;——宋柯是香兰最温暖的幻觉，也是最痛的清醒。</p>
+<hr>
+<h3>1.3 林锦楼 ↔ 宋柯</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>关系</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不知情</td>
+<td>表面友好（王氏外甥·林锦亭好友）</td>
+<td>ch14-71</td>
+</tr>
+<tr>
+<td>对立</td>
+<td>林截走香兰切断宋柯线 → &quot;让他亲自来&quot;</td>
+<td>ch71-72</td>
+</tr>
+<tr>
+<td>暗战</td>
+<td>鲁家当面炫耀&quot;你小嫂子&quot; → 宋柯克制</td>
+<td>ch241-242</td>
+</tr>
+<tr>
+<td>和解</td>
+<td>驿站送行 → 给信关照 → &quot;爷喜欢她喜欢得紧&quot;</td>
+<td>ch313</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、妻妾关系网</h2>
+<h3>2.1 知春馆四方格局演变</h3>
+<pre><code>【第一阶段·ch6-110】赵月婵当权
+  赵月婵(正妻) ← 对立 → 青岚(良妾)
+       ↓ 利用                ↑ 捧杀
+  曹丽环(外围)          画眉(通房)
+       ↓ 压榨               ↑ 暗算
+      香兰(末等)          鹦哥(通房·沉默)
+
+【第二阶段·ch137-189】赵出局后
+  香兰(正房次间) ← 暗算 → 画眉(东厢姨娘)
+       ↑ 莽撞挑衅              ↑ 推当炮灰
+      鸾儿(通房)           鹦哥(称病·暗助香兰)
+
+【第三阶段·ch189-290】香兰当家
+  香兰(姨奶奶·主持中馈)
+       ↑ 秦氏认可    ↑ 内奸
+      书染(贴身)   春菱→倒向姜曦云
+       ↑ 忠心
+    小鹃/汀兰
+
+【第四阶段·ch291+】圆满
+  香兰(正妻) — 一家独大
+</code></pre>
+<h3>2.2 关键妻妾对抗</h3>
+<table>
+<thead>
+<tr>
+<th>对抗组合</th>
+<th>性质</th>
+<th>结局</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>赵月婵 vs 香兰</td>
+<td>主母 vs 丫鬟 → 全书最大宿仇</td>
+<td>赵冻死，香兰悲悯诵经 [ch302-303]</td>
+</tr>
+<tr>
+<td>画眉 vs 香兰</td>
+<td>暗算 vs 反击</td>
+<td>画眉被押官 [ch342]</td>
+</tr>
+<tr>
+<td>鸾儿 vs 香兰</td>
+<td>莽撞 vs 从容</td>
+<td>鸾儿撞墙 [ch188]</td>
+</tr>
+<tr>
+<td>姜曦云 vs 香兰</td>
+<td>精明 vs 沉着</td>
+<td>姜被揭穿赔钱退场 [ch288-290]</td>
+</tr>
+<tr>
+<td>春菱 vs 香兰</td>
+<td>不甘 → 背叛</td>
+<td>春菱被嫁祸后放出 [ch289]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、林家宗族关系</h2>
+<h3>3.1 大房（权力核心）</h3>
+<pre><code>林昭祥(老太爷) ─── 林老太太
+        │
+   ┌────┴────┐
+林长政(大老爷)   林长敏(二老爷)
+ ∣ 妻：秦氏        ∣ 妻：王氏
+ ∣ 妾：尹姨娘       ∣ 妾：苏媚如(前林锦楼外室)
+ │                  │
+ ├─林锦楼(嫡长孙)   ├─林锦亭(嫡子) 妻：李樱如→李妙之
+ │  妻：赵月婵→和离  │
+ │  妾：青岚(死)/画眉/鹦哥(死)/鸾儿  ├─林东绫(嫡女·除名)
+ │  → 最终正妻：香兰  │
+ │                  │
+ ├─林锦轩(庶子) 妻：谭氏(死)
+ ├─林锦园(幼弟)
+ ├─林东绮(嫡女) 嫁陶鸿勋
+ ├─林东绣(庶女) 嫁袁绍仁
+ └─林东纨(庶女·尹姨娘生) 嫁鲁鉴
+</code></pre>
+<h3>3.2 长辈对香兰态度演变</h3>
+<table>
+<thead>
+<tr>
+<th>长辈</th>
+<th>初始态度</th>
+<th>转折事件</th>
+<th>最终态度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>秦氏</td>
+<td>&quot;骨子里不安生&quot;戒心</td>
+<td>栖霞寺香兰救命 [ch207]</td>
+<td>&quot;先前是我错待了她&quot;→筹婚</td>
+</tr>
+<tr>
+<td>林昭祥</td>
+<td>不过问</td>
+<td>境界论赐茶 [ch326]</td>
+<td>授意正名</td>
+</tr>
+<tr>
+<td>林长政</td>
+<td>&quot;奴才种子&quot;反对</td>
+<td>林锦楼&quot;除非我死&quot;对抗 [ch337]</td>
+<td>最终妥协</td>
+</tr>
+<tr>
+<td>林老太太</td>
+<td>慈善中立</td>
+<td>林昭祥授意 [ch330]</td>
+<td>送兰花首饰认可</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、桃花线关系网</h2>
+<h3>4.1 四朵桃花总览</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>人物</th>
+<th>与香兰关系</th>
+<th>起止</th>
+<th>结局</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一朵</td>
+<td>萧杭/林锦楼</td>
+<td>前世夫→今生纠葛</td>
+<td>ch2(回忆)→ch354</td>
+<td>★圆满·正妻</td>
+</tr>
+<tr>
+<td>第二朵</td>
+<td>宋柯</td>
+<td>前世夫今生重逢</td>
+<td>ch14→ch313</td>
+<td>诀别·放下</td>
+</tr>
+<tr>
+<td>第三朵</td>
+<td>夏芸</td>
+<td>单向暗恋</td>
+<td>ch87→ch136</td>
+<td>毁灭·功名被革</td>
+</tr>
+<tr>
+<td>第四朵</td>
+<td>袁绍仁</td>
+<td>&quot;莲娘精魂&quot;·单向敬慕</td>
+<td>ch224→番外</td>
+<td>克制·娶林东绣</td>
+</tr>
+</tbody></table>
+<h3>4.2 桃花间冲突</h3>
+<table>
+<thead>
+<tr>
+<th>冲突</th>
+<th>内容</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>林锦楼 vs 宋柯</td>
+<td>截走切断 → 鲁家炫耀 → 驿站和解</td>
+<td>ch71/241/313</td>
+</tr>
+<tr>
+<td>林锦楼 vs 夏芸</td>
+<td>送银蝶搅局 → 权力碾压</td>
+<td>ch126</td>
+</tr>
+<tr>
+<td>宋柯 vs 郑静娴</td>
+<td>被迫订亲 → 冷淡 → 修复</td>
+<td>ch119-313</td>
+</tr>
+<tr>
+<td>袁绍仁</td>
+<td>克制不争 → 帮林传话 → 娶林东绣</td>
+<td>ch224-番外</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、香兰阵营网</h2>
+<h3>5.1 核心盟友</h3>
+<table>
+<thead>
+<tr>
+<th>盟友</th>
+<th>结盟契机</th>
+<th>关系性质</th>
+<th>忠诚度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>小鹃</td>
+<td>入府结识 [ch5]</td>
+<td>挚友·生死之交</td>
+<td>★★★★★</td>
+</tr>
+<tr>
+<td>汀兰</td>
+<td>情报互通 [ch17]</td>
+<td>安分盟友</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td>书染</td>
+<td>被命伺候 [ch202]</td>
+<td>从林锦楼心腹→香兰贴身人</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td>林东绮</td>
+<td>桃汁案报恩 [ch147]</td>
+<td>真心友谊</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td>鹦哥</td>
+<td>以利换和 [ch174]</td>
+<td>利益→信任</td>
+<td>★★★（临终托付）</td>
+</tr>
+</tbody></table>
+<h3>5.2 叛变者</h3>
+<table>
+<thead>
+<tr>
+<th>人物</th>
+<th>叛变原因</th>
+<th>结局</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>春菱</td>
+<td>争一等失败·不甘心</td>
+<td>投靠姜曦云→被嫁祸→放出</td>
+</tr>
+<tr>
+<td>雪凝</td>
+<td>林昭祥安插的眼线</td>
+<td>全程向老太爷报告→线完成后消解</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>六、反派阵营网</h2>
+<h3>6.1 反派覆灭时间线</h3>
+<pre><code>曹丽环(ch134病死) → 赵月婵(ch110和离/ch303冻死) → 画眉(ch342被押)
+                                                         ↑
+夏芸(ch136功名革) → 银蝶(ch136卖妓院) → 杜宾(ch212灭口) → 卢韶堂(ch303被杀)
+</code></pre>
+<h3>6.2 反派联盟</h3>
+<table>
+<thead>
+<tr>
+<th>联盟</th>
+<th>性质</th>
+<th>运作</th>
+<th>结局</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>赵月婵+曹丽环</td>
+<td>互相利用</td>
+<td>曹送簪求办事·赵收不办</td>
+<td>各自覆灭</td>
+</tr>
+<tr>
+<td>赵月婵+钱文泽</td>
+<td>旧情人·出轨</td>
+<td>偷情+卖簪+纵火</td>
+<td>钱被杀/赵冻死</td>
+</tr>
+<tr>
+<td>画眉+杜宾</td>
+<td>兄妹联盟</td>
+<td>献屏风+暗推升官+绑架</td>
+<td>杜宾死/画眉被押</td>
+</tr>
+<tr>
+<td>画眉+暖月</td>
+<td>利用</td>
+<td>塞符栽赃</td>
+<td>暖月被打发卖</td>
+</tr>
+<tr>
+<td>曹丽环+银蝶</td>
+<td>教唆</td>
+<td>告官+诽谤</td>
+<td>曹死/银蝶卖妓院</td>
+</tr>
+<tr>
+<td>卢韶堂+杜宾</td>
+<td>主从</td>
+<td>栖霞寺大劫+叛乱</td>
+<td>双双身亡</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>七、身世线关系网</h2>
+<pre><code>前世：沈文翰(太子少傅/首辅)
+        ├── 沈嘉兰(嫡大孙女) = 今生香兰
+        │     └── 嫁萧杭(=今生宋柯)
+        └── 沈嘉莲(二孙女) = 袁绍仁亡妾&quot;莲娘&quot;
+                  └── 子：德哥儿(袁承德)
+
+今生：
+  香兰 ←──&quot;酷似莲娘&quot;──→ 袁绍仁
+                              │
+                         德哥儿 ← 香兰如母般教导
+                              │
+                         番外：沈家平反 → 财产归德哥儿
+</code></pre>
+<p><strong>设计精妙处</strong>：香兰与袁绍仁的缘分不是爱情，是血缘——她前世的亲妹妹嫁了他。全书四朵桃花中，只有第四朵的底色是骨肉亲情而非男女之爱。</p>
+<hr>
+<blockquote>
+<p>📌 本蓝图基于关系台账 + 人物台账归纳，覆盖 [第1章] 至 [番外]。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

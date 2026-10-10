@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title># 第35章 （无题） · 章卡</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(255,255,255,0.07);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.layout{display:flex;min-height:100vh;}
+
+/* 左侧章卡目录 */
+.toc{width:250px;min-width:250px;height:100vh;position:sticky;top:0;display:flex;flex-direction:column;
+  background:rgba(255,255,255,0.02);border-right:1px solid var(--line);}
+.toc-head{padding:20px 18px 14px;border-bottom:1px solid var(--line);flex-shrink:0;
+  background:linear-gradient(180deg,rgba(201,169,97,0.05),transparent);}
+.toc-head a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;}
+.toc-head a:hover{opacity:0.75;}
+.toc-head .ttl{font-size:14px;color:var(--gold2);letter-spacing:3px;font-weight:900;margin-top:10px;}
+.toc-head .cnt{font-size:11px;color:#999;margin-top:4px;}
+.toc-list{flex:1;overflow-y:auto;padding:6px 0;}
+.toc-item{display:flex;align-items:center;gap:10px;padding:9px 18px;text-decoration:none;color:#ccc;font-size:13px;transition:all 0.15s;border-left:2px solid transparent;}
+.toc-item:hover{background:rgba(201,169,97,0.07);color:#fff;}
+.toc-item .n{font-size:11px;color:var(--gold);opacity:0.45;font-weight:700;min-width:30px;}
+.toc-item .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.toc-item.cur{background:rgba(201,169,97,0.12);border-left-color:var(--gold);color:var(--gold2);}
+.toc-item.cur .n{opacity:0.9;}
+
+/* 右侧正文 */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:50%;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+.nav{display:flex;gap:16px;align-items:center;}
+
+.content{max-width:820px;margin:0 auto;padding:36px 32px 80px;position:relative;z-index:1;width:100%;}
+.content h1{font-size:22px;color:var(--gold2);margin-bottom:20px;padding-bottom:12px;
+  border-bottom:2px solid rgba(201,169,97,0.2);letter-spacing:3px;font-weight:900;}
+.content h2{font-size:16px;color:var(--gold2);margin:28px 0 10px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:1px;font-weight:700;}
+.content p,.content li{font-size:13px;line-height:2;color:#ddd;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content ul,.content ol{padding-left:20px;margin:6px 0;}
+.content li{margin-bottom:2px;}
+.content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px;}
+.content th{background:rgba(201,169,97,0.15);color:var(--gold2);padding:10px 14px;text-align:left;font-weight:700;letter-spacing:1px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;}
+.content tr:hover td{background:rgba(201,169,97,0.03);}
+
+/* 移动端菜单按钮 + 抽屉 */
+.toc-toggle{display:none;background:none;border:1px solid rgba(201,169,97,0.35);color:var(--gold2);
+  font-size:12px;padding:5px 12px;border-radius:7px;cursor:pointer;font-family:inherit;}
+.toc-mask{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;}
+@media(max-width:860px){
+  .toc{position:fixed;left:0;top:0;z-index:300;transform:translateX(-100%);transition:transform 0.25s;}
+  .toc.open{transform:translateX(0);}
+  .toc-mask.open{display:block;}
+  .toc-toggle{display:inline-block;}
+  .topbar{padding-right:28px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style></head><body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="layout">
+  <aside class="toc" id="toc">
+    <div class="toc-head">
+      <a class="back-link" href="../index.html">← 返回总览</a>
+      <div class="ttl">章 卡 目 录</div>
+      <div class="cnt">共 77 张</div>
+    </div>
+    <div class="toc-list">
+<a class="toc-item" href="%E7%AC%AC001%E7%AB%A0_%E6%A5%94%E5%AD%90.html" >
+       <span class="n">001</span><span class="t">楔子</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC002%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">002</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC003%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">003</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC004%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">004</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC005%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">005</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC006%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">006</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC007%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">007</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC008%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">008</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC009%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">009</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC010%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">010</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC011%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">011</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC012%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">012</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC013%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">013</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC014%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">014</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC015%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">015</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC016%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">016</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC017%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">017</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC018%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">018</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC019%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">019</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC020%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">020</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC021%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">021</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC022%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">022</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC023%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">023</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC024%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">024</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC025%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">025</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC026%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">026</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC027%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">027</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC028%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">028</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC029%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">029</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC030%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">030</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC031%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">031</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC032%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">032</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC033%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">033</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC034%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">034</span><span class="t">无题</span>
+     </a>
+<a class="toc-item cur" href="%E7%AC%AC035%E7%AB%A0_%E6%97%A0%E9%A2%98.html" id="curToc">
+       <span class="n">035</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC036%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">036</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC037%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">037</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC038%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">038</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC039%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">039</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC040%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">040</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC041%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">041</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC042%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">042</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC043%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">043</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC044%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">044</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC045%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">045</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC046%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">046</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC047%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">047</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC048%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">048</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC049%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">049</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC050%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">050</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC051%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">051</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC052%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">052</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC053%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">053</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC054%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">054</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC055%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">055</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC056%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">056</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC057%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">057</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC058%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">058</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC059%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">059</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC060%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">060</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC061%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">061</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC062%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">062</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC063%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">063</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC064%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">064</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC065%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">065</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC066%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">066</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC067%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">067</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC068%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">068</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC069%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">069</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC070%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">070</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC071%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">071</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC072%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">072</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC073%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">073</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC074%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">074</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC075%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">075</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC076%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">076</span><span class="t">无题</span>
+     </a>
+<a class="toc-item" href="%E7%AC%AC077%E7%AB%A0_%E6%97%A0%E9%A2%98.html" >
+       <span class="n">077</span><span class="t">无题</span>
+     </a>
+    </div>
+  </aside>
+  <div class="toc-mask" id="tocMask"></div>
+  <div class="main">
+    <div class="topbar">
+      <div class="nav">
+        <button class="toc-toggle" id="tocToggle">☰ 目录</button>
+        <a href="%E7%AC%AC034%E7%AB%A0_%E6%97%A0%E9%A2%98.html">← 上一章</a>
+      </div>
+      <div class="nav">
+        <a href="%E7%AC%AC036%E7%AB%A0_%E6%97%A0%E9%A2%98.html">下一章 →</a>
+      </div>
+    </div>
+    <div class="content"><h2>第35章 （无题）</h2>
+<ul>
+<li><strong>字数</strong>：3342</li>
+<li><strong>一句话剧情</strong>：（现在线）江恒酒店独酌回忆假出轨内情；来收衣服时撞见陈昭外放季子扬语音。</li>
+<li><strong>本章事件</strong>：<ol>
+<li>（现在线·江恒视角）应酬后江恒酒店独酌威士忌、抑制着下楼找陈昭的冲动；回忆假出轨内情——父亲把他拉入医保骗保泥潭（篡改王牌肿瘤药检测数据、证据链做实足够让他进去），他为建&quot;防火墙&quot;隔离陈昭才离婚，&quot;她不该被牵扯、是他自己搞砸的&quot;。★假出轨内情首次完整交代</li>
+<li>江恒承认&quot;高估自己、该远离她却一次次忍不住想见她&quot;；母亲龚亦姗来电（约饭/问住处/讥他&quot;连个人都留不住&quot;），江恒烦躁应对。</li>
+<li>江恒给陈昭发微信&quot;你什么时候有空？我去拿衣服&quot;。</li>
+<li>（现在线·陈昭线）陈昭沉迷骑行、买折叠自行车；回忆童年父亲教她骑车&quot;我会一直扶着你&quot;却突然放手、她凭本能学会——父爱的&quot;推手&quot;记忆。</li>
+<li>到约定日陈昭差点忘、从15公里外一口气骑回家赴约（力竭准点到）；江恒见她膝盖擦伤心疼皱眉、帮开门；她去洗澡锁主卧门（生平第一次），躺床上因&quot;他在外头&quot;生出隐秘安全感睡着。</li>
+<li>江恒收拾行李（把箱子放客厅收）；陈昭睡醒出来，两人日常式相处；骑行群（刘欣冉拉的三人群）里刘欣冉约下周骑行，季子扬发语音应约&quot;一起去吃饭&quot;，陈昭不小心外放，江恒的目光落在她身上（引出第36章）。</li>
+</ol>
+</li>
+<li><strong>登场人物</strong>：陈昭、江恒、龚亦姗（电话）、陈志川（回忆·教骑车）、季子扬（语音）、刘欣冉（群）</li>
+<li><strong>人物动态</strong>：<br>① 心境：江恒的痛悔与克制、被母亲责难；陈昭以骑行重建、锁门的隐秘安全感。<br>② 认知：读者经江恒视角得知假出轨的完整内情（医保骗保设局）。</li>
+<li><strong>伏笔</strong>：<ul>
+<li>埋：江恒&quot;父亲把他拉入医保骗保、证据链做实足够让他进去&quot;——★假出轨的完整动机内情（前面只说&quot;最坏结果&quot;，本章点明是牢狱），F01的核心答案。</li>
+<li>埋：季子扬语音约骑行&quot;一起去吃饭&quot;被外放——江恒将嫉妒（接第36章）。</li>
+<li>收：收F01/F16/F26（本章完整揭示假出轨=医保骗保设局，前文所有&quot;最坏结果/连累她&quot;的伏笔在此点明内情，但陈昭仍不知）。</li>
+</ul>
+</li>
+<li><strong>秘密·信息流动</strong>：★读者经江恒视角得知假出轨完整内情（医保骗保设局），陈昭仍全然不知；江恒撞见季子扬约陈昭骑行。</li>
+<li><strong>人物关系变动</strong>：<ul>
+<li>江恒↔陈昭：来收衣服的日常相处（她锁主卧、他收行李），微妙的旧日默契残留。</li>
+<li>陈昭↔季子扬/刘欣冉：骑行群约下周同行。</li>
+</ul>
+</li>
+<li><strong>情绪设计</strong>：基调：虐/悬（★4），名场面：江恒酒店独酌回忆假出轨内情&quot;这件事太严重了，她不该被牵扯其中&quot;；陈昭锁主卧门、因&quot;他在外头&quot;生出隐秘安全感入睡。</li>
+<li><strong>章末钩子</strong>：江恒撞见季子扬约陈昭骑行的语音、目光落在她身上——将爆发嫉妒（接第36章）。</li>
+<li><strong>线索归属</strong>：主线（假出轨内情揭示）、情感线、（新）季子扬男二线</li>
+<li><strong>写作手法</strong>：倒叙（江恒视角完整补出医保骗保设局的假出轨内情，反转的关键拼图）；以物写人（父亲教骑车&quot;突然放手&quot;的记忆写陈昭独立的养成，也呼应她如今骑行逃避）</li>
+<li><strong>金句</strong>：&quot;留给自己的时间越少，烦恼就不会那么多。&quot;</li>
+<li><strong>设定·名词</strong>：医保骗保（江亚洲篡改王牌肿瘤药检测数据、做实证据链陷害江恒）——假出轨的根源设定</li>
+<li><strong>时间线归属</strong>：现在线（离婚后，江恒来收衣服日）；内嵌江恒假出轨内情回忆 + 陈昭童年学骑车回忆</li>
+<li><strong>CP互动</strong>：江恒来收衣服的日常相处（她锁主卧门、他慢收行李）；江恒撞见季子扬约她骑行的语音而在意——旧日默契残留 + 男主嫉妒前奏。</li>
+<li><strong>双线呼应·物象回扣</strong>：骑行/自行车（现在线陈昭骑行逃避+童年父亲教骑车的&quot;放手&quot;，呼应过去线她因江恒学骑行——放手与自由的母题）；锁门/安全感（她锁主卧却因&quot;他在外头&quot;有安全感——爱与切割的矛盾，呼应两人黑暗相拥的安全感）；防火墙/隔离（江恒为保护她离婚，呼应&quot;藏住你谁也抢不走&quot;的反向操作）。</li>
+</ul>
+</div>
+  </div>
+</div>
+<script>
+// 当前章滚动到目录可视区
+var cur=document.getElementById('curToc');
+if(cur)cur.scrollIntoView({block:'center'});
+// 移动端目录抽屉
+var toc=document.getElementById('toc'),mask=document.getElementById('tocMask'),tg=document.getElementById('tocToggle');
+function openToc(){toc.classList.add('open');mask.classList.add('open');}
+function closeToc(){toc.classList.remove('open');mask.classList.remove('open');}
+if(tg)tg.onclick=openToc;
+if(mask)mask.onclick=closeToc;
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body></html>

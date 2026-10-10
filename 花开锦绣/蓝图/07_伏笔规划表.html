@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 伏笔规划表 ·《花开锦绣》 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>07 伏笔规划表 ·《花开锦绣》</h1>
+<blockquote>
+<p><strong>数据源</strong>：<code>拆解数据/台账/伏笔台账.md</code>（全书 F1–F70，已精修）+ <code>拆解数据/.ext伏笔.md</code>（逐章埋收）+ <code>拆解数据/台账/时间线台账.md</code> + <code>拆解总纲.md</code>。<br><strong>覆盖</strong>：第 1–314 章（实存 310 张章卡，合并章 61/153/219 按合并后一章计），<strong>共 70 条伏笔</strong>。<br><strong>说明</strong>：本篇不止「搬运台账」，而是做三件事——① 把 70 条按「线索族」归组；② 提炼每族的作者意图与可复用技法；③ 表格化（伏笔总表 + 技法提炼表）。所有锚点标 <code>[第X章]</code>，只据数据源，不脑补。</p>
+</blockquote>
+<hr>
+<h2>一、伏笔总表</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>内容</th>
+<th>回收章</th>
+<th>所属族</th>
+<th>技法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F1</td>
+<td>第1章</td>
+<td>赵凌闻&quot;华阴傅氏女&quot;时语带嘲讽、似与华阴傅家另有渊源</td>
+<td>[第179章]</td>
+<td>傅家名声·旧案</td>
+<td>反常反应</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>第1章</td>
+<td>傅家门前五座牌楼、三座贞节牌坊（以名声立家）</td>
+<td>[第196章]</td>
+<td>傅家名声·旧案</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>第2章</td>
+<td>郝剑锋提亲被拒、大伯父革职后求助遭拒（傅家人脉已断）</td>
+<td>[第260章]</td>
+<td>傅庭筠身世</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>第2章</td>
+<td>左俊杰&quot;亲上加亲&quot;之执念与对傅家的积怨（诬陷之祸根）</td>
+<td>[第185章]</td>
+<td>诬陷·灭口</td>
+<td>自证有罪</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>第4章</td>
+<td>定情肚兜等信物来路、屋内失物（&quot;内贼&quot;之谜）</td>
+<td>[第124章]</td>
+<td>诬陷·灭口</td>
+<td>信物承载</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>第4章</td>
+<td>傅家为名声弃女之因（大伯父容忍左俊杰、逼服毒真相）</td>
+<td>[第179章]</td>
+<td>傅家名声·旧案</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>第11章</td>
+<td>城中&quot;通奸&quot;流言（后演为华阴&quot;私奔/被掳&quot;污名线）</td>
+<td>[第269章]</td>
+<td>傅家名声·旧案</td>
+<td>舆论回旋</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>第15章</td>
+<td>赵凌的真实身份（江湖来历之谜）</td>
+<td>[第110章]</td>
+<td>赵凌身世·宗族</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>第15章</td>
+<td>冯老四（冯家线）</td>
+<td>[第277章]</td>
+<td>西平侯·战马</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>第16章</td>
+<td>母亲托带的银镯与两千两银票</td>
+<td>[第130章]</td>
+<td>情感·信物</td>
+<td>信物承载</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>第17章</td>
+<td>阿森身世（凉州、鞑子）与&quot;义弟赵森&quot;身份</td>
+<td>[第213章]</td>
+<td>赵凌身世·宗族</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F12</td>
+<td>第23章</td>
+<td>解家（舅舅家）满门被屠</td>
+<td>[第100章]</td>
+<td>患难·谋生</td>
+<td>互文对照</td>
+</tr>
+<tr>
+<td>F13</td>
+<td>第30章</td>
+<td>鲨鱼鞘匕首（赵凌一再嘱傅庭筠随身携带）</td>
+<td>[第33章]</td>
+<td>情感·信物</td>
+<td>信物承载</td>
+</tr>
+<tr>
+<td>F14</td>
+<td>第32章</td>
+<td>四名&quot;行商&quot;的官银与身份之谜（十六爷一党）</td>
+<td>[第133章]</td>
+<td>皇家·从龙</td>
+<td>反常反应</td>
+</tr>
+<tr>
+<td>F15</td>
+<td>第35章</td>
+<td>傅庭筠向十六爷谎报二人为&quot;未婚夫妻&quot;、籍贯陇西/平凉</td>
+<td>[第146章]</td>
+<td>皇家·从龙</td>
+<td>谎言雷</td>
+</tr>
+<tr>
+<td>F16</td>
+<td>第36章</td>
+<td>十六爷赠名帖、荐吴昕（后赵凌投军、吴昕为其所倚）</td>
+<td>[第233章]</td>
+<td>皇家·从龙</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F17</td>
+<td>第40章</td>
+<td>陌毅行军布阵之才（军人出身之谜）</td>
+<td>[第48章]</td>
+<td>患难·谋生</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F18</td>
+<td>第41章</td>
+<td>郑三（镖师出身）一家终成傅庭筠心腹</td>
+<td>[第224章]</td>
+<td>患难·谋生</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F19</td>
+<td>第46章</td>
+<td>赵凌亡母腊月初九忌日、留下的鞋常年晾晒</td>
+<td>[第110章]</td>
+<td>赵凌身世·宗族</td>
+<td>日常物线索</td>
+</tr>
+<tr>
+<td>F20</td>
+<td>第48章</td>
+<td>杨柳巷老宅（赵凌经营多年的退路）</td>
+<td>[第224章]</td>
+<td>情感·信物</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F21</td>
+<td>第50章</td>
+<td>赵凌&quot;日后为傅庭筠置田&quot;之约</td>
+<td>[第224章]</td>
+<td>情感·信物</td>
+<td>誓言回扣</td>
+</tr>
+<tr>
+<td>F22</td>
+<td>第55章</td>
+<td>唐家（唐岱山、唐小姐）</td>
+<td>[第110章]</td>
+<td>唐家</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F23</td>
+<td>第60章</td>
+<td>唐岱山&quot;消息灵通、不死心&quot;、私盐旧罪成把柄</td>
+<td>[第209章]</td>
+<td>唐家</td>
+<td>自证有罪</td>
+</tr>
+<tr>
+<td>F24</td>
+<td>第61章</td>
+<td>金元宝赴京&quot;留着的棋&quot;（京都线）</td>
+<td>[第119章]</td>
+<td>布局·人脉</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F25</td>
+<td>第68章</td>
+<td>鲁成、颖川侯底细待查（官场线）</td>
+<td>[第117章]</td>
+<td>布局·人脉</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F26</td>
+<td>第70章</td>
+<td>八字胡叶老爷（大通号三掌柜叶守信）</td>
+<td>[第206章]</td>
+<td>大通号</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F27</td>
+<td>第73章</td>
+<td>西平侯线（冯百户之怨→豢养马贼劫商）</td>
+<td>[第314章]</td>
+<td>西平侯·战马</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F28</td>
+<td>第74章</td>
+<td>傅庭筠&quot;见不得光&quot;的身份之隔（感情线核心障碍）</td>
+<td>[第146章]</td>
+<td>情感·信物</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F29</td>
+<td>第75章</td>
+<td>林迟疑为当初奉命袭杀赵凌之人</td>
+<td>[第116章]</td>
+<td>布局·人脉</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F30</td>
+<td>第77章</td>
+<td>陌毅妾鲁氏（后街邻里线）</td>
+<td>[第100章]</td>
+<td>患难·谋生</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F31</td>
+<td>第80章</td>
+<td>赵凌托备祭父母、迁坟长安之愿（&quot;先考赵公集云&quot;）</td>
+<td>[第232章]</td>
+<td>赵凌身世·宗族</td>
+<td>誓言回扣</td>
+</tr>
+<tr>
+<td>F32</td>
+<td>第81章</td>
+<td>王夫人与傅庭筠的交情</td>
+<td>[第87章]</td>
+<td>患难·谋生</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F33</td>
+<td>第83章</td>
+<td>冯大虎觊觎傅庭筠</td>
+<td>[第100章]</td>
+<td>西平侯·战马</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F34</td>
+<td>第102章</td>
+<td>唐小姐&quot;赠剑&quot;旧事典故</td>
+<td><strong>未回收</strong></td>
+<td>唐家</td>
+<td>悬置不收</td>
+</tr>
+<tr>
+<td>F35</td>
+<td>第105章</td>
+<td>赵凌&quot;跪在大门口求娶傅家九小姐&quot;之说</td>
+<td>[第140章]</td>
+<td>情感·信物</td>
+<td>誓言回扣</td>
+</tr>
+<tr>
+<td>F36</td>
+<td>第106章</td>
+<td>赵凌&quot;壬子九月初九&quot;与傅庭筠&quot;戊午五月十八&quot;（合八字）</td>
+<td>[第141章]</td>
+<td>情感·信物</td>
+<td>信物承载</td>
+</tr>
+<tr>
+<td>F37</td>
+<td>第110章</td>
+<td>赵凌母冤、合葬父母、整理父茔之愿（身世复仇核心）</td>
+<td>[第314章]</td>
+<td>赵凌身世·宗族</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F38</td>
+<td>第111章</td>
+<td>秦王病逝、停婚嫁娶六十日（成婚时限与择吉）</td>
+<td>[第141章]</td>
+<td>情感·信物</td>
+<td>制度倒计时</td>
+</tr>
+<tr>
+<td>F39</td>
+<td>第114章</td>
+<td>萧氏知&quot;冯大虎是赵凌所杀&quot;、颖川侯已掌赵凌底细</td>
+<td>[第117章]</td>
+<td>布局·人脉</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F40</td>
+<td>第118章</td>
+<td>京都傅家&quot;母亲卧病、修竹家的被小厮盯梢&quot;之疑云</td>
+<td>[第129章]</td>
+<td>傅家名声·旧案</td>
+<td>两地书</td>
+</tr>
+<tr>
+<td>F41</td>
+<td>第121章</td>
+<td>雨微现身</td>
+<td>[第123章]</td>
+<td>诬陷·灭口</td>
+<td>人证内线</td>
+</tr>
+<tr>
+<td>F42</td>
+<td>第123章</td>
+<td>陈妈妈、寒烟、绿萼及碧云庵随侍真实死因（指向赵凌）</td>
+<td>[第124章]</td>
+<td>诬陷·灭口</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F43</td>
+<td>第124章</td>
+<td>墨香之死被大奶奶压下、左俊杰由大奶奶放走</td>
+<td>[第196章]</td>
+<td>诬陷·灭口</td>
+<td>人证内线</td>
+</tr>
+<tr>
+<td>F44</td>
+<td>第128章</td>
+<td>傅五老爷&quot;把到了嘴边的话又咽下&quot;（父女旧案之伏）</td>
+<td>[第179章]</td>
+<td>傅家名声·旧案</td>
+<td>欲言又止</td>
+</tr>
+<tr>
+<td>F45</td>
+<td>第131章</td>
+<td>叶三掌柜的粮食生意（后连战事、粮价）</td>
+<td>[第133章]</td>
+<td>大通号</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F46</td>
+<td>第134章</td>
+<td>武定侯&quot;私养战马&quot;被夺爵流放（全书战马线之首现）</td>
+<td>[第314章]</td>
+<td>西平侯·战马</td>
+<td>互文对照</td>
+</tr>
+<tr>
+<td>F47</td>
+<td>第137章</td>
+<td>左俊杰仍未寻获（皇上赐婚的前提悬置）</td>
+<td>[第185章]</td>
+<td>诬陷·灭口</td>
+<td>悬置不收</td>
+</tr>
+<tr>
+<td>F48</td>
+<td>第144章</td>
+<td>太皇太后胞弟流放铁岭卫待寻（太皇太后外家线）</td>
+<td><strong>未回收</strong></td>
+<td>皇家·从龙</td>
+<td>悬置不收</td>
+</tr>
+<tr>
+<td>F49</td>
+<td>第146章</td>
+<td>全福人系&quot;皇上在潜邸里的军师先生&quot;之意（先生线）</td>
+<td>[第245章]</td>
+<td>先生·朝局</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F50</td>
+<td>第147章</td>
+<td>太皇太后赐婚颖川侯从妹给武定侯</td>
+<td>[第279章]</td>
+<td>皇家·从龙</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F51</td>
+<td>第150章</td>
+<td>赵凌欲落籍长安县、迁父母坟茔&quot;开宗立派&quot;</td>
+<td>[第232章]</td>
+<td>赵凌身世·宗族</td>
+<td>誓言回扣</td>
+</tr>
+<tr>
+<td>F52</td>
+<td>第153章</td>
+<td>&quot;先生&quot;论颖川侯&quot;飞鸟尽良弓藏&quot;、独问西北军情</td>
+<td>[第236章]</td>
+<td>先生·朝局</td>
+<td>誓言回扣</td>
+</tr>
+<tr>
+<td>F53</td>
+<td>第157章</td>
+<td>傅庭筠怀孕</td>
+<td>[第165章]</td>
+<td>情感·信物</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F54</td>
+<td>第161章</td>
+<td>贵州平叛、赵凌拒征</td>
+<td>[第168章]</td>
+<td>先生·朝局</td>
+<td>制度倒计时</td>
+</tr>
+<tr>
+<td>F55</td>
+<td>第198章</td>
+<td>傅五老爷&quot;科场作弊&quot;旧事（悬于傅家头上的剑）</td>
+<td>[第199章]</td>
+<td>傅家名声·旧案</td>
+<td>自证有罪</td>
+</tr>
+<tr>
+<td>F56</td>
+<td>第200章</td>
+<td>俞家欲借西北侯之线往庄浪卫查赵凌底细</td>
+<td>[第209章]</td>
+<td>俞家构陷</td>
+<td>自证有罪</td>
+</tr>
+<tr>
+<td>F57</td>
+<td>第209章</td>
+<td>俞家借冯家以&quot;贩私盐&quot;&quot;冒领军功&quot;构陷赵凌（复仇主线大伏笔）</td>
+<td>[第314章]</td>
+<td>俞家构陷</td>
+<td>自证有罪</td>
+</tr>
+<tr>
+<td>F58</td>
+<td>第211章</td>
+<td>正和大师与傅庭筠的交情（先生线）</td>
+<td>[第245章]</td>
+<td>先生·朝局</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F59</td>
+<td>第216章</td>
+<td>追封父母、迁坟长安县、自立宗祠</td>
+<td>[第232章]</td>
+<td>赵凌身世·宗族</td>
+<td>誓言回扣</td>
+</tr>
+<tr>
+<td>F60</td>
+<td>第217章</td>
+<td>赵家旧仇与&quot;见族长再定&quot;（赵家宗族线）</td>
+<td>[第221章]</td>
+<td>赵凌身世·宗族</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F61</td>
+<td>第218章</td>
+<td>吴小姐（吴姨娘）为俞敬修妾室</td>
+<td>[第309章]</td>
+<td>俞家构陷</td>
+<td>人证内线</td>
+</tr>
+<tr>
+<td>F62</td>
+<td>第223章</td>
+<td>傅庭筠&quot;让俞敬修永远抬不起头&quot;之誓</td>
+<td>[第314章]</td>
+<td>俞家构陷</td>
+<td>誓言回扣</td>
+</tr>
+<tr>
+<td>F63</td>
+<td>第226章</td>
+<td>傅家卖田卖地、祖母逼大伯母出陪嫁/分家</td>
+<td>[第268章]</td>
+<td>傅家名声·旧案</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F64</td>
+<td>第234章</td>
+<td>赵凌&quot;欲盖弥彰&quot;、升贵州总兵实为出征</td>
+<td>[第235章]</td>
+<td>先生·朝局</td>
+<td>明暗双写</td>
+</tr>
+<tr>
+<td>F65</td>
+<td>第240章</td>
+<td>傅庭筠身世在华阴走漏、俞家追查（后经郝剑锋查实、传遍官场）</td>
+<td>[第261章]</td>
+<td>傅庭筠身世</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F66</td>
+<td>第242章</td>
+<td>吏部左给事中一职（俞阁老为子谋位、后三姐夫得缺）</td>
+<td>[第249章]</td>
+<td>先生·朝局</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F67</td>
+<td>第244章</td>
+<td>春饼对呦呦之慕（青梅暗线）</td>
+<td>[第294章]</td>
+<td>情感·信物</td>
+<td>闲子长线</td>
+</tr>
+<tr>
+<td>F68</td>
+<td>第252章</td>
+<td>赵家与沈家&quot;通家之好&quot;、傅庭筠身世确证</td>
+<td>[第255章]</td>
+<td>傅庭筠身世</td>
+<td>身世碎片</td>
+</tr>
+<tr>
+<td>F69</td>
+<td>第302章</td>
+<td>闵氏贴身妈妈买凶杀人</td>
+<td>[第313章]</td>
+<td>俞家构陷</td>
+<td>自证有罪</td>
+</tr>
+<tr>
+<td>F70</td>
+<td>第310章</td>
+<td>西平侯冯通私卖战马之证（压垮俞家的&quot;杀手锏&quot;）</td>
+<td>[第314章]</td>
+<td>西平侯·战马</td>
+<td>压箱底王牌</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>全表 70 行；仅 F34、F48 两条标注 <strong>未回收</strong>（详见第四节）。</p>
+</blockquote>
+<hr>
+<h2>二、线索族（13 族）</h2>
+<blockquote>
+<p>归组原则：按「叙事线索」聚合，而非按人物或章节。每族给：族名 / 包含伏笔 / 埋设区间 / 回收区间 / 作用，并附「作者意图 + 可复用技法」。</p>
+</blockquote>
+<h3>族1 · 赵凌身世·宗族线</h3>
+<ul>
+<li><strong>包含</strong>：F8、F11、F19、F31、F37、F51、F59、F60（8 条）</li>
+<li><strong>埋设区间</strong>：第15章–第217章　|　<strong>回收区间</strong>：第110章–第232章（F60 收 [第221章]）</li>
+<li><strong>作用</strong>：全书男主的「我是谁」之根，是复仇动机的源头，也是「开宗立派」阶层跃迁的情感落点。</li>
+<li><strong>作者意图与技法</strong>：把一个大身世<strong>拆成 5 块碎片</strong>分散埋设——第15章只给「江湖来历之谜」（F8），第46章只给「亡母忌日与晾晒的鞋」（F19，用日常物承载亲情），第110章才揭开「父为进士、母被诬自缢」（F37），再以「迁坟长安、追封父母、自立宗祠」（F31/F51/F59）把私仇升格为宗族振兴。读者被「一步步拼图」牵着走，最后一块拼上时情绪最重。<strong>可复用</strong>：主角身世别一次性交底，拆成可被不同人分别发现的碎片，末章聚合爆发。</li>
+</ul>
+<h3>族2 · 傅家·名声弃女与旧案线</h3>
+<ul>
+<li><strong>包含</strong>：F1、F2、F6、F7、F40、F44、F55、F63（8 条）</li>
+<li><strong>埋设区间</strong>：第1章–第226章　|　<strong>回收区间</strong>：第179章–第268章</li>
+<li><strong>作用</strong>：女主的「原罪」——一个以牌坊立家、把名声看得比女儿重的家族，既制造弃女之虐，也在结尾反噬自身（卖田分家、丑闻悬剑）。</li>
+<li><strong>作者意图与技法</strong>：开篇第1章就用<strong>环境暗笔</strong>（F2 五座牌楼、三座贞节牌坊）把「这家以名声立家」写进背景，读者当时只当景物，第196章左俊杰案翻出时才恍然——这是<strong>明暗双写</strong>。父亲「夜现厉斥、话到嘴边又咽下」（F44 [第128章]）用<strong>欲言又止</strong>留出至亲隐情，直到第179章揭丙辰科舞弊旧案。<strong>可复用</strong>：把一个家族的核心动机藏进开篇的场景描写里；让至亲在关键处「欲言又止」，为后续翻案/和解留扣。</li>
+</ul>
+<h3>族3 · 诬陷·灭口线</h3>
+<ul>
+<li><strong>包含</strong>：F4、F5、F41、F42、F43、F47（6 条）</li>
+<li><strong>埋设区间</strong>：第2章–第137章　|　<strong>回收区间</strong>：第123章–第196章</li>
+<li><strong>作用</strong>：全书的「起虐」引擎——左俊杰持肚兜诬陷、碧云庵被灌药、随侍被灭口，构成女主逃亡的因果起点。</li>
+<li><strong>作者意图与技法</strong>：<strong>信物承载</strong>（F5 肚兜）把「诬陷」实体化，读者记住的是一件物件而非一段口供；再用 <strong>人证内线</strong> 雨微（F41 [第121章]）与左家姐弟旧账（F43）层层揭盖；F47「左俊杰仍未寻获」是一根<strong>故意悬置</strong>的钩，让「天子赐婚」始终差一个前提。<strong>可复用</strong>：诬陷案要有一个「铁证物」+ 一个「活口证人」；关键反派先「失踪」，让其存在成为持续威胁。</li>
+</ul>
+<h3>族4 · 傅庭筠身世·走漏线</h3>
+<ul>
+<li><strong>包含</strong>：F3、F65、F68（3 条）</li>
+<li><strong>埋设区间</strong>：第2章–第252章　|　<strong>回收区间</strong>：第255章–第261章</li>
+<li><strong>作用</strong>：女主身世从「被弃之女」到「官场皆知的傅家九小姐」的曝光过程，是京都恩怨升级的导火索。</li>
+<li><strong>作者意图与技法</strong>：第2章先借郝剑锋埋一根<strong>闲子</strong>（F3 傅家人脉断裂），260 章后此人反过来成为查证身世的推手；身世走漏（F65）先由「稠酒」等细枝末节露缝，再经赵家沈家「通家之好」确证（F68）——<strong>碎片分散、合章揭晓</strong>。<strong>可复用</strong>：早早埋一个日后「会来查你」的旧人/旧关系；身世曝光不要一锤定音，让不同人从不同证据各自拼出一角。</li>
+</ul>
+<h3>族5 · 俞家恩怨·构陷线</h3>
+<ul>
+<li><strong>包含</strong>：F56、F57、F61、F62、F69（5 条）</li>
+<li><strong>埋设区间</strong>：第200章–第302章　|　<strong>回收区间</strong>：第209章–第314章</li>
+<li><strong>作用</strong>：全书后半的复仇主线——俞家从「构陷者」到「被清算者」的完整闭环。</li>
+<li><strong>作者意图与技法</strong>：这是**「把大反派写成一步步自证有罪」<strong>的范本：第200章俞家起意查赵凌（F56）→ 第209章借冯家扣「贩私盐、冒领军功」（F57）→ 第218章纳吴小姐、闵氏买凶等内宅恶行（F61/F69）→ 第314章全线崩塌。反派每个小动作都留一份人证/物证，结局集中引爆；而女主第223章的誓言（F62）则作为</strong>誓言回扣**，让读者在结局「想起她当初说过的话」。<strong>可复用</strong>：反派不必一开始就穷凶极恶，让他每赢一次就多欠一笔账，结局由主角统一收账。</li>
+</ul>
+<h3>族6 · 西平侯·冯家·战马线</h3>
+<ul>
+<li><strong>包含</strong>：F9、F27、F33、F46、F70（5 条）</li>
+<li><strong>埋设区间</strong>：第15章–第310章　|　<strong>回收区间</strong>：第100章–第314章</li>
+<li><strong>作用</strong>：贯通全书的「战马/军权」黑线，冯家（西安恶霸线）与西平侯（京都侯府线）最终合流，成为压垮俞家的关键。</li>
+<li><strong>作者意图与技法</strong>：第134章先用武定侯「私养战马」被夺爵（F46）作<strong>互文对照</strong>，告诉读者「私马=死罪」的规则；第73章起西平侯豢养马贼（F27）慢慢长线，直到第310章才把「西平侯冯通私卖战马之证」（F70）作为<strong>压箱底王牌</strong>亮出。规矩先立、罪证后收，读者一看就懂这一击的分量。<strong>可复用</strong>：先借一个前例把「规则」明写清楚，再让反派的同类罪证在结局成为杀招。</li>
+</ul>
+<h3>族7 · 皇家·从龙线（穆王/十六爷）</h3>
+<ul>
+<li><strong>包含</strong>：F14、F15、F16、F48、F50（5 条）</li>
+<li><strong>埋设区间</strong>：第32章–第147章　|　<strong>回收区间</strong>：第133章–第279章（F48 未回收）</li>
+<li><strong>作用</strong>：把男女主的小命运嵌进「先帝驾崩—庄王继统—穆王起兵」的大朝局，是全书格局与风波的来源。</li>
+<li><strong>作者意图与技法</strong>：第32章四名「行商」携官银（F14）用<strong>反常反应</strong>（阉人压嗓、明黄袜带等细节）坐实十六爷是私离藩地的藩王；第35章女主为脱身<strong>谎报</strong>「未婚夫妻、陇西平凉」（F15）——一颗<strong>谎言雷</strong>，到第146章成婚时反而「弄假成真」。番外另留一条<strong>故意不收</strong>的暗线：太皇太后胞弟流放铁岭卫（F48）。<strong>可复用</strong>：用细节而非台词坐实一个隐藏身份；让主角在绝境中撒的谎，日后被现实「兑现」。</li>
+</ul>
+<h3>族8 · 先生·军功·朝局线（肁廷宜）</h3>
+<ul>
+<li><strong>包含</strong>：F49、F52、F54、F58、F64、F66（6 条）</li>
+<li><strong>埋设区间</strong>：第146章–第242章　|　<strong>回收区间</strong>：第168章–第249章</li>
+<li><strong>作用</strong>：赵凌「朝中有人」的底牌——潜邸军师肁廷宜这条暗线，既是男主崛起的外援，也是女主为娘家（三姐夫）谋缺的钥匙。</li>
+<li><strong>作者意图与技法</strong>：第146章先借「全福人来历」<strong>暗示</strong>幕后有「皇上在潜邸里的军师」（F49），第153章再让这位「先生」一语「飞鸟尽良弓藏」（F52）——<strong>台词预言</strong>，既是朝局警示，也在第236章应验。第242章的三姐夫争缺（F66）表面写官场内斗，实则早被这根先生线绑定了结局。<strong>可复用</strong>：把「贵人」先写成一个规矩/一句怪话，让读者好奇是谁；预言式台词比解释更省笔墨。</li>
+</ul>
+<h3>族9 · 大通号·叶掌柜线</h3>
+<ul>
+<li><strong>包含</strong>：F26、F45（2 条）</li>
+<li><strong>埋设区间</strong>：第70章–第131章　|　<strong>回收区间</strong>：第133章–第206章</li>
+<li><strong>作用</strong>：贯穿「钱与粮」的商路暗线，战时成粮价杠杆，平日成女主做买卖的门路。</li>
+<li><strong>作者意图与技法</strong>：第70章一个「八字胡叶老爷」（F26）以气度不凡出场，埋下商号势力；第131章「叶三掌柜的粮食生意」（F45）随即与战事、粮价挂钩——<strong>闲子</strong>提前布下，等到朝局动时立刻变成战略变量。<strong>可复用</strong>：让一个生意人早早登场，把他的生意「预先」和未来的大事件（战争/饥荒）绑在一起。</li>
+</ul>
+<h3>族10 · 赵凌布局·京都人脉线</h3>
+<ul>
+<li><strong>包含</strong>：F24、F25、F29、F39（4 条）</li>
+<li><strong>埋设区间</strong>：第61章–第114章　|　<strong>回收区间</strong>：第116章–第119章</li>
+<li><strong>作用</strong>：男主在京都的「棋子与情报网」——金元宝赴京、名帖荐吴昕、林迟身份、颖川侯底细，为其后复仇布局预先落子。</li>
+<li><strong>作者意图与技法</strong>：第61章明说金元宝赴京是「留着的棋」（F24），第36章的名帖荐吴昕（F16）到第233章才启用——<strong>闲子长线</strong>；林迟「奉命袭杀赵凌」的旧案（F29）与颖川侯「已掌底细」（F39）用<strong>明暗双写</strong>，一半明写试探、一半暗藏凶险。<strong>可复用</strong>：精明主角要「提前落子」，明写「这人/这帖留着有用」，几十章后回敲。</li>
+</ul>
+<h3>族11 · 情感·姻缘信物线</h3>
+<ul>
+<li><strong>包含</strong>：F10、F13、F20、F21、F28、F35、F36、F38、F53、F67（10 条）</li>
+<li><strong>埋设区间</strong>：第16章–第244章　|　<strong>回收区间</strong>：第33章–第294章</li>
+<li><strong>作用</strong>：男女主感情从「见不得光」到「明媒正娶」的全部节点，是本书的「暖」与「甜」所在。</li>
+<li><strong>作者意图与技法</strong>：以<strong>信物承载</strong>串起承诺——银镯银票（F10）、鲨鱼鞘匕首（F13）、杨柳巷老宅（F20）、庚帖（F36）各代表一重关系（接济/护身/退路/名分）；「跪门求娶」（F35）与「日后置田」（F21）作<strong>誓言回扣</strong>，成婚时一一兑现；「见不得光的身份」（F28 [第74章]）用<strong>明暗双写</strong>写出核心障碍；第111章「停婚嫁娶六十日」（F38）是<strong>制度倒计时</strong>，把婚事逼出节奏。连子女辈都续上「青梅暗线」（F67）。<strong>可复用</strong>：情感进度靠「会流转的物件」记事；用外部制度（国丧/择吉）给成婚设置窗口期。</li>
+</ul>
+<h3>族12 · 唐家线</h3>
+<ul>
+<li><strong>包含</strong>：F22、F23、F34（3 条）</li>
+<li><strong>埋设区间</strong>：第55章–第102章　|　<strong>回收区间</strong>：第110章–第209章（F34 未回收）</li>
+<li><strong>作用</strong>：西安一侧的次要人物家族，承担「隐患（私盐把柄）」与「留白（赠剑典故）」两种功能。</li>
+<li><strong>作者意图与技法</strong>：唐岱山「消息灵通、不死心」且握私盐旧罪（F23）是<strong>自证有罪</strong>式的把柄，最终被卷入俞家构陷（[第209章]）；而唐小姐「赠剑」典故（F34 [第102章]）<strong>故意不收</strong>，作为开放式暗线留余韵。<strong>可复用</strong>：次要反派手里握一件「旧罪」，关键时刻成为别人的工具；允许一条支线不闭合，制造留白。</li>
+</ul>
+<h3>族13 · 西行患难·谋生庇护线</h3>
+<ul>
+<li><strong>包含</strong>：F12、F17、F18、F30、F32（5 条）</li>
+<li><strong>埋设区间</strong>：第23章–第81章　|　<strong>回收区间</strong>：第87章–第224章</li>
+<li><strong>作用</strong>：女主西行/张掖落脚期的「人情底盘」——郑三一家、王夫人、陌毅与鲁氏，既是患难相助，也是后续支线的入口。</li>
+<li><strong>作者意图与技法</strong>：解家满门被屠（F12）用<strong>互文对照</strong>与女主「被弃」形成命运映照；陌毅「行军布阵之才」（F17）以<strong>碎片</strong>暗示其军人身份；郑三一家（F18）、王夫人交情（F32）则用<strong>闲子长线</strong>，从路人升级为心腹。<strong>可复用</strong>：逃亡段落的配角要「先给交情、后给用处」，让患难情谊自然长成日后的助力。</li>
+</ul>
+<hr>
+<h2>三、技法提炼</h2>
+<h3>3.1 伏笔技法提炼表（17 种）</h3>
+<table>
+<thead>
+<tr>
+<th>技法名</th>
+<th>在本书怎么用 [锚点]</th>
+<th>可复用公式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>信物承载法</strong></td>
+<td>银镯（[第16章]→[第130章]）、鲨鱼鞘匕首（[第30章]→[第33章]）、肚兜（[第4章]→[第124章]）、庚帖（[第141章]）</td>
+<td>给关键关系配一件「会流转的物件」，每次易手都叠加新含义（信物→证物→遗物），读者靠物记事</td>
+</tr>
+<tr>
+<td><strong>反常反应法</strong></td>
+<td>赵凌闻&quot;华阴傅氏女&quot;语带嘲讽（[第1章]→[第179章]揭旧案）；陌毅行军布阵之才（[第40章]→[第48章]揭军人）</td>
+<td>写一个「不该有反应的人」对关键词/技能露出的反常，埋「他与此有旧」的钩，几十章后解</td>
+</tr>
+<tr>
+<td><strong>谎言雷法</strong></td>
+<td>女主向十六爷谎称与赵凌是&quot;未婚夫妻&quot;、籍贯陇西平凉（[第35章]→[第146章]弄假成真）</td>
+<td>让主角在绝境中撒一个「当时有利」的谎并记档，日后让它被「坐实」或「反噬」</td>
+</tr>
+<tr>
+<td><strong>自证有罪法</strong></td>
+<td>俞家查底细（[第200章]）→构陷赵凌（[第209章]）→闵氏买凶（[第302章]）；傅五老爷旧案（[第198章]）</td>
+<td>给反派安排一串「看似得手」的小动作，每个都留一份人证/物证，结局集中清算，反派一步步自证有罪</td>
+</tr>
+<tr>
+<td><strong>压箱底王牌法</strong></td>
+<td>第310章才写明&quot;西平侯私卖战马之证&quot;，第314章作杀手锏</td>
+<td>把最强的一张牌压到全书倒数几章才第一次明确写出，作为压垮全局的机关</td>
+</tr>
+<tr>
+<td><strong>誓言回扣法（一语成谶）</strong></td>
+<td>&quot;让俞敬修永远抬不起头&quot;（[第223章]→[第314章]）；&quot;跪门求娶&quot;之说（[第105章]→[第140章]）；&quot;飞鸟尽良弓藏&quot;（[第153章]→[第236章]）</td>
+<td>中段让角色立一句狠誓/说一句预言，结局用事实回扣，让读者想起「她当初说过」</td>
+</tr>
+<tr>
+<td><strong>身世碎片法</strong></td>
+<td>赵凌身世分埋 [第15/46/110章]；碧云庵血案分块 [第121–124章]；傅庭筠身世 [第240/252/261章]</td>
+<td>把「身世/悬案」拆成 3–5 块可被不同人分别发现的碎片，分散浮出，最后聚合成一次真相爆发</td>
+</tr>
+<tr>
+<td><strong>闲子长线法</strong></td>
+<td>金元宝赴京&quot;留着的棋&quot;（[第61章]→[第119章]）；名帖荐吴昕（[第36章]→[第233章]）；杨柳巷老宅（[第48章]→[第224章]）</td>
+<td>让精明角色「随手」安置一人/一产业/一名帖，明说&quot;留着有用&quot;，几十章后关键时刻启用</td>
+</tr>
+<tr>
+<td><strong>两地书法</strong></td>
+<td>京都&quot;母病疑云&quot;（[第118章]→[第129章]）；赵凌出征书信&quot;久无消息&quot;（[第234/308章]）</td>
+<td>两地分居时，用&quot;信到没到/信里怎么说/迟迟无信&quot;制造信息差与悬念</td>
+</tr>
+<tr>
+<td><strong>日常物线索法</strong></td>
+<td>吴姨娘以&quot;稠酒&quot;反查俞总管行踪（[第240章]→[第241章]）；赵凌亡母&quot;常年晾晒的鞋&quot;（[第46章]）</td>
+<td>给一件日常物赋予「来源唯一」的特征，让细心配角凭它反推行踪/真相</td>
+</tr>
+<tr>
+<td><strong>明暗双写法</strong></td>
+<td>明线（&quot;左俊杰下落&quot;&quot;是否成婚&quot;）让读者惦记；暗线（[第1章]牌楼、[第2章]贞节牌坊、[第63章]卖田分家）重读才懂</td>
+<td>关键信息一半明写吊胃口，一半藏进环境/背景描写，供二刷</td>
+</tr>
+<tr>
+<td><strong>悬置不收法</strong></td>
+<td>唐小姐&quot;赠剑&quot;典故（[第102章]未收）；太皇太后胞弟流放铁岭卫（[第144章]未收）</td>
+<td>不是每根线都要收；留 1–2 条开放式暗线制造余韵与续写空间</td>
+</tr>
+<tr>
+<td><strong>欲言又止法</strong></td>
+<td>傅五老爷&quot;把到了嘴边的话又咽下&quot;（[第128章]→[第179章]揭真相）</td>
+<td>让至亲在关键处&quot;话到嘴边又咽下&quot;，暗示隐情与愧疚，为翻案/和解留伏笔</td>
+</tr>
+<tr>
+<td><strong>人证内线法</strong></td>
+<td>雨微（[第121章]）；依桐（[第122章]→后为证人）；吴姨娘（[第218章]→[第262章]倒戈）</td>
+<td>在反派阵营安插一个「有理由倒戈」的人，逐步成为主角眼线与关键证人</td>
+</tr>
+<tr>
+<td><strong>互文对照法</strong></td>
+<td>赵凌亡母被诬（[第117章]）与女主被诬私情互文；武定侯&quot;私养战马&quot;（[第134章]）对照西平侯&quot;私卖战马&quot;（[第310章]）</td>
+<td>让 A 的遭遇/命运与 B 旧事结构相同，读 B 时自然想起 A，强化「同一桩恶」或「盛衰轮回」</td>
+</tr>
+<tr>
+<td><strong>制度倒计时法</strong></td>
+<td>秦王病逝&quot;停婚嫁娶六十日&quot;（[第111章]→[第141章]择吉成婚）；贵州平叛、赵凌拒征（[第161章]→[第168章]出征）</td>
+<td>用外部制度/天时（国丧、忌日、科考、战事）给主角目标加一个「窗口期」，逼出节奏</td>
+</tr>
+<tr>
+<td><strong>舆论回旋法</strong></td>
+<td>&quot;通奸&quot;流言（[第11章]→[第269章]仍在回响）、华阴&quot;私奔/被掳&quot;诸说</td>
+<td>让一条污名流言在不同阶段以新版本回旋，长期凌迟主角名誉，也做宅斗武器</td>
+</tr>
+</tbody></table>
+<h3>3.2 埋收间隔规律</h3>
+<ul>
+<li><strong>跨度极值</strong>：最短 <strong>1 章</strong>（F42 血案 [第123章]→[第124章]），最长 <strong>241 章</strong>（F27 西平侯 [第73章]→[第314章]）。</li>
+<li><strong>三档节奏</strong>：<ul>
+<li><strong>短线 1–10 章</strong>——章内小悬念 / 器物即时回收：F13 匕首（3 章）、F42 血案（1 章）、F70 战马证（4 章）、F66 官位（7 章）、F53 怀孕（8 章）。</li>
+<li><strong>中线 30–100 章</strong>——支线人物 / 资源铺收：F38 停婚→庚帖（30 章）、F47 左俊杰（48 章）、F49 先生（99 章）。</li>
+<li><strong>长线 100–240 章</strong>——身份 / 名声 / 宗族 / 战马等「大伏笔」：F1 傅家旧案（175 章）、F2 名声立家（195 章）、F37 赵凌身世（204 章）、F27 西平侯战马（241 章）。</li>
+</ul>
+</li>
+<li><strong>规律</strong>：越靠近「主角命运/全书结局」的伏笔埋得越长；越靠近「章内情绪」的伏笔收得越快。作者惯用「短线做饭前小菜、长线熬大结局」。</li>
+</ul>
+<h3>3.3 惯用伏笔类型</h3>
+<ol>
+<li><strong>身份反转</strong>——赵凌身世（F8/F37）、傅庭筠身世（F65/F68）、十六爷=穆王（F14）、阿森身世（F11）、先生=肁廷宜（F49）。</li>
+<li><strong>器物回收</strong>——匕首（F13）、银镯（F10）、肚兜（F5）、牌位与埋银、庚帖（F36）。</li>
+<li><strong>一语成谶 / 誓言</strong>——&quot;让俞敬修抬不起头&quot;（F62）、&quot;跪门求娶&quot;（F35）、&quot;飞鸟尽良弓藏&quot;（F52）。</li>
+<li><strong>双关谎言</strong>——&quot;未婚夫妻、陇西平凉&quot;（F15）被日后现实兑现。</li>
+<li><strong>人证内线</strong>——依桐（F43）、吴姨娘（F61）、雨微（F41）。</li>
+</ol>
+<h3>3.4 大伏笔的铺垫密度（以「俞家坍塌」为例）</h3>
+<p>核心反转跨约 <strong>110 章</strong>、<strong>6–7 次加码</strong>，层层收紧：<br>[第200章] 起意查赵凌底细（F56）→ [第209章] 借冯家构陷&quot;贩私盐、冒领军功&quot;（F57）→ [第209章] 西平侯线接入（F27 系）→ [第218章] 纳吴小姐、内宅恶行（F61）→ [第223章] 女主立誓（F62）→ [第302章] 闵氏买凶（F69）→ [第310章] 私卖战马之证（F70）→ [第314章] 全线崩塌、俞家没落。</p>
+<h3>3.5 明暗配比</h3>
+<ul>
+<li><strong>明线（读者惦记）</strong>：「左俊杰何时落网」「能不能成婚」「俞家何时倒」，约占 3/4。</li>
+<li><strong>暗线（重读才发现）</strong>：开篇牌楼与贞节牌坊（F2）、赵凌听到&quot;华阴傅氏女&quot;的嘲讽（F1）、亡母晾晒的鞋（F19）、先生一句&quot;飞鸟尽良弓藏&quot;（F52），约占 1/4。</li>
+<li><strong>配比约 3:1</strong>：留足够明线保证追读欲，埋少量暗线保证二刷/拆书价值。</li>
+</ul>
+<hr>
+<h2>四、最该关注的开放伏笔</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>内容</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F34</td>
+<td>[第102章]</td>
+<td>唐小姐&quot;赠剑&quot;旧事典故</td>
+<td><strong>未回收</strong></td>
+<td>全书多次提及（[第102/109/110章]），始终未点破典故来历，属作者刻意留白</td>
+</tr>
+<tr>
+<td>F48</td>
+<td>[第144章]</td>
+<td>太皇太后胞弟流放铁岭卫待寻</td>
+<td><strong>未回收</strong></td>
+<td>太皇太后外家线只开不收，或在番外/续写中兑现</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>其余 68 条均在正文（至 [第314章]「正文完」）内回收。作者对「主角命运线 + 复仇主线 + 感情线」的伏笔收束率达 100%，仅对<strong>两条次要支线</strong>（唐家赠剑、太皇太后外家）选择开放式留白，制造余韵与续写空间。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

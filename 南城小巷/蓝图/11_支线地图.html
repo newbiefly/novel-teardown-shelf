@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南城小巷 · 支线地图 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>南城小巷 · 支线地图</h1>
+<blockquote>
+<p>本文档为《南城小巷》创作蓝图第 11 号文件，归纳自章卡&quot;本章事件/线索归属&quot; + 伏笔台账 + 时间线台账。<br><strong>分工边界</strong>：主线（南久 × 宋霆 救赎向&quot;叔侄&quot;感情线）的整体走向见 <code>06_分卷大纲.md</code>，此处只追各条<strong>非主线支线</strong>，每条写&quot;起承转合 + 与主线交汇点&quot;。<br>支线共 8 条：S1 事业成长线 / S2 林颂耀线（商战·情感三角）/ S3 南家家族线 / S4 宋霆茶山经营线 / S5 身世创伤线 / S6 婚恋副线 / S7 桑丫成长线 / S8 黑石洼社会线。</p>
+</blockquote>
+<h2>支线总览</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>支线名</th>
+<th>起</th>
+<th>承</th>
+<th>转</th>
+<th>合</th>
+<th>与主线交汇关键章</th>
+<th>相关伏笔</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S1</td>
+<td>南久事业成长线</td>
+<td>茶馆打工</td>
+<td>星耀代课→独立活动</td>
+<td>铁三角→掌舵→商战</td>
+<td>退股→自营&quot;南风艺境&quot;</td>
+<td>[第9][10][29][36][53-55][70]</td>
+<td>V27 V93 V95 V146</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>林颂耀线（商战·情感三角）</td>
+<td>星耀上司初识</td>
+<td>审视→契约婚姻</td>
+<td>反目→商战对垒</td>
+<td>体面分手→项链作别</td>
+<td>[第27][37][42][53-55][69-70]</td>
+<td>V78 V81 V94 V96 V178</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>南家家族线</td>
+<td>隔代庇护与管教</td>
+<td>继承权之争</td>
+<td>撞破私情·驱逐</td>
+<td>当众&quot;自家人&quot;转正</td>
+<td>[第9][11-12][39][68]</td>
+<td>V2 V26 V33 V76 V100</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>宋霆茶山经营线</td>
+<td>&quot;山里&quot;之谜</td>
+<td>茶山群像与经营</td>
+<td>抢采危机·车祸</td>
+<td>重建&quot;山色共居&quot;</td>
+<td>[第17][43-52][62]</td>
+<td>V5 V7 V63 V162</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>身世创伤线</td>
+<td>南久被踢来踢去</td>
+<td>宋霆身世揭开</td>
+<td>堤坝救援回溯</td>
+<td>互相照亮、各自成为自己</td>
+<td>[第6][18][34]</td>
+<td>V16 V52 V53</td>
+</tr>
+<tr>
+<td>S6</td>
+<td>婚恋副线（暗恋/追求/相亲）</td>
+<td>柳茵暗恋</td>
+<td>李崇光追求·周妍相亲</td>
+<td>姚洁纠缠</td>
+<td>各自收场/划清界限</td>
+<td>[第5][10][16][63-66]</td>
+<td>V13 V47 V157 V166</td>
+</tr>
+<tr>
+<td>S7</td>
+<td>桑丫成长线</td>
+<td>茶山聋哑女孩</td>
+<td>教舞·留手机号</td>
+<td>出山安置</td>
+<td>随南久进京参会</td>
+<td>[第20][51][67][70]</td>
+<td>V57 V58 V136 V173 V175</td>
+</tr>
+<tr>
+<td>S8</td>
+<td>黑石洼社会线（买卖婚姻/掳人）</td>
+<td>珍敏旧债浮现</td>
+<td>集市撕衣·掳人</td>
+<td>磨棍自救·借工</td>
+<td>朱家伏法·村被整治</td>
+<td>[第23][24][34][45][46]</td>
+<td>V67 V68 V69 V120 V123</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>S1 · 南久事业成长线</h2>
+<p><strong>定位</strong>：全书第二骨架，&quot;女主硬本事逆袭&quot;的核心卖点载体；与感情线并行，是南久&quot;不依附&quot;的底气来源。</p>
+<ul>
+<li><strong>起（[第9-10章]）</strong>：南久&quot;给爷爷打工&quot;、正式管账，一把揪出逃单客，显&quot;对钱的敏感+经营无师自通&quot;的天赋（叶老爷子与宋霆对视一眼，眼里均有讶色[第9章]）；随即提议茶馆入驻网络平台、打造独立 IP[第10章]——事业意识的萌芽。</li>
+<li><strong>承（[第13章]→[第27-29章]）</strong>：独当一面拆穿假洋人李玮、抢先报警硬刚[第13章]；大三在星耀代课，递企划书被林颂耀&quot;只给口头肯定&quot;、认清其为&quot;冷静的猎人&quot;[第29章]；主动断联宋霆后，转身以&quot;快闪+随舞&quot;办成个人首场大型活动、拉来赞助、谈下商场中庭[第29章]。</li>
+<li><strong>转（[第35-37章]）</strong>：进入社会，冲击星耀旗舰店合伙人席位、拒绝30万&quot;捷径&quot;[第35章]；为30万四处碰壁（亲妈家受辱、后妈以彩礼相待），向宋霆开口获无条件相助、发现旧卡十万[第36章]；从&quot;装修小白&quot;熬成工地&quot;包工头&quot;，与林颂耀、丁骏结成&quot;铁三角&quot;[第37章]。</li>
+<li><strong>又一转（[第40-54章]）</strong>：被爷爷&quot;斩根&quot;后彻底告别过去、全面掌舵星耀向综合演艺集团转型[第40章]；反手在民政局掉头、以股权文件与林家把柄反将林颂耀[第53章]，率律师团与&quot;人墙&quot;逼退审计队、坐实&quot;星耀的引领者与灵魂所在&quot;[第54章]。</li>
+<li><strong>合（[第55章]→[第70章]）</strong>：签股权转让、应下&quot;离开酆市&quot;，带成熟运营经验、行业资源与一笔巨款退场，&quot;条条大路通罗马，我只是换条路走而已&quot;[第55章]；在南城重选址、筹备工作室，最终自营&quot;南风艺境&quot;、任全国舞蹈大赛评委[第70章]。</li>
+<li><strong>与主线交汇点</strong>：① 事业是&quot;不依附&quot;的筹码——宋霆每次相助（电脑[第8章]、银行卡[第27章]、30万[第36章]）都反衬南久&quot;要自己站稳&quot;的执念；② [第50章]南久以&quot;手机待办清单&quot;划下星耀红线，明确&quot;不允许宋霆碰星耀&quot;——事业成为两人边界谈判的筹码；③ [第55章]回归南城 = 事业让位于&quot;跟他在一起&quot;的选择。</li>
+<li><strong>进度</strong>：<strong>已收束</strong>（[第70章]自营&quot;南风艺境&quot;，事业闭环）。</li>
+<li><strong>相关伏笔</strong>：V27（上平台做IP→[第30章]由宋霆维护）、V93（30万门槛→[第36章]凑齐）、V95（自立之志→[第70章]回收）、V146（&quot;换条路走&quot;→[第70章]回收）。</li>
+<li><strong>续写抓手</strong>：南久新工作室与宋霆茶山事业线的联动（&quot;南风艺境&quot;×&quot;山色共居&quot;[第62章]）；郑坤一系南城人脉[第62章]、老街招商线[第9章]可作新商战引子。</li>
+</ul>
+<h2>S2 · 林颂耀线（商战 · 情感三角）</h2>
+<p><strong>定位</strong>：男二线，兼具&quot;情感三角&quot;与&quot;商战对手&quot;双重功能；提供&quot;利益婚姻/精英算计&quot;的商业理性视角，与主线的&quot;纯粹救赎&quot;互为镜像。</p>
+<ul>
+<li><strong>起（[第27章]）</strong>：星耀老板林颂耀训斥下属，南久为其泡茶留印象，他追问她换手机与&quot;男朋友&quot;；[第29章]由&quot;只看口头肯定&quot;的上司转为&quot;审视者&quot;。</li>
+<li><strong>承（[第35-37章]）</strong>：以30万入股门槛试探南久、被拒[第35章]；结成&quot;铁三角&quot;后，以&quot;我可以将星耀的经营权给你&quot;为筹码，提出<strong>契约婚姻</strong>（感情只是调味品、双赢）[第37章]；[第39章]借参观林盛康集团推进&quot;见家长&quot;，其父评南久&quot;心里有谱、能成事&quot;[第39章]。</li>
+<li><strong>转（[第42-43章]）</strong>：歪脖子树下强吻南久&quot;验证&quot;隐秘、当众羞辱&quot;都叫乱伦&quot;，被南久以拳头还击、划下底线彻底反目[第42章]；次日瞥见南久颈间吻痕、撂话&quot;他不行&quot;，婚约名存实亡[第43章]。</li>
+<li><strong>又一转（[第53-54章]）</strong>：领证当日南久在民政局掉头，以股权文件与林家把柄（父亲私生子、大哥伴侣）反将[第53章]；他率律师与审计团队突袭星耀、封锁财务，却被下属层层&quot;人墙&quot;逼退，惊觉正失去她与星耀[第54章]。</li>
+<li><strong>合（[第55章]→[第70章]）</strong>：以&quot;离开酆市&quot;为唯一条件、高价收购南久全部股份、把未列入股东退出协议的业务也量化为补偿款，体面分手[第55章]；登门酆市与宋霆正面交锋、车内视线悍然相撞[第69章]；以婚戒改制的钻石项链作别、&quot;物归原主&quot;，两年后成为低调务实的家族企业接班人[第70章]。</li>
+<li><strong>与主线交汇点</strong>：① [第37章]契约婚姻 = 主线&quot;分道扬镳&quot;的外部压力源；② [第42章]强吻逼出秘密 = 主线决裂&quot;以后不要再见面了&quot;的直接导火索；③ [第53-54章]商战 = 南久&quot;拆伙应战、退股返乡&quot;的前置条件，为主角二人重逢扫清障碍；④ [第69-70章]情敌相撞与项链作别 = 主线圆满的&quot;对照参照&quot;。</li>
+<li><strong>进度</strong>：<strong>已收束</strong>（[第70章]项链作别）。</li>
+<li><strong>相关伏笔</strong>：V78（打量与兴趣）、V81（审视加深）、V94（视为潜在对手/璞玉）、V96（契约婚姻→[第53章]回收）、V113（掌握秘密→[第54章]回收）、V178（情感收束→[第70章]回收）。</li>
+<li><strong>续写抓手</strong>：林颂耀家族企业/资本线可作番外或新篇的&quot;旧对手&quot;；婚戒改制项链[第70章]为开放式余味。</li>
+</ul>
+<h2>S3 · 南家家族线</h2>
+<p><strong>定位</strong>：主线的&quot;伦理障碍&quot;来源；提供市井家族群像（爷爷/父母/后妈/堂弟/姑妈）。</p>
+<ul>
+<li><strong>起（[第1-3章]）</strong>：南振东、廖虹把南久当累赘送来送去；爷爷收留并管教（教规矩、勒令&quot;叫宋叔&quot;）——隔代庇护与管教并存的基调。</li>
+<li><strong>承（[第9-12章]）</strong>：茶馆继承权之争浮出——婶婶&quot;怕南久占好处&quot;派南乔宇回馆盯梢、撬门霸房[第11章]；爷爷点破&quot;怕南久占好处&quot;的动机[第12章]；爷爷心中对子女不和的&quot;心头刺&quot;（亲叔叔借钱旧怨）[第9章]。</li>
+<li><strong>转（[第38-40章]）</strong>：南老爷子大寿、家族近十年最齐的一次团聚[第38章]；南乔宇推门撞破南久与宋霆私情，爷爷打落茶杯、斥&quot;礼仪廉耻&quot;、逐南久离巷、两记拐杖狠抽宋霆&quot;把这不该有的心思断干净&quot;[第39章]；电话&quot;你以后没事就不要回来了&quot;斩断归途[第40章]。</li>
+<li><strong>又一转（[第41章]）</strong>：爷爷与南久谈婚事、&quot;你结婚我就不去了&quot;，送别；饭桌上宋霆与林颂耀暗锋[第41章]。</li>
+<li><strong>合（[第55章]→[第68章]）</strong>：南久回归定居[第56章]；爷爷从审宋霆[第63章]到&quot;过完中秋再说&quot;[第63章]、口头默许[第64章]；中秋家宴当众宣布&quot;从今往后，宋霆就是咱们自家人了&quot;[第68章]，并怒斥南振东&quot;从小到大，你管过她几天&quot;[第68章]。</li>
+<li><strong>与主线交汇点</strong>：① [第1章]爷爷收宋霆为干儿子 = 名分障碍的源头（V2，[第68章]回收）；② [第39章]撞破驱逐 = 主线由&quot;秘密&quot;转向&quot;被斩断&quot;的总爆发；③ [第68章]当众&quot;自家人&quot; = 名分障碍的正式解除，主线得以完婚。</li>
+<li><strong>进度</strong>：<strong>已收束</strong>（[第68章]公开、[第69章]婚期压到中秋后、[第70章]完婚）。</li>
+<li><strong>相关伏笔</strong>：V2（干儿子/名分→[第68章]回收）、V26（子女不和的心头刺，未回收）、V33（继承权之争→[第35章]部分回收）、V76（爷爷隐约警觉→[第39章]回收）、V100（南乔宇撞破→[第39章]回收）、V102/V108（&quot;你结婚我就不去了&quot;，未回收）。</li>
+<li><strong>续写抓手</strong>：南老爷子&quot;你结婚我就不去了&quot;暗桩未回收——婚礼现场&quot;老爷子是否到场&quot;可作番外/续写的情感落点；南乔宇继承茶馆问题[第35章]未解。</li>
+</ul>
+<h2>S4 · 宋霆茶山经营线</h2>
+<p><strong>定位</strong>：男主的事业与身世载体，也是&quot;双向救赎&quot;的兑现场（南久在 [第43-52章] 反过来救他的茶山）；茶山群像（珍敏/老八/芹婶/桑丫/姜清/大黄）由此聚合。</p>
+<ul>
+<li><strong>起（[第2-3章]→[第17章]）</strong>：第2、3、6章反复出现宋霆&quot;下个礼拜再去趟山里&quot;、&quot;山里刚起步&quot;[第2/3/6章]；[第17章]首次揭开&quot;山里&quot;真相——宋霆的茶山（仓库+茶厂+茶垄），初见芹婶、珍敏、老八、大黄狗。</li>
+<li><strong>承（[第18-26章]）</strong>：茶山之夏，南久随宋霆上茶山、劳作、教桑丫跳舞[第19-20章]；芹婶讲他&quot;卷铺盖住茶园、一片片摸叶子、半夜听雨打茶叶&quot;的执着[第21章]；珍敏的彩礼钱之谜与朱家旧债[第21-23章]；朱家掳人事件[第23-24章]，茶山线第一次与&quot;社会线&quot;交汇。</li>
+<li><strong>转（[第43-47章]）</strong>：宋霆赴庭庄谈生意彻夜未归、电话失联，老八托人报&quot;茶山茶农大打出手&quot;[第43章]；南久赶回主事、被珍敏认作&quot;宋老板爱人&quot;[第43章]；拍板&quot;与天争&quot;抢采、立军令状[第45章]；赴黑石洼村借工[第46章]；宋霆车祸濒死获救、独身赶回茶山[第47章]。</li>
+<li><strong>又一转（[第51-52章]）</strong>：现钱抢采平怨、许诺带桑丫出山[第51章]；宋霆撕损失担保协议、备避孕药放南久走[第52章]。</li>
+<li><strong>合（[第62章]）</strong>：宋霆搬出木屋、推倒重建&quot;山色共居&quot;（通透空间、露台、廊檐、壁炉、院落、大狗），为将来南久同住做打算；以&quot;你嫂子&quot;向姜清界定南久身份[第62章]。</li>
+<li><strong>与主线交汇点</strong>：① [第17章]茶山是两人&quot;独处&quot;与&quot;知根知底&quot;的环境（[第18章]隔门板谈心）；② [第43-52章]南久主事茶山 = <strong>双向救赎的核心兑现</strong>（她替他的生意托底）；③ [第46章]珍敏道出&quot;宋霆当年为她挨打&quot;的真相 = 主线感情分量的加码；④ [第62章]&quot;山色共居&quot; = 主线&quot;共度余生&quot;的物质象征。</li>
+<li><strong>进度</strong>：<strong>主线已收束</strong>，&quot;山色共居&quot;尚未建成（V162未回收）。</li>
+<li><strong>相关伏笔</strong>：V5/V7（&quot;山里&quot;之谜→[第17章]回收）、V63（茶园木屋→[第62章]回收）、V120（借工→[第46章]回收）、V123（魏村长受礼，未回收）、V50（老八开沟，未回收）、V51（后备箱零食，未回收）、V162（山色共居，未回收）。</li>
+<li><strong>续写抓手</strong>：&quot;山色共居&quot;的建成与两人乔迁是天然的番外/续写单元；大黄（钱宝贵）之死[第46/52章]为茶山线的悼亡余味。</li>
+</ul>
+<h2>S5 · 身世创伤线</h2>
+<p><strong>定位</strong>：全书情感合法性的地基——解释&quot;为什么是这两个人&quot;；一条双向的&quot;原生家庭创伤&quot;线。</p>
+<ul>
+<li><strong>起（[第1章]）</strong>：南久被父母踢来踢去、只身百里寻爷爷[第1章]；宋霆出现于荒道的缘由未交代（V3）[第1章]。</li>
+<li><strong>承（[第6章]→[第18章]）</strong>：李崇光泄露&quot;宋霆他爸把他妈杀死了&quot;[第6章]（全书最深的身世暗线）；[第18章]宋霆隔着淋浴间门板剖白&quot;我在你身上能看见小时候的我&quot;，并提&quot;你爷爷从前在我最困难的时候拉了我一把&quot;。</li>
+<li><strong>转（[第34章]）</strong>：结尾回溯——宋霆十七岁那年站上河岸、前路尽毁，南老爷子在堤坝上一把攥住他手腕&quot;孩子，跟我回家&quot;，给了他第二次生命（V16/V52/V53在[第34章]集中回收）。</li>
+<li><strong>合（[第18章][第70章]）</strong>：创伤不&quot;治愈&quot;而&quot;互照&quot;——&quot;我在你身上能看见小时候的我&quot;[第18章]落地为全书&quot;双向救赎&quot;主题；[第70章]收束&quot;遇见她之前，尽是漂泊的孤岛……唯见朝阳为他轰然降临&quot;。</li>
+<li><strong>与主线交汇点</strong>：① 两人共同创伤 = 感情合法性的根基（替代血缘的&quot;同类相认&quot;）；② 宋霆&quot;被救过一次&quot;的身世 = 他&quot;隐忍、报恩、不敢越界&quot;性格的逻辑来源；③ 南久童年创伤（[第59章]补叙：被后妈使唤带弟、压到小凯手指遭迁怒、从此贴床沿睡）解释她对&quot;家&quot;的执念与对宋霆的迁怒。</li>
+<li><strong>进度</strong>：<strong>核心已收束</strong>，但有若干痛点细节仍开放。</li>
+<li><strong>相关伏笔</strong>：V3（荒道缘由→[第4章]回收）、V16（身世→[第34章]回收）、V52/V53（少年伤痛/被救→[第34章]回收）、V28（歪脖子树下宋母撑伞，未回收）、V31（读过书的那条巷子，未回收）、V38（红房子，未回收）、V39（手臂拐杖痕，未回收）、V70（&quot;我爸是刑侦队长&quot;半真半假，未回收）。</li>
+<li><strong>续写抓手</strong>：宋霆旧居红房子[第14章]、读过书的那条巷子[第11章]是现成的&quot;未开启的回乡/寻根&quot;戏眼。</li>
+</ul>
+<h2>S6 · 婚恋副线（暗恋 / 追求 / 相亲）</h2>
+<p><strong>定位</strong>：市井群像的&quot;情感陪衬&quot;，反复用&quot;外人的婚恋&quot;反衬主线的不可得；同时是&quot;家庭社会压力&quot;的具体化。</p>
+<ul>
+<li><strong>起（[第5章]）</strong>：柳茵给南久化妆、托她搅黄宋霆的相亲；南久盛装现身、以&quot;新婶婶&quot;行拆台之实[第5章]。</li>
+<li><strong>承（[第6章]→[第16章]）</strong>：周妍家提入赘式条件（随母姓、备婚房），宋霆一句&quot;算了吧，不麻烦了&quot;婉拒[第6章]；[第10章]柳茵已婚、坦言当年表白被&quot;一个红包&quot;堵回，暗恋线收场；[第16章]李崇光出差归来帮工、追求意图浮出水面（&quot;你有男朋友了吗&quot;[第16章]）。</li>
+<li><strong>转（[第31-33章]）</strong>：柳茵离婚回巷，爷爷有意撮合、宋霆冷淡[第31章]；柳家父母正式登门提亲[第32章]；宋霆明确回绝柳家（&quot;我是关系回收站？&quot;）[第33章]；廖虹为南久张罗相亲、介绍28岁IT男[第33章]。</li>
+<li><strong>又一转（[第63-64章]）</strong>：姚洁（茶叶店店员）巷口拉住宋霆、吐露&quot;从三年前就……&quot;，被宋霆斥退并调离老街店[第63章]；南久登门茶叶店以&quot;老板娘&quot;身份镇场[第64章]。</li>
+<li><strong>合（[第66章]）</strong>：李崇光撞破南久与宋霆的恋情、尴尬逃离[第66章]；老李头欲撮合李崇光被宋霆一句&quot;谈了&quot;&quot;南城的&quot;截断[第59章]。</li>
+<li><strong>与主线交汇点</strong>：① 每一条副线婚恋都是&quot;外人如何看宋霆/南久&quot;的镜子（无房无车无父母帮衬[第5章]、&quot;差八岁&quot;[第63章]）；② 柳家/IT男相亲等&quot;外部提亲&quot;反复施压主线，逼出宋霆的占有欲（[第33章]咬吻&quot;标记&quot;）；③ 姚洁事件是唯一一次&quot;南久吃醋失控&quot;，坐实她对宋霆的在意[第63章]。</li>
+<li><strong>进度</strong>：<strong>已收束</strong>（柳茵、周妍、李崇光、姚洁线均收束）。</li>
+<li><strong>相关伏笔</strong>：V13（柳茵暗恋→[第10章]回收）、V47（李崇光追求→[第66章]回收）、V157（老李头撮合→[第66章]回收）、V166（姚洁&quot;从三年前就……&quot;→[第64章]回收）、V86/V87（柳茵/柳家提亲→[第33章]回收）。</li>
+</ul>
+<h2>S7 · 桑丫成长线</h2>
+<p><strong>定位</strong>：南久&quot;引路人&quot;人格的具象，也是&quot;救赎可传递&quot;的隐喻支线；从茶山聋哑女孩到走出大山。</p>
+<ul>
+<li><strong>起（[第20章]）</strong>：茶山聋哑女孩桑丫（老八叔家），跟南久学跳舞、靠看口型学会一支舞、跳给众人看[第20章]。</li>
+<li><strong>承（[第51章]）</strong>：南久见桑丫哭过、愁眉不展，问她&quot;你想学跳舞吗&quot;&quot;以后想去山外面看看，可以联系我&quot;，在她的脚边写下自己的手机号码[第51章]。</li>
+<li><strong>转（[第66-67章]）</strong>：桑丫因父母为她安排&quot;有智力问题的亲事&quot;发信息向南久求助[第66章]；南久说动宋霆赴茶山说服老八叔、芹婶，一周后带回桑丫，安置在夏嫣然住处[第67章]。</li>
+<li><strong>合（[第70章]）</strong>：桑丫褪去旧衣与黯淡怯懦、勤快好学、擅长察言观色，随南久进京参会[第70章]。</li>
+<li><strong>与主线交汇点</strong>：① 桑丫是南久&quot;把善意传下去&quot;的载体——南久曾被宋霆爷爷救过，如今她去救桑丫，暗合&quot;救赎传递&quot;；② [第67章]南久&quot;以身体为筹码说动宋霆&quot;接桑丫出山，是主线甜蜜期的功能性事件；③ 桑丫安置在夏嫣然处 = 与 S1/事业线合流（桑丫成为南久团队成员）。</li>
+<li><strong>进度</strong>：<strong>已收束</strong>（[第70章]随南久进京）。</li>
+<li><strong>相关伏笔</strong>：V57/V58（桑丫教舞先声→[第70章]回收）、V136（留手机号→[第67章]回收）、V173（来信求助→[第67章]回收）、V175（出山成长线→[第70章]回收）。</li>
+<li><strong>续写抓手</strong>：桑丫的舞蹈成长线可与&quot;南风艺境&quot;结合，作为续写的&quot;新生代&quot;视角。</li>
+</ul>
+<h2>S8 · 黑石洼社会线（买卖婚姻 / 掳人）</h2>
+<p><strong>定位</strong>：全书唯一的&quot;社会现实重锤&quot;支线，把市井茶馆的暖色瞬间推入&quot;买妻恶俗&quot;的寒色；赋予主线一次生死级考验。</p>
+<ul>
+<li><strong>起（[第21-23章]）</strong>：珍敏&quot;彩礼钱&quot;之谜浮出[第21章]；镇上集市珍敏被朱家三人当街撕衣、扬言卖她给王瞎子，南久抄板砖掩护珍敏先逃、自己被掳[第23章]（揭开珍敏曾在朱家待一年、被买卖婚姻所困的过去）。</li>
+<li><strong>承（[第24章]）</strong>：南久被锁山脚茅草屋、磨尖木棍自救，抛&quot;我爸在酆市省公安厅刑侦总队当队长&quot;逼停朱二海；宋霆踹门救出她[第24章]。</li>
+<li><strong>转（[第34章]）</strong>：朱家线了结——&quot;蹲大牢了，他们村被整治过、换了任村长&quot;[第34章]。</li>
+<li><strong>又一转（[第45-46章]）</strong>：抢采危机中，南久反要&quot;回到那个绑过她的村子&quot;借工——明知旧怨仍赴黑石洼、送礼说动魏村长（为其子建篮球场），组建&quot;后勤部队&quot;[第45-46章]；珍敏明知那是&quot;这辈子最不愿踏足的地方&quot;仍同去[第46章]。</li>
+<li><strong>合（[第46章]）</strong>：借工到位、黑石洼村人投入抢采——昔日的加害地成为今日的&quot;救援地&quot;，完成一次隐含的&quot;和解&quot;。</li>
+<li><strong>与主线交汇点</strong>：① [第23-24章]掳人事件 = 主线第一次&quot;生死级&quot;考验，也是 [第25章] 20岁生日越界的直接前因；② [第46章]珍敏道出&quot;宋霆当年为寻南久硬生生挨了朱大海一拳&quot;的真相 = 主线感情分量加码的关键一笔（揭穿当年&quot;温存&quot;的真相）；③ [第45章]南久明知黑石洼是旧案发生地仍前往 = 女主&quot;为家人托底&quot;的价值观确认（&quot;赚钱的意义……是危机时刻，能够为家人托底的能力&quot;[第46章]）。</li>
+<li><strong>进度</strong>：<strong>已收束</strong>（朱家伏法、借工完成）。</li>
+<li><strong>相关伏笔</strong>：V67（珍敏过去→[第34章]回收）、V68（朱大海旧怨→[第46章]回收）、V69（买妻恶俗→[第34章]回收）、V120（借工→[第46章]回收）、V123（魏村长受礼，未回收）。</li>
+<li><strong>续写抓手</strong>：魏村长受礼的&quot;人情隐患&quot;[第46章]未回收，可作续写的新矛盾引线。</li>
+</ul>
+<hr>
+<h2>附：支线与主线的交汇节奏（供续写/改写排布参考）</h2>
+<table>
+<thead>
+<tr>
+<th>章区段</th>
+<th>交汇支线</th>
+<th>交汇性质</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[第1-7章]</td>
+<td>S3 家族线、S5 身世线</td>
+<td>关系起点（庇护 + 名分障碍）</td>
+</tr>
+<tr>
+<td>[第8-16章]</td>
+<td>S1 事业线、S3 家族线、S6 婚恋副线</td>
+<td>推拉环境（茶馆日常/相亲压力）</td>
+</tr>
+<tr>
+<td>[第17-26章]</td>
+<td>S4 茶山线、S8 社会线、S5 身世线</td>
+<td>独处环境 + 生死考验</td>
+</tr>
+<tr>
+<td>[第27-34章]</td>
+<td>S1 事业线、S2 林颂耀线、S6 婚恋副线</td>
+<td>&quot;不可能&quot;的现实外压</td>
+</tr>
+<tr>
+<td>[第35-42章]</td>
+<td>S1/S2 事业与商战线、S3 家族线</td>
+<td>分手压力 + 撞破驱逐</td>
+</tr>
+<tr>
+<td>[第43-55章]</td>
+<td>S4 茶山线、S7 桑丫线、S8 社会线、S1/S2 商战</td>
+<td>双向救赎兑现 + 商战反杀</td>
+</tr>
+<tr>
+<td>[第56-70章]</td>
+<td>S3 家族线、S6 婚恋副线、S7 桑丫线、S1 事业线</td>
+<td>名称转正与各路收束</td>
+</tr>
+</tbody></table>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 分卷大纲 ·《花开锦绣》 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>06 分卷大纲 ·《花开锦绣》</h1>
+<ul>
+<li>全书 310 章 / 约 86.2 万字，正文完结（第314章&quot;坍塌&quot;标&quot;正文完&quot;）。</li>
+<li>章号排至第314章；源 epub 第 62/63、154、220 章标题缺失并入前章（第61、153、219章为长章），故实际章数 310。</li>
+<li>分卷按&quot;主角目标变化 + 场景转移&quot;切分，共 <strong>8 卷</strong>；字数按全章平均（约 2781 字/章）折算，占比以字数计。</li>
+</ul>
+<h2>全书分卷速览</h2>
+<table>
+<thead>
+<tr>
+<th>卷</th>
+<th>卷名</th>
+<th>章范围</th>
+<th>实际章数</th>
+<th>约字数</th>
+<th>占比</th>
+<th>情绪基调</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>卷一</td>
+<td>华阴风波</td>
+<td>第1–17章</td>
+<td>17</td>
+<td>约4.7万</td>
+<td>5.5%</td>
+<td>虐</td>
+</tr>
+<tr>
+<td>卷二</td>
+<td>西行患难</td>
+<td>第18–45章</td>
+<td>28</td>
+<td>约7.8万</td>
+<td>9.0%</td>
+<td>虐→暖</td>
+</tr>
+<tr>
+<td>卷三</td>
+<td>西安府·杀局情生</td>
+<td>第46–68章</td>
+<td>21</td>
+<td>约5.8万</td>
+<td>6.8%</td>
+<td>悬/燃→暖</td>
+</tr>
+<tr>
+<td>卷四</td>
+<td>甘州军旅</td>
+<td>第69–120章</td>
+<td>52</td>
+<td>约14.5万</td>
+<td>16.8%</td>
+<td>悬/虐→暖/甜→燃</td>
+</tr>
+<tr>
+<td>卷五</td>
+<td>京都重逢·大婚</td>
+<td>第121–155章</td>
+<td>34</td>
+<td>约9.5万</td>
+<td>11.0%</td>
+<td>寒→燃→甜</td>
+</tr>
+<tr>
+<td>卷六</td>
+<td>京都恩怨·傅俞交锋</td>
+<td>第156–200章</td>
+<td>45</td>
+<td>约12.5万</td>
+<td>14.5%</td>
+<td>虐/寒→燃→暖</td>
+</tr>
+<tr>
+<td>卷七</td>
+<td>京都角力·立祠布局</td>
+<td>第201–280章</td>
+<td>79</td>
+<td>约22.0万</td>
+<td>25.5%</td>
+<td>爽/暖（藏悬）</td>
+</tr>
+<tr>
+<td>卷八</td>
+<td>复仇·俞家坍塌</td>
+<td>第281–314章</td>
+<td>34</td>
+<td>约9.5万</td>
+<td>11.0%</td>
+<td>爽/寒</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>主线骨架：被诬逃亡（卷一卷二）→ 患难相守、军中扎根（卷三卷四）→ 京都立足、成婚（卷五）→ 揭真相、撕破脸（卷六）→ 经营布局、飞黄腾达（卷七）→ 双案收网、俞家坍塌（卷八）。</p>
+</blockquote>
+<hr>
+<h2>卷一 华阴风波（第1–17章 · 约4.7万字 · 5.5%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>傅庭筠受族中是非所累避祸碧云庵，正午独自探路、攀老槐树欲寻出路，墙头撞见翻墙入庵的陌生男子（赵凌），险遭掐死、智取脱身[第1章] → 埋下二人初遇之缘。</li>
+<li>左俊杰持绣着傅庭筠字样的宝蓝色湖绸&quot;定情肚兜&quot;登门逼婚；母亲识破其意、以&quot;举人告进士&quot;相敲打，定计送女儿入碧云庵避祸并暗查内贼[第4章]。</li>
+<li>傅家生变：陈妈妈带婆子软禁傅庭筠、截留书信[第5–6章]；傅庭筠与寒烟、绿萼结盟自救[第6章]，夜遇赵凌复返、以素菜包子周旋并暗探其身份[第8章]。</li>
+<li>傅庭筠托赵凌送家信，赵凌回报碧波家的失踪、城中&quot;傅家通奸&quot;流言四起[第11章]；赵凌夜探傅府，查明左俊杰被禁锢、傅家对外称其&quot;病逝&quot;并退婚俞家[第12章][第16章]。</li>
+<li>陈妈妈以&quot;大老爷送药&quot;为名逼傅庭筠服毒，她拼死挣扎[第14章]；赵凌赶到救下、带往潼关破庙救治[第15章]，转交母亲银镯银票与&quot;送去渭南舅舅家、别再回傅家&quot;的重托[第16章]。</li>
+<li>傅庭筠沦为&quot;世人眼中已死之人&quot;，拒去渭南、要回华阴对质[第17章]；左俊杰被傅家反诬&quot;调戏伯父小妾&quot;、功名将革[第17章]，阿森登场[第17章]，赵凌决意带她西行[第18章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第14章 生死（灌毒死里逃生）、第15章 救命（赵凌赶到）</li>
+<li><strong>转折章</strong>：第16章 托付（得知母亲被拘、自己已&quot;死&quot;、庚帖退还俞家——身份归零，由被动等死转为亡命求生）</li>
+<li><strong>卷末钩子</strong>：赵凌携傅庭筠、阿森扮堕民离华阴西行[第18章]——前途是旱灾流民与追杀，二人何以自处？</li>
+<li><strong>情绪基调</strong>：虐（惊惧、绝望、至亲抛弃之寒）+ 微暖（赵凌舍命相救的义）</li>
+</ul>
+<hr>
+<h2>卷二 西行患难（第18–45章 · 约7.8万字 · 9.0%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>赵凌令傅庭筠改扮堕民、以独轮小车推她西行，一路亲见陕西大旱惨状；她追问官府为何不开仓，赵凌道出陕西粮政与朝局[第18章]。</li>
+<li>夜宿空村，阿森利落打死野狗、显露不属于孩童的冷酷[第19章]，傅庭筠揭其凉州屠村孤儿身世[第20章]。</li>
+<li>途中遭饥民围抢，赵凌、阿森击退众人[第22章]；李家凹惊闻舅舅解家被&quot;赈济的流民&quot;焚杀满门，赵凌编谎护主、邀其留驻[第23–24章]。</li>
+<li>赵凌盘算后定意携傅庭筠同赴西安府、以金条向李家凹购粮水[第25章]；东安村夜半遭冯老四围杀，赵凌将她藏入破水缸、智破围杀救回阿森[第28–29章]，独赴临潼会冯三爷[第30章]。</li>
+<li>南下绕道蓝田，赵凌肩伤发作昏倒，傅庭筠定计送其入临春镇城隍庙[第31–32章]；匪徒夜闯，傅庭筠持匕首重伤来犯者、力竭置刃于颈[第33章]，赵凌抱病护她力毙匪首，十六爷（穆王）一党尽屠匪众[第34章]。</li>
+<li>傅庭筠情急谎称是赵凌&quot;未过门的媳妇&quot;、窥破十六爷藩王身份[第35–36章]；十六爷赠名帖劝赵凌投军[第36章]。</li>
+<li>一行人入临春镇，借小五之口知西安府封城之危[第37章]；结识逃难妇人郑三娘[第41章]，被陌毅以&quot;护送养伤&quot;为名软禁、试探[第40章][第44章]；赵凌识破困局、决意趁夜坐吊篮夜入西安府[第44章]，散尽盘缠打点守卫[第45章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第34章 初见（城隍庙，赵凌抱病护主力毙匪首）</li>
+<li><strong>转折章</strong>：第44章 西安府（决意连夜入城，由&quot;逃亡&quot;转入&quot;入局周旋&quot;）、第45章 承诺（入城即须分离，赵凌许&quot;确认你安全之后再离开&quot;）</li>
+<li><strong>卷末钩子</strong>：进西安府后赵凌与傅庭筠即要分开，且陌毅杀心已萌——赵凌的身世之秘与杀身之祸同时逼近。</li>
+<li><strong>情绪基调</strong>：虐中带暖（饥荒、追杀、伤病 vs 患难相护、情愫暗生）</li>
+</ul>
+<hr>
+<h2>卷三 西安府·杀局情生（第46–68章 · 约5.8万字 · 6.8%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>赵凌旧部杨玉成、金元宝寻至客栈重逢[第46章][第48章]；陌毅与陶牧密谈，主张&quot;宁可杀错、不可放过&quot;、定计杀赵凌[第47章]。</li>
+<li>赵凌查出陌毅乃颖川侯麾下游击将军，为免连累众人，安排众人散伙逃生、自己断后独对陌毅[第48章]，以&quot;避嫌&quot;为名迁傅庭筠去杨柳巷[第49章]。</li>
+<li>傅庭筠逼问阿森、推演看破赵凌&quot;化暗为明&quot;的断后死局[第51–52章]，以&quot;文谏死&quot;之典折服杨玉成、结成营救同盟[第53章]，献&quot;敲锣示警&quot;之计[第55章]。</li>
+<li>林迟率神驽营夜袭喜升客栈，赵凌借铜锣与鸭公嗓引来官差退敌[第56章]，经此一役省悟执念、转头考虑投靠十六爷，宣布改主意[第54章][第56章]。</li>
+<li>中秋杨柳巷团聚、定八月二十五投军[第57章]；傅庭筠为亡舅做法事、得赵凌赠二百两[第60章]；金元宝带回傅夫人已赴京都的消息[第61章]。</li>
+<li>陌毅登门告知赵凌被遣庄浪卫[第61章]，傅庭筠偷听书房争论、惊觉自己或被当作人质[第64章]，又偷听到赵凌&quot;不想她凋零张掖&quot;的心意[第65章]。</li>
+<li>傅庭筠自作主张买下马车执意随行[第67章]，赵凌劝阻无效终妥协[第67章]；众人八月二十七日自西安府启程西行[第68章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第56章 不上当（神驽营夜袭、铜锣退敌）</li>
+<li><strong>转折章</strong>：第54章 夏夜（赵凌改主意，弃&quot;江南之念&quot;改投十六爷）、第67章 决定（傅庭筠决意随行甘州）</li>
+<li><strong>卷末钩子</strong>：西行赴庄浪卫——前路是胡商云集、苦寒难居的甘州，二人聚少离多在即。</li>
+<li><strong>情绪基调</strong>：悬/燃（杀局、夜袭）→ 暖/甜（并肩作战、心意互通）</li>
+</ul>
+<hr>
+<h2>卷四 甘州军旅（第69–120章 · 约14.5万字 · 16.8%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>赴甘途中经永靖、张掖，赵凌&quot;借势&quot;震慑索房百户（借陌毅之名）、向傅庭筠和盘托出谋略[第70章][第72章]；抵张掖后赵凌赴庄浪卫投鲁成麾下、托陌毅典宅安置傅庭筠[第73章][第77章]。</li>
+<li>傅庭筠张掖独守，周旋邻里（戚太太、王夫人）[第78章][第81章]，被冯氏（刘副总兵妾）诓称&quot;赵凌阵亡&quot;、图谋以她配其弟冯大虎[第85–86章]。</li>
+<li>冯大虎夜入宅中，傅庭筠设伏、以赵家恶犬咬残之[第90章]；阿森趁乱将同党丢进鲁氏院中栽赃[第91章]，借邻口之力钉死鲁氏&quot;翻墙偷人&quot;丑闻[第92–94章]。</li>
+<li>战报传来赵凌救鲁成脱险、升百户[第95章][第97章]；刘副总兵被弹劾罢职、冯氏落魄[第96章]；黑衣人三箭射死冯大虎[第100章]，傅庭筠决意赴碾伯所寻夫[第100章]。</li>
+<li>碾伯所撞见唐小姐（唐佩玲）、醋海风波，傅庭筠当众宣告&quot;一刀两断&quot;出走[第101–102章]；赵凌急追百余里，二人共坠河中[第103–104章]；赵凌&quot;装醉&quot;陈情&quot;愿得一人心，白首不相离&quot;[第105章]，逐客唐小姐、完整揭开身世之痛（母被诬与人有染、自缢于祠堂）[第110章]。</li>
+<li>颖川侯当面揭赵凌底细、委其联手鲁成牵制庄浪参将[第117–118章]；傅庭筠东归京都探母，赵凌托付全部家底与置业盘算[第119–120章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第100章 冯大虎（三箭射杀）、第105章 冰释（情定）、第110章 从前（身世揭示）</li>
+<li><strong>转折章</strong>：第101章 碾伯所（赴夫、醋海引爆）、第110章 从前（知身世，二人真正交心）</li>
+<li><strong>卷末钩子</strong>：傅庭筠东行探母，赵凌留甘州——夫家与娘家两条线将交汇于京都，京都的俞家旧怨浮出水面。</li>
+<li><strong>情绪基调</strong>：悬/虐（独守、被觊觎、阵亡噩耗）→ 暖/甜（情定）→ 燃（战功、封赏）</li>
+</ul>
+<hr>
+<h2>卷五 京都重逢·大婚（第121–155章 · 约9.5万字 · 11.0%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>归途渭南驿站重逢落魄旧婢雨微[第121章]，雨微揭傅家田庄灭口、折柳剪草惨死、碧云庵随侍尽死、墨香受左俊杰指使偷贴身衣物栽赃的真相[第122–124章]。</li>
+<li>抵京都，傅庭筠赴四喜胡同寻母，被嫂嫂以&quot;冒认官亲&quot;驱赶[第127章]、被父亲掌掴否认&quot;荃蕙已死&quot;[第128章]；修竹家的代传母命、代问赵凌底细[第130章]。</li>
+<li>俞敬修点状元[第131章]；皇上驾崩、庄王继统[第132章]；穆王以&quot;诛洪石、清君侧&quot;起兵、京都被围，五城兵马司开正阳门迎穆王兵入城[第133–134章]。</li>
+<li>赵凌归来、夫妻院中重逢[第135章]，告知&quot;皇上答应为我们的婚事做主&quot;[第136章]。</li>
+<li>傅庭筠赴四喜胡同、赵凌当众提亲被扇耳光[第140章]、拔刀护她见母[第141章]；母亲认可赵凌、当面许女、交换庚帖[第141章]、定八月初六婚期[第142章]。</li>
+<li>太皇太后赐婚、赐金簪[第144章]；二人成亲[第146章]、圆房[第148章]、蜜月（灯会、对弈、赏桂）[第151–153章]；定下&quot;回长安定居&quot;之约[第150章]。</li>
+<li>吕老爷返西安打理产业[第153章][第155章]；送行归途遇吴夫人，得知俞家将带媳妇进京团聚[第155章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第135章 更换（院中重逢）、第141章 尊严（拔刀见母、当场许婚）、第146章 成亲</li>
+<li><strong>转折章</strong>：第128章 父亲（被掌掴驱逐，对父死心）、第141章 尊严（终获母亲认可、婚事尘埃落定）</li>
+<li><strong>卷末钩子</strong>：俞夫人将带媳妇束氏进京团聚——俞家旧怨线正式开启；赵凌欲谋调陕西都司，夫妻同心谋后路[第155章]。</li>
+<li><strong>情绪基调</strong>：寒/虐（认亲被拒、至亲冷漠）→ 燃/暖（重逢、赐婚）→ 甜（大婚、蜜月）</li>
+</ul>
+<hr>
+<h2>卷六 京都恩怨·傅俞交锋（第156–200章 · 约12.5万字 · 14.5%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>阿森入博文私塾、旧部杨玉成金元宝携眷来投[第156章]；傅庭筠诊出喜脉[第157章]，潭柘寺求子撞见俞家婆媳、出山门认出乞丐左俊杰[第162章]。</li>
+<li>傅五老爷只忧俞家颜面、教傅庭筠圆谎，傅庭筠对父死心[第163章]；傅庭筠产女呦呦[第165章]，傅夫人病殒[第166章]。</li>
+<li>赵凌随征贵州[第167章]；傅庭筠为杨玉成相看张家小姐[第169章]；胡同口再遇左俊杰，众人连夜搜捕擒获、密囚三眼胡同[第170–171章]。</li>
+<li>左俊杰招供系俞敬修指使（许诺事成保其考进士）[第172章]，并吐露当年改口系&quot;父命杀女&quot;、傅五老爷会元文章系柳叔同练笔代作[第173章]；傅大老爷自金华赶至、亲口揭出科场隐情[第178–179章]。</li>
+<li>夫妻赴夹道街俞宅&quot;鸿门宴&quot;，傅庭筠当众揭穿俞敬修&quot;拜柳叔同、以保进士诱左俊杰诬陷&quot;的谎言，两家彻底翻脸[第181–184章]。</li>
+<li>赵凌赴宣同任副总兵（皇上赐字&quot;虎臣&quot;）[第190–191章]；傅庭筠产长子曦哥儿[第195章]。</li>
+<li>俞家内宅生变（范氏纳妾、吴姨娘小产）[第186–187章][第204–205章]；俞家定&quot;先发制人&quot;、欲借西平侯线往庄浪卫查赵凌底细[第199–200章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第179章 谈判（科场隐情真相）、第184章 翻脸（两家撕破脸）、第195章 长子（产子）</li>
+<li><strong>转折章</strong>：第172章 招供（俞敬修浮出水面）、第184章 翻脸（由&quot;暗斗&quot;到&quot;明战&quot;）</li>
+<li><strong>卷末钩子</strong>：俞家&quot;先发制人&quot;查赵凌底细、欲借西平侯构陷——反击战的导火索已埋[第199–200章][第209章]。</li>
+<li><strong>情绪基调</strong>：虐/寒（认父死心、丧母）→ 燃/悬（翻脸、宣同立功）→ 暖（得子、旧部相随）</li>
+</ul>
+<hr>
+<h2>卷七 京都角力·立祠布局（第201–280章 · 约22.0万字 · 25.5%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>傅少奶奶辞行回华阴[第201章]，傅家内部分裂：舒明闻讯回华阴、六叔提分家，祖母去世、丧讯至京[第225章][第257章][第269章]。</li>
+<li>傅庭筠携子女赴西安府立祠迁坟[第220–235章]，五堂姐、七堂姐、三堂姐等姊妹重逢叙旧[第226–234章]；赵凌以叶三掌柜放风、引淞江赵家内讧，逼其认错还产[第219–221章][第252章]。</li>
+<li>傅庭筠为三姐夫争吏部左给事中之缺：先探内情[第242章]、分析朝局[第243章]、托潭柘寺肁先生相助[第244–245章]；首辅钱东林首日亲点三姐夫，俞敬修落空[第248–250章]。</li>
+<li>俞家失势：沈阁老致仕、俞阁老首辅落空[第246–247章]；费氏以退为进上位[第264–266章]；俞敬修赴山东任御史、后被改派江西道[第267章][第298章]；外室闵小姐线浮现[第283–286章]。</li>
+<li>赵凌升贵州总兵[第235章]、平苗乱、节制云贵各卫所（实际上的云贵总督）[第301章]；太皇太后七十大寿，赵凌献苍鸟、傅氏受封三品淑人、慈宁宫寿宴成满殿瞩目[第276–279章]。</li>
+<li>呦呦被议亲：武定侯夫人、颖川侯相继求娶，傅庭筠借肁先生与&quot;皇上不欲赵家与九边封疆结亲&quot;挡亲[第299–301章]；闵小姐未婚夫郭公子被闵氏乳娘买凶害死[第301章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第249章 败坏（三姐夫夺缺成功、大挫俞家）、第279章 瞩目（傅氏封淑人、寿筵受召）</li>
+<li><strong>转折章</strong>：第235章 升迁（赵凌外放贵州总兵，为复仇布局留出空间）、第250章 打击（俞家失缺，坐实赵家实力与赵凌的报复心）</li>
+<li><strong>卷末钩子</strong>：俞敬修要迎怀孕的闵氏进门、搬出俞家[第310–311章]——赵凌&quot;先小后大&quot;的复仇之局即将收网。</li>
+<li><strong>情绪基调</strong>：爽/暖（经营、立祠、封诰命）为主，暗藏悬（闵氏线、朝局、呦呦亲事）</li>
+</ul>
+<hr>
+<h2>卷八 复仇·俞家坍塌（第281–314章 · 约9.5万字 · 11.0%）</h2>
+<p><strong>核心事件链（因果）</strong></p>
+<ol>
+<li>俞敬修搬出俞家、闵氏有孕[第310–311章]；赵凌定&quot;先小后大&quot;之策：先让俞敬修与闵氏事发、支持郭家告俞敬修&quot;杀夫夺妻&quot;，再抖俞阁老结交外臣（西平侯贩马）之事[第311章]。</li>
+<li>郭县丞告俞敬修&quot;杀夫夺妻&quot;，俞阁老惊觉上当、当场昏倒[第312章]；俞家定&quot;打点大理寺&quot;之计、凑五万两[第313章]，俞敬修及闵氏被大理寺带走[第313章]。</li>
+<li>范氏与费氏内斗（墨篆被诬送官），俞家倾家打点无果[第314章]。</li>
+<li>西平侯勾结俞阁老私卖战马之事暴发，俞阁老惊觉&quot;用德圃牵制视线&quot;[第314章]。</li>
+<li>六月初俞阁老流放庄浪卫、七月病死平凉；皇上念其两官为朝、赦俞敬修死罪、革去功名贬为庶民；南京丰乐坊俞家开始没落（正文完）[第314章]。</li>
+<li>收束：三姐夫困惑赵凌为何为俞敬修说情，赵凌答&quot;我一向觉得，人一死百了，最舒服不过。活着的人，才是真正的痛苦&quot;；玉鸣山别院中传来孩童欢快的笑声[第314章]。</li>
+</ol>
+<ul>
+<li><strong>关键高潮章</strong>：第312章 状告（郭家告状、俞阁老昏倒）、第314章 坍塌（俞阁老流放病死、俞家没落）</li>
+<li><strong>转折章</strong>：第313章 反应（打点无果，俞家倾家荡产仍救不出俞敬修）、第314章（西平侯贩马事发，赵凌&quot;先小后大&quot;两案合发收网）</li>
+<li><strong>卷末钩子（全书收束）</strong>：正文完。留白的余韵——俞家没落只惹人一声叹息，赵凌一句&quot;活着的人，才是真正的痛苦&quot;点题。</li>
+<li><strong>情绪基调</strong>：爽/寒交织（复仇得偿 vs 世情凉薄、一声叹息）</li>
+</ul>
+<hr>
+<h2>未完待续 / 开放线索</h2>
+<p>正文已标&quot;正文完&quot;，无悬置主线，但仍留若干开放余韵（供续写参考）：</p>
+<ul>
+<li><strong>闵氏结局</strong>：郭公子被害案、闵氏对俞敬修&quot;杀夫夺妻&quot;，正文以俞家坍塌收束，闵氏个人下落未明写[第301章][第314章]。</li>
+<li><strong>俞家后人</strong>：俞敬修革职为庶民后的去向、范氏携女珍姐儿回范家的后续未展开[第314章]。</li>
+<li><strong>云贵棋局</strong>：赵凌&quot;实际上的云贵总督&quot;之后续任命运未定[第301章]。</li>
+<li><strong>下一代线</strong>：呦呦与沈家春饼的暗生情愫、阿森入赘王家后的家业[第292章][第216章]。</li>
+<li><strong>傅家余波</strong>：傅五老爷丁忧起复无望、傅家分家后的境况[第257章][第269章]。</li>
+</ul>
+<hr>
+<blockquote>
+<p>本卷纲依据 <code>时间线台账</code> 与逐章章卡（<code>.ext概要.md</code> + 缺失段第23–33章章卡补读）归纳，所有情节均附 [第X章] 锚点；未展开支线细节（归&quot;支线地图&quot;），未展开逐事件先后（归&quot;时间线&quot;）。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

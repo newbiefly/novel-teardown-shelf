@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 支线地图 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>09 支线地图</h1>
+<blockquote>
+<p>主线之外各条支线各自的推进轨迹（起点→关键节点→归宿）。<br>主线骨架见 07分卷大纲，本文只梳理支线。基于台账全书100章归纳。</p>
+</blockquote>
+<h2>支线总览</h2>
+<table>
+<thead>
+<tr>
+<th>支线</th>
+<th>性质</th>
+<th>起讫章</th>
+<th>归宿</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S1 主CP感情线</td>
+<td>情感</td>
+<td>3-100</td>
+<td>拜堂圆房、服药痊愈、每年一支花簪同回塞北</td>
+</tr>
+<tr>
+<td>S2 陆酌光命数线</td>
+<td>身世/生死</td>
+<td>17-99</td>
+<td>弃解药选玉竹→服吕乡音解药异虫沉睡痊愈</td>
+</tr>
+<tr>
+<td>S3 齐煊夺位复统线</td>
+<td>权谋</td>
+<td>2-98</td>
+<td>奉遗诏承正统、登基</td>
+</tr>
+<tr>
+<td>S4 赫连冤案昭雪线</td>
+<td>复仇/主线源</td>
+<td>34-98</td>
+<td>奉遗诏当众揭篡位、赫连昭雪</td>
+</tr>
+<tr>
+<td>S5 遗诏真伪线</td>
+<td>悬疑/终极</td>
+<td>35-100</td>
+<td>真诏已焚、呈堂赝品、齐煊封存</td>
+</tr>
+<tr>
+<td>S6 吴吉安·文喜内线</td>
+<td>恩义/揭底</td>
+<td>61-100</td>
+<td>揭身世动机、卸任收徒</td>
+</tr>
+<tr>
+<td>S7 群像身世线</td>
+<td>群像</td>
+<td>8-99</td>
+<td>各自恩义了结</td>
+</tr>
+<tr>
+<td>S8 樊蔚·荣国公线</td>
+<td>情敌/结盟</td>
+<td>45-100</td>
+<td>弃卒保帅、追问遗诏真伪</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>S1 主CP感情线（周幸×陆酌光）</h2>
+<p><strong>轨迹</strong>：单向追求[第3-13]→识破暗杀[第14-17]→除夕解毒守护[第26-27]→招揽结盟[第40]→初吻[第43]→治病之吻+约法三章[第49/64]→得知命数转疏冷[第83]→以命相护弃解药选玉竹[第85]→反戴玉竹护命[第87]→设喜堂拜堂圆房立誓解毒[第93]→痊愈+余生之约[第99-100]<br><strong>归宿</strong>：从&quot;两个演戏的人&quot;到卸下伪装的生死夫妻，同回塞北。</p>
+<blockquote>
+<p>详见 12感情线进度。</p>
+</blockquote>
+<h2>S2 陆酌光命数线（体内之&quot;巫&quot;）</h2>
+<p><strong>轨迹</strong>：体温灼热/中毒无效埋疑[第17/23]→袁察揭时限&quot;六月异虫苏醒仅剩七月活&quot;[第50]→镖局追查体质异因[第65]→脉象骤变异虫苏醒[第82]→镖局密信揭真相：陆=陆敛、七童唯一融合者、清醒即反噬死[第83]→隗谷雨断无解最多几月[第86]→赵府弃解药方选玉竹[第85]→吕乡音授解药方[第99]→服药异虫沉睡痊愈[第99]<br><strong>归宿</strong>：以&quot;活下去&quot;完成从&quot;不像人的异体&quot;到&quot;愿意好好活着的人&quot;的转变。<br><strong>设计功能</strong>：给爽文加了一条&quot;倒计时&quot;的虐点+泪点，让感情线有生死张力。</p>
+<h2>S3 齐煊夺位复统线</h2>
+<p><strong>轨迹</strong>：查案护师暴怒登场[第2]→施粥之恩识袁察[第8]→被纸卷引入同盟[第28]→获遗诏结盟周幸+青鹰军[第36]→私谈惊觉满朝共谋[第42]→逼宫求荣国公未果[第50]→借遗诏结盟樊仲卓[第70]→早朝告发赵执半朝请命[第82]→被押入狱（叶嵘替身脱险）[第94]→奉乾殿承正统登基[第98]<br><strong>归宿</strong>：从废太子/岭王到登基新君，免周幸拜、赐赫连封号领兵回塞北。<br><strong>关键道具</strong>：青鹰军（四千母族旧部）、先帝遗诏、腊梅暗语（与许奉&quot;枯梅再荣&quot;传心）。</p>
+<h2>S4 赫连冤案昭雪线（复仇主线之源）</h2>
+<p><strong>轨迹</strong>：戏台《雷公天罚恶将军》影射[第34]→揭吕鸿扣军粮/兵部改战报[第34-35]→套赵恪供&quot;赫连被冤枉&quot;[第39]→满朝共谋曝光[第42]→致幻烟诱秦焕吐冤死内幕[第75]→冤情+遗诏流言传遍京城[第76]→奉乾殿奉遗诏当众昭雪[第98]<br><strong>归宿</strong>：赫连钦沉冤得雪，周幸持父枪逼宫、宣读遗诏立齐煊。<br><strong>动机源</strong>：八年前吕鸿扣城不放援军+火烧十里林，赫连三千将士火林死战全军覆没、被逼自刎枭首挂旗。</p>
+<h2>S5 遗诏真伪线（终极悬疑）</h2>
+<p><strong>轨迹</strong>：戏台抛&quot;先帝遗诏复太子&quot;[第35]→出示遗诏结盟[第36]→陈守善揭送出宫秘史[第70]→秦焕曝&quot;传位诏书&quot;[第75]→尚宝监底簿实证确曾立诏[第91]→[第98]呈堂&quot;验真&quot;（误导）→[第99]樊蔚追问→[第100]终极反转：真诏先帝驾崩夜被文喜焚毁，呈堂是&quot;鬼手&quot;伪造赝品；齐煊郸玉废戏楼第一眼即看破是假（私章缺角/印色破绽），明知假仍封存永藏<br><strong>归宿</strong>：真假由帝王说了算——探案诡计升华为&quot;权力定义真相&quot;的哲学命题。</p>
+<h2>S6 吴吉安·文喜内线（宫中暗手）</h2>
+<p><strong>轨迹</strong>：黑羽鸟/暗号接应周幸露内应身份[第61]→六年传信+玉竹玉鸟同源[第88]→逼皇帝证实遗诏+引疑赵执[第91]→揭与周幸六年传信、武福护诏惨死[第97]→改回本名文喜、揭全部身世：师承武福、为师父之死与许奉救命恩入局、当年烧诏杀御马监掌印献赵执助齐宥篡位、卸任收小靥为徒[第100]<br><strong>归宿</strong>：卸下权谋伪装做回&quot;庆幸能好好活着的文喜&quot;，传衣钵给小靥。<br><strong>设计功能</strong>：这条线承载了结局的&quot;武福护诏惨死&quot;泪点+遗诏被烧的终极反转揭底。</p>
+<h2>S7 群像身世·恩义线（多条并行小支线）</h2>
+<ul>
+<li><strong>袁察</strong>：岭南受齐煊施粥之恩[第8]→占千路山义匪→妹妹雪晴[第55]→劫船重伤托玉竹真相[第54]→结局归塞北</li>
+<li><strong>陶缨</strong>：周幸救她于青楼求死[第24]→死忠拒供保周幸</li>
+<li><strong>李言归</strong>：塞北奴隶麻勒被赵执买回改造[第85]→被周幸要挟入局[第57]→劫狱救赵执[第96]→伏尸痛哭&quot;来生只想做一只羊&quot;[第99]</li>
+<li><strong>窦二娘一家</strong>：曾施舍行乞老陆包子[第56]→郑琪杀窦二娘断腕[第55]→残足小儿背刺陆酌光复仇[第85]→李言归收留揭&quot;陆是恩人非仇人&quot;[第87]</li>
+<li><strong>老陆（陆驰）</strong>：三十年前殿试检举舞弊被龚泽构陷家破[第50/61]→捡养陆酌光教写&quot;命&quot;字[第38]→为一文钱被打死[第38]→遗训&quot;不救世枉为人&quot;成陆行为逻辑钥匙<br><strong>共同点</strong>：这些&quot;荒腔走板的异类/无名之辈&quot;以恩义相连，是主题&quot;能救百姓的从来是百姓自己&quot;的具象。</li>
+</ul>
+<h2>S8 樊蔚·荣国公线（情敌+结盟+博弈）</h2>
+<p><strong>轨迹</strong>：赠玉竹簪示好助查大运河贪腐[第45]（陆吃醋）→卧底收证→荣国公樊仲卓借遗诏结盟齐煊、禁军是夺位关键[第70]→借神兵营驰援火并无常司[第90]→献赫连枪领禁军压城逼宫[第97]→樊家弃卒保帅让樊蔚入狱逼交兵权[第99]→樊蔚追问祖父&quot;遗诏究竟是不是真的&quot;[第100]<br><strong>归宿</strong>：荣国公助齐煊登基；樊蔚情敌线由陆酌光吃醋（白莲簪/海棠簪）收束[第100]。</p>
+<hr>
+<h2>支线与主线的交织规律</h2>
+<ol>
+<li><strong>每条支线都在为主线蓄力</strong>：命数线给感情线加张力，群像身世线给主题做注脚，遗诏线是终极反转的引信。</li>
+<li><strong>支线归宿集中在结局四章（97-100）引爆</strong>：夺位、昭雪、遗诏、恩义、命数五线在皇城决战同时收束，形成&quot;多线齐爆&quot;的高潮密度。</li>
+<li><strong>物件串联多线</strong>：玉竹（周幸父母骨灰/陆的护命符/与吴吉安玉鸟同源）一件东西串起S1/S2/S6三条线。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

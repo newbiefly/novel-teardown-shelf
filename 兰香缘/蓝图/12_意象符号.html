@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>意象符号 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>意象符号</h1>
+<blockquote>
+<p>数据源：章卡金句 · 章卡设定名词 · 伏笔台账<br>按需·文学性维度</p>
+</blockquote>
+<hr>
+<h2>一、核心意象</h2>
+<h3>1.1 兰花（贯穿全书的第一意象）</h3>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>内容</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>书名</td>
+<td>《兰香缘》= 兰的香、兰的缘</td>
+<td>—</td>
+</tr>
+<tr>
+<td>女主名</td>
+<td>陈香兰 / 沈嘉兰 / 兰香居士</td>
+<td>双名皆含兰</td>
+</tr>
+<tr>
+<td>画作</td>
+<td>&quot;兰香居士&quot;以兰入画，坊间追捧</td>
+<td>ch89起</td>
+</tr>
+<tr>
+<td>长辈赐物</td>
+<td>林昭祥授意赐兰花首饰=正名信号</td>
+<td>ch330</td>
+</tr>
+<tr>
+<td>秦氏试探</td>
+<td>送兰花只给姜曦云=议亲暗示</td>
+<td>ch263</td>
+</tr>
+<tr>
+<td>庭院赏兰</td>
+<td>境界论后林锦楼与香兰庭院赏兰</td>
+<td>ch271</td>
+</tr>
+<tr>
+<td>帕子</td>
+<td>帕子上绣兰+莲→袁绍仁&quot;莲娘精魂&quot;</td>
+<td>ch258</td>
+</tr>
+<tr>
+<td>终极</td>
+<td>天灯夜·兰花意象收束</td>
+<td>ch354</td>
+</tr>
+</tbody></table>
+<p><strong>兰的三重含义</strong>：</p>
+<ol>
+<li><strong>身份标记</strong> — 兰=香兰本人，也=前世簪缨出身的暗示</li>
+<li><strong>品格象征</strong> — 兰=高洁自持（与底层身份形成反差）</li>
+<li><strong>命运线索</strong> — 兰花出现的场景都暗示命运转折</li>
+</ol>
+<hr>
+<h3>1.2 孔雀屏风（两世缘分的物质载体）</h3>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前世</td>
+<td>沈嘉兰陪嫁之物</td>
+<td>ch177(回忆)</td>
+</tr>
+<tr>
+<td>今生·流转</td>
+<td>杜宾赌来→画眉献给林锦楼→林赏给香兰</td>
+<td>ch170→ch178</td>
+</tr>
+<tr>
+<td>触发反应</td>
+<td>香兰见屏风&quot;恍惚跌入前世&quot;→叫&quot;好老公&quot;</td>
+<td>ch178</td>
+</tr>
+<tr>
+<td>意象功能</td>
+<td>两世缘分在此物重合——前世陪嫁在今生再次&quot;嫁给&quot;她</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>1.3 桃花（四段情缘的统一意象）</h3>
+<table>
+<thead>
+<tr>
+<th>桃花编号</th>
+<th>人物</th>
+<th>物件载体</th>
+<th>花开/花落</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一朵</td>
+<td>萧杭/林锦楼</td>
+<td>赤金黄玉小马腰坠</td>
+<td>前世凋→今生盛放→圆满</td>
+</tr>
+<tr>
+<td>第二朵</td>
+<td>宋柯</td>
+<td>翠玉小青蛙/白绢花/银簪</td>
+<td>绽放→凋零(&quot;百年好合&quot;)</td>
+</tr>
+<tr>
+<td>第三朵</td>
+<td>夏芸</td>
+<td>花（被烧）</td>
+<td>萌芽→立刻毁灭</td>
+</tr>
+<tr>
+<td>第四朵</td>
+<td>袁绍仁</td>
+<td>帕子(兰+莲)</td>
+<td>含苞→不绽放→克制收场</td>
+</tr>
+</tbody></table>
+<p><strong>桃花的叙事功能</strong>：四朵桃花代表四种爱的模式——占有/深情/自作多情/克制。只有&quot;学会放手的占有&quot;最终圆满。</p>
+<hr>
+<h3>1.4 佛理（心性蜕变的精神底色）</h3>
+<table>
+<thead>
+<tr>
+<th>时点</th>
+<th>佛理内容</th>
+<th>功能</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开篇</td>
+<td>定逸师太授业：经史书画+佛法</td>
+<td>能力根基</td>
+<td>ch1</td>
+</tr>
+<tr>
+<td>竹林</td>
+<td>&quot;被狗啃了……忍到最后有出头之日&quot;</td>
+<td>生存信念</td>
+<td>ch14</td>
+</tr>
+<tr>
+<td>求签</td>
+<td>&quot;前世姻缘皆是前订不必再问&quot;</td>
+<td>命运暗示</td>
+<td>ch118</td>
+</tr>
+<tr>
+<td>遗言</td>
+<td>定逸&quot;终归在富贵场中&quot;</td>
+<td>预言</td>
+<td>ch217</td>
+</tr>
+<tr>
+<td>境界论</td>
+<td>三重境界（看山是山→看山不是山→看山还是山）</td>
+<td>★全书最重要金句</td>
+<td>ch271/326</td>
+</tr>
+<tr>
+<td>诵经</td>
+<td>为赵月婵诵经</td>
+<td>慈悲蜕变完成</td>
+<td>ch302-303</td>
+</tr>
+<tr>
+<td>天灯</td>
+<td>写信送别前世亲人</td>
+<td>全书收束</td>
+<td>ch354</td>
+</tr>
+<tr>
+<td>结语</td>
+<td>&quot;当初种种坎坷，不过因我业障未消&quot;</td>
+<td>释然</td>
+<td>ch354</td>
+</tr>
+</tbody></table>
+<p><strong>佛理的弧光</strong>：从&quot;拿佛理当武器&quot;（自励/忍耐/算计）→&quot;真正领悟佛理&quot;（慈悲/宽厚/释然）——这条心性线是全书最隐秘的主线。</p>
+<hr>
+<h2>二、物件意象</h2>
+<h3>2.1 信物系统</h3>
+<table>
+<thead>
+<tr>
+<th>物件</th>
+<th>赠者→受者</th>
+<th>首现</th>
+<th>命运</th>
+<th>象征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>翠玉小青蛙</td>
+<td>宋柯→香兰</td>
+<td>ch22</td>
+<td>一直保留→决别后收起</td>
+<td>第二桃花信物</td>
+</tr>
+<tr>
+<td>赤金黄玉小马坠</td>
+<td>林锦楼→香兰</td>
+<td>ch44</td>
+<td>反复给→被偷→最终回归</td>
+<td>第一桃花标记物</td>
+</tr>
+<tr>
+<td>八宝赤金簪</td>
+<td>林锦楼→香兰</td>
+<td>ch58</td>
+<td>保留</td>
+<td>才情认可</td>
+</tr>
+<tr>
+<td>沈周字帖</td>
+<td>林锦楼→香兰(拒)</td>
+<td>ch58</td>
+<td>送出未收</td>
+<td>前世学识暗示</td>
+</tr>
+<tr>
+<td>宋柯扇子</td>
+<td>宋柯→香兰</td>
+<td>ch46</td>
+<td>被林锦楼撅碎</td>
+<td>第二桃花凋零</td>
+</tr>
+<tr>
+<td>玉兰坠子</td>
+<td>林锦楼→香兰</td>
+<td>ch276</td>
+<td>公开赠予</td>
+<td>感情公开化</td>
+</tr>
+<tr>
+<td>帕子(兰+莲)</td>
+<td>香兰绣</td>
+<td>ch258</td>
+<td>被袁绍仁认出</td>
+<td>身世线关键物证</td>
+</tr>
+</tbody></table>
+<h3>2.2 命运物件</h3>
+<table>
+<thead>
+<tr>
+<th>物件</th>
+<th>功能</th>
+<th>跨度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>金马坠</td>
+<td>从赏赐→银蝶偷→诽谤→入狱→以身换父（一物跨87章连锁7次）</td>
+<td>ch44→ch131</td>
+</tr>
+<tr>
+<td>赵月婵放债账簿</td>
+<td>从青岚得→赵逼迫→画眉取→残存→和离利器</td>
+<td>ch73→ch109</td>
+</tr>
+<tr>
+<td>符咒(死绝符/绝命符)</td>
+<td>画眉栽赃→鸾儿绝望→大清洗</td>
+<td>ch175→ch189</td>
+</tr>
+<tr>
+<td>断子丸</td>
+<td>赵月婵买→谭拒→彩凤用→姜丹云捡→香兰服下</td>
+<td>ch255→ch284</td>
+</tr>
+<tr>
+<td>赵晋密信</td>
+<td>&quot;林锦楼助前太子&quot;→被香兰撕毁</td>
+<td>ch303(一章内完成)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、空间意象</h2>
+<h3>3.1 知春馆（全书核心空间）</h3>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>住者</th>
+<th>象征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正房</td>
+<td>赵月婵→空→香兰</td>
+<td>权力中心</td>
+</tr>
+<tr>
+<td>东厢</td>
+<td>青岚→画眉→空</td>
+<td>野心者之地</td>
+</tr>
+<tr>
+<td>东次间</td>
+<td>香兰(初入)</td>
+<td>依附</td>
+</tr>
+<tr>
+<td>西厢</td>
+<td>鸾儿/鹦哥</td>
+<td>边缘人</td>
+</tr>
+</tbody></table>
+<p><strong>知春馆=微型朝堂</strong>：谁住正房谁掌权，空间的变化=权力的更迭。</p>
+<h3>3.2 其他关键空间</h3>
+<table>
+<thead>
+<tr>
+<th>空间</th>
+<th>象征</th>
+<th>关键事件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>罗雪坞</td>
+<td>底层/压抑</td>
+<td>香兰被压榨+林东绫偷情</td>
+</tr>
+<tr>
+<td>静月庵</td>
+<td>前世/庇护</td>
+<td>定逸师太+修行+圆寂</td>
+</tr>
+<tr>
+<td>甘露寺</td>
+<td>丑闻/转折</td>
+<td>赵月婵偷情被捉→和离</td>
+</tr>
+<tr>
+<td>栖霞寺</td>
+<td>生死</td>
+<td>大劫+敲钟</td>
+</tr>
+<tr>
+<td>芦苇荡</td>
+<td>终极考验</td>
+<td>杀卢韶堂+赵冻死+密信</td>
+</tr>
+<tr>
+<td>剪秋榭</td>
+<td>圆满</td>
+<td>天灯·袒露·&quot;别无他求&quot;</td>
+</tr>
+<tr>
+<td>绣楼(扬州)</td>
+<td>暧昧</td>
+<td>行房+第四桃花升温</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、金句精选（按主题分类）</h2>
+<h3>4.1 生存信念类</h3>
+<table>
+<thead>
+<tr>
+<th>金句</th>
+<th>说者</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;被狗啃了……忍到最后有出头之日&quot;</td>
+<td>香兰</td>
+<td>ch14</td>
+</tr>
+<tr>
+<td>&quot;挺直腰杆做人&quot;</td>
+<td>香兰</td>
+<td>ch248</td>
+</tr>
+<tr>
+<td>&quot;自己手里有银子才踏实&quot;</td>
+<td>香兰</td>
+<td>ch253</td>
+</tr>
+<tr>
+<td>&quot;不是戏子粉头奴才&quot;</td>
+<td>香兰</td>
+<td>ch143</td>
+</tr>
+<tr>
+<td>&quot;活了两辈子都清清白白&quot;</td>
+<td>香兰(醉后)</td>
+<td>ch248</td>
+</tr>
+</tbody></table>
+<h3>4.2 爱情类</h3>
+<table>
+<thead>
+<tr>
+<th>金句</th>
+<th>说者</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;喜欢不过把玩，爱是心头珍藏&quot;</td>
+<td>宋柯</td>
+<td>ch313</td>
+</tr>
+<tr>
+<td>&quot;我再也别无他求&quot;</td>
+<td>林锦楼/香兰</td>
+<td>ch354</td>
+</tr>
+<tr>
+<td>&quot;敬她就是敬我&quot;</td>
+<td>林锦楼</td>
+<td>ch306</td>
+</tr>
+<tr>
+<td>&quot;做好了失去她的准备&quot;</td>
+<td>林锦楼(嘱托田产)</td>
+<td>ch304</td>
+</tr>
+<tr>
+<td>&quot;过命的交情，心里爱她&quot;</td>
+<td>林锦楼(番外)</td>
+<td>番外</td>
+</tr>
+</tbody></table>
+<h3>4.3 智慧/哲理类</h3>
+<table>
+<thead>
+<tr>
+<th>金句</th>
+<th>说者</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>三重境界(看山是山/不是山/还是山)</td>
+<td>香兰</td>
+<td>ch271/326</td>
+</tr>
+<tr>
+<td>&quot;前世姻缘皆是前订&quot;</td>
+<td>定逸师太</td>
+<td>ch118</td>
+</tr>
+<tr>
+<td>&quot;终归在富贵场中&quot;</td>
+<td>定逸师太(遗言)</td>
+<td>ch217</td>
+</tr>
+<tr>
+<td>&quot;当初种种坎坷，不过因我业障未消&quot;</td>
+<td>香兰</td>
+<td>ch354</td>
+</tr>
+<tr>
+<td>&quot;容得下方为大气&quot;</td>
+<td>林昭祥</td>
+<td>ch329</td>
+</tr>
+</tbody></table>
+<h3>4.4 人物定性类</h3>
+<table>
+<thead>
+<tr>
+<th>金句</th>
+<th>说者</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;哪里是奴才种子，分明像簪缨人家&quot;</td>
+<td>林锦楼</td>
+<td>ch225</td>
+</tr>
+<tr>
+<td>&quot;骨子里不安生&quot;</td>
+<td>秦氏(评香兰)</td>
+<td>ch37</td>
+</tr>
+<tr>
+<td>&quot;太过老练油滑&quot;</td>
+<td>秦氏(评宋柯)</td>
+<td>ch24</td>
+</tr>
+<tr>
+<td>&quot;可惜可叹&quot;</td>
+<td>林昭祥(评香兰)</td>
+<td>ch326</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、意象设计规律</h2>
+<table>
+<thead>
+<tr>
+<th>规律</th>
+<th>说明</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>物件跨章回响</td>
+<td>一件物品跨数十甚至上百章反复出场</td>
+<td>金马坠(87章) / 孔雀屏风(176章)</td>
+</tr>
+<tr>
+<td>空间=权力</td>
+<td>居住空间的变化映射权力格局</td>
+<td>知春馆住房变化</td>
+</tr>
+<tr>
+<td>花=人</td>
+<td>兰花=香兰 / 桃花=四段情</td>
+<td>贯穿全书</td>
+</tr>
+<tr>
+<td>佛理递进</td>
+<td>从工具到真正领悟</td>
+<td>ch14→ch271→ch354</td>
+</tr>
+<tr>
+<td>名字即命</td>
+<td>香兰/嘉兰/兰香居士/兰花首饰</td>
+<td>名字本身是最大的意象</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>📌 本蓝图基于章卡金句字段 + 设定名词字段 + 伏笔台账归纳，覆盖 [第1章] 至 [番外]。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

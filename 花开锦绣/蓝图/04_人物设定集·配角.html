@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>花开锦绣 · 人物设定集·配角 · 创作蓝图</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --orange:#ffa94d; --gray:#5f6b7f;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:#e8e6e3;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:340px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.10), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.85);}
+
+/* ---------- topbar ---------- */
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 28px;padding-right:200px;background:rgba(8,8,12,0.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity .2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);
+  letter-spacing:1px;font-weight:500;background:rgba(8,8,12,0.72);
+  border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:520px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1360px;margin:0 auto;padding:26px 26px 80px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:16px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:2px;}
+.hero .quote{margin:18px auto 0;max-width:900px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 28px 24px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;font-weight:600;
+  background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;font-weight:700;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;line-height:1.8;}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.fbtn{font-size:11.5px;letter-spacing:1px;padding:5px 13px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#aab2c6;
+  transition:.18s;user-select:none;}
+.fbtn:hover{color:#fff;background:rgba(255,255,255,0.07);}
+.fbtn.active{color:#0b0b10;font-weight:600;}
+.hint{font-size:11px;color:#6f788c;letter-spacing:.5px;margin:0 0 12px;line-height:1.8;}
+
+.graph-wrap{border-radius:14px;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.05);
+  position:relative;padding:4px;}
+#graph{width:100%;height:auto;display:block;overflow:visible;}
+
+.node{cursor:pointer;transition:opacity .2s;}
+.node circle{transition:stroke-width .18s, filter .18s;}
+.node:hover circle{stroke-width:3.4;filter:drop-shadow(0 0 8px currentColor);}
+.node.off{opacity:0.10;}
+.node text{pointer-events:none;user-select:none;}
+.nname{font-weight:700;letter-spacing:.5px;}
+.nrole{font-size:10px;fill:#828ba1;letter-spacing:.4px;}
+.ncore{font-size:9.5px;fill:#c9a961;letter-spacing:2px;font-weight:700;}
+
+.edge path{transition:stroke-opacity .18s;fill:none;}
+.edge .elabel{font-size:10.5px;letter-spacing:.4px;opacity:0;transition:opacity .18s;
+  paint-order:stroke;stroke:#08080c;stroke-width:4.5px;stroke-linejoin:round;font-weight:500;}
+.edge.on path{stroke-opacity:1 !important;}
+.edge.on .elabel{opacity:1;}
+.edge.off path{stroke-opacity:0.03 !important;}
+.edge.off .elabel{opacity:0;}
+
+.legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+
+#tip{position:fixed;z-index:999;display:none;max-width:360px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+#tip.wide{max-width:540px;}
+.tip-name{font-size:16px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.85;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tip-tags span{font-size:10px;padding:2px 8px;border-radius:999px;color:#aab2c6;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);}
+.rl-title{margin-top:11px;border-top:1px dashed rgba(255,255,255,0.09);padding-top:9px;
+  font-size:10px;color:#6f788c;letter-spacing:1.5px;margin-bottom:7px;}
+.tip-rels{display:flex;flex-direction:column;gap:3px;}
+.tip-rels.two{display:block;column-count:2;column-gap:22px;}
+.tip-rels.two .tip-rel{break-inside:avoid;margin-bottom:2px;}
+.tip-rel{font-size:11px;line-height:1.75;color:#a2abc0;display:flex;gap:6px;}
+.tip-rel b{color:#dfe3ee;font-weight:600;flex-shrink:0;}
+
+/* ---------- 详卡 ---------- */
+.dx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;}
+.dx{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:12px;
+  overflow:hidden;transition:border-color .2s;}
+.dx:hover{border-color:rgba(201,169,97,0.3);}
+.dx-h{padding:12px 15px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:.18s;}
+.dx-h:hover{background:rgba(201,169,97,0.05);}
+.dx-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.dx-nm{font-size:13.5px;color:#e8e6e3;font-weight:700;letter-spacing:.5px;}
+.dx-camp{font-size:10px;color:#7d869c;letter-spacing:.5px;margin-left:auto;
+  border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:1px 9px;}
+.dx-arw{color:var(--gold);font-size:10px;transition:transform .22s;}
+.dx.open .dx-arw{transform:rotate(90deg);}
+.dx-b{max-height:0;overflow:hidden;transition:max-height .34s ease;}
+.dx.open .dx-b{max-height:1600px;}
+.dx-in{padding:4px 15px 16px;border-top:1px dashed rgba(255,255,255,0.08);}
+.dx-row{font-size:11.8px;line-height:1.95;color:#b6bdd0;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.dx-row:last-child{border-bottom:none;}
+.dx-row b{color:var(--gold2);font-weight:600;letter-spacing:.5px;}
+.dx-row .ch{color:var(--gold);font-size:10.5px;}
+
+/* ---------- 速览网格 ---------- */
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:9px;}
+.mini{background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.06);border-radius:10px;
+  padding:10px 12px;transition:.18s;}
+.mini:hover{background:rgba(201,169,97,0.055);border-color:rgba(201,169,97,0.25);}
+.mini-top{display:flex;align-items:center;gap:7px;}
+.mini-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.mini-nm{font-size:12.5px;color:#e8e6e3;font-weight:600;letter-spacing:.4px;}
+.mini-gu{font-size:10px;color:#7d869c;margin-left:auto;white-space:nowrap;}
+.mini-sf{font-size:10.5px;color:#8f98ad;margin-top:5px;line-height:1.6;}
+.mini-txt{font-size:11px;color:#aab2c6;margin-top:4px;line-height:1.7;}
+
+.lt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:8px;}
+.lt{background:rgba(255,255,255,0.018);border:1px solid rgba(255,255,255,0.05);border-radius:9px;
+  padding:9px 11px;font-size:11px;color:#a9b0c4;line-height:1.7;}
+.lt b{color:#d5d9e2;font-weight:600;}
+.lt:hover{background:rgba(177,151,252,0.05);}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+
+@media(max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:23px;letter-spacing:3px;}
+  .section{padding:30px 16px 20px;}
+  .dx-grid{grid-template-columns:1fr;}
+  .topbar{padding-right:140px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">人物设定集 · 配角</span>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>人物设定集 · 配角</h1>
+    <div class="sub">《花开锦绣》· 吱吱 · 310 章 / 约 86.2 万字 · 古代言情·世家宅斗·复仇成长</div>
+    <div class="quote">傅庭筠遭表哥左俊杰诬陷“私通”、被家族灌毒灭口，获赵凌舍命相救；二人患难成婚，联袂复仇，扳倒南京丰乐坊俞家。<br>本集收 <b style="color:#e8c97a">详卡 30 · 简卡 73 · 龙套 54</b>，加主角 2 人，共 159 人。</div>
+  </div>
+
+  <!-- 关系总图 -->
+  <div class="section">
+    <div class="sec-tag">关系图谱</div>
+    <h3 class="sec-title">以 傅庭筠 × 赵凌 为双中心 · 阵营分区固定坐标</h3>
+    <p class="sec-note">图谱只画「详卡 30 人 + 15 位关键简卡」共 45 节点；悬停任意节点 → 弹窗查看人物卡与其全部关系；点下方色块可按阵营筛选。其余 58 人见页面下方速览网格。</p>
+    <div class="filters" id="filters"></div>
+    <p class="hint">阵营色：金＝主角 · 红＝反派（俞家） · 橙＝仇敌 · 绿＝盟友 · 紫＝关键 · 蓝＝中立 · 灰＝已亡 ｜ 连线色＝关系性质（金＝主线CP · 蓝＝血缘亲属 · 绿＝同盟 · 红＝敌对 · 紫＝情缘 · 青＝朝局 · 灰＝主仆 · 靛＝中立）</p>
+    <div class="graph-wrap">
+      <svg id="graph" viewBox="0 0 1360 1260" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <!-- 详卡 -->
+  <div class="section">
+    <div class="sec-tag">详卡 · 30</div>
+    <h3 class="sec-title">重点配角档案</h3>
+    <p class="sec-note">贯穿全书、有独立支线、与主角多轮互动者。点击卡片展开「身份／性格／动机／关系／作用／情节／结局」。数据取自人物台账与 310 张章卡，性格均从具体行为拆出。</p>
+    <div class="dx-grid" id="dxGrid"></div>
+  </div>
+
+  <!-- 简卡 -->
+  <div class="section">
+    <div class="sec-tag">简卡 · 73</div>
+    <h3 class="sec-title">次要角色速览</h3>
+    <p class="sec-note">有明确动态或多次出现、但作用相对次要者；一句话性格/作用 + 阵营。</p>
+    <div class="mini-grid" id="miniGrid"></div>
+  </div>
+
+  <!-- 龙套 -->
+  <div class="section">
+    <div class="sec-tag">龙套 · 54</div>
+    <h3 class="sec-title">龙套名录</h3>
+    <p class="sec-note">仅功能性出场、无动态演变者，一句话列名。</p>
+    <div class="lt-grid" id="ltGrid"></div>
+  </div>
+
+  <div class="foot">《花开锦绣》拆解 · 蓝图 04 · 人物设定集·配角 · 共 159 具名角色</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============================ 阵营 / 线色 ============================ */
+const CAMP={
+  hero:   {name:'主角',        color:'#e8c97a'},
+  key:    {name:'关键',        color:'#b197fc'},
+  foe:    {name:'仇敌',        color:'#ffa94d'},
+  villain:{name:'反派 · 俞家',  color:'#ff6b6b'},
+  ally:   {name:'盟友',        color:'#69db7c'},
+  neutral:{name:'中立',        color:'#74c0fc'},
+  dead:   {name:'已亡',        color:'#5f6b7f'}
+};
+const KIND={
+  cp:'#e8c97a', family:'#74c0fc', ally:'#69db7c', villain:'#ff6b6b',
+  love:'#b197fc', court:'#38bdf8', serv:'#a8b3c7', neutral:'#8ea0bb'
+};
+
+/* ============================ 图谱节点（45） ============================ */
+const NODES=[
+  /* —— 主角（中心） —— */
+  {id:'fty',name:'傅庭筠',x:640,y:610,r:46,camp:'hero',role:'女主 · 华阴傅氏九小姐',
+   desc:'华阴傅氏九小姐，排行第九，小名“阿筠”。遭表哥左俊杰以“定情肚兜”诬陷“私通”，被家族灌毒灭口，获赵凌舍命相救；后患难成婚，联袂复仇，扳倒南京丰乐坊俞家。隐忍坚忍、步步为营。',
+   tags:['女主','傅氏九小姐','复仇主线']},
+  {id:'zl',name:'赵凌',x:885,y:610,r:42,camp:'hero',role:'男主 · 赵九爷',
+   desc:'赵九爷，军官·百户→羽林卫。凉州屠村遗孤出身，收义弟阿森、聚旧部私盐贩从军；救傅庭筠于毒杀之际，患难成婚，以“先小后大”之局扳倒俞阁老，扶保穆王继位。',
+   tags:['男主','军官','复仇主线']},
+
+  /* —— 关键（紫） —— */
+  {id:'shiliuye',name:'十六爷',x:760,y:155,r:24,camp:'key',role:'穆王 · 潜龙',
+   desc:'气质洒脱的男子，赵凌旧识/一党。初识即救者转招揽者[第34–36章]，赵凌终随其入京、助其继位为帝[第134/135章]。',
+   tags:['潜龙','后为帝']},
+  {id:'wutingxuan',name:'肁先生',x:760,y:310,r:22,camp:'key',role:'潜邸谋士 · 法号正和',
+   desc:'肁廷宣，皇上潜邸军师/谋士，清高重情、视赵凌如子[第137章]；助傅庭筠外家（三姐夫起复）[第244–245章]，法号“正和”[第243章]。',
+   tags:['谋士','视赵凌如子']},
+
+  /* —— 仇敌（橙） —— */
+  {id:'zuojunjie',name:'左俊杰',x:100,y:255,r:27,camp:'foe',role:'表哥 · 诬陷者',
+   desc:'傅家门客·秀才·举人，傅庭筠大堂嫂左氏之弟，后落魄为乞丐[第2/3章]。受傅家恩养却反噬，以“定情肚兜”谤傅庭筠“情投意合”逼婚；全书复仇线起点，终在逼供下招出“父命杀女”内情[第173章]。',
+   tags:['宿仇','复仇起点','招供后被囚']},
+  {id:'taifuren',name:'太夫人',x:150,y:120,r:25,camp:'foe',role:'祖母 · 当家人',
+   desc:'傅家祖母、主持中馈的老封君[第2章]。对外慈和持家、对内冷酷算计，危难时舍傅庭筠保傅家名声，被傅庭筠看透“弃己保子”[第225章]；病逝，丧讯至京都[第257章]。',
+   tags:['弃己保子','家族决策者']},
+  {id:'fu5laoye',name:'傅五老爷',x:330,y:95,r:26,camp:'foe',role:'父 · 五品京官',
+   desc:'傅庭筠之父、工部郎中[第128章]。顽固冷酷的保身官僚，以“荃蕙已死”绝情否认女儿、斥其“冒认官亲”；色厉内荏，终当街与女恩断“我不认识您”[第253章]。',
+   tags:['父权压迫','当街恩断']},
+  {id:'chenmama',name:'陈妈妈',x:270,y:215,r:21,camp:'foe',role:'傅家仆妇 · 帮凶',
+   desc:'傅家仆妇（大太太一边）[第2章]。坚定站傅家，由恭敬转对立：软禁傅庭筠、截留书信、翻检其屋[第5/11章]，终成“送药”灭口之行凶帮凶[第14章]。',
+   tags:['监视','下毒帮凶']},
+  {id:'fudalaoye',name:'傅大老爷',x:150,y:385,r:24,camp:'foe',role:'大伯父 · 都水郎中',
+   desc:'傅家大老爷、工部都水司郎中（后因河工案革职）[第2/3章]。由盛转衰的颓丧家长，被傅庭筠逼出真相、对等谈判[第179章]，“人一下子像老了十岁”。',
+   tags:['旧案经手','对等谈判']},
+  {id:'futingge',name:'傅庭筀',x:345,y:235,r:21,camp:'foe',role:'同胞兄长',
+   desc:'傅庭筠同胞兄长。随父拒妹、与妹反目的兄长，一母同胞却不以为然[第138/201章]。',
+   tags:['兄妹反目']},
+  {id:'tangxiaojie',name:'唐小姐',x:620,y:380,r:21,camp:'foe',role:'情敌 · 唐佩玲',
+   desc:'借剑之唐小姐·名门，闺名佩玲[第102/109章]。孤注一掷的求爱者，求收留赵凌、与傅庭筠争夫[第108章]；由自信从容到被逼露底、心态崩解，明争落幕[第110章]。',
+   tags:['情敌','碾伯所醋海']},
+  {id:'xipinghou',name:'西平侯',x:960,y:470,r:22,camp:'foe',role:'甘州世侯 · 宿敌',
+   desc:'勋贵·世代镇守甘州。与赵凌结怨[第73章]，旧怨升级布局[第233章]，与俞家同盟共祸[第314章]，是赵凌的核心复仇对象之一。',
+   tags:['结怨','复仇对象']},
+
+  /* —— 反派 · 俞家（红） —— */
+  {id:'yujingxiu',name:'俞敬修',x:1080,y:185,r:28,camp:'villain',role:'俞大公子 · 状元',
+   desc:'俞家大公子、新科状元（巡天御史），字德圃[第3/131章]。俊朗谦和外表下城府深沉，心高气傲却怯于父威；原为傅庭筠未婚夫（退婚娶范氏），指使左俊杰诬陷；终入狱革职、贬为庶民[第314章]。',
+   tags:['旧怨中心','状元','贬为庶民']},
+  {id:'yugelao',name:'俞阁老',x:1240,y:110,r:26,camp:'villain',role:'内阁首辅',
+   desc:'俞国梁，俞家当家人、内阁首辅（从一品）[第131/182章]。能屈能伸的宦海老手；与西平侯私卖战马事发，被赵凌“先小后大”之局扳倒，流放庄浪卫、七月病死平凉[第314章]。',
+   tags:['当家人','被扳倒','流放病死']},
+  {id:'yufuren',name:'俞夫人',x:1245,y:250,r:24,camp:'villain',role:'俞家主母 · 束氏',
+   desc:'俞阁老之妻（南京俞家三夫人）[第3/162章]。城府深、隐忍好强的宗妇，“从孙媳妇熬到婆婆还当家”；一边隐忍克制，一边与儿媳范氏斗法、逼子纳妾，终局心力交瘁、一夜白头[第314章]。',
+   tags:['内宅权力中心','一夜白头']},
+  {id:'fanshi',name:'范氏',x:1230,y:375,r:23,camp:'villain',role:'俞敬修之妻',
+   desc:'俞敬修之妻、南京人（范大坤侄女/女）[第162章]。无根基、求子心切的困顿正室，争风立威、手段阴狠（构陷妾室）[第205/207章]，对傅庭筠素不相识而暗生敌意；终与俞夫人彻底反目[第314章]。',
+   tags:['困顿正室','争风立威']},
+  {id:'feishi',name:'费氏',x:1090,y:320,r:21,camp:'villain',role:'俞敬修妾',
+   desc:'俞家表小姐 → 俞敬修妾[第264章]。心机沉稳、以退为进，新婚夜不侍夜、待下宽和而深藏机心；不得宠却主动经营、借势立足，终成内宅博弈获益者，“献细软”善终[第314章]。',
+   tags:['以退为进','善终']},
+  {id:'wuyiniang',name:'吴姨娘',x:1075,y:445,r:21,camp:'villain',role:'俞敬修妾 · 内应',
+   desc:'吴夫人之女、后为俞敬修妾；脱离俞家后成“居士”[第195章]。被迫为妾、自请“病逝”以全家人，失子后逐渐醒悟，暗中查证俞家、登门报信[第262章]，终得傅庭筠原谅[第309章]。',
+   tags:['被迫为妾','暗中内应']},
+  {id:'minshi',name:'闵氏',x:1240,y:475,r:20,camp:'villain',role:'俞敬修外室',
+   desc:'工于心计之女；与郭公子有婚约，后成俞敬修外室[第300章]。虚与委蛇、阴狠的伪善者，害死未婚夫郭公子[第301章]，是俞敬修末路的重要变量。',
+   tags:['工于心计','牵出命案']},
+  {id:'fengshi',name:'冯氏',x:990,y:560,r:21,camp:'villain',role:'刘副总兵小妾',
+   desc:'协守副总兵刘大人之小妾[第84章]。僭越嚣张、工于心计，着正室大红色、赤金凤钗；张掖时期主要反派，诓“赵凌阵亡”、图谋以傅庭筠配其弟冯大虎，终被刘副总兵彻底抛弃[第97章]。',
+   tags:['张掖反派','被弃']},
+
+  /* —— 盟友（绿） —— */
+  {id:'fu5taitai',name:'傅五太太',x:150,y:640,r:27,camp:'ally',role:'母 · 唯一靠山',
+   desc:'傅庭筠之母、五太太[第3章]。平日附和、危难显定力的慈母兼当家，危难时显露当家定力与狠劲[第4章]；为女绸缪、与夫决裂、临终许婚考验赵凌[第141/143章]，病重而殁[第166章]。',
+   tags:['唯一靠山','授庚帖赐婚']},
+  {id:'fushaonai',name:'傅少奶奶',x:95,y:770,r:23,camp:'ally',role:'大嫂 · 暗中相助',
+   desc:'傅庭（节之）之妻、傅庭筠之大嫂[第127章]。怜悯却受家规所缚，开篇被傅家当“骗子”驱赶傅庭筠，后暗中相助、以“同胞之谊”走动；携子回华阴侍疾，此后不再回京[第202章]。',
+   tags:['姑嫂情深','暗中相助']},
+  {id:'santangjie',name:'三堂姐',x:300,y:715,r:25,camp:'ally',role:'堂姐 · 外家靠山',
+   desc:'傅庭筠三堂姐、沈任思之妻（韩城苏家宗妇）[第3章]。忠厚护短的当家宗妇，唤傅庭筠闺名“荃蕙”，为夫前程奔走；是傅庭筠在京都最重要的外家援手，牵线郝剑锋、肁先生[第242–246章]。',
+   tags:['京都外家靠山','牵线']},
+  {id:'wutangjie',name:'五堂姐',x:345,y:855,r:22,camp:'ally',role:'堂姐 · 护妹',
+   desc:'傅庭筠五堂姐、四太太嫡女，嫁临潼姚家[第3章]。精明能干的当家姑奶奶，一眼看破傅家败落之因与祖母算计[第226章]；察觉赵凌升迁真相、反为傅庭筠忧[第235章]。',
+   tags:['护妹','精明能干']},
+  {id:'yuwei',name:'雨微',x:160,y:905,r:22,camp:'ally',role:'旧婢 · 关键证人',
+   desc:'傅庭筠贴身大丫鬟[第5章]。被逐沦为堕民、骨瘦如柴，仍“求做证”以报旧恩[第121/122章]；由傅家“罪人”到被重新任用，揭碧云庵血案与傅家灭口内幕[第123章]。',
+   tags:['关键证人','揭案']},
+  {id:'haojianfeng',name:'郝剑锋',x:475,y:910,r:22,camp:'ally',role:'傅家旧人 · 官员',
+   desc:'傅家西席/门客 → 京都官员（郝侍郎）[第2章]。多谋善断的攀附型官员，追查沈任思牵出傅庭筠身世、汇聚傅/沈/俞三家恩怨线索[第255章]，锁定走赵太太门路自救[第260章]。',
+   tags:['线索汇聚','攀附自救']},
+  {id:'sanjiefu',name:'三姐夫',x:490,y:780,r:21,camp:'ally',role:'沈任思 · 官员',
+   desc:'三堂姐之夫、官员（沈任思·沈大人）。端方缜密、向学自律，由相敬转共谋[第234/243章]，结怨俞敬修[第249章]。',
+   tags:['姻亲','共谋']},
+  {id:'asen',name:'阿森',x:905,y:775,r:23,camp:'ally',role:'义弟 · 赵森',
+   desc:'赵森，赵凌义弟、凉州屠村遗孤[第15/20章]。胆大狡黠的机灵小子，识蒙汗药、奉“七成把握即动手”准则[第91章]；长成后办事滴水不漏，终入赘王家、娶王靖潼[第278章]。',
+   tags:['义弟','得力助手']},
+  {id:'yangyucheng',name:'杨玉成',x:1065,y:795,r:23,camp:'ally',role:'旧部 · 军官',
+   desc:'赵凌旧部 → 庄浪卫小旗、军官[第15/46章]。光明坦荡的旧部，由私盐贩立于阳光下；机变老练、狠辣逼供（借邻里同仇审左俊杰），情同家人，娶张氏[第216章]。',
+   tags:['旧部','审讯助攻']},
+  {id:'jinyuanbao',name:'金元宝',x:1245,y:745,r:21,camp:'ally',role:'旧部 · 军官',
+   desc:'吴元宝，赵凌旧部·私盐贩旧部 → 军官[第48章]。忠谨缜密，由小旗升颖川侯随军文案[第97章]；“要认也是要认九爷的”，终娶石氏、自立门户成家[第198章]。',
+   tags:['旧部','布局助手']},
+  {id:'zheng3niang',name:'郑三娘',x:905,y:905,r:21,camp:'ally',role:'赵家仆妇 · 持家',
+   desc:'田五月，逃难妇人 → 赵家仆妇[第37/41章]。坚韧感恩的忠仆，卖身投靠、忠心冒死翻墙报信[第93章]；察言观色的能手，被委以持家[第137章]。',
+   tags:['忠仆','持家臂膀']},
+  {id:'zheng3',name:'郑三',x:1050,y:920,r:20,camp:'ally',role:'赵家管事',
+   desc:'郑三娘之夫·原镖师 → 赵家管事[第44章]。憨厚而见识过人的能仆，以家仆之身主动报案、周旋官非[第91章]，护主、送信、办事周全。',
+   tags:['管事','办事臂膀']},
+  {id:'moyi',name:'陌毅',x:1240,y:875,r:24,camp:'ally',role:'将军 · 由敌转盟',
+   desc:'陌将军（陌大将军），满脸横肉的汉子·军官 → 将军[第34章]。军中枭雄，与赵凌由敌转同盟[第47章]；由多疑隐忍、当众弃妾（鲁氏）[第99章]，转为对傅庭筠敬服感激、结“通家之好”[第190章]。',
+   tags:['军中盟友','由敌转盟']},
+  {id:'wangfuren',name:'王夫人',x:780,y:900,r:22,camp:'ally',role:'长辈 · 亦母亦姐',
+   desc:'庄浪卫参将王义之妻（出身福州卫指挥使之家）[第78/81章]。清瘦端庄、凛遵礼制的将门正室，刚烈仗义、老练谋深；张掖时期傅庭筠最重要的护持者，与傅庭筠“亦母亦姐”[第112章]。',
+   tags:['护持者','亦母亦姐']},
+  {id:'lvlaoye',name:'吕老爷',x:1245,y:995,r:20,camp:'ally',role:'管事 · 故旧',
+   desc:'西安杨柳巷房东/商人 → 赵家管事·掌柜[第50章]。忠厚念旧的老人，“主仆亦长辈”[第153章]，是傅庭筠西安扎根的助力、京都管事，晚年返西安。',
+   tags:['故旧','管事']},
+  {id:'yeshouxin',name:'叶守信',x:905,y:1015,r:21,camp:'ally',role:'大通号 · 商界助力',
+   desc:'叶老爷·叶三掌柜·字尚诚，大通号东家（“老柴”）[第70/131章]。虎落平阳仍存气度的商界人物，由锦衣轻裘到贫病潦倒终重振；助赵凌、共守机密、火中取栗，后期为赵凌放风、撑起赵家产业[第212章]。',
+   tags:['商界助力','共守机密']},
+  {id:'qinfeiyu',name:'秦飞羽',x:1055,y:1030,r:20,camp:'ally',role:'一党 · 指挥使',
+   desc:'身材魁梧的男子 → 腾骥卫指挥使（大同副总兵）。赵凌一方、官至指挥使的武将，现身[第34章]、首次具名[第164章]。',
+   tags:['赵凌一党','武将']},
+  {id:'wangyi',name:'王义',x:1230,y:1090,r:19,camp:'ally',role:'庄浪参将',
+   desc:'分守庄浪参将，王家当家人、王夫人之夫，与赵凌往来[第74章]；引荐之请被婉拒[第191章]。',
+   tags:['王家','往来']},
+
+  /* —— 中立（蓝） —— */
+  {id:'chenshishi',name:'陈石氏',x:600,y:470,r:20,camp:'neutral',role:'京都官眷 · 媒人',
+   desc:'陈云生长媳、京都官眷，傅庭筠好友兼媒人。初识渐熟[第146章]，媒人/闺蜜[第213/217章]。',
+   tags:['好友','媒人']},
+  {id:'wufuren',name:'吴夫人',x:470,y:560,r:20,camp:'neutral',role:'京都官眷 · 搅局者',
+   desc:'京都官眷（吴小姐之母）。见风使舵、以势取利的搅局者，邻居初识[第147章]，由说客转求援[第219章]，搅局夤缘[第256章]。',
+   tags:['搅局者','见风使舵']},
+  {id:'lianxin',name:'莲心',x:470,y:320,r:19,camp:'neutral',role:'吴姨娘贴身丫鬟',
+   desc:'吴姨娘贴身丫鬟。忠仆、与吴姨娘命运相连、渐世故，首次登场[第204章]，倒向吴姨娘[第240章]，向雨微求助通下人信息[第307章]。',
+   tags:['忠仆','渐世故']},
+  {id:'yingchuanhou',name:'颖川侯',x:960,y:235,r:23,camp:'neutral',role:'孟枢 · 勋贵',
+   desc:'孟枢，勋贵·甘肃/张掖权势。与赵凌由敌对到交好、倚重的勋贵，后受厚礼而疏离、绝交（仅存同僚之谊）[第186/188章]。',
+   tags:['勋贵','交好→绝交']},
+  {id:'jifuren',name:'计夫人',x:890,y:105,r:19,camp:'neutral',role:'京都官眷 · 俞家亲戚',
+   desc:'本司胡同计家（计大人之妻）。与俞家亲戚、后暗觉俞家衰败，初识示好[第147章]，由亲附转疏离[第256/257章]。',
+   tags:['俞家亲戚','亲附转疏离']},
+
+  /* —— 已亡（灰） —— */
+  {id:'fengdahu',name:'冯大虎',x:620,y:1080,r:20,camp:'dead',role:'冯家恶霸',
+   desc:'地痞·冯家（刘副总兵一党）[第83章]。色胆包天的恶霸，夜袭傅庭筠反遭噬[第90章]；第100章死（疑赵凌暗杀），是张掖大冲突的导火索。',
+   tags:['恶霸','已亡']},
+  {id:'guogongzi',name:'郭公子',x:770,y:1090,r:19,camp:'dead',role:'求亲呦呦者',
+   desc:'求亲呦呦之公子。首次登场[第300章]，与闵氏有婚约，终被闵氏害死[第301章]，牵出郭姓命案（扳倒俞家线索之一）。',
+   tags:['已亡','命案线索']}
+];
+
+/* ============================ 关系边 ============================ */
+const EDGES=[
+  /* 傅庭筠 */
+  {a:'fty',b:'zl',k:'cp',hero:1,label:'主线CP · 患难成婚',ch:''},
+  {a:'fty',b:'zuojunjie',k:'villain',hero:1,label:'宿仇 · 诬陷者',ch:'第3/4/162章'},
+  {a:'fty',b:'taifuren',k:'family',hero:1,label:'祖母 · 弃己保子',ch:'第2/225章'},
+  {a:'fty',b:'fu5laoye',k:'family',hero:1,label:'父女 · 拒认→决裂',ch:'第128/199/253章'},
+  {a:'fty',b:'fu5taitai',k:'family',hero:1,label:'母女 · 唯一靠山',ch:'第141/166章'},
+  {a:'fty',b:'fudalaoye',k:'family',label:'伯侄 · 撬动真相',ch:'第177/179章'},
+  {a:'fty',b:'fushaonai',k:'ally',label:'姑嫂 · 暗中相助',ch:'第127/230章'},
+  {a:'fty',b:'santangjie',k:'ally',hero:1,label:'堂姐 · 外家靠山',ch:'第229/242章'},
+  {a:'fty',b:'wutangjie',k:'ally',label:'堂姐 · 护妹',ch:'第225/235章'},
+  {a:'fty',b:'yuwei',k:'serv',hero:1,label:'旧婢 · 关键证人',ch:'第121/123章'},
+  {a:'fty',b:'chenmama',k:'villain',label:'主仆→对立 · 下毒帮凶',ch:'第5/14章'},
+  {a:'fty',b:'haojianfeng',k:'neutral',label:'傅家旧人 · 线索汇聚',ch:'第255/259章'},
+  {a:'fty',b:'futingge',k:'family',label:'兄妹反目',ch:'第138/201章'},
+  {a:'fty',b:'sanjiefu',k:'ally',label:'姻亲 · 共谋',ch:'第243/249章'},
+  {a:'fty',b:'tangxiaojie',k:'love',label:'情敌 · 明争落幕',ch:'第108/110章'},
+  {a:'fty',b:'fengshi',k:'villain',label:'敌对 · 张掖反派',ch:'第84/96章'},
+  {a:'fty',b:'fengdahu',k:'villain',label:'敌对 · 夜袭未遂',ch:'第83/90/100章'},
+  {a:'fty',b:'wufuren',k:'neutral',label:'邻居→搅局',ch:'第147/256章'},
+  {a:'fty',b:'yujingxiu',k:'villain',hero:1,label:'旧怨 · 原未婚夫→敌对',ch:'第131/174章'},
+  {a:'fty',b:'yufuren',k:'villain',label:'旧怨暗线 · 相见如陌路',ch:'第197/279章'},
+  {a:'fty',b:'fanshi',k:'villain',label:'无形对照 · 情敌',ch:'第209章'},
+  {a:'fty',b:'wuyiniang',k:'ally',label:'由仰慕到报信',ch:'第262章'},
+  /* 赵凌 */
+  {a:'zl',b:'yugelao',k:'villain',hero:1,label:'复仇对象 · 扳倒俞家',ch:'第184/314章'},
+  {a:'zl',b:'yujingxiu',k:'villain',label:'敌对 · 当众撕破',ch:'第174章'},
+  {a:'zl',b:'xipinghou',k:'villain',hero:1,label:'结怨 · 布局扳倒',ch:'第73/233/314章'},
+  {a:'zl',b:'yingchuanhou',k:'neutral',label:'由敌到交好→绝交',ch:'第186/188章'},
+  {a:'zl',b:'asen',k:'ally',hero:1,label:'义弟 · 得力助手',ch:'第17/278章'},
+  {a:'zl',b:'yangyucheng',k:'ally',hero:1,label:'旧部 · 审案追捕',ch:'第46/169章'},
+  {a:'zl',b:'jinyuanbao',k:'ally',label:'旧部 · 布局助手',ch:'第48/97章'},
+  {a:'zl',b:'zheng3niang',k:'serv',label:'主仆 · 持家臂膀',ch:'第41/137章'},
+  {a:'zl',b:'zheng3',k:'serv',label:'主仆 · 办事臂膀',ch:'第44/91章'},
+  {a:'zl',b:'moyi',k:'ally',label:'由敌→同盟',ch:'第34/190章'},
+  {a:'zl',b:'wangfuren',k:'ally',label:'亦母亦姐 · 护持',ch:'第87/112章'},
+  {a:'zl',b:'lvlaoye',k:'serv',label:'主仆亦长辈 · 故旧',ch:'第50/153章'},
+  {a:'zl',b:'yeshouxin',k:'ally',label:'商界助力 · 共守机密',ch:'第115/212章'},
+  {a:'zl',b:'qinfeiyu',k:'ally',label:'一党 · 官至指挥使',ch:'第34/164章'},
+  {a:'zl',b:'wangyi',k:'ally',label:'往来 · 庄浪参将',ch:'第74/191章'},
+  {a:'zl',b:'shiliuye',k:'court',hero:1,label:'潜龙 · 招揽共扶',ch:'第34/134章'},
+  {a:'zl',b:'wutingxuan',k:'court',label:'谋士 · 视赵凌如子',ch:'第137/244章'},
+  /* 俞家内 */
+  {a:'yugelao',b:'yujingxiu',k:'family',label:'父子',ch:''},
+  {a:'yujingxiu',b:'yufuren',k:'family',label:'母子 · 耳光决裂',ch:'第308章'},
+  {a:'yujingxiu',b:'fanshi',k:'family',label:'夫妻 · 反目',ch:'第187/303章'},
+  {a:'yujingxiu',b:'feishi',k:'serv',label:'夫妻（妾）',ch:'第264/266章'},
+  {a:'yujingxiu',b:'wuyiniang',k:'serv',label:'夫妻（妾）· 内应',ch:'第195/262章'},
+  {a:'yujingxiu',b:'minshi',k:'love',label:'外室',ch:'第300章'},
+  {a:'yufuren',b:'fanshi',k:'family',label:'婆媳 · 斗法',ch:'第193/207章'},
+  {a:'wuyiniang',b:'lianxin',k:'serv',label:'主仆 · 命运相连',ch:'第204/307章'},
+  {a:'minshi',b:'guogongzi',k:'villain',label:'婚约 → 害死',ch:'第300/301章'},
+  /* 傅家内 */
+  {a:'taifuren',b:'fu5laoye',k:'family',label:'母子',ch:''},
+  {a:'fu5laoye',b:'fu5taitai',k:'family',label:'夫妻 · 决裂',ch:'第143章'},
+  {a:'zuojunjie',b:'fudalaoye',k:'villain',label:'被拘禁致愧疚',ch:'第12章'},
+  {a:'futingge',b:'fu5laoye',k:'family',label:'父子',ch:''},
+  {a:'fu5taitai',b:'fushaonai',k:'family',label:'婆媳',ch:''},
+  {a:'santangjie',b:'sanjiefu',k:'family',label:'夫妻',ch:'第234章'},
+  {a:'santangjie',b:'haojianfeng',k:'neutral',label:'牵线 · 助力起复',ch:'第244章'},
+  /* 冯家 / 王家 */
+  {a:'fengshi',b:'fengdahu',k:'family',label:'冯家一党',ch:'第84/90章'},
+  {a:'wangfuren',b:'wangyi',k:'family',label:'夫妻',ch:'第74章'}
+];
+
+/* ============================ 详卡（30） ============================ */
+const DX=[
+ {id:'zuojunjie',camp:'foe',sf:'傅家门客·秀才·举人；傅庭筠大堂嫂左氏之弟；后落魄为乞丐[第2/3章]',
+  xg:'受恩却反噬的野心门客（受傅家恩养、十七中秀才二十三中举人[第3章]），反以“定情肚兜”谤傅庭筠“情投意合”逼婚；落魄后仍暗思渔利的投机者[第173章]。',
+  dj:'攀附傅家、渔利上位与自保。',gx:'表哥（门客之亲）→ 诬陷者／宿仇[第4/162/170章]。',
+  zy:'全书复仇线的起点：由逼婚诽谤牵出傅家灭口案，后成科场/命案线索关键人。',
+  qj:'第3章左俊杰（命运起点）；第4章正面敌对；第124章仇恨坐实；第162章潭柘寺宿仇重逢、追捕未果；第170章抓贼（乞丐变秀才）；第172–173章问话/招供“父命杀己”。',
+  jj:'招供后被囚（沦为阶下）[第173章]。'},
+ {id:'taifuren',camp:'foe',sf:'傅家祖母、主持中馈的老封君[第2章]',
+  xg:'弃己保子的当家老太太——危难时舍傅庭筠、保傅家名声；对外慈和持家，对内冷酷算计，被傅庭筠看透“弃己保子”[第225章]。',
+  dj:'保傅家名声与家族体面。',gx:'祖母（由敬到彻底寒心）。',
+  zy:'决定傅庭筠命运的家族决策者之一。',
+  qj:'第2章登场；第225章傅家（傅庭筠看透其弃己保子、彻底寒心）；第257章报丧（丧讯至京都）。',
+  jj:'病逝，丧讯至京都[第257章]。'},
+ {id:'fu5laoye',camp:'foe',sf:'傅庭筠之父、五品京官（工部郎中）[第128章]',
+  xg:'顽固冷酷的保身官僚（以“荃蕙已死”绝情否认女儿、斥其“冒认官亲”）；色厉内荏，被反制时“眼底闪过一丝异样的神色”[第129章]。',
+  dj:'保官位、保傅家与俞家的姻亲体面。',gx:'父女（由拒认 → 决裂 → 当街恩断）[第128/176/199/253章]。',
+  zy:'父权压迫的化身；傅家灭口旧案的牵涉者（“父命杀女”）。',
+  qj:'第128章父亲（掌掴、拒认）；第140章争吵（受赵凌跪求仍冷酷）；第176章当众决裂；第199章迁怒（当街恩断）；第253章当众彻底决裂“我不认识您”。',
+  jj:'仕途绝望、与女恩断义绝（六房分家）[第253/259章]。'},
+ {id:'fu5taitai',camp:'ally',sf:'傅庭筠之母·五太太[第3章]',
+  xg:'平日附和、危难显定力的慈母兼当家——“不吭不响、谁说什么都只是附合”，危难时显露当家定力与狠劲[第4章]；对夫顺从守礼，却为女绸缪、与夫决裂、临终许婚考验赵凌[第141/143章]。',
+  dj:'护女儿的前程与清白。',gx:'母（唯一靠山）。',
+  zy:'傅庭筠的靠山；授庚帖赐婚的关键人物。',
+  qj:'第4章定计（显当家定力）；第141章尊严（许婚授庚帖）；第143章头痛（与夫决裂、以病自守）；第150章甜蜜（母女情深）；第166章命殒（讣）。',
+  jj:'病重 → 殁[第166章]。'},
+ {id:'fudalaoye',camp:'foe',sf:'傅家大老爷、工部都水司郎中（后因河工案革职）[第2/3章]',
+  xg:'由盛转衰的颓丧家长——仕途革职，京都与傅庭筠对峙谈判，“人一下子像老了十岁”[第179章]；昔日威严，终被傅庭筠逼出真相、对等谈判。',
+  dj:'保族、保官、周旋于傅家与俞家之间。',gx:'伯侄（由疏 → 求援/离间拉拢 → 对等谈判 → 划清界限）[第177/179/180章]。',
+  zy:'傅家旧案经手者，被傅庭筠撬动真相（科场隐情）。',
+  qj:'第12章拘禁左俊杰致其愧疚；第177章偷袭（求援/离间拉拢）；第179章谈判（逼出真相）；第180章拉拢赵家未成；第182章兄责弟。',
+  jj:'拉拢赵家未成、颓丧，终局[第180章]。'},
+ {id:'fushaonai',camp:'ally',sf:'傅庭（节之）之妻、傅庭筠之大嫂[第127章]',
+  xg:'怜悯却受家规所缚的嫂嫂（同为女子心生怜悯，却受家规与公公叮嘱所缚）[第127章]；决断机敏，携子回华阴、与傅五老爷一房分道[第201章]。',
+  dj:'护婆婆、保小家安稳。',gx:'姑嫂（由对立 → 暗中相助 → 姑嫂情深）。',
+  zy:'傅庭筠与娘家母亲之间的桥梁。',
+  qj:'第127章现身；第128章暗中相助（答应带她见婆婆）；第201章嫂嫂（携子回华阴）；第230章筵席（不请自来、代傅家表态）。',
+  jj:'携子回华阴侍疾、此后不再回京[第202章]。'},
+ {id:'santangjie',camp:'ally',sf:'傅庭筠三堂姐、苏家宗妇、沈任思之妻[第3章]',
+  xg:'忠厚护短的当家宗妇（当家、唤傅庭筠闺名“荃蕙”[第230章]）；市侩而可爱，为夫前程奔走、为弟忧而愧[第242–246章]。外形湖色素面却大方优雅[第229章]。',
+  dj:'护娘家姊妹、为夫（沈任思）前程奔走。',gx:'堂姐（京都最亲的外家靠山）。',
+  zy:'傅庭筠在京都最重要的外家援手；牵线郝剑锋、肁先生；傅庭筠为其子起复的支点。',
+  qj:'第229章请帖（重逢）；第230章筵席（唤闺名）；第242–245章为夫起复奔走；第253/254章为傅庭筠站队、疏远傅五老爷；第257章报丧。',
+  jj:'回华阴奔丧，与傅庭筠情谊深厚[第257/259章]。'},
+ {id:'wutangjie',camp:'ally',sf:'傅庭筠五堂姐、四太太嫡女，嫁临潼姚家[第3章]',
+  xg:'精明能干的当家姑奶奶（随祖母长大、一眼看破傅家败落之因与祖母算计）[第226章]；忠厚护妹，察觉赵凌升迁真相、反为傅庭筠忧[第235章]。',
+  dj:'操持姚家生意、护妹。',gx:'堂姐（护妹）。',
+  zy:'西安旧地重逢的姊妹援手。',
+  qj:'第225–226章西安重逢（姊妹）；第235章升迁（察觉赵凌升迁真相）；第237章逛寺院（警觉护妹）。',
+  jj:'随傅庭筠往来、姊妹情深。'},
+ {id:'yuwei',camp:'ally',sf:'傅庭筠贴身大丫鬟[第5章]',
+  xg:'身心俱残仍负疚求证的忠仆——被逐沦为堕民、骨瘦如柴，“求做证”以报旧恩[第121/122章]。',
+  dj:'赎罪、报旧主之恩。',gx:'旧婢 → 关键证人（主仆情深）。',
+  zy:'揭碧云庵血案与傅家灭口内幕[第123章]。',
+  qj:'第121章驿站重逢；第123章谣言（述尽苦难）；第124章重新相认；第137章拜访（磕头认主）；第307章出面（莲心向其求助，通下人信息）。',
+  jj:'终随傅庭筠。'},
+ {id:'chenmama',camp:'foe',sf:'傅家仆妇（大太太一边）[第2章]',
+  xg:'坚定站傅家、由恭敬转对立的监视者——软禁傅庭筠、截留书信、翻检其屋[第5/11章]；昔日贴身仆妇，终成生死相搏的行凶帮凶[第14章]。',
+  dj:'忠于大太太一房、自保。',gx:'主仆 → 彻底对立（生死相搏）。',
+  zy:'执行傅家软禁与“送药”灭口的关键帮凶。',
+  qj:'第5章避祸（监视）；第9章挫折（正面对峙）；第14章生死（下毒）；第16章后随傅庭筠东行[第136章]。',
+  jj:'后随傅庭筠东行[第136章]。'},
+ {id:'haojianfeng',camp:'ally',sf:'傅家西席/门客 → 京都官员（郝侍郎）[第2章]',
+  xg:'多谋善断的攀附型官员——查沈任思牵出“赵太太”、锁定走赵家门路自救[第255/261章]；对傅五老爷由冷淡转热络、各怀利用[第259/260章]。',
+  dj:'借门路起复自救。',gx:'傅家旧人；三家恩怨线索汇聚者（暗查傅庭筠身世）。',
+  zy:'追查沈任思牵出傅庭筠身世、汇聚傅/沈/俞三家恩怨线索[第255章]。',
+  qj:'第255章真相（线索汇聚）；第259–263章结盟吴大人、锁定走赵太太门路；第269–270章出头/牵线（郝太太）。',
+  jj:'攀附赵太太门路自救[第260章]。'},
+ {id:'yujingxiu',camp:'villain',sf:'俞家大公子·新科状元（巡天御史）[第3/131/183章]',
+  xg:'心高气傲却怯于父威的世家子（幼有慧名，生平第一次道歉）[第183章]；城府深沉（“俊朗谦和外表下城府深沉”）[第174章]。由名士进献毒计“谋人于军国”，终致暴戾失度[第209/305章]。',
+  dj:'立身扬名、仕途腾达、后路自保。',gx:'原未婚夫（退婚娶范氏）→ 敌对、当众撕破脸[第174/183章]。',
+  zy:'傅庭筠旧怨中心；指使左俊杰诬陷傅庭筠者；终局俞家家变/决裂。',
+  qj:'第3章订婚；第172章招供（浮出水面）；第174章主动（首次正面交锋）；第183章道歉；第209章手段（进献毒计）；第247章暗谋后路；第311章为闵氏搬出、与俞家决裂。',
+  jj:'入狱革职、贬为庶民（皇上念其先世赦死罪）[第314章]。'},
+ {id:'yugelao',camp:'villain',sf:'俞家当家人·内阁首辅（从一品）[第131/182章]',
+  xg:'能屈能伸的宦海老手（“忙将这份不屑藏在了心里”）[第182章]；失首辅之位后由沉稳转暴躁、复露逼害傅家旧账[第250章]，终被赵凌扳倒。',
+  dj:'拜相掌权、保俞家家势。',gx:'俞家当家（俞敬修之父）→ 傅庭筠交锋对象、赵凌复仇对象[第181/184章]。',
+  zy:'与西平侯私卖战马事发；被赵凌“先小后大”之局扳倒。',
+  qj:'第181章夹道街；第182章正面交锋；第184章翻脸；第246–247章失首辅之位；第250章打击（复露旧账）；第312–314章昏倒、流放病死。',
+  jj:'被赵凌扳倒、流放庄浪卫，七月病死平凉[第314章]。'},
+ {id:'yufuren',camp:'villain',sf:'俞阁老之妻·俞夫人（南京俞家三夫人）[第3/162章]',
+  xg:'城府深、隐忍好强的宗妇（“从孙媳妇、媳妇熬到婆婆还当家”的主母）[第193章]；一边隐忍克制，一边与儿媳范氏斗法、逼子纳妾；因傅庭筠显贵而郁结成刺[第187/239章]。',
+  dj:'掌内宅、保俞家门面、抱孙。',gx:'俞家主母（旧怨暗线，相见如陌路）[第279章]。',
+  zy:'俞家内宅权力中心，暗中与傅庭筠博弈、审慎虑及赵家崛起。',
+  qj:'第185章调查、有芥蒂；第193章压制范氏；第197章相遇（傅庭筠冷淡以对）；第211章避让；第279章相见如陌路；第308章母子当面决裂、一记耳光。',
+  jj:'终局心力交瘁、一夜白头[第314章]。'},
+ {id:'fanshi',camp:'villain',sf:'俞敬修之妻、南京人（范大坤侄女/女）[第162章]',
+  xg:'无根基、求子心切的困顿正室（初入俞家求子心切、日趋惶恐）[第187章]；争风立威、手段阴狠（正室当众立威、构陷妾室）[第205/207章]。',
+  dj:'在俞家立足、生子固位、与妾室争宠。',gx:'俞敬修之妻（情敌/无形对照）。',
+  zy:'俞家内宅矛盾的焦点。',
+  qj:'第162章潭柘寺首次登场；第187章求子惶恐；第207章构陷妾室；第285章劝架（当众失态）；第303–304章失宠；第312–314章状告、彻底反目、藏银。',
+  jj:'与俞夫人彻底反目、相互算计[第314章]。'},
+ {id:'feishi',camp:'villain',sf:'俞家表小姐 → 俞敬修妾[第264章]',
+  xg:'心机沉稳、以退为进的妾室（新婚夜不侍夜、待下宽和，深藏机心）[第266章]；不得宠却主动经营、借势立足，终成内宅博弈获益者。',
+  dj:'在俞家立足、得信任善终。',gx:'俞家妾室（不同阵营，无直接冲突）。',
+  zy:'俞家内宅博弈的获利方、后期接近权力中心。',
+  qj:'第264章挑明（抬费氏）；第265章劝说；第266章体贴；第297–298章起用；第314章坍塌（献细软博信任、善终）。',
+  jj:'“献细软”博取信任、得以善终[第314章]。'},
+ {id:'wuyiniang',camp:'villain',sf:'吴夫人之女、后为俞敬修妾；脱离俞家后成“居士”[第195章]',
+  xg:'被迫为妾、以“病逝”全家人的牺牲者（被寄养为妾、自请“病逝”以全家人）[第195/196章]；失子后逐渐醒悟的“内应”，渐“动起脑筋”、暗中查证俞家[第239/241章]。',
+  dj:'保家人、在绝境中自保。',gx:'俞敬修之妾；由仰慕傅庭筠到报信靠拢[第262章]。',
+  zy:'暗中为傅庭筠一方提供俞家内情。',
+  qj:'第195章被迫为妾；第204章问诊（失子）；第237–238章初见、生信赖；第241章水落（暗中查证）；第262章报信；第308章离开俞家；第309章成“居士”得原谅。',
+  jj:'脱离俞家成“居士”、得傅庭筠原谅[第309章]。'},
+ {id:'minshi',camp:'villain',sf:'工于心计之女；与郭公子有婚约，后成俞敬修外室[第300章]',
+  xg:'工于心计、阴狠的伪善者（虚与委蛇、害死未婚夫）[第300/301章]。',
+  dj:'攀附俞敬修、脱身旧婚约。',gx:'间接（郭公子求亲呦呦被拒；闵氏为俞敬修外室）[第300/310章]。',
+  zy:'俞敬修末路的重要变量，牵出郭姓命案（扳倒俞家线索之一）。',
+  qj:'第300章与郭公子婚约曝光；第301章郭公子被害死；第312章状告（私当金簪、处境窘迫）。',
+  jj:'随俞敬修（外室），俞家坍塌中[第314章]。'},
+ {id:'asen',camp:'ally',sf:'赵凌义弟、孤儿（凉州屠村遗孤）[第15/20章]',
+  xg:'胆大狡黠的机灵小子（识蒙汗药、奉“七成把握即动手”准则）[第91章]；长成后办事滴水不漏[第277章]。',
+  dj:'追随赵凌、立足成家。',gx:'义弟/如母子（称傅庭筠“嫂子”，嫂叔情重）[第52/216章]。',
+  zy:'赵凌一方的得力助手。',
+  qj:'第17章正式露面；第88章打架（获“赵森”义弟之名）；第91章后果（胆大狡黠）；第198章暗恋王家大小姐；第216章透音（定亲、中贡生）；第278章拜寿（入赘王家，娶王靖潼）。',
+  jj:'入赘王家（娶王靖潼）[第278章]。'},
+ {id:'yangyucheng',camp:'ally',sf:'赵凌旧部 → 庄浪卫小旗、军官[第15/46章]',
+  xg:'光明坦荡的旧部（摆脱私盐贩身份、能立于阳光下光明行事）[第169章]；机变老练、狠辣逼供（声东击西、借邻里同仇）[第171/172章]。',
+  dj:'从军立身、成家立业。',gx:'赵家旧部（“杨叔叔”、情同家人）[第169章]。',
+  zy:'助审左俊杰、追捕掌控，得傅庭筠倚重。',
+  qj:'第46章现身；第53章奔走（由轻慢转敬服）；第169–172章相看/抓贼/审讯；第216章成亲（娶张氏）。',
+  jj:'娶张氏（张家湾巡检之女）[第216章]。'},
+ {id:'jinyuanbao',camp:'ally',sf:'赵凌旧部·私盐贩旧部 → 军官[第48章]',
+  xg:'忠谨缜密的旧部（由小旗、私盐贩旧部升颖川侯随军文案）[第97章]；念旧识人（“要认也是要认九爷的”）[第97章]。',
+  dj:'追随赵凌、自立门户成家。',gx:'赵家旧部（称傅庭筠“嫂子”、亲如家人）[第97/198章]。',
+  zy:'探信识人、赵凌布局助手。',
+  qj:'第48章取舍（主从情深、愿同生共死）；第97章升随军文案；第192章双喜（定亲石氏）；第276章布局（赴陕西先行）。',
+  jj:'娶石氏、自立门户成家[第198章]。'},
+ {id:'zheng3niang',camp:'ally',sf:'逃难妇人 → 赵家仆妇[第37/41章]',
+  xg:'坚韧感恩的忠仆（逃难妇人、卖身投靠、忠心冒死）[第41/93章]；察言观色的能手（已能胜任迎来送往、打点礼节）[第78章]。',
+  dj:'护主报恩、一家安身。',gx:'主仆（相知、托以持家）[第137章]。',
+  zy:'傅庭筠的持家臂膀。',
+  qj:'第41章郑三娘登场；第93章冒死翻墙报信；第137章拜访（委以持家）；第276章布局（患难夫妻，映照赵凌夫妇）。',
+  jj:'随赵家、患难夫妻[第276章]。'},
+ {id:'zheng3',camp:'ally',sf:'郑三娘之夫·原镖师 → 赵家管事[第44章]',
+  xg:'憨厚而见识过人的能仆（自陈曾做镖师，以家仆之身主动报案、周旋官非）[第91章]；办事周全能干。',
+  dj:'归附赵凌、护家安身。',gx:'主仆（赵家管事）。',
+  zy:'傅庭筠的办事臂膀（护主、周旋、送信）。',
+  qj:'第44章归附；第91章主动报案、周旋；第116章护叶守信；第276章布局（患难夫妻）。',
+  jj:'随赵家、患难夫妻[第276章]。'},
+ {id:'moyi',camp:'ally',sf:'满脸横肉的汉子·军官 → 将军（陌大将军）[第34章]',
+  xg:'由敌转盟的军中枭雄（临春镇“杀心渐明”、与赵凌由敌转同盟）[第34/47章]；由多疑隐忍、当众弃妾（鲁氏）[第99章]，转为对傅庭筠“敬服感激”、与赵凌结“通家之好”[第99/190章]。',
+  dj:'军中晋升、家族联姻。',gx:'由敌 → 同盟（傅庭筠改称“大伯”）[第190章]。',
+  zy:'赵凌军中盟友、家族联姻。',
+  qj:'第34章初见；第56章公开敌对、表面仍结好；第99章告状（当众弃鲁氏）；第146章领队催嫁戏谑；第190章结盟“通家之好”。',
+  jj:'家族联姻、官至将军（陌尚一门）。'},
+ {id:'wangfuren',camp:'ally',sf:'庄浪卫参将王义之妻（出身福州卫指挥使之家）[第78/81章]',
+  xg:'清瘦端庄、凛遵礼制的将门正室（说话尖锐、遵礼制）[第81章]；刚烈仗义、老练谋深（“姜还是老的辣”，以柔攻心、步步为营）[第93章]。',
+  dj:'守礼制、护家、张目布局。',gx:'邻里/长辈 → 知心（“亦母亦姐”）[第112章]。',
+  zy:'张掖时期傅庭筠最重要的护持者。',
+  qj:'第81章教训（当面受教）；第87章收留、出头；第92章以势相护；第112章知交惜别；第277章京都往来。',
+  jj:'与傅庭筠知交惜别[第112章]。'},
+ {id:'lvlaoye',camp:'ally',sf:'西安杨柳巷房东/商人 → 赵家管事·掌柜[第50章]',
+  xg:'忠厚念旧的老人（“主仆亦长辈”）[第153章]。',
+  dj:'尽力服侍旧东家、安度晚年。',gx:'主仆亦长辈（故旧情深）。',
+  zy:'傅庭筠西安扎根的助力、京都管事。',
+  qj:'第50章相劝（迁入新居）；第57章中秋节（掌柜—东家过渡）；第153章深情送别；第223章重返西安（重逢）。',
+  jj:'晚年返西安。'},
+ {id:'yeshouxin',camp:'ally',sf:'大通号东家/三掌柜（“老柴”）[第70/131章]（台账将“叶守信／叶三掌柜”合并为同一人）',
+  xg:'虎落平阳仍存气度的商界人物（由锦衣轻裘到贫病潦倒、身负刀伤，终重振气度）[第115/116章]；暗藏复起之图（被贬京都、神色坦然却有所图）[第131章]。',
+  dj:'复起、结交赵凌。',gx:'赵凌一方的商界助力（后与赵家合伙）[第212章]。',
+  zy:'助赵凌、共守机密、火中取栗；后期为赵凌放风、撑起赵家产业。',
+  qj:'第70章首现“八字胡”；第115章交底；第131章被贬京都；第132–134章共担机密、决意相助；第212章合伙；第309章频繁来访、起疑。',
+  jj:'助赵凌、频繁往来。'},
+ {id:'tangxiaojie',camp:'foe',sf:'借剑之唐小姐·名门[第102章]（闺名唐佩玲）',
+  xg:'孤注一掷的求爱者（求收留赵凌、与傅庭筠争夫）[第108章]；由自信从容到被逼露底、心态崩解，闺名“佩玲”暴露[第109章]。',
+  dj:'求嫁赵凌。',gx:'情敌（明争 → 落幕）。',
+  zy:'碾伯所醋海，促成傅赵定情。',
+  qj:'第102章狮吼（初见生敌意）；第103章欲随往寻人未果；第108章明求收留；第109章被逼露底；第110章明争落幕、旧谊了断。',
+  jj:'败退。'},
+ {id:'fengshi',camp:'villain',sf:'协守副总兵刘大人之小妾[第84章]',
+  xg:'僭越嚣张、工于心计的小妾（着正室大红色、赤金凤钗，蓄意纠缠）[第84章]；由跋扈到落魄、低声下气[第96章]。',
+  dj:'攀附权势、算计傅庭筠。',gx:'敌对（势不两立）[第86章]。',
+  zy:'张掖时期的主要反派（诓“赵凌阵亡”、图谋以傅庭筠配其弟冯大虎）。',
+  qj:'第84章初遇拉拢；第85章噩耗（以一诈取利）；第86章威逼利诱；第91章切割示好；第96–97章彻底被弃。',
+  jj:'被刘副总兵彻底抛弃[第97章]。'},
+ {id:'fengdahu',camp:'dead',sf:'地痞·冯家（刘副总兵一党）[第83章]',
+  xg:'色胆包天的恶霸（夜袭傅庭筠反遭噬）[第90章]。',
+  dj:'觊觎强占傅庭筠、仗冯家势力横行。',gx:'敌对（觊觎骚扰）。',
+  zy:'张掖大冲突的导火索。',
+  qj:'第83章骚扰（夜袭未遂）；第90章咬人（夜袭反遭噬）；第100章死（疑赵凌暗杀）。',
+  jj:'死（疑赵凌暗杀）[第100章]。'}
+];
+
+/* ============================ 简卡（73） ============================ */
+const JIAN=[
+ ['傅庭筀','傅庭筠同胞兄长','随父拒妹、与妹反目的兄长','傅家（华阴）'],
+ ['吴夫人','京都官眷（吴小姐之母）','见风使舵、以势取利的搅局者','吴家（京都）'],
+ ['三姐夫（沈任思）','三堂姐之夫·官员','端方缜密、向学自律的官员','朝堂/傅家（姻亲）'],
+ ['安心','赵凌新收小厮→心腹','办事稳妥、滴水不漏的心腹','赵家·赵凌一党'],
+ ['颖川侯（孟枢）','勋贵·甘肃/张掖权势','与赵凌由敌对到交好、倚重的勋贵；后绝交','朝堂（勋贵）·颖川侯府'],
+ ['秦飞羽（秦大人）','腾骥卫指挥使（大同副总兵）','赵凌一方、官至指挥使的武将','赵家·赵凌一党→朝堂（军）'],
+ ['绿萼','傅庭筠丫鬟','碧云庵伴侍、主仆相护的忠婢','傅家（华阴）'],
+ ['寒烟','傅庭筠丫鬟','碧云庵伴侍、主仆同心的忠婢','傅家（华阴）'],
+ ['樊妈妈','傅家仆妇','碧云庵伴侍、监视傅庭筠的傅家仆妇','傅家（华阴）'],
+ ['孙妈妈','傅家仆妇','参与处置傅庭筠、随侍的傅家仆妇','傅家（华阴）'],
+ ['依桐','傅庭筠旧婢','出嫁后家道中落、感念旧主的旧仆','傅家（华阴）→ 赵家'],
+ ['折柳','傅庭筠丫鬟','碧云庵伴侍、殒于血案的丫鬟','傅家（华阴）'],
+ ['剪草','傅庭筠丫鬟','碧云庵伴侍、殒于血案的丫鬟','傅家（华阴）'],
+ ['修竹家的','五太太身边仆妇','代夫人探问、如媒妁的忠仆','傅家（华阴）'],
+ ['果慧大师','碧云庵庵主','收留傅庭筠、慈悲的庵主','碧云庵'],
+ ['左氏（大堂嫂）','傅家大堂嫂','傅庭筠在傅家所敬之嫂；左俊杰之姐','傅家（华阴）'],
+ ['大伯母（大太太）','傅家大太太','与陈妈妈同站傅家一边的女眷','傅家（华阴）'],
+ ['四太太（四伯母）','傅家四太太·五堂姐之母','傅家女眷，五堂姐之母','傅家（华阴）'],
+ ['六婶婶','傅家六房','傅家六房女眷','傅家（华阴）'],
+ ['七堂姐','傅庭筠七堂姐·嫁白家','六太太嫡长女、遇事稳重的丰腴妇人','傅家（华阴）→ 白家'],
+ ['十六爷（穆王）','气质洒脱的男子·穆王','赵凌旧识/一党、终继位为帝的潜龙','赵家·赵凌一党→朝堂（穆王一党）'],
+ ['莲生','眉目清秀的男子→莲生公公','城隍庙一线随赵凌→后为内廷','赵家·赵凌一党→朝堂（内廷）'],
+ ['陶牧','陌毅友人→赵凌一方（陶大人）','由陌毅一方转赵凌一方、官至陶大人','陌家→赵家'],
+ ['林迟','陌毅友人→赵凌一方（林大人）','由陌毅一方转赵凌一方、暗相呼应的友人','陌家→赵家'],
+ ['小五','赵凌部众','临春镇随从、与阿森结怨的随从','赵家·赵凌一党'],
+ ['陈六','赵凌部众','临春镇随从','赵家·赵凌一党'],
+ ['冯老四（冯四爷）','冯家人物','临潼拦路、赵凌初挫强敌的冯家人物','冯家'],
+ ['鲁成','鲁指挥使','与赵凌结交、信任的军职上司','朝堂（军）'],
+ ['鲁氏（鲁姨娘）','陌毅妾','出身西北却带江南婉约、惯以柔顺行事的妾室','陌家'],
+ ['雪梅','鲁氏贴身婢女','鲁氏婢女，被傅庭筠训诫','陌家·鲁氏'],
+ ['刘副总兵（刘大人）','协守副总兵','因宠妾失序、倚颖川侯之势被弹劾罢职','朝堂（军）'],
+ ['王义','分守庄浪参将','王家当家人、王夫人之夫，与赵凌往来','王家（张掖/庄浪）'],
+ ['王大小姐（靖潼）','王义长女','王夫人之女，后嫁阿森','王家'],
+ ['王二小姐（婧怡）','王义次女','王夫人之女，曾缠阿森','王家'],
+ ['赵鸣','庄浪卫屯田管事→碾伯卫佥事','世故精明、谄媚好吹嘘的军吏','朝堂（军）'],
+ ['司百户','民和镇百户','碾伯所邻里、借宿结缘的百户','朝堂（军）'],
+ ['何秀林','赵凌新交→后袭职的军中人物','与赵凌往来、后袭职的军中人物','赵家·赵凌一党'],
+ ['萧氏（萧姨娘）','颖川侯如夫人','趁王夫人离张掖而出头、气焰渐显的宠妾','颖川侯府'],
+ ['黎娘','王夫人陪房','王夫人陪房、常伴傅庭筠','王家'],
+ ['陈石氏','陈云生长媳','京都官眷、傅庭筠好友兼媒人','京都官眷'],
+ ['计夫人','本司胡同计家（计大人之妻）','与俞家亲戚、后暗觉俞家衰败','计家'],
+ ['陌夫人','陌毅之母','同情相惜、与傅庭筠交谊渐密的陌家祖母','陌家'],
+ ['张太太','张家湾张巡检之妻','杨玉成岳母、相看赞赏杨玉成','朝堂'],
+ ['张巡检','张家湾巡检司巡检使（世袭）','官场人物、杨玉成岳家','朝堂'],
+ ['张家小姐（张氏）','张巡检之女→杨玉成之妻','出身巡检之家、耳濡目染官场人情的媳妇','朝堂'],
+ ['严举人（严先生）','赵家西席','屡试落第、谋馆养家的失意塾师','赵家（西席）'],
+ ['安道长（安师傅）','九宫山道士','年逾古稀、爱赵家子、主动授徒的方外高人','方外'],
+ ['杨桐（杨世兄·杨侗）','京都士人','往来赵家、随安道长的士人','赵家（交游）'],
+ ['厉夫人','浙江布政使厉大人之妻','京都官眷、八面玲珑却溺子','厉家'],
+ ['厉十三','厉家幼子','性倔、诈伤、顽劣纠缠呦呦','厉家'],
+ ['郭公子','求亲呦呦之公子','求亲呦呦、后被闵小姐害死的公子','郭家'],
+ ['莲心','吴姨娘贴身丫鬟','忠仆、与吴姨娘命运相连、渐世故','吴家/俞家'],
+ ['泽兰','俞夫人屋三等丫鬟','家生子、俞夫人心腹探子、轻视范氏','俞家'],
+ ['束妈妈','俞夫人身边妈妈','俞夫人心腹、能屈能伸','俞家（南京/京都）'],
+ ['俞槐安','俞家大总管','俞家总管、送帖传话','俞家（南京/京都）'],
+ ['赵棋','赵家新任族长（淞江）','文雅谦和、助赵凌收拢宗族','赵家（淞江宗族）'],
+ ['五姐夫','姚家子·五堂姐之夫','实诚害羞、为妻撑场、文雅好读书','姚家'],
+ ['七姐夫','傅庭筠七姐夫（白家）','热心奔走、守口严的白家人','白家'],
+ ['春饼（沈大表哥）','三堂姐长子','老成守礼、暗恋呦呦、立志苦读的少年','傅家/沈家'],
+ ['元宵（沈二表哥）','三堂姐次子','贪吃顽皮、纯良憨直的少年','傅家/沈家'],
+ ['六堂姐','傅家六堂姐','傅家闺秀、聚会叙旧','傅家（华阴）'],
+ ['十堂妹','傅家十堂妹','傅家闺秀','傅家（华阴）'],
+ ['十一堂妹（十一堂姐）','傅家十一堂妹','傅家闺秀','傅家（华阴）'],
+ ['八堂姐','傅家八堂姐','傅家闺秀、立祠相聚','傅家（华阴）'],
+ ['十一堂姐','傅家十一堂姐','傅家闺秀、立祠相聚','傅家（华阴）'],
+ ['吕太太','吕老爷之妻','杨柳巷旧识、曾替赵凌守产业的老人','赵家·赵凌一党'],
+ ['呦呦（赵晖）','赵凌长女','傅庭筠长女，渐长懂事、招呼客人','赵家·赵凌一党'],
+ ['曦哥儿（赵曦）','赵凌长子','傅庭筠长子，憨直、亲近父亲','赵家·赵凌一党'],
+ ['旭哥儿','赵凌之子','傅庭筠之子，手快、顽皮、根骨好','赵家·赵凌一党'],
+ ['昀哥儿（赵昀·乳名初一）','赵凌第三子','傅庭筠第三子，降生、长成','赵家·赵凌一党'],
+ ['晗哥儿（赵晗）','赵凌三子','傅庭筠三子，降生、壮实','赵家·赵凌一党'],
+ ['西平侯','勋贵·世代镇守甘州','甘州世侯，赵凌复仇对象、与俞家同盟共祸','朝堂（勋贵）·西平侯府'],
+ ['肁廷宣（肁先生，法号正和）','皇上潜邸军师/谋士','清高重情、视赵凌如子的谋士','朝堂（潜邸一党）']
+];
+
+/* ============================ 龙套（54） ============================ */
+const LT=[
+ ['七爷','李家凹族人，生怜兼起意、转念又惧族议[第24章]。'],
+ ['程管事','七爷管事，奉命备车马[第24章]。'],
+ ['阿宝','丰原李家少年，随七爷仆从[第23章]。'],
+ ['阿赐','丰原李家少年，随七爷仆从[第23章]。'],
+ ['李家十一姑奶奶','李家凹族长之女，与傅庭筠赠答之交[第25/27章]。'],
+ ['七太太','临潼同行妇人[第27章]。'],
+ ['马二','傅庭筠出行车夫[第61章]。'],
+ ['米婆子','碧云庵相关婆子、旧案提及[第9章]。'],
+ ['吴秉成','“熊掌都督”·五军都督府都督，战死（宫廷政变）[第133章]。'],
+ ['丁克文','战死大将[第137章]。'],
+ ['钟公公','宫中内侍[第143章]。'],
+ ['章公公','宫中内侍[第144章]。'],
+ ['孟小姐','辅国公府十九小姐·颖川侯从妹，勋贵[第144章]。'],
+ ['孙太太','本司胡同孙家、京都官眷[第145章]。'],
+ ['主持大师','潭柘寺主持，逢迎宠臣、势利世故[第236章]。'],
+ ['知客','寺院知客[第236章]。'],
+ ['小沙弥','小和尚[第236章]。'],
+ ['吕婆子','稳婆，慈中带厉、接生老手（呦呦、长子）[第164章]。'],
+ ['长安县令','投赵凌的地方官[第233章]。'],
+ ['李运兰','原甘肃总兵[第71章]。'],
+ ['冯百户（西平侯八公子）','永昌卫百户·西平侯八公子，与赵凌结梁子[第72/73章]。'],
+ ['冯通','西平侯长子·分守凉州副总兵[第74章]。'],
+ ['王丹（王副总兵）','甘肃副总兵[第180章]。'],
+ ['何福','甘肃总兵[第161章]。'],
+ ['陌尚（陌大将军）','广东总兵[第168章]。'],
+ ['李再','广西总兵[第168章]。'],
+ ['陈中铭','官员，与俞敬修以利相交[第199/249章]。'],
+ ['松烟','俞敬修随从[第175章]。'],
+ ['石小姐（石氏）','金元宝之妻[第192章]。'],
+ ['陌颜','陌家女眷[第214章]。'],
+ ['彭氏','叶三掌柜长媳、大通号[第216章]。'],
+ ['陈夫人','陈指挥使夫人、京都官眷[第212章]。'],
+ ['大善','为首衙役[第92章]。'],
+ ['江大人','夹在冯家与侯府间和稀泥的地方官[第92章]。'],
+ ['善宁道长','张掖道观道长、方外人物[第94章]。'],
+ ['魏石（魏爷）','傅庭筠请的护院[第83章]。'],
+ ['岑大人','攀附报恩、提供情报的官员[第262章]。'],
+ ['蒋大人（蒋森）','山东布政使左参议[第259章]。'],
+ ['周学士','翰林院[第259章]。'],
+ ['郑大人','大理寺[第259章]。'],
+ ['王大人','太仆寺[第259章]。'],
+ ['简护卫','护送傅庭筠东归的赵家护卫[第121章]。'],
+ ['郝太太（郝夫人）','郝剑锋之妻，京都官眷、帮夫牵线[第269章]。'],
+ ['俞国栋','俞家子弟[第314章]。'],
+ ['俞国材','俞家子弟[第314章]。'],
+ ['赵祥（赵凌父）','赵凌之父，追封嘉议大夫[第219章]。'],
+ ['孟氏（赵凌母）','赵凌之母，追封淑人/夫人[第219章]。'],
+ ['董翰文','陕西巡抚、封疆大臣[第18章]。'],
+ ['沈世充（沈阁老）','内阁首辅，朝局背景人物[第18章]。'],
+ ['莫英伯','前文渊阁大学士、礼部尚书[第18章]。'],
+ ['太皇太后（汪皇后）','宫中尊长，寿诞、忆当年赐婚、特招垂问傅庭筠[第134/279章]。'],
+ ['皇后娘娘','宫中尊长，千秋节、傅庭筠初觐蒙赞[第144/278章]。'],
+ ['陈云生','金吾卫前卫指挥使[第145章]。'],
+ ['李云翔','旗手卫左卫同知[第145章]。']
+];
+
+/* ============================ 阵营着色（速览用） ============================ */
+function campColor(s){
+  if(/俞家/.test(s)) return CAMP.villain.color;
+  if(/赵家|王家|赵家·|沈|张|京都官眷/.test(s)) return CAMP.ally.color;
+  if(/陌家|冯家|厉家|吴家/.test(s)) return CAMP.foe.color;
+  if(/朝堂|计家|潜邸/.test(s)) return CAMP.neutral.color;
+  if(/方外|碧云庵/.test(s)) return CAMP.key.color;
+  if(/傅家|白家|姚家/.test(s)) return '#c9a961';
+  if(/郭家/.test(s)) return CAMP.dead.color;
+  return '#8ea0bb';
+}
+
+/* ============================ SVG 渲染 ============================ */
+const NS='http://www.w3.org/2000/svg';
+const byId={}; NODES.forEach(function(n){byId[n.id]=n;});
+function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);
+  for(const k in attrs)e.setAttribute(k,attrs[k]); if(parent)parent.appendChild(e); return e;}
+function hexA(hex,a){const n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
+/* 阵营色混入深底 → 不透明填充，遮住从节点后方穿过的连线 */
+function solid(hex,t){
+  const n=parseInt(hex.slice(1),16), bg=[10,11,16];
+  const r=Math.round(bg[0]*(1-t)+(n>>16&255)*t),
+        g=Math.round(bg[1]*(1-t)+(n>>8&255)*t),
+        b=Math.round(bg[2]*(1-t)+(n&255)*t);
+  return 'rgb('+r+','+g+','+b+')';
+}
+function qpt(A,C,B,t){const u=1-t;
+  return [u*u*A.x+2*u*t*C.x+t*t*B.x, u*u*A.y+2*u*t*C.y+t*t*B.y];}
+function minDistToNodes(A,C,B){
+  let m=Infinity; const S=[]; for(let i=0;i<=20;i++)S.push(qpt(A,C,B,i/20));
+  for(let i=0;i<NODES.length;i++){
+    const n=NODES[i]; if(n===A||n===B) continue;
+    for(let j=0;j<S.length;j++){
+      const d=Math.hypot(n.x-S[j][0], n.y-S[j][1]);
+      if(d-n.r<m){ m=d-n.r; if(m<0) return m; }
+    }
+  }
+  return m;
+}
+/* 二次贝塞尔：控制点自适应 —— 挑一条尽量不穿过其它节点的弧 */
+function bestCurve(A,B){
+  const dx=B.x-A.x, dy=B.y-A.y, len=Math.hypot(dx,dy)||1;
+  const nx=-dy/len, ny=dx/len, mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+  let best=null;
+  const KS=[0,0.07,0.13,0.19,0.26,0.34];
+  for(const sg of [1,-1]){
+    for(const k of KS){
+      const C={x:mx+nx*sg*k*len, y:my+ny*sg*k*len};
+      const sc=minDistToNodes(A,C,B);
+      if(!best||sc>best.sc) best={sc:sc,C:C};
+      if(best.sc>18) break;
+    }
+    if(best.sc>18) break;
+  }
+  return best.C;
+}
+function fsFor(name,r){
+  const base = r>=42?19 : r>=32?13.5 : r>=27?11.8 : r>=24?10.8 : 10.2;
+  const fit = (2*r-9)/Math.max(1,name.length);
+  return Math.max(8.4, Math.min(base, fit));
+}
+
+const svg=document.getElementById('graph');
+const gE=mk('g',{},svg), gN=mk('g',{},svg);
+const edgeEls=[], nodeEls={};
+const adj={}; NODES.forEach(function(n){adj[n.id]=[];});
+const nbr={}; NODES.forEach(function(n){nbr[n.id]=new Set();});
+
+EDGES.forEach(function(e){
+  const A=byId[e.a], B=byId[e.b]; if(!A||!B) return;
+  const col=KIND[e.k]||'#8ea0bb';
+  const C=bestCurve(A,B);
+  const g=mk('g',{class:'edge','data-k':e.k},gE);
+  mk('path',{d:'M'+A.x+' '+A.y+' Q'+C.x.toFixed(1)+' '+C.y.toFixed(1)+' '+B.x+' '+B.y,
+    stroke:col, 'stroke-width': e.k==='cp'?3:(e.hero?1.8:1.15),
+    'stroke-opacity': e.hero?0.62:0.30, 'stroke-linecap':'round'},g);
+  const lp=qpt(A,C,B,0.5);
+  const t=mk('text',{x:lp[0].toFixed(1), y:(lp[1]-5).toFixed(1), class:'elabel',
+    'text-anchor':'middle', fill:col},g);
+  t.textContent=e.label||'';
+  edgeEls.push({g:g,e:e,el:t});
+  adj[e.a].push(e); adj[e.b].push(e);
+  nbr[e.a].add(e.b); nbr[e.b].add(e.a);
+});
+
+NODES.forEach(function(n){
+  const c=CAMP[n.camp];
+  const g=mk('g',{class:'node','data-id':n.id,'data-camp':n.camp},gN);
+  mk('circle',{cx:n.x,cy:n.y,r:n.r,fill:solid(c.color,0.16),stroke:c.color,'stroke-width':1.8},g);
+  const fs=fsFor(n.name,n.r);
+  const tx=mk('text',{x:n.x,y:n.y+fs*0.36,class:'nname','text-anchor':'middle',
+    fill:c.color,'font-size':fs.toFixed(1)},g);
+  tx.textContent=n.name;
+  const rl=mk('text',{x:n.x,y:n.y+n.r+14,class:'nrole','text-anchor':'middle'},g);
+  rl.textContent=n.role;
+  nodeEls[n.id]={g:g};
+});
+
+const tip=document.getElementById('tip');
+let state={mode:'none',id:null}, curCamp=null;
+
+function apply(){
+  edgeEls.forEach(function(o){
+    let on=false;
+    if(state.mode==='node') on=(o.e.a===state.id||o.e.b===state.id);
+    o.g.classList.toggle('on',on);
+    o.g.classList.toggle('off', state.mode!=='none' && !on);
+  });
+  NODES.forEach(function(n){
+    let on=true;
+    if(state.mode==='node') on=(n.id===state.id||nbr[state.id].has(n.id));
+    if(state.mode==='camp') on=(n.camp===state.camp);
+    nodeEls[n.id].g.classList.toggle('off',!on);
+  });
+}
+function relHtml(id){
+  const list=adj[id]; if(!list.length) return '';
+  const rows=list.map(function(e){
+    const other=e.a===id?byId[e.b]:byId[e.a];
+    const oc=CAMP[other.camp].color;
+    return '<div class="tip-rel"><b style="color:'+oc+'">'+other.name+'</b><span>'+
+      (e.label||'—')+(e.ch?' <span style="color:#6f788c">['+e.ch+']</span>':'')+'</span></div>';
+  }).join('');
+  return '<div class="rl-title">关 系 · '+list.length+' 条</div><div class="tip-rels'+(list.length>12?' two':'')+'">'+rows+'</div>';
+}
+function moveTip(ev){
+  const pad=16, w=tip.offsetWidth, h=tip.offsetHeight;
+  let x=ev.clientX+pad, y=ev.clientY+pad;
+  if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+  if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+  if(x<8)x=8; if(y<8)y=8;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+function bindNode(el){
+  const id=el.getAttribute('data-id'), n=byId[id], c=CAMP[n.camp];
+  el.addEventListener('mouseenter',function(ev){
+    state={mode:'node',id:id}; apply();
+    tip.classList.toggle('wide', adj[id].length>12);
+    tip.innerHTML='<div class="tip-name" style="color:'+c.color+'">'+n.name+'</div>'+
+      '<div class="tip-role">'+n.role+' · <span style="color:'+c.color+'">'+c.name+'</span></div>'+
+      '<div class="tip-desc">'+n.desc+'</div>'+
+      '<div class="tip-tags">'+n.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>'+
+      relHtml(id);
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){
+    tip.style.display='none';
+    state = curCamp? {mode:'camp',camp:curCamp} : {mode:'none'};
+    apply();
+  });
+}
+svg.querySelectorAll('.node').forEach(bindNode);
+
+/* 阵营筛选 */
+const fw=document.getElementById('filters');
+Object.keys(CAMP).forEach(function(k){
+  const b=document.createElement('div');
+  b.className='fbtn'; b.textContent=CAMP[k].name;
+  b.dataset.camp=k; b.dataset.color=CAMP[k].color;
+  b.style.borderColor=hexA(CAMP[k].color,.45);
+  b.addEventListener('click',function(){
+    curCamp = (curCamp===k)? null : k;
+    fw.querySelectorAll('.fbtn').forEach(function(x){
+      const on = x.dataset.camp===curCamp;
+      x.classList.toggle('active',on);
+      x.style.background = on? x.dataset.color : 'rgba(255,255,255,0.03)';
+      x.style.color = on? '#0b0b10' : '';
+    });
+    state = curCamp? {mode:'camp',camp:curCamp} : {mode:'none'};
+    tip.style.display='none'; apply();
+  });
+  fw.appendChild(b);
+});
+
+/* 图例 */
+const lg=document.getElementById('legend');
+Object.keys(CAMP).forEach(function(k){
+  const d=document.createElement('div'); d.className='lg';
+  d.innerHTML='<i style="background:'+CAMP[k].color+';box-shadow:0 0 7px '+hexA(CAMP[k].color,.9)+'"></i>'+CAMP[k].name;
+  lg.appendChild(d);
+});
+
+/* 详卡 */
+const dxg=document.getElementById('dxGrid');
+DX.forEach(function(d){
+  const name=(byId[d.id]&&byId[d.id].name)||d.id;
+  const camp=CAMP[d.camp];
+  const el=document.createElement('div'); el.className='dx';
+  el.innerHTML=
+    '<div class="dx-h"><span class="dx-dot" style="background:'+camp.color+';box-shadow:0 0 7px '+hexA(camp.color,.9)+'"></span>'+
+    '<span class="dx-nm">'+name+'</span><span class="dx-camp">'+camp.name+'</span><span class="dx-arw">▶</span></div>'+
+    '<div class="dx-b"><div class="dx-in">'+
+      '<div class="dx-row"><b>身份</b>｜'+d.sf+'</div>'+
+      '<div class="dx-row"><b>性格</b>｜'+d.xg+'</div>'+
+      '<div class="dx-row"><b>动机</b>｜'+d.dj+'</div>'+
+      '<div class="dx-row"><b>与主角关系</b>｜'+d.gx+'</div>'+
+      '<div class="dx-row"><b>关键作用</b>｜'+d.zy+'</div>'+
+      '<div class="dx-row"><b>行动轨迹</b>｜'+d.qj+'</div>'+
+      '<div class="dx-row"><b>结局</b>｜'+d.jj+'</div>'+
+    '</div></div>';
+  el.querySelector('.dx-h').addEventListener('click',function(){ el.classList.toggle('open'); });
+  dxg.appendChild(el);
+});
+
+/* 简卡速览 */
+const mg=document.getElementById('miniGrid');
+JIAN.forEach(function(r){
+  const col=campColor(r[3]);
+  const el=document.createElement('div'); el.className='mini';
+  el.innerHTML='<div class="mini-top"><span class="mini-dot" style="background:'+col+';box-shadow:0 0 6px '+hexA(col,.85)+'"></span>'+
+    '<span class="mini-nm">'+r[0]+'</span><span class="mini-gu">'+r[3]+'</span></div>'+
+    '<div class="mini-sf">'+r[1]+'</div><div class="mini-txt">'+r[2]+'</div>';
+  mg.appendChild(el);
+});
+
+/* 龙套速览 */
+const ltg=document.getElementById('ltGrid');
+LT.forEach(function(r){
+  const el=document.createElement('div'); el.className='lt';
+  el.innerHTML='<b>'+r[0]+'</b>　'+r[1];
+  ltg.appendChild(el);
+});
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

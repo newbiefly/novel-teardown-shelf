@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 · 阵营博弈 ·《花开锦绣》</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --orange:#ffa94d; --slate:#8ea0bb; --rose:#f783ac;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:#dfe3ee;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:350px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.11), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 28px;padding-right:200px;background:rgba(8,8,12,0.78);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:#8b93a7;letter-spacing:2px;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;
+  backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.wrap{max-width:1360px;margin:0 auto;padding:26px 26px 80px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:2px;}
+.hero .quote{margin:18px auto 0;max-width:840px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 28px 24px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.fbtn{font-size:11.5px;letter-spacing:1px;padding:5px 13px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#aab2c6;
+  transition:.18s;user-select:none;}
+.fbtn:hover{color:#fff;background:rgba(255,255,255,0.07);}
+.fbtn.active{color:#0b0b10;font-weight:600;}
+.hint{font-size:11px;color:#6f788c;letter-spacing:.5px;margin:0 0 12px;}
+
+.graph-wrap{border-radius:14px;background:rgba(0,0,0,0.22);
+  border:1px solid rgba(255,255,255,0.05);position:relative;}
+#graph{width:100%;height:auto;display:block;}
+
+.node{cursor:pointer;transition:opacity .2s;}
+.node .shape{transition:stroke-width .18s, filter .18s;}
+.node:hover .shape{stroke-width:3.4;filter:drop-shadow(0 0 9px currentColor);}
+.node.off{opacity:0.1;}
+.node text{pointer-events:none;user-select:none;}
+.nname{font-weight:600;letter-spacing:.5px;}
+.ntag{font-size:10px;letter-spacing:.5px;font-weight:500;}
+.nsub{font-size:10px;letter-spacing:.5px;fill:#828ba1;}
+
+.zone{fill:none;stroke-dasharray:2 7;stroke-width:1;opacity:.5;}
+.zone-lb{font-size:12px;letter-spacing:5px;font-weight:700;opacity:.5;}
+
+.edge path{transition:stroke-opacity .18s;fill:none;}
+.edge .elabel{font-size:10.5px;letter-spacing:.3px;opacity:.55;transition:opacity .18s;
+  paint-order:stroke;stroke:#08080c;stroke-width:4.5px;stroke-linejoin:round;font-weight:500;}
+.edge.on path{stroke-opacity:1 !important;}
+.edge.on .elabel{opacity:1;font-weight:700;}
+.edge.off path{stroke-opacity:0.05 !important;}
+.edge.off .elabel{opacity:0.05;}
+
+.legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.lg.line i{width:16px;height:0;border-radius:0;border-top:2px solid;background:none!important;}
+.lg-sep{width:100%;height:0;}
+
+/* 力量消长曲线 */
+.chart-wrap{border-radius:14px;background:rgba(0,0,0,0.22);
+  border:1px solid rgba(255,255,255,0.05);position:relative;}
+#chart{width:100%;height:auto;display:block;}
+.gl{stroke:rgba(255,255,255,0.06);stroke-width:1;}
+.gl.lb{stroke:rgba(255,255,255,0.1);}
+.axl{font-size:10px;fill:#6f788c;}
+.xt{font-size:11px;fill:#98a1b6;letter-spacing:.3px;font-weight:600;}
+.xc{font-size:9.5px;fill:#66708a;letter-spacing:.2px;}
+.sline{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+  transition:stroke-opacity .2s, stroke-width .2s;}
+.sline.dim{stroke-opacity:0.12 !important;}
+.sdot{transition:opacity .2s;}
+.guide{stroke:rgba(232,201,122,0.55);stroke-width:1;stroke-dasharray:3 3;opacity:0;transition:opacity .15s;}
+.guide.on{opacity:1;}
+.hband{fill:transparent;cursor:crosshair;}
+
+#tip{position:fixed;z-index:999;display:none;max-width:370px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+.tip-name{font-size:16px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.9;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-desc b{color:#e8e6e3;font-weight:600;}
+.tip-rel-cnt{font-size:10px;color:#6f788c;letter-spacing:1.5px;margin-top:11px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:9px;}
+.tip-row{display:flex;align-items:center;gap:8px;font-size:11.5px;line-height:1.9;color:#c3cadb;}
+.tip-row i{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+.tip-row .v{margin-left:auto;font-weight:700;font-variant-numeric:tabular-nums;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;}
+.rnd{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:15px 17px;position:relative;overflow:hidden;transition:.2s;}
+.rnd:hover{border-color:rgba(201,169,97,0.35);background:rgba(201,169,97,0.045);}
+.rnd::before{content:attr(data-no);position:absolute;right:12px;top:6px;font-size:30px;font-weight:800;
+  color:rgba(201,169,97,0.09);letter-spacing:-1px;}
+.rnd h4{margin:0 0 4px;font-size:13.5px;color:var(--gold2);letter-spacing:.8px;
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;position:relative;}
+.rnd h4 .ch{font-size:10px;color:#8b93a7;font-weight:500;padding:1px 8px;border-radius:999px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);white-space:nowrap;}
+.rnd .ln{font-size:11.5px;line-height:1.85;color:#b6bdd0;margin-top:8px;
+  padding:6px 10px;border-radius:7px;background:rgba(255,255,255,0.02);
+  border-left:2px solid rgba(255,255,255,0.14);}
+.rnd .ln b{font-weight:700;letter-spacing:.5px;}
+.rnd .ln.act{border-left-color:rgba(255,107,107,0.65);}
+.rnd .ln.act b{color:#ff8f8f;}
+.rnd .ln.mid{border-left-color:rgba(116,192,252,0.6);}
+.rnd .ln.mid b{color:#9ecbff;}
+.rnd .ln.res{border-left-color:rgba(105,219,124,0.6);background:rgba(105,219,124,0.05);}
+.rnd .ln.res b{color:#9fe6ac;}
+
+/* 终局 */
+.end-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+.end{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:15px 17px;border-left:3px solid var(--slate);}
+.end h4{margin:0 0 8px;font-size:13.5px;letter-spacing:.8px;display:flex;
+  align-items:center;justify-content:space-between;gap:8px;}
+.end h4 .ch{font-size:10px;color:#8b93a7;font-weight:500;}
+.end p{margin:0;font-size:12px;line-height:1.95;color:#b6bdd0;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:24px;letter-spacing:3px;}
+  .section{padding:30px 16px 20px;}
+  .topbar{padding-right:120px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="dim">阵营博弈</div>
+</div>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>阵营博弈</h1>
+    <div class="sub">《花开锦绣》· 吱吱 · 310 章 · 8 大势力 · 10 个关键回合 · 明代 · 世家宅斗 · 复仇成长</div>
+    <div class="quote">她被家族灌毒、被表哥诬陷"私通"，一介女子从华阴走到京都——直到把摇摆的娘家、边镇与朝中新贵，一并收进自己的阵营。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">势力格局</div>
+    <h3 class="sec-title">以 赵凌一党（从龙集团）为轴 · 傅家（娘家）× 俞家（宿敌）两端</h3>
+    <p class="sec-note">方框＝势力／阵营，椭圆＝主角一方。悬停任意节点 → 核心成员 · 核心利益 · 资源筹码 · 靠山 · 结局；点下方色块 → 按势力归属筛选。</p>
+    <div class="filters" id="filters"></div>
+    <p class="hint">节点色＝势力归属；连线色＝关系性质（绿＝同盟 · 红＝敌对 · 橙虚线＝表面合作/暗通 · 金＝联姻/恩赏 · 灰＝利用牵制 · 蓝＝中立观望）。悬停时高亮相关线与邻接节点。</p>
+    <div class="graph-wrap">
+      <svg id="graph" viewBox="0 0 1360 900" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">力量消长</div>
+    <h3 class="sec-title">8 大势力 · 10 个回合的力量消长</h3>
+    <p class="sec-note">横轴＝10 个关键回合（按章节锚点排序，标签为「原回合号 · 章节」）；纵轴＝势力强弱（0–100，综合权势·资源·朝局位势）。悬停任一回合列 → 查看该回合各方态势；悬停曲线 → 单条高亮。</p>
+    <div class="chart-wrap">
+      <svg id="chart" viewBox="0 0 1360 520" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="chartLegend"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">回合推演</div>
+    <h3 class="sec-title">10 个关键回合 · 谁出手 / 手段 / 结果</h3>
+    <p class="sec-note">按数据源顺序（回合1–10），每张书签卡＝一回合；<span style="color:#ff8f8f">红</span>＝谁出招，<span style="color:#9ecbff">蓝</span>＝谁接招 / 手段，<span style="color:#9fe6ac">绿</span>＝结果。</p>
+    <div class="cards" id="roundWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">终局落点</div>
+    <h3 class="sec-title">8 大势力的兴衰落点</h3>
+    <p class="sec-note">全书收束时各方归宿——赵家隐于幕后得胜，俞家全线崩塌，旧勋贵退避，傅家衰败。</p>
+    <div class="end-grid" id="endWrap"></div>
+  </div>
+
+  <div class="foot">《花开锦绣》拆解 · 蓝图 13 · 阵营博弈</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============================ 势力 / 关系 色板 ============================ */
+const CAMP = {
+  core: {name:'主角 · 从龙集团',      color:'#e8c97a'},
+  fu:   {name:'傅家（娘家 / 摇摆）',   color:'#ffa94d'},
+  yu:   {name:'俞家（宿敌）',          color:'#ff6b6b'},
+  ge:   {name:'朝堂 · 阁老线',         color:'#74c0fc'},
+  hou:  {name:'朝堂 · 侯府线',         color:'#b197fc'},
+  si:   {name:'朝堂 · 寺监/吏部/地方', color:'#8ea0bb'},
+  nei:  {name:'内廷 · 皇权宗室',       color:'#f783ac'},
+  xi:   {name:'西安 / 甘州地方',       color:'#69db7c'}
+};
+const KIND = {
+  foe:  {name:'敌对', color:'#ff6b6b'},
+  ally: {name:'同盟', color:'#69db7c'},
+  coop: {name:'表面合作 / 暗通', color:'#ffa94d'},
+  marry:{name:'联姻 / 恩赏', color:'#e8c97a'},
+  use:  {name:'利用 / 牵制', color:'#8ea0bb'},
+  watch:{name:'中立 / 观望', color:'#74c0fc'}
+};
+
+/* ============================ 势力节点 ============================ */
+const NODES = [
+  {id:'core', name:'赵凌一党', sub:'军功 · 从龙集团', camp:'core', shape:'ellipse',
+   x:640,y:470,rx:146,ry:76,
+   members:'赵凌、金元宝、杨玉成、郑三、阿森、秦飞羽、何秀林、叶三掌柜、肁先生',
+   demand:'立足京都、复仇扳倒俞家／西平侯',
+   res:'军功、圣眷、从龙之功、腾骥卫／五城兵马司／羽林卫人脉、大通号财路',
+   backer:'皇上、穆王（新帝），早期靠颖川侯',
+   end:'隐于幕后得胜——赵凌握西平侯把柄、坐大；傅庭筠入宫觐见受封 [第279、310、314章]',
+   ch:'第12、136、279、314'},
+
+  {id:'fu', name:'傅家（华阴）', sub:'旧文官门第', camp:'fu', shape:'rect',
+   x:215,y:300,w:210,h:74,
+   members:'太夫人、傅大老爷、傅五老爷、傅五太太、傅庭筀；姻亲（韩城苏家／临潼姚家／白家）',
+   demand:'保门第清誉、仕途起复',
+   res:'旧文官体系、姻亲网、闺阁女眷网络',
+   backer:'与南京俞家联姻、太夫人掌家威望',
+   end:'衰败之势尽显——傅五老爷"不堪用"被同僚冷落、分家内斗、傅庭筠主动疏离 [第225、254、259章]',
+   ch:'第3、14、122—124、259'},
+
+  {id:'yu', name:'俞家（南京·京都）', sub:'南京 · 阁老门第', camp:'yu', shape:'rect',
+   x:1175,y:265,w:210,h:74,
+   members:'俞阁老（俞国梁）、俞夫人（束氏）、俞敬修、范氏／费氏／吴姨娘',
+   demand:'争首辅之位、家族昌盛、压制傅赵',
+   res:'俞敬修状元入翰林、内阁沈阁老一系、京都女眷圈（计家姻亲）、西平侯外将',
+   backer:'沈阁老／内阁、与西平侯暗通',
+   end:'全线崩塌——俞阁老流放病死、俞敬修革职为庶民、南京没落 [第314章]',
+   ch:'第155、242、314'},
+
+  {id:'ge', name:'朝堂 · 阁老线', sub:'内阁 · 首辅之争', camp:'ge', shape:'rect',
+   x:1055,y:415,w:220,h:74,
+   members:'沈世充（沈阁老）、莫英伯、钱东林、陈丹亭、俞阁老',
+   demand:'首辅之位、党争胜负',
+   res:'票拟／吏部铨选权、门生故吏',
+   backer:'皇上之意',
+   end:'沈阁老致仕、莫英伯革职，钱东林接首辅兼吏部尚书；俞阁老首辅落空 [第246章]',
+   ch:'第111、246、249'},
+
+  {id:'hou', name:'朝堂 · 侯府线', sub:'边镇军权 · 勋贵', camp:'hou', shape:'rect',
+   x:1055,y:715,w:220,h:74,
+   members:'颖川侯（孟枢）、西平侯、武定侯、隆平侯（李桐）、辅国公府',
+   demand:'军权、边镇利益、结社联姻',
+   res:'边镇兵权、联姻、从龙之功',
+   backer:'太皇太后／皇后、皇上',
+   end:'颖川侯退避、与赵凌绝交 [第188章]；西平侯事发（勾结俞阁老私卖战马）[第314章]',
+   ch:'第96、188、314'},
+
+  {id:'si', name:'朝堂 · 寺监/吏部/地方', sub:'吏部 · 寺监 · 地官', camp:'si', shape:'rect',
+   x:1175,y:565,w:230,h:74,
+   members:'郝剑锋、吴大人、吴昕、计大人、金铿（大理寺正卿）、长安县令、西安知府',
+   demand:'官职升迁、办案话语权',
+   res:'吏部职缺、大理寺审案、顺天府／五城兵马司治安系统、情报网',
+   backer:'依附钱东林／沈阁老等，后期靠向赵凌',
+   end:'郝剑锋上位、吴大人擢吏部侍郎；大理寺成终局博弈焦点 [第261、307、313章]',
+   ch:'第255、307、313'},
+
+  {id:'nei', name:'内廷', sub:'皇权 · 宗室', camp:'nei', shape:'rect',
+   x:1055,y:115,w:200,h:74,
+   members:'太皇太后（汪皇后）、皇后、钟公公、章公公',
+   demand:'恩结从龙功臣、宗室体面',
+   res:'赐婚、宫中赏赐、懿旨',
+   backer:'—',
+   end:'太皇太后赐婚之恩；皇上借皇后懿旨阻赵家与九边结亲 [第299、301章]；念旧赦死罪 [第314章]',
+   ch:'第136、144、299、314'},
+
+  {id:'xi', name:'西安 / 甘州地方', sub:'边镇 · 盐利 · 内宅', camp:'xi', shape:'rect',
+   x:215,y:760,w:210,h:74,
+   members:'冯家／刘副总兵一系、冯大虎、冯氏；王义／王夫人、鲁成、江大人',
+   demand:'边镇地盘、盐利、内宅权势',
+   res:'地方兵权、私盐生意、西平侯／颖川侯援引',
+   backer:'西平侯（冯家侧）／颖川侯（王义侧）',
+   end:'冯家由旧怨转求和、立约结盟；西安官眷争相投帖结交赵家 [第224、270、277章]',
+   ch:'第60、96、277'}
+];
+
+/* ============================ 关系连线 ============================ */
+const EDGES = [
+  {a:'core', b:'yu',  k:'foe',  hero:1, label:'宿仇 · 诬陷私通／灌毒', ch:'第3、14、17、314'},
+  {a:'core', b:'fu',  k:'foe',  hero:1, label:'父命杀女 · 决裂', ch:'第14、122—124、141'},
+  {a:'core', b:'hou', k:'coop', hero:1, label:'借颖川侯之势 → 绝交／斗西平侯', ch:'第65、188、314'},
+  {a:'core', b:'nei', k:'marry',hero:1, label:'赐婚之恩 · 宗室背书', ch:'第136、144、299'},
+  {a:'core', b:'si',  k:'ally', label:'寺监／吏部靠向赵 · 大理寺焦点', ch:'第261、307、313'},
+  {a:'core', b:'xi',  k:'ally', label:'冯家旧怨 → 立约结盟', ch:'第224、274、277'},
+  {a:'core', b:'ge',  k:'use',  label:'党争枢纽 · 后期靠向', ch:'第246、271、307', curv:1},
+  {a:'fu',   b:'yu',  k:'coop', label:'婚约 → 旧案同盟', ch:'第9、179、181', curv:1},
+  {a:'yu',   b:'hou', k:'coop', label:'暗通 · 私卖战马共祸', ch:'第258、314'},
+  {a:'yu',   b:'ge',  k:'ally', label:'俞阁老争首辅（同线）', ch:'第155、246', curv:-1},
+  {a:'ge',   b:'si',  k:'ally', label:'阁老 → 门生故吏 · 吏部铨选', ch:'第255、261'},
+  {a:'nei',  b:'hou', k:'marry',label:'勋贵联姻网', ch:'第135、144、299'},
+  {a:'hou',  b:'xi',  k:'use',  label:'地方援引侯府（冯／王两系）', ch:'第74、96'},
+  {a:'si',   b:'xi',  k:'use',  label:'西安官眷投帖赵家', ch:'第224'},
+  {a:'ge',   b:'nei', k:'watch',label:'皇上之意 · 票拟', ch:'第111、246', curv:1}
+];
+
+/* ============================ 力量消长数据 ============================ */
+/* 顺序：core, fu, yu, ge, hou, si, nei, xi （与 NODES 一致） */
+const ROUNDS = [
+  {rid:'②', name:'私情案 · 移花接木', ch:'第3–17章',   anchor:3},
+  {rid:'①', name:'碧云庵灭口案',       ch:'第14–124章', anchor:14},
+  {rid:'③', name:'陌毅围杀赵凌',       ch:'第47–56章', anchor:47},
+  {rid:'④', name:'张掖侯府两系之争',   ch:'第84–97章', anchor:84},
+  {rid:'⑤', name:'宫变从龙 · 赐婚',    ch:'第133–137章',anchor:133},
+  {rid:'⑧', name:'左俊杰审讯',         ch:'第170–173章',anchor:170},
+  {rid:'⑥', name:'京都夹道街翻脸',     ch:'第179–184章',anchor:179},
+  {rid:'⑨', name:'西平侯贩马案',       ch:'第233–314章',anchor:233},
+  {rid:'⑦', name:'吏部左给事中之争',   ch:'第242–250章',anchor:242},
+  {rid:'⑩', name:'闵氏命案 · 俞家崩塌',ch:'第300–314章',anchor:300}
+];
+const ORDER = ['core','fu','yu','ge','hou','si','nei','xi'];
+const VAL = {
+  core:[20,28,30,42,62,66,72,78,80,88],
+  fu:  [62,58,55,55,48,44,40,34,44,30],
+  yu:  [40,42,44,46,48,46,66,50,42,12],
+  ge:  [45,46,46,48,46,46,52,48,60,64],
+  hou: [40,42,55,72,78,74,74,56,56,40],
+  si:  [38,40,42,44,46,48,48,48,54,60],
+  nei: [40,40,42,44,60,60,58,58,58,56],
+  xi:  [38,40,48,50,50,50,50,54,54,58]
+};
+
+/* ============================ 回合表 ============================ */
+const ROUND_TABLE = [
+  {no:'01', t:'碧云庵灭口案', ch:'第14、15、122—124章',
+   act:'傅家（陈妈妈等奉"大老爷之命"）就地处死傅庭筠',
+   mid:'赵凌救下傅庭筠（救命之恩确立）；多年后傅家（大太太、黎妈妈）灭口众丫鬟以掩构陷之罪',
+   res:'雨微作证、碧云庵血案与傅家灭口内幕揭出，成傅庭筠与傅家决裂的铁证'},
+  {no:'02', t:'"私情"案与移花接木', ch:'第3、4、9、16、17章',
+   act:'左俊杰向傅家谎称与傅庭筠"情投意合"，牵动议亲、陪嫁、颜面的房支博弈',
+   mid:'傅家五房（五太太、傅庭筠）vs 左俊杰；傅家为保名声定计，施"移花接木"——把"傅庭筠私情"转为"左俊杰失德"',
+   res:'傅家报丧退婚、拘禁其母，傅庭筠被逼离乡避祸；傅、俞两家婚约相互制衡'},
+  {no:'03', t:'陌毅／十六爷围杀赵凌', ch:'第47—56章',
+   act:'陌毅、陶牧（十六爷一方）议定对赵凌动手；陌毅监控收紧、下令对杨、金二人格杀勿论',
+   mid:'杨玉成旧部与傅庭筠结成营救同盟；赵凌改行"佯投十六爷以自保"，以玉成、元宝为底牌暗中布局',
+   res:'侯爷一系（林迟／神驽营）欲置赵凌于死地；赵凌借冯家兄弟之隙瓦解敌方，终由敌转同盟'},
+  {no:'04', t:'张掖冯氏／刘副总兵 vs 王夫人／颖川侯', ch:'第84—97章',
+   act:'冯氏（刘副总兵小妾）向傅庭筠正面发难；冯大虎倚刘副总兵之势夜劫',
+   mid:'王夫人（王义一系）借颖川侯之力压制冯氏、逼江大人就范；赵凌借颖川侯（林迟）之势周旋鲁成',
+   res:'颖川侯一系大胜（刘副总兵罢、王义升副总兵、陌毅升参将）；西平侯一系受挫（冯氏落魄、冯大虎成废人）'},
+  {no:'05', t:'宫变从龙与赐婚', ch:'第133—137章',
+   act:'穆王（湖广）起兵反；辅国公府—颖川侯旧怨浮现',
+   mid:'穆王兵不血刃入京、逼禅受位；颖川侯推举赵凌等四人入禁近侍卫',
+   res:'赵凌以"潜邸旧人"得近用，获"请太皇太后赐婚"之诺；辅国公、颖川侯一族（孟氏）功高势盛'},
+  {no:'06', t:'京都夹道街对峙与全面翻脸', ch:'第179—184章',
+   act:'俞阁老欲借傅家两位长辈（傅大老爷、傅五老爷倒向俞阁老）压傅庭筠；以"傅家认女"换傅庭筠不究俞敬修',
+   mid:'傅、赵夫妻同一阵线赴俞宅；傅庭筠以礼法反制、扬言"找俞阁老闹"，父女当众相抗',
+   res:'傅、赵 vs 俞家剑拔弩张、全面翻脸；傅家两老爷被俞阁老以"二乔"暗挟，俞家父子同心谋反击'},
+  {no:'07', t:'吏部左给事中之争', ch:'第242—250章',
+   act:'俞阁老为子谋吏部左给事中，借士人求进网运作',
+   mid:'傅庭筠借赵凌"从龙之功"人脉相助；靠肁先生（皇上旧军师）出手相助外家',
+   res:'朝局反转——沈阁老致仕、莫英伯革职，钱东林、陈丹亭入阁，俞阁老首辅落空；傅家借肁先生—皇上—钱东林之链得缺'},
+  {no:'08', t:'郭县丞告状案／左俊杰审讯', ch:'第170—173章',
+   act:'左俊杰落魄为乞丐、冒充秀才活动、暗思渔利',
+   mid:'金元宝、杨玉成由追捕转为掌控，并肩审敌；傅庭筠对峙转压倒',
+   res:'左俊杰招供"父命杀女"内情；俞家（俞敬修）与傅家（五老爷、大老爷）暗中勾连的旧账浮出'},
+  {no:'09', t:'西平侯贩马案', ch:'第233、258、274、277、314章',
+   act:'俞阁老与西平侯（边陲侯府）暗通；西平侯有求于俞阁老（京官）而与赵凌对立浮出',
+   mid:'赵凌旧怨升级布局；以冯家（冯老四）"西平侯—俞家"情报为献倒向赵凌，立约共谋',
+   res:'西平侯受何福挟制、寄望俞阁老而失望；终局西平侯事发（勾结俞阁老私卖战马），成俞家祸源'},
+  {no:'10', t:'闵氏命案与俞家坍塌', ch:'第300—314章',
+   act:'闵小姐与郭公子有婚约，却害死未婚夫，后成俞敬修外室、暗通',
+   mid:'郭家出手、郭公子被害案曝光；赵凌握西平侯把柄、联络郭家，筹"一网打尽"；吴姨娘暗中报信、倒向赵家',
+   res:'俞家内部分崩离析，郭家状告，西平侯将成俞家祸源；大理寺成博弈焦点、俞家拼死打点，终致俞家全线崩塌'}
+];
+
+/* ============================ 终局落点 ============================ */
+const ENDS = [
+  {camp:'yu',   name:'俞家（南京）',       ch:'第314章',
+   txt:'全线崩塌——俞阁老流放病死、俞敬修革职为庶民、南京没落；俞家与西平侯"同盟成共祸"。'},
+  {camp:'hou',  name:'西平侯府',           ch:'第310、314章',
+   txt:'事发——勾结俞阁老私卖战马，被赵凌握把柄、联络郭家扳倒。'},
+  {camp:'fu',   name:'傅家（华阴）',       ch:'第225、254、259章',
+   txt:'衰败之势尽显——傅五老爷因"不堪用"被同僚冷落、分家内斗、傅庭筠主动疏离；女眷网络重组。'},
+  {camp:'core', name:'赵凌一党（赵家）',   ch:'第279、310、314章',
+   txt:'隐于幕后得胜——赵凌握西平侯把柄、坐大；傅庭筠入宫觐见受封，一跃成京都瞩目人物。'},
+  {camp:'hou',  name:'颖川侯／旧勋贵',     ch:'第188、207章',
+   txt:'退避——"偏居一隅、不再管事"，与赵凌绝交仅存同僚之谊。'},
+  {camp:'ge',   name:'朝堂新局',           ch:'第246、307、314章',
+   txt:'沈阁老致仕、莫英伯革职，钱东林接首辅兼吏部尚书；郝剑锋上位、吴大人擢吏部侍郎，新贵靠向赵凌；皇上念旧赦死罪。'},
+  {camp:'nei',  name:'内廷／勋贵联姻网',   ch:'第299、301章',
+   txt:'太皇太后赐婚之恩、武定侯府／辅国公府／颖川侯家联姻；皇上不欲赵家与九边封疆结亲（借皇后懿旨阻婚）。'},
+  {camp:'xi',   name:'西安／甘州地方',     ch:'第224、270、277章',
+   txt:'冯家由旧怨转向求和、立约结盟；西安官府官眷争相投帖结交赵家。'}
+];
+
+/* ============================ 通用工具 ============================ */
+const NS='http://www.w3.org/2000/svg';
+const byId={}; NODES.forEach(function(n){byId[n.id]=n;});
+function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);
+  for(const k in attrs)e.setAttribute(k,attrs[k]); if(parent)parent.appendChild(e); return e;}
+function hexA(hex,a){const n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
+function solid(hex,t){
+  const n=parseInt(hex.slice(1),16), bg=[10,11,16];
+  const r=Math.round(bg[0]*(1-t)+(n>>16&255)*t),
+        g=Math.round(bg[1]*(1-t)+(n>>8&255)*t),
+        b=Math.round(bg[2]*(1-t)+(n&255)*t);
+  return 'rgb('+r+','+g+','+b+')';
+}
+function qpt(A,C,B,t){const u=1-t;
+  return [u*u*A.x+2*u*t*C.x+t*t*B.x, u*u*A.y+2*u*t*C.y+t*t*B.y];}
+const tip=document.getElementById('tip');
+function moveTip(ev){
+  const pad=16,w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+pad,y=ev.clientY+pad;
+  if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+  if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+  if(x<8)x=8; if(y<8)y=8;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+
+/* ============================ 一、势力格局图 ============================ */
+const svg=document.getElementById('graph');
+const gZone=mk('g',{},svg), gE=mk('g',{},svg), gN=mk('g',{},svg);
+
+const ZONES=[
+  {x:60, y:230,w:320,h:640, color:'#ffa94d', label:'傅 家 / 地 方'},
+  {x:420,y:250,w:440,h:560, color:'#e8c97a', label:'赵 凌 一 党'},
+  {x:900,y:55, w:420,h:820, color:'#ff6b6b', label:'俞 家 / 朝 堂 / 内 廷'}
+];
+ZONES.forEach(function(z){
+  mk('rect',{class:'zone',x:z.x,y:z.y,width:z.w,height:z.h,rx:16,stroke:z.color},gZone);
+  const t=mk('text',{class:'zone-lb',x:z.x+14,y:z.y+22,fill:z.color},gZone);
+  t.textContent=z.label;
+});
+
+const edgeEls=[], nodeEls={}, adj={}, nbr={};
+NODES.forEach(function(n){adj[n.id]=[]; nbr[n.id]=new Set();});
+
+EDGES.forEach(function(e,idx){
+  const A=byId[e.a], B=byId[e.b]; if(!A||!B) return;
+  const col=KIND[e.k].color;
+  const dx=B.x-A.x, dy=B.y-A.y, len=Math.hypot(dx,dy)||1;
+  const nx=-dy/len, ny=dx/len;
+  const mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+  const sign=(e.curv!==undefined)? e.curv : (idx%2? 1:-1);
+  const off=0.1*len*sign;
+  const C={x:mx+nx*off, y:my+ny*off};
+  const g=mk('g',{class:'edge','data-k':e.k,'data-a':e.a,'data-b':e.b},gE);
+  mk('path',{d:'M'+A.x+' '+A.y+' Q'+C.x.toFixed(1)+' '+C.y.toFixed(1)+' '+B.x+' '+B.y,
+    stroke:col,'stroke-width': e.hero?2.4:(e.k==='foe'?1.4:1.1),
+    'stroke-opacity': e.hero?0.6:0.34,'stroke-linecap':'round',
+    'stroke-dasharray': (e.k==='use'||e.k==='watch'||e.k==='coop')?'5 5':'none'},g);
+  const lp=qpt(A,C,B,0.5);
+  const t=mk('text',{x:lp[0].toFixed(1), y:(lp[1]-5).toFixed(1), class:'elabel',
+    'text-anchor':'middle', fill:col},g);
+  t.textContent=e.label;
+  edgeEls.push({g:g,e:e,el:t});
+  adj[e.a].push(e); adj[e.b].push(e);
+  nbr[e.a].add(e.b); nbr[e.b].add(e.a);
+});
+
+NODES.forEach(function(n){
+  const c=CAMP[n.camp];
+  const g=mk('g',{class:'node','data-id':n.id,'data-camp':n.camp},gN);
+  if(n.shape==='ellipse'){
+    mk('ellipse',{class:'shape',cx:n.x,cy:n.y,rx:n.rx,ry:n.ry,fill:solid(c.color,0.16),
+      stroke:c.color,'stroke-width':2.2},g);
+    const tn=mk('text',{x:n.x,y:n.y-4,class:'nname','text-anchor':'middle',fill:c.color,'font-size':16},g);
+    tn.textContent=n.name;
+    const ts=mk('text',{x:n.x,y:n.y+18,class:'nsub','text-anchor':'middle'},g);
+    ts.textContent=n.sub;
+  }else{
+    mk('rect',{class:'shape',x:n.x-n.w/2,y:n.y-n.h/2,width:n.w,height:n.h,rx:13,
+      fill:solid(c.color,0.15),stroke:c.color,'stroke-width':1.8},g);
+    const tn=mk('text',{x:n.x,y:n.y-6,class:'nname','text-anchor':'middle',fill:c.color,'font-size':13.5},g);
+    tn.textContent=n.name;
+    const ts=mk('text',{x:n.x,y:n.y+15,class:'ntag','text-anchor':'middle',fill:hexA(c.color,0.85)},g);
+    ts.textContent=n.sub;
+  }
+  nodeEls[n.id]={g:g};
+});
+
+/* 交互 */
+let state={mode:'none',id:null};
+function apply(){
+  edgeEls.forEach(function(o){
+    let on=false;
+    if(state.mode==='node') on=(o.e.a===state.id||o.e.b===state.id);
+    o.g.classList.toggle('on',on);
+    o.g.classList.toggle('off',state.mode==='node' && !on);
+  });
+  NODES.forEach(function(n){
+    let on=true;
+    if(state.mode==='node') on=(n.id===state.id || nbr[state.id].has(n.id));
+    if(state.mode==='camp') on=(n.camp===state.camp);
+    nodeEls[n.id].g.classList.toggle('off',!on);
+  });
+}
+function bindNode(el){
+  const id=el.getAttribute('data-id'), n=byId[id], c=CAMP[n.camp];
+  el.addEventListener('mouseenter',function(ev){
+    state={mode:'node',id:id}; apply();
+    tip.innerHTML='<div class="tip-name" style="color:'+c.color+'">'+n.name+'</div>'+
+      '<div class="tip-role">'+n.sub+' · <span style="color:'+c.color+'">'+c.name+'</span></div>'+
+      '<div class="tip-desc"><b>核心成员：</b>'+n.members+'<br>'+
+      '<b>核心利益：</b>'+n.demand+'<br>'+
+      '<b>资源／筹码：</b>'+n.res+'<br>'+
+      '<b>靠　山：</b>'+n.backer+'<br>'+
+      '<b>结局落点：</b>'+n.end+'</div>'+
+      '<div class="tip-rel-cnt">关 系 线 · '+adj[id].length+' 条 · 锚点 '+n.ch+'</div>';
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){
+    tip.style.display='none'; state={mode:curCamp?'camp':'none',camp:curCamp}; apply();
+  });
+}
+svg.querySelectorAll('.node').forEach(bindNode);
+
+let curCamp=null;
+const fw=document.getElementById('filters');
+Object.keys(CAMP).forEach(function(k){
+  const b=document.createElement('div');
+  b.className='fbtn'; b.textContent=CAMP[k].name;
+  b.style.borderColor=hexA(CAMP[k].color,.45);
+  b.addEventListener('click',function(){
+    curCamp=(curCamp===k)?null:k;
+    fw.querySelectorAll('.fbtn').forEach(function(x){
+      const on=x.dataset.camp===curCamp;
+      x.classList.toggle('active',on);
+      x.style.background=on? x.dataset.color : 'rgba(255,255,255,0.03)';
+      x.style.borderColor=on? x.dataset.color : hexA(x.dataset.color,.45);
+    });
+    state=curCamp? {mode:'camp',camp:curCamp} : {mode:'none'};
+    tip.style.display='none'; apply();
+  });
+  b.dataset.camp=k; b.dataset.color=CAMP[k].color;
+  fw.appendChild(b);
+});
+
+const lg=document.getElementById('legend');
+Object.keys(CAMP).forEach(function(k){
+  const d=document.createElement('div'); d.className='lg';
+  d.innerHTML='<i style="background:'+CAMP[k].color+';box-shadow:0 0 7px '+hexA(CAMP[k].color,.9)+'"></i>'+CAMP[k].name;
+  lg.appendChild(d);
+});
+const sep=document.createElement('div'); sep.className='lg-sep'; lg.appendChild(sep);
+Object.keys(KIND).forEach(function(k){
+  const d=document.createElement('div'); d.className='lg line';
+  d.innerHTML='<i style="border-top-color:'+KIND[k].color+';'+(k==='coop'?'border-top-style:dashed;':'')+'"></i>'+KIND[k].name;
+  lg.appendChild(d);
+});
+
+/* ============================ 二、力量消长曲线 ============================ */
+(function(){
+  const CW=1360, CH=520, L=92, R=40, T=44, B=70;
+  const pw=CW-L-R, ph=CH-T-B;
+  const xOf=function(i){return L + i*(pw/(ROUNDS.length-1));};
+  const yOf=function(v){return T + (1 - v/100)*ph;};
+  const chart=document.getElementById('chart');
+  const gGrid=mk('g',{},chart), gLine=mk('g',{},chart), gDot=mk('g',{},chart), gHover=mk('g',{},chart);
+
+  /* 网格与刻度 */
+  [0,20,40,60,80,100].forEach(function(v){
+    mk('line',{class:'gl'+(v%50===0?' lb':''),x1:L,y1:yOf(v).toFixed(1),x2:CW-R,y2:yOf(v).toFixed(1)},gGrid);
+    const t=mk('text',{class:'axl',x:L-12,y:(yOf(v)+3.5).toFixed(1),'text-anchor':'end'},gGrid);
+    t.textContent=v;
+  });
+  ROUNDS.forEach(function(r,i){
+    mk('line',{class:'gl',x1:xOf(i).toFixed(1),y1:T,x2:xOf(i).toFixed(1),y2:CH-B},gGrid);
+    const t1=mk('text',{class:'xt',x:xOf(i).toFixed(1),y:CH-B+22,'text-anchor':'middle'},gGrid);
+    t1.textContent=r.rid+' '+r.name;
+    const t2=mk('text',{class:'xc',x:xOf(i).toFixed(1),y:CH-B+37,'text-anchor':'middle'},gGrid);
+    t2.textContent=r.ch;
+  });
+
+  /* 曲线 */
+  const lineEls={};
+  ORDER.forEach(function(fid){
+    const c=CAMP[fid].color, vals=VAL[fid];
+    let d='';
+    vals.forEach(function(v,i){ d+=(i?' L':'M')+xOf(i).toFixed(1)+' '+yOf(v).toFixed(1); });
+    const g=mk('g',{},gLine);
+    mk('path',{d:d,stroke:c,'stroke-opacity':0.9,class:'sline'},g);
+    const dots=[];
+    vals.forEach(function(v,i){
+      dots.push(mk('circle',{class:'sdot',cx:xOf(i),cy:yOf(v),r:3,fill:c,stroke:'#08080c','stroke-width':1.2},gDot));
+    });
+    lineEls[fid]={g:g,dots:dots};
+  });
+
+  /* 图例 */
+  const cl=document.getElementById('chartLegend');
+  ORDER.forEach(function(fid){
+    const d=document.createElement('div'); d.className='lg line';
+    d.innerHTML='<i style="border-top-color:'+CAMP[fid].color+'"></i>'+byId[fid].name;
+    cl.appendChild(d);
+  });
+
+  /* 悬停回合列 */
+  const guide=mk('line',{class:'guide',y1:T,y2:CH-B},gHover);
+  const hband=[];
+  ROUNDS.forEach(function(r,i){
+    const half=(pw/(ROUNDS.length-1))/2;
+    const rect=mk('rect',{class:'hband',x:(xOf(i)-half).toFixed(1),y:T,width:(half*2).toFixed(1),height:ph},gHover);
+    hband.push(rect);
+    rect.addEventListener('mouseenter',function(ev){
+      guide.setAttribute('x1',xOf(i)); guide.setAttribute('x2',xOf(i));
+      guide.classList.add('on');
+      const rank=ORDER.map(function(fid){return {fid:fid,v:VAL[fid][i]};})
+                      .sort(function(a,b){return b.v-a.v;});
+      let rows='';
+      rank.forEach(function(o){
+        rows+='<div class="tip-row"><i style="background:'+CAMP[o.fid].color+'"></i>'+byId[o.fid].name+
+              '<span class="v" style="color:'+CAMP[o.fid].color+'">'+o.v+'</span></div>';
+      });
+      tip.innerHTML='<div class="tip-name" style="color:#e8c97a">回合'+r.rid+' · '+r.name+'</div>'+
+        '<div class="tip-role">'+r.ch+' · 章节锚点 第'+r.anchor+'章</div>'+
+        '<div class="tip-desc" style="margin-top:8px;border-top:none;padding-top:6px">'+rows+'</div>';
+      tip.style.display='block'; moveTip(ev);
+    });
+    rect.addEventListener('mousemove',moveTip);
+    rect.addEventListener('mouseleave',function(){
+      guide.classList.remove('on'); tip.style.display='none';
+    });
+  });
+
+  /* 悬停单条曲线 → 高亮 */
+  ORDER.forEach(function(fid){
+    lineEls[fid].g.addEventListener('mouseenter',function(){
+      ORDER.forEach(function(o){
+        lineEls[o].g.querySelector('.sline').classList.toggle('dim',o!==fid);
+      });
+    });
+    lineEls[fid].g.addEventListener('mouseleave',function(){
+      ORDER.forEach(function(o){ lineEls[o].g.querySelector('.sline').classList.remove('dim'); });
+    });
+  });
+})();
+
+/* ============================ 三、回合表 ============================ */
+const rw=document.getElementById('roundWrap');
+ROUND_TABLE.forEach(function(r){
+  const d=document.createElement('div'); d.className='rnd';
+  d.setAttribute('data-no',r.no);
+  d.innerHTML='<h4>回合 '+r.no+' · '+r.t+'<span class="ch">'+r.ch+'</span></h4>'+
+    '<div class="ln act"><b>谁出招：</b>'+r.act+'</div>'+
+    '<div class="ln mid"><b>手段 / 接招：</b>'+r.mid+'</div>'+
+    '<div class="ln res"><b>结果：</b>'+r.res+'</div>';
+  rw.appendChild(d);
+});
+
+/* ============================ 四、终局落点 ============================ */
+const ew=document.getElementById('endWrap');
+ENDS.forEach(function(e){
+  const c=CAMP[e.camp];
+  const d=document.createElement('div'); d.className='end';
+  d.style.borderLeftColor=c.color;
+  d.innerHTML='<h4 style="color:'+c.color+'">'+e.name+'<span class="ch">'+e.ch+'</span></h4>'+
+    '<p>'+e.txt+'</p>';
+  ew.appendChild(d);
+});
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 情绪曲线 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>15 情绪曲线</h1>
+<blockquote>
+<p>逐章提取情绪基调（类型）+强度（★1-5）+名场面，汇成全书情绪走势，归纳节奏规律。<br>情绪类型字典：爽/虐/悬/燃/泪/反转/甜/谐。基于全书99章（第2-100章）&quot;情绪设计&quot;字段归纳。</p>
+</blockquote>
+<h2>全书情绪走势表</h2>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>情绪基调</th>
+<th>强度</th>
+<th>名场面（与基调对应）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2 荒谬悬案</td>
+<td>悬</td>
+<td>★3</td>
+<td>王地主儿子&quot;假刀真斩&quot;死不瞑目瞪着老父</td>
+</tr>
+<tr>
+<td>3 俗民周幸</td>
+<td>谐</td>
+<td>★2</td>
+<td>周幸进茶楼摸花生揉小孩头，30秒立人设</td>
+</tr>
+<tr>
+<td>4 青楼老鸨</td>
+<td>悬+谐</td>
+<td>★3</td>
+<td>陆酌光问&quot;许大人常吃什么糕点&quot;一句定真假</td>
+</tr>
+<tr>
+<td>5 学术交流</td>
+<td>甜+谐</td>
+<td>★2</td>
+<td>周幸&quot;家里除了擦屁股的草纸没别的纸&quot;</td>
+</tr>
+<tr>
+<td>6 赌坊东家</td>
+<td>悬</td>
+<td>★3</td>
+<td>萧涉川说出&quot;金子&quot;二字气氛瞬间凝固</td>
+</tr>
+<tr>
+<td>7 鬼医仵作</td>
+<td>悬+谐</td>
+<td>★3</td>
+<td>&quot;紧锁的门窗拦得住人拦不住声音&quot;密室破解</td>
+</tr>
+<tr>
+<td>8 山匪老大</td>
+<td>爽+燃</td>
+<td>★4</td>
+<td>齐煊一句&quot;赵大人&quot;压住全场——身份碾压</td>
+</tr>
+<tr>
+<td>9 生旦净末</td>
+<td>悬+反转</td>
+<td>★5</td>
+<td>众人齐称&quot;少主&quot;，周幸褪伪装露凛冽真面目</td>
+</tr>
+<tr>
+<td>10 言归正传</td>
+<td>悬</td>
+<td>★3</td>
+<td>周幸阵营全貌一次揭开</td>
+</tr>
+<tr>
+<td>11 愿者上钩</td>
+<td>爽+悬</td>
+<td>★4</td>
+<td>按心口测心跳——脸红心跳却不变</td>
+</tr>
+<tr>
+<td>12 粉戏夜宴</td>
+<td>悬</td>
+<td>★3</td>
+<td>赵恪美妾无脚步声身份成谜</td>
+</tr>
+<tr>
+<td>13 折腰渡酒</td>
+<td>爽+甜</td>
+<td>★5</td>
+<td>口衔酒杯旋转弯腰送饮——折腰渡酒</td>
+</tr>
+<tr>
+<td>14 月下红梅</td>
+<td>悬+反转</td>
+<td>★5</td>
+<td>陆酌光提邹业头颅走出，白梅如血——秀才变杀手</td>
+</tr>
+<tr>
+<td>15 车前有路</td>
+<td>悬+燃</td>
+<td>★3</td>
+<td>叶嵘绝境推门禀报邹业身世</td>
+</tr>
+<tr>
+<td>16 笔下乾坤</td>
+<td>谐+悬</td>
+<td>★3</td>
+<td>周幸落笔气质骤变&quot;千金散尽还复来&quot;</td>
+</tr>
+<tr>
+<td>17 无常令主</td>
+<td>悬+燃+甜</td>
+<td>★5</td>
+<td>咬指尖暧昧/失明夹刀&quot;偷袭瞎子不道德&quot;/名册交齐煊</td>
+</tr>
+<tr>
+<td>18 死里逃生</td>
+<td>燃+悬</td>
+<td>★4</td>
+<td>周幸暗中三箭连发射杀两刺客</td>
+</tr>
+<tr>
+<td>19 公堂问审</td>
+<td>燃+泪</td>
+<td>★5</td>
+<td>冯宗坦白&quot;许大人是个好官&quot;齐煊含泪&quot;我知道&quot;</td>
+</tr>
+<tr>
+<td>20 图穷匕见</td>
+<td>爽+燃</td>
+<td>★4</td>
+<td>49具白骨出土皇帝雷霆大怒</td>
+</tr>
+<tr>
+<td>21 君臣一心</td>
+<td>反转+虐</td>
+<td>★4</td>
+<td>赵执坦白&quot;军饷&quot;皇帝由怒转收/齐煊看腊梅懂苦心</td>
+</tr>
+<tr>
+<td>22 秀才难哄</td>
+<td>谐+甜</td>
+<td>★3</td>
+<td>陆酌光反问&quot;你能把赵恪杀了吗&quot;</td>
+</tr>
+<tr>
+<td>23 百密一疏</td>
+<td>甜→悬</td>
+<td>★4</td>
+<td>假银票哄笑→赵恪押出陶缨甜蜜骤断</td>
+</tr>
+<tr>
+<td>24 箭下求生</td>
+<td>虐+悬</td>
+<td>★5</td>
+<td>陶缨被打掉孩子/裹脚奔逃箭飞来——绝望求生</td>
+</tr>
+<tr>
+<td>25 不善射术</td>
+<td>燃+反转</td>
+<td>★5</td>
+<td>陆酌光箭偏&quot;不善射术&quot;/齐煊踹桌怒斥赵恪</td>
+</tr>
+<tr>
+<td>26 攻守易形</td>
+<td>燃+悬</td>
+<td>★5</td>
+<td>周幸脱棉衣现杀意反杀孟长乐/陆提灯现身</td>
+</tr>
+<tr>
+<td>27 除夕之夜</td>
+<td>甜+悬</td>
+<td>★4</td>
+<td>陆横抱周幸穿山林/&quot;有我守着&quot;</td>
+</tr>
+<tr>
+<td>28 孤男寡女</td>
+<td>悬</td>
+<td>★4</td>
+<td>陆指点周幸旧刀伤&quot;我知道那日来的是你&quot;</td>
+</tr>
+<tr>
+<td>29 守岁铜板</td>
+<td>甜</td>
+<td>★3</td>
+<td>子时烟花下塞铜板&quot;压岁钱&quot;</td>
+</tr>
+<tr>
+<td>30 以貌取人</td>
+<td>爽</td>
+<td>★4</td>
+<td>陆抽刀斩首&quot;我不喜欢别人动我的东西&quot;</td>
+</tr>
+<tr>
+<td>31 占山为王</td>
+<td>燃</td>
+<td>★4</td>
+<td>血泊横尸中&quot;我叫周幸，这个山头我接管了&quot;</td>
+</tr>
+<tr>
+<td>32 留风相邀</td>
+<td>悬</td>
+<td>★4</td>
+<td>触耳低语&quot;那就要分个你死我活了&quot;</td>
+</tr>
+<tr>
+<td>33 百年戏台</td>
+<td>虐</td>
+<td>★4</td>
+<td>赵恪要陆学狗叫，陆&quot;杀你三个数都不用&quot;</td>
+</tr>
+<tr>
+<td>34 不为人知</td>
+<td>悬</td>
+<td>★5</td>
+<td>透过柱影讲赫连三千将士火林死战</td>
+</tr>
+<tr>
+<td>35 股掌之间</td>
+<td>爽</td>
+<td>★5</td>
+<td>石碑现/踢丝线/火药连环炸——算尽赵恪</td>
+</tr>
+<tr>
+<td>36 枯梅再荣</td>
+<td>泪+悬</td>
+<td>★4</td>
+<td>递木雕腊梅揭许奉自戕，齐煊呜咽念&quot;老师&quot;</td>
+</tr>
+<tr>
+<td>37 夜山围困</td>
+<td>悬+爽</td>
+<td>★4</td>
+<td>隗谷雨甩毒粉、赵恪眼球溶解惨叫</td>
+</tr>
+<tr>
+<td>38 酌饮天光</td>
+<td>泪+燃</td>
+<td>★4</td>
+<td>老陆临死递铜板&quot;不救世枉为人&quot;</td>
+</tr>
+<tr>
+<td>39 献投名状</td>
+<td>爽+反转</td>
+<td>★5</td>
+<td>诓赵恪求饶套供后一刀贯心&quot;蠢货真好骗&quot;削首挑旗</td>
+</tr>
+<tr>
+<td>40 不谈风月</td>
+<td>甜+谐</td>
+<td>★3</td>
+<td>血地尸院檐下&quot;不赏雨只赏人&quot;</td>
+</tr>
+<tr>
+<td>41 初战告捷</td>
+<td>谐+虐</td>
+<td>★3</td>
+<td>医堂捡新郎官诙谐/赵执丧子雨中落泪</td>
+</tr>
+<tr>
+<td>42 兵分两路</td>
+<td>悬+虐</td>
+<td>★4</td>
+<td>密报吕鸿旧案却见满殿惶然——满朝共谋</td>
+</tr>
+<tr>
+<td>43 人之常情</td>
+<td>虐+甜</td>
+<td>★5</td>
+<td>15岁抱父亲头颅冻穿脊骨/医堂主动一吻救赎</td>
+</tr>
+<tr>
+<td>44 今日一别</td>
+<td>甜+泪</td>
+<td>★3</td>
+<td>上山祭空坟磕头许久不起</td>
+</tr>
+<tr>
+<td>45 暗潮汹涌</td>
+<td>悬+谐</td>
+<td>★3</td>
+<td>报&quot;周&quot;姓伙计态度翻天覆地</td>
+</tr>
+<tr>
+<td>46 闻风听哨</td>
+<td>悬+甜</td>
+<td>★3</td>
+<td>陆倚栏吹哨唤周幸&quot;无情像多情&quot;</td>
+</tr>
+<tr>
+<td>47 扪心自问</td>
+<td>悬+甜+谐</td>
+<td>★4</td>
+<td>照出官窑赈灾银自问&quot;官帽让人变畜生&quot;</td>
+</tr>
+<tr>
+<td>48 七窍玲珑</td>
+<td>悬+甜</td>
+<td>★3</td>
+<td>陆凝视发抖的周幸偏头问&quot;那要亲吗&quot;</td>
+</tr>
+<tr>
+<td>49 出尔反尔</td>
+<td>甜</td>
+<td>★4</td>
+<td>治病之吻感受脉搏从缓到快</td>
+</tr>
+<tr>
+<td>50 安身立命</td>
+<td>燃+悬</td>
+<td>★4</td>
+<td>陆折黑羽鸟脖颈&quot;杀你易如反掌&quot;</td>
+</tr>
+<tr>
+<td>51 灯火庆节</td>
+<td>悬</td>
+<td>★4</td>
+<td>龙影卫围死生路，断墙后行出吹哨的陆</td>
+</tr>
+<tr>
+<td>52 心有偏颇</td>
+<td>甜+燃</td>
+<td>★4</td>
+<td>尸山血海中以血指戴海棠簪花调情</td>
+</tr>
+<tr>
+<td>53 泠京生乱</td>
+<td>悬</td>
+<td>★4</td>
+<td>问樊蔚&quot;明哲保身算不算好人&quot;暗藏算计</td>
+</tr>
+<tr>
+<td>54 劫船之夜</td>
+<td>燃+虐</td>
+<td>★5</td>
+<td>袁察血染米舱托孤&quot;大帅他不该死&quot;呕血</td>
+</tr>
+<tr>
+<td>55 挟恩图报</td>
+<td>燃+虐</td>
+<td>★5</td>
+<td>雪晴服百味枯断后&quot;一命还一命&quot;以命报恩</td>
+</tr>
+<tr>
+<td>56 稚子无知</td>
+<td>泪+悬</td>
+<td>★4</td>
+<td>老陆强撑看陆咬包子&quot;眼中火苗烘热冰冷&quot;</td>
+</tr>
+<tr>
+<td>57 进退两难</td>
+<td>悬+谐</td>
+<td>★4</td>
+<td>周幸背弓月下&quot;忙得连上吊都没时间&quot;</td>
+</tr>
+<tr>
+<td>58 天外飞箭</td>
+<td>燃+悬</td>
+<td>★4</td>
+<td>陆浴血合围中以命换命，一箭穿贾起胜手</td>
+</tr>
+<tr>
+<td>59 百步穿杨</td>
+<td>燃+甜</td>
+<td>★5</td>
+<td>周幸不换位拉满弦淡吐&quot;找死&quot;破&quot;快则不准&quot;</td>
+</tr>
+<tr>
+<td>60 恶果不休</td>
+<td>燃+虐</td>
+<td>★4</td>
+<td>逐条点破郑琪旧伤宣判死期</td>
+</tr>
+<tr>
+<td>61 同室操戈</td>
+<td>悬</td>
+<td>★4</td>
+<td>皇帝将凭空名单拍出案面裂痕</td>
+</tr>
+<tr>
+<td>62 大动肝火</td>
+<td>虐+悬</td>
+<td>★4</td>
+<td>逐客&quot;庙小容不下你&quot;，陆捏碎茶杯气晕念&quot;骗子&quot;</td>
+</tr>
+<tr>
+<td>63 悄自留心</td>
+<td>甜+悬</td>
+<td>★4</td>
+<td>夜半套玉扳指，周幸警觉&quot;想收买什么&quot;</td>
+</tr>
+<tr>
+<td>64 收获颇丰</td>
+<td>甜+泪</td>
+<td>★4</td>
+<td>还银镯并入衣襟&quot;又完成老陆一件麻烦事&quot;</td>
+</tr>
+<tr>
+<td>65 千里寻信</td>
+<td>甜+悬</td>
+<td>★4</td>
+<td>甜蜜表象下压低声为爱人查命&quot;绝非好事&quot;</td>
+</tr>
+<tr>
+<td>66 各行其是</td>
+<td>悬+反转</td>
+<td>★4</td>
+<td>赵执砸破郑逸头却强压怒火命&quot;当没见过&quot;</td>
+</tr>
+<tr>
+<td>67 功败垂成</td>
+<td>虐+悬</td>
+<td>★5</td>
+<td>船准时靠岸齐煊落泪&quot;你说过这次会赢&quot;</td>
+</tr>
+<tr>
+<td>68 计出万全</td>
+<td>反转+燃</td>
+<td>★5</td>
+<td>&quot;并无兵戈&quot;→翻开名册见&quot;兵部尚书&quot;翻盘</td>
+</tr>
+<tr>
+<td>69 谈情说爱</td>
+<td>甜+悬</td>
+<td>★5</td>
+<td>借含酒欺身分一口醇香，烛映缠绵剪影</td>
+</tr>
+<tr>
+<td>70 师出有名</td>
+<td>燃+悬</td>
+<td>★4</td>
+<td>陈守善揭&quot;装傻为活命&quot;，半跪请樊仲卓结盟</td>
+</tr>
+<tr>
+<td>71 时局纷更</td>
+<td>悬+虐</td>
+<td>★4</td>
+<td>皇帝晾崔慧殿外，两信对照君臣猜忌</td>
+</tr>
+<tr>
+<td>72 皮里阳秋</td>
+<td>谐+悬</td>
+<td>★3</td>
+<td>陆告&quot;瞎状&quot;周幸反将一军，崔慧夹中间冒汗</td>
+</tr>
+<tr>
+<td>73 勤俭持家</td>
+<td>谐+悬</td>
+<td>★3</td>
+<td>编&quot;二十四岁嫁穷夫&quot;苦情戏十指相扣逗陆</td>
+</tr>
+<tr>
+<td>74 逢场作戏</td>
+<td>甜+悬</td>
+<td>★4</td>
+<td>陆掐下巴用刀片剃眉，周幸看到&quot;为夫模样&quot;</td>
+</tr>
+<tr>
+<td>75 祸从口出</td>
+<td>燃+反转</td>
+<td>★5</td>
+<td>秦焕痴醉吐&quot;传位诏书&quot;，三法司现身认出赫连之女</td>
+</tr>
+<tr>
+<td>76 劫数难逃</td>
+<td>悬+甜</td>
+<td>★4</td>
+<td>隔门&quot;你走开我会轻松许多&quot;暧昧拉满</td>
+</tr>
+<tr>
+<td>77 三思而行</td>
+<td>虐+悬</td>
+<td>★4</td>
+<td>齐煊读郑欣诅咒绝笔瘫坐在地</td>
+</tr>
+<tr>
+<td>78 殊途同归</td>
+<td>燃+悬</td>
+<td>★5</td>
+<td>高楼如旗&quot;我只是周幸，为让百姓活着&quot;立志</td>
+</tr>
+<tr>
+<td>79 山重水复</td>
+<td>燃+虐</td>
+<td>★5</td>
+<td>陆搂周幸入怀护身洞口炸塌</td>
+</tr>
+<tr>
+<td>80 柳暗花明</td>
+<td>虐+泪</td>
+<td>★4</td>
+<td>16岁&quot;我凭什么起誓&quot;母亲逼誓血书&quot;好好活着&quot;</td>
+</tr>
+<tr>
+<td>81 吊命之药</td>
+<td>甜+虐</td>
+<td>★4</td>
+<td>黑暗中强吻夺药逼吞，化为缠绵深吻</td>
+</tr>
+<tr>
+<td>82 秋后算账</td>
+<td>燃+谐</td>
+<td>★4</td>
+<td>齐煊越制跪呈卷宗告发，半朝下跪请命跪满地</td>
+</tr>
+<tr>
+<td>83 镜花水月</td>
+<td>虐+悬</td>
+<td>★5</td>
+<td>密信六死一成&quot;陆敛&quot;落&quot;成&quot;，真相与将死双虐</td>
+</tr>
+<tr>
+<td>84 欠债还钱</td>
+<td>悬+虐</td>
+<td>★4</td>
+<td>陆误入现身，李言归闭眼不愿面对</td>
+</tr>
+<tr>
+<td>85 雨夜惊心</td>
+<td>虐+悬+反转</td>
+<td>★5</td>
+<td>陆背残足孩子入雨，孩子高举短刀狠刺其背</td>
+</tr>
+<tr>
+<td>86 万般由命</td>
+<td>泪+虐</td>
+<td>★5</td>
+<td>擦净血污颤声&quot;就当我求你&quot;多年未落之泪滴落</td>
+</tr>
+<tr>
+<td>87 宝物易主</td>
+<td>甜+泪</td>
+<td>★4</td>
+<td>反系玉竹亲唇角&quot;好好活着&quot;</td>
+</tr>
+<tr>
+<td>88 巧设连环</td>
+<td>甜+悬+谐</td>
+<td>★4</td>
+<td>改情诗哄陆和好，出房唇色红润&quot;活生生的了&quot;</td>
+</tr>
+<tr>
+<td>89 借刀杀人</td>
+<td>悬+燃</td>
+<td>★4</td>
+<td>银纱裹身孤立&quot;站出背后千军万马的架势&quot;</td>
+</tr>
+<tr>
+<td>90 斩草除根</td>
+<td>燃+爽</td>
+<td>★5</td>
+<td>接枪跃入血海一枪贯穿玄狼后心钉地</td>
+</tr>
+<tr>
+<td>91 精心罗网</td>
+<td>悬+爽</td>
+<td>★5</td>
+<td>皇帝拆底簿见调用记录肝胆俱裂瘫坐</td>
+</tr>
+<tr>
+<td>92 君臣相隙</td>
+<td>反转+悬</td>
+<td>★4</td>
+<td>&quot;天下姓齐还是姓赵&quot;君臣情谊彻底崩裂</td>
+</tr>
+<tr>
+<td>93 天作之合</td>
+<td>甜+虐</td>
+<td>★5</td>
+<td>纸钱中吐血&quot;我爱你，不要如此待我&quot;被拉入喜堂拜堂</td>
+</tr>
+<tr>
+<td>94 官逼民反</td>
+<td>悬+虐</td>
+<td>★4</td>
+<td>难民振臂高呼，亲兵卫夜围暴打强抓青壮</td>
+</tr>
+<tr>
+<td>95 莫望天援</td>
+<td>燃+爽</td>
+<td>★5</td>
+<td>山头吹羌笛为暴动百姓伴奏&quot;这天下总归是你们的&quot;</td>
+</tr>
+<tr>
+<td>96 天下一统</td>
+<td>虐+悬</td>
+<td>★5</td>
+<td>赵执对肉汤疯狂呕吐抠喉——14岁人肉汤记忆引爆</td>
+</tr>
+<tr>
+<td>97 皇城惊变</td>
+<td>燃+泪</td>
+<td>★5</td>
+<td>荣国公献赫连枪，周幸持父枪挑翻陈晋亮明&quot;家父赫连钦&quot;</td>
+</tr>
+<tr>
+<td>98 新君归位</td>
+<td>燃+爽</td>
+<td>★5</td>
+<td>登白玉阶举遗诏厉问&quot;齐宥，累累罪名认是不认&quot;</td>
+</tr>
+<tr>
+<td>99 遗臭万年</td>
+<td>虐+悬</td>
+<td>★5</td>
+<td>李言归捧赵执冷手放头顶&quot;来生只想做一只羊&quot;</td>
+</tr>
+<tr>
+<td>100 荒腔走板</td>
+<td>反转+泪+甜</td>
+<td>★5</td>
+<td>真诏已焚呈堂是赝品/齐煊明知假仍封存/破台戏&quot;好戏！好戏！&quot;</td>
+</tr>
+</tbody></table>
+<h2>情绪节奏规律</h2>
+<ol>
+<li><strong>开局悬为主、掺谐调味</strong>（2-7章）：探案开局用&quot;悬&quot;勾人，穿插周幸市井混混的&quot;谐&quot;（摸花生/草纸梗）中和沉重，★2-3低强度慢热。</li>
+<li><strong>每3-5章一个★5高潮</strong>：全书★5章节达30+个，密度极高。高潮间隔稳定——第9（少主）、13（折腰渡酒）、14（杀手反转）、17、19、24、25、26……几乎每三五章必炸一次。</li>
+<li><strong>甜虐交替循环</strong>：感情线的&quot;甜&quot;（27除夕/49治病吻/59/69/81/88）与身世线的&quot;虐&quot;（24陶缨/43抢头颅/54托孤/67功败/80逼誓/86/93/96）交替出现，<strong>大虐前必垫大甜，大甜后常接大虐</strong>。典型：81甜（强吻救命）→83虐（命数真相）；88甜（和好）→93甜中带虐（拜堂+吐血告白）。</li>
+<li><strong>谐是全程的润滑剂</strong>：即使最紧张处也穿插黑色幽默（17&quot;偷袭瞎子不道德&quot;/25&quot;救命趁乱逃&quot;/57&quot;忙得连上吊都没时间&quot;/72告瞎状），是本书区别于纯虐权谋文的特色。</li>
+<li><strong>结局四章★5连爆</strong>（97-100）：燃（逼宫）→燃爽（登基）→虐（李言归痛哭）→反转泪甜（遗诏反转+点题），多种情绪叠加收束，后劲极强。</li>
+</ol>
+<h2>高潮·名场面分布（★5章节清单）</h2>
+<p><strong>探案/权谋燃爽类★5</strong>：9少主/35算尽赵恪/39削首挑旗/68三船翻盘/75秦焕吐真/90枪挑玄狼/91底簿实锤/95羌笛伴奏/98奉诏揭篡位<br><strong>情感甜蜜类★5</strong>：13折腰渡酒/17咬指尖/59百步穿杨/69分酒/93拜堂<br><strong>身世虐泪类★5</strong>：24陶缨/43抢头颅/54袁察托孤/55雪晴断后/67功败垂成/83命数真相/85背刺/86守床落泪/96人肉汤记忆/99李言归痛哭<br><strong>反转类★5</strong>：14秀才变杀手/25不善射术/75传位诏书/100遗诏反转</p>
+<h2>对创作/续写的指导</h2>
+<ul>
+<li><strong>慢热开局</strong>：前7章用悬+谐低强度铺垫，第8-9章第一次爆★5（身份揭底），符合&quot;钩子递进&quot;节奏。</li>
+<li><strong>高潮密度要高</strong>：本书每3-5章必有★5，续写不能连续多章平淡，需持续给强情绪。</li>
+<li><strong>甜虐配比</strong>：感情甜是虐的缓冲，虐是感情的试金石。写大虐（命数/身世）前先给一段甜（治病吻/拜堂），情绪落差才够狠。</li>
+<li><strong>谐不可少</strong>：市井幽默是本书的&quot;呼吸口&quot;，纯虐会窒息，续写要保留周幸/陆酌光的黑色幽默感。</li>
+<li><strong>结局多线齐爆</strong>：把夺位、昭雪、命数、恩义、反转集中在最后几章引爆，形成情绪叠浪。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

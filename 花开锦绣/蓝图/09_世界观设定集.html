@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 世界观设定集 ·《花开锦绣》 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>09 世界观设定集 ·《花开锦绣》</h1>
+<blockquote>
+<p><strong>本书背景</strong>：明代（架空年号）· 世家宅斗 · 复仇成长。<br><strong>依据</strong>：拆解数据 <code>.ext金句手法.md</code>「设定·名词」字段（全书 310 章，含第 023—033 章）+ 原文抽读。<strong>每条带 <code>[第X章]</code> 锚点，只据数据源，不脑补</strong>。<br><strong>分工边界</strong>：本篇只讲&quot;势力 / 机构 / 规则 / 场所<strong>是什么</strong>&quot;；具体人与人的恩怨归「人物关系网」，主角成长归「人物设定集」。凡涉呼应/回指处，末尾标 <code>[第X章]</code>。</p>
+</blockquote>
+<hr>
+<h2>一、时代与地理</h2>
+<h3>1.1 时代坐标</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>国朝</td>
+<td>明代（架空年号），行科举、卫所、内阁、藩王制</td>
+<td>[第2章][第132章][第61章][第36章]</td>
+</tr>
+<tr>
+<td>在位年号</td>
+<td><strong>熙平</strong>（熙平二十八年对河套用兵；熙平二十三年丙辰科；熙平二十六年己末科武进士）</td>
+<td>[第18章][第179章][第81章]</td>
+</tr>
+<tr>
+<td>另一年号用字</td>
+<td><strong>平熙</strong>（原文另见&quot;平熙年号&quot;，与&quot;熙平&quot;并存，系作者混用，此处照录）</td>
+<td>[第110章]</td>
+</tr>
+<tr>
+<td>干支纪年</td>
+<td>甲戌大比、癸酉乡试、甲戌科主考官；乙亥／丁丑／甲子等用于生辰</td>
+<td>[第131章][第234章][第228章]</td>
+</tr>
+<tr>
+<td>先帝／今上</td>
+<td>先帝谥号<strong>代宗</strong>；大行皇帝梓宫发引；今上即潜邸&quot;十六爷&quot;，经&quot;清君侧&quot;即位</td>
+<td>[第138章][第132章][第233章][第273章]</td>
+</tr>
+<tr>
+<td>皇权更迭</td>
+<td>&quot;诛洪石，清君侧&quot;檄文；罪己诏、禅位穆王</td>
+<td>[第133章][第135章]</td>
+</tr>
+<tr>
+<td>后宫</td>
+<td>太皇太后（汪皇后）；太皇太后生辰二月二十一、皇后千秋三月十二、万圣节三月二十</td>
+<td>[第134章][第111章][第162章]</td>
+</tr>
+<tr>
+<td>藩王</td>
+<td>秦王、九皇子庄王、皇太子；简惠王、安裕王、康穆王、锦城王</td>
+<td>[第111章][第36章]</td>
+</tr>
+</tbody></table>
+<h3>1.2 地理：各处地位与作用</h3>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>地位／作用</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>华阴</strong></td>
+<td>傅家本籍，华阴望族、根基深厚；门前立五座牌楼（恩封太子太保、状元及第＋三座贞节牌坊）</td>
+<td>[第1章][第61章]</td>
+</tr>
+<tr>
+<td>栖霞山·碧云庵</td>
+<td>傅家家庙，离华阴城五十里；女主避祸起点、男主初遇处</td>
+<td>[第1章][第5章]</td>
+</tr>
+<tr>
+<td>潼关</td>
+<td>距华阴二十里（西行首道关隘）</td>
+<td>[第15章]</td>
+</tr>
+<tr>
+<td>沿途乡镇</td>
+<td>渭南、临潼、李家凹、临春镇（西安府通蓝田县必经之地）、民和镇（碾伯所辖区）</td>
+<td>[第23章][第26章][第37章][第104章]</td>
+</tr>
+<tr>
+<td><strong>西安府</strong></td>
+<td>陕西首府（&quot;要什么有什么&quot;）；女主落脚谋生、赵凌投军前据点</td>
+<td>[第44章][第61章]</td>
+</tr>
+<tr>
+<td>甘州卫·<strong>永靖县</strong></td>
+<td>关中通往嘉峪关必经之地，商旅喧阗</td>
+<td>[第68章][第70章]</td>
+</tr>
+<tr>
+<td>甘州卫·<strong>张掖</strong></td>
+<td>甘肃总兵府治所，<strong>九边</strong>之一军事要塞；关外商贸繁盛</td>
+<td>[第61章][第73章]</td>
+</tr>
+<tr>
+<td><strong>庄浪卫</strong></td>
+<td>甘肃总兵府治下卫所（赵凌任职地之一）</td>
+<td>[第61章][第64章]</td>
+</tr>
+<tr>
+<td><strong>碾伯所</strong>（碾伯卫）</td>
+<td>衙门所在地&quot;乐都&quot;；赵凌代千户处，傅庭筠独撑门户</td>
+<td>[第101章][第136章]</td>
+</tr>
+<tr>
+<td><strong>京都</strong></td>
+<td>皇城、京畿重地；成婚后傅赵安家（四喜胡同／史家胡同）、俞家恩怨主战场</td>
+<td>[第125章][第152章]</td>
+</tr>
+<tr>
+<td><strong>南京</strong></td>
+<td>丰乐坊俞家祖地（清贵世家）；结局&quot;南京丰乐坊俞家开始没落&quot;</td>
+<td>[第3章][第314章]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>边关地名群</strong>：凉州（阿森出身地，遭鞑子屠村）[第20章]、西宁卫、镇番、山丹卫、肃州、嘉峪关、哈密卫（收复）[第68章]、大通河[第83章]、武胜镇[第106章]、临泽／甘州卫[第113章]、张家湾（南货北上必经之地）[第215章]、十里铺／阳关饭庄[第155章]。</p>
+</blockquote>
+<h3>1.3 旅途路线（三次大迁徙）</h3>
+<table>
+<thead>
+<tr>
+<th>段</th>
+<th>路线</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>西行避祸</td>
+<td>华阴 → 渭南 → 临潼 → 李家凹 → 临春镇 → 西安府</td>
+<td>[第18章]—[第44章]</td>
+</tr>
+<tr>
+<td>出关投军</td>
+<td>西安府 →（约二十余天）→ 甘肃总兵府张掖 → 庄浪卫／碾伯所</td>
+<td>[第61章][第64章]</td>
+</tr>
+<tr>
+<td>东去京都</td>
+<td>碾伯所 → 驿站（宁靖、武山、渭南）→ 京都（城西四喜胡同／史家胡同）</td>
+<td>[第119章]—[第126章]</td>
+</tr>
+<tr>
+<td>返乡线（后段）</td>
+<td>京都 → 西安府（杨柳巷、广仁寺）→ 华阴傅家（祭祖、迁坟）</td>
+<td>[第222章]—[第233章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、社会规则</h2>
+<h3>2.1 门第与婚嫁</h3>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>门第观念</td>
+<td>&quot;世家女子，当以谦虚谨慎、沉稳端庄为第一……哪个女人是因为好看就做了正室嫡夫人的&quot;；姻亲讲究门当户对（&quot;齐大非偶&quot;）</td>
+<td>[第59章][第187章][第299章]</td>
+</tr>
+<tr>
+<td>订婚／庚帖</td>
+<td>婚约以<strong>庚帖</strong>（生庚八字）为凭；黄历择吉、请全福人</td>
+<td>[第141章][第142章]</td>
+</tr>
+<tr>
+<td>聘礼／陪嫁</td>
+<td>嫁妆按抬数（三十二抬／三十六抬／六十四抬）；陪嫁丫鬟随嫁（如诗、雨微等），并有陪房</td>
+<td>[第145章][第177章][第198章]</td>
+</tr>
+<tr>
+<td>退婚／退亲</td>
+<td>可&quot;以病逝的名义发丧&quot;退婚、以&quot;八字不和&quot;退亲</td>
+<td>[第163章][第141章]</td>
+</tr>
+<tr>
+<td>入赘／招婿</td>
+<td>本朝律令：&quot;凡招婿，须凭媒妁，明立婚书，开写养老或出舍年限&quot;；有入赘书</td>
+<td>[第109章][第216章][第219章]</td>
+</tr>
+<tr>
+<td>兼祧</td>
+<td>一人兼承三房宗祧（俞敬修&quot;一肩挑三房&quot;）</td>
+<td>[第174章][第193章]</td>
+</tr>
+<tr>
+<td>宗法</td>
+<td>另立宗谱／开宗立祠；族长、公中财产、嫡支／旁支</td>
+<td>[第150章][第231章][第221章]</td>
+</tr>
+<tr>
+<td>嫡庶之别</td>
+<td>&quot;母凭子贵&quot;；嫡长子之别，妾与姨娘服制有别（比一等丫鬟多两套衣裳）</td>
+<td>[第205章][第204章]</td>
+</tr>
+</tbody></table>
+<h3>2.2 闺阁规矩</h3>
+<table>
+<thead>
+<tr>
+<th>规矩</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>男女大防</td>
+<td>&quot;三尺男子不进内宅&quot;；仆妇出内宅须两人同行</td>
+<td>[第12章]</td>
+</tr>
+<tr>
+<td>内宅女主</td>
+<td>内宅之事例由宗妇处置；中馈（主持家务之权）</td>
+<td>[第14章][第43章]</td>
+</tr>
+<tr>
+<td>有孝在身</td>
+<td>服丧以白花为记；守孝期约定（出嫁女一年／外孙女五个月）</td>
+<td>[第78章][第168章]</td>
+</tr>
+<tr>
+<td>称谓礼制</td>
+<td>&quot;夫人／太太&quot;称谓有越僭之辨；诰命分孺人（七品）、淑人（三品）、恭人、诰命夫人（正二品）</td>
+<td>[第203章][第231章][第236章][第308章]</td>
+</tr>
+<tr>
+<td>女教</td>
+<td>《女训》《女诫》《烈女传》为闺阁读本</td>
+<td>[第161章][第298章][第309章]</td>
+</tr>
+<tr>
+<td>孕产俗信</td>
+<td>&quot;孕妇做针线，孩子出生后耳朵上会长针眼&quot;；&quot;肚子圆圆是女儿，肚子尖尖是儿子&quot;</td>
+<td>[第159章][第162章]</td>
+</tr>
+<tr>
+<td>节庆礼俗</td>
+<td>年节礼须在小年之前送达；通家之礼（女主以礼接见客之女眷、以首饰赏晚辈）</td>
+<td>[第77章][第84章]</td>
+</tr>
+</tbody></table>
+<h3>2.3 节庆</h3>
+<table>
+<thead>
+<tr>
+<th>节庆</th>
+<th>时间／习俗</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>春节／过年</td>
+<td>祭灶神、蒸年糕、社火、年节礼须小年前送达</td>
+<td>[第77章][第79章][第80章]</td>
+</tr>
+<tr>
+<td>上元／元宵</td>
+<td>张掖社火；京都西大街灯市（连开五天）、双碾街牌楼、明照坊</td>
+<td>[第80章][第152章]</td>
+</tr>
+<tr>
+<td>龙抬头</td>
+<td>二月初二</td>
+<td>[第307章]</td>
+</tr>
+<tr>
+<td>端午</td>
+<td>雄黄酒、糕点瓜果；西苑赛龙舟（五月十五）、龙舟</td>
+<td>[第242章][第290章][第293章]</td>
+</tr>
+<tr>
+<td>中秋</td>
+<td>灯彩瓜果、拜月娘娘、团圆</td>
+<td>[第57章][第153章]</td>
+</tr>
+<tr>
+<td>重阳</td>
+<td>九月初九</td>
+<td>[第156章]</td>
+</tr>
+<tr>
+<td>盂兰盆节／中元</td>
+<td>放河灯、苏木河放灯、盂兰盆节法会、庙会</td>
+<td>[第100章][第108章][第111章][第191章]</td>
+</tr>
+<tr>
+<td>腊八</td>
+<td>腊八粥（宫中赏赐，阁老方能得）</td>
+<td>[第121章][第169章]</td>
+</tr>
+<tr>
+<td>上九日</td>
+<td>正月观音诞辰，潭柘寺进香</td>
+<td>[第170章]</td>
+</tr>
+<tr>
+<td>佛生日</td>
+<td>四月初八</td>
+<td>[第310章]</td>
+</tr>
+<tr>
+<td>寿诞·千秋</td>
+<td>太皇太后生辰（二月二十一）、皇后千秋（三月十二）、万圣节（三月二十）、中和殿千秋宴</td>
+<td>[第162章][第271章]</td>
+</tr>
+<tr>
+<td>人生礼</td>
+<td>洗三礼、满月礼、百日礼、周岁礼、除服礼、七七（丧仪）</td>
+<td>[第195章][第166章][第299章][第186章][第241章]</td>
+</tr>
+</tbody></table>
+<h3>2.4 礼数称谓（照录原文用字）</h3>
+<table>
+<thead>
+<tr>
+<th>称谓</th>
+<th>指代／用法</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>九爷／赵九爷</td>
+<td>对赵凌的称呼（其行九）</td>
+<td>[第15章]</td>
+</tr>
+<tr>
+<td>九小姐</td>
+<td>傅庭筠（傅氏排行第九）</td>
+<td>[第11章]</td>
+</tr>
+<tr>
+<td>太太／奶奶</td>
+<td>已婚主母；大奶奶、少奶奶（媳）</td>
+<td>[第127章][第314章]</td>
+</tr>
+<tr>
+<td>夫人／老夫人</td>
+<td>对长辈主母的尊称</td>
+<td>[第158章]</td>
+</tr>
+<tr>
+<td>如夫人／姨娘</td>
+<td>妾室之别称（如夫人为较高者）</td>
+<td>[第112章][第218章]</td>
+</tr>
+<tr>
+<td>姑奶奶</td>
+<td>对已嫁女儿的称呼</td>
+<td>[第201章]</td>
+</tr>
+<tr>
+<td>囡囡</td>
+<td>淞江人对女孩的昵称（赵凌唤妻）</td>
+<td>[第105章][第148章]</td>
+</tr>
+<tr>
+<td>阿筠</td>
+<td>赵凌老家对女子的称呼，兼指傅庭筠</td>
+<td>[第117章]</td>
+</tr>
+<tr>
+<td>庭字辈</td>
+<td>傅家同辈男丁排行（如傅庭筀，行七）</td>
+<td>[第61章]</td>
+</tr>
+<tr>
+<td>全福人／知宾／主婚人</td>
+<td>婚仪角色</td>
+<td>[第145章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、官制与机构</h2>
+<table>
+<thead>
+<tr>
+<th>机构／官署</th>
+<th>职官与职掌</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>内阁</strong></td>
+<td>阁老／首辅（从一品）；沈世充为首辅，莫英伯、周阁老入阁；文渊阁／文华殿／武英殿大学士</td>
+<td>[第18章][第211章][第246章][第307章]</td>
+</tr>
+<tr>
+<td>内阁集议</td>
+<td>论功行赏、公议等最高议事</td>
+<td>[第179章][第208章]</td>
+</tr>
+<tr>
+<td><strong>翰林院</strong></td>
+<td>侍讲学士；掌院学士、少詹士、国子监祭酒；庶吉士、编修、修撰（正七品）</td>
+<td>[第10章][第246章][第173章]</td>
+</tr>
+<tr>
+<td>科举升迁定例</td>
+<td>&quot;非进士不入翰林，非翰林不入内阁&quot;</td>
+<td>[第132章]</td>
+</tr>
+<tr>
+<td><strong>六部</strong></td>
+<td>吏部（文选司郎中正五品、左给事中、都给事）、户部（给事中、侍郎）、工部（都水司郎中）、礼部（左右侍郎、四夷馆、礼部尚书衔）、兵部、刑部</td>
+<td>[第119章][第242章][第129章][第3章][第211章][第178章][第285章]</td>
+</tr>
+<tr>
+<td>部衙贵贱谚</td>
+<td>&quot;吏部贵、户部富、刑部威、礼部贫、工部贱&quot;</td>
+<td>[第307章]</td>
+</tr>
+<tr>
+<td><strong>都察院</strong></td>
+<td>左都御史／副左都御史；巡视御史、巡天御史（任期一年）；江西道御史</td>
+<td>[第131章][第250章][第280章][第298章]</td>
+</tr>
+<tr>
+<td>寺监司</td>
+<td>大理寺（正卿／少卿；原文亦作&quot;大理司&quot;）、太常寺、光禄寺典薄厅、通政司经历、行人司</td>
+<td>[第175章][第234章][第242章][第173章]</td>
+</tr>
+<tr>
+<td><strong>顺天府</strong></td>
+<td>尹／主薄；接报案、管民政、盖印过户文书</td>
+<td>[第127章][第178章][第248章][第129章]</td>
+</tr>
+<tr>
+<td><strong>五城兵马司</strong></td>
+<td>都指挥使，掌京畿治安缉捕</td>
+<td>[第134章][第164章][第171章]</td>
+</tr>
+<tr>
+<td>京卫·禁卫军</td>
+<td>羽林卫、金吾卫、旗手卫（大旗卫）各分左／右／前／后／中卫；羽林卫左卫指挥使<strong>正三品</strong>；旗手卫左卫指挥使；金吾卫前卫指挥使</td>
+<td>[第138章][第180章][第145章]</td>
+</tr>
+<tr>
+<td>厂卫</td>
+<td>腾骥卫（总指挥使秦飞羽，广招江湖少年高手）、腾骧卫（监查藩王）</td>
+<td>[第125章][第240章][第36章][第47章]</td>
+</tr>
+<tr>
+<td>军府</td>
+<td>五军都督府；京都十三卫、京卫营</td>
+<td>[第133章][第160章]</td>
+</tr>
+<tr>
+<td><strong>督抚</strong></td>
+<td>陕西巡抚（董翰文）、经略西北、宣同抚巡（文职／常设）；云贵总督（从一品、节制）</td>
+<td>[第18章][第211章][第299章][第301章]</td>
+</tr>
+<tr>
+<td>市舶司</td>
+<td>宁波市舶司／广东市舶司（宦官坐镇，皇上私钱袋子）</td>
+<td>[第159章]</td>
+</tr>
+<tr>
+<td>路·邮驿</td>
+<td>六百里加急／六百里加紧；勘合（住驿站、用驿马）；邮驿</td>
+<td>[第177章][第67章][第308章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、军制与边事</h2>
+<table>
+<thead>
+<tr>
+<th>制度／事态</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>卫所军制</strong></td>
+<td>每十人为一小旗，五小旗为一总旗，两总旗为一百户……上有千户、指挥使</td>
+<td>[第72章][第83章]</td>
+</tr>
+<tr>
+<td>军职序列</td>
+<td>小旗／总旗／百户（正六品）／千户（正五品）／指挥使／参将／副总兵／总兵／游击将军</td>
+<td>[第64章][第74章][第98章]</td>
+</tr>
+<tr>
+<td>武官品级</td>
+<td>三品以上武官；嘉议大夫（正三品）、都督佥事、征事将军印</td>
+<td>[第64章][第219章][第287章]</td>
+</tr>
+<tr>
+<td>卫所经济</td>
+<td>卫所田庄、军户；军职<strong>借袭／袭职</strong>之弊</td>
+<td>[第101章][第71章][第112章]</td>
+</tr>
+<tr>
+<td>都司·行都司</td>
+<td>陕西都司；陕西行都司（都指挥使李谨汝）；庄浪卫都指挥使鲁成</td>
+<td>[第54章][第55章][第68章]</td>
+</tr>
+<tr>
+<td>甘肃总兵府</td>
+<td>总兵颖川侯孟枢；下辖协守副总兵、分守凉州／庄浪／肃州／西宁／镇番参将、游击将军（陌毅）</td>
+<td>[第74章][第61章]</td>
+</tr>
+<tr>
+<td>九边·九大总兵府</td>
+<td>张掖为九边之一；宣同／辽东／甘肃／大同／蓟州／宣府等总兵府</td>
+<td>[第73章][第180章][第266章]</td>
+</tr>
+<tr>
+<td>藩王约束</td>
+<td>藩王无诏不得离藩、不得结交大臣；削藩、贬为庶人</td>
+<td>[第36章][第245章]</td>
+</tr>
+<tr>
+<td>京官结交外臣之忌</td>
+<td>&quot;京官结交外臣，乃是大忌……不免有结党之疑&quot;</td>
+<td>[第188章][第199章]</td>
+</tr>
+<tr>
+<td>家眷节制</td>
+<td>朝中三品以上武官家眷留京，以节制在外的将领</td>
+<td>[第64章]</td>
+</tr>
+<tr>
+<td>边事</td>
+<td>鞑子／蒙人六部落／哈楚特部落／乌梁海部／托里部；鞑子绕道宣府</td>
+<td>[第83章][第95章][第98章][第208章]</td>
+</tr>
+<tr>
+<td>战事流程</td>
+<td>出征—班师回朝—午门受降；抚恤、阵亡名册、请罪折、内阁公议、战功集议</td>
+<td>[第178章][第216章][第85章][第180章]</td>
+</tr>
+<tr>
+<td>绥靖·土司</td>
+<td>宣抚使／宣抚司；贵州峒寨、苗夷之乱、围城</td>
+<td>[第273章][第269章][第235章]</td>
+</tr>
+<tr>
+<td>特异天象</td>
+<td>张掖&quot;黑风&quot;（龙卷）肆虐</td>
+<td>[第82章]</td>
+</tr>
+<tr>
+<td>屯田</td>
+<td>屯田、屯田管事</td>
+<td>[第82章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、经济生活</h2>
+<table>
+<thead>
+<tr>
+<th>门类</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>田庄</strong></td>
+<td>西安府长安县东姜村、鲁家村、西淮村田产；设庄头（田庄管事）；祭田、坟地</td>
+<td>[第61章][第120章][第224章]</td>
+</tr>
+<tr>
+<td><strong>铺子</strong></td>
+<td>宝庆街买三间铺面（年租每间二百余两）；大通号（山西商号、南北贸易）</td>
+<td>[第61章][第68章]</td>
+</tr>
+<tr>
+<td><strong>商号·股本</strong></td>
+<td>大通号入股（万两一股、十股十万两）；宝庆楼（赵凌产业之一，大通号为最大股东）</td>
+<td>[第212章][第72章]</td>
+</tr>
+<tr>
+<td><strong>印子钱</strong></td>
+<td>高利贷（俞家靠&quot;印子钱收了一大部分&quot;周转）</td>
+<td>[第126章][第314章]</td>
+</tr>
+<tr>
+<td>当铺</td>
+<td>典当首饰、卖字画变现（范氏当赤金首饰）</td>
+<td>[第314章]</td>
+</tr>
+<tr>
+<td><strong>陪嫁</strong></td>
+<td>嫁妆抬数、嫁妆单子、私产／陪嫁礼单与公中月例之别</td>
+<td>[第198章][第248章]</td>
+</tr>
+<tr>
+<td><strong>俸禄／禄米</strong></td>
+<td>官宦禄米（银、米绢），陈米换新米之差利；三份俸禄（俞夫人转述）</td>
+<td>[第131章][第287章]</td>
+</tr>
+<tr>
+<td>银楼·银票</td>
+<td>宝庆银楼（认票不认人，南北二十七家分店随时立兑；两千两以上方兑银票）</td>
+<td>[第16章][第66章]</td>
+</tr>
+<tr>
+<td><strong>人情往来</strong></td>
+<td>年节礼按官阶定额（颖川侯二百两、副总兵五十两、邻家三百文等）；仪程、八色礼盒、四色礼盒</td>
+<td>[第79章][第121章][第137章][第149章]</td>
+</tr>
+<tr>
+<td>盐政</td>
+<td>官盐／私盐／井盐（陕西仅临潼、蒲田有产）；贩私盐为赵凌旧业</td>
+<td>[第51章][第60章][第245章]</td>
+</tr>
+<tr>
+<td>奴婢买卖</td>
+<td>牙婆、牙人、人牙子；卖身契、脱籍</td>
+<td>[第137章][第122章][第225章]</td>
+</tr>
+<tr>
+<td>京中置业</td>
+<td>明代京都四合院房价；典宅、过户文书（顺天府盖印）；活水宅</td>
+<td>[第120章][第129章][第311章]</td>
+</tr>
+<tr>
+<td>关外·市舶贸易</td>
+<td>永靖商旅喧阗、嘉峪关商队、关外贸易；宁波／广东市舶司</td>
+<td>[第68章][第159章]</td>
+</tr>
+<tr>
+<td>田产典卖</td>
+<td>卖陪嫁山头、无冰可用（写俞家由显转衰）</td>
+<td>[第247章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>六、专有名词表（按类别汇总）</h2>
+<h3>6.1 地名</h3>
+<p>华阴／栖霞山·碧云庵（静月堂、大雄宝殿、藏经阁、后院老槐、七宝堂）[第1—13章]｜潼关[第15章]｜渭南、临潼、李家凹、临春镇[第23、26、37章]｜西安府（永宁门、仁寿街、大兴善寺、广仁寺、九里沟、十三山、宝庆街、杨柳巷、喜升客栈）[第44—61章]｜永靖县[第68章]｜张掖（大佛寺/卧佛寺、摘星楼、鼓楼街、山西会馆）[第73、82、92章]｜庄浪卫[第61章]｜碾伯所·乐都[第101章]｜凉州、西宁卫、镇番、山丹卫、肃州、嘉峪关、哈密卫[第68、83章]｜京都（阜成门、西安门大街、四喜胡同、史家胡同、西大街灯市、双碾街、莲花庵、潭柘寺、白云观、丰台花市、什刹海、兵马胡同、三眼胡同）[第125—311章]｜玉鸣山（赵家京郊别院）[第294章]｜南京丰乐坊[第3章]。</p>
+<h3>6.2 官署·机构</h3>
+<p>内阁[第18章]｜翰林院、国子监[第10、246章]｜吏部文选司[第119章]｜都察院、巡天御史[第250、280章]｜大理寺（大理司）[第175、234章]｜顺天府[第127章]｜五城兵马司[第134章]｜羽林卫、金吾卫、旗手卫[第138、145章]｜腾骥卫、腾骧卫[第125、36章]｜五军都督府[第133章]｜陕西都司、陕西行都司[第54、36章]｜甘肃总兵府[第61章]｜卫所[第72章]｜行人司[第173章]｜四夷馆[第211章]｜市舶司[第159章]｜宣抚司[第273章]。</p>
+<h3>6.3 称谓·身份</h3>
+<p>九爷／赵九爷[第15章]｜九小姐[第11章]｜老爷／太太／奶奶／大奶奶／少奶奶[第127、314章]｜夫人／如夫人／姨娘[第158、112、218章]｜姑奶奶[第201章]｜全福人、知宾、主婚人[第145章]｜囡囡／阿筠[第105、117章]｜军户、军职家眷[第101、76章]｜堕民（贱民身份）[第18、122章]｜清客、坐馆先生、西席[第211、139、282章]｜牙婆／人牙子[第137、122章]。</p>
+<h3>6.4 器物·服饰</h3>
+<p>一点油银镯（空心藏机关）[第16章]｜紫玉兰肚兜[第4章]｜羊脂玉镯／玉佩[第201章]｜樟木箱笼（福建嫁女陪嫁）[第112章]｜汝窑梅瓶[第314章]｜越窑花觚[第91章]｜刻丝、妆花、遍地金、茧绸、潞绸、杭绸、湖绸、淞江三梭布[第98、61、210章]｜黑貂毛暖耳（三品以上定制）[第234章]｜伽南珠[第133章]｜大红烫金名帖（馆阁体）[第36、38章]｜勘合（住驿站、用驿马）[第67章]｜鱼鳞册、黄册（赋役册籍）[第117章]｜路引（出行凭证）[第124章]。</p>
+<h3>6.5 节令·礼俗</h3>
+<p>春节／过年（祭灶神、蒸年糕、社火）[第77、79、80章]｜上元/元宵（西大街灯市、双碾街牌楼）[第80、152章]｜龙抬头[第307章]｜端午（雄黄酒、赛龙舟）[第242、293章]｜中秋（拜月娘娘）[第57、153章]｜重阳[第156章]｜盂兰盆节/中元（放河灯、苏木河放灯）[第100、111章]｜腊八[第121章]｜上九日[第170章]｜佛生日[第310章]｜洗三/满月/百日/周岁礼[第195、166、299、186章]。</p>
+<h3>6.6 制度·律令</h3>
+<p>招赘律令[第109章]｜退婚/兼祧/入赘书[第163、174、216章]｜卫所军制与借袭[第72、71章]｜藩王约束[第36章]｜京官结交外臣之忌[第188章]｜落籍/开宗立派[第150章]｜田氏&quot;大斗贷出、小斗收还&quot;之禁（禁止商贾私自施粮修桥）[第81章]｜&quot;留子去母&quot;&quot;五年之约&quot;[第187章]｜丁忧/起复/除服[第226、241章]｜&quot;母凭子贵&quot;、嫡庶之别[第205章]。</p>
+<hr>
+<blockquote>
+<p><strong>统计</strong>：本文件共 <strong>6 个主栏目</strong>（时代与地理 / 社会规则 / 官制与机构 / 军制与边事 / 经济生活 / 专有名词表），下辖 <strong>22 个表／小节</strong>，正文条目（表格行＋词条）约 <strong>150 条</strong>，全部带 <code>[第X章]</code> 锚点。数据源为全书 310 章「设定·名词」字段，已含第 023—033 章。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

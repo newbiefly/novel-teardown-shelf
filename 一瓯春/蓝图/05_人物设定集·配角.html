@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 人物设定集 · 配角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>05 人物设定集 · 配角</h1>
+<blockquote>
+<p>三级：<strong>详卡（重点配角）→ 简卡（次要角色）→ 龙套（一句话）</strong>。<br>取舍以 <code>人物台账.md</code> 为准；性格从章卡&quot;人物动态／关键行动&quot;中的<strong>具体行为</strong>拆出，每条带 <code>[第X章]</code> 锚点。<br>与 <code>04_人物设定集·主角.md</code> 分工：本篇只写配角自身；两人之间的恩怨归 <code>06_人物关系网.md</code>。</p>
+</blockquote>
+<hr>
+<h1>一、详卡（重点配角）</h1>
+<h2>1. 扈夫人</h2>
+<ul>
+<li><strong>身份</strong>：谢家大太太（嫡母），谢纾正妻、正则之母。扈老将军之女。</li>
+<li><strong>性格</strong>：主标签<strong>伪善的毒妇</strong>（表面怜爱、暗下杀局）；辅标签<strong>好斗的争权主母</strong>（为嫡女、为权柄不惜违逆老太太）。反差点：<strong>当众&quot;怜爱&quot;庶女 VS 背后设杀局</strong>——当众&quot;怜爱&quot;清圆、暗以&quot;命苦&quot;打压<code>[第3章]</code>，转脸芦苇荡设伏加害<code>[第44章]</code>、护国寺毁人清白<code>[第58–60章]</code>。</li>
+<li><strong>欲望／动机</strong>：为嫡女清如谋上等亲事、稳固主母权柄、掩盖当年毒杀夏姨娘、嫁祸靳姨娘的旧罪。</li>
+<li><strong>与主角关系</strong>：<strong>清圆的宿敌、母案真凶</strong>。</li>
+<li><strong>关键行动</strong>：暗中为清如谋丹阳侯家亲事<code>[第11–12章]</code>；识破玉佩之计、借忌日法事设局除清圆<code>[第43–44章]</code>；公然违逆老太太送清如、清容入宫备选<code>[第54章]</code>；护国寺毒计反中计、众叛亲离<code>[第58–60章]</code>；被沈润遣严复勒索五万两、失势闭门称病<code>[第62、67章]</code>；被谢纾当众写休书休弃、触柱未死遣回娘家<code>[第96–97章]</code>；买凶伪造姚家母女自尽事败、<strong>斩立决</strong><code>[第102章]</code>。</li>
+<li><strong>阵营</strong>：谢家大房嫡母；母案主使、清圆宿敌。</li>
+</ul>
+<h2>2. 谢老太太（老太太）</h2>
+<ul>
+<li><strong>身份</strong>：谢家老太君（祖母），掌谢家中馈；曾收观察使夫人为义女。</li>
+<li><strong>性格</strong>：主标签<strong>偏私的当家人</strong>（重嫡脉、重体面）；辅标签<strong>老练的权衡者</strong>（察人极准、善用棋子）。反差点：<strong>绵里藏刀的偏心 VS 威权的脆弱</strong>——当面贬清圆&quot;只配嫁寒门&quot;<code>[第13章]</code>、偏袒清如<code>[第21章]</code>，却在婆媳角力中被扈夫人夺权占上风<code>[第54章]</code>。</li>
+<li><strong>欲望／动机</strong>：保谢家门第体面、维系各房平衡、把持中馈话语权。</li>
+<li><strong>与主角关系</strong>：<strong>孙女与祖母</strong>，由冷遇→刻意亲近利用→决裂。</li>
+<li><strong>关键行动</strong>：冷待清圆、令其不必亲做药膳<code>[第1章]</code>；因湿衣事给淡月轩添人<code>[第3章]</code>；当众贬清圆&quot;只配嫁寒门&quot;<code>[第13章]</code>；抬举清圆随迁幽州、私告&quot;犯官家眷受监管&quot;真相<code>[第22章]</code>；暗示沈润为清圆良配<code>[第28章]</code>；以清圆相抵求沈润救谢家<code>[第69章]</code>；与扈夫人谋婚宴发难、闹婚惨败后掌掴孙嬷嬷<code>[第85–86章]</code>；当众发落孙嬷嬷、重掌中馈<code>[第94–97章]</code>。</li>
+<li><strong>阵营</strong>：谢家最高长辈，偏袒嫡脉。</li>
+</ul>
+<h2>3. 谢纾</h2>
+<ul>
+<li><strong>身份</strong>：谢家老爷（大老爷），剑南道节度使→贬幽州刺史→复起→班师；清圆之父。</li>
+<li><strong>性格</strong>：主标签<strong>被体面绑架的庸懦者</strong>——知情不究、以&quot;嫡妻不下堂&quot;&quot;保体面&quot;装糊涂<code>[第94章]</code>；辅标签<strong>会打硬仗的武将</strong>（积石山固防、平石堡城<code>[第6、80章]</code>）。</li>
+<li><strong>欲望／动机</strong>：官位与家门体面；晚年对亡妾靳氏生愧。</li>
+<li><strong>与主角关系</strong>：<strong>父女</strong>，生疏客套→质问被驳→当众认错仍不被认。</li>
+<li><strong>关键行动</strong>：停职查办归家、父女首次相认<code>[第13–14章]</code>；清圆追问母冤被以&quot;人证物证俱在&quot;驳回<code>[第19章]</code>；出征石堡城、战败获罪<code>[第63、67章]</code>；班师回朝功过相抵、欲认女不得<code>[第84章]</code>；示靳氏遗玉、吐露&quot;撵母是父意&quot;隐情<code>[第94章]</code>；当众写休书休扈夫人<code>[第96–97章]</code>；朝堂自曝家丑、认错助清圆昭雪<code>[第102章]</code>。</li>
+<li><strong>阵营</strong>：谢家主／朝廷官员；与清圆满门恩怨。</li>
+</ul>
+<h2>4. 清如</h2>
+<ul>
+<li><strong>身份</strong>：谢家二姑娘，扈夫人嫡女。</li>
+<li><strong>性格</strong>：主标签<strong>骄纵的夺爱者</strong>（仗势欺人、步步栽赃）；辅标签<strong>痴缠的失恋者</strong>（死缠李从心）。</li>
+<li><strong>欲望／动机</strong>：夺清圆所爱、压清圆一头、借&quot;娘娘&quot;之位翻身报仇。</li>
+<li><strong>与主角关系</strong>：<strong>清圆的主要对手</strong>（嫡庶姊妹反目成仇）。</li>
+<li><strong>关键行动</strong>：纵婢绿缀倾伞泼湿清圆<code>[第2章]</code>；当众掌掴清圆<code>[第21章]</code>；宴上被射落胸前玉佩、受惊病倒<code>[第41章]</code>；决意应选入宫<code>[第54章]</code>；护国寺失贞、进宫路断<code>[第60章]</code>；仍痴缠李从心<code>[第67章]</code>；被谢纾下令禁足绮兰苑<code>[第97章]</code>。</li>
+<li><strong>阵营</strong>：扈夫人房，清圆主要对手。</li>
+</ul>
+<h2>5. 清和</h2>
+<ul>
+<li><strong>身份</strong>：谢家大姑娘，莲姨娘之女；许开国伯大公子李观灵（名兰山）。</li>
+<li><strong>性格</strong>：主标签<strong>明理的直性人</strong>（有正义感、敢顶撞）；辅标签<strong>珍视姐妹情的同盟者</strong>。反差点：<strong>从前刻意讨好 VS 后期直面相争</strong>——由讨好转为敢直撞老太太、掌掴清如<code>[第78、96章]</code>。</li>
+<li><strong>欲望／动机</strong>：守住与李观灵的婚约、护住清圆这个妹妹。</li>
+<li><strong>与主角关系</strong>：<strong>姊妹兼盟友</strong>，由排斥转亲近交心。</li>
+<li><strong>关键行动</strong>：成姊妹辈首个议定婚事者<code>[第6章]</code>；与清圆由排斥转亲近<code>[第8章]</code>；当众顶撞老太太<code>[第78章]</code>；登门苦求清圆回谢府探病父<code>[第93章]</code>；与清圆正式结盟共指扈夫人<code>[第94章]</code>；大闹上房、当众掌掴清如<code>[第96章]</code>。</li>
+<li><strong>阵营</strong>：莲姨娘房；与清圆结盟、与清如敌对。</li>
+</ul>
+<h2>6. 莲姨娘</h2>
+<ul>
+<li><strong>身份</strong>：谢纾妾室，清和生母。</li>
+<li><strong>性格</strong>：主标签<strong>隐忍的家妾</strong>（常年做小伏低）；辅标签<strong>见机的倒戈者</strong>（借势告状、反攻嫡母）。反差点：<strong>弱势妾室 VS 敢当面向老爷告嫡母的状</strong><code>[第33章]</code>。</li>
+<li><strong>欲望／动机</strong>：为女儿清和撑腰、摆脱主母摊派与打压。</li>
+<li><strong>与主角关系</strong>：由清圆试探排除嫌疑→倾向清圆、联手对付扈夫人。</li>
+<li><strong>关键行动</strong>：遭清圆以&quot;青梅&quot;试探、嫌疑被排除<code>[第10章]</code>；被扈夫人摊派钱财<code>[第29章]</code>；借酥饼挑动、当面告发扈夫人谋退婚<code>[第33章]</code>；趁扈夫人失势请示设宴、暗讥嫡母<code>[第67章]</code>；联手攻扈、协理中馈<code>[第96–97章]</code>。</li>
+<li><strong>阵营</strong>：莲姨娘房；与扈夫人房对立。</li>
+</ul>
+<h2>7. 梅姨娘</h2>
+<ul>
+<li><strong>身份</strong>：谢纾妾室（原通房丫头，留作贤良幌子）。</li>
+<li><strong>性格</strong>：主标签<strong>卑微的受气妾</strong>；辅标签<strong>可争取的暗盟</strong>。</li>
+<li><strong>欲望／动机</strong>：少受欺压、寻一条生路。</li>
+<li><strong>与主角关系</strong>：<strong>清圆刻意亲近、暗结同盟以撼扈夫人</strong>。</li>
+<li><strong>关键行动</strong>：身世被揭（原通房丫头）<code>[第12章]</code>；被清圆刻意亲近、暗结同盟<code>[第24章]</code>；被扈夫人摊派钱财<code>[第29章]</code>；无辜连坐受家法〔跪祠堂一夜〕<code>[第51章]</code>；联手攻扈、协理中馈<code>[第96–97章]</code>。</li>
+<li><strong>阵营</strong>：梅姨娘房；倾向清圆。</li>
+</ul>
+<h2>8. 李从心（李淳之）</h2>
+<ul>
+<li><strong>身份</strong>：丹阳侯家三公子，字从心，正头夫人嫡子、封爵贵重；清圆追求者。</li>
+<li><strong>性格</strong>：主标签<strong>赤诚执着的痴情公子</strong>（为娶清圆跪一夜、挨鞭、以出家相胁<code>[第63章]</code>）；辅标签<strong>迟疑摇摆的世家子</strong>（易受门第与私情左右）。反差点：<strong>公开长揖请娶的深情 VS 别业私情的现实</strong><code>[第48、68章]</code>。</li>
+<li><strong>欲望／动机</strong>：娶清圆为正室；对清如只是客套。</li>
+<li><strong>与主角关系</strong>：<strong>男二、清圆追求者</strong>（由单方起意→当众提亲→退亲两清）。</li>
+<li><strong>关键行动</strong>：春日宴拾球赔罪初见清圆、单方起意<code>[第9章]</code>；公开表露求娶<code>[第19章]</code>；侯府托观察使夫人撇清<code>[第20章]</code>；护送清圆归府、当众提亲、情意转挚<code>[第48–50章]</code>；携父母之命回幽州提亲<code>[第63章]</code>；东皋夜宴言&quot;纳妾识大体&quot;生隔阂<code>[第66章]</code>；被撞破私情、清圆退亲<code>[第67–68章]</code>；鸿雁楼彻底两清<code>[第77章]</code>。</li>
+<li><strong>阵营</strong>：丹阳侯府；清圆追求者（男二）。</li>
+</ul>
+<h2>9. 沈澈</h2>
+<ul>
+<li><strong>身份</strong>：沈润之弟，殿前司<strong>都使</strong>（小字澄冰），芳纯之夫。</li>
+<li><strong>性格</strong>：主标签<strong>随性开朗的弟弟</strong>；辅标签<strong>情深的护妻者</strong>。反差点：<strong>平日里随性嬉闹 VS 为妻清账时狠辣</strong>（&quot;别让那条贱命脏了你的手&quot;<code>[第82章]</code>）。</li>
+<li><strong>欲望／动机</strong>：守好与芳纯的夫妻情、紧随兄长。</li>
+<li><strong>与主角关系</strong>：<strong>叔嫂</strong>（初为一面之缘，后共理家事、设局捉奸）。</li>
+<li><strong>关键行动</strong>：初见清圆、随性开朗<code>[第27章]</code>；点破沈润借芳纯有孕之名往幽州见清圆<code>[第55章]</code>；与沈润共谋拆散清圆与李从心<code>[第64章]</code>；因皓雪挑拨与芳纯裂痕初现、濒临和离<code>[第82、84章]</code>；经兄长清圆说合<code>[第87章]</code>；宴上对皓雪露厌恶、坚决护妻护清圆<code>[第99–100章]</code>。</li>
+<li><strong>阵营</strong>：沈家二房。</li>
+</ul>
+<h2>10. 芳纯</h2>
+<ul>
+<li><strong>身份</strong>：沈澈之妻，都使夫人（董夫人）；姚家外甥女。</li>
+<li><strong>性格</strong>：主标签<strong>深爱却拧巴的妻子</strong>（失子后易被挑拨）；辅标签<strong>可被唤醒的清醒者</strong>。反差点：<strong>视皓雪为亲表妹 VS 被其算计失子后方知真面目</strong><code>[第81、99章]</code>。</li>
+<li><strong>欲望／动机</strong>：要丈夫的真心与安稳的家。</li>
+<li><strong>与主角关系</strong>：<strong>妯娌兼挚友</strong>（由陌生→结为姐妹→生疏→彻底信服）。</li>
+<li><strong>关键行动</strong>：热络相待、与清圆结为姐妹<code>[第32章]</code>；替沈润旁敲侧击做说客<code>[第66章]</code>；有孕独居、引荐皓雪入府<code>[第81章]</code>；坠胎失子、被皓雪挑拨与沈澈生怨<code>[第82章]</code>；与沈澈濒临和离、得清圆设宴说合<code>[第84、87章]</code>；被表姑母汪氏逼劝纳平妻、得清圆开导<code>[第89–90章]</code>；经陈老太太点化、倒向清圆<code>[第98–99章]</code>；妯娌情谊稳固<code>[第101章]</code>。</li>
+<li><strong>阵营</strong>：沈家二房；清圆妯娌兼盟友。</li>
+</ul>
+<h2>11. 皓雪</h2>
+<ul>
+<li><strong>身份</strong>：宣州少尹姚绍之女（姚九姑娘），芳纯表姐妹。</li>
+<li><strong>性格</strong>：主标签<strong>处心积虑的第三者</strong>（暗恋沈澈、谋夺平妻之位）；辅标签<strong>重压下铤而走险的野心者</strong>（&quot;做梦都想离开姚家&quot;<code>[第99章]</code>）。</li>
+<li><strong>欲望／动机</strong>：嫁入沈府、取代芳纯；借平妻之位上位。</li>
+<li><strong>与主角关系</strong>：<strong>暗敌</strong>（清圆暗存戒备→明面交锋）。</li>
+<li><strong>关键行动</strong>：由芳纯引荐初见清圆、举止逾越<code>[第81章]</code>；挑拨芳纯与沈澈<code>[第82章]</code>；借<strong>象胆皮</strong>致芳纯滑胎<code>[第82、99章]</code>；步步紧逼西府<code>[第89–91章]</code>；借宴之夜欲迷奸沈澈反被当场捉奸<code>[第99章]</code>；与母亲汪氏被押入卢龙军大牢<code>[第100章]</code>；牢中殒命（年十八）<code>[第102章]</code>。</li>
+<li><strong>阵营</strong>：姚家；反派。</li>
+</ul>
+<h2>12. 汪氏</h2>
+<ul>
+<li><strong>身份</strong>：芳纯表姑母，姚家太太（皓雪之母）。</li>
+<li><strong>性格</strong>：主标签<strong>心机利用的表姑母</strong>（以恩情为名行算计）；辅标签<strong>护女不择手段的母亲</strong>。</li>
+<li><strong>欲望／动机</strong>：让皓雪嫁入沈家西府、攀附沈家权势。</li>
+<li><strong>与主角关系</strong>：<strong>清圆的间接敌手</strong>（借翻搅芳纯、渗透西府）。</li>
+<li><strong>关键行动</strong>：登门劝芳纯纳平妻、叮嘱别同东府商量<code>[第89章]</code>；当门挑拨芳纯<code>[第98章]</code>；与皓雪同被押入卢龙军大牢<code>[第99–100章]</code>；牢中&quot;上吊&quot;（一死一伤，实为扈氏买凶伪造）<code>[第102章]</code>。</li>
+<li><strong>阵营</strong>：姚家；反派。</li>
+</ul>
+<h2>13. 陶嬷嬷</h2>
+<ul>
+<li><strong>身份</strong>：靳姨娘旧仆（原下房做杂役）。</li>
+<li><strong>性格</strong>：主标签<strong>忠心的旧仆</strong>（主仆重逢即结同盟、多年忍藏）；辅标签<strong>沉稳的查案帮手</strong>。</li>
+<li><strong>欲望／动机</strong>：为旧主靳姨娘洗冤、随清圆讨回公道。</li>
+<li><strong>与主角关系</strong>：<strong>心腹</strong>（被调回淡月轩、结为同盟）。</li>
+<li><strong>关键行动</strong>：被月鉴拨入淡月轩、与清圆重逢结盟<code>[第4章]</code>；回溯靳姨娘冤案始末<code>[第5章]</code>；受命暗查、探得扈夫人失态回禀&quot;看来是太太无疑&quot;<code>[第12章]</code>；被清圆以妆奁赎回<code>[第95章]</code>。</li>
+<li><strong>阵营</strong>：清圆心腹。</li>
+</ul>
+<h2>14. 抱弦</h2>
+<ul>
+<li><strong>身份</strong>：清圆贴身大丫鬟。</li>
+<li><strong>性格</strong>：主标签<strong>贴心的主心骨</strong>（主仆情笃、敢点拨）；辅标签<strong>机敏的联络人</strong>（借旧交调人、传话）。</li>
+<li><strong>欲望／动机</strong>：护住清圆、助其查案与脱困。</li>
+<li><strong>与主角关系</strong>：<strong>心腹大丫鬟</strong>。</li>
+<li><strong>关键行动</strong>：随侍清圆、受托打听靳姨娘旧人<code>[第1–2章]</code>；借与月鉴旧交调来陶嬷嬷<code>[第4章]</code>；以&quot;坏到极处坏无可坏&quot;宽解清圆<code>[第16章]</code>；一句&quot;难道是心么&quot;点破暧昧<code>[第36章]</code>。</li>
+<li><strong>阵营</strong>：清圆心腹。</li>
+</ul>
+<h2>15. 陈老太爷</h2>
+<ul>
+<li><strong>身份</strong>：横塘陈家长辈，清圆养祖父。</li>
+<li><strong>性格</strong>：主标签<strong>护短的慈祖</strong>（预置人手、立法压制沈润）；辅标签<strong>精明的持家老手</strong>。</li>
+<li><strong>欲望／动机</strong>：护清圆周全、要她&quot;依礼出嫁&quot;有体面。</li>
+<li><strong>与主角关系</strong>：<strong>养祖父、清圆后盾</strong>。</li>
+<li><strong>关键行动</strong>：临别赠清圆钱物作退路<code>[第23章]</code>；雨夜入幽州接走清圆<code>[第74章]</code>；立&quot;依礼求娶&quot;之规逼住沈润<code>[第75章]</code>；留钱袋子暗许二人独处<code>[第76章]</code>；为清圆送嫁<code>[第85章]</code>。</li>
+<li><strong>阵营</strong>：清圆后盾（陈家）。</li>
+</ul>
+<h2>16. 陈老太太</h2>
+<ul>
+<li><strong>身份</strong>：横塘陈家长辈，清圆养祖母。</li>
+<li><strong>性格</strong>：主标签<strong>明理的慈祖母</strong>（授持家防人之道）；辅标签<strong>通透的过来人</strong>。</li>
+<li><strong>欲望／动机</strong>：看顾清圆、教她当家防人。</li>
+<li><strong>与主角关系</strong>：<strong>养祖母、清圆后盾</strong>。</li>
+<li><strong>关键行动</strong>：临别情深、以团聚相许<code>[第23章]</code>；祖孙团圆、立规矩<code>[第74–75章]</code>；留下抱弦、授以持家气节<code>[第76章]</code>；点破皓雪逾礼、授清圆防人之道<code>[第82章]</code>；操办嫁妆<code>[第85章]</code>；点化芳纯向清圆靠拢<code>[第98章]</code>。</li>
+<li><strong>阵营</strong>：清圆后盾（陈家）。</li>
+</ul>
+<h2>17. 清容</h2>
+<ul>
+<li><strong>身份</strong>：谢家三姑娘，夏姨娘之女。</li>
+<li><strong>性格</strong>：主标签<strong>善变的自保者</strong>（敌意最盛→临阵倒戈→和解）；辅标签<strong>被仇恨与真相翻转的可怜人</strong>。反差点：<strong>辱骂清圆为&quot;杀母仇人之女&quot; VS 得知真凶后动摇</strong><code>[第5、88章]</code>。</li>
+<li><strong>欲望／动机</strong>：依附强者自保、后来想弄清母亲之死的真相。</li>
+<li><strong>与主角关系</strong>：<strong>同父异母姊妹</strong>（敌对→和解）。</li>
+<li><strong>关键行动</strong>：不留情面辱骂清圆、与清如结盟<code>[第5章]</code>；随清如入宫备选<code>[第54章]</code>；临阵倒戈不肯指证清如<code>[第61章]</code>；沦为长秋宫才人、被清圆点破其母冤案另有真凶<code>[第88章]</code>；受封代公主出塞、将成赞普正妻<code>[第102章]</code>。</li>
+<li><strong>阵营</strong>：扈夫人房→失势；后与清圆和解。</li>
+</ul>
+<hr>
+<h1>二、简卡（次要角色）</h1>
+<table>
+<thead>
+<tr>
+<th>人物</th>
+<th>身份</th>
+<th>一句话性格</th>
+<th>欲望／动机</th>
+<th>与主角关系</th>
+<th>关键行动（带锚点）</th>
+<th>阵营</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正则</td>
+<td>谢家大少爷，扈夫人之子</td>
+<td>阳奉阴违、尚存底线的长子</td>
+<td>息事宁人、指望沈润提携</td>
+<td>嫡兄</td>
+<td>引荐清如与李从心<code>[第17章]</code>；力阻扈夫人烧灰&quot;收惊&quot;（母子异心）<code>[第43章]</code></td>
+<td>大房长子</td>
+</tr>
+<tr>
+<td>正伦</td>
+<td>谢家二少爷（二房）</td>
+<td>前期冷淡、后期愧疚示好</td>
+<td>保全自身、与清圆缓和</td>
+<td>堂兄</td>
+<td>向李从心坦露其求娶清圆之心<code>[第20章]</code>；受清圆致歉反得亲近<code>[第51章]</code>；因是否求沈润与清圆起冲突<code>[第68章]</code></td>
+<td>谢府子弟</td>
+</tr>
+<tr>
+<td>正钧</td>
+<td>谢家三少爷</td>
+<td>寻常世家子弟</td>
+<td>—</td>
+<td>堂弟</td>
+<td>婚礼、家宴诸场出场<code>[第13、17、41章]</code>；奉命打听战事罪责<code>[第68章]</code></td>
+<td>谢府子弟</td>
+</tr>
+<tr>
+<td>蒋氏</td>
+<td>谢家二太太（东府），谢训之妻</td>
+<td>见风使舵、爱挑事</td>
+<td>压大房一头、自保</td>
+<td>婶侄（由敌意转临时结盟）</td>
+<td>造访知州夫人威胁大房<code>[第16章]</code>；当众提亲令扈夫人难堪<code>[第30章]</code>；向清圆告密婚宴之计、反戈大房<code>[第83章]</code></td>
+<td>东府二房，倒向清圆</td>
+</tr>
+<tr>
+<td>裴氏</td>
+<td>谢家三太太，谢悯之妻</td>
+<td>&quot;刀切豆腐两面光&quot;、不站队</td>
+<td>依附大房求稳</td>
+<td>婶侄</td>
+<td>随迁幽州、依从大房<code>[第22章]</code>；不肯站队<code>[第58章]</code></td>
+<td>三房，依附大房</td>
+</tr>
+<tr>
+<td>明氏</td>
+<td>谢家二少奶奶（正伦之妻）</td>
+<td>明帮暗刺、隔岸观火</td>
+<td>撒对扈夫人房的积怨</td>
+<td>堂嫂</td>
+<td>暗刺扈夫人房<code>[第51章]</code>；与妾室旁支隔岸观火<code>[第59–61章]</code></td>
+<td>二房</td>
+</tr>
+<tr>
+<td>邱氏</td>
+<td>谢家大少奶奶（正则之妻）</td>
+<td>姑嫂不和、心底鄙薄</td>
+<td>自保、看戏</td>
+<td>堂嫂</td>
+<td>底鄙清如<code>[第43章]</code>；与大房看戏挑拨<code>[第51章]</code></td>
+<td>大房长媳</td>
+</tr>
+<tr>
+<td>春台</td>
+<td>谢府丫头，后归清圆</td>
+<td>传话机灵、忠心得赎</td>
+<td>随清圆</td>
+<td>心腹</td>
+<td>替夏嬷嬷传话告知靳姨娘旧人下落<code>[第2章]</code>；被清圆以妆奁赎回<code>[第95章]</code></td>
+<td>清圆心腹</td>
+</tr>
+<tr>
+<td>月鉴</td>
+<td>谢府管事仆妇，掌老太太荟芳园</td>
+<td>老练的管事</td>
+<td>侍奉老太太</td>
+<td>清圆借力对象</td>
+<td>为淡月轩挑婆子、拨陶嬷嬷入内<code>[第3–4章]</code></td>
+<td>谢府下人</td>
+</tr>
+<tr>
+<td>月荃</td>
+<td>谢府管事嬷嬷（掌姑娘课业）</td>
+<td>圆融善解围</td>
+<td>—</td>
+<td>暗中帮清圆</td>
+<td>以查课业之名替清圆解围<code>[第5章]</code></td>
+<td>谢府下人</td>
+</tr>
+<tr>
+<td>小喜</td>
+<td>谢府丫头（初为太太眼线）</td>
+<td>由眼线转赎罪默契</td>
+<td>赎罪自保</td>
+<td>由监视转为主仆默契</td>
+<td>被识破却留而用之<code>[第16章]</code>；被拿把柄听命赎罪<code>[第59–60章]</code></td>
+<td>由扈夫人眼线转为清圆所用</td>
+</tr>
+<tr>
+<td>孙嬷嬷</td>
+<td>扈夫人陪房、心腹</td>
+<td>助纣为虐、终遭发落</td>
+<td>奉扈夫人</td>
+<td>敌手</td>
+<td>查匿名信、进婚宴发难之计<code>[第12、43、79章]</code>；婚宴惨败被老太太掌掴<code>[第86章]</code>；被当众发落<code>[第94章]</code></td>
+<td>扈夫人房</td>
+</tr>
+<tr>
+<td>绿缀</td>
+<td>清如婢女</td>
+<td>仗势助恶</td>
+<td>奉清如</td>
+<td>敌手</td>
+<td>奉清如之命倾伞泼湿清圆<code>[第2章]</code>；仗势轻慢<code>[第19章]</code></td>
+<td>清如心腹</td>
+</tr>
+<tr>
+<td>彩练</td>
+<td>扈夫人心腹婢女</td>
+<td>听墙角、传信息</td>
+<td>奉扈夫人</td>
+<td>敌手</td>
+<td>查匿名信送信人<code>[第12章]</code>；窃得&quot;李从心求娶四姑娘&quot;之关键信息<code>[第20章]</code></td>
+<td>扈夫人房</td>
+</tr>
+<tr>
+<td>周嬷嬷（周婆子）</td>
+<td>沈府管事婆子</td>
+<td>贪墨被敲打后归心</td>
+<td>掌府中杂务</td>
+<td>清圆信重之人</td>
+<td>登场、被清圆敲打<code>[第56、81章]</code>；奉命留意西府<code>[第82章]</code></td>
+<td>沈府（清圆一方）</td>
+</tr>
+<tr>
+<td>崔婆子</td>
+<td>沈府西府仆妇</td>
+<td>实心报信的耳目</td>
+<td>—</td>
+<td>清圆耳目</td>
+<td>被清圆托为耳目、如实转告访客之言<code>[第89章]</code>；为清圆报信<code>[第91章]</code></td>
+<td>清圆耳目</td>
+</tr>
+<tr>
+<td>傅嬷嬷</td>
+<td>随侍清圆的嬷嬷</td>
+<td>忠实随侍</td>
+<td>—</td>
+<td>健仆</td>
+<td>婚仪、回谢府随侍<code>[第86、93–94章]</code></td>
+<td>清圆身边</td>
+</tr>
+<tr>
+<td>严复</td>
+<td>沈润部下／属官</td>
+<td>干练的执行者</td>
+<td>奉沈润</td>
+<td>沈润心腹</td>
+<td>受遣勒索扈夫人五万两<code>[第62章]</code>；沈润至其家聘猫<code>[第76章]</code>；参与拿办<code>[第102章]</code></td>
+<td>沈润心腹</td>
+</tr>
+<tr>
+<td>姚绍</td>
+<td>宣州少尹（姚少尹），皓雪之父</td>
+<td>护妻女却无能为力</td>
+<td>保家声、保妻女</td>
+<td>敌家之长辈</td>
+<td>夜闯指挥使府为妻女求情被拒<code>[第100章]</code>；贬蜀地都水使者<code>[第102章]</code></td>
+<td>姚家</td>
+</tr>
+<tr>
+<td>沈知白</td>
+<td>沈润、沈澈之父（已故）</td>
+<td>（旧案人物）</td>
+<td>—</td>
+<td>男主之父</td>
+<td>因卷入立储风波被弃市斩首、罪及满门<code>[第14章]</code></td>
+<td>已故</td>
+</tr>
+<tr>
+<td>李观灵（兰山）</td>
+<td>开国伯大公子，清和未婚夫</td>
+<td>端方文人</td>
+<td>迎娶清和、赶考</td>
+<td>姻亲（堂姐夫）</td>
+<td>与清和相看定亲<code>[第8、11章]</code>；将上门请期、赶考<code>[第63、67章]</code></td>
+<td>开国伯府</td>
+</tr>
+<tr>
+<td>开国伯／开国伯夫人</td>
+<td>开国伯府主母／家主</td>
+<td>审慎的择亲者</td>
+<td>为子择良配</td>
+<td>姻亲</td>
+<td>春日宴端详清和、为子定亲<code>[第7–8章]</code>；因谢家被逐观望婚事<code>[第32章]</code></td>
+<td>与谢家联姻</td>
+</tr>
+<tr>
+<td>丹阳侯夫人</td>
+<td>丹阳侯府主母，李从心之母</td>
+<td>门户之见的贵妇</td>
+<td>保门第体面</td>
+<td>姻亲（未成）</td>
+<td>否决李从心求娶清圆<code>[第20章]</code>；出席宴会<code>[第37章]</code></td>
+<td>丹阳侯府</td>
+</tr>
+<tr>
+<td>观察使夫人（陶夫人）</td>
+<td>谢老太太义女，观察使之妻</td>
+<td>做人情的中介</td>
+<td>替人说合、还人情</td>
+<td>谢家姻亲</td>
+<td>代丹阳侯府登门、以&quot;劝退&quot;包装&quot;撇清&quot;<code>[第20章]</code></td>
+<td>谢家姻亲</td>
+</tr>
+<tr>
+<td>夏姨娘</td>
+<td>谢纾宠妾、清容生母（已故）</td>
+<td>（冤案受害者）</td>
+<td>—</td>
+<td>母案的&quot;另一位受害者&quot;</td>
+<td>出月子后肚疼半年而死、汤药中挑出&quot;下马仙&quot;<code>[第5章]</code></td>
+<td>已故</td>
+</tr>
+<tr>
+<td>皇后</td>
+<td>中宫皇后</td>
+<td>亲厚的上位者</td>
+<td>—</td>
+<td>君臣·知遇</td>
+<td>清圆入宫谢恩献策、一见投缘<code>[第88章]</code></td>
+<td>中宫；与沈家结好</td>
+</tr>
+<tr>
+<td>圣人</td>
+<td>当朝皇帝</td>
+<td>掌生杀、重边功</td>
+<td>稳朝局</td>
+<td>君臣</td>
+<td>内廷选妃<code>[第55章]</code>；准殿前司派兵<code>[第72章]</code>；封清圆为广阳郡夫人<code>[第86章]</code>；处置沈润、扈氏<code>[第102章]</code></td>
+<td>朝廷</td>
+</tr>
+<tr>
+<td>穆二姑娘</td>
+<td>开封穆府尹家二姑娘</td>
+<td>交易性联姻的女方</td>
+<td>借结亲求周全</td>
+<td>沈润&quot;幌子亲事&quot;对象</td>
+<td>传闻将与沈润定亲<code>[第64章]</code>；实为交易、有意弄假成真<code>[第69–72章]</code></td>
+<td>穆府</td>
+</tr>
+<tr>
+<td>徐嬷嬷</td>
+<td>谢府嬷嬷</td>
+<td>寻常下人</td>
+<td>—</td>
+<td>—</td>
+<td>出场<code>[第16章]</code></td>
+<td>谢府下人</td>
+</tr>
+<tr>
+<td>梁翼</td>
+<td>扈夫人之父旧部，行凶执行者</td>
+<td>亡命之徒</td>
+<td>受请托行凶</td>
+<td>敌方爪牙</td>
+<td>查明芦苇荡行凶主使出自扈夫人借其父旧部梁翼<code>[第55–56章]</code></td>
+<td>扈家势力</td>
+</tr>
+<tr>
+<td>扈重宽</td>
+<td>扈夫人之弟（卢龙军团练使）</td>
+<td>被姐拖入死局的凶徒</td>
+<td>助姐翻身</td>
+<td>敌方爪牙</td>
+<td>被扈夫人借以买凶伪造姚家母女自尽<code>[第102章]</code>；事败斩立决</td>
+<td>扈家</td>
+</tr>
+<tr>
+<td>韩玉</td>
+<td>步军指挥使</td>
+<td>仗义的朝中友援</td>
+<td>挺沈润</td>
+<td>清圆友援之夫</td>
+<td>因夫人受清圆之托，朝堂力挺沈润<code>[第102章]</code></td>
+<td>朝中友援</td>
+</tr>
+<tr>
+<td>韩夫人</td>
+<td>幽州贵妇圈友人（韩玉之妻）</td>
+<td>热心友人</td>
+<td>—</td>
+<td>清圆友援</td>
+<td>赴清圆设的宴、受托传信<code>[第95–96、102章]</code></td>
+<td>清圆友援</td>
+</tr>
+</tbody></table>
+<hr>
+<h1>三、龙套列表（一句话）</h1>
+<h3>谢府下人／杂役</h3>
+<ul>
+<li><strong>商嬷嬷</strong>：谢府灶房婆子、小厮表婶，厉声压下靳姨娘旧案追问<code>[第1章]</code>，后被清圆用作私下探口风的耳目<code>[第10章]</code>。</li>
+<li><strong>姜嬷嬷</strong>：老太太房嬷嬷，闲谈交代清圆身世<code>[第1章]</code>。</li>
+<li><strong>夏嬷嬷</strong>：谢府嬷嬷，托春台传话<code>[第2章]</code>。</li>
+<li><strong>双喜</strong>：谢府丫头，随众议论清圆身世<code>[第1章]</code>。</li>
+<li><strong>李奶奶</strong>：谢府老仆／奶妈<code>[第4章]</code>。</li>
+<li><strong>新雨</strong>：谢府丫头，随侍见礼、传话、随清和赴陈家<code>[第11、22、33、78–79章]</code>。</li>
+<li><strong>夏植</strong>：谢府仆从／管事<code>[第20、29、37、55章]</code>。</li>
+<li><strong>全嬷嬷</strong>：谢府嬷嬷<code>[第60章]</code>。</li>
+<li><strong>白氏</strong>：谢府妾室／旁支女眷，对扈夫人多有怨言、隔岸观火<code>[第59–61章]</code>。</li>
+<li><strong>正元媳妇</strong>：谢府媳妇<code>[第83章]</code>。</li>
+</ul>
+<h3>沈府下人／随侍</h3>
+<ul>
+<li><strong>红棉</strong>：清圆房中丫鬟，婚仪随侍、受命亲去西府相请沈澈夫妇<code>[第85、87章]</code>。</li>
+<li><strong>鹤棠</strong>：沈府丫鬟／仆从，婚仪随侍<code>[第85章]</code>。</li>
+<li><strong>寿松</strong>：沈府仆从，婚仪随侍、随沈润办事<code>[第85、100章]</code>。</li>
+<li><strong>王婆子</strong>：沈府婆子，借府中无主母贪墨<code>[第81章]</code>。</li>
+<li><strong>杨嬷嬷</strong>：沈府嬷嬷<code>[第82章]</code>。</li>
+<li><strong>雀儿</strong>：沈府丫鬟，供出皓雪借象胆皮害芳纯滑胎之全盘算计<code>[第95、99章]</code>。</li>
+<li><strong>集萤</strong>：芳纯身边丫头，被清圆查问芳纯滑胎之说<code>[第82章]</code>。</li>
+<li><strong>玉簟</strong>：沈府仆妇／丫头，捉奸相关<code>[第99章]</code>。</li>
+<li><strong>元嬷嬷</strong>：嬷嬷<code>[第85章]</code>。</li>
+</ul>
+<h3>谢府小辈（龙套子弟）</h3>
+<ul>
+<li><strong>德哥儿／平哥儿／全哥儿／元哥儿</strong>：谢府小辈<code>[第17、22、23、78章]</code>。</li>
+<li><strong>正元／正德</strong>：谢府子弟<code>[第50章]</code>。</li>
+</ul>
+<h3>佛寺与市井</h3>
+<ul>
+<li><strong>掌院／庙祝</strong>：碧痕寺职事，清圆为母做法事相关<code>[第44章]</code>。</li>
+<li><strong>布庄掌柜</strong>：清圆备嫁采买时出场<code>[第83章]</code>。</li>
+<li><strong>严夫人</strong>：严复之妻，沈润至严府聘猫时出场<code>[第76章]</code>。</li>
+<li><strong>金二</strong>：被提及之人<code>[第47章]</code>。</li>
+</ul>
+<h3>内廷</h3>
+<ul>
+<li><strong>内侍监刘监</strong>：与沈润以同僚之谊达成让清如落选的默契<code>[第55章]</code>。</li>
+<li><strong>黄门</strong>：内廷黄门，殿前司外传信<code>[第64章]</code>。</li>
+<li><strong>大长秋</strong>：长秋宫长官<code>[第88章]</code>。</li>
+<li><strong>小黄门</strong>：内廷小黄门，入宫随侍<code>[第88章]</code>。</li>
+</ul>
+<h3>朝堂与贵妇</h3>
+<ul>
+<li><strong>太傅</strong>：主张斩谢纾，与沈润力保相对<code>[第72章]</code>。</li>
+<li><strong>刘昂（御史中丞）</strong>：因沈润娶谢纾之女而公开结怨、被暗中查办，终章攻讦沈润<code>[第80、102章]</code>。</li>
+<li><strong>江兆堂</strong>：朝臣，朝议出场<code>[第72章]</code>。</li>
+<li><strong>穆府尹</strong>：开封／穆府尹<code>[第72章]</code>。</li>
+<li><strong>汲侯夫人</strong>：横塘望族长者，办春日宴的主家<code>[第6–7章]</code>。</li>
+<li><strong>开封尹家老太君／穆二姑娘</strong>：护国寺进香时在场的贵妇<code>[第59章]</code>。</li>
+<li><strong>御史中丞夫人／团练使夫人／通议大夫夫人</strong>：席间议论沈家往事的贵妇<code>[第30章]</code>。</li>
+<li><strong>刺史家老夫人</strong>：春日宴上出场的贵妇<code>[第8章]</code>。</li>
+<li><strong>丹阳侯</strong>：侯爵<code>[第49章]</code>。</li>
+</ul>
+<h3>其他（一笔带过）</h3>
+<ul>
+<li><strong>江流／徐引</strong>：仅被提及之人<code>[第27、38章]</code>。</li>
+<li><strong>克勤郡王／未央公主／刘唐</strong>：被提及<code>[第65、66章]</code>。</li>
+<li><strong>广平侯／开国伯／敬德王／防御使赵某／归德将军／殿前司都虞候／均州防御使／刘侍郎</strong>：军职、爵位、散官类提及人物<code>[第28、34、47、72、80、95章]</code>。</li>
+<li><strong>子午</strong>：李从心小厮<code>[第68章]</code>。</li>
+<li><strong>扈四爷／麻三</strong>：扈氏买凶案相关<code>[第102章]</code>。</li>
+<li><strong>吐蕃赞普</strong>：吐蕃首领（清容和亲对象）<code>[第102章]</code>。</li>
+<li><strong>姚家姑奶奶们／成国公长女</strong>：被提及的题外人物<code>[第98、102章]</code>。</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>收录统计</strong>：详卡 <strong>17 人</strong> ／ 简卡 <strong>28 人</strong> ／ 龙套 <strong>约 45 条</strong>（含一人多章合并），合计约 <strong>90 个具名角色</strong>。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

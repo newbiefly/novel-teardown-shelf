@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 · 人物关系网 · 南城小巷</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --cyan:#5eead4; --slate:#8ea0bb; --rose:#ef9fb0;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:#dfe3ee;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:340px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.10), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:13px 26px;background:rgba(8,8,12,0.74);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:#8b93a7;letter-spacing:2px;}
+
+.wrap{max-width:1320px;margin:0 auto;padding:26px 26px 80px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:2px;}
+.hero .quote{margin:18px auto 0;max-width:780px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 26px 24px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.fbtn{font-size:11.5px;letter-spacing:1px;padding:5px 13px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#aab2c6;
+  transition:.18s;user-select:none;}
+.fbtn:hover{color:#fff;background:rgba(255,255,255,0.07);}
+.fbtn.active{color:#0b0b10;font-weight:600;}
+.hint{font-size:11px;color:#6f788c;letter-spacing:.5px;margin:0 0 12px;}
+
+.graph-wrap{overflow-x:auto;border-radius:14px;background:rgba(0,0,0,0.22);
+  border:1px solid rgba(255,255,255,0.05);position:relative;}
+#graph{min-width:920px;width:100%;height:auto;display:block;}
+
+.node{cursor:pointer;transition:opacity .2s;}
+.node circle{transition:stroke-width .18s, filter .18s;}
+.node:hover circle{stroke-width:3.4;filter:drop-shadow(0 0 8px currentColor);}
+.node.off{opacity:0.12;}
+.node text{pointer-events:none;user-select:none;}
+.nname{font-weight:600;letter-spacing:.5px;}
+.nrole{font-size:10px;fill:#828ba1;letter-spacing:.5px;}
+
+.edge path{transition:stroke-opacity .18s;fill:none;}
+.edge .elabel{font-size:11px;letter-spacing:.4px;opacity:0;transition:opacity .18s;
+  paint-order:stroke;stroke:#08080c;stroke-width:4.5px;stroke-linejoin:round;font-weight:500;}
+.edge.on path{stroke-opacity:1 !important;}
+.edge.on .elabel{opacity:1;}
+.edge.off path{stroke-opacity:0.05 !important;}
+.edge.off .elabel{opacity:0;}
+
+.legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+
+#tip{position:fixed;z-index:999;display:none;max-width:340px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+#tip.wide{max-width:500px;}
+.tip-name{font-size:16px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.85;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tip-tags span{font-size:10px;padding:2px 8px;border-radius:999px;color:#aab2c6;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);}
+.rl-title{margin-top:11px;border-top:1px dashed rgba(255,255,255,0.09);padding-top:9px;
+  font-size:10px;color:#6f788c;letter-spacing:1.5px;margin-bottom:7px;}
+.tip-rels{display:flex;flex-direction:column;gap:3px;}
+.tip-rels.two{display:block;column-count:2;column-gap:22px;}
+.tip-rels.two .tip-rel{break-inside:avoid;margin-bottom:2px;}
+.tip-rel{font-size:11px;line-height:1.75;color:#a2abc0;display:flex;gap:6px;}
+.tip-rel b{color:#dfe3ee;font-weight:600;flex-shrink:0;}
+
+.tl{position:relative;padding-left:30px;}
+.tl::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,#e8c97a,#b197fc 45%,#69db7c);border-radius:2px;opacity:.6;}
+.tl-item{position:relative;padding:0 0 20px 0;}
+.tl-item::before{content:'';position:absolute;left:-27px;top:5px;width:9px;height:9px;border-radius:50%;
+  background:#e8c97a;box-shadow:0 0 10px rgba(232,201,122,.85);}
+.tl-item.p2::before{background:#b197fc;box-shadow:0 0 10px rgba(177,151,252,.85);}
+.tl-item.p3::before{background:#69db7c;box-shadow:0 0 10px rgba(105,219,124,.85);}
+.tl-h{font-size:13px;color:#e8c97a;font-weight:600;letter-spacing:1px;}
+.tl-ch{font-size:10.5px;color:#7d869c;margin-left:10px;letter-spacing:.5px;}
+.tl-b{font-size:12px;line-height:1.9;color:#b6bdd0;margin-top:5px;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px;}
+.acc{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;overflow:hidden;}
+.acc-h{padding:13px 16px;font-size:13px;color:#dfe3ee;letter-spacing:1px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;transition:.18s;}
+.acc-h:hover{background:rgba(201,169,97,0.06);}
+.acc-h .arw{color:var(--gold);font-size:11px;transition:transform .22s;}
+.acc.open .acc-h .arw{transform:rotate(90deg);}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .32s ease;}
+.acc.open .acc-b{max-height:1200px;}
+.acc-b-in{padding:12px 16px 16px;font-size:12px;line-height:2;color:#b6bdd0;
+  border-top:1px dashed rgba(255,255,255,0.08);}
+.acc-b-in .ch{color:var(--gold);font-size:11px;white-space:nowrap;}
+
+.grudge{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:16px 18px;}
+.grudge h4{margin:0 0 8px;font-size:13px;color:#ff9f9f;letter-spacing:1px;}
+.grudge p{margin:0;font-size:12px;line-height:1.95;color:#b6bdd0;}
+.grudge .tag{display:inline-block;font-size:10px;color:#8b93a7;margin-left:8px;
+  padding:1px 7px;border-radius:999px;background:rgba(255,255,255,0.05);}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 12px;color:#e8c97a;font-weight:600;letter-spacing:1px;
+  border-bottom:1px solid rgba(201,169,97,0.25);white-space:nowrap;font-size:11.5px;}
+td{padding:10px 12px;color:#b6bdd0;border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.75;}
+tr:hover td{background:rgba(201,169,97,0.04);}
+td.camp{color:#dfe3ee;font-weight:600;white-space:nowrap;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:24px;letter-spacing:3px;}
+  .section{padding:30px 16px 20px;}
+}
+
+.tb-right{display:flex;align-items:center;gap:16px;}
+.author-badge{font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.6);border:1px solid rgba(201,169,97,0.3);border-radius:16px;
+  padding:4px 12px;white-space:nowrap;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="tb-right"><div class="dim">05 · 人物关系网</div><span class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</span></div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>人物关系网</h1>
+    <div class="sub">《南城小巷》· 时玖远 · 70 章 / 约 26.4 万字 · 状态基准 = 全书终（第70章 完婚）</div>
+    <div class="quote">"她得叫他叔"是起点，"他成了南家自家人"是终点——中间隔着八年的克制、一次决裂、一场生死。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">关系总图</div>
+    <h3 class="sec-title">以 南久 × 宋霆 为双中心</h3>
+    <p class="sec-note">悬停任意节点 → 查看人物卡与该节点的全部关系；点下方色块 → 按阵营筛选。</p>
+    <div class="filters" id="filters"></div>
+    <p class="hint">线色 = 关系性质（金＝主线CP · 紫＝暗恋/追求 · 蓝＝血缘亲属 · 绿＝茶山一系 · 青＝事业线 · 玫＝街坊 · 灰＝中立 · 红＝敌对）</p>
+    <div class="graph-wrap">
+      <svg id="graph" viewBox="0 0 1440 1150" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">主线演变</div>
+    <h3 class="sec-title">南久 × 宋霆：名义叔侄 → 越界 → 决裂 → 重逢 → 完婚</h3>
+    <p class="sec-note">13 个关系质变阶段，按章序推进。</p>
+    <div class="tl" id="tlMain"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">支线演变</div>
+    <h3 class="sec-title">四条副线的关系走向</h3>
+    <p class="sec-note">点击展开每条支线的完整链路。</p>
+    <div class="cards" id="accWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">核心恩怨</div>
+    <h3 class="sec-title">全书五条恩怨线</h3>
+    <p class="sec-note">冲突的源头，续写时可挂回这些线。</p>
+    <div class="cards" id="grudgeWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">阵营一览</div>
+    <h3 class="sec-title">立场与终局状态</h3>
+    <p class="sec-note">按阵营汇总"对南久的立场"与"终局状态"。</p>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>阵营</th><th>核心成员</th><th>对南久的立场</th><th>终局状态</th></tr></thead>
+        <tbody id="campTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">《南城小巷》拆解 · 蓝图 05 · 人物关系网</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============================ 数据 ============================ */
+const CAMP = {
+  hero:    {name:'主角',            color:'#e8c97a'},
+  cp:      {name:'主线CP',          color:'#b197fc'},
+  family:  {name:'南家 · 血缘',     color:'#74c0fc'},
+  chashan: {name:'帽儿茶馆 / 茶山', color:'#69db7c'},
+  career:  {name:'星耀 / 事业',     color:'#5eead4'},
+  society: {name:'社会线 · 中立',   color:'#8ea0bb'},
+  neigh:   {name:'街坊 / 追求者',   color:'#ef9fb0'},
+  villain: {name:'社会线 · 反派',   color:'#ff6b6b'}
+};
+const KIND = {
+  cp:'#e8c97a', family:'#74c0fc', chashan:'#69db7c', career:'#5eead4',
+  love:'#b197fc', rival:'#ff6b6b', villain:'#ff6b6b',
+  neigh:'#ef9fb0', society:'#8ea0bb'
+};
+
+const NODES = [
+  {id:'nanjiu', name:'南久', x:600, y:470, r:46, camp:'hero', role:'女主',
+   desc:'南振东之女、南老爷子孙女。自幼父母离异被踢来踢去，初一独自百里投奔爷爷的帽儿茶馆。擅长跳舞、对钱与经营有天赋，要强。',
+   tags:['女主','帽儿巷','星耀 → 南风艺境']},
+  {id:'songting', name:'宋霆', x:862, y:540, r:42, camp:'cp', role:'男主',
+   desc:'南老爷子干儿子、帽儿茶馆堂倌，大南久八岁、名义上是她"叔"。父亲杀死母亲，十七岁被爷爷救下；经营南城郊外的茶山与茶叶店。',
+   tags:['男主','名义之"叔"','茶馆 / 茶山']},
+
+  {id:'nanyeye', name:'南老爷子', x:615, y:205, r:35, camp:'family', role:'祖父',
+   desc:'南久祖父，帽儿茶馆当家人，宋霆的干爹。护短又守旧规矩，是全书"名分"这道枷锁的总闸门。',
+   tags:['茶馆当家人','干爹','解铃人']},
+  {id:'nanzhendong', name:'南振东', x:395, y:170, r:27, camp:'family', role:'父',
+   desc:'南久之父，南老爷子长子。后妈产子时忘了女儿，把小久送去亲妈家；后改行跟廖虹弟弟卖酒。',
+   tags:['父','隔阂未消']},
+  {id:'liaohong', name:'廖虹', x:230, y:205, r:25, camp:'family', role:'继母',
+   desc:'南振东续弦、小凯之母。张罗给南久相亲，借钱时提"跟那个男的处处、谈笔彩礼"。',
+   tags:['继母','小凯之母']},
+  {id:'guowenhui', name:'郭文惠', x:105, y:335, r:27, camp:'family', role:'生母',
+   desc:'南久生母，后重组家庭。南久上门借 30 万时被继父冷嘲，母亲私塞五千被她拒收。',
+   tags:['生母','已疏远']},
+  {id:'xiaokai', name:'小凯', x:295, y:88, r:24, camp:'family', role:'弟',
+   desc:'廖虹之子，南久同父异母的弟弟。后来改口叫宋霆"姐夫"。',
+   tags:['同父异母弟']},
+  {id:'nanqiaoyu', name:'南乔宇', x:870, y:150, r:28, camp:'family', role:'堂弟',
+   desc:'南振勇之子、南久堂弟。曾为茶馆利益与她扭打敌对，后转为"顺带捎人 + 守秘"的同辈同盟。',
+   tags:['堂弟','敌对 → 同盟']},
+  {id:'nanzhenyong', name:'南振勇', x:1015, y:82, r:24, camp:'family', role:'亲叔',
+   desc:'南老爷子次子、南乔宇之父。南老爷子子女间旧怨（借钱旧账）的一角。',
+   tags:['亲叔']},
+  {id:'guma', name:'姑姑', x:1140, y:205, r:23, camp:'family', role:'姑妈',
+   desc:'南久姑妈。中秋家宴上试探宋霆"照顾小久"。',
+   tags:['姑妈']},
+
+  {id:'zhenmin', name:'珍敏', x:700, y:915, r:30, camp:'chashan', role:'茶山姑娘',
+   desc:'对宋霆有好感。与南久由暗中较劲到共历患难成战友；被朱家当街撕衣时，南久替她挡下并被掳。',
+   tags:['情敌 → 战友']},
+  {id:'sangya', name:'桑丫', x:865, y:900, r:28, camp:'chashan', role:'聋哑女孩',
+   desc:'老八叔家聋哑女孩，爱跳舞。跟南久学舞，后被打出山、安置在夏嫣然处，成南久团队助手。',
+   tags:['师徒','助手']},
+  {id:'qinshen', name:'芹婶', x:390, y:900, r:26, camp:'chashan', role:'茶山长辈',
+   desc:'梅芹，茶山仓库接应者。送饭、讲宋霆"跟茶树过日子"的旧事，抢采后勤主力。',
+   tags:['茶山后勤']},
+  {id:'laoba', name:'老八', x:525, y:985, r:26, camp:'chashan', role:'茶农代表',
+   desc:'茶山老农、桑丫家人。与宋霆遍村寻南久，是抢采动员的带头人。',
+   tags:['茶农代表','桑丫家人']},
+  {id:'zhangjiang', name:'张江', x:200, y:1000, r:23, camp:'chashan', role:'茶农',
+   desc:'茶山茶农 / 小伙。抢采中支持南久、给她送包子。',
+   tags:['茶山小伙']},
+  {id:'junzi', name:'军子', x:340, y:1082, r:22, camp:'chashan', role:'茶山小伙',
+   desc:'茶山小伙。总把开沟机往土坡推被剥夺操机权；曾与南久同处，被她用来激宋霆。',
+   tags:['茶山小伙']},
+  {id:'jiangqing', name:'姜清', x:965, y:992, r:27, camp:'chashan', role:'管理队核心',
+   desc:'茶山管理队（姜经理）。对南久身份存疑 → 放下疑虑并交出主导权，后称她"你嫂子"。',
+   tags:['茶山管理队']},
+  {id:'zhouweining', name:'周卫宁', x:1085, y:905, r:23, camp:'chashan', role:'管理队',
+   desc:'茶山管理队（报表）。整理抢采报表，目睹宋霆当众拥南久。',
+   tags:['茶山管理队']},
+  {id:'dahuang', name:'大黄', x:690, y:1080, r:22, camp:'chashan', role:'老黄狗',
+   desc:'钱宝贵，宋霆所养的老黄狗。衰老后走入树林再未回头；南久为它痛哭[第52章]。',
+   tags:['情感寄托','已逝']},
+  {id:'xiaojiumao', name:'三花猫', x:115, y:880, r:25, camp:'chashan', role:'小九',
+   desc:'宋霆所养三花猫，守着一只"像小久"的猫，取名"小九"。南久误以为他思念自己；发情后跑了[第38章]。',
+   tags:['情感信物']},
+
+  {id:'linsongyao', name:'林颂耀', x:1175, y:500, r:38, camp:'career', role:'男二',
+   desc:'星耀老板、南久上司。以经营权为筹码提"契约婚姻"，窥破她与宋霆隐秘后当众羞辱，终至体面分手、各奔前程。',
+   tags:['男二','商战对手']},
+  {id:'linshengkang', name:'林盛康', x:1340, y:380, r:26, camp:'career', role:'林家当家',
+   desc:'林颂耀之父，综合零售产业掌门。曾评南久"心里有谱、能成事"。',
+   tags:['世家当家']},
+  {id:'dingjun', name:'丁骏', x:1245, y:648, r:26, camp:'career', role:'铁三角',
+   desc:'星耀核心，"铁三角"之一。老同事兼传信人，[第70章]专程赴南城、代林颂耀送项链作别。',
+   tags:['老同事','传信人']},
+  {id:'xiayanran', name:'夏嫣然', x:1128, y:758, r:27, camp:'career', role:'事业搭档',
+   desc:'南久学妹 / 社员。陷入"被包养"流言获南久庇护，后成"南风艺境"搭档、与桑丫同住。',
+   tags:['学妹','搭档']},
+  {id:'gaolvshi', name:'高律师', x:1332, y:700, r:24, camp:'career', role:'律师',
+   desc:'南久的律师。连夜核对材料、准备估值报告，[第54章]以章程与投资协议逼退林颂耀。',
+   tags:['法律支持']},
+  {id:'xingyao', name:'星耀旧部', x:1150, y:962, r:27, camp:'career', role:'护主派',
+   desc:'大乔、沈总监、周总、刘姐等星耀下属。[第54章]走廊自发筑人墙护南久，确认她的"王国"成形。',
+   tags:['旧部','人墙护主']},
+
+  {id:'xiangzhiyang', name:'向治阳', x:948, y:250, r:25, camp:'society', role:'村支书',
+   desc:'乾井 / 黑石洼一带村支书，县里说得上话。朱家逼问南久下落时出面交涉，后成抢采协调人。',
+   tags:['村支书','中立']},
+  {id:'weicunzhang', name:'魏村长', x:1068, y:348, r:24, camp:'society', role:'村长',
+   desc:'黑石洼村村长。收下南久暗送的信封（为其子建篮球场）而借工，留有人情隐患。',
+   tags:['利益交换']},
+  {id:'zhengkun', name:'郑坤', x:1240, y:218, r:24, camp:'society', role:'茶圈人脉',
+   desc:'南城茶圈人脉。宋霆常以"去郑坤那儿"对爷爷遮掩；其帮人认得南久是"南老孙女"。',
+   tags:['人脉']},
+
+  {id:'liuyin', name:'柳茵', x:228, y:560, r:30, camp:'neigh', role:'发小 / 闺蜜',
+   desc:'南久发小，曾单方面暗恋宋霆（表白被红包堵回）。离婚回巷后成南久闺蜜，也是唯一撞破秘密的人。',
+   tags:['闺蜜','旧暗恋']},
+  {id:'wushen', name:'吴婶', x:112, y:592, r:25, camp:'neigh', role:'街坊',
+   desc:'吴桂英，帽儿巷街坊、茶馆帮工。一心想给宋霆张罗相亲，后力劝南久与"小林"和好。',
+   tags:['街坊','热心']},
+  {id:'lichongguang', name:'李崇光', x:190, y:718, r:26, camp:'neigh', role:'追求者',
+   desc:'帽儿巷青年，曾追求南久。得知她对象是宋霆后断了念想。',
+   tags:['追求者 · 无果']},
+  {id:'laolitou', name:'老李头', x:95, y:788, r:23, camp:'neigh', role:'街坊',
+   desc:'帽儿巷街坊，李崇光之父。想撮合儿子与南久，被宋霆一句"谈了""南城的"截断。',
+   tags:['街坊']},
+  {id:'zhouyan', name:'周妍', x:448, y:340, r:23, camp:'neigh', role:'相亲对象',
+   desc:'宋霆相亲对象，数学老师。相亲被南久搅黄；其家提入赘条件（随母姓、备婚房）被宋霆婉拒。',
+   tags:['相亲线 · 终止']},
+  {id:'yaojie', name:'姚洁', x:1255, y:1005, r:24, camp:'neigh', role:'店员',
+   desc:'宋霆茶叶店店员，暗恋宋霆。吐露"从三年前就……"被宋霆当场点破并调离老街店。',
+   tags:['暗恋 · 被斥退']},
+  {id:'xiaozhang', name:'小张', x:1352, y:915, r:22, camp:'neigh', role:'店员',
+   desc:'宋霆茶叶店（老街店）店员。因"单身 / 有女友"的信息差被追责，后恍悟"女朋友"就是南久。',
+   tags:['店员']},
+
+  {id:'zhudahai', name:'朱大海', x:695, y:78, r:28, camp:'villain', role:'黑石洼恶霸',
+   desc:'朱家长子。因违建被执法推平而记恨宋霆，转而掳南久"讨媳妇"；以蹲大牢、村被整治换村长了结[第34章]。',
+   tags:['仇','已清算']},
+  {id:'zhuerhai', name:'朱二海', x:828, y:68, r:25, camp:'villain', role:'朱家次子',
+   desc:'夜里偷摸扑向被掳的南久，被她用磨尖木棍伤退，随朱家线清算。',
+   tags:['仇']},
+  {id:'zhujia', name:'朱家一伙', x:552, y:68, r:24, camp:'villain', role:'帮凶',
+   desc:'老朱贵、朱母、王瞎子、赵村长。参与围堵珍敏、藏匿南久，随朱家线了结。',
+   tags:['帮凶']},
+  {id:'liwei', name:'李玮', x:900, y:62, r:25, camp:'villain', role:'闹事者',
+   desc:'装洋人到茶馆闹事（隔壁茶社的人），被南久拆穿并抢先报警而结怨；后由宋霆查明处理。',
+   tags:['结怨']},
+  {id:'jason', name:'Jason', x:1345, y:95, r:23, camp:'villain', role:'职场反派',
+   desc:'夏嫣然前公司主管。借出差骚扰夏嫣然、反给她穿小鞋。',
+   tags:['职场反派']}
+];
+
+const EDGES = [
+  {a:'nanjiu', b:'songting', k:'cp', hero:1, label:'名义叔侄 → 夫妻', ch:'第1、3 → 70章',
+   d:'荒道被指定"叔侄"（她须叫他"叔"，他大她八岁）→ 破冰 → 推拉 → 20岁越界 → 被撞破决裂 → 车祸生死重逢 → 摊牌成全 → 回巷定居 → 中秋解铃 → 完婚'},
+
+  {a:'nanjiu', b:'nanyeye', k:'family', hero:1, label:'爷孙 · 庇佑→决裂→解铃', ch:'第1、39、40、68章',
+   d:'获庇佑、连夜送医[1]→教规矩、由"孙女"转"打工者"[9]→撞破私情、杖责宋霆逐南久[39]→"没事就不要回来了"[40]→回馆定居[56]→默许婚事[64]→中秋当众宣布宋霆"自家人"解铃[68]'},
+  {a:'nanjiu', b:'nanzhendong', k:'family', label:'父女 · 隔阂', ch:'第1、36、68章',
+   d:'后妈产子时被送去亲妈家[1]→借钱受挫、推给廖虹[36]→当众数落退婚、被老爷子怒斥"你管过她几天"[68]'},
+  {a:'nanjiu', b:'liaohong', k:'family', label:'继母女 · 冷淡', ch:'第1、33、36章',
+   d:'产子后南久被送走[1]→张罗相亲（28岁IT男）[33]→借钱时提"谈笔彩礼"[36]'},
+  {a:'nanjiu', b:'guowenhui', k:'family', label:'生母 · 疏远', ch:'第1、36章',
+   d:'重组家庭中受尽冷遇[1]→上门借钱苦等一小时被继父冷嘲、私塞五千被拒[36]'},
+  {a:'nanjiu', b:'xiaokai', k:'family', label:'姐弟', ch:'第7、69章',
+   d:'认床霸占南久的床、被南久照看[7]→改口叫宋霆"姐夫"[69]'},
+  {a:'nanjiu', b:'nanqiaoyu', k:'family', label:'堂姐弟 · 敌对→同盟', ch:'第11、12、39章',
+   d:'婶婶派他盯梢、撬门霸占偏房扭打[11]→抢活挑衅被宋霆镇住[12]→由吹牛显摆转"顺带捎人 + 守秘"[38-39]'},
+  {a:'nanjiu', b:'nanzhenyong', k:'family', label:'叔侄', ch:'第9、68章', d:'南老爷子子女间借钱旧怨的一角[9]'},
+  {a:'nanjiu', b:'guma', k:'family', label:'姑侄', ch:'第68章', d:'中秋家宴试探宋霆"照顾小久"[68]'},
+
+  {a:'songting', b:'nanyeye', k:'family', hero:1, label:'干父子 · 恩义 vs 越界之罪', ch:'第2、35、39、63、68章',
+   d:'被委以茶馆掌事之责[2]→报喜不报忧[15]→向爷爷否认恋情[35]→养育之恩与越界之罪并置、罚杖"断念"[39]→由堂倌走向"求娶孙女"的对质[63]→家宴被宣布"自家人"[68]'},
+  {a:'songting', b:'nanzhendong', k:'family', label:'干儿子 → 女婿', ch:'第68章', d:'当众给南振东端茶、入席坐南久身旁[68]'},
+  {a:'songting', b:'nanqiaoyu', k:'family', label:'同辈 · 被回绝', ch:'第68章', d:'试图以"平辈 / 大舅哥"套近乎、被宋霆回绝[68]'},
+  {a:'songting', b:'xiaokai', k:'family', label:'被叫"姐夫"', ch:'第69章', d:'小凯改口叫"姐夫"[69]'},
+
+  {a:'nanjiu', b:'zhenmin', k:'chashan', label:'情敌 → 战友', ch:'第19、23、43、52章',
+   d:'暗中较劲、第一次吃醋[19-21]→为救珍敏被掳[23]→她当众称南久"是宋老板的爱人"[43]→共历患难成战友、隔年呼应式告别[52]'},
+  {a:'nanjiu', b:'sangya', k:'chashan', label:'师徒 · 引路人', ch:'第20、51、67、70章',
+   d:'教她跳舞建立联结[20]→留下手机号许诺带出山[51]→被接出山、安置在夏嫣然处[67]→随南久进京参会[70]'},
+  {a:'nanjiu', b:'qinshen', k:'chashan', label:'茶山长辈 · 相助', ch:'第17、51章', d:'上山接应[17]→因愧疚特让芹婶杀鸡请她[51]'},
+  {a:'nanjiu', b:'laoba', k:'chashan', label:'恩义', ch:'第19、51章', d:'做饭相待[19]→特让芹婶杀鸡致歉[51]'},
+  {a:'nanjiu', b:'zhangjiang', k:'chashan', label:'协力', ch:'第19、43章', d:'茶山农事、抢采中支持南久、送包子'},
+  {a:'nanjiu', b:'junzi', k:'chashan', label:'协力', ch:'第22章', d:'南久遭难时拿他当挡箭牌激宋霆的短暂同处[22]'},
+  {a:'nanjiu', b:'jiangqing', k:'chashan', label:'陌生 → 信任', ch:'第43、62章', d:'对身份存疑 → 放下疑虑并交出主导权[43]→称她"你嫂子"[62]'},
+  {a:'nanjiu', b:'zhouweining', k:'chashan', label:'由疑到认"嫂子"', ch:'第43、51章', d:'整理抢采报表、目睹宋霆当众拥南久'},
+  {a:'nanjiu', b:'dahuang', k:'chashan', label:'情感寄托 · 已逝', ch:'第17、52章', d:'扑出迎接[17]→衰老避人、走入树林再未回头[46]→南久为它痛哭[52]'},
+  {a:'nanjiu', b:'xiaojiumao', k:'chashan', label:'误认思念自己', ch:'第31章', d:'南久得知猫名"小九"、误以为是他思念自己[31]'},
+
+  {a:'songting', b:'zhenmin', k:'love', label:'茶山旧识 · 她单方面', ch:'第17、25章',
+   d:'迎他上山、借洗衣送饭亲近[17-19]→被告知"钱我是为小久给的"、仓皇疏远[25]→撞破二人关系[26]'},
+  {a:'songting', b:'qinshen', k:'chashan', label:'茶山老搭档', ch:'第21、43章', d:'讲他"跟茶树过日子"的旧事、抢采后勤'},
+  {a:'songting', b:'laoba', k:'chashan', label:'茶山茶农代表', ch:'第22、43章', d:'与宋霆遍村寻南久[22]'},
+  {a:'songting', b:'jiangqing', k:'chashan', label:'上下级 / 界定身份', ch:'第43、62章', d:'以"你嫂子"向姜清界定南久的身份[62]'},
+  {a:'songting', b:'zhangjiang', k:'chashan', label:'茶山茶农', ch:'第43章', d:'抢采中上下协力'},
+  {a:'songting', b:'dahuang', k:'chashan', label:'所养老狗', ch:'第17、62章', d:'茶山老黄狗，真名"钱宝贵"[62]'},
+  {a:'songting', b:'xiaojiumao', k:'chashan', label:'所养三花猫', ch:'第30、31章', d:'守着一只"像小久"的猫，取名"小九"[30-31]'},
+
+  {a:'nanjiu', b:'linsongyao', k:'rival', hero:1, label:'上司 → 情敌 / 对手 → 体面分手', ch:'第27、37、42、54、55章',
+   d:'进星耀泡茶留印象[27]→结"铁三角"、以经营权提契约婚姻[37]→窥破隐秘、歪脖子树下强吻羞辱反目[42]→领证日被反将[53]→审计队突袭被逼退、彻底决裂[54]→高价收购股份、"离开酆市"体面分手[55]'},
+  {a:'nanjiu', b:'linshengkang', k:'career', label:'赏识她的世家当家', ch:'第39章', d:'评她"心里有谱、能成事"[39]'},
+  {a:'nanjiu', b:'dingjun', k:'career', label:'同盟 → 传信人', ch:'第37、70章', d:'结盟[37]→转达林颂耀未赴宴[55]→专程赴南城代送项链作别[70]'},
+  {a:'nanjiu', b:'xiayanran', k:'career', label:'搭档', ch:'第28、67章', d:'庇护被传"包养"的夏嫣然[28]→抛出合作邀约[55]→因桑丫同住结为事业搭档[67]'},
+  {a:'nanjiu', b:'gaolvshi', k:'career', label:'专业支持', ch:'第53、54章', d:'连夜核对材料[53]→以章程与投资协议与林颂耀针锋相对[54]'},
+  {a:'nanjiu', b:'xingyao', k:'career', label:'主从 → 护主', ch:'第54章', d:'下属自发筑人墙护她、确认她的"王国"成形[54]'},
+  {a:'songting', b:'linsongyao', k:'rival', label:'情敌 · 正面交锋', ch:'第69章', d:'登门酆市时视线悍然相撞[69]'},
+
+  {a:'nanjiu', b:'zhudahai', k:'villain', label:'仇 · 被掳', ch:'第23、24、34章', d:'朱大海因违建被推平记恨宋霆[23]→藏匿南久欲讨她当媳妇[24]→蹲大牢、村被整治[34]'},
+  {a:'songting', b:'zhudahai', k:'villain', label:'旧怨', ch:'第23章', d:'朱家违建被执法推平，朱大海记恨、旧怨引爆[23]'},
+  {a:'nanjiu', b:'zhuerhai', k:'villain', label:'敌 · 欲施暴', ch:'第24章', d:'夜里扑向被掳的南久，被其用磨尖木棍伤退[24]'},
+  {a:'nanjiu', b:'zhujia', k:'villain', label:'帮凶', ch:'第23、24章', d:'参与围堵珍敏、藏匿南久，随朱家线了结'},
+  {a:'nanjiu', b:'liwei', k:'villain', label:'结怨', ch:'第13章', d:'李玮借破茶碗闹事、被南久拆穿并抢先报警[13]'},
+  {a:'nanjiu', b:'jason', k:'villain', label:'职场反派', ch:'第55章', d:'借出差骚扰夏嫣然、反给她穿小鞋[55]'},
+  {a:'zhudahai', b:'zhuerhai', k:'villain', label:'兄弟', ch:'第23章', d:''},
+  {a:'zhudahai', b:'zhujia', k:'villain', label:'同伙', ch:'第23章', d:''},
+
+  {a:'nanjiu', b:'xiangzhiyang', k:'society', label:'由陌生到合作', ch:'第45章', d:'说服其支持赴黑石洼村借工[45]'},
+  {a:'nanjiu', b:'weicunzhang', k:'society', label:'利益交换', ch:'第46章', d:'以暗送信封（为其子建篮球场）换取借工[46]'},
+  {a:'songting', b:'zhengkun', k:'society', label:'茶圈人脉', ch:'第15、62章', d:'常以"去郑坤那儿"对爷爷遮掩[15]'},
+
+  {a:'nanjiu', b:'liuyin', k:'neigh', hero:1, label:'发小 / 闺蜜 · 撞破秘密', ch:'第5、34章', d:'为柳茵出头搅黄宋霆相亲[5]→夹巷相拥被撞破、答应保密[34]→后成闺蜜往来'},
+  {a:'nanjiu', b:'wushen', k:'neigh', label:'街坊', ch:'第57章', d:'劝南久与"小林"和好、给宋霆张罗相亲[57]'},
+  {a:'nanjiu', b:'lichongguang', k:'love', label:'追求者 · 无果', ch:'第16、66章', d:'出差归来帮工、请南久吃饭[16]→追问恋情、撞破宋霆身份而尴尬逃离[66]'},
+  {a:'nanjiu', b:'yaojie', k:'neigh', label:'老板娘 / 店员', ch:'第64章', d:'以"老板娘"的沉静气场形成无形压制[64]'},
+  {a:'nanjiu', b:'xiaozhang', k:'neigh', label:'故交', ch:'第64章', d:'以"老板娘"身份完成信息确证[64]'},
+  {a:'songting', b:'liuyin', k:'love', label:'被她暗恋 · 红包堵回', ch:'第5、10、33章', d:'暗恋被南久窥破[5]→表白被红包堵回、暗恋线收场[10]→柳家提亲被他回绝[33]'},
+  {a:'songting', b:'zhouyan', k:'love', label:'相亲对象 · 终止', ch:'第6章', d:'相亲被搅→周家提入赘式条件→宋霆婉拒终止[6]'},
+  {a:'songting', b:'wushen', k:'neigh', label:'被张罗相亲', ch:'第57章', d:'吴婶一心想给宋霆说亲[57]'},
+  {a:'songting', b:'laolitou', k:'neigh', label:'旧识 · "谈了"截断', ch:'第34、59章', d:'撞见恋情、宋霆点头默认[34]→欲撮合李崇光被一句"谈了""南城的"截断[59]'},
+  {a:'songting', b:'lichongguang', k:'neigh', label:'情敌式 · 旧识', ch:'第66章', d:'李崇光撞破宋霆身份而尴尬逃离[66]'},
+  {a:'songting', b:'yaojie', k:'neigh', label:'店主 / 店员 · 划清界限', ch:'第63章', d:'姚洁三年心思表露、被当场点破并以调店划清界限[63]'},
+  {a:'songting', b:'xiaozhang', k:'neigh', label:'上下级', ch:'第63章', d:'因"单身 / 有女友"的信息差被追责[63]'},
+
+  {a:'linsongyao', b:'linshengkang', k:'career', label:'父子', ch:'第37章', d:'儿子欲借婚姻接掌家业[37]'},
+  {a:'linsongyao', b:'dingjun', k:'career', label:'老板 / 核心', ch:'第37章', d:'星耀"铁三角"结盟'},
+  {a:'nanyeye', b:'nanzhendong', k:'family', label:'父子', ch:'', d:''},
+  {a:'nanyeye', b:'nanzhenyong', k:'family', label:'父子', ch:'', d:''},
+  {a:'nanyeye', b:'guma', k:'family', label:'父女', ch:'', d:''},
+  {a:'nanzhendong', b:'liaohong', k:'family', label:'夫妻', ch:'', d:''},
+  {a:'nanzhendong', b:'xiaokai', k:'family', label:'父子', ch:'', d:''},
+  {a:'nanzhendong', b:'nanqiaoyu', k:'family', label:'叔侄', ch:'第67章', d:'搭车、捧场、叔侄热络[67]'},
+  {a:'nanzhenyong', b:'nanqiaoyu', k:'family', label:'父子', ch:'', d:''},
+  {a:'nanzhendong', b:'guowenhui', k:'family', label:'前夫妻', ch:'', d:''},
+  {a:'laoba', b:'sangya', k:'chashan', label:'家人', ch:'', d:''},
+  {a:'qinshen', b:'zhenmin', k:'chashan', label:'茶山同乡', ch:'', d:''},
+  {a:'wushen', b:'zhouyan', k:'neigh', label:'说亲 · 介绍', ch:'第6章', d:'转达周妍家的入赘条件[6]'},
+  {a:'yaojie', b:'xiaozhang', k:'neigh', label:'同事', ch:'', d:''}
+];
+
+/* 主线 13 阶段 */
+const TL_MAIN = [
+  {t:'缘起 · 名义叔侄', c:'第1、3章', p:1, b:'荒道相遇，被南老爷子指定"叔"（她须叫"叔"，他大她八岁）；四年后重逢，一句"认得出"。'},
+  {t:'破冰 · 叔侄 → 暧昧', c:'第4、7、14章', p:1, b:'当街骂痛快后破冰、得知他当年出门寻她；递桂花糕指尖相触、倒视镜对视；递茶指腹相触。'},
+  {t:'推拉 · 首次越界又退回', c:'第15、16章', p:1, b:'咬破下唇、"我会注意分寸"；廊窗点香、无声守护，私打"提成"的醋意。'},
+  {t:'越界 · 叔侄 → 亲密关系', c:'第25、26章', p:2, b:'20 岁生日木屋"我后悔了"；夜半为她套上金镯子，又被她主动划界、藏进阴影。'},
+  {t:'收手 · 主动断联、降至冰点', c:'第29、30–31章', p:2, b:'"别来学校找我"；他守茶馆、养一只"像她"的三花猫，重逢疏离中暗涌。'},
+  {t:'坐实 · 被第三者坐实', c:'第33、34章', p:2, b:'咬吻"标记"、抱她开房；夹巷相拥被柳茵撞破，他向柳茵坦白"我们不可能在一起"。'},
+  {t:'撞破 · 私情被家族撞破、决裂', c:'第39、42章', p:2, b:'被南乔宇撞破，爷爷杖责宋霆、逐南久"没事不要回来了"；被林颂耀强吻后夜奔茶馆，宋霆说"以后不要再见面了"。'},
+  {t:'生死 · 车祸重逢、再纠缠', c:'第43–44、47–49章', p:2, b:'他失联、出车祸；她赶回茶山主事、与归来的他雨中相拥；"桥归桥路归路"式强留、"你什么时候爱上我"。'},
+  {t:'摊牌 · 成人式摊牌、放手成全', c:'第50、52章', p:2, b:'以手机待办清单温柔摊牌、划下星耀红线；撕协议、备避孕药放她走。'},
+  {t:'决断 · 领证日掉头、退股返乡', c:'第53、55章', p:3, b:'民政局掉头反将林颂耀；签股权转让、应下"离开酆市"，带全部行囊回帽儿巷。'},
+  {t:'公开 · 半公开 → 全家公开', c:'第58、59、61、65章', p:3, b:'饭局认男友；祛疤膏夜访、以额头吻定情；当众"我爱你"；南久主动求婚"我们结婚吧"。'},
+  {t:'转正 · 爷爷当众解铃', c:'第68章', p:3, b:'中秋家宴"宋霆就是咱们自家人了"——全书最大的伦理枷锁当众解开。'},
+  {t:'圆满 · 夫妻', c:'第70章', p:3, b:'完婚，约定"要个孩子"；南久自营"南风艺境"、任全国舞蹈大赛评委。'}
+];
+
+/* 支线 */
+const ACC = [
+  {h:'南久 × 林颂耀：上司 → 男二 → 对手 → 体面分手', b:[
+    ['初识生兴趣', '第27章'], ['"冷静的猎人"式审视', '第29章'], ['30万入股门槛试探被拒', '第35章'],
+    ['"铁三角"结盟、提出契约婚姻', '第37章'], ['见家长推进', '第39章'], ['窥破隐秘、强吻羞辱反目', '第42章'],
+    ['领证日被反将', '第53章'], ['审计队突袭被逼退、彻底决裂', '第54章'],
+    ['高价收购股份、"离开酆市"体面分手', '第55章'], ['与宋霆正面交锋', '第69章'], ['以婚戒改制项链作别', '第70章']
+  ]},
+  {h:'南久 × 南老爷子：庇佑 → 决裂 → 讲和 → 解铃', b:[
+    ['爷孙重聚得庇佑', '第1章'], ['教规矩、由"孙女"转"打工者"', '第9章'], ['代际观念摩擦', '第13–14章'],
+    ['撞破私情、杖责宋霆并逐她离巷', '第39章'], ['"没事不要回来了"斩断归途', '第40章'],
+    ['回馆定居被认"不靠谱"', '第56章'], ['审宋霆、以"过完中秋再说"暂缓', '第63章'],
+    ['口头默许婚事、"对他好点"', '第64章'], ['中秋当众宣布"自家人"解铃', '第68章']
+  ]},
+  {h:'南久 × 原生家庭：怨恨 → 陌路 → 别扭和解', b:[
+    ['被送走、受冷遇', '第1章'], ['怨恨显性化', '第4章'], ['被推相亲', '第33章'],
+    ['借钱受辱、以"彩礼"相待、彻底陌路', '第36章'], ['南振东当众数落被老爷子怒斥', '第68章'],
+    ['别扭接受宋霆登门', '第69章']
+  ]},
+  {h:'宋霆 × 南老爷子：恩义 → 越界之罪 → 对质求娶', b:[
+    ['被委以茶馆掌事之责', '第2章'], ['报喜不报忧', '第15章'], ['向爷爷否认恋情', '第35章'],
+    ['养育之恩与越界之罪并置、罚杖"断念"', '第39章'], ['由"堂倌"走向"求娶孙女"的对质', '第63章'],
+    ['家宴被宣布"自家人"、给南振东端茶', '第68章']
+  ]}
+];
+
+/* 核心恩怨 */
+const GRUDGES = [
+  {h:'名分之恩怨', tag:'南家"名义叔侄" vs 南久的爱',
+   p:'爷爷当年收宋霆为干儿子、指定他为"叔"[第1章]，成了全书最大的伦理枷锁；爷爷杖责宋霆、逐南久[第39章]、"没事不要回来"[第40章]是总爆发，[第68章]"自家人"当众解铃。'},
+  {h:'朱家之仇', tag:'黑石洼',
+   p:'朱大海因违建被推平记恨宋霆（旧怨）[第23章]，转而掳南久"讨媳妇"[第24章]；南久磨尖木棍自救、宋霆踹门救人，仇以朱家蹲牢、村被整治了结[第34章]。'},
+  {h:'林颂耀之怨', tag:'星耀商战',
+   p:'以婚姻换家业的算计[第37章]被南久拒绝，窥破她与宋霆隐秘后当众羞辱[第42章]，婚约破裂转为商战对手（审计队突袭[第54章]），终至体面分手[第55章]。'},
+  {h:'原生家庭之怨', tag:'父母离异',
+   p:'父母离异、各重组，"累赘"标签与被冷遇[第1章]；借钱受辱[第36章]；南振东当众数落退婚被老爷子怒斥[第68章]。'},
+  {h:'柳茵与宋霆的旧暗恋', tag:'发小线',
+   p:'柳茵单方面暗恋[第5章]、表白被红包堵回[第10章]，收场后成为南久闺蜜，也是唯一撞破秘密的人[第34章]。'}
+];
+
+/* 阵营一览 */
+const CAMPTABLE = [
+  ['南久核心圈', '宋霆、桑丫、夏嫣然', '全力支持', '已成家立业（南风艺境 ＋ 完婚）'],
+  ['帽儿茶馆 / 茶山', '南老爷子、芹婶、老八、珍敏、姜清', '由戒备/较劲 → 接纳/拥护', '南久的"归宿阵营"'],
+  ['南家（血缘）', '南振东、廖虹、南乔宇、小凯、南振勇、姑姑', '冷淡/算计 → 别扭和解', '表面和睦，隔阂犹存'],
+  ['原生家庭（母系）', '郭文惠、继父', '冷漠', '已疏远'],
+  ['星耀 / 林家', '林颂耀、林盛康、丁骏、高律师', '由利用 → 反目 → 分手', '各自前行'],
+  ['星耀护主派', '大乔、沈总监、周总、刘姐', '拥戴', '南久的旧部'],
+  ['茶山村民', '老八、张江、军子、大顺', '恩义协力', '抢采旧部'],
+  ['社会线', '向治阳、魏村长、郑坤', '中立 / 互利', '可用人脉'],
+  ['反派', '朱大海、朱二海、李玮、Jason', '敌对', '已被清算 / 翻页'],
+  ['街坊 / 追求者', '柳茵、吴婶、李崇光、老李头、姚洁', '友善 / 无果', '见证者']
+];
+
+/* ============================ 渲染 ============================ */
+const NS='http://www.w3.org/2000/svg';
+const byId={}; NODES.forEach(n=>byId[n.id]=n);
+function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);
+  for(const k in attrs)e.setAttribute(k,attrs[k]); if(parent)parent.appendChild(e); return e;}
+function hexA(hex,a){const n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
+/* 把阵营色混入深底，得到不透明填充（连线从节点后面穿过时会被遮住） */
+function solid(hex,t){
+  const n=parseInt(hex.slice(1),16), bg=[10,11,16];
+  const r=Math.round(bg[0]*(1-t)+(n>>16&255)*t),
+        g=Math.round(bg[1]*(1-t)+(n>>8&255)*t),
+        b=Math.round(bg[2]*(1-t)+(n&255)*t);
+  return 'rgb('+r+','+g+','+b+')';
+}
+/* 二次贝塞尔：控制点自适应 —— 挑一条不穿过任何其它节点的弧 */
+function qpt(A,C,B,t){const u=1-t;
+  return [u*u*A.x+2*u*t*C.x+t*t*B.x, u*u*A.y+2*u*t*C.y+t*t*B.y];}
+function distSeg(px,py,x1,y1,x2,y2){
+  const dx=x2-x1,dy=y2-y1,L=dx*dx+dy*dy;
+  let t=L?((px-x1)*dx+(py-y1)*dy)/L:0; t=Math.max(0,Math.min(1,t));
+  return Math.hypot(px-(x1+t*dx),py-(y1+t*dy));
+}
+function minDistToNodes(A,C,B){
+  let m=Infinity; const S=[]; for(let i=0;i<=20;i++)S.push(qpt(A,C,B,i/20));
+  NODES.forEach(function(n){
+    if(n===A||n===B) return;
+    for(const p of S){ const d=Math.hypot(n.x-p[0],n.y-p[1]);
+      if(d-n.r<m){ m=d-n.r; if(m<0) return; } }
+  });
+  return m;
+}
+function bestCurve(A,B){
+  const dx=B.x-A.x, dy=B.y-A.y, len=Math.hypot(dx,dy)||1;
+  const nx=-dy/len, ny=dx/len, mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+  let best=null;
+  const KS=[0,0.07,0.13,0.19,0.26,0.34];
+  for(const sg of [1,-1]){
+    for(const k of KS){
+      const C={x:mx+nx*sg*k*len, y:my+ny*sg*k*len};
+      const sc=minDistToNodes(A,C,B);
+      if(!best||sc>best.sc) best={sc:sc,C:C};
+      if(best.sc>16) break;
+    }
+    if(best.sc>16) break;
+  }
+  return best.C;
+}
+
+const svg=document.getElementById('graph');
+const gE=mk('g',{},svg), gN=mk('g',{},svg);
+const edgeEls=[], nodeEls={};
+const adj={}; NODES.forEach(n=>adj[n.id]=[]);
+const nbr={}; NODES.forEach(n=>nbr[n.id]=new Set());
+
+EDGES.forEach(function(e){
+  const A=byId[e.a], B=byId[e.b]; if(!A||!B) return;
+  const col=KIND[e.k]||'#8ea0bb';
+  const C=bestCurve(A,B);
+  const g=mk('g',{class:'edge','data-k':e.k,'data-a':e.a,'data-b':e.b},gE);
+  mk('path',{d:'M'+A.x+' '+A.y+' Q'+C.x.toFixed(1)+' '+C.y.toFixed(1)+' '+B.x+' '+B.y,
+    stroke:col, 'stroke-width': e.k==='cp'?2.8:(e.hero?1.7:1.15),
+    'stroke-opacity': e.hero?0.62:0.30,'stroke-linecap':'round'},g);
+  const lp=qpt(A,C,B,0.5);
+  const t=mk('text',{x:lp[0].toFixed(1), y:(lp[1]-5).toFixed(1), class:'elabel',
+    'text-anchor':'middle', fill:col},g);
+  t.textContent=e.label||'';
+  if(e.hero) t.setAttribute('data-hero','1');
+  edgeEls.push({g:g,e:e,el:t});
+  adj[e.a].push(e); adj[e.b].push(e);
+  nbr[e.a].add(e.b); nbr[e.b].add(e.a);
+});
+
+NODES.forEach(function(n){
+  const c=CAMP[n.camp];
+  const g=mk('g',{class:'node','data-id':n.id,'data-camp':n.camp},gN);
+  mk('circle',{cx:n.x,cy:n.y,r:n.r,fill:solid(c.color,0.15),stroke:c.color,'stroke-width':1.7},g);
+  const fs = n.r>=42?19 : n.r>=32?13.5 : n.r>=27?11.5 : n.r>=24?10.5 : 10;
+  const t=mk('text',{x:n.x,y:n.y+fs*0.36,class:'nname','text-anchor':'middle',
+    fill:c.color,'font-size':fs},g);
+  t.textContent=n.name;
+  const rl=mk('text',{x:n.x,y:n.y+n.r+14,class:'nrole','text-anchor':'middle'},g);
+  rl.textContent=n.role;
+  nodeEls[n.id]={g:g};
+});
+
+const tip=document.getElementById('tip');
+let state={mode:'none',id:null};
+
+function apply(){
+  edgeEls.forEach(function(o){
+    let on=false;
+    if(state.mode==='node') on = (o.e.a===state.id||o.e.b===state.id);
+    o.g.classList.toggle('on',on);
+    o.g.classList.toggle('off',state.mode!=='none' && !on);
+  });
+  NODES.forEach(function(n){
+    let on=true;
+    if(state.mode==='node') on = (n.id===state.id || nbr[state.id].has(n.id));
+    if(state.mode==='camp') on = (n.camp===state.camp);
+    nodeEls[n.id].g.classList.toggle('off',!on);
+  });
+}
+
+function relHtml(id){
+  const list=adj[id]; if(!list.length) return '';
+  const rows=list.map(function(e){
+    const other = e.a===id? byId[e.b] : byId[e.a];
+    const oc=CAMP[other.camp].color;
+    return '<div class="tip-rel"><b style="color:'+oc+'">'+other.name+'</b><span>'+
+      (e.label||'—')+(e.ch?' <span style="color:#6f788c">['+e.ch+']</span>':'')+'</span></div>';
+  }).join('');
+  return '<div class="rl-title">关 系 · '+list.length+' 条</div><div class="tip-rels'+(list.length>12?' two':'')+'">'+rows+'</div>';
+}
+
+function moveTip(ev){
+  const pad=16,w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+pad,y=ev.clientY+pad;
+  if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+  if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+  if(x<8)x=8; if(y<8)y=8;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+
+function bindNode(el){
+  const id=el.getAttribute('data-id'), n=byId[id], c=CAMP[n.camp];
+  el.addEventListener('mouseenter',function(ev){
+    state={mode:'node',id:id}; tip.__id=id; apply();
+    tip.classList.toggle('wide', adj[id].length>12);
+    tip.innerHTML='<div class="tip-name" style="color:'+c.color+'">'+n.name+'</div>'+
+      '<div class="tip-role">'+n.role+' · <span style="color:'+c.color+'">'+c.name+'</span></div>'+
+      '<div class="tip-desc">'+n.desc+'</div>'+
+      '<div class="tip-tags">'+n.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>'+
+      relHtml(id);
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){
+    tip.style.display='none'; state={mode:curCamp?'camp':'none',camp:curCamp}; apply();
+  });
+}
+
+svg.querySelectorAll('.node').forEach(bindNode);
+
+/* 阵营筛选 */
+let curCamp=null;
+const fw=document.getElementById('filters');
+Object.keys(CAMP).forEach(function(k){
+  const b=document.createElement('div');
+  b.className='fbtn'; b.textContent=CAMP[k].name;
+  b.style.borderColor=hexA(CAMP[k].color,.45);
+  b.addEventListener('click',function(){
+    if(curCamp===k){ curCamp=null; }
+    else { curCamp=k; }
+    fw.querySelectorAll('.fbtn').forEach(function(x){
+      const on = x.dataset.camp===curCamp;
+      x.classList.toggle('active',on);
+      x.style.background = on? x.dataset.color : 'rgba(255,255,255,0.03)';
+    });
+    state = curCamp? {mode:'camp',camp:curCamp} : {mode:'none'};
+    tip.style.display='none'; apply();
+  });
+  b.dataset.camp=k; b.dataset.color=CAMP[k].color;
+  fw.appendChild(b);
+});
+
+/* 图例 */
+const lg=document.getElementById('legend');
+Object.keys(CAMP).forEach(function(k){
+  const d=document.createElement('div'); d.className='lg';
+  d.innerHTML='<i style="background:'+CAMP[k].color+';box-shadow:0 0 7px '+hexA(CAMP[k].color,.9)+'"></i>'+CAMP[k].name;
+  lg.appendChild(d);
+});
+
+/* 主线时间线 */
+const tl=document.getElementById('tlMain');
+TL_MAIN.forEach(function(s){
+  const d=document.createElement('div');
+  d.className='tl-item'+(s.p===2?' p2':s.p===3?' p3':'');
+  d.innerHTML='<div><span class="tl-h">'+s.t+'</span><span class="tl-ch">'+s.c+'</span></div>'+
+    '<div class="tl-b">'+s.b+'</div>';
+  tl.appendChild(d);
+});
+
+/* 支线折叠 */
+const aw=document.getElementById('accWrap');
+ACC.forEach(function(a){
+  const d=document.createElement('div'); d.className='acc';
+  d.innerHTML='<div class="acc-h"><span>'+a.h+'</span><span class="arw">▶</span></div>'+
+    '<div class="acc-b"><div class="acc-b-in">'+
+      a.b.map(function(it){return '· '+it[0]+' <span class="ch">['+it[1]+']</span>';}).join('<br>')+
+    '</div></div>';
+  d.querySelector('.acc-h').addEventListener('click',function(){ d.classList.toggle('open'); });
+  aw.appendChild(d);
+});
+
+/* 恩怨 */
+const gw=document.getElementById('grudgeWrap');
+GRUDGES.forEach(function(g){
+  const d=document.createElement('div'); d.className='grudge';
+  d.innerHTML='<h4>'+g.h+'<span class="tag">'+g.tag+'</span></h4><p>'+g.p+'</p>';
+  gw.appendChild(d);
+});
+
+/* 阵营表 */
+const ct=document.getElementById('campTable');
+CAMPTABLE.forEach(function(r){
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td class="camp">'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td>';
+  ct.appendChild(tr);
+});
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

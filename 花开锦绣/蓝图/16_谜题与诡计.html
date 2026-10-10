@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16 谜题与诡计 ·《花开锦绣》 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>16 谜题与诡计 ·《花开锦绣》</h1>
+<blockquote>
+<p><strong>数据源</strong>：<code>台账/谜题线索台账.md</code>（M1–M69）+ <code>拆解数据/.ext谜题.md</code>（全书 310 章「谜题线索」字段）+ <code>台账/时间线台账.md</code> + <code>拆解总纲.md</code>。<br><strong>覆盖</strong>：第 1–314 章；合并章（61 含 61–63、153 含 153–154、219 含 219–220）按合并后一章计，实存 310 张章卡。<br><strong>锚点</strong>：一律标 <code>[第X章]</code>，只据数据源，不脑补。凡原文留白、未揭秘者，如实注明&quot;未揭（留白）&quot;。<br><strong>难度标度</strong>：★1 一眼即知/过渡性｜★2 单章即收或读者先知｜★3 跨数章、有一次误导｜★4 跨卷、多线索、含系统性误导｜★5 全书核心、终局反转、牵动主线。<br><strong>分工</strong>：本篇讲&quot;谜怎么埋、怎么解、怎么误导&quot;，与「伏笔规划表」（讲埋收）、「时间线」（讲信息差）互补，不复述剧情全貌。</p>
+</blockquote>
+<hr>
+<h2>一、谜题总表</h2>
+<blockquote>
+<p>编号沿用台账 M1–M69；&quot;类型&quot;分「谜面／线索／揭秘」；「所属线索」按 11 号支线地图的线名归并。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>谜面／线索</th>
+<th>类型</th>
+<th>埋设章</th>
+<th>揭秘章</th>
+<th>所属线索</th>
+<th>难度★</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>M1</td>
+<td>碧云庵翻墙搜食的陌生男子身份（江洋大盗？逃犯？同行&quot;小兄弟&quot;何在）</td>
+<td>谜面</td>
+<td>[第1章]</td>
+<td>[第7章]—[第15章]渐知即赵凌</td>
+<td>西行线／感情线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>赵凌真实身世与来历（父母双亡、父为进士、母蒙冤、家道中落；十六岁即置私宅养人；金条与小黄鱼来源）</td>
+<td>谜面</td>
+<td>[第15章][第25章][第26章]</td>
+<td>[第110章]明父身份与母冤，全貌延后</td>
+<td>感情线／复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>傅庭筠的肚兜经谁之手到了左俊杰手中（贴身衣物被窃的内贼）</td>
+<td>谜面</td>
+<td>[第4章]</td>
+<td>[第124章]揭（墨香受左俊杰指使）</td>
+<td>复仇线／宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>谁软禁傅庭筠、傅家为何对己女&quot;众口一词&quot;判死、灌的是何药、母亲是否知情（弃女自保之谜）</td>
+<td>谜面</td>
+<td>[第5章]</td>
+<td>[第141章]—[第142章][第179章]揭、[第225章]揭太夫人弃孙女保子</td>
+<td>宅斗线／复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M5</td>
+<td>城中&quot;通奸&quot;流言何人所散（非府内？）</td>
+<td>谜面</td>
+<td>[第11章]</td>
+<td>[第11章]—[第17章]指向左俊杰／外部</td>
+<td>复仇线／宅斗线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M6</td>
+<td>大伯父为何一再容忍左俊杰、左俊杰为何独挑傅庭筠（牵出京都／俞家旧案）</td>
+<td>谜面</td>
+<td>[第12章]</td>
+<td>[第179章]随丙辰科舞弊案揭开</td>
+<td>复仇线</td>
+<td>★5</td>
+</tr>
+<tr>
+<td>M7</td>
+<td>阿森与赵九爷一行的来历（孩童何以狠辣；李家凹何以建栅栏、挑人头自守）</td>
+<td>谜面</td>
+<td>[第19章][第23章]</td>
+<td>[第17章]—[第22章]渐揭</td>
+<td>西行线／感情线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M8</td>
+<td>十六爷一行四人身份之谜（&quot;行商&quot;何以携官银、先给钱后赶尽杀绝；究竟是何藩王）</td>
+<td>谜面</td>
+<td>[第34章]</td>
+<td>[第35章]—[第38章]坐实藩王、[第133章]揭为穆王</td>
+<td>朝局线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M9</td>
+<td>陌毅与十六爷是否同伙、陌毅身份之疑</td>
+<td>谜面</td>
+<td>[第34章]</td>
+<td>[第35章][第38章][第40章]渐揭</td>
+<td>朝局线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M10</td>
+<td>赵凌被&quot;突然&quot;从陕西都司派往庄浪卫，背后是否有人做局</td>
+<td>谜面</td>
+<td>[第72章]</td>
+<td>[第73章]部分（都司安排仍是悬念）</td>
+<td>军旅线／侯府阵营线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M11</td>
+<td>一路跟踪者的身份</td>
+<td>谜面</td>
+<td>[第73章]</td>
+<td>[第73章]揭为冯百户（西平侯八公子）</td>
+<td>侯府阵营线</td>
+<td>★1</td>
+</tr>
+<tr>
+<td>M12</td>
+<td>林迟是否即当初夜袭赵凌之人</td>
+<td>谜面</td>
+<td>[第75章]</td>
+<td>[第76章]坐实</td>
+<td>军旅线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M13</td>
+<td>冯氏诳称赵凌&quot;阵亡&quot;是真是假、鲁成&quot;掩败&quot;是否属实（赵凌何在之谜）</td>
+<td>谜面</td>
+<td>[第83章]</td>
+<td>[第88章]反证、[第95章]—[第96章]赵凌归来</td>
+<td>冯家线／感情线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M14</td>
+<td>杀冯大虎的黑衣人是谁（矛头指向赵凌，未证实）</td>
+<td>谜面</td>
+<td>[第100章]</td>
+<td>[第100章]—[第101章][第106章]渐明为赵凌</td>
+<td>冯家线／复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M15</td>
+<td>唐小姐（佩玲）赠剑赵凌之典故及其为父寻赵凌的真实用意</td>
+<td>谜面</td>
+<td>[第102章]</td>
+<td>[第107章]—[第110章]延续，<strong>未全揭</strong></td>
+<td>军旅线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M16</td>
+<td>赵凌中秋急出城、八月十五失约所为何事</td>
+<td>谜面</td>
+<td>[第113章]</td>
+<td>[第115章]揭为赴金塔寺办马贼之事</td>
+<td>军旅线／朝局线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M17</td>
+<td>萧氏从何得知&quot;冯大虎为赵凌所杀&quot;、颖川侯打探赵凌底细意欲何为</td>
+<td>谜面</td>
+<td>[第114章]</td>
+<td>[第117章]—[第118章]揭</td>
+<td>侯府阵营线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M18</td>
+<td>西平侯支持马贼打劫商队——赵凌能否取得铁证、如何离间两侯</td>
+<td>谜面</td>
+<td>[第115章]</td>
+<td>[第233章]展开、[第310章]—[第314章]收网</td>
+<td>侯府阵营线／复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M19</td>
+<td>京都傅家&quot;母亲卧病/被拘禁&quot;真病假病之谜、跟踪修竹家的小厮系何人所派</td>
+<td>谜面</td>
+<td>[第118章]</td>
+<td>[第122章]—[第123章]揭</td>
+<td>外家线／宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M20</td>
+<td>雨微为何自认&quot;害了&quot;傅庭筠、碧云庵往事之谜</td>
+<td>谜面</td>
+<td>[第121章]</td>
+<td>[第122章]—[第123章]揭（查抄—逼供—灭口—流民劫庵）</td>
+<td>复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M21</td>
+<td>傅家为何要灭口众丫鬟、碧云庵随侍（陈妈妈、寒烟、绿萼）真实死因、凶手是否赵凌</td>
+<td>谜面</td>
+<td>[第123章]</td>
+<td>[第123章]—[第124章]基本揭，陈妈妈之死留白</td>
+<td>复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M22</td>
+<td>墨香腹中孩子生父及自缢内情、大奶奶（左氏）放走左俊杰之举</td>
+<td>谜面</td>
+<td>[第124章]</td>
+<td>[第124章]部分解</td>
+<td>宅斗线／复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M23</td>
+<td>傅庭筠为何刻意避父、父亲&quot;咽下的话&quot;与&quot;异样神色&quot;（父女心结）</td>
+<td>谜面</td>
+<td>[第125章]</td>
+<td>[第141章]傅夫人点破（渐揭）</td>
+<td>外家线／宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M24</td>
+<td>&quot;十六爷&quot;（=穆王）是谁、赵凌为何在湖广、赵凌实参穆王起事</td>
+<td>谜面</td>
+<td>[第132章]</td>
+<td>[第133章]揭</td>
+<td>朝局线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M25</td>
+<td>武定侯&quot;私养战马&quot;被夺爵流放与后文&quot;私卖战马&quot;案之关联（战马线首现）</td>
+<td>线索</td>
+<td>[第134章]</td>
+<td>[第209章][第310章]—[第314章]西平侯贩马事发</td>
+<td>侯府阵营线／朝局线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M26</td>
+<td>陈妈妈究竟死于谁手</td>
+<td>谜面</td>
+<td>[第136章]</td>
+<td><strong>未揭（原文留白）</strong></td>
+<td>复仇线</td>
+<td>★5</td>
+</tr>
+<tr>
+<td>M27</td>
+<td>左俊杰下落未明（为何在京都行乞、扮秀才、潜回京都）</td>
+<td>谜面</td>
+<td>[第137章]</td>
+<td>[第164章]擒获、[第172章]—[第173章]招供</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M28</td>
+<td>傅家为何弃女、强灌毒药（谁主使、为何祖母也同意）</td>
+<td>谜面</td>
+<td>[第138章]</td>
+<td>[第141章]—[第142章][第179章]渐揭、[第225章]揭</td>
+<td>宅斗线／复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M29</td>
+<td>傅大老爷&quot;去年秋放金华知府&quot;起复究系谁人举荐</td>
+<td>谜面</td>
+<td>[第138章]</td>
+<td>[第139章]疑系傅五老爷相助，仍留悬</td>
+<td>朝局线／外家线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M30</td>
+<td>傅五老爷为何竭力阻隔母女、傅夫人为何身居南墙陋室（夫妇嫌隙内情）</td>
+<td>谜面</td>
+<td>[第140章]</td>
+<td>渐揭</td>
+<td>外家线／宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M31</td>
+<td>太皇太后身世之叹、其胞弟流放铁岭卫待寻（外家线）</td>
+<td>线索</td>
+<td>[第144章]</td>
+<td><strong>未揭（留白）</strong></td>
+<td>朝局线／外家线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M32</td>
+<td>傅夫人之死与傅家当年处置是否有关、赵凌为何早知岳母病重</td>
+<td>谜面</td>
+<td>[第166章]</td>
+<td>疑点，<strong>未明</strong>（[第167章][第195章]）</td>
+<td>外家线／宅斗线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M33</td>
+<td>左俊杰&quot;偷东西&quot;是否另有所指、他大半年经历了什么、是否联系过大堂嫂</td>
+<td>谜面</td>
+<td>[第170章]</td>
+<td>[第171章]—[第173章]推演招供</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M34</td>
+<td>俞敬修何以指使左俊杰、何以这么快知左俊杰落网（眼线）</td>
+<td>谜面</td>
+<td>[第172章]</td>
+<td>[第173章]补足、[第174章]揭眼线</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M35</td>
+<td>当年为何非要置傅庭筠于死地、丙辰科舞弊案与俞家何干、&quot;去问令尊&quot;暗指何隐情</td>
+<td>谜面</td>
+<td>[第173章]</td>
+<td>[第179章]揭（科举代考把柄）</td>
+<td>复仇线</td>
+<td>★5</td>
+</tr>
+<tr>
+<td>M36</td>
+<td>夜袭囚地者是否俞敬修所派（灭口还是抢人）、赵凌&quot;这样才解释的通&quot;指何事</td>
+<td>谜面</td>
+<td>[第177章]</td>
+<td>[第178章]—[第179章]揭</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M37</td>
+<td>俞家何以能逼傅家杀女（科举代考把柄）</td>
+<td>揭秘</td>
+<td>[第179章]</td>
+<td>[第179章]</td>
+<td>复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M38</td>
+<td>俞敬修退婚之&quot;真正理由&quot;、&quot;傅姑娘暴病而亡&quot;后俞家即来提亲之巧、范老爷嫁女之&quot;豪放&quot;</td>
+<td>谜面</td>
+<td>[第183章]</td>
+<td>[第185章]—[第187章]渐揭</td>
+<td>复仇线／宅斗线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M39</td>
+<td>俞夫人为何执意&quot;补偿/软化&quot;傅庭筠</td>
+<td>谜面</td>
+<td>[第186章]</td>
+<td>[第203章]揭（为儿子预设退路）</td>
+<td>宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M40</td>
+<td>颖川侯厚礼、萧姨娘邀客、俞夫人送礼三重谜面</td>
+<td>谜面</td>
+<td>[第186章]</td>
+<td>[第188章]揭（答谢＋绝交等）</td>
+<td>侯府阵营线／宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M41</td>
+<td>俞夫人&quot;相看丫鬟/纳妾&quot;之谜（明为挑屋里人，实为逼范氏、图清白长孙）</td>
+<td>谜面</td>
+<td>[第193章]</td>
+<td>[第193章]—[第195章]对束妈妈&quot;做样子&quot;揭</td>
+<td>宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M42</td>
+<td>吴姨娘（吴小姐）何以&quot;知道&quot;傅庭筠而矢口否认、其身份（被隐去&quot;病逝&quot;）、为何亲近傅庭筠</td>
+<td>谜面</td>
+<td>[第195章]</td>
+<td>[第218章]揭为俞敬修妾室、[第237章]—[第241章]揭其转向</td>
+<td>宅斗线／复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M43</td>
+<td>依桐从兄不肯上门、&quot;只当不知傅庭筠活着&quot;之动因；&quot;左俊杰在俞敬修手中&quot;；大堂嫂自缢真相</td>
+<td>谜面</td>
+<td>[第196章]</td>
+<td>[第263章]华阴旧事渐揭</td>
+<td>外家线／复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M44</td>
+<td>浆洗房流言幕后者是谁</td>
+<td>谜面</td>
+<td>[第204章]</td>
+<td>[第207章]—[第208章]揭为范氏／内宅</td>
+<td>宅斗线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M45</td>
+<td>俞敬修父子入书房密谈何事</td>
+<td>谜面</td>
+<td>[第208章]</td>
+<td>[第209章]揭为构陷赵凌&quot;贩私盐／冒领军功&quot;</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M46</td>
+<td>冯家与赵凌&quot;杀兄&quot;旧怨真相</td>
+<td>谜面</td>
+<td>[第29章][第209章]</td>
+<td>[第263章]揭</td>
+<td>复仇线／冯家线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M47</td>
+<td>正和大师为何独召傅庭筠、为何主动遣人（先生线）</td>
+<td>线索</td>
+<td>[第211章]</td>
+<td>[第211章][第250章]</td>
+<td>外家线／朝局线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M48</td>
+<td>俞槐安赴华阴追查傅庭筠生死之结果、傅氏未死消息会否全面走漏</td>
+<td>谜面</td>
+<td>[第240章]</td>
+<td>[第241章][第246章]揭</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M49</td>
+<td>吴姨娘所查&quot;赵太太是哪里人&quot;、赵太太真身（指向赵俞旧怨）</td>
+<td>谜面</td>
+<td>[第251章]</td>
+<td>[第252章]得答、[第255章]确证傅家九小姐</td>
+<td>复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M50</td>
+<td>赵俞结仇之根由（赵凌与西平侯结怨之因、赵俞罅隙）</td>
+<td>谜面</td>
+<td>[第252章]</td>
+<td>[第263章]揭</td>
+<td>复仇线</td>
+<td>★5</td>
+</tr>
+<tr>
+<td>M51</td>
+<td>当年傅氏&quot;病逝&quot;真相在官员间流传、沈任思两度撇清之隐情</td>
+<td>谜面</td>
+<td>[第255章]</td>
+<td>[第261章]郝剑锋道全貌（渐揭）</td>
+<td>复仇线／朝局线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M52</td>
+<td>西平侯次子为何受俞阁老礼遇、西平侯因何与赵凌结怨、因何求俞阁老讲和</td>
+<td>谜面</td>
+<td>[第258章]</td>
+<td>[第262章]揭未答应、[第263章]揭结怨之因</td>
+<td>侯府阵营线／复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M53</td>
+<td>郝剑锋走傅庭筠/赵家门路（查沈任思→查赵太太），如何接近赵太太</td>
+<td>线索</td>
+<td>[第260章]</td>
+<td>[第260章]—[第261章][第268章]—[第270章]牵线肁先生</td>
+<td>朝局线／复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M54</td>
+<td>华阴分家缘由（舒家舅舅指使六叔、六婶婶）、舒明为何突然回华阴</td>
+<td>谜面</td>
+<td>[第268章]</td>
+<td><strong>未揭（外家线）</strong></td>
+<td>外家线／宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M55</td>
+<td>冯老三求和是真心还是另有蹊跷</td>
+<td>谜面</td>
+<td>[第270章]</td>
+<td>[第274章]—[第277章]揭（与赵凌立约）</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M56</td>
+<td>赵凌赴陕西的真正图谋（口中&quot;献寿&quot;之外另有目的）</td>
+<td>谜面</td>
+<td>[第273章]</td>
+<td>[第274章]揭（借冯家情报、以彼之道还治俞家）</td>
+<td>复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M57</td>
+<td>九宫山长辈（安道长）是否会来、安道长&quot;只做师傅不提收徒&quot;之意</td>
+<td>谜面</td>
+<td>[第275章]</td>
+<td>[第282章]揭（先看二人能否达标）</td>
+<td>家事线／外家线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M58</td>
+<td>俞敬修索银二百两之用途</td>
+<td>谜面</td>
+<td>[第280章]</td>
+<td>[第285章]揭（帮闵小姐打官司）</td>
+<td>宅斗线／复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M59</td>
+<td>费氏寻范氏之真实意图、为何执意介入正屋风波</td>
+<td>谜面</td>
+<td>[第281章]</td>
+<td>[第285章][第304章]—[第305章]揭（投名状、自保、佯孕抱养）</td>
+<td>宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M60</td>
+<td>闵小姐（闵氏）身份之谜（父受冤下狱、出身不凡、只带乳娘丫鬟；屋内男子衣物）</td>
+<td>谜面</td>
+<td>[第285章]</td>
+<td>[第296章]—[第301章]揭（未婚夫郭公子）</td>
+<td>复仇线／宅斗线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M61</td>
+<td>费氏&quot;我也和闵小姐一样&quot;——其身世之谜</td>
+<td>谜面</td>
+<td>[第286章]</td>
+<td><strong>未揭（留白）</strong></td>
+<td>宅斗线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M62</td>
+<td>春饼对呦呦的心思（青梅隐线）</td>
+<td>线索</td>
+<td>[第289章]</td>
+<td>[第292章]揭</td>
+<td>家事线</td>
+<td>★1</td>
+</tr>
+<tr>
+<td>M63</td>
+<td>吴姨娘为何托傅庭筠查闵小姐（通风报信）</td>
+<td>谜面</td>
+<td>[第295章]</td>
+<td>[第296章]揭</td>
+<td>复仇线／宅斗线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M64</td>
+<td>孟氏求亲之真实对象（辅国公府／颖川侯）、云贵总督人选</td>
+<td>谜面</td>
+<td>[第299章]</td>
+<td>[第300章]—[第301章]揭（颖川侯次子、赵凌节制云贵）</td>
+<td>朝局线／家事线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M65</td>
+<td>闵氏之狠、郭公子何以&quot;被闵小姐害了&quot;（郭公子之死真相）</td>
+<td>谜面</td>
+<td>[第300章]</td>
+<td>[第301章]揭郭公子被杀、[第312章]—[第313章]揭乳娘买凶</td>
+<td>复仇线</td>
+<td>★4</td>
+</tr>
+<tr>
+<td>M66</td>
+<td>赵凌家书久无音讯、叶掌柜何以频频来访</td>
+<td>谜面</td>
+<td>[第308章]</td>
+<td>[第310章]揭（赵凌赴西安、托叶掌柜看顾）</td>
+<td>感情线／复仇线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M67</td>
+<td>俞敬修何以急迎闵氏进门</td>
+<td>谜面</td>
+<td>[第310章]</td>
+<td>[第311章]揭（闵氏有孕）</td>
+<td>宅斗线／复仇线</td>
+<td>★2</td>
+</tr>
+<tr>
+<td>M68</td>
+<td>郭家何以敢告&quot;杀夫夺妻&quot;、背后是否真有赵凌</td>
+<td>谜面</td>
+<td>[第312章]</td>
+<td>[第312章]—[第313章]揭（赵凌撑腰）</td>
+<td>复仇线</td>
+<td>★3</td>
+</tr>
+<tr>
+<td>M69</td>
+<td>赵凌为何给俞敬修说情</td>
+<td>揭秘</td>
+<td>[第314章]</td>
+<td>[第314章]（以&quot;活着的痛苦&quot;为惩罚）</td>
+<td>复仇线</td>
+<td>★4</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>总表行数：69 行</strong>（M1–M69）。其中「未揭（留白）／未明」谜题共 <strong>5 条</strong>：M26（陈妈妈死因）、M31（太皇太后胞弟）、M32（傅夫人之死与傅家处置）、M54（华阴分家缘由）、M61（费氏身世）；另有 M15（唐小姐赠剑典故）提及未尽、M29（傅大老爷起复举荐）留悬。</p>
+</blockquote>
+<hr>
+<h2>二、核心谜题深解</h2>
+<blockquote>
+<p>择全书最重要的 9 个谜题深剖。每条含：<strong>谜面抛出 / 埋线 / 误导 / 揭秘 / 读者可推理性</strong>。</p>
+</blockquote>
+<h3>1. 碧云庵无名男子的身份之谜（M1）——开篇钩</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第1章]</code> 傅庭筠翻墙探路，撞见一名翻墙入庵、只搜罗吃食的男子，被掐颈威胁&quot;你要是敢发出一点声响，我就立刻拧断了你的脖子&quot;[第1章]。谜面被点明为&quot;被通缉的江洋大盗？行凶乡里的逃犯？&quot;[第1章]。</li>
+<li><strong>埋线</strong>：<code>[第7章]</code>&quot;有贼&quot;夜访、<code>[第8章]</code>&quot;再见&quot;、<code>[第10章]</code>&quot;交换&quot;——男子数次夜访、以托送家信为条件，身份从&quot;盗&quot;逐层向&quot;人&quot;过渡；<code>[第15章]</code> 救命时显露身手与号令众人的能力。</li>
+<li><strong>误导</strong>：开篇以&quot;通缉大盗／逃犯&quot;设预期，读者与傅庭筠同将此男视为危险的陌生人；&quot;同行小兄弟何在&quot;的发问（M1）把注意力引向&quot;同伙&quot;。</li>
+<li><strong>揭秘时机与方式</strong>：非一次性揭底，而是 <code>[第7章]</code>—<code>[第15章]</code> 渐知即<strong>赵凌</strong>（姓名到 <code>[第10章]</code> 交换、身份到 [第15章] 救命才实化）。属于&quot;人物归位式&quot;揭秘——谜面本身就是男主角登场。</li>
+<li><strong>读者可推理性</strong>：低门槛。读者几乎在第 7–10 章即可断定&quot;翻墙男子＝男主&quot;，谜题的张力不在&quot;猜他是谁&quot;，而在&quot;女主何时可信他&quot;。属<strong>好奇钩</strong>的引子，价值在开篇点击率而非长线悬念。</li>
+</ul>
+<h3>2. 左俊杰诬陷的幕后指使与傅家的灭口抉择（M3·M4·M5·M6·M20·M21·M28·M35·M37）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第4章]</code> 左俊杰持傅庭筠的肚兜逼婚（M3&quot;谁偷的&quot;）；<code>[第5章]</code> 傅庭筠被软禁、<code>[第6章]</code>&quot;诬陷她的内贼是谁&quot;（M4）；<code>[第11章]</code> 城中&quot;通奸&quot;流言外传（M5）；<code>[第12章]</code>&quot;大伯父为何一再容忍左俊杰&quot;（M6）——四问层层递进。</li>
+<li><strong>埋线</strong>：①内贼线——肚兜失窃[第4章]→<code>[第122章]</code>&quot;谁偷了傅庭筠的贴身物件给左俊杰&quot;→<code>[第124章]</code>揭为<strong>墨香受左俊杰指使</strong>；②灭口线——陈妈妈逼灌&quot;消暑药&quot;[第13章]→<code>[第20章]</code>雨微自认&quot;害了&quot;傅庭筠→<code>[第121章]</code>碧云庵往事→<code>[第122章]</code>—<code>[第123章]</code>揭&quot;查抄—逼供—灭口—流民劫庵&quot;；③抉择线——<code>[第225章]</code>揭太夫人&quot;为保儿子前途与傅家，退而求其次、弃了孙女&quot;。</li>
+<li><strong>误导</strong>：傅家对外只说&quot;为女儿好、送庵堂避祸&quot;[第5章]，读者与傅庭筠同被&quot;家族庇护&quot;的表象误导；流言&quot;非府内所散&quot;[第12章]一度把嫌疑引向外部，实则府内（左俊杰—墨香）与外传双源。</li>
+<li><strong>揭秘时机与方式</strong>：分层错峰——内贼 <code>[第124章]</code>、灭口 <code>[第123章]</code>—<code>[第124章]</code>、家族抉择 <code>[第225章]</code>。傅家&quot;必然性&quot;（为何逼死亲女）用&quot;旧案把柄&quot;收口：<code>[第179章]</code> 揭俞家以<strong>丙辰科舞弊案</strong>（傅五老爷会元文章系代考者柳叔同练笔）为把柄，逼傅家杀女自保（M35·M37）。</li>
+<li><strong>读者可推理性</strong>：<strong>可提前推</strong>。&quot;大伯父容忍左俊杰&quot;的反常[第12章]与&quot;外传流言非府内&quot;[第12章]已埋下&quot;左俊杰受更高方指使&quot;的种子；<code>[第179章]</code>&quot;去问令尊&quot;[第173章]一句将读者引向傅五老爷，逻辑链闭合。属于全书骨架级<strong>复仇钩</strong>。</li>
+</ul>
+<h3>3. 傅五老爷科场作弊真相（丙辰科舞弊案）（M6·M35·M37）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第12章]</code> 大伯父为何一再容忍左俊杰（反常）；<code>[第173章]</code> 左俊杰招供引&quot;丙辰科舞弊案与俞家何干&quot;+&quot;去问令尊&quot;（M35）；<code>[第176章]</code> 傅五老爷口中所说的&quot;当年真相&quot;究竟为何。</li>
+<li><strong>埋线</strong>：<code>[第179章]</code> 傅大老爷揭真相——<strong>五老爷会元文章系代考者柳叔同练笔之作</strong>（前史9，牵出皇上潜邸军师肁廷宜）；<code>[第180章]</code>—<code>[第185章]</code> 俞阁老&quot;赏花&quot;邀客、两家翻脸，把把柄的攻守关系演成明面博弈。</li>
+<li><strong>误导</strong>：<code>[第143章]</code>—<code>[第163章]</code> 傅五老爷&quot;独重俞家而轻女儿清白&quot;[第163章]的怪异，一度让读者以为他&quot;重利轻女&quot;；&quot;去问令尊&quot;[第173章]之前，读者的怀疑长期停在俞家单方面，未料到傅家自身有把柄。</li>
+<li><strong>揭秘时机与方式</strong>：<code>[第179章]</code>&quot;谈判&quot;章一次性点破，方式为<strong>当事人现身说法</strong>（傅大老爷自金华来京当众揭底）。把柄一旦落地，此前所有&quot;反常&quot;（大伯父容忍左俊杰、傅五老爷绝情）同时获得解释。</li>
+<li><strong>读者可推理性</strong>：<strong>难猜全貌、能猜方向</strong>。&quot;大伯父容忍&quot;+&quot;去问令尊&quot;两条已暗示傅家握有不能见光的短处；但&quot;科举代考&quot;这一具体性质，需到 [第179章] 才可定论。典型<strong>真相反转型</strong>核心谜，也是全书把柄机制的枢纽。</li>
+</ul>
+<h3>4. 傅夫人之死疑云（M19·M30·M32）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第118章]</code> 京都傅家&quot;母亲卧病/被拘禁&quot;真病假病、跟踪修竹家的小厮系何人所派（M19）；<code>[第127章]</code>&quot;满院不闻药味&quot;；<code>[第140章]</code> 傅夫人身居南墙陋室、傅五老爷竭力阻隔母女（M30）；<code>[第166章]</code> 傅夫人病逝后，傅庭筠疑&quot;与傅家当年处置是否有关&quot;、赵凌为何早知岳母病重（M32）。</li>
+<li><strong>埋线</strong>：<code>[第122章]</code>—<code>[第123章]</code> 揭&quot;假病其实是为拘禁、灭口服务&quot;（M19）；<code>[第141章]</code> 傅夫人暗示旧案&quot;关涉大伯、父亲&quot;；<code>[第158章]</code> 傅夫人&quot;颠三倒四&quot;突然提起俞家与傅庭，实为已知病重、为身后事筹谋。<code>[第167章]</code> 俞夫人两度吊祭傅夫人[第168章]亦成旧情／伏笔之谜。</li>
+<li><strong>误导</strong>：傅家对外以&quot;养病&quot;名义隔绝[第118章]、&quot;嘱托嫂嫂&quot;[第127章]，读者易信&quot;傅夫人真病&quot;；赵凌&quot;早知岳母病重&quot;[第166章]（含M32）又像在暗示其另有隐情。</li>
+<li><strong>揭秘时机与方式</strong>：<strong>半揭长悬</strong>。M19 于 [第122章]—[第123章]揭；而&quot;傅夫人之死与当年处置是否有关&quot;[第166章]原文仅作<strong>疑点留白</strong>，至正文结束未明断——属&quot;把答案交给读者&quot;的开放式处理。</li>
+<li><strong>读者可推理性</strong>：<strong>可推方向、难定真伪</strong>。读者能推出&quot;母亲的&#39;病&#39;是家族控制工具&quot;，但&quot;她临终前究竟知道多少、是否被放弃&quot;原文刻意不给确定性，构成对傅家&quot;至亲隔阂&quot;（寒）主题的余味。</li>
+</ul>
+<h3>5. 俞家退婚逼死的真相（M38·M51）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第183章]</code> 傅庭筠问&quot;俞敬修退婚之&#39;真正理由&#39;&quot;、以及&quot;傅姑娘暴病而亡&quot;后俞家即来提亲之巧、&quot;范老爷嫁女之豪放&quot;（M38）；<code>[第187章]</code> 范氏起疑&quot;暴病而亡&quot;与提亲之巧。</li>
+<li><strong>埋线</strong>：<code>[第185章]</code> 俞敬修当日究竟如何答傅庭筠（束妈妈不敢应、俞夫人暴青筋）——留悬；<code>[第255章]</code> 傅氏&quot;病逝&quot;真相在官员间流传、沈任思两度撇清（M51）；<code>[第261章]</code> 郝剑锋道出全貌：&quot;当年傅庭筠&#39;病逝&#39;真相（私相授受退婚）&quot;，并点出&quot;要紧的是几家人的关系&quot;。</li>
+<li><strong>误导</strong>：<code>[第183章]</code>—<code>[第184章]</code> 俞敬修以&quot;科场成名&quot;遮掩退婚动机[第183章]（借用&quot;借科场成名遮掩&quot;），把读者注意力引向&quot;功名&quot;而非&quot;旧案&quot;；<code>[第186章]</code> 俞夫人送礼、<code>[第203章]</code> &quot;补偿/软化&quot;[第186章]又像在示好。</li>
+<li><strong>揭秘时机与方式</strong>：<code>[第185章]</code>—<code>[第187章]</code> 渐揭（退婚与提亲时间差被范氏识破），<code>[第261章]</code> 经官场视角&quot;补全全貌&quot;。方式是<strong>由外而内、由旁证到主干</strong>——先让外围官员议论，再落实为傅俞两家的私相授受。</li>
+<li><strong>读者可推理性</strong>：<strong>可推</strong>。退婚与再婚时间近乎无缝（&quot;暴病而亡&quot;后即提亲）是明显破绽，读者在 [第187章] 即可推断&quot;当年退婚另有隐情、涉及旧案把柄&quot;，<code>[第261章]</code> 只是确证。</li>
+</ul>
+<h3>6. 赵凌身世与从龙往事（M2·M8·M24）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第15章]</code> 赵凌何以能号令众人赴西安、通晓朝局；<code>[第25章][第26章]</code> 金条与小黄鱼来源；<code>[第34章]</code> 十六爷一行&quot;行商携官银&quot;（M8）；<code>[第72章]</code>—<code>[第132章]</code> 十六爷真实身份（M24）。</li>
+<li><strong>埋线</strong>：<code>[第54章]</code> 赵凌执意去江南（是否南直隶出身）；<code>[第50章]</code> 十六岁即置私宅养人；<code>[第110章]</code> 明父<strong>赵集云</strong>（贡士、殿试二甲、翰林庶吉士、朔平府知府，平熙二十五年积劳病故任上）、母<strong>被诬与乳兄周升有染、腊月初九自缢于赵氏祠堂门外</strong>（前史4–7）；<code>[第134章]</code> 穆王身世与武定侯旧案（前史1–3）；<code>[第133章]</code> 揭十六爷=穆王、赵凌实参穆王起事。</li>
+<li><strong>误导</strong>：<code>[第18章]</code>&quot;赵九爷何以通晓朝局&quot;被处理成&quot;身份之谜加深&quot;；赵凌长期隐瞒姓名[第16章]、编造平凉身份[第26章]，使读者误以为他只是&quot;流落西北的寒微武人&quot;；十六爷以&quot;行商&quot;[第34章]、&quot;碧溪散人&quot;无名帖[第38章]（M8）遮蔽藩王身份。</li>
+<li><strong>揭秘时机与方式</strong>：<strong>分层长埋长收</strong>——武人身份在 [第36章]—[第56章] 逐层抬高（投军、边功）；真实身世核心（父母、蒙冤）压到 <code>[第110章]</code>&quot;从前&quot;章集中自述；从龙往事（穆王）延至 <code>[第133章]</code>。收法为&quot;人物自述+史笔补叙&quot;（时间线&quot;前史&quot;由 [第134章] 集中交代）。</li>
+<li><strong>读者可推理性</strong>：<strong>中段可推方向、细节难猜</strong>。&quot;通晓朝局&quot;&quot;执意去江南&quot;&quot;金条来源&quot;三线索足以让读者推断其出身非寒门；但&quot;母死于祠堂门外&quot;&quot;父为翰林&quot;等具体细节须待 [第110章]。</li>
+</ul>
+<h3>7. 赵凌复仇布局（M18·M25·M56·M68·M69）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第115章]</code> 西平侯支持马贼打劫、赵凌能否取得铁证（M18）；<code>[第273章]</code> 赵凌提前回京、口中&quot;献寿&quot;之外另有目的（M56）；<code>[第312章]</code> 郭家何以敢告&quot;杀夫夺妻&quot;、背后是否真有赵凌（M68）。</li>
+<li><strong>埋线</strong>：<code>[第233章]</code>&quot;受我所托&quot;&quot;让他不知道是谁干的&quot;[第233章]（借吴昕之手对付西平侯）；<code>[第264章]</code>—<code>[第267章]</code> 借吴姨娘、范氏等内宅口风松动；<code>[第274章]</code> 揭赵凌赴陕西真图（借冯家情报、以彼之道还治俞家）；<code>[第276章]</code> 急召阿森布局；<code>[第278章]</code>—<code>[第279章]</code> 献瑞受封为声势铺垫。</li>
+<li><strong>误导</strong>：<code>[第273章]</code> 以&quot;献寿&quot;为名掩护真实行程；<code>[第278章]</code> 章后转入执行，读者易以为复仇靠俞家内耗自然崩塌，忽视赵凌的外部布子；<code>[第312章]</code> 郭家告状初看似&quot;无凭仗的讹告&quot;，<code>[第313章]</code> 俞阁老之断&quot;背后是赵凌&quot;反而成了读者才恍然的真相。</li>
+<li><strong>揭秘时机与方式</strong>：<strong>收网式集中揭秘</strong>——布局在 [第233章]—[第277章] 分散埋设，<code>[第310章]</code>—<code>[第314章]</code> 连同西平侯贩马案一并塌方；末段 <code>[第314章]</code> 赵凌解释为何给俞敬修说情（&quot;活着的人，才是真正的痛苦&quot;[第314章]，M69）作点睛。</li>
+<li><strong>读者可推理性</strong>：<strong>难全推、能感知</strong>。&quot;献寿另有目的&quot;[第273章] 明摆着是钩子，读者知有后手但不知具体；郭家告状 [第312章] 的&quot;敢&quot;字已经提示&quot;有靠山&quot;，<code>[第313章]</code> 一句话坐实，属<strong>延迟满足型</strong>复仇叙事。</li>
+</ul>
+<h3>8. 闵氏身份与郭公子&quot;杀夫夺妻&quot;案（M60·M65·M67·M68）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第285章]</code> 闵小姐身份（父受冤下狱、出身不凡、只带乳娘丫鬟；屋内男子衣物）（M60）；<code>[第300章]</code> 闵氏之狠、郭公子何以&quot;被闵小姐害了&quot;（M65）；<code>[第310章]</code> 俞敬修急迎闵氏进门（M67）。</li>
+<li><strong>埋线</strong>：<code>[第280章]</code> 俞敬修索银二百两（用途不明）；<code>[第296章]</code>—<code>[第301章]</code> 揭&quot;未婚夫郭公子&quot;身份、郭公子被杀；<code>[第302章]</code> 闵氏乳娘买凶；<code>[第312章]</code>—<code>[第313章]</code> 揭&quot;乳娘买凶&quot;+&quot;赵凌撑腰&quot;，郭家终成攻俞的引信。</li>
+<li><strong>误导</strong>：<code>[第285章]</code> 闵氏以&quot;受冤弱女、只带乳娘丫鬟&quot;的可怜形象登场，&quot;屋内男子衣物&quot;[第285章]一度让读者以为是郑家／俞家男性痕迹，反被解读为无涉；M58&quot;索银&quot;被往&quot;打点升迁&quot;方向误读。</li>
+<li><strong>揭秘时机与方式</strong>：<strong>镜像式揭破</strong>——先立&quot;可怜案&quot;（闵氏被郭家所害），<code>[第301章]</code> 反转成&quot;闵氏之狠、郭公子被其所害&quot;（M65），再 <code>[第312章]</code>—<code>[第313章]</code> 揭乳娘买凶与赵凌撑腰的完整因果。与俞家&quot;杀夫夺妻&quot;的构陷案（把柄）形成结构对照。</li>
+<li><strong>读者可推理性</strong>：<strong>中段可推</strong>。&quot;屋内男子衣物&quot;[第285章] 是留在明面上的反常物证，细心读者可据此怀疑闵氏叙述不实；但&quot;郭公子之死真相&quot;须待 [第301章]，&quot;乳娘买凶＋赵凌布局&quot;须待 [第312章]—[第313章]。</li>
+</ul>
+<h3>9. 西平侯贩马案（M18·M25·M52）</h3>
+<ul>
+<li><strong>谜面抛出</strong>：<code>[第134章]</code> 武定侯&quot;私养战马&quot;被御史弹劾、夺爵流放（战马线首现，M25）；<code>[第115章]</code> 西平侯支持马贼打劫商队（M18）；<code>[第258章]</code> 西平侯次子为何受俞阁老礼遇、西平侯因何与赵凌结怨（M52）。</li>
+<li><strong>埋线</strong>：<code>[第114章]</code>—<code>[第118章]</code> 颖川侯揭赵凌底细、命其离间两侯；<code>[第233章]</code> 赵凌&quot;让他不知道是谁干的&quot;[第233章]；<code>[第262章]</code> 西平侯求俞阁老讲和未成、&quot;家人脸色难看&quot;[第262章]；<code>[第263章]</code> 揭赵凌与西平侯结怨之因。</li>
+<li><strong>误导</strong>：<code>[第262章]</code> 把焦点放在&quot;西平侯求讲和&quot;，读者易以为俞阁老握有主动、赵凌处于被动；实则西平侯的把柄是<strong>私卖战马</strong>这一死罪，赵凌早已谋定。</li>
+<li><strong>揭秘时机与方式</strong>：<strong>全书埋线最长</strong>（<code>[第134章]</code> 埋、<code>[第314章]</code> 收，跨近 180 章）。<code>[第233章]</code> 明写&quot;让他不知道是谁干的&quot;为伏，<code>[第310章]</code>—<code>[第314章]</code> 与郭家案双案齐发，西平侯勾结俞阁老私卖战马事发——收法与时间线前史3（武定侯私养战马被夺爵）形成<strong>前后镜像</strong>，暗示&quot;私马即死罪&quot;的规则早已给定。</li>
+<li><strong>读者可推理性</strong>：<strong>埋线期难推、伏笔期可推</strong>。[第134章] 武定侯旧案是规则预置（读者当时不解其意）；[第233章]&quot;让他不知道是谁干的&quot;是明确的<strong>告知型钩子</strong>，读者此后可预期&quot;西平侯会被暗手处理&quot;；具体&quot;私卖战马&quot;的罪名与&quot;勾结俞阁老&quot;的连坐，到 [第314章] 才闭合。</li>
+</ul>
+<hr>
+<h2>三、诡计设计</h2>
+<blockquote>
+<p>归纳作者的可复用&quot;布局手法&quot;：每条含 <strong>命名 / 本书用例 <code>[第X章]</code> / 可复用公式</strong>。</p>
+</blockquote>
+<h3>1. 藏而不宣·身份迷雾（把身份压到最晚揭示）</h3>
+<ul>
+<li><strong>用例</strong>：赵凌身世 [第15章]→[第110章]；十六爷=穆王 [第34章]→[第133章]；闵氏身份 [第285章]→[第301章]；吴小姐身份（被隐去&quot;病逝&quot;）[第195章]→[第218章]；金元宝&quot;偷东西&quot;真意 [第170章]→[第173章]。</li>
+<li><strong>公式</strong>：<strong>贴一个&quot;合理但不完整&quot;的表面身份 → 反复以反常行为暗示不符 → 迟迟不给姓名/来历 → 在情绪或利益临界点集中揭底</strong>。要点：反常必须&quot;可见但不解释&quot;。</li>
+</ul>
+<h3>2. 信息差误导（受限视角致读者与主角同步误判）</h3>
+<ul>
+<li><strong>用例</strong>：<code>[第100章]</code>—<code>[第105章]</code> 赵凌&quot;过门不入&quot;&quot;两副碗筷&quot;，读者与傅庭筠同疑其薄情（M14）；<code>[第92章]</code> 众人误信鲁姨娘&quot;偷人&quot;；<code>[第157章]</code> 大夫含糊其辞、傅庭筠误以为医术一般。</li>
+<li><strong>公式</strong>：<strong>让主角（限知视角）只看到&quot;果&quot;、看不到&quot;因&quot; → 读者被绑在主角认知上一起误读 → 再由主角以&quot;层层推演式内心独白&quot;，或下一章切换视角补&quot;因&quot;，完成反打</strong>。信息差＝爽感与情感张力的主引擎。</li>
+</ul>
+<h3>3. 以退为进·示弱藏锋</h3>
+<ul>
+<li><strong>用例</strong>：傅家&quot;为女儿好&quot;送庵堂、实为弃女保子 [第5章]→[第225章]；俞夫人&quot;相看丫鬟&quot;[第193章]对外示&quot;为子纳妾&quot;、实为逼范氏 [第194章]—[第195章]；俞夫人&quot;补偿/软化&quot;傅庭筠 [第186章]→[第203章]&quot;为儿子预设退路&quot;。</li>
+<li><strong>公式</strong>：<strong>把进攻包装成让利/示好/退让 → 让对方（与读者）先接受&quot;善意&quot;设定 → 到关键节点亮出真实算计</strong>。要点：示弱动作必须有可证伪的&quot;善意说辞&quot;。</li>
+</ul>
+<h3>4. 借刀杀人·借他人之手（本人隐身）</h3>
+<ul>
+<li><strong>用例</strong>：赵凌借吴昕之手对付西平侯 [第233章]；借郭家告状打俞敬修 [第312章]—[第第313章]；借冯老三情报&quot;以彼之道还治俞家&quot;[第274章]；借都察院/大理寺等制度工具收网 [第255章][第313章]。</li>
+<li><strong>公式</strong>：<strong>自己不露面 → 选一个&quot;有动机、有立场但不知全局&quot;的执行者 → 只给必要情报、不给全貌 → 事发时本人可置身事外（&quot;让他不知道是谁干的&quot;[第233章]）</strong>。</li>
+</ul>
+<h3>5. 双线并进·明线掩暗线（障眼法）</h3>
+<ul>
+<li><strong>用例</strong>：赵凌&quot;暂代碾伯卫千户、过门不入&quot;[第98章]为明线、&quot;实为暗杀冯大虎而奔走&quot;[第98章][第100章][第106章]为暗线；&quot;中秋急出城&quot;[第113章]为明线、&quot;赴金塔寺办马贼之事&quot;[第115章]为暗线；&quot;赴陕西献寿&quot;[第273章]为明线、&quot;借冯家情报治俞家&quot;[第274章]为暗线。</li>
+<li><strong>公式</strong>：<strong>给角色一个公开、合理的行程/任务 → 同期插入&quot;缺席、失约、不该出现的物件&quot;等反常 → 真相揭晓时，反常全部被重新解释为暗线行为</strong>。</li>
+</ul>
+<h3>6. 匿名器物·无名帖障眼</h3>
+<ul>
+<li><strong>用例</strong>：&quot;碧溪散人&quot;无名帖（无受帖人、无名讳）[第38章]（M8）；&quot;行商携官银&quot;[第34章]；赵凌编造&quot;平凉身份&quot;[第26章]；傅庭筠谎称与赵凌是&quot;未婚夫妻&quot;[第36章]。</li>
+<li><strong>公式</strong>：<strong>用一件无指向性的实体道具（名帖/银两/货物）承载身份线索 → 道具存在感强但信息被刻意抹去 → 读者被&quot;道具像什么&quot;带偏，忽略&quot;道具缺什么&quot;</strong>。</li>
+</ul>
+<h3>7. 局中局·诱敌设套</h3>
+<ul>
+<li><strong>用例</strong>：傅庭筠设局（<code>[第90章]</code>—<code>[第94章]</code> 阿森改计、将同党丢入鲁姨娘院嫁祸，傅庭筠完整还原[第94章]）；&quot;相看丫鬟&quot;实为对束妈妈&quot;做样子，让德圃的媳妇急一急&quot;[第194章]。</li>
+<li><strong>公式</strong>：<strong>先让对手（多为其挑衅）看到&quot;主角的破绽&quot;→ 对手据此行动 → 破绽实为主角预设的套 → 以对手的自证/失言完成反杀</strong>。要点：套要以对手的性格弱点为触发键。</li>
+</ul>
+<h3>8. 延迟揭秘·悬置钩子（留白与拖线）</h3>
+<ul>
+<li><strong>用例</strong>：陈妈妈究竟死于谁手 [第136章]（M26，原文留白未揭）；唐小姐&quot;赠剑&quot;典故 [第102章]→[第107章]—[第110章]仍未全解（M15）；傅大老爷起复谁举荐 [第138章]→[第139章]仍留悬（M29）；华阴分家缘由 [第268章]（M54，未揭）。</li>
+<li><strong>公式</strong>：<strong>在揭秘节点故意&quot;只给一半&quot;或&quot;换一个更小的问题作答&quot;→ 用新钩子替旧钩子 → 使悬念链条不断</strong>。本书的长线留白（M26/M31/M32/M54/M61）多不属于主线必答项，而是世界观毛边与续写接口。</li>
+</ul>
+<h3>9. 真假反转·以讹传讹（假消息当武器）</h3>
+<ul>
+<li><strong>用例</strong>：冯氏诳称赵凌&quot;阵亡&quot;[第83章]（M13，终被 [第88章][第95章]—[第96章]反证）；&quot;赵凌千里杀人&quot;传言 [第114章]（萧氏所泄）；俞家构陷赵凌&quot;贩私盐/冒领军功&quot;[第209章]（M45）。</li>
+<li><strong>公式</strong>：<strong>让一个具传播力的假消息先占据读者/角色认知 → 当事人以&quot;失踪/不解释&quot;延长误解 → 真相以&quot;反证+归来/查实&quot;的方式回击</strong>。</li>
+</ul>
+<h3>10. 规则预置·镜像呼应（前史给规则，后文做判例）</h3>
+<ul>
+<li><strong>用例</strong>：前史3 武定侯&quot;私养战马&quot;被夺爵流放 [第134章] → [第314章] 西平侯勾结俞阁老&quot;私卖战马&quot;事发；前史9 丙辰科舞弊案（代考把柄）→ [第179章] 俞家以同一性质把柄逼傅家杀女。</li>
+<li><strong>公式</strong>：<strong>先在前史/他人身上演一遍同类罪名的结局（建立&quot;规则/死罪&quot;）→ 主角方在后文以同类罪名扳倒对手（判例落地）</strong>。既省解释成本，又制造&quot;因果报应&quot;的闭环感。</li>
+</ul>
+<hr>
+<h2>四、误导设计清单</h2>
+<blockquote>
+<p>作者特意让读者/角色误判之处。列&quot;误导内容 — 真相 — 效果&quot;。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>误导内容（谁被误导）</th>
+<th>真相</th>
+<th>效果 / 锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>傅家&quot;为女儿好、送庵堂避祸&quot;（读者+傅庭筠）</td>
+<td>弃女保子、软禁灌药以绝旧案口实</td>
+<td>由暖转寒的反差；<code>[第4章]</code>→<code>[第5章]</code>→<code>[第225章]</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>&quot;通奸&quot;流言非府内所散（傅庭筠）</td>
+<td>府内（左俊杰—墨香偷贴身物）与外传双源</td>
+<td>悬疑升级为家族阴谋；<code>[第12章]</code>→<code>[第124章]</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>大伯父&quot;容忍左俊杰&quot;是软弱/顾亲（读者）</td>
+<td>受俞家旧案把柄胁迫、不得不忍</td>
+<td>前史级反打；<code>[第12章]</code>→<code>[第179章]</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>傅五老爷&quot;重俞家、轻女儿&quot;是寡情（读者）</td>
+<td>自家有科举代考把柄、被迫沉默</td>
+<td>人物从&quot;冷父&quot;变&quot;困父&quot;；<code>[第163章]</code>→<code>[第179章]</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>赵凌&quot;过门不入&quot;&quot;两副碗筷&quot;是薄情（傅庭筠+读者）</td>
+<td>为暗杀冯大虎而隐秘奔走</td>
+<td>CP危机→冰释的虐爽循环；<code>[第100章]</code>—<code>[第105章]</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>冯氏&quot;赵凌阵亡、名册第一&quot;（傅庭筠+邻里）</td>
+<td>讹传/陷害，赵凌实立边功</td>
+<td>虐点制造；<code>[第83章]</code>→<code>[第88章]</code>→<code>[第95章]</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>众人误信鲁姨娘&quot;偷人&quot;（衙役+邻里）</td>
+<td>阿森改计、把同党丢入其院嫁祸</td>
+<td>宅斗反击爽感；<code>[第92章]</code>→<code>[第93章]</code>→<code>[第94章]</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>大夫&quot;医术一般&quot;、傅庭筠身软嗜睡（傅庭筠）</td>
+<td>实为喜脉</td>
+<td>小悬小喜；<code>[第157章]</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td>俞夫人&quot;相看丫鬟给俞敬修挑屋里人&quot;（范氏+读者）</td>
+<td>做样子逼范氏、图清白长孙</td>
+<td>内宅机锋；<code>[第193章]</code>→<code>[第194章]</code>—<code>[第195章]</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>傅五老爷&quot;失去升迁机会&quot;归咎赵凌（读者）</td>
+<td>实为皇上评语&quot;不合适&quot;</td>
+<td>误导再反打；<code>[第198章]</code>→<code>[第199章]</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td>吴小姐&quot;病逝&quot;、吴家&quot;妾室小产&quot;（读者）</td>
+<td>吴小姐为俞敬修妾室、另有失子内情</td>
+<td>身份反转；<code>[第195章]</code>→<code>[第218章]</code>→<code>[第237章]</code>—<code>[第241章]</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>&quot;叶三掌柜酒后失言&quot;认出赵凌（傅庭筠疑）</td>
+<td>实为赵凌授意</td>
+<td>布局暗手被识破的爽感；<code>[第219章]</code>→<code>[第221章]</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>郭家告&quot;杀夫夺妻&quot;疑似讹告、&quot;背后是否真有赵凌&quot;（读者/俞家）</td>
+<td>确有赵凌撑腰，郭家是攻俞引信</td>
+<td>终局反转；<code>[第312章]</code>→<code>[第313章]</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td>闵氏&quot;受冤弱女、只带乳娘丫鬟&quot;（读者）</td>
+<td>闵氏之狠、郭公子为其所害</td>
+<td>镜像反转；<code>[第285章]</code>→<code>[第301章]</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>&quot;碧溪散人&quot;无名帖、十六爷&quot;行商携官银&quot;（傅庭筠/读者）</td>
+<td>十六爷即穆王（藩王）</td>
+<td>身份迷雾；<code>[第34章]</code>[第38章]→<code>[第133章]</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td>俞敬修退婚&quot;因科场成名&quot;（读者）</td>
+<td>旧案把柄下的私相授受退婚</td>
+<td>真相层层剥；<code>[第183章]</code>→<code>[第185章]</code>—<code>[第187章]</code>→<code>[第261章]</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td>赵凌赴陕西&quot;献寿&quot;（读者）</td>
+<td>借冯家情报布局治俞</td>
+<td>障眼法；<code>[第273章]</code>→<code>[第274章]</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、悬疑节奏</h2>
+<blockquote>
+<p>谜题在 310 章中的分布节律，及与感情线/宅斗线的交替方式。</p>
+</blockquote>
+<h3>1. 总体分布：五段递进，密度&quot;前密—中匀—后爆&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>卷段（章区间）</th>
+<th>谜题密度</th>
+<th>代表谜题</th>
+<th>谜题性质</th>
+<th>与其它线的交替</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>华阴风波（[第1章]—[第17章]）</td>
+<td><strong>高</strong>（M1–M6 连发）</td>
+<td>陌生男身份、肚兜内贼、弃女之谜、容忍左俊杰</td>
+<td>身份／动机谜，<strong>钩子最密集</strong></td>
+<td>谜题即宅斗主体；感情线以&quot;交换&quot;钩子起步</td>
+</tr>
+<tr>
+<td>西行患难（[第18章]—[第45章]）</td>
+<td>中（M7–M9）</td>
+<td>阿森一行来历、十六爷行商身份、陌毅真伪</td>
+<td>身世／势力谜，<strong>渐揭为主</strong></td>
+<td>谜题让位于患难相护（感情线主导），悬疑降为背景</td>
+</tr>
+<tr>
+<td>西安·军旅（[第46章]—[第100章]）</td>
+<td>中（M10–M14）</td>
+<td>调任做局、阵亡真假、杀冯大虎者</td>
+<td>局势／人谜，<strong>单章即收多</strong></td>
+<td>与军旅线、感情线交替；冯家线提供短促强谜（[第83章]—[第100章]）</td>
+</tr>
+<tr>
+<td>京都·成婚（[第101章]—[第155章]）</td>
+<td>中偏低（M15–M24）</td>
+<td>赠剑典故、离间两侯、穆王身份、碧云庵血案</td>
+<td>谜面铺陈＋<strong>旧案总收口</strong>（[第121章]—[第124章]）</td>
+<td>感情线蜜月为主干，暗线（血案、朝局）并进</td>
+</tr>
+<tr>
+<td>俞家恩怨·复仇（[第156章]—[第314章]）</td>
+<td><strong>高且爆发</strong>（M27–M69 连发）</td>
+<td>左俊杰招供、科举案、退婚真相、身份曝光、闵氏案、贩马案</td>
+<td><strong>揭秘与反转密集，终局总收网</strong></td>
+<td>宅斗线（俞家内耗）与复仇线交织，感情线转为&quot;守望&quot;</td>
+</tr>
+</tbody></table>
+<h3>2. 节奏规律</h3>
+<ul>
+<li><strong>&quot;开篇三章定三谜&quot;</strong>：<code>[第1章]</code> 陌生男（好奇钩）、<code>[第4章]</code> 肚兜内贼（宅斗钩）、<code>[第5章]</code> 弃女之谜（身世钩）——章章落钩，前 17 章平均每 3 章一谜，主打<strong>点击留存</strong>。</li>
+<li><strong>中段&quot;一谜一撑&quot;</strong>：西行至军旅段（[第18章]—[第155章]）以感情/生存为主，谜题降密、多为<strong>渐揭与短谜</strong>（M10/M11/M12/M16 皆单章即收），承担&quot;不让读者累&quot;的缓冲。</li>
+<li><strong>揭秘&quot;错峰爆发&quot;</strong>：不集中一次揭完，而是选<strong>情绪临界点</strong>逐一引爆——<code>[第123章]</code>—<code>[第124章]</code>（碧云庵血案）、<code>[第179章]</code>（科举案）、<code>[第225章]</code>（弃女真相）、<code>[第263章]</code>（旧怨全貌）、<code>[第301章]</code>+<code>[第312章]</code>—<code>[第314章]</code>（闵氏案+贩马案）。这些章恰好也是全书情绪★4–5 的名场面章。</li>
+<li><strong>&quot;谜底即情绪&quot;配置</strong>：大谜底几乎都落在<strong>虐点或爽点</strong>上——血案揭底是寒、科举案揭底是恨、身份曝光是暖／爽、贩马案收网是爽。谜题不是独立悬疑，而是<strong>情绪线的扳机</strong>。</li>
+<li><strong>与感情线交替</strong>：感情线覆盖 248 章、几近单章不断，谜题多以&quot;感情线之上的插叙&quot;方式并进——<code>[第100章]</code>—<code>[第105章]</code> 更是把&quot;杀冯大虎之谜&quot;直接做成 CP 危机（误为薄情→冰释），实现&quot;悬疑服务于感情&quot;。</li>
+</ul>
+<h3>3. 留白与开放接口</h3>
+<ul>
+<li><strong>正文明确留白（未揭）</strong>：M26（陈妈妈死于谁手 [第136章]）、M31（太皇太后胞弟流放铁岭卫 [第144章]）、M32（傅夫人之死与傅家处置 [第166章]）、M54（华阴分家缘由 [第268章]）、M61（费氏身世 [第286章]）。</li>
+<li><strong>半留悬（提及未尽）</strong>：M15（唐小姐赠剑典故 [第102章]—[第110章]）、M29（傅大老爷起复举荐 [第138章]—[第139章]）。</li>
+<li><strong>作用</strong>：这些留白多落在<strong>非主线的世界观毛边与人物暗线</strong>上，既保留&quot;重读发现暗线&quot;的余味，也是续写／改写的天然接口；与主线必答项（M6/M35/M37/M50/M68 等）形成&quot;主线闭合＋毛边开放&quot;的收束结构。</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>统计</strong>：① <strong>谜题总表 69 行</strong>（M1–M69，含「未揭/未明」5 条）；② <strong>核心谜题深解 9 个</strong>（碧云庵男身份、左俊杰诬陷与灭口、傅五老爷科场作弊、傅夫人之死疑云、俞家退婚真相、赵凌身世与从龙、赵凌复仇布局、闵氏与郭公子案、西平侯贩马案）；③ <strong>诡计条目 10 条</strong>；④ <strong>误导设计清单 17 条</strong>；⑤ <strong>悬疑节奏</strong>分 5 段递进 + 3 条规律 + 留白接口。全部锚点标 <code>[第X章]</code>，仅据 <code>谜题线索台账.md</code>／<code>.ext谜题.md</code>／<code>时间线台账.md</code>／<code>拆解总纲.md</code>，不脑补。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

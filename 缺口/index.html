@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>缺口 · 拆解总览</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(255,255,255,0.08);--card:#111016;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:60px 60px;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 60% 0%,rgba(201,169,97,0.06),transparent 70%);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:48px 32px 80px;}
+
+/* 顶部书籍介绍 */
+.hero{text-align:center;padding-bottom:30px;border-bottom:1px solid var(--line);}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:6px;line-height:1.2;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero .meta{font-size:14px;color:#bbb;margin-top:14px;letter-spacing:1px;font-weight:300;}
+.hero .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.pill{font-size:12px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(201,169,97,0.4);
+  border-radius:16px;padding:5px 15px;background:rgba(201,169,97,0.05);white-space:nowrap;}
+.hero .logline{font-size:14px;color:#bbb;line-height:1.9;margin:18px auto 0;max-width:760px;font-weight:300;}
+
+/* Tab 栏 */
+.tabs{display:flex;justify-content:center;gap:48px;margin:28px 0 0;position:relative;}
+.tab{font-size:18px;letter-spacing:4px;color:#888;cursor:pointer;padding:14px 4px;font-weight:500;
+  background:none;border:none;font-family:inherit;transition:color 0.2s;position:relative;}
+.tab:hover{color:#ccc;}
+.tab.active{color:var(--gold2);font-weight:700;}
+.tab.active::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:var(--gold);}
+.tabs-line{height:1px;background:var(--line);margin-top:-1px;}
+
+/* 面板 */
+.panel{display:none;margin-top:34px;}
+.panel.show{display:block;animation:fade 0.3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* 卡片网格（蓝图/台账）PC 4列 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.card{display:flex;flex-direction:column;justify-content:space-between;min-height:116px;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;
+  text-decoration:none;transition:all 0.2s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background 0.2s;}
+.card:hover{border-color:rgba(201,169,97,0.45);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+.card:hover::before{background:var(--gold);}
+.card-num{font-size:30px;font-weight:900;color:var(--gold);line-height:1;opacity:0.9;}
+.card-name{font-size:15px;color:#eee;font-weight:500;margin-top:14px;letter-spacing:0.5px;}
+
+/* 章卡列表 PC 2列 */
+.ch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.ch-item{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;padding:15px 18px;text-decoration:none;transition:all 0.2s;}
+.ch-item:hover{border-color:rgba(201,169,97,0.4);background:rgba(201,169,97,0.04);}
+.ch-item .n{font-size:13px;color:var(--gold);opacity:0.55;font-weight:700;min-width:34px;}
+.ch-item .t{font-size:14px;color:#ddd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ch-more{text-align:center;margin-top:22px;}
+.ch-more button{background:none;border:1px solid rgba(201,169,97,0.35);color:var(--gold2);
+  font-size:14px;letter-spacing:2px;padding:10px 34px;border-radius:24px;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.ch-more button:hover{background:rgba(201,169,97,0.1);border-color:rgba(201,169,97,0.6);}
+
+.empty{text-align:center;color:#777;font-size:14px;padding:50px 0;}
+
+/* SKILL 面板 */
+.skill-h{font-size:clamp(20px,3vw,26px);font-weight:900;letter-spacing:2px;text-align:center;margin:6px 0 24px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.mode{display:flex;align-items:flex-start;gap:22px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:24px 26px;margin-bottom:14px;transition:all .2s;}
+.mode:hover{border-color:rgba(201,169,97,0.4);transform:translateY(-2px);}
+.mode .glyph{flex:0 0 auto;text-align:center;min-width:48px;}
+.mode .glyph .zi{font-size:40px;font-weight:900;color:var(--gold2);line-height:1;}
+.mode .glyph .lv{font-size:13px;color:#8a8a8a;letter-spacing:1px;margin-top:6px;}
+.mode .txt{font-size:14px;color:#c9c7c4;line-height:1.95;padding-left:22px;border-left:1px solid rgba(255,255,255,0.08);font-weight:300;}
+
+.skill-refs{margin-top:30px;padding-top:24px;border-top:1px solid var(--line);}
+.skill-refs .rh{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;}
+.skill-refs .rg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.skill-refs .r{display:flex;align-items:baseline;gap:10px;background:var(--card);border:1px solid var(--line);
+  border-radius:9px;padding:12px 14px;}
+.skill-refs .r .n{font-size:11px;color:var(--gold);opacity:.6;font-weight:700;min-width:20px;}
+.skill-refs .r .t{font-size:13px;color:#ddd;}
+.skill-refs .stat{font-size:12px;color:#8a8a8a;margin-top:16px;letter-spacing:1px;}
+.skill-refs .stat b{color:var(--gold2);font-weight:700;}
+
+/* 响应式 */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .ch-list{grid-template-columns:1fr;}
+  .tabs{gap:28px;}
+  .wrap{padding:32px 18px 60px;}
+  .skill-refs .rg{grid-template-columns:repeat(2,1fr);}
+  .mode{gap:16px;padding:20px;}
+  .mode .txt{padding-left:16px;}
+}
+@media(max-width:480px){
+  .tab{font-size:16px;letter-spacing:2px;}
+  .tabs{gap:18px;}
+}
+.shelf-back{position:sticky;top:0;z-index:900;display:flex;align-items:center;background:rgba(8,8,12,0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 24px;}.shelf-back a{color:#c9a961;text-decoration:none;font-size:13px;letter-spacing:1px;font-weight:600;transition:opacity .2s;}.shelf-back a:hover{opacity:.72;}.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="shelf-back"><a href="../index.html">← 返回书架</a></div>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="wrap">
+  <div class="hero">
+    <h1>缺口</h1>
+    <div class="meta">作者 · 码代码的Gigi　·　77章　·　约28.3万字</div>
+    <div class="pills"><span class="pill">都市现实日常</span><span class="pill">言情甜宠</span></div>
+    <div class="logline">豪门之子江恒被父亲设局陷害入罪，为保护妻子陈昭而伪装出轨、逼她离婚；陈昭查明真相后倾力救他，两人跨越"信任"的裂痕破镜重圆。</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="bp">蓝　图</button>
+    <button class="tab" data-panel="lg">台　账</button>
+    <button class="tab" data-panel="ch">章　卡</button>
+    <button class="tab" data-panel="sk">SKILL</button>
+  </div>
+  <div class="tabs-line"></div>
+
+  <div class="panel show" id="panel-bp">
+    <div class="grid"><a class="card" href="蓝图/01_%E6%95%85%E4%BA%8B%E6%A6%82%E8%A6%81.html">
+      <div class="card-num">01</div>
+      <div class="card-name">故事概要</div>
+   </a>
+<a class="card" href="蓝图/02_%E6%A0%B8%E5%BF%83%E8%AE%BE%E5%AE%9A.html">
+      <div class="card-num">02</div>
+      <div class="card-name">核心设定</div>
+   </a>
+<a class="card" href="蓝图/03_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86_%E4%B8%BB%E8%A7%92.html">
+      <div class="card-num">03</div>
+      <div class="card-name">人物设定集·主角</div>
+   </a>
+<a class="card" href="蓝图/04_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86_%E9%85%8D%E8%A7%92.html">
+      <div class="card-num">04</div>
+      <div class="card-name">人物设定集·配角</div>
+   </a>
+<a class="card" href="蓝图/05_%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E7%BD%91.html">
+      <div class="card-num">05</div>
+      <div class="card-name">人物关系网</div>
+   </a>
+<a class="card" href="蓝图/06_%E5%88%86%E5%8D%B7%E5%A4%A7%E7%BA%B2.html">
+      <div class="card-num">06</div>
+      <div class="card-name">分卷大纲</div>
+   </a>
+<a class="card" href="蓝图/07_%E6%97%B6%E9%97%B4%E7%BA%BF.html">
+      <div class="card-num">07</div>
+      <div class="card-name">时间线</div>
+   </a>
+<a class="card" href="蓝图/08_%E4%BC%8F%E7%AC%94%E8%A7%84%E5%88%92%E8%A1%A8.html">
+      <div class="card-num">08</div>
+      <div class="card-name">伏笔规划表</div>
+   </a>
+<a class="card" href="蓝图/09_%E6%83%85%E7%BB%AA%E6%9B%B2%E7%BA%BF.html">
+      <div class="card-num">09</div>
+      <div class="card-name">情绪曲线</div>
+   </a>
+<a class="card" href="蓝图/10_%E6%84%9F%E6%83%85%E7%BA%BF%E8%BF%9B%E5%BA%A6.html">
+      <div class="card-num">10</div>
+      <div class="card-name">感情线进度</div>
+   </a>
+<a class="card" href="蓝图/11_%E6%84%8F%E8%B1%A1%E7%AC%A6%E5%8F%B7.html">
+      <div class="card-num">11</div>
+      <div class="card-name">意象符号</div>
+   </a>
+<a class="card" href="蓝图/12_%E5%86%99%E4%BD%9C%E9%A3%8E%E6%A0%BC.html">
+      <div class="card-num">12</div>
+      <div class="card-name">写作风格</div>
+   </a></div>
+  </div>
+
+  <div class="panel" id="panel-lg">
+    <div class="grid"><a class="card" href="台账/CP%E4%BA%92%E5%8A%A8%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">01</div>
+      <div class="card-name">CP互动台账</div>
+   </a>
+<a class="card" href="台账/%E4%BA%BA%E7%89%A9%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">02</div>
+      <div class="card-name">人物台账</div>
+   </a>
+<a class="card" href="台账/%E4%BC%8F%E7%AC%94%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">03</div>
+      <div class="card-name">伏笔台账</div>
+   </a>
+<a class="card" href="台账/%E5%85%B3%E7%B3%BB%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">04</div>
+      <div class="card-name">关系台账</div>
+   </a>
+<a class="card" href="台账/%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">05</div>
+      <div class="card-name">时间线台账</div>
+   </a></div>
+  </div>
+
+  <div class="panel" id="panel-ch">
+    <div class="ch-list" id="chList"></div><div class="ch-more" id="chMore"></div>
+  </div>
+
+  <div class="panel" id="panel-sk">
+    <div class="skill-h">将一本书蒸馏为一套可执行 skill</div>
+    <div class="mode"><div class="glyph"><div class="zi">学</div><div class="lv">Lv.1</div></div><div class="txt">把这本书的手法与风格当教材，讲解、拆例、练习，摸清它“为什么这样写”。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">续</div><div class="lv">Lv.2</div></div><div class="txt">承接原作的人物、伏笔与节奏语感，续写番外、if 线或未尽的支线，写得像、接得上。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">改</div><div class="lv">Lv.3</div></div><div class="txt">改动前先评估对伏笔、人设、时间线的牵连，换结局、改走向，改完仍前后自洽。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">造</div><div class="lv">Lv.4</div></div><div class="txt">迁移这本书的结构与手法，脱离原作，创作一部完全属于自己的同类长篇。</div></div>
+    <div class="skill-refs">
+      <div class="rh">招式库 · references（10 份）</div>
+      <div class="rg">
+      <div class="r"><span class="n">01</span><span class="t">故事设计</span></div>
+      <div class="r"><span class="n">02</span><span class="t">核心设定</span></div>
+      <div class="r"><span class="n">04</span><span class="t">人物设计</span></div>
+      <div class="r"><span class="n">05</span><span class="t">大纲结构</span></div>
+      <div class="r"><span class="n">06</span><span class="t">时间线</span></div>
+      <div class="r"><span class="n">08</span><span class="t">伏笔设计</span></div>
+      <div class="r"><span class="n">09</span><span class="t">正文写作</span></div>
+      <div class="r"><span class="n">10</span><span class="t">感情线设计</span></div>
+      <div class="r"><span class="n">11</span><span class="t">情绪设计</span></div>
+      <div class="r"><span class="n">12</span><span class="t">意象符号</span></div>
+      </div>
+      <div class="stat">已绑定拆解数据：<b>12</b> 蓝图 · <b>5</b> 台账 · <b>77</b> 章卡　（随 skill 打包，自包含、不需原文）</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab 切换（支持 URL hash，如 index.html#sk 直接打开 SKILL）
+function showTab(id){
+  var t=document.querySelector('.tab[data-panel="'+id+'"]');
+  if(!t)return;
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('show');});
+  t.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('show');
+}
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    showTab(t.dataset.panel);
+    if(history.replaceState)history.replaceState(null,'','#'+t.dataset.panel);
+  });
+});
+(function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+})();
+window.addEventListener('hashchange',function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+});
+
+// 章卡列表（默认前 10 条，可展开全部）
+var CH=[
+{n:"001",t:"楔子",f:"第001章_楔子.html"},
+{n:"002",t:"无题",f:"第002章_无题.html"},
+{n:"003",t:"无题",f:"第003章_无题.html"},
+{n:"004",t:"无题",f:"第004章_无题.html"},
+{n:"005",t:"无题",f:"第005章_无题.html"},
+{n:"006",t:"无题",f:"第006章_无题.html"},
+{n:"007",t:"无题",f:"第007章_无题.html"},
+{n:"008",t:"无题",f:"第008章_无题.html"},
+{n:"009",t:"无题",f:"第009章_无题.html"},
+{n:"010",t:"无题",f:"第010章_无题.html"},
+{n:"011",t:"无题",f:"第011章_无题.html"},
+{n:"012",t:"无题",f:"第012章_无题.html"},
+{n:"013",t:"无题",f:"第013章_无题.html"},
+{n:"014",t:"无题",f:"第014章_无题.html"},
+{n:"015",t:"无题",f:"第015章_无题.html"},
+{n:"016",t:"无题",f:"第016章_无题.html"},
+{n:"017",t:"无题",f:"第017章_无题.html"},
+{n:"018",t:"无题",f:"第018章_无题.html"},
+{n:"019",t:"无题",f:"第019章_无题.html"},
+{n:"020",t:"无题",f:"第020章_无题.html"},
+{n:"021",t:"无题",f:"第021章_无题.html"},
+{n:"022",t:"无题",f:"第022章_无题.html"},
+{n:"023",t:"无题",f:"第023章_无题.html"},
+{n:"024",t:"无题",f:"第024章_无题.html"},
+{n:"025",t:"无题",f:"第025章_无题.html"},
+{n:"026",t:"无题",f:"第026章_无题.html"},
+{n:"027",t:"无题",f:"第027章_无题.html"},
+{n:"028",t:"无题",f:"第028章_无题.html"},
+{n:"029",t:"无题",f:"第029章_无题.html"},
+{n:"030",t:"无题",f:"第030章_无题.html"},
+{n:"031",t:"无题",f:"第031章_无题.html"},
+{n:"032",t:"无题",f:"第032章_无题.html"},
+{n:"033",t:"无题",f:"第033章_无题.html"},
+{n:"034",t:"无题",f:"第034章_无题.html"},
+{n:"035",t:"无题",f:"第035章_无题.html"},
+{n:"036",t:"无题",f:"第036章_无题.html"},
+{n:"037",t:"无题",f:"第037章_无题.html"},
+{n:"038",t:"无题",f:"第038章_无题.html"},
+{n:"039",t:"无题",f:"第039章_无题.html"},
+{n:"040",t:"无题",f:"第040章_无题.html"},
+{n:"041",t:"无题",f:"第041章_无题.html"},
+{n:"042",t:"无题",f:"第042章_无题.html"},
+{n:"043",t:"无题",f:"第043章_无题.html"},
+{n:"044",t:"无题",f:"第044章_无题.html"},
+{n:"045",t:"无题",f:"第045章_无题.html"},
+{n:"046",t:"无题",f:"第046章_无题.html"},
+{n:"047",t:"无题",f:"第047章_无题.html"},
+{n:"048",t:"无题",f:"第048章_无题.html"},
+{n:"049",t:"无题",f:"第049章_无题.html"},
+{n:"050",t:"无题",f:"第050章_无题.html"},
+{n:"051",t:"无题",f:"第051章_无题.html"},
+{n:"052",t:"无题",f:"第052章_无题.html"},
+{n:"053",t:"无题",f:"第053章_无题.html"},
+{n:"054",t:"无题",f:"第054章_无题.html"},
+{n:"055",t:"无题",f:"第055章_无题.html"},
+{n:"056",t:"无题",f:"第056章_无题.html"},
+{n:"057",t:"无题",f:"第057章_无题.html"},
+{n:"058",t:"无题",f:"第058章_无题.html"},
+{n:"059",t:"无题",f:"第059章_无题.html"},
+{n:"060",t:"无题",f:"第060章_无题.html"},
+{n:"061",t:"无题",f:"第061章_无题.html"},
+{n:"062",t:"无题",f:"第062章_无题.html"},
+{n:"063",t:"无题",f:"第063章_无题.html"},
+{n:"064",t:"无题",f:"第064章_无题.html"},
+{n:"065",t:"无题",f:"第065章_无题.html"},
+{n:"066",t:"无题",f:"第066章_无题.html"},
+{n:"067",t:"无题",f:"第067章_无题.html"},
+{n:"068",t:"无题",f:"第068章_无题.html"},
+{n:"069",t:"无题",f:"第069章_无题.html"},
+{n:"070",t:"无题",f:"第070章_无题.html"},
+{n:"071",t:"无题",f:"第071章_无题.html"},
+{n:"072",t:"无题",f:"第072章_无题.html"},
+{n:"073",t:"无题",f:"第073章_无题.html"},
+{n:"074",t:"无题",f:"第074章_无题.html"},
+{n:"075",t:"无题",f:"第075章_无题.html"},
+{n:"076",t:"无题",f:"第076章_无题.html"},
+{n:"077",t:"无题",f:"第077章_无题.html"}
+];
+var chList=document.getElementById('chList');
+var chMore=document.getElementById('chMore');
+var LIMIT=10, expanded=false;
+function renderCh(){
+  if(!chList)return;
+  var list=expanded?CH:CH.slice(0,LIMIT);
+  chList.innerHTML=list.map(function(c){
+    return '<a class="ch-item" href="章卡/'+encodeURIComponent(c.f)+'"><span class="n">'+c.n+'</span><span class="t">'+c.t+'</span></a>';
+  }).join('');
+  if(CH.length>LIMIT){
+    chMore.innerHTML='<button id="chBtn">'+(expanded?'收起':('查看全部 '+CH.length+' 章 ›'))+'</button>';
+    document.getElementById('chBtn').onclick=function(){expanded=!expanded;renderCh();};
+  }else{chMore.innerHTML='';}
+}
+renderCh();
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="./qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

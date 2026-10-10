@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 核心设定 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>02 核心设定</h1>
+<blockquote>
+<p>本书为现代都市题材，无金手指/超自然设定。此处&quot;核心设定&quot;= ①驱动全书的&quot;假出轨&quot;设局机制 ②情感内核&quot;缺口&quot;的运作逻辑 ③续写红线。</p>
+</blockquote>
+<h2>一、&quot;假出轨&quot;设局机制（全书最大反转的运作逻辑）</h2>
+<p><strong>机制本质</strong>：男主江恒的&quot;出轨&quot;是伪装，真相是被父亲江亚洲设局陷害入罪，江恒离婚是为建&quot;防火墙&quot;隔离妻子陈昭、不让她受牵连。</p>
+<p><strong>运作链条</strong>：</p>
+<ol>
+<li><strong>设局</strong>：江亚洲趁江恒接手王牌肿瘤药业务，暗中篡改该药的检测数据、做实医保骗保的证据链，足够让作为最高管理者的江恒坐牢。[第35章]</li>
+<li><strong>绑炸弹</strong>：江亚洲车祸后当众&quot;交权/忏悔/父子和解&quot;全是表演，实则借此&quot;给江恒绑上炸弹&quot;——手上捏着可随时引爆的骗保证据牵制他。[第56/59/62章]（他没想害死江恒，只想控制他，让他乖乖听话）</li>
+<li><strong>假出轨</strong>：江恒预判自己大概率会出事（坐牢），为不让知情的陈昭受牵连/煎熬，选择&quot;最糟糕的方式&quot;——在温哥华置公寓养外室（顾婉怡），故意让陈昭撞破、主动离婚，做切割。[第35/62/73章]</li>
+<li><strong>破局</strong>：江恒以反腐为刀清算江亚洲爪牙、逼宫收权 → 江亚洲引爆炸弹把江恒送进去配合调查 → 陈昭查明真相后主导救援（威胁徐坤翻供+拉拢江婕倒戈+高寒政界助力）→ 江恒被放出、江亚洲彻底失势并确诊阿兹海默。[第64-67/76章]</li>
+</ol>
+<p><strong>关键设定点</strong>：</p>
+<ul>
+<li>顾婉怡=设局的一环（外室是伪装，非真出轨对象）。[第1章·未点破身份]</li>
+<li>徐坤（老徐）=江亚洲手下、医保骗保项目主导者、咬死江恒的关键证人；其儿子在美国（=陈昭的突破口，威胁其子逼徐坤翻供）。[第62/64/66章]</li>
+<li>江恒&quot;出轨从去年夏天开始&quot;的细节由江婕透露，成为陈昭起疑真相的线头。[第48章]</li>
+</ul>
+<h2>二、&quot;缺口&quot;的情感设定（书名内核）</h2>
+<p><strong>设定本质</strong>：江恒内心有一个&quot;情感缺口&quot;——源于豪门家庭的畸形（父亲把感情当工具、母亲长期忍让、他被当作接班工具而非被爱的孩子、高中起独自留学的孤独），他习惯&quot;一个人&quot;、不相信爱、把人分&quot;有用/没用&quot;、渴望温暖却怕失去。[第9/11/16/18章]</p>
+<p><strong>运作逻辑</strong>：</p>
+<ul>
+<li>陈昭是唯一填满这个缺口的人——她给他&quot;家的温暖&quot;（烂糊面）、无条件的信任与爱、教会他&quot;提醒自己对方是爱我的就不会被伤到&quot;。[第46/57/73章]</li>
+<li>缺口的&quot;填满&quot;有前提：江恒必须学会<strong>信任与坦诚</strong>，不再以&quot;保护&quot;之名替她做决定、剥夺她共担的权利。[第69/76/77章]</li>
+<li>结局点题：&quot;他的心里始终有个缺口，只有她才能填满。&quot;[第77章]</li>
+</ul>
+<h2>三、次要设定·名词</h2>
+<ul>
+<li><strong>正亚集团</strong>：江家药企，江恒外公创立的保健品帝国 + 江亚洲主导收购/发展的医药公司，江恒现任实权掌舵者。创新药转型成功，行业寒冬中盈利。[第9/17/22章]</li>
+<li><strong>医保骗保</strong>：篡改进医保药物的病人检测报告（如吃安慰剂的病人被记为康复），属诈骗，是设局陷害江恒的罪名。[第35/64章]</li>
+<li><strong>慈善基金会</strong>：江恒/邓叔筹建的非公募慈善（患者援助/慈善赠药：治肺病王牌药），江家的正面转型。[第67章]</li>
+</ul>
+<h2>四、续写红线（改写/续写不可违背）</h2>
+<ol>
+<li><strong>江恒从未真正出轨</strong>——&quot;出轨&quot;是保护陈昭的伪装，续写绝不能把它写成真背叛。</li>
+<li><strong>江恒的&quot;自私&quot;是&quot;过度保守/替她做决定/不信任&quot;，不是不爱</strong>——他的一切错误动机都是&quot;太爱太怕失去&quot;，本质深情。续写他的行为要符合&quot;心狠手辣的商业强人 × 对陈昭极致守护占有的缺口男&quot;这一矛盾统一体。</li>
+<li><strong>陈昭是清醒决断的隐藏富家女，不是被动圣母</strong>——她能一个人过得很好、有能力主导救人、要的是平等信任而非保护。续写不能把她写成只会哭、只会原谅的恋爱脑。</li>
+<li><strong>和解内核是&quot;信任重建&quot;不是&quot;原谅&quot;</strong>——续写两人关系的进展要落在&quot;相互信任、共同面对&quot;上，不能靠&quot;男主受苦→女主心软&quot;廉价解决。</li>
+<li><strong>反派江亚洲把感情当工具（&quot;感情能降低成本就拿来用&quot;），与江恒的真爱形成正反对照</strong>——这是全书价值观的锚，续写反派逻辑要一致。</li>
+<li><strong>权力异化母题</strong>：江恒警惕&quot;永远不要变成父亲那样被权力异化的人&quot;，续写他掌权后的行为要守住这条底线。[第76章]</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

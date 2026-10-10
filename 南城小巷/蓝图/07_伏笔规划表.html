@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南城小巷 · 伏笔规划表 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>南城小巷 · 伏笔规划表</h1>
+<blockquote>
+<p>本文档为《南城小巷》创作蓝图第 07 号文件，归纳自《伏笔台账》（V1–V68）＋ 70 张章卡&quot;伏笔&quot;字段。<br><strong>数据说明</strong>：伏笔台账现存 <strong>68 条</strong>（V1–V68，按&quot;埋于&quot;章号排序）；本次将 70 张章卡&quot;伏笔&quot;字段中的埋／收细项逐条核验、补录，合计梳理出 <strong>约 178 处埋／收节点</strong>，按主题线索重组为 <strong>9 组</strong>。<br><strong>排列逻辑</strong>：为便于仿写查找，本表<strong>不按章号、而按线索主题</strong>重组——同一线索的&quot;埋设→发展→回收&quot;链路聚到一处，再提炼该组的创作意图与可复用技法。<br>锚点格式：<code>[第X章]</code>；台账编号沿用 <code>V##</code>；章卡补充项标 <code>（章卡补）</code>。</p>
+</blockquote>
+<hr>
+<h2>一、总览：9 大线索组与规模</h2>
+<table>
+<thead>
+<tr>
+<th>组</th>
+<th>线索名</th>
+<th>涉及章区间</th>
+<th>台账条数</th>
+<th>主要回收节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>名义叔侄关系线（名分屏障）</td>
+<td>[第1章]–[第70章]</td>
+<td>4</td>
+<td>[第39/42/68章]</td>
+</tr>
+<tr>
+<td>B</td>
+<td>身世与原生创伤线（宋霆父杀母＋南久被弃）</td>
+<td>[第2章]–[第34章]</td>
+<td>6</td>
+<td>[第34章]</td>
+</tr>
+<tr>
+<td>C</td>
+<td>事业线（茶馆→平台→快闪→星耀→南风艺境）</td>
+<td>[第4章]–[第70章]</td>
+<td>9</td>
+<td>[第53/56/70章]</td>
+</tr>
+<tr>
+<td>D</td>
+<td>茶山·珍敏·黑石洼线</td>
+<td>[第2章]–[第67章]</td>
+<td>10</td>
+<td>[第34/46/52章]</td>
+</tr>
+<tr>
+<td>E</td>
+<td>感情推拉×双向救赎主线</td>
+<td>[第1章]–[第70章]</td>
+<td>19</td>
+<td>[第25/42/47/52/70章]</td>
+</tr>
+<tr>
+<td>F</td>
+<td>男二林颂耀线与商战</td>
+<td>[第27章]–[第70章]</td>
+<td>2</td>
+<td>[第42/53/54/70章]</td>
+</tr>
+<tr>
+<td>G</td>
+<td>家族继承·南乔宇·公开线</td>
+<td>[第9章]–[第69章]</td>
+<td>8</td>
+<td>[第39/65/68章]</td>
+</tr>
+<tr>
+<td>H</td>
+<td>现实障碍与婚恋副线（相亲/流言/情敌/信息差）</td>
+<td>[第5章]–[第66章]</td>
+<td>4</td>
+<td>[第10/33/64/66章]</td>
+</tr>
+<tr>
+<td>I</td>
+<td>意象道具线（电脑/桂花糕/拐杖/金镯子/点香/猫/床/钥匙/项链）</td>
+<td>[第2章]–[第70章]</td>
+<td>6</td>
+<td>[第26/38/57/70章]</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>合计</strong></td>
+<td>—</td>
+<td><strong>68</strong></td>
+<td>—</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、分组链路详表</h2>
+<h3>组 A｜名义叔侄关系线（名分屏障）</h3>
+<blockquote>
+<p><strong>定位</strong>：全书最大的一道&quot;伦理总闸门&quot;。南老爷子一纸&quot;干儿子＝叔&quot;的名分，把两个被同一屋檐救下的人锁进&quot;爱而不可得&quot;的错位关系里；这条线的每一次松紧，都直接决定感情线能推进到哪一步。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V2</td>
+<td>[第1章]</td>
+<td>南老爷子收宋霆为干儿子、&quot;长辈&quot;（叔）辈分的由来</td>
+<td>[第1章]埋 → [第39章]撞破私情时成为&quot;杖责驱逐&quot;的法理依据 → [第68章]中秋家宴当众宣布&quot;从今往后，宋霆就是咱们自家人了&quot;</td>
+<td>已回收[第68章]</td>
+<td>用一纸名分制造全书主冲突；靠&quot;转正&quot;把它收回，完成救赎闭环</td>
+</tr>
+<tr>
+<td>V6</td>
+<td>[第3章]</td>
+<td>&quot;比你大八岁&quot;（年龄差设定落定）</td>
+<td>[第3章]埋 → 全书反复以&quot;叔侄&quot;年龄差强调禁忌感</td>
+<td>未回收（设定常驻）</td>
+<td>把&quot;辈分差&quot;与&quot;年龄差&quot;双重坐实，放大越界张力</td>
+</tr>
+<tr>
+<td>V42</td>
+<td>[第37章]</td>
+<td>&quot;你老家那个男朋友&quot;（暗指宋霆，关系未公开；全南家只有南乔宇知情）</td>
+<td>[第37章]埋 → [第68章]家宴公开</td>
+<td>已回收[第68章]</td>
+<td>用&quot;熟人圈的信息差&quot;吊住关系走向</td>
+</tr>
+<tr>
+<td>V62</td>
+<td>[第61章]</td>
+<td>宋霆自陈&quot;这重身份就是一根缰绳&quot;（身份之压）</td>
+<td>[第61章]埋 → [第68章]身份转正</td>
+<td>已回收[第68章]</td>
+<td>把抽象的&quot;名分&quot;落到男主自陈，读者共情他的&quot;挣不脱&quot;</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;制度性屏障&quot;制造长线冲突</strong>——不靠反派作恶，而靠一个&quot;正当的名分&quot;（叔侄）当总障碍，天然让主角&quot;想过、却过不去&quot;，冲突自带伦理厚度。</li>
+<li><strong>屏障→转正，一条线吃全书</strong>：名分埋于第1章、障碍爆发在第39章、解除在第68章，<strong>跨度 67 章</strong>，是全书最长的一根线，也是 READER 一直在等的&quot;松绑点&quot;。</li>
+<li><strong>（章卡补）</strong> 关系未公开期，反复用&quot;旁人视角&quot;旁敲侧击——[第26章]老爷子&quot;你替她出学费不合适&quot;的警觉、[第37章]&quot;老家男朋友&quot;、[第62章]吴婶撞见，<strong>每 10 章左右补一次&quot;名分压力&quot;的提醒</strong>，让读者始终惦记。</li>
+</ul>
+<hr>
+<h3>组 B｜身世与原生创伤线（宋霆父杀母 ＋ 南久被弃）</h3>
+<blockquote>
+<p><strong>定位</strong>：救赎故事的&quot;根&quot;。宋霆&quot;父杀母&quot;的深渊，与南久&quot;被父母踢来踢去&quot;的漂泊，是两人互为镜像、彼此认领的底层原因。全书所有&quot;隐忍&quot;与&quot;要强&quot;都能在这条线上找到出处。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V13</td>
+<td>[第6章]</td>
+<td>宋霆身世——其父杀死其母（含宋母生前遭罪、坡子上&quot;宛如凝固的血泪&quot;的红房子、他读过的巷子、倔强少年；南老爷子堤坝上&quot;孩子，跟我回家&quot;）</td>
+<td>[第2章]带烟伏笔 → [第6章]丢下&quot;父杀母&quot;惊雷 → [第11章]巷子 → [第14章]红房子 → [第18章]&quot;爷爷拉我一把&quot; → [第34章]结局回溯收束</td>
+<td>已回收[第34章]</td>
+<td>全书最深的身世暗线；用&quot;一次抛出、多次补刀&quot;逼读者持续共情男主</td>
+</tr>
+<tr>
+<td>V3</td>
+<td>[第2章]</td>
+<td>宋霆随身带烟却不抽烟（人情世故的工具，非嗜好）</td>
+<td>[第2章]埋 → 未点破</td>
+<td>未回收</td>
+<td>闲笔式以物写人：一个&quot;只递不抽&quot;的男人＝被生活磨出的圆滑与克制</td>
+</tr>
+<tr>
+<td>V7</td>
+<td>[第3章]</td>
+<td>宋霆刻意避开她洗澡的隐忍边界（收走剃须刀、从前总等她洗完才上楼）——旧日交集暗线，南久不知</td>
+<td>[第3章]埋 → 未点破</td>
+<td>未回收</td>
+<td>用&quot;她不知道的旧日细节&quot;暗示男主早已留意她，为&quot;十九岁一见钟情&quot;埋伏</td>
+</tr>
+<tr>
+<td>V18</td>
+<td>[第9章]</td>
+<td>南久的腰伤（反复出现的身体线索）</td>
+<td>[第9章]埋 → 未回收</td>
+<td>未回收</td>
+<td>以身体旧伤写女主&quot;住校苦日子&quot;的印记，暗合她的坚韧</td>
+</tr>
+<tr>
+<td>V20</td>
+<td>[第10章]</td>
+<td>歪脖子树下宋母撑伞等宋霆放学的旧事（身世＋情感软肋）</td>
+<td>[第10章]埋 → 成巷口独处见证地 [第38章] → [第42章]林颂耀在此强吻南久</td>
+<td>已回收[第38/42章]</td>
+<td>把一个&quot;地点&quot;变成身世＋感情的公共承载体：同一棵树下，温暖被玷污，反差即痛感</td>
+</tr>
+<tr>
+<td>V34</td>
+<td>[第24章]</td>
+<td>南久抛出&quot;我爸在酆市省公安厅刑侦总队当队长&quot;（半真半假的威慑，补南振东背景一笔）</td>
+<td>[第24章]埋 → 未明写兑现</td>
+<td>未回收</td>
+<td>女主自保时的急智；顺带补完&quot;生父&quot;这一被忽视的角色</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;创伤镜像&quot;设计</strong>：男主（父亲杀母）与女主（父母弃养）被同一位老人收留，<strong>两个孤儿＝一个庇护所</strong>，救赎关系因此天然成立，不必强行撮合。</li>
+<li><strong>身世线&quot;分层投放&quot;</strong>：第2章丢一个&quot;带烟&quot;的小疑点，第6章给一记惊雷，第14/18/34 章各补一层，<strong>一次比一次深</strong>，读者被牵着走完整条暗河。</li>
+<li><strong>以&quot;空间&quot;承情</strong>：红房子、歪脖子树、读过的巷子——身世不靠回忆独白，而靠<strong>具体地点</strong>反复出现来承载。</li>
+</ul>
+<hr>
+<h3>组 C｜事业线（茶馆→平台→快闪→星耀→南风艺境）</h3>
+<blockquote>
+<p><strong>定位</strong>：女主&quot;由自己主宰人生&quot;的成长主干。从茶馆管账起步，到线上平台、快闪、星耀合伙人，再到自营&quot;南风艺境&quot;（[第70章]），是她&quot;必须先强大、才能选择&quot;的价值观落点。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V9</td>
+<td>[第4章]</td>
+<td>南久的独立／自立主线（住校冬天搓衣服冻到没知觉→&quot;由自己主宰人生的未来&quot;→&quot;条条大路通罗马，我只是换条路走&quot;）</td>
+<td>[第4章]埋 → [第36章]立誓 → [第55章]退股带资源离场 → [第56/70章]回帽儿巷自营&quot;南风艺境&quot;</td>
+<td>已回收[第56/70章]</td>
+<td>全书最核心的&quot;自我实现&quot;母题，贯穿首尾</td>
+</tr>
+<tr>
+<td>V19</td>
+<td>[第10章]</td>
+<td>茶馆&quot;入驻平台、打造独立IP&quot;的提议</td>
+<td>[第10章]埋 → [第30章]平台已由宋霆维护</td>
+<td>已回收[第30章]</td>
+<td>用&quot;旧提议→新成果&quot;体现女主商业嗅觉的兑现</td>
+</tr>
+<tr>
+<td>V11</td>
+<td>[第5章]</td>
+<td>南久的蜕变（化全妆后&quot;带有攻击性的美艳轮廓&quot;、归来染冷茶棕）</td>
+<td>[第5章]埋 → 未回收</td>
+<td>未回收</td>
+<td>形象蜕变＝内心蜕变的可见外化</td>
+</tr>
+<tr>
+<td>V17</td>
+<td>[第9章]</td>
+<td>钱秃子及其子&quot;在老街管招商&quot;</td>
+<td>[第9章]埋 → 未回收</td>
+<td>未回收</td>
+<td>埋一条招商/政商人脉的暗线，供后文（或续写）调用</td>
+</tr>
+<tr>
+<td>V22</td>
+<td>[第13章]</td>
+<td>李玮一伙身份不明（实为&quot;旁边茶社的人&quot;）与南久抢先报警的后果</td>
+<td>[第13章]埋 → [第14/15章]宋霆查明是隔壁茶社所为并处理</td>
+<td>已回收[第14/15章]</td>
+<td>用&quot;同业竞争&quot;外化女主手段与爷爷&quot;江湖规矩&quot;的代际冲突</td>
+</tr>
+<tr>
+<td>V23</td>
+<td>[第13章]</td>
+<td>南久果断手段与爷爷&quot;江湖老规矩&quot;的代际冲突</td>
+<td>[第13章]埋 → 未回收</td>
+<td>未回收</td>
+<td>埋&quot;新老两套处世法&quot;的长期张力</td>
+</tr>
+<tr>
+<td>V24</td>
+<td>[第15章]</td>
+<td>郑坤（南城茶圈人脉）及其帮派&quot;盘活南城场子&quot;、认得南久是南老孙女；牵出任兆平、球友俱乐部</td>
+<td>[第15章]埋 → [第62章]被点出&quot;认得南久身份&quot;（余波未平）</td>
+<td>已回收[第62章]</td>
+<td>把&quot;人脉&quot;从背景升级成主角可用的资源网</td>
+</tr>
+<tr>
+<td>V39</td>
+<td>[第28章]</td>
+<td>夏嫣然陷&quot;被包养&quot;流言、口中&quot;那个男人&quot;身份未明，南久庇护她</td>
+<td>[第28章]埋 → [第29章]成得力助手 → [第66章]抵南城、引工作室筹备</td>
+<td>已回收[第29/66章]</td>
+<td>施恩→回报的因果闭环，也是&quot;南风艺境&quot;团队班底</td>
+</tr>
+<tr>
+<td>V56</td>
+<td>[第50章]</td>
+<td>成堆待办（团队、融资、违约、法律责任）＝她必须回去的&quot;现实之网&quot;</td>
+<td>[第50章]埋 → [第53章]回城应战、拆伙</td>
+<td>已回收[第53章]</td>
+<td>用&quot;现实的重量&quot;反向证明她的独立已成规模</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>事业线&quot;复利式推进&quot;</strong>：茶馆管账[第9章]→线上平台[第10章]→首场快闪[第29章]→星耀铁三角[第37章]→自营工作室[第70章]，<strong>每一步都在前一步的地基上</strong>，读者看到&quot;积累&quot;，而非&quot;开挂&quot;。</li>
+<li><strong>把主角价值观写进台词当&quot;文眼&quot;</strong>：&quot;条条大路通罗马，我只是换条路走&quot;[第4/55章]——一句可反复回收的成长宣言，做全书的主题锚。</li>
+<li><strong>（章卡补）</strong> 事业成果由&quot;旁人&quot;替读者见证：[第30章]&quot;她两年前弄的线上平台如今由宋霆维护&quot;、[第67章]桑丫出山、[第70章]进京任评委——<strong>不直接吹，让结果自然露面</strong>。</li>
+</ul>
+<hr>
+<h3>组 D｜茶山·珍敏·黑石洼线</h3>
+<blockquote>
+<p><strong>定位</strong>：男主的&quot;另一半人生&quot;，也是感情线的重要考验场。茶山给了他&quot;安稳定居&quot;的底气，珍敏、朱家、黑石洼则激出女主的醋意与生死劫，把两人的关系从&quot;暧昧&quot;推入&quot;共患难&quot;。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V4</td>
+<td>[第2章]</td>
+<td>&quot;山里&quot;的生意（事业线源头）</td>
+<td>[第2/3/6章]反复→[第17章]揭示为宋霆的茶山（仓库＋茶厂＋茶垄）</td>
+<td>已回收[第17章]</td>
+<td>用一个含糊的代称&quot;山里&quot;吊三章，落定为&quot;他的根&quot;</td>
+</tr>
+<tr>
+<td>V27</td>
+<td>[第17章]</td>
+<td>珍敏——对宋霆有好感的山里姑娘（替宋霆洗衣、攒&quot;彩礼钱&quot;）；其过去曾在朱家待一年、被买卖婚姻所困</td>
+<td>[第17章]埋 → [第23章]彩礼为朱家旧债 → [第25章]得知那笔钱是为南久所给、收回目光 → [第34章]线回指收束</td>
+<td>已回收[第23/25/34章]</td>
+<td>用&quot;潜在情敌&quot;逼出女主比较心/醋意，再以真相消解，不落俗套</td>
+</tr>
+<tr>
+<td>V29</td>
+<td>[第20章]</td>
+<td>暴雨突至＋军子掉沟</td>
+<td>[第20章]埋 → [第21章]引出雨夜与随后冷战</td>
+<td>已回收[第21章]</td>
+<td>短平快的&quot;天气钩子&quot;，服务情绪转折</td>
+</tr>
+<tr>
+<td>V30</td>
+<td>[第21章]</td>
+<td>宋霆在茶园盖的木屋</td>
+<td>[第21章]埋 → [第62章]推倒重建&quot;山色共居&quot;</td>
+<td>已回收[第62章]</td>
+<td>木屋＝他的独居与孤独；重建＝为&quot;同住&quot;做打算，以物写心</td>
+</tr>
+<tr>
+<td>V33</td>
+<td>[第23章]</td>
+<td>朱家与黑石洼村的&quot;买妻&quot;恶俗、朱大海对宋霆的旧怨</td>
+<td>[第23章]埋 → [第34章]朱家线了结（&quot;蹲大牢了，村被整治过&quot;）→ [第46章]珍敏道出宋霆硬挨朱大海一拳</td>
+<td>已回收[第34/46章]</td>
+<td>把个人恩怨接入社会恶俗，拔高冲突的社会质感</td>
+</tr>
+<tr>
+<td>V35</td>
+<td>[第24章]</td>
+<td>南久黑石洼脱身的经过（身上沾血、捅朱二海小腹、宋霆与黑石洼人动手）</td>
+<td>[第24章]埋 → [第25章]向宋霆坦白&quot;我没让他碰到我&quot;</td>
+<td>已回收[第25章]</td>
+<td>用&quot;留白＋事后坦白&quot;制造悬疑到释然的反差</td>
+</tr>
+<tr>
+<td>V51</td>
+<td>[第45章]</td>
+<td>&quot;所有后果我来承担&quot;的抢采军令状、黑石洼村借工（行贿魏村长、组建后勤；李虎其人）</td>
+<td>[第45章]埋 → [第46章]借工到位、投入抢采 → [第52章]宋霆撕碎损失担保协议、把钱转给她</td>
+<td>已回收[第46/52章]</td>
+<td>女主&quot;以豪赌替他夺茶山&quot;的能力与深情双线兑现</td>
+</tr>
+<tr>
+<td>V48</td>
+<td>[第43章]</td>
+<td>珍敏&quot;她是宋老板爱人&quot;的弥天大谎（后患）</td>
+<td>[第43章]埋 → 未点破</td>
+<td>未回收</td>
+<td>埋一颗&quot;身份被误认&quot;的舆论地雷，留着发酵</td>
+</tr>
+<tr>
+<td>V50</td>
+<td>[第44章]</td>
+<td>大黄避人、独处土坡（衰老／离世隐喻）</td>
+<td>[第44章]埋 → [第46章]独自走入树林、再未回头 → [第52章]&quot;老狗会出去找个地方结束&quot;、南久痛哭</td>
+<td>已回收[第46/52章]</td>
+<td>以狗喻人，把&quot;生离死别&quot;的痛感提前演练</td>
+</tr>
+<tr>
+<td>V28</td>
+<td>[第19章]</td>
+<td>桑丫（聋哑、爱跳舞的女孩，宋霆教她认字；南久留下手机号）</td>
+<td>[第19/20章]埋 → [第67章]宋霆出山接她 → [第70章]随南久进京任评委随行</td>
+<td>已回收[第67/70章]</td>
+<td>既是&quot;南风艺境&quot;教舞线的先声，也是女主善意的长线回响</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;领地情敌&quot;三件套</strong>：一个忠诚的女人（珍敏）、一条恶俗的旧案（朱家买妻）、一场生死劫（黑石洼）——<strong>用&quot;他人的土地&quot;测试女主是否愿意留下</strong>，比正面情敌更高级。</li>
+<li><strong>短钩子穿插长钩子</strong>：暴雨[第20章]、掉沟这样的&quot;天气级&quot;小钩几天即收，拴在&quot;茶山线&quot;这条长钩上，<strong>长线不闷、短线不散</strong>。</li>
+<li><strong>以&quot;狗／猫&quot;为情绪替身</strong>：大黄之死[第46/52章]、三花猫小九（见组 I）——<strong>不便直说的人间别离与思念，交给动物去演</strong>。</li>
+<li><strong>（章卡补）</strong> 茶山经营写实细节（老八开沟、加固低洼地[第17章]、三十七棵老茶树专供帽儿茶馆[第41章]、抢采与魏村长[第45-46章]）——<strong>用&quot;专业细节&quot;给感情线垫上现实底座</strong>。</li>
+</ul>
+<hr>
+<h3>组 E｜感情推拉 × 双向救赎主线</h3>
+<blockquote>
+<p><strong>定位</strong>：全书主脉。其内核是&quot;两人互欠、互相托底，又在名分与现实中反复进退&quot;。从荒道上的一瓶水，到银行卡、抢采、生死重逢、放手成全，构成一条&quot;越界→划界→决裂→重逢→成全&quot;的完整推拉链。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V1</td>
+<td>[第1章]</td>
+<td>南久独自百里寻爷爷，荒道遇修车的宋霆；他为何出现在荒道、当年出门寻她的缘由</td>
+<td>[第1章]埋 → [第4章]&quot;那年我开车是出去找你的&quot;→[第7章]南老爷子证实</td>
+<td>已回收[第4/7章]</td>
+<td>全书第一颗种子：把&quot;相遇&quot;从偶然变必然，双向奔赴感拉满</td>
+</tr>
+<tr>
+<td>V8</td>
+<td>[第4章]</td>
+<td>两人间的互欠与伤痕（指甲血痕、拐杖痕、咬破的下唇痕；&quot;就当还你的&quot;记账因果）</td>
+<td>[第4章]埋 → [第42章]南久从身后抱住他、说迟到太久的&quot;对不起&quot;</td>
+<td>已回收[第42章]</td>
+<td>&quot;情感账本&quot;贯穿全书，把每一次付出与亏欠都记成钩</td>
+</tr>
+<tr>
+<td>V14</td>
+<td>[第7章]</td>
+<td>宋霆的隐晦善意（&quot;爷爷给的&quot;笔记本电脑实为他出钱所买、住处被翻新、&quot;不那样说&quot;惯用手法）</td>
+<td>[第7章]埋 → [第8章]南久识破电脑是他出钱 → [第25章]她自曝曾用这台电脑看小视频</td>
+<td>已回收[第8/25章]</td>
+<td>男主&quot;隐形付出&quot;的定式：从不言说，靠女主&quot;发现&quot;来升温</td>
+</tr>
+<tr>
+<td>V15</td>
+<td>[第7章]</td>
+<td>感情线&quot;带电&quot;的身体接触升级（倒视镜对视→递桂花糕指尖相触→机车箍腰→咬破下唇）——&quot;披着砒霜的糖&quot;的禁忌依赖</td>
+<td>[第7章]埋 → 全书反复升级（[第11/15/33/49章]）</td>
+<td>未回收（长线肌理）</td>
+<td>以&quot;身体距离&quot;标刻关系温度，是感情线最直观的刻度尺</td>
+</tr>
+<tr>
+<td>V25</td>
+<td>[第16章]</td>
+<td>宋霆无声的守护（微信对话框始终空白、拐角夜夜点香驱蚊、悄悄买零食放后备箱、用身体挡她）</td>
+<td>[第16章]埋 → 未点破</td>
+<td>未回收（详见组 I 点香）</td>
+<td>&quot;不说只做&quot;的男主塑造法，把爱意藏在环境细节里让读者自己发现</td>
+</tr>
+<tr>
+<td>V31</td>
+<td>[第22章]</td>
+<td>南久&quot;20岁生日那天不再是一个人过&quot;的愿望</td>
+<td>[第22章]埋 → [第25章]生日在木屋与宋霆共度</td>
+<td>已回收[第25章]</td>
+<td>用一个&quot;小女孩的愿望&quot;许下关系质变的契机</td>
+</tr>
+<tr>
+<td>V32</td>
+<td>[第22章]</td>
+<td>南久那句&quot;你会后悔的&quot;</td>
+<td>[第22章]埋 → [第24章]宋霆赴黑石洼途中脑中反复响起</td>
+<td>已回收[第24章]</td>
+<td>一语成谶式钩子，把焦虑植入男主意识</td>
+</tr>
+<tr>
+<td>V37</td>
+<td>[第27章]</td>
+<td>宋霆偷放的银行卡、合伙人30万门槛</td>
+<td>[第27章]埋 → [第36章]发现卡里原有十万、凑齐三十万 → [第44章]另预约取款</td>
+<td>已回收[第36/44章]</td>
+<td>&quot;托底式救助&quot;的物证，男主的爱＝不留名的钱</td>
+</tr>
+<tr>
+<td>V41</td>
+<td>[第34章]</td>
+<td>南久&quot;我们不可能在一起&quot;的现实分歧（安稳定居 vs 外出闯荡）</td>
+<td>[第34章]埋 → [第70章]退股回帽儿巷、与宋霆完婚</td>
+<td>已回收[第70章]</td>
+<td>全书分离宿命的定调，也是女主&quot;先成为自己&quot;的宣言</td>
+</tr>
+<tr>
+<td>V47</td>
+<td>[第42章]</td>
+<td>宋霆&quot;以后不要再见面了&quot;的决裂式转折</td>
+<td>[第42章]埋 → [第47章]生死重逢后心防松动 → [第48章]撕下伪装、强留南久</td>
+<td>已回收[第47/48章]</td>
+<td>用&quot;狠话&quot;反向证明爱意之深，是推拉链的谷底</td>
+</tr>
+<tr>
+<td>V49</td>
+<td>[第43章]</td>
+<td>宋霆庭庄失联→车祸濒死获救（右臂深口后绷开）；&quot;少开车、不安全&quot;的执念与车祸阴影</td>
+<td>[第43章]埋 → [第47章]独身赶回茶山 → [第48章]右臂伤口越界时再度受痛</td>
+<td>已回收[第47/48章]</td>
+<td>生死劫＝击碎决裂的钥匙，把&quot;爱&quot;逼到台面上</td>
+</tr>
+<tr>
+<td>V52</td>
+<td>[第48章]</td>
+<td>宋霆&quot;即便用最卑劣的手段也要将她据为己有&quot;的执念</td>
+<td>[第48章]埋 → [第49章]不予理睬、强行占有</td>
+<td>已回收[第49章]</td>
+<td>把&quot;隐忍男主&quot;逼到失控，释放强情绪爆点</td>
+</tr>
+<tr>
+<td>V53</td>
+<td>[第49章]</td>
+<td>宋霆&quot;故意没做安全措施&quot;、扬言&quot;你怀着我的孩子回去&quot;</td>
+<td>[第49章]埋 → [第58章]南久揉肚子引出&quot;怀孕&quot;乌龙</td>
+<td>已回收[第58章]</td>
+<td>以&quot;孩子&quot;为悬置的伦理/情感筹码，番外轻巧化解</td>
+</tr>
+<tr>
+<td>V54</td>
+<td>[第49章]</td>
+<td>宋霆扬言去酆市落户、&quot;买下你隔壁&quot;&quot;经常去关照你的婚后生活&quot;</td>
+<td>[第49/50章]埋 → 未明写兑现</td>
+<td>未回收</td>
+<td>留一句&quot;疯话&quot;作余味，供续写发散</td>
+</tr>
+<tr>
+<td>V59</td>
+<td>[第57章]</td>
+<td>宋霆袒露十九岁一见钟情、本欲等她毕业娶她</td>
+<td>[第57章]埋 → [第60章]手机屏保正是她20岁时的照片</td>
+<td>已回收[第60章]</td>
+<td>把散落全书的&quot;旧日细节&quot;一次性收束，解释男主全部隐忍</td>
+</tr>
+<tr>
+<td>V60</td>
+<td>[第57章]</td>
+<td>宋霆&quot;等我回来再说&quot;</td>
+<td>[第57章]埋 → [第58章]提前赶回找南久</td>
+<td>已回收[第58章]</td>
+<td>短钩子，制造&quot;他要开口&quot;的期待</td>
+</tr>
+<tr>
+<td>V61</td>
+<td>[第58章]</td>
+<td>广告牌上的&quot;男神&quot;音乐节</td>
+<td>[第58章]埋 → [第59/60章]宋霆悄悄买好门票、同游音乐节</td>
+<td>已回收[第59/60章]</td>
+<td>以&quot;约会事件&quot;兑现情感回暖，甜度补偿</td>
+</tr>
+<tr>
+<td>V66</td>
+<td>[第65章]</td>
+<td>宋霆夜半摸空后的惊悸（&quot;那夜她决然离去&quot;的旧痛）与阁楼添置饮水机</td>
+<td>[第65章]埋 → 未点破</td>
+<td>未回收</td>
+<td>以&quot;半夜惊醒&quot;写男主后怕，把创伤留在甜蜜里做底色</td>
+</tr>
+<tr>
+<td>V67</td>
+<td>[第65章]</td>
+<td>南久&quot;我们……结婚吧&quot;</td>
+<td>[第65章]埋 → [第70章]南久宋霆完婚</td>
+<td>已回收[第70章]</td>
+<td>由女主主动求婚，完成&quot;她终于成为自己、主动选择&quot;的闭环</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;情感账本&quot;贯穿法</strong>：从[第4章]&quot;就当还你的&quot;到[第42章]&quot;对不起&quot;，每一次伤害／救助都被记账，<strong>读者每读一次都在替他们算账</strong>，关系因此有厚度。</li>
+<li><strong>推拉节奏＝&quot;进三退二&quot;</strong>：越界（[第15/25/33章]）→ 划界（[第26/29章]）→ 决裂（[第42章]）→ 重逢（[第47-49章]）→ 成全（[第52章]）→ 圆满（[第70章]），<strong>每一轮拉扯都比上一轮更深</strong>。</li>
+<li><strong>&quot;反派式自陈&quot;制造爽虐反差</strong>：&quot;即便用最卑劣的手段也要将她据为己有&quot;[第48章]、&quot;你什么时候……爱上了我&quot;[第49章]——<strong>把最隐忍的人逼到最放肆</strong>，是全书写得最&quot;上头&quot;的手法。</li>
+<li><strong>延迟满足式回收</strong>：男主&quot;偷偷做&quot;的事（电脑[第7章]、银行卡[第27章]、屏保[第60章]）<strong>全部等她&quot;自己发现&quot;</strong>，把&quot;发现&quot;的时刻留作名场面。</li>
+</ul>
+<hr>
+<h3>组 F｜男二林颂耀线与商战</h3>
+<blockquote>
+<p><strong>定位</strong>：全书唯一的强反派级配角线，兼具&quot;商战对手&quot;与&quot;情敌&quot;双重功能。他的契约婚姻提案逼出女主的选择，他的把柄与强吻逼出主线决裂，最终以&quot;项链作别&quot;体面退场。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V38</td>
+<td>[第27章]</td>
+<td>林颂耀线（一）：对南久的打量兴趣、&quot;待纳入麾下的璞玉&quot;、以星耀经营权换婚姻、台历上以爱心圈画的领证日期</td>
+<td>[第27章]埋 → [第37章]契约婚姻提议 → [第39章]起疑唇伤 → [第53章]民政局掉头、婚约破裂 → [第55章]体面退场 → [第70章]以婚戒改制的项链作别</td>
+<td>已回收[第53/55/70章]</td>
+<td>用&quot;精明的欣赏&quot;包装占有欲，做主线最有力的外部压力</td>
+</tr>
+<tr>
+<td>V44</td>
+<td>[第39章]</td>
+<td>林颂耀线（二）：对南久唇伤起疑、掌握私情秘密、&quot;我会让你官司缠身&quot;的威胁与三通来电、递出的林家把柄文件</td>
+<td>[第39章]埋 → [第42章]强吻逼出秘密、与南久反目 → [第54章]南久摊出林家丑闻逼退他、彻底决裂</td>
+<td>已回收[第42/54章]</td>
+<td>把&quot;商战&quot;与&quot;情感&quot;两条压力拧成一股，逼主角成长</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;高质量反派&quot;＝欣赏＋威胁双面</strong>：他既&quot;心疼你&quot;[第37章]、又以&quot;官司缠身&quot;相逼[第53章]，<strong>让读者恨不起来、又不得不防</strong>，比扁平恶人高级。</li>
+<li><strong>同一人物的&quot;退场道具化&quot;</strong>：婚戒改制项链（[第70章]）＝把&quot;得不到的爱&quot;炼成&quot;祝福&quot;，<strong>用一个物象给整条男二线收尾</strong>，避免拖泥带水。</li>
+<li><strong>（章卡补）</strong> 商战线靠&quot;具体动作&quot;落地：[第54章]一袭法式裙装穿过死寂办公区、下属层层相叠筑成人墙——<strong>用画面而非台词表现&quot;反杀&quot;</strong>。</li>
+</ul>
+<hr>
+<h3>组 G｜家族继承 · 南乔宇 · 公开线</h3>
+<blockquote>
+<p><strong>定位</strong>：来自&quot;家&quot;的压力。一份茶馆继承权、一场寿宴、一个中秋，把两人的私情一次次逼到台面上；也是&quot;名分屏障&quot;（组 A）在家族层面的具象化。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V16</td>
+<td>[第9章]</td>
+<td>家族线——茶馆继承权之争与南家子女不和（亲叔叔借钱旧怨→婶婶派南乔宇盯梢争产→南乔宇&quot;见者有份&quot;、不肯继承、搞游戏比赛；&quot;后年大寿聚齐儿孙&quot;暗桩）</td>
+<td>[第9章]埋 → [第12章]点破盯梢 → [第35章]南乔宇不回来搞比赛 → [第38章]大寿成家族近十年最齐团聚</td>
+<td>已回收[第12/35/38章]</td>
+<td>用一个&quot;想争产又不想担责&quot;的侄子，反衬女主的能力与担当</td>
+</tr>
+<tr>
+<td>V21</td>
+<td>[第11章]</td>
+<td>私情被家人察觉／撞破（老爷子&quot;你替她出学费不合适&quot;的警觉、柳茵撞破后答应保密→南乔宇推门撞破）</td>
+<td>[第11章]埋 → [第39章]老爷子撞破私情、杖责宋霆&quot;把这心思断干净&quot;、逐南久</td>
+<td>已回收[第39章]</td>
+<td>家族线总爆发，把主线由&quot;秘密&quot;推入&quot;被斩断&quot;</td>
+</tr>
+<tr>
+<td>V45</td>
+<td>[第39章]</td>
+<td>南老爷子&quot;你结婚我就不去了&quot;（婚礼分量的暗桩）</td>
+<td>[第39章]埋 → [第41章]再度提及 → 未明写兑现</td>
+<td>未回收</td>
+<td>埋一个&quot;爷爷是否认这门亲&quot;的悬念，拴住后续</td>
+</tr>
+<tr>
+<td>V46</td>
+<td>[第40章]</td>
+<td>南久&quot;带回来给我看看&quot;（携林颂耀回帽儿巷见家长）</td>
+<td>[第40章]埋 → [第41章]宋霆与林颂耀初次照面、饭桌暗锋</td>
+<td>已回收[第41章]</td>
+<td>用&quot;见家长&quot;把三角关系摆上台面</td>
+</tr>
+<tr>
+<td>V57</td>
+<td>[第55章]</td>
+<td>南老爷子精神不振、旧人相继离世</td>
+<td>[第55章]埋 → [第66章]因南久归来，老秦走后的沉寂被一点点冲淡</td>
+<td>已回收[第66章]</td>
+<td>以&quot;老人老去&quot;给一个&quot;回家&quot;的理由，让女主归乡顺理成章</td>
+</tr>
+<tr>
+<td>V63</td>
+<td>[第62章]</td>
+<td>吴婶撞见宋霆从南久房出</td>
+<td>[第62章]埋 → [第63章]引出爷爷当面对质 → [第69章]婚期被压到中秋之后</td>
+<td>已回收[第63/69章]</td>
+<td>用&quot;邻里之眼&quot;制造家中地震，推进婚事进程</td>
+</tr>
+<tr>
+<td>V65</td>
+<td>[第64章]</td>
+<td>爷爷&quot;不同意能怎么办？你们就这么耗着等我入土&quot;</td>
+<td>[第64章]埋 → [第65章]南久获底气、主动提婚</td>
+<td>已回收[第65章]</td>
+<td>长辈的&quot;松口&quot;是女主主动的底气来源</td>
+</tr>
+<tr>
+<td>V68</td>
+<td>[第68章]</td>
+<td>宋霆当众端茶、老爷子坚持逼茶的反常</td>
+<td>[第68章]埋 → [第69章]廖虹点破、南振东接受登门</td>
+<td>已回收[第69章]</td>
+<td>用一个&quot;仪式动作&quot;暗示身份的转正，含蓄而有力</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;家族饭桌&quot;当冲突舞台</strong>：[第38章]寿宴、[第41章]见家长饭局、[第68章]中秋家宴——<strong>同一个空间反复上演&quot;关系摊牌&quot;</strong>，读者形成条件反射：一上桌就要出事。</li>
+<li><strong>长辈的&quot;默许&quot;用动作不用台词</strong>：&quot;耗着等我入土&quot;[第64章]、当众端茶[第68章]——<strong>中国式家庭的和解，藏在不说里</strong>。</li>
+<li><strong>（章卡补）</strong> [第67章]&quot;多年不归是老爷子不让回&quot;——用一个陈年隐情收束&quot;女主为何漂泊&quot;，为家宴公开做情感垫。</li>
+</ul>
+<hr>
+<h3>组 H｜现实障碍与婚恋副线（相亲／流言／情敌／信息差）</h3>
+<blockquote>
+<p><strong>定位</strong>：来自&quot;世俗&quot;的杂音。它不构成生死冲突，却持续给感情线添压力与信息差，让&quot;情有独钟&quot;显得更难、也更珍贵。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V10</td>
+<td>[第5章]</td>
+<td>柳茵暗恋宋霆，离婚后柳家有意宋霆、上门提亲</td>
+<td>[第5章]埋 → [第10章]表白被红包堵回、各自婚嫁 → [第33章]宋霆明确回绝柳家</td>
+<td>已回收[第10/33章]</td>
+<td>用&quot;门当户对的暗恋者&quot;反衬男主对女主的唯一</td>
+</tr>
+<tr>
+<td>V12</td>
+<td>[第5章]</td>
+<td>宋霆的婚恋现实处境（无房无车无父母帮衬）与周妍相亲线</td>
+<td>[第5章]埋 → [第6章]周妍家提随母姓、备房入赘的条件，宋霆&quot;算了吧，不麻烦了&quot;婉拒</td>
+<td>已回收[第6章]</td>
+<td>交代男主&quot;穷且孤&quot;的现实，为其克制找根据</td>
+</tr>
+<tr>
+<td>V26</td>
+<td>[第16章]</td>
+<td>外部追求／相亲线（李崇光对南久的追求、老李头欲撮合、相亲IT男）</td>
+<td>[第16章]埋 → [第66章]李崇光撞破恋情、断了念想</td>
+<td>已回收[第66章]</td>
+<td>用&quot;街坊热心&quot;制造喜剧感与信息差笑点</td>
+</tr>
+<tr>
+<td>V64</td>
+<td>[第63章]</td>
+<td>姚洁&quot;从三年前就……&quot;（话未说完）与小张一句&quot;你不是一直单着吗&quot;（宋霆&quot;单身&quot;人设的信息差）</td>
+<td>[第63章]埋 → [第64章]南久登门以&quot;老板娘&quot;身份镇场、姚洁心虚、小张点破</td>
+<td>已回收[第64章]</td>
+<td>用&quot;信息差&quot;制造番外里最俏皮的&quot;护夫/吃醋&quot;戏</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;信息差喜剧&quot;</strong>：外人只知宋霆&quot;一直单着&quot;[第63章]，本人却早已心有所属——<strong>同一事实的两种解读，自动生成笑料与甜点</strong>。</li>
+<li><strong>副线只服务主线，不另起炉灶</strong>：柳茵、周妍、李崇光、姚洁、相亲IT男，<strong>每一个都用来照见主 CP 的&quot;唯一性&quot;或推进婚事</strong>，写完即退场。</li>
+</ul>
+<hr>
+<h3>组 I｜意象道具线（电脑／桂花糕／拐杖／金镯子／点香／猫／床／钥匙／项链）</h3>
+<blockquote>
+<p><strong>定位</strong>：这部长篇的&quot;文学肌理&quot;。几乎所有重要情感都有一个<strong>物</strong>替它说话：说不出口的爱，藏在电脑、金镯子、点香、一只猫、一张床、一把钥匙、一条项链里。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>伏笔内容</th>
+<th>发展→回收</th>
+<th>状态</th>
+<th>作者意图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>—</td>
+<td>[第7章]（跨组 E）</td>
+<td>笔记本电脑（&quot;爷爷给的&quot;实为宋霆出钱；她独立的起点）</td>
+<td>埋[第7章]→识破[第8章]</td>
+<td>已回收[第8/25章]</td>
+<td>以&quot;物&quot;承载男主不留名的付出（主表见组 E·V14）</td>
+</tr>
+<tr>
+<td>V5</td>
+<td>[第2章]</td>
+<td>南久藏起爷爷的拐杖泄愤、老爷子&quot;压根忘了拐杖的存在&quot;</td>
+<td>[第2章]埋 → 未点破</td>
+<td>未回收</td>
+<td>小性子；拐杖＝爷爷的权威符号</td>
+</tr>
+<tr>
+<td>V43</td>
+<td>[第38章]</td>
+<td>拐杖（寿宴前寄达、后被老爷子察觉是南久所赠）</td>
+<td>[第38章]埋 → [第39章]经南乔宇代收放进爷爷房间 → [第41章]被老爷子识破来路</td>
+<td>已回收[第39/41章]</td>
+<td>女主&quot;以物尽孝&quot;；一根拐杖串起爷孙情与家族线</td>
+</tr>
+<tr>
+<td>V36</td>
+<td>[第25章]</td>
+<td>宋霆准备的生日礼物（金镯子）、补卡的手机、最新款手机</td>
+<td>[第25章]埋 → [第26章]趁她熟睡套上金镯子、补卡、送新机</td>
+<td>已回收[第26章]</td>
+<td>金镯子＝他&quot;想拴住她又不敢明说&quot;的物证</td>
+</tr>
+<tr>
+<td>V40</td>
+<td>[第30章]</td>
+<td>三花猫&quot;小九&quot;（&quot;张牙舞爪像小久&quot;、去年9月9日入巷的名字与来历）</td>
+<td>[第30章]埋 → [第38章]小九发情后跑了</td>
+<td>已回收[第38章]</td>
+<td>以猫映照宋霆的孤独与思念，替不敢想的男人想</td>
+</tr>
+<tr>
+<td>V55</td>
+<td>[第49章]</td>
+<td>南久&quot;我的车钥匙你拿走了&quot;未讨还（受困却甘愿的物证）</td>
+<td>[第49章]埋 → [第52章]宋霆把车钥匙与避孕药摆上桌让她走</td>
+<td>已回收[第52章]</td>
+<td>车钥匙＝&quot;困住&quot;与&quot;放手&quot;的双关道具</td>
+</tr>
+<tr>
+<td>V58</td>
+<td>[第56章]</td>
+<td>宋霆3月扔床的举动（暗示因南久带林颂耀回来而吃味）</td>
+<td>[第56章]埋 → [第57章]宋霆为她买回一张新床</td>
+<td>已回收[第57章]</td>
+<td>一张床＝吃醋的沉默控诉与和好的献礼</td>
+</tr>
+<tr>
+<td>—</td>
+<td>[第7章]（章卡补）</td>
+<td><strong>桂花糕</strong>：递糕点时指尖相触</td>
+<td>[第7章]埋 → [第35章]门把手上一袋带余温的桂花糕（宋霆廊窗目送）→ [第38章]卖桂花糕的店关门（意象收束）</td>
+<td>已回收[第35/38章]</td>
+<td>从&quot;甜&quot;到&quot;店关&quot;，同一物象走过整条感情线的起落</td>
+</tr>
+<tr>
+<td>—</td>
+<td>[第16章]（章卡补）</td>
+<td><strong>点香驱蚊</strong>：拐角夜夜点香、廊窗一星暗红</td>
+<td>[第16章]埋 → 反复出现＝无声关照</td>
+<td>未点破</td>
+<td>以气味/微光写男主&quot;在场却不说&quot;的守护</td>
+</tr>
+<tr>
+<td>—</td>
+<td>[第65章]（章卡补）</td>
+<td><strong>阁楼饮水机</strong>（&quot;省得你半夜跑下楼&quot;）</td>
+<td>[第65章]埋 → 未点破</td>
+<td>未回收</td>
+<td>以家居细物写男主的体贴与不安</td>
+</tr>
+<tr>
+<td>—</td>
+<td>[第70章]（章卡补）</td>
+<td><strong>项链</strong>：林颂耀的婚戒改制而成，代其物归原主</td>
+<td>[第70章]埋＋即收</td>
+<td>已回收[第70章]</td>
+<td>把&quot;得不到的爱&quot;炼成祝福，给男二线一个诗性句点</td>
+</tr>
+<tr>
+<td>—</td>
+<td>[第62章]（章卡补）</td>
+<td><strong>狗&quot;大黄&quot;真名&quot;钱宝贵&quot;</strong></td>
+<td>[第17章]埋 → [第62章]揭晓</td>
+<td>已回收[第62章]</td>
+<td>用&quot;姓名揭晓&quot;给配角一个温情笑点，也回填前文</td>
+</tr>
+</tbody></table>
+<p><strong>可复用技法</strong>：</p>
+<ul>
+<li><strong>&quot;以物藏情&quot;</strong>：凡说不出口的爱／歉／思念，一律交给一个具体物件去说（电脑、金镯子、拐杖、床、钥匙、项链）。<strong>物会成为读者的记忆锚点</strong>，一提即懂。</li>
+<li><strong>&quot;道具承情·同一物的起落链&quot;</strong>：桂花糕走过&quot;甜（[第7章]）→ 暖（[第35章]）→ 怅（[第38章]店关）&quot;，<strong>让一个吃食替这段感情起承转合</strong>。</li>
+<li><strong>&quot;点香／微光&quot;式微物写人物</strong>：不写&quot;他在意她&quot;，只写&quot;拐角夜夜点着香&quot;——<strong>让读者自己完成情感推理，代入感更强</strong>。</li>
+</ul>
+<hr>
+<h2>三、伏笔手法规律总结（本维度最有价值的产出）</h2>
+<h3>1. 埋收间隔规律</h3>
+<ul>
+<li><strong>短线（同卷即收，约 3–10 章）</strong>：V29×[第20→21章]、V32×[第22→24章]、V31×[第22→25章]、V35×[第24→25章]、V52×[第48→49章]、V55×[第49→52章]、V58×[第56→57章]、V60×[第57→58章]、V61×[第58→60章]。<strong>作用：维持阅读快感，短线制造&quot;即时兑现&quot;的爽</strong>。</li>
+<li><strong>中线（跨卷收，约 10–30 章）</strong>：V1×[第1→4章]、V4×[第2→17章]、V14×[第7→25章]、V19×[第10→30章]、V27×[第17→34章]、V33×[第23→46章]、V37×[第27→44章]、V43×[第38→41章]、V49×[第43→48章]。<strong>作用：让主题沉淀，&quot;久埋才收回&quot;的更有分量</strong>。</li>
+<li><strong>长线／全书级（跨高卷或到结局才收）</strong>：<strong>V2×[第1→68章]（跨 67 章）</strong>、V9×[第4→70章]、V13×[第6→34章]、V20×[第10→42章]、V21×[第11→39章]、V41×[第34→70章]、V59×[第57→60章]、V67×[第65→70章]、V38×[第27→70章]、V44×[第39→54章]。<strong>核心反转与名分障碍都走长线</strong>，保证全书有&quot;一路吊着的期待&quot;。</li>
+<li>结论：<strong>短线保密度、中线保厚度、长线保格局</strong>——三种间隔并行，是这部长篇节奏稳定的关键。</li>
+</ul>
+<h3>2. 惯用伏笔类型（作者偏爱）</h3>
+<ul>
+<li><strong>道具承情（最常用）</strong>：电脑、桂花糕、拐杖、金镯子、点香、三花猫、车钥匙、床、项链——<strong>情感一律&quot;物化&quot;</strong>。</li>
+<li><strong>一语成谶／双关台词</strong>：&quot;你会后悔的&quot;[第22章]、&quot;以后不要再见面了&quot;[第42章]、&quot;条条大路通罗马，我只是换条路走&quot;[第4/55章]、&quot;这重身份就是一根缰绳&quot;[第61章]。</li>
+<li><strong>身份／身世反转</strong>：&quot;干儿子＝叔&quot;的名分[第1→68章]、&quot;父杀母&quot;身世[第6→34章]、林颂耀&quot;婚戒→项链&quot;的深情反转[第70章]、宋霆&quot;单身&quot;人设的反差[第63章]。</li>
+<li><strong>旁人视角补刀</strong>：歪脖子树[第10章]、红房子[第14章]、吴婶／廖虹／小张的旁观视角（[第62–64章]），<strong>用他人之口递信息差</strong>。</li>
+</ul>
+<h3>3. 大伏笔的铺垫密度（怎么层层加码）</h3>
+<ul>
+<li><strong>身世线（V13）</strong>：6 次加码——带烟[第2章]→父杀母[第6章]→读过的巷子[第11章]→红房子[第14章]→&quot;爷爷拉我一把&quot;[第18章]→结局回溯[第34章]。</li>
+<li><strong>名分线（V2）</strong>：5 次加码——干儿子[第1章]→老爷子警觉[第26章]→杖责驱逐[第39章]→决裂[第42章]→&quot;等入土&quot;松口[第64章]→当众转正[第68章]。</li>
+<li><strong>男二线（V38/V44）</strong>：9 次加码——打量[第27章]→契约婚姻[第37章]→起疑[第39章]→强吻反目[第42章]→掉头[第53章]→商战[第54章]→退场[第55章]→项链作别[第70章]。</li>
+<li>规律：<strong>核心反转绝不一次给足，而是&quot;小疑点→正戏→回溯补完→结局回收&quot;四段式</strong>。</li>
+</ul>
+<h3>4. 明暗配比</h3>
+<ul>
+<li><strong>明线（读者一路惦记的钩子）</strong>：电脑／金镯子／拐杖／柳茵／珍敏／契约婚姻／车祸／婚期，约 <strong>六成</strong>——负责&quot;追更动力&quot;。</li>
+<li><strong>暗线（重读才发现的细节）</strong>：带烟不抽[第2章]、弯道寻她[第1章]、腰伤[第9章]、旧日洗澡交集[第3章]、宋霆出钱细节[第8章]、屏保旧照[第60章]，约 <strong>四成</strong>——负责&quot;重读惊喜&quot;与人物厚度，也是仿写最易学、最见功力之处。</li>
+</ul>
+<hr>
+<h2>四、最该关注的开放伏笔（未回收，供续写／改编选接）</h2>
+<blockquote>
+<p>取自本表&quot;未回收&quot;项，按用途归类：</p>
+</blockquote>
+<ul>
+<li><strong>身世／创伤余味</strong>：宋霆随身带烟却不抽[第2章]；宋霆&quot;读过的巷子&quot;他想回却回不去[第11章]；南久的腰伤与旧苦[第9章]；旧日洗澡交集（南久不知）[第3章]；宋霆右臂深伤后续[第47–48章]；南久藏爷爷拐杖[第2章]。</li>
+<li><strong>感情线余味</strong>：宋霆&quot;去酆市落户、买下你隔壁&quot;&quot;经常去关照你的婚后生活&quot;[第49–50章]；&quot;夜半摸空&quot;的旧痛与阁楼饮水机[第65章]；&quot;再给我两年&quot;的承诺[第58章]。</li>
+<li><strong>事业／社会线余味</strong>：南久自营&quot;南风艺境&quot;[第70章]；宋霆推倒木屋、计划建&quot;山色共居&quot;[第62章]；郑坤那帮人&quot;认得南久是南老孙女&quot;[第62章]；钱秃子之子&quot;在老街管招商&quot;[第9章]；林家把柄后续[第54章]；南久与爷爷&quot;江湖老规矩&quot;的代际冲突[第13章]。</li>
+<li><strong>家族线余味</strong>：南老爷子&quot;你结婚我就不去了&quot;[第39/41章]（婚礼分量的暗桩）；南振东、廖虹对茶馆与小凯前程的算计[第69章]；南老爷子子女间旧怨[第9章]。</li>
+<li><strong>茶山／社会线余味</strong>：珍敏&quot;她是宋老板爱人&quot;的弥天大谎后患[第43章]；魏村长受礼的隐患[第46章]；相亲IT男[第33章]；桑丫的成长线[第67–70章]。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

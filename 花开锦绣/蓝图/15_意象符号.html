@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 意象符号 ·《花开锦绣》 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;padding-right:200px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>15 意象符号 ·《花开锦绣》</h1>
+<blockquote>
+<p><strong>依据</strong>：拆解数据 <code>.ext金句手法.md</code>「金句」「设定·名词」字段（全书 310 章齐全）+ 原文抽读。<br><strong>体例</strong>：每个意象列【出现处 <code>[第X章]</code>】【象征意义】【呼应关系】。凡原文未出现、仅见于书名的，如实注明，不脑补。</p>
+</blockquote>
+<hr>
+<h2>一、贯穿性意象</h2>
+<h3>1. 书名&quot;花开锦绣&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td><strong>原文本无&quot;花开锦绣&quot;四字连用</strong>。相关意象：&quot;左俊杰有傅家相扶有了<strong>锦绣前程</strong>&quot;[第2章]；&quot;石榴<strong>花开</strong>得正艳&quot;[第135章]；一品红&quot;<strong>花开满枝</strong>，图个祥瑞&quot;[第202章]；&quot;春天的<strong>花开</strong>&quot;[第51章]；&quot;<strong>春暖花开</strong>&quot;[第271章]；&quot;笑容比那五月火红的石榴花还要灿烂&quot;[第281章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td>&quot;花开&quot;＝苦尽甘来、繁华自放（傅庭筠从被诬逃亡到扬眉受封）；&quot;锦绣&quot;＝华美前程（先用于左俊杰得志的讽语，终成傅赵自己的结局）。四字为题旨，非文中题眼</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>起于碧云庵的绝境 [第1章]，收于玉鸣山的&quot;静好&quot;与俞家的&quot;坍塌&quot; [第314章]——&quot;花开&quot;对应女主，反照俞家&quot;水满则溢，月盈则亏&quot;[第189章]</td>
+</tr>
+</tbody></table>
+<h3>2. 贞节牌坊／牌楼（傅家名声）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>华阴傅氏&quot;五座牌楼：恩封太子太保、状元及第，及三座<strong>贞节牌坊</strong>&quot;[第1章]；&quot;傅家这几代虽没出封疆大吏，凭清白严谨家风倍受尊敬&quot;[第1章]；&quot;从前觉得这是荣耀，如今看来却是枷锁&quot;（论守节）[第185章]；荣恩牌坊[第199章]；议傅家名声[第224章]；立祠[第231章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td>牌坊＝傅家立身之本（<strong>名声即资本，也是枷锁</strong>）；曾逼女主以个人清白殉&quot;家族名声&quot; [第4—5章]。女主后期对&quot;规矩/名声&quot;的反叛（[第128章]&quot;这样的规矩不要也罢&quot;）即是对牌坊的反题</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>反照<strong>吉庆街牌楼</strong>&quot;任它风吹雨打都屹立不倒&quot;喻俞家之衰 [第251章]；对照<strong>牌位</strong>&quot;傅门淑人解氏&quot;（真实的人）[第167章]——&quot;牌坊&quot;虚名 vs &quot;牌位&quot;实情</td>
+</tr>
+</tbody></table>
+<h3>3. 碧云庵</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>傅家家庙，离城五十里，庵主果慧 [第1章][第5章]；静月堂 [第2章]；大雄宝殿、后院老槐、藏经阁、七宝堂 [第1—13章]；&quot;她来这里已经整整六十二天&quot; [第7章]；&quot;傅家是要借着我们庵堂行事呢&quot; [第13章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>命运转折的起点</strong>（初遇赵凌、被诬、定计避祸）；家庙＝家族控制的化身（傅家借庵堂行事、藏粮）</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>与结尾<strong>莲花庵</strong> [第309章] 构成&quot;庵堂&quot;母题：起点之庵＝受难／逃离，终点之庵＝宽恕／安顿；求子转入<strong>潭柘寺</strong>观音道场 [第153章][第162章]</td>
+</tr>
+</tbody></table>
+<h3>4. 玉鸣山</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>京西名胜／太皇太后静修地 [第144章]；赵凌得旨前携妻女游历之所 [第157章][第191章]；赵家议购&quot;背后正看着玉鸣山&quot;的别院 [第196章][第212章][第272章][第275章]；二月初二踏青 [第200章]；终章赵凌与三姐夫散步处&quot;玉鸣山赵家别院&quot; [第294章][第314章]。另<strong>玉鸣水</strong>在潭柘寺 [第237章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>功成后的&quot;静好&quot;归处</strong>——从寄人篱下到自置别院，玉鸣山是傅赵&quot;自己的家&quot;的象征</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>与开篇碧云庵（被动逃亡）<strong>首尾呼应</strong>：一庵一山，皆是&quot;离城僻静处&quot;，一为受难起点、一为圆满终点</td>
+</tr>
+</tbody></table>
+<h3>5. 石榴</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>&quot;明媚的像开在五月的石榴花&quot;（写傅庭筠）[第107章]；&quot;静静的午后，只有石榴花开得正艳&quot; [第135章]；&quot;朝阳的霞光慢慢把身边的石榴树染红&quot; [第165章]；范氏&quot;石榴花羊脂玉花件&quot;写求子心 [第187章]；窗外石榴花簌簌作响 [第216章]；&quot;笑容比那五月火红的石榴花还要灿烂&quot;（写傅庭筠）[第281章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>多子、繁盛、明艳</strong>；石榴红火兴旺，与俞家&quot;求子不得、内宅枯冷&quot; [第187章][第204章] 形成鲜明对照</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>傅庭筠＝盛放的石榴（[第107][第281章] 两度以石榴喻其明艳）；范氏捧石榴花求子而终无一子（[第187→280章]），命运反照</td>
+</tr>
+</tbody></table>
+<h3>6. 葡萄／夜光杯</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>杨柳巷宅&quot;搭了个葡萄架子，下面置着石桌石墩&quot; [第50章]；中秋葡萄 [第57章]；陌毅语&quot;&#39;葡萄美酒夜光杯&#39;，会好好招待招待爷&quot; [第61章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>葡萄架＝&quot;家&quot;的雏形</strong>（西安府患难时期的院子）；&quot;葡萄美酒夜光杯&quot;＝关外边塞气象与未知的远行（化用王翰《凉州词》）</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>由西安府的葡萄架 [第50章] 到京都的四喜胡同／史家胡同 [第126章]、再到玉鸣山别院 [第275章]，&quot;家&quot;的意象层层升级</td>
+</tr>
+</tbody></table>
+<h3>7. 花树／花市</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>博文私塾&quot;花树&quot;章 [第202章]（丰台花市：一品红、紫玉兰、石榴树、茶花）；花树价格充作&quot;武器&quot; [第203章]；紫藤、清瓷缸金鱼 [第135章]；紫藤架 [第195章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>傅庭筠的生活情趣与&quot;昂首&quot;姿态</strong>——买花树、置别院，是她权势与心气的外化；也是与俞家&quot;磋磨&quot;的软刀子</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>花树 [第202—203章] 接续&quot;石榴&quot;母题（[第202章] 花市即有石榴树），以&quot;花开&quot;写&quot;花开锦绣&quot;之题</td>
+</tr>
+</tbody></table>
+<h3>8. 灯笼／灯会</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>满桌灯彩瓜果（中秋）[第57章]；<strong>灯会</strong>章（西大街灯市连开五天、双碾街牌楼、明照坊）[第152章]；花灯、瓜形灯 [第152章]；藤筐秋千、买灯 [第191章]；满城白帐白灯笼（国丧）[第132章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>繁华、团圆、京都气象</strong>；灯会之夜多写夫妻琴瑟（[第152章] 桃木簪&quot;大智藏拙&quot;喻赵凌）</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>灯会盛景 [第152章] ↔ 国丧白灯笼 [第132章]、白帐 [第135章]——同一&quot;灯&quot;意象的正反两面，写皇权更迭的冷暖</td>
+</tr>
+</tbody></table>
+<h3>9. 苏木河放灯</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>盂兰盆节法会、<strong>苏木河（放河灯）</strong>[第111章]；苏木河 [第150章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>追思与祈愿</strong>（盂兰盆节放河灯寄哀思／祈福）；陕西地方风物</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>与京都&quot;西大街灯会&quot;[第152章]、[第191章] 花灯构成&quot;灯&quot;的意象组：关外河灯（寄思）↔ 京都街灯（游赏）</td>
+</tr>
+</tbody></table>
+<h3>10. 莲花庵</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>莲花庵（居士）[第309章]——吴姑娘于此自述旧案，傅庭筠&quot;原谅&quot;</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>宽恕与心灵安顿</strong>；&quot;原谅&quot;章的发生地</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>与起点<strong>碧云庵</strong> [第1章] 构成&quot;庵堂&quot;母题闭环（受难→宽恕）；亦与潭柘寺 [第309章] 并置</td>
+</tr>
+</tbody></table>
+<h3>11. 老槐树</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>碧云庵后院&quot;合抱粗的大槐树&quot;（遭雷击折断，树根新生碗口粗新枝，傅庭筠攀树初遇赵凌）[第1章]；&quot;后院老槐&quot;补叙 [第6章]；杨柳巷宅&quot;左右各有株合抱粗的老槐树&quot; [第50章]；四喜胡同宅&quot;百年槐树&quot; [第126章]；&quot;只有槐树黄色的枯叶，落了一满地&quot;（呦呦不见，春饼回头）[第230章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>命运枢纽与&quot;家&quot;的见证</strong>；第1章老槐&quot;折而复生&quot;直接隐喻傅庭筠<strong>跌落后重生</strong></td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>碧云庵老槐 [第1章] → 西安府老槐 [第50章] → 京都百年槐 [第126章]：老槐随女主迁徙，&quot;家&quot;落于何处、槐生何处；[第230章] 枯叶暗写小儿女情愫</td>
+</tr>
+</tbody></table>
+<h3>12. 平安符</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td><strong>平安符</strong>章：潭柘寺&quot;开过光的平安符&quot;[第236章]；傅庭筠&quot;不求你升官发败，日日夜夜只求你平安归来&quot; [第236章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>夫妻患难深情</strong>（对征战夫君唯一的祈愿）</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>呼应出征 [第168章]、贵州征战 [第235章]；与&quot;长命锁&quot;&quot;长命符&quot;一类护身符共用&quot;祈平安&quot;母题</td>
+</tr>
+</tbody></table>
+<h3>13. 玉镯／银镯（及&quot;一点油&quot;）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td><strong>一点油银镯</strong>（空心藏机关，母亲在西安府宝庆银楼专订，写母亲心机与慈爱）[第16章]；银手镯 [第48章]；傅少奶奶&quot;褪了羊脂玉手镯给呦呦、解羊脂玉玉佩给曦哥儿&quot;做见面礼 [第201章]；羊脂玉手镯（呦呦护母相关）[第288章]；鎏银丁香耳环（依桐之窘）[第224章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td>银镯&quot;一点油&quot;＝<strong>母亲的托付与慈爱</strong>（内藏机关／遗嘱）；玉镯玉佩＝<strong>血缘、姑嫂情、贵重传承</strong></td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>首饰在<strong>两代人间传递</strong>：母亲遗镯 [第16章] → 傅少奶奶赠呦呦曦哥儿羊脂玉 [第201章]，以物串起家族亲情线</td>
+</tr>
+</tbody></table>
+<h3>14. 紫玉兰（辛夷）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>紫玉兰肚兜 [第4章]；<strong>紫玉兰祥瑞旧事</strong>（傅庭筠出生时紫玉兰盛开，排行第九，&quot;天道以九制&quot;，祖母待她独厚）[第9章]；&quot;辛夷又叫紫玉兰……你出生的时候正好是紫玉兰盛开，所以小字叫&#39;荃蕙&#39;&quot;（赵凌推其生辰，引&quot;纫荃蕙与辛夷&quot;）[第106章]；紫玉兰为俞家之花 [第179章]；花市紫玉兰 [第202章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>傅庭筠的身世印记与祥瑞</strong>（她本人＝紫玉兰）；亦是与赵凌&quot;相认／相知&quot;的信物媒介</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>[第106章] 以&quot;荃蕙＝辛夷＝紫玉兰&quot;点破小字来历，回扣 [第9章] 祥瑞旧事；[第179章] 点出紫玉兰本是俞家花，暗写傅俞两家宿缘</td>
+</tr>
+</tbody></table>
+<h3>15. 齐眉棍</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>阿森使的齐眉棍 [第19章]；被冯老四削成木棒、拄地撑身 [第34章]；&quot;齐眉棍、搭裢&quot; [第87章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td><strong>阿森的成长与赵家武人底色</strong>；&quot;被削断仍拄地撑身&quot;写赵凌同类——伤重也要强撑</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>贯穿阿森从孩童到能护家的成长线（[第19]→[第34]→[第87章]）</td>
+</tr>
+</tbody></table>
+<h3>16. 名帖／匕首（信物组）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现处</td>
+<td>大红烫金名帖（落款&quot;碧溪散人&quot;、&quot;馆阁体&quot;）[第36章][第38章]；鲨鱼鞘匕首（赵凌赠、藏于小推车车板底下）[第30章][第31章][第33章]；柳叶刀（赵凌飞刀暗器）[第23章][第28章]；软剑（掌柜兵器）[第33章][第34章]</td>
+</tr>
+<tr>
+<td>象征意义</td>
+<td>名帖＝身份与托付（十六爷招揽）；匕首／刀剑＝赵凌的武人锋芒与&quot;为她挡灾&quot;的牵挂</td>
+</tr>
+<tr>
+<td>呼应关系</td>
+<td>名帖引出投军线 [第36章]；匕首&quot;藏于车板底&quot;贯穿西行患难 [第31→33章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、诗词／用典</h2>
+<table>
+<thead>
+<tr>
+<th>引用（原文用字）</th>
+<th>出处</th>
+<th>用法与作用</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;年年柳色，灞陵伤别。&quot;</td>
+<td>李白《忆秦娥·箫声咽》</td>
+<td>送行章起句，折柳惜别之典，写夫妻分离</td>
+<td>[第155章]</td>
+</tr>
+<tr>
+<td>&quot;少年不知愁滋味，为赋新词强说愁。如今尝尽愁滋味，却道天凉好个秋。&quot;</td>
+<td>辛弃疾《丑奴儿·书博山道中壁》</td>
+<td>借以写赵凌身世与心境（原文作&quot;少年不知愁滋味&quot;）</td>
+<td>[第69章]</td>
+</tr>
+<tr>
+<td>&quot;呦呦鹿鸣，食野之萍&quot;</td>
+<td>《诗经·小雅·鹿鸣》</td>
+<td>为长女命名&quot;呦呦&quot;</td>
+<td>[第165章]</td>
+</tr>
+<tr>
+<td>&quot;愿得一人心，白首不相离。&quot;</td>
+<td>《白头吟》</td>
+<td>傅庭筠情定句</td>
+<td>[第105章]</td>
+</tr>
+<tr>
+<td>&quot;两情若是长久时，又岂在朝朝暮暮。&quot;</td>
+<td>秦观《鹊桥仙》</td>
+<td>写夫妻聚少离多的相守</td>
+<td>[第167章]</td>
+</tr>
+<tr>
+<td>&quot;悔叫夫君觅封侯。&quot;</td>
+<td>王昌龄《闺怨》</td>
+<td>傅庭筠闻阵亡讣告时的悲语</td>
+<td>[第85章]</td>
+</tr>
+<tr>
+<td>&quot;不望祁连山顶雪，错将张掖认江南。&quot;</td>
+<td>咏张掖诗</td>
+<td>状关外风物</td>
+<td>[第68章]</td>
+</tr>
+<tr>
+<td>&quot;弱水三千，我只取一瓢。&quot;</td>
+<td>成句</td>
+<td>写傅庭筠心动处</td>
+<td>[第100章]</td>
+</tr>
+<tr>
+<td>&quot;葡萄美酒夜光杯&quot;</td>
+<td>王翰《凉州词》</td>
+<td>陌毅以之喻关外相待</td>
+<td>[第61章]</td>
+</tr>
+<tr>
+<td>&quot;不识庐山真面目，只缘身在此山中。&quot;</td>
+<td>苏轼《题西林壁》</td>
+<td>三姐夫引，叹身在其中看不清</td>
+<td>[第259章]</td>
+</tr>
+<tr>
+<td>&quot;千里之堤，溃于蚁穴。&quot;</td>
+<td>《韩非子·喻老》</td>
+<td>计夫人断俞家败因</td>
+<td>[第257章]</td>
+</tr>
+<tr>
+<td>&quot;匹夫无罪，怀璧其罪。&quot;</td>
+<td>《左传》</td>
+<td>写傅庭筠处境之危</td>
+<td>[第50章][第108章]</td>
+</tr>
+<tr>
+<td>&quot;祸兮福所依，福兮祸所至。&quot;／&quot;福兮祸所依，祸兮福所至。&quot;</td>
+<td>《老子》</td>
+<td>论命运无常（两处用字颠倒）</td>
+<td>[第110章][第248章]</td>
+</tr>
+<tr>
+<td>&quot;工欲善其事，必先利其器。&quot;</td>
+<td>《论语·卫灵公》</td>
+<td>西行前备办行装之喻</td>
+<td>[第68章]</td>
+</tr>
+<tr>
+<td>&quot;穷则独善其身，富则济达天下。&quot;</td>
+<td>《孟子》（原文作&quot;富则济达&quot;）</td>
+<td>郑三娘转述处世之志</td>
+<td>[第41章]</td>
+</tr>
+<tr>
+<td>&quot;君子敏于行而讷于言。&quot;</td>
+<td>《论语·里仁》</td>
+<td>郑三取名／教子之语（另见 [第230章]&quot;君子欲讷于言而敏于行&quot;）</td>
+<td>[第42章]</td>
+</tr>
+<tr>
+<td>&quot;国之社稷，武定祸乱非公谁！&quot;</td>
+<td>成句</td>
+<td>十六爷叹赵凌之才</td>
+<td>[第36章]</td>
+</tr>
+<tr>
+<td>&quot;终刚强兮不可凌！&quot;</td>
+<td>《楚辞·九歌·国殇》</td>
+<td>十六爷评&quot;赵凌&quot;名字</td>
+<td>[第36章]</td>
+</tr>
+<tr>
+<td>&quot;结桂树之旖旎兮，纫荃蕙与辛夷&quot;</td>
+<td>楚辞</td>
+<td>赵凌据以推傅庭筠小字&quot;荃蕙&quot;与生辰（辛夷＝紫玉兰）</td>
+<td>[第106章]</td>
+</tr>
+<tr>
+<td>&quot;养移气，居移体&quot;</td>
+<td>《孟子·尽心上》</td>
+<td>写傅庭筠气质之变</td>
+<td>[第169章]</td>
+</tr>
+<tr>
+<td>&quot;项公舞剑，志在沛公。&quot;</td>
+<td>《史记·项羽本纪》</td>
+<td>俞阁老点破赵凌真意</td>
+<td>[第246章]</td>
+</tr>
+<tr>
+<td>&quot;三人成虎。&quot;</td>
+<td>《战国策》</td>
+<td>傅庭筠论流言</td>
+<td>[第226章][第229章]</td>
+</tr>
+<tr>
+<td>&quot;君子报仇，十年不晚。&quot;／&quot;君子报仇，十年不免。&quot;</td>
+<td>俗谚（后作改字）</td>
+<td>傅庭筠用原文；俞敬修改&quot;不晚→不免&quot;</td>
+<td>[第223章][第247章]</td>
+</tr>
+<tr>
+<td>&quot;木秀于林，风必摧之。&quot;</td>
+<td>三国·李康《运命论》</td>
+<td>张氏引其父语，点贵勋与清流之别</td>
+<td>[第215章]</td>
+</tr>
+<tr>
+<td>&quot;成王败寇！&quot;</td>
+<td>成句</td>
+<td>傅庭筠自励</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>&quot;千里送鹅毛，礼轻人意重。&quot;</td>
+<td>俗谚</td>
+<td>劝慰／自谦礼薄</td>
+<td>[第88章][第222章]</td>
+</tr>
+<tr>
+<td>&quot;送君千里，终有一别。&quot;</td>
+<td>俗谚</td>
+<td>送别</td>
+<td>[第45章]</td>
+</tr>
+<tr>
+<td><strong>王宝钏</strong></td>
+<td>戏曲典</td>
+<td>太皇太后论守节，与傅庭筠之情遥相映照</td>
+<td>[第144章]</td>
+</tr>
+<tr>
+<td><strong>程婴</strong></td>
+<td>《赵氏孤儿》典</td>
+<td>傅庭筠以此喻金元宝&quot;忍辱负重&quot;</td>
+<td>[第61章]</td>
+</tr>
+<tr>
+<td><strong>东郭先生</strong></td>
+<td>寓言典</td>
+<td>喻滥施仁心</td>
+<td>[第238章]</td>
+</tr>
+<tr>
+<td><strong>汉文帝与绛侯周勃</strong></td>
+<td>史典</td>
+<td>借史证今，打动&quot;先生&quot;援手</td>
+<td>[第245章]</td>
+</tr>
+<tr>
+<td><strong>柳真卿／拓碑</strong></td>
+<td>用典</td>
+<td>借碑帖典故写人物</td>
+<td>[第238章]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ 用户示例中之&quot;失之东隅，收之桑榆&quot;经全库检索<strong>原文未见</strong>，故不收录（避免脑补）。</p>
+</blockquote>
+<hr>
+<h2>三、名字寓意</h2>
+<table>
+<thead>
+<tr>
+<th>名字／小字</th>
+<th>寓意与巧思</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>傅庭筠</strong>（小字<strong>荃蕙</strong>）</td>
+<td>&quot;筠&quot;＝竹之青皮，取竹节之意——&quot;庭筠，筠之节，好名字！&quot;；小字&quot;荃蕙&quot;出&quot;纫荃蕙与辛夷&quot;，辛夷即紫玉兰，与其出生紫玉兰祥瑞相扣</td>
+<td>[第106章][第128章]</td>
+</tr>
+<tr>
+<td>傅庭筠的祥瑞</td>
+<td>出生时紫玉兰盛开、排行第九，祖母解作&quot;天道以九制&quot;，待她独厚</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>&quot;荃蕙&quot;另用</td>
+<td>被用作赵凌大捷之名——&quot;<strong>荃蕙大捷</strong>&quot;，以妻之小字命名战功</td>
+<td>[第210章]</td>
+</tr>
+<tr>
+<td><strong>赵凌</strong>（字<strong>虎臣</strong>，乳名九哥，人前称赵九）</td>
+<td>乳名&quot;九哥&quot;出自&quot;壬子年九月初九生&quot;；皇上赐字&quot;虎臣&quot;，赞&quot;虎臣是吾千里驹&quot;</td>
+<td>[第106章][第190章][第267章]</td>
+</tr>
+<tr>
+<td><strong>呦呦</strong></td>
+<td>长女，名出《诗经·小雅·鹿鸣》&quot;呦呦鹿鸣，食野之萍&quot;</td>
+<td>[第165章]</td>
+</tr>
+<tr>
+<td><strong>曦哥儿</strong></td>
+<td>长子（&quot;大哥儿&quot;）</td>
+<td>[第201章]</td>
+</tr>
+<tr>
+<td><strong>昀哥儿</strong>（赵昀，乳名<strong>初一</strong>）</td>
+<td>五月初一生，乳名&quot;初一&quot;由傅庭筠取；大名&quot;赵昀&quot;由赵凌取</td>
+<td>[第246章]</td>
+</tr>
+<tr>
+<td><strong>旭哥儿</strong></td>
+<td>幼子（傅庭筠怀旭哥儿时已需照看呦呦、曦哥儿）</td>
+<td>[第248章][第275章]</td>
+</tr>
+<tr>
+<td><strong>郑元元</strong>（临春）</td>
+<td>郑三之子，初一生的长子长孙，乳名&quot;元元&quot;；大名&quot;临春&quot;由傅庭筠取，&quot;临春，春天来临之意&quot;</td>
+<td>[第42章][第43章]</td>
+</tr>
+<tr>
+<td><strong>俞敬修</strong>（字德圃）</td>
+<td>名&quot;敬修&quot;、字&quot;德圃&quot;（&quot;让德圃的媳妇急一急&quot;）</td>
+<td>[第194章]</td>
+</tr>
+<tr>
+<td><strong>芳名呼应</strong></td>
+<td>傅庭筠与傅家&quot;庭&quot;字辈（兄傅庭筀，行七）同字辈</td>
+<td>[第61章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、金句精选（原样引用 · 带章号）</h2>
+<ol>
+<li>&quot;你要是敢发出一点声响，我就立刻拧断了你的脖子。&quot;[第1章]</li>
+<li>&quot;成王败寇！&quot;[第9章]</li>
+<li>&quot;与其相信傅家的规矩，不如相信我教养出来的女儿。&quot;[第16章]</li>
+<li>&quot;送君千里，终有一别。把他撂在这里，可以放心了。&quot;[第45章]</li>
+<li>&quot;忍辱负重地活着比慷慨激昂的死更不容易。&quot;[第61章]</li>
+<li>&quot;悔叫夫君觅封侯。&quot;[第85章]</li>
+<li>&quot;愿得一人心，白首不相离。我，我一定不会辜负你的……我们之间，不会有其他的人。&quot;[第105章]</li>
+<li>&quot;庭筠，筠之节，好名字！&quot;[第106章]</li>
+<li>&quot;只要赵凌对她有情有义，她就无所畏惧。&quot;[第107章]</li>
+<li>&quot;世间女子，蕙心兰质的多，坚贞节烈的却少。阿筠，这名字好！&quot;[第117章]</li>
+<li>&quot;人生的际遇是如此的变幻莫测，前一刻还是欢声笑语，下一刻却已是繁华落尽。&quot;[第118章]</li>
+<li>&quot;希望有多大，失望就有多大。&quot;&quot;别人能忘记，我却不能忘记。别人能不追究，我却不能不追究。&quot;[第128章]</li>
+<li>&quot;她，她现在竟然已经是太太了……&quot;[第147章]</li>
+<li>&quot;我就是再累，也要和你洞房花烛啊！&quot;[第148章]</li>
+<li>&quot;你走到哪里，我就跟到哪里，我们的家就在哪里。我要做你的贤内助不要做你的拖累！&quot;[第155章]</li>
+<li>&quot;我虽然失去了很多，可也得到了很多。上天总是很公平的。&quot;[第173章]</li>
+<li>&quot;就算如此，两家是姻亲，一损俱损，一荣俱荣，为何非要置我于死地不可？&quot;[第179章]</li>
+<li>&quot;从前觉得这是荣耀，如今看来却是枷锁……&quot;[第185章]</li>
+<li>&quot;威而不屈，贵而不移……果然是傅家出来的姑娘……&quot;[第186章]</li>
+<li>&quot;水满则溢，月盈则亏。&quot;[第189章]</li>
+<li>&quot;战败了的统帅有几个能落得个善终的？我不求你升官发败，日日夜夜只求你平安归来！&quot;[第236章]</li>
+<li>&quot;赵太太，您是个好人，俞家和您有罅隙，可见俞家不占道理。&quot;[第238章]</li>
+<li>&quot;我的父亲，早就死了。……而不是像你这样，只知道蝇营狗苟，为了一点权势连礼仪廉耻都不顾的人！&quot;[第253章]</li>
+<li>&quot;这世上的事，本就是锦上添花的多，雪中送炭的少。&quot;[第269章]</li>
+<li>&quot;那妇人闻言灿然一笑，笑容比那五月火红的石榴花还要灿烂。&quot;[第281章]</li>
+<li>&quot;真相是怎样的，并不重要，重要的是别人提起这件事的时候会怎么说？怎么想？&quot;[第308章]</li>
+<li>&quot;人的这一生，不可能不犯错，要紧的是我们不能反复地犯一样错。&quot;[第309章]</li>
+<li>&quot;我一向觉得，人一死百了，最舒服不过。活着的人，才是真正的痛苦。&quot;[第314章]</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>统计</strong>：本文件共 <strong>4 个主栏目</strong>——① <strong>贯穿性意象（16 个意象条目）</strong>、② <strong>诗词／用典（31 条）</strong>、③ <strong>名字寓意（11 条）</strong>、④ <strong>金句精选（28 条）</strong>；结构条目合计约 <strong>86 条</strong>，全部带 <code>[第X章]</code> 锚点。数据源为全书 310 章「金句／设定·名词」字段。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关系台账 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>关系台账</h1>
+<blockquote>
+<p>显式记录人物关系的新增与变动，归纳关系网时直接汇总，不靠推导。<br>供给蓝图：人物关系网</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>人物A</th>
+<th>人物B</th>
+<th>关系</th>
+<th>变化/事件</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>南久</td>
+<td>宋霆</td>
+<td>名义叔侄 → 暧昧 → 亲密（恋人）→ 决裂 → 复合 → 夫妻</td>
+<td>初遇被指定为&quot;名义叔侄&quot;（她须叫他&quot;叔&quot;，他大她八岁）→四后重逢&quot;认得出&quot;→当街骂痛快后破冰、第一次说心里话→首次身体越界并被他以&quot;我会注意分寸&quot;退回→暧昧质变（指尖相触、倒视镜对视）→20岁生日木屋越界为亲密关系→南久主动限缩、转入&quot;不见天光&quot;的阴影→主动断联→重逢疏离→巷口咬唇旧情摊开→被南乔宇撞破、南老爷子罚杖&quot;断念&quot;→饭桌克制扮演&quot;叔侄&quot;→破戒纠缠后以&quot;以后不要再见面了&quot;作结→车祸生死重逢再纠缠→宋霆撕担保放手→旧照无声确认→回巷重逢半公开→当众&quot;我爱你&quot;→南久求婚→完婚</td>
+<td>第1、3、4、7、8、10、11、14、15、16、18、20、22、24、25、26、29、30、31、33、34、35、36、38、39、41、42、46、47、48、49、50、51、52、53、55、56、57、58、59、60、61、62、63、64、65、66、68、69、70章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>南老爷子</td>
+<td>爷孙</td>
+<td>爷孙重聚、得庇佑→关系里多了管教的张力→赠电脑（长辈托举）→由&quot;孙女&quot;转为&quot;打工者&quot;被教规矩→因处事理念摩擦、代际观念冲突→被逐出门、决裂→转回&quot;要结婚&quot;的表面讲和→&quot;没事不要回来了&quot;斩断归途→回馆定居被认定&quot;不靠谱&quot;→默许其与宋霆的婚事、&quot;对他好点&quot;</td>
+<td>第1、3、7、9、13、14、39、40、56、64章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>南老爷子</td>
+<td>干父子</td>
+<td>被委以茶馆掌事之责→报喜不报忧→否认与南久的恋爱→养育之恩与越界之罪并置、罚杖&quot;断念&quot;→由晚辈/堂倌走向&quot;求娶孙女&quot;的对质、以&quot;过完中秋再说&quot;暂缓</td>
+<td>第2、15、35、39、63章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>南振东·廖虹（父母）</td>
+<td>父女/继母女</td>
+<td>怨恨显性化→被推相亲→借钱受挫（廖虹以彩礼之名相待）→彻底陌路→南振东当众数落、父女隔阂</td>
+<td>第4、33、36、40、68章</td>
+</tr>
+<tr>
+<td>柳茵</td>
+<td>宋霆</td>
+<td>单方面暗恋</td>
+<td>暗恋被南久窥破、南久代其搅黄相亲→表白被红包堵回、暗恋线正式收场（双方各自婚嫁）→离婚回巷后老爷子有意撮合、宋霆冷淡</td>
+<td>第5、10、31章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>周妍</td>
+<td>相亲对象</td>
+<td>相亲被搅→周家提入赘式条件（随母姓、备婚房）→宋霆婉拒终止</td>
+<td>第6章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>南乔宇</td>
+<td>堂兄妹</td>
+<td>婶婶派他盯梢、为房间与茶馆利益扭打敌对→升级为家族利益之争→由吹牛显摆转为&quot;顺带捎人+守秘&quot;的同辈同盟</td>
+<td>第11、12、38、39章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>李玮</td>
+<td>结怨</td>
+<td>李玮借破茶碗闹事、被南久拆穿并抢先报警</td>
+<td>第13章</td>
+</tr>
+<tr>
+<td>李崇光</td>
+<td>南久</td>
+<td>旧识/追求者</td>
+<td>追求意图浮出水面→得知南久已有对象（即宋霆），断了念想</td>
+<td>第16、66章</td>
+</tr>
+<tr>
+<td>珍敏</td>
+<td>宋霆</td>
+<td>茶山旧识</td>
+<td>迎他上山、借洗衣送饭亲近，向他道谢→被告知&quot;钱我是为小久给的&quot;→知情后仓皇疏远</td>
+<td>第17、19、25、26章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>珍敏</td>
+<td>茶山同居的姑娘</td>
+<td>从客气到暗中较劲、较劲升级→为救珍敏身陷险境（情义转折）→旧识重逢共历患难成战友→隔年呼应式告别</td>
+<td>第19、21、23、26、43、46、52章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>桑丫</td>
+<td>茶山聋哑女孩（师徒/引路人）</td>
+<td>教她跳舞建立联结→留手机号成为可依托的引路人→说动宋霆接其出山、师徒情谊深化→随南久参会（助手）</td>
+<td>第20、51、67、70章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>军子</td>
+<td>茶山少年</td>
+<td>南久遭难时拿他当挡箭牌激宋霆的短暂同处</td>
+<td>第22章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>朱大海</td>
+<td>旧怨</td>
+<td>朱家违建被执法推平，朱大海记恨、旧怨引爆</td>
+<td>第23章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>朱二海</td>
+<td>敌</td>
+<td>被朱二海掳走、试图侵犯，南久磨尖木棍绝境反击</td>
+<td>第24章</td>
+</tr>
+<tr>
+<td>林颂耀</td>
+<td>南久</td>
+<td>上司/合伙人→利益婚姻对话方→对手→体面分手</td>
+<td>初识并生出兴趣→转为&quot;审视者&quot;与被欣赏者→由上司/合伙人转为&quot;利益婚姻&quot;的谈判双方→窥破南久与宋霆隐秘后当场羞辱、公然反目→婚约破裂由合作者转为对手→彻底决裂→体面分手各奔前程</td>
+<td>第27、29、35、37、39、42、53、54、55章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>夏嫣然</td>
+<td>社长/社员→信任对象→事业搭档</td>
+<td>由社长与社员变为彼此信任的倾诉对象→老同学重逢、南久抛出合作邀约→因桑丫同住结为事业搭档</td>
+<td>第28、55、67章</td>
+</tr>
+<tr>
+<td>柳家（柳茵父母）</td>
+<td>宋霆</td>
+<td>提亲</td>
+<td>登门提亲→被宋霆明确回绝</td>
+<td>第32、33章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>老李头</td>
+<td>街坊/旧识</td>
+<td>撞见恋情、宋霆点头默认&quot;谈朋友&quot;→老李头欲撮合其子李崇光，被一句&quot;谈了&quot;&quot;南城的&quot;截断</td>
+<td>第34、59章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>郭文惠·继父（亲妈家）</td>
+<td>血缘至亲</td>
+<td>为借30万登门受冷嘲与狗示威、母亲私塞五千被她拒</td>
+<td>第36章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>丁骏</td>
+<td>同事→同盟</td>
+<td>由被质疑转为维护、结盟→老同事兼传信人</td>
+<td>第37、70章</td>
+</tr>
+<tr>
+<td>林颂耀</td>
+<td>林盛康</td>
+<td>父子</td>
+<td>父子难得的和睦时刻</td>
+<td>第37章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>姜清等茶山管理队</td>
+<td>陌生人→信任</td>
+<td>由陌生戒备到被当&quot;宋霆家里人&quot;的初步信任、取得主导权</td>
+<td>第43章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>向治阳</td>
+<td>合作</td>
+<td>由陌生到不得不合作（说服其支持赴黑石洼村借工）</td>
+<td>第45章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>魏村长</td>
+<td>利益交换</td>
+<td>以暗送信封（为其子建篮球场）换取借工</td>
+<td>第46章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>星耀团队</td>
+<td>主从→护主</td>
+<td>下属自发筑人墙护她、确认她的&quot;王国&quot;成形</td>
+<td>第54章</td>
+</tr>
+<tr>
+<td>吴婶（吴桂英）</td>
+<td>南久·宋霆</td>
+<td>茶馆帮工/街坊</td>
+<td>一心想给宋霆张罗相亲、力劝南久与&quot;小林&quot;和好</td>
+<td>第57章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>冯皓</td>
+<td>旧识</td>
+<td>经&quot;任兆平&quot;一笔带过的旧识关系</td>
+<td>第58章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>南久的&quot;男神&quot;</td>
+<td>情敌式吃味</td>
+<td>对南久上学时的&quot;男神&quot;单方面吃味</td>
+<td>第60章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>姜清</td>
+<td>茶山侧身份界定</td>
+<td>以&quot;你嫂子&quot;向姜清界定南久的身份</td>
+<td>第62章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>姚洁</td>
+<td>店主/店员</td>
+<td>姚洁三年心思表露、被宋霆当场点破并以调店划清界限</td>
+<td>第63章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>小张</td>
+<td>上下级</td>
+<td>因&quot;单身/有女友&quot;的信息差被追责</td>
+<td>第63章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>姚洁</td>
+<td>老板娘/店员</td>
+<td>以&quot;老板娘&quot;的沉静气场形成无形压制</td>
+<td>第64章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>小张</td>
+<td>故交</td>
+<td>故交重逢、以&quot;老板娘&quot;身份完成信息确证</td>
+<td>第64章</td>
+</tr>
+<tr>
+<td>南振东</td>
+<td>南乔宇</td>
+<td>叔侄</td>
+<td>搭车、捧场，叔侄热络</td>
+<td>第67章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>南家（南振东、廖虹、姑妈等）</td>
+<td>干儿子/堂倌→自家人（女婿）</td>
+<td>由&quot;干儿子／堂倌&quot;升格为&quot;自家人&quot;，当众给南振东端茶、入席坐南久身旁</td>
+<td>第68章</td>
+</tr>
+<tr>
+<td>南乔宇</td>
+<td>宋霆</td>
+<td>同辈/大舅哥</td>
+<td>试图以&quot;平辈／大舅哥&quot;套近乎，被宋霆回绝</td>
+<td>第68章</td>
+</tr>
+<tr>
+<td>南久</td>
+<td>小凯</td>
+<td>姐弟</td>
+<td>小凯改口叫&quot;姐夫&quot;</td>
+<td>第69章</td>
+</tr>
+<tr>
+<td>宋霆</td>
+<td>林颂耀</td>
+<td>情敌</td>
+<td>情敌正面交锋、视线悍然相撞</td>
+<td>第69章</td>
+</tr>
+</tbody></table>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

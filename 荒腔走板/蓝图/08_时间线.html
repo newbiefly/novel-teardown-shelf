@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>08 时间线 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>08 时间线</h1>
+<blockquote>
+<p>按&quot;故事内真实时序&quot;重排全书事件（区别于叙述顺序），并标注信息流转（谁在什么时候知道了什么）。<br>宏观剧情分幕见 07分卷大纲，本文重在<strong>时序还原+信息差</strong>。基于时间线台账全书100章归纳。</p>
+</blockquote>
+<h2>一、历史前史锚点（故事开始前，按早到晚）</h2>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>明宣二十六年</td>
+<td>先帝秘密立传位诏书（复齐煊太子位/授国玺），知情者不足十人</td>
+<td>[第91/100章]</td>
+</tr>
+<tr>
+<td>三十年前</td>
+<td>苏州会元陆驰（老陆）殿试前检举读卷官舞弊，被龚泽等构陷、打断手脚、家破人亡沦为行乞</td>
+<td>[第50/61/88/100章]</td>
+</tr>
+<tr>
+<td>二十余年前</td>
+<td>西域炼&quot;巫&quot;（异虫）赠京地人士，七幼童试炼六死，唯末位&quot;陆敛&quot;融合成功；需独门药方半年一服保沉睡，清醒即反噬</td>
+<td>[第83章]</td>
+</tr>
+<tr>
+<td>赵执少年</td>
+<td>故乡朔言城被北虏破，齐人为奴；父以幼妹血肉熬汤灌他活命、母以命换北虏首领、求救无门→埋下&quot;求公平/瓦解王朝&quot;执念</td>
+<td>[第96章]</td>
+</tr>
+<tr>
+<td>赵执青年</td>
+<td>十八岁入京初见赫连钦&quot;悲悯深入骨髓&quot;，曾为其门客，效仿养暗卫建无常司</td>
+<td>[第37/78章]</td>
+</tr>
+<tr>
+<td>十三年前</td>
+<td>赵恪将玉竹（内藏机关）送赫连钦（爱女名带&quot;筠&quot;喜竹）→后成认出周幸身份的凭据</td>
+<td>[第37/60章]</td>
+</tr>
+<tr>
+<td>十二年前·东宫事变</td>
+<td>齐煊被伪造调令诬陷逼宫→废太子幽禁；柳容生（青鹰部主帅/齐煊外公）交兵下狱死，遗言&quot;当另举新主&quot;；柳家覆灭</td>
+<td>[第35/53章]</td>
+</tr>
+<tr>
+<td>陆酌光三岁</td>
+<td>断腿乞丐老陆破庙檐下捡养，教认字写&quot;命&quot;、取名&quot;酌光&quot;</td>
+<td>[第38/86章]</td>
+</tr>
+<tr>
+<td>陆酌光五岁除夕</td>
+<td>老陆为捡一文钱被家丁打死，遗言&quot;不救世枉为人&quot;&quot;别活得这么窝囊&quot;、给压岁铜板；陆随后被赵执捡走送苗子营种异虫，赐名陆敛、成无常司令主</td>
+<td>[第38/40/52/56章]</td>
+</tr>
+<tr>
+<td>八年前·塞北惨变</td>
+<td>赫连钦拒收复塞北遭猜忌；吕鸿故意扣城不放援军、有人引火烧十里林断退路；三千将士火林死战全军覆没，赫连钦自刎、首级枭首挂旗</td>
+<td>[第34/43/75/80章]</td>
+</tr>
+<tr>
+<td>八年前·抢头颅</td>
+<td>16岁赫连筠（周幸）只身潜入敌营抢回父亲头颅，旧部二十余人大半折损；她脊背伤深见骨被雪冻穿脊骨→终身畏寒旧疾</td>
+<td>[第37/43/80章]</td>
+</tr>
+<tr>
+<td>八年前·逼誓分离</td>
+<td>母亲周尊宁以刀抵颈逼赫连筠起毒誓（远离塞北/绝不寻仇/平凡一生）；母子分乘同款插旗马车南北而逃，母亲车诱敌牺牲，血书&quot;好好活着&quot;</td>
+<td>[第80章]</td>
+</tr>
+<tr>
+<td>七年前</td>
+<td>周幸16岁大雪进郸玉受许奉施粥收留，改姓&quot;周&quot;隐忍做百姓；每年腊月给袁察母等寄银</td>
+<td>[第18/29/44章]</td>
+</tr>
+<tr>
+<td>八年前起</td>
+<td>周幸率八人血洗千路山、占山庇护被掳妇孺</td>
+<td>[第31章]</td>
+</tr>
+<tr>
+<td>六年前起</td>
+<td>周幸经黑羽鸟与宫中吴吉安（文喜）建传信内线（信物=赫连钦所赠、武福所雕玉件），许奉居中引荐</td>
+<td>[第88/97章]</td>
+</tr>
+<tr>
+<td>数年前</td>
+<td>周幸与荣国公长孙樊蔚相识，曾同查天元银庄贪腐（收手），樊蔚此后卧底收证</td>
+<td>[第45/47章]</td>
+</tr>
+<tr>
+<td>先帝驾崩夜</td>
+<td>真遗诏由秉笔太监→陈守善→武福；武福誓救恩人许奉、拒交诏被刑死；文喜取诏因宫禁无法送出遂烧毁；杀御马监掌印义父献赵执，助齐宥篡位</td>
+<td>[第91/97/100章]</td>
+</tr>
+<tr>
+<td>许奉藏诏多年</td>
+<td>遗诏（贴身太监送至）郸玉许奉隐秘藏之；栽腊梅、以&quot;枯梅可再荣否&quot;为暗语与齐煊传心</td>
+<td>[第36章]</td>
+</tr>
+</tbody></table>
+<h2>二、主线时序（当前故事，按发生先后）</h2>
+<blockquote>
+<p>全书当前时间跨度约半年（初春→入夏→秋决战），空间线：郸玉→泠京→京城→皇城。</p>
+</blockquote>
+<h3>郸玉篇（第2-41章｜数日～上元节）</h3>
+<ul>
+<li>案发后齐煊查案组入郸玉，周幸以&quot;万事通&quot;身份介入 → 验尸/查赌坊/千路山酒宴</li>
+<li>陆酌光枭首邹业灭口→周幸行刺失败发现其令主身份[第17章]</li>
+<li>冯宗当堂揭金矿案→挖49具白骨→赵执停职又脱罪复职</li>
+<li>除夕鸿门宴→陆射偏放陶缨→周幸反杀孟长乐中毒→陆解毒守护[第22-27章]</li>
+<li>上元夜戏台连环揭底：赫连冤案+遗诏+真名&quot;赫连筠&quot;+手刃赵恪；陆觉醒叛离屠随从投名状[第33-40章]</li>
+</ul>
+<h3>转场（第42-44章｜二月初八～初春）</h3>
+<ul>
+<li>齐煊回京私谈惊觉满朝共谋赫连冤案；周幸惊梦揭旧伤、初吻、祭空坟、北上</li>
+</ul>
+<h3>泠京篇（第45-55章｜初春～三月庆节）</h3>
+<ul>
+<li>会樊蔚查大运河贪腐；夜探赃船救雪晴；治病之吻；会万斌定盟；劫船调包诈云宗鸣；龙影卫夜袭死战[第54-55章]</li>
+</ul>
+<h3>京城篇（第56-96章｜三月～起事前夜，全书主体）</h3>
+<ul>
+<li>救陆线：要挟李言归入局→反杀无常司→截杀郑琪割耳；陆赠扳指表白约法三章[第56-64章]</li>
+<li>翻案线：三船调包坑郑逸+荣国公→致幻烟诱秦焕吐真言+遗诏曝光[第68/75章]</li>
+<li>夺位线：齐煊结盟樊仲卓；陈守善揭秘史；收编崔慧</li>
+<li>赵执反扑：劫王子勒杀王妃→周幸工寨自曝弃仇为苍生救王子→火药山道炸塌（赵执误判二人死）[第76-79章]</li>
+<li>命数摊牌：陆=陆敛真相→周幸转冷→陆闯赵府弃解药选玉竹→背刺濒死[第83-85章]</li>
+<li>收束：反戴玉竹护命；引龙影卫火并灭无常司枪挑玄狼；崔慧纵火造天兆；君相决裂赵执下狱抄府[第88-92章]</li>
+<li>拜堂圆房立誓解毒；京仓民变；生幻迷香乱皇帝+改敕谕调走禁军[第93-96章]</li>
+</ul>
+<h3>皇城决战·结局（第97-100章｜寅时起事～落幕）</h3>
+<ul>
+<li>青鹰部夺城门+荣国公献赫连枪+周幸持父枪逼宫[第97章]</li>
+<li>奉乾殿奉遗诏揭篡位→陆手刃龚泽→齐煊登基[第98章]</li>
+<li>逼赵执自刎+李言归痛哭+吕乡音授解药+陆服药痊愈[第99章]</li>
+<li>终极反转：真诏已焚、呈堂是赝品、齐煊明知假仍封存永藏[第100章]</li>
+</ul>
+<h2>三、信息流转·关键信息差（本书的谋略核心）</h2>
+<blockquote>
+<p>权谋文的爽感来自&quot;谁不知道什么&quot;。本书的信息差层层设计：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>信息</th>
+<th>谁一直知道</th>
+<th>谁被蒙在鼓里</th>
+<th>揭晓节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>密室命案是周幸团队布的&quot;破台开戏&quot;</td>
+<td>周幸团队</td>
+<td>齐煊查案组+读者</td>
+<td>逐层揭开，全书才明</td>
+</tr>
+<tr>
+<td>周幸真名赫连筠·将门孤女</td>
+<td>周幸团队</td>
+<td>查案组/赵恪（后送京）</td>
+<td>[第30/36章]</td>
+</tr>
+<tr>
+<td>陆酌光=无常司令主</td>
+<td>无常司/赵执</td>
+<td>周幸→行刺才知</td>
+<td>[第17章]</td>
+</tr>
+<tr>
+<td>陆酌光=陆敛·体内有巫·命将尽</td>
+<td>赵执/无常司</td>
+<td>周幸→镖局密信才知</td>
+<td>[第83章]</td>
+</tr>
+<tr>
+<td>玉竹内藏周幸父母骨灰</td>
+<td>赫连家/袁察</td>
+<td>周幸自己都未必全知</td>
+<td>[第54章]</td>
+</tr>
+<tr>
+<td>先帝遗诏存在（复齐煊太子位）</td>
+<td>许奉/陈守善/文喜/齐煊</td>
+<td>满朝/赵执猜疑</td>
+<td>[第35-36/75章]</td>
+</tr>
+<tr>
+<td>吴吉安=文喜·周幸宫中内线六年</td>
+<td>周幸/吴吉安</td>
+<td>所有人</td>
+<td>[第88/100章]</td>
+</tr>
+<tr>
+<td><strong>真遗诏早被焚毁·呈堂是赝品</strong></td>
+<td>文喜/齐煊（早看破）</td>
+<td>周幸团队/满朝/读者</td>
+<td>[第100章]终极反转</td>
+</tr>
+<tr>
+<td>齐煊郸玉废戏楼第一眼就看破遗诏是假</td>
+<td>齐煊</td>
+<td>周幸/读者</td>
+<td>[第100章]</td>
+</tr>
+</tbody></table>
+<p><strong>信息差的运用规律</strong>：周幸永远比对手多知道一层（掌握贪腐证据/遗诏/对手私心），靠信息优势&quot;运算千里&quot;设局；而作者又比周幸多留一层（遗诏真伪、齐煊早看破），在结局用终极反转把主题拔高——<strong>连布局者都不知道自己呈的是赝品，而真正的裁决者选择&quot;让假的成为真的&quot;</strong>。</p>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

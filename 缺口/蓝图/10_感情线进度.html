@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 · 感情线进度 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>10 · 感情线进度</h1>
+<blockquote>
+<p>归纳来源：CP互动台账（77 章逐章）。CP = 陈昭 × 江恒。本书<strong>感情是绝对主线</strong>，双时间线本质是&quot;同一段感情的因（过去线）与果（现在线）&quot;。每条带 [第X章] 锚点。</p>
+</blockquote>
+<hr>
+<h2>一、感情线双轨结构总览</h2>
+<pre><code>过去线（因）：相遇 → 暧昧 → 主动错过 → 重逢回暖 → 定情 → 圆满 → 回国结婚
+                                    ↓（六年后）
+现在线（果）：撞破出轨·离婚 → 跪求被拒 → 查真相 → 真相揭开 → 救人 → 追妻火葬场 → 复合 → 信任重建 → 圆满
+</code></pre>
+<ul>
+<li><strong>过去线</strong>回答&quot;他们怎么相爱、江恒的缺口从哪来&quot;；<strong>现在线</strong>回答&quot;缺口如何被填满&quot;。</li>
+<li>书名&quot;缺口&quot; = 江恒内心的情感缺口，只有陈昭能填满（[第46/57/77章] 三次点题）。</li>
+</ul>
+<hr>
+<h2>二、过去线感情节点（多伦多留学期）</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>章</th>
+<th>推拉节点</th>
+<th>好感刻度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单向留意</td>
+<td>[第2章]</td>
+<td>江恒暗中记住她说中文</td>
+<td>男主单向注意</td>
+</tr>
+<tr>
+<td>相识·救美</td>
+<td>[第3-4章]</td>
+<td>地铁英雄救美、折返见她落泪；同行长聊点破&quot;我们见过&quot;</td>
+<td>信任萌芽、暧昧初生</td>
+</tr>
+<tr>
+<td>暧昧追近</td>
+<td>[第5-15章]</td>
+<td>授意周文宇邀约、当众解围、牌桌博弈、纽约异乡相助</td>
+<td>双向升温（男主制造相处机会）</td>
+</tr>
+<tr>
+<td>★浓度顶点</td>
+<td>[第16章]</td>
+<td>席地共食交心夜谈——过去线情感浓度最高点</td>
+<td>甜到极致，但江恒独白&quot;不如现在这样&quot;暗定退缩</td>
+</tr>
+<tr>
+<td>转冷</td>
+<td>[第17-18章]</td>
+<td>陈昭因阶层落差主动内心降温；却又主动约他</td>
+<td>女主先热后冷再主动</td>
+</tr>
+<tr>
+<td>★错过诀别</td>
+<td>[第19章]</td>
+<td>还房费→问&quot;为何帮我&quot;→江恒怯懦答&quot;因你善良&quot;→陈昭公交站台笑着诀别</td>
+<td>★过去线最大转折：暧昧顶点双向错过</td>
+</tr>
+<tr>
+<td>重逢回暖</td>
+<td>[第37-40章]</td>
+<td>江恒病中、陈昭做烂糊面照顾、黑暗陪他；电话谁都不挂</td>
+<td>心意错位的回温</td>
+</tr>
+<tr>
+<td>告白拉扯</td>
+<td>[第41-42章]</td>
+<td>江恒告白被赌气拒→追人→番茄藤分享回暖</td>
+<td>男主追、女主报当初之仇</td>
+</tr>
+<tr>
+<td>★定情</td>
+<td>[第43章]</td>
+<td>雪夜车里初吻→陈昭主动说&quot;我喜欢你&quot;→正式在一起</td>
+<td>★过去线感情达成（最甜）</td>
+</tr>
+<tr>
+<td>★圆满</td>
+<td>[第44-46章]</td>
+<td>恋爱甜蜜、江恒露脆弱依赖、第一次亲密</td>
+<td>★&quot;他只有她、需要空间很小&quot;（缺口母题埋点）</td>
+</tr>
+</tbody></table>
+<p><strong>过去线感情基因</strong>：男主&quot;英雄救美式主动 + 患得患失式退缩&quot;交替；女主&quot;清醒决断 + 主动斩断&quot;。江恒的缺口（怕失去、怕连累）在过去线 [第16/19章] 已埋根，是现在线假出轨的性格源头。</p>
+<hr>
+<h2>三、现在线感情节点（婚后第六年·离婚后）</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>章</th>
+<th>推拉节点</th>
+<th>关系刻度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>决裂</td>
+<td>[第1章]</td>
+<td>陈昭提离婚、江恒抓手腕问&quot;你不想问什么吗&quot;</td>
+<td>婚姻决裂起点</td>
+</tr>
+<tr>
+<td>切割</td>
+<td>[第20-23章]</td>
+<td>辞司机反噬、拒龚亦姗挽回、对峙前奏</td>
+<td>女主决绝切割</td>
+</tr>
+<tr>
+<td>★最低谷</td>
+<td>[第24章]</td>
+<td>跪求&quot;说是误会就和好&quot;→江恒忍痛拒→玄关黑暗抱她落泪说&quot;我爱你&quot;</td>
+<td>★爱是真的却仍放手（最痛拉扯）</td>
+</tr>
+<tr>
+<td>划界·冰点</td>
+<td>[第26/31/32章]</td>
+<td>假扮恩爱→江恒嫉妒强吻→陈昭扇巴掌&quot;请把我当朋友尊重&quot;</td>
+<td>★现在线感情冰点</td>
+</tr>
+<tr>
+<td>★虐恋顶点</td>
+<td>[第36章]</td>
+<td>因季子扬吃醋→陈昭摘婚戒扔→黑暗相拥&quot;爱我久一点&quot;→&quot;我后悔遇到你了&quot;</td>
+<td>★双向绝望</td>
+</tr>
+<tr>
+<td>承认仍爱</td>
+<td>[第47章]</td>
+<td>陈昭巴黎回忆同游、承认&quot;也许仍在爱着&quot;</td>
+<td>女主内心转折</td>
+</tr>
+<tr>
+<td>★反转启动</td>
+<td>[第48-52章]</td>
+<td>抓到&quot;只有出轨才分开&quot;的线头→送医试探江恒动怒→母亲点破→决意查真相</td>
+<td>女主主动查真相</td>
+</tr>
+<tr>
+<td>★真相揭开</td>
+<td>[第53章]</td>
+<td>邓叔向陈昭讲出假出轨全部真相（为保护她离婚）</td>
+<td>★女主知情，反转达成</td>
+</tr>
+<tr>
+<td>暧昧回流</td>
+<td>[第59-63章]</td>
+<td>戴项链触碰、花园萤火虫、还戒指吃面散步、便利店落泪</td>
+<td>知真相后隐忍的温情回流</td>
+</tr>
+<tr>
+<td>★黑暗高潮</td>
+<td>[第62-64章]</td>
+<td>设局坐实→江恒删记录被送进去</td>
+<td>谷底</td>
+</tr>
+<tr>
+<td>★女主救他</td>
+<td>[第64-67章]</td>
+<td>陈昭出钱出力、拉拢江婕、定&quot;毁你儿子&quot;策略、救出江恒</td>
+<td>★从被保护者转为主动救他（双向奔赴）</td>
+</tr>
+<tr>
+<td>火葬场障碍</td>
+<td>[第67-68章]</td>
+<td>江恒&quot;我配不上她&quot;不敢找；岳母敲打</td>
+<td>追妻障碍=江恒自卑</td>
+</tr>
+<tr>
+<td>★摊牌</td>
+<td>[第69章]</td>
+<td>车里摊牌：原谅但拒绝复合、点破&quot;你不信任我/替我做决定&quot;</td>
+<td>★复合核心障碍=信任（非原谅）</td>
+</tr>
+<tr>
+<td>火葬场拉扯</td>
+<td>[第70-72章]</td>
+<td>送花/擦腿/强吻示爱→陈昭点破&quot;你太自私、不适合&quot;</td>
+<td>锯齿状拉扯</td>
+</tr>
+<tr>
+<td>★信任松动</td>
+<td>[第73-74章]</td>
+<td>江恒真诚剖白&quot;把你摘出去我就不怕了&quot;、承诺&quot;绝不会有下次&quot;→陈昭心疼动摇</td>
+<td>信任障碍松动</td>
+</tr>
+<tr>
+<td>★复合</td>
+<td>[第75章]</td>
+<td>陈昭&quot;选让自己舒服的方式&quot;、说&quot;试试&quot;复合</td>
+<td>考察式复合</td>
+</tr>
+<tr>
+<td>★信任重建</td>
+<td>[第76章]</td>
+<td>分享一杯水黑暗相拥、坦诚交流；江恒&quot;你会永远要我吗&quot;陈昭&quot;我会&quot;</td>
+<td>走向真正相互信任</td>
+</tr>
+<tr>
+<td>★大圆满</td>
+<td>[第77章]</td>
+<td>江恒买圣诞树、陪回娘家跨年、商量养狗；陈昭&quot;我们和好了&quot;；点题&quot;缺口只有她能填满&quot;</td>
+<td>★破镜重圆、缺口被填满</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、追妻火葬场机制（本书精髓·可复用）</h2>
+<ol>
+<li><strong>障碍从&quot;误会&quot;升级为&quot;信任&quot;</strong>：真相揭开（[第53章]）后，复合的障碍不再是&quot;是否原谅出轨&quot;，而是&quot;能否再毫无保留信任你&quot;（[第69章]）——把火葬场的核心从&quot;洗清冤屈&quot;提升到&quot;关系本质&quot;，格调更高。</li>
+<li><strong>女主主导救人 = 火葬场的前置反转</strong>：[第64-67章] 陈昭主动救江恒，让&quot;追妻&quot;变成&quot;双向奔赴&quot;——不是男主单方面追，而是女主先救了他、再由他证明配得上。</li>
+<li><strong>男主的火葬场功课不是下跪，是&quot;自省 + 坦诚&quot;</strong>：江恒的转变经 江婕点破（[第72章]&quot;这笔账你算得过来吗&quot;）→ 自省 → 坦诚剖白（[第73章]）→ 承诺（[第74章]），是&quot;认知升级&quot;而非&quot;卑微讨好&quot;。</li>
+<li><strong>锯齿状拉扯拉满张力</strong>：[第67-74章] 呈&quot;障碍—暧昧—摊牌—松动&quot;反复 4 轮，每轮靠近就被信任障碍推开，把复合的甜熬到最浓。</li>
+<li><strong>复合分两步走</strong>：&quot;试试&quot;考察式复合（[第75章]）→ 信任重建真圆满（[第76-77章]）——不一步到位，留出&quot;重建信任是漫长过程&quot;的余地（邓叔点题）。</li>
+</ol>
+<hr>
+<h2>五、核心矛盾与情感内核</h2>
+<ul>
+<li><strong>核心矛盾</strong>：江恒&quot;自以为为她好、替她做决定&quot;的自私（不信任她能共同面对） vs 陈昭要的&quot;相互信任、共同面对&quot;。这个矛盾<strong>双线同构</strong>：过去线 [第43章]&quot;是不是对我好该我自己判断&quot;已埋，现在线假出轨是同一错误的极致放大。</li>
+<li><strong>缺口母题</strong>：江恒的情感缺口（被抛弃恐惧、给不了幸福的自卑）源于原生家庭（[第9/16/19章]），只有陈昭的&quot;无条件相信与陪伴&quot;能填满（[第46/57/77章]）。</li>
+<li><strong>续写红线</strong>：① 假出轨必须是&quot;真爱式放手&quot;非真渣；② 复合障碍必须落在&quot;信任&quot;而非&quot;原谅&quot;；③ 救人必须女主主导；④ 复合要&quot;考察式两步走&quot;，不可一句道歉就大团圆。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 · 谜题与诡计 · 一瓯春</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --cyan:#5eead4; --slate:#8ea0bb; --rose:#ef9fb0;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:#dfe3ee;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:340px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.10), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:13px 26px;background:rgba(8,8,12,0.74);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:600;}
+
+.wrap{max-width:1320px;margin:0 auto;padding:26px 26px 80px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:1.5px;}
+.hero .quote{margin:18px auto 0;max-width:820px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 26px 26px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;line-height:1.8;}
+
+/* 核心谜题三栏 */
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+.tri{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:16px 18px;}
+.tri h4{margin:0 0 10px;font-size:13px;letter-spacing:1px;color:#e8c97a;
+  display:flex;align-items:center;gap:8px;}
+.tri h4 .dot{width:7px;height:7px;border-radius:50%;background:#e8c97a;box-shadow:0 0 8px rgba(232,201,122,.9);}
+.tri.t2 h4{color:#ff9f9f;} .tri.t2 h4 .dot{background:#ff6b6b;box-shadow:0 0 8px rgba(255,107,107,.9);}
+.tri.t3 h4{color:#8ee89b;} .tri.t3 h4 .dot{background:#69db7c;box-shadow:0 0 8px rgba(105,219,124,.9);}
+.tri p{margin:0 0 9px;font-size:12px;line-height:1.95;color:#b6bdd0;}
+.tri p:last-child{margin-bottom:0;}
+.tri b{color:#dfe3ee;}
+.tri .em{color:var(--gold2);}
+.tri .ch{color:#7d869c;font-size:11px;white-space:nowrap;}
+
+/* 时间轴 */
+.graph-wrap{overflow-x:auto;border-radius:14px;background:rgba(0,0,0,0.22);
+  border:1px solid rgba(255,255,255,0.05);position:relative;}
+#clueGraph{display:block;height:auto;}
+.clue-node{cursor:pointer;}
+.clue-node .mk{transition:filter .18s;}
+.clue-node:hover .mk{filter:drop-shadow(0 0 9px currentColor);}
+.clue-node.off{opacity:.12;}
+.mk-label{font-size:9.5px;font-weight:600;letter-spacing:.2px;
+  paint-order:stroke;stroke:#08080c;stroke-width:2.6px;stroke-linejoin:round;pointer-events:none;}
+.axis-stage{font-size:11px;letter-spacing:2px;font-weight:600;opacity:.9;}
+.key-label{font-size:10.5px;letter-spacing:.6px;font-weight:600;
+  paint-order:stroke;stroke:#08080c;stroke-width:3px;stroke-linejoin:round;}
+.chtick{font-size:10px;fill:#6f788c;letter-spacing:.4px;}
+
+.legend{display:flex;flex-wrap:wrap;gap:9px 20px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:7px;font-size:11.5px;color:#98a1b6;letter-spacing:.5px;}
+.lg .sh{display:inline-block;flex-shrink:0;}
+.lg .sh.c{width:11px;height:11px;border-radius:50%;background:#e8c97a;box-shadow:0 0 8px rgba(232,201,122,.9);}
+.lg .sh.t{width:0;height:0;border-left:6.5px solid transparent;border-right:6.5px solid transparent;border-bottom:12px solid #ff6b6b;filter:drop-shadow(0 0 6px rgba(255,107,107,.8));}
+.lg .sh.s{width:11px;height:11px;background:#69db7c;box-shadow:0 0 8px rgba(105,219,124,.9);}
+.lg .sh.ln{width:26px;height:4px;border-radius:3px;
+  background:linear-gradient(90deg,#e8c97a,#ff9f9f 40%,#74c0fc 72%,#69db7c);}
+
+#tip{position:fixed;z-index:999;display:none;max-width:360px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+.tip-name{font-size:15px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:9px;}
+.tip-name .tp{font-size:10px;font-weight:600;padding:2px 9px;border-radius:999px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:5px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.9;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-pt{margin-top:9px;font-size:11.5px;color:#a9b0c4;line-height:1.8;}
+.tip-pt b{color:var(--gold2);font-weight:600;}
+
+/* 真凶锁定链 */
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;}
+.chain-node{flex:1 1 190px;min-width:186px;background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:13px 15px;transition:.2s;}
+.chain-node .st{font-size:10px;color:#7d869c;letter-spacing:1.5px;margin-bottom:6px;}
+.chain-node .who{font-size:14px;font-weight:700;color:#dfe3ee;letter-spacing:1px;margin-bottom:7px;}
+.chain-node .tr{font-size:11px;line-height:1.75;color:#9aa3b8;margin-bottom:7px;}
+.chain-node .rs{font-size:11px;line-height:1.75;color:#aab2c6;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:7px;}
+.chain-node.dim{opacity:.62;}
+.chain-node.dim .who{color:#e6a3a3;}
+.chain-node.lock{border-color:rgba(201,169,97,0.55);background:rgba(201,169,97,0.07);
+  box-shadow:0 0 22px rgba(201,169,97,0.14);}
+.chain-node.lock .who{color:var(--gold2);}
+.chain-node.truth{border-color:rgba(105,219,124,0.5);background:rgba(105,219,124,0.06);}
+.chain-node.truth .who{color:#8ee89b;}
+.chain-arrow{align-self:center;color:var(--gold);font-size:16px;padding:0 7px;opacity:.75;}
+@media (max-width:1120px){.chain-arrow{display:none;}
+  .chain-node{flex:1 1 100%;} .chain{gap:10px;}}
+
+/* 卡片通用 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;}
+.card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:16px 18px;}
+.card h4{margin:0 0 10px;font-size:13px;letter-spacing:1px;color:#e8c97a;
+  display:flex;align-items:center;gap:9px;}
+.card h4 .badge{font-size:9.5px;color:#8b93a7;font-weight:500;padding:2px 8px;border-radius:999px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);letter-spacing:1px;}
+.card p{margin:0 0 8px;font-size:12px;line-height:1.9;color:#b6bdd0;}
+.card p:last-child{margin-bottom:0;}
+.card b{color:#dfe3ee;}
+.card .lbl{color:#8b93a7;font-size:11px;margin-right:5px;}
+.card .ch{color:#7d869c;font-size:11px;white-space:nowrap;}
+.card.smoke{border-color:rgba(255,107,107,0.22);background:rgba(255,107,107,0.035);}
+.card.smoke h4{color:#ff9f9f;}
+.card.minor{border-color:rgba(177,151,252,0.22);background:rgba(177,151,252,0.03);}
+.card.minor h4{color:#c9b6ff;}
+.card.minor h4 .badge{color:#b1a0e6;}
+.card.tech{border-color:rgba(116,192,252,0.22);background:rgba(116,192,252,0.03);}
+.card.tech h4{color:#8fc7fd;}
+.card.tech .n{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;flex-shrink:0;
+  font-size:11px;font-weight:700;color:#0b0b10;background:linear-gradient(135deg,#e8c97a,#c9a961);}
+
+.note{font-size:11.5px;line-height:1.95;color:#8f98ac;margin-top:14px;
+  border-left:2px solid rgba(201,169,97,0.4);padding:8px 14px;background:rgba(201,169,97,0.04);border-radius:6px;}
+.note b{color:var(--gold2);}
+
+.mini-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:14px;}
+.mini-list .mi{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px;padding:11px 14px;font-size:11.5px;line-height:1.85;color:#a9b0c4;}
+.mini-list .mi b{color:#dfe3ee;}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 12px;color:#e8c97a;font-weight:600;letter-spacing:1px;
+  border-bottom:1px solid rgba(201,169,97,0.25);white-space:nowrap;font-size:11.5px;}
+td{padding:10px 12px;color:#b6bdd0;border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.8;vertical-align:top;}
+tr:hover td{background:rgba(201,169,97,0.04);}
+td.no{color:var(--gold2);font-weight:600;white-space:nowrap;}
+td.up{color:#dfe3ee;font-weight:600;white-space:nowrap;}
+.tagcell{white-space:nowrap;}
+.pill{display:inline-block;font-size:10px;padding:2px 9px;border-radius:999px;letter-spacing:1px;font-weight:600;}
+.pill.c{color:#e8c97a;background:rgba(232,201,122,0.12);border:1px solid rgba(232,201,122,0.3);}
+.pill.m{color:#ff9f9f;background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.3);}
+.pill.r{color:#8ee89b;background:rgba(105,219,124,0.12);border:1px solid rgba(105,219,124,0.3);}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:24px;letter-spacing:3px;}
+  .section{padding:30px 16px 20px;}
+}
+
+.tb-right{display:flex;align-items:center;gap:16px;}
+.author-badge{font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.6);border:1px solid rgba(201,169,97,0.3);border-radius:16px;
+  padding:4px 12px;white-space:nowrap;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="tb-right"><div class="dim">15 · 谜题与诡计</div><span class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</span></div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>谜题与诡计</h1>
+    <div class="sub">《一瓯春》· 尤四姐 · 102 章 · 古代言情 · 宅斗权谋 · 母案悬疑</div>
+    <div class="quote">“悬案”在全书的开头就被抛了出来，答案却要等十四年后才落地。悬念不在“谁”，而在“一个无权无势的庶女，凭什么翻一桩旧朝定论”。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">核心谜题</div>
+    <h3 class="sec-title">靳姨娘“下毒毒杀夏姨娘”冤案真相</h3>
+    <p class="sec-note">第1章抛出、第102章朝堂昭雪；一案双尸，互为证据。</p>
+    <div class="trio">
+      <div class="tri">
+        <h4><span class="dot"></span>谜面 · 第1章抛出</h4>
+        <p>全书开篇，谢府众丫头嬷嬷议论清圆身世，小丫头追问一句——“<span class="em">那个短命姨娘，当真是靳姨娘毒死的吗？</span>”商嬷嬷厉声咳嗽打断，众人作散，此事被压下，成为无人再提的悬案。<span class="ch">[第1章]</span></p>
+        <p><span class="lbl">配套疑点：</span>老太太想起靳姨娘当年“<span class="em">并不是个喜欢出头冒尖的人</span>”<span class="ch">[第1章]</span>；清圆断定母亲定罪“<span class="em">太多地方说不通</span>”<span class="ch">[第2章]</span>；沈润点破“<span class="em">不叫抵命，竟只是赶出去，原就说不通</span>”<span class="ch">[第55章]</span>。</p>
+      </div>
+      <div class="tri t2">
+        <h4><span class="dot"></span>谜底 · 第102章揭</h4>
+        <p>真相是一桩“<b>一石二鸟</b>”的嫁祸诡计。十四年前，谢纾宠妾夏姨娘出月子后日日肚疼、半年而亡，汤药中挑出毒物“下马仙”（大戟）<span class="ch">[第5章]</span>。</p>
+        <p>真凶是嫡母<b>扈夫人</b>：她毒杀夏姨娘、嫁祸另一名得宠妾室靳春晴，一举拔除两名争宠者<span class="ch">[第102章]</span>。靳春晴被逐出谢府、郁结而亡<span class="ch">[第44章]</span>。</p>
+        <p>附带隐情：当年“夫人求情改绞为逐”实为<b>谢纾授意</b>——谢纾是知情不究的帮凶<span class="ch">[第94章]</span>。</p>
+      </div>
+      <div class="tri t3">
+        <h4><span class="dot"></span>诡计内核 · 为何旧案“看起来成立”</h4>
+        <p><b>动机自洽：</b>争宠。最得宠者“一死一逐”，获利者不言自明（清圆当场推断“一石二鸟”）。</p>
+        <p><b>物证＋人证闭合：</b>药渣中的“下马仙”＋一个小丫头的指认，即定靳姨娘之罪。</p>
+        <p><b>定罪草草反成掩护：</b>正是“证据看似齐备”，令旧案难以翻动；要翻的不是“谁”，而是“当年凭什么定案”。</p>
+        <p><b>贤名做烟幕：</b>扈夫人以“求情免死”捞取贤名，反而把嫌疑洗得更干净。</p>
+        <p class="ch" style="margin-top:8px">以上均见 [第5章]</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">主图</div>
+    <h3 class="sec-title">母案线索链时间轴 · M1 – M42</h3>
+    <p class="sec-note">横轴＝章号（1→102）；42 条线索按章号落位。悬停任一线索点，查看“编号 + 章号 + 内容 + 指向”。</p>
+    <div class="graph-wrap">
+      <svg id="clueGraph" viewBox="0 0 1360 450" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend">
+      <div class="lg"><span class="sh c"></span>线索 · 金圆 · 指向真相（31 条）</div>
+      <div class="lg"><span class="sh t"></span>误导 · 红三角 · 引偏（4 条）</div>
+      <div class="lg"><span class="sh s"></span>揭秘 · 绿方 · 给出答案（7 条）</div>
+      <div class="lg"><span class="sh ln"></span>主线渐变色：悬念埋设 → 误导干扰 → 逼近真相 → 昭雪</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">锁定链</div>
+    <h3 class="sec-title">真凶锁定链 · 被怀疑对象的演变</h3>
+    <p class="sec-note">从旧案定论的“靳姨娘”到真相期的“扈氏＋谢纾”，清圆的怀疑对象沿线索逐段收窄。</p>
+    <div class="chain">
+      <div class="chain-node">
+        <div class="st">旧案定论</div>
+        <div class="who">靳姨娘（靳春晴）</div>
+        <div class="tr">药渣“下马仙”＋小丫头指认 <span class="ch">[第5章 M5]</span></div>
+        <div class="rs">被逐出府、郁结而亡（官府／谢家定论）</div>
+      </div>
+      <div class="chain-arrow">▶</div>
+      <div class="chain-node dim">
+        <div class="st">试探期</div>
+        <div class="who">莲姨娘</div>
+        <div class="tr">清圆以“青梅”试探 <span class="ch">[第10章 M10]</span></div>
+        <div class="rs">排除（莲姨娘毫无印象）</div>
+      </div>
+      <div class="chain-arrow">▶</div>
+      <div class="chain-node dim">
+        <div class="st">试探期</div>
+        <div class="who">梅姨娘</div>
+        <div class="tr">陶嬷嬷查扈夫人是否联络梅姨娘 <span class="ch">[第12章 M13]</span></div>
+        <div class="rs">排除（未联络，梅姨娘为“贤良幌子”）</div>
+      </div>
+      <div class="chain-arrow">▶</div>
+      <div class="chain-node lock">
+        <div class="st">锁定期</div>
+        <div class="who">扈夫人</div>
+        <div class="tr">匿名信令其变色 <span class="ch">[第11章 M11]</span>＋咒骂“当初就该下狠心” <span class="ch">[第12章 M12]</span></div>
+        <div class="rs"><b>锁定真凶</b>（陶嬷嬷回禀“看来是太太无疑”）</div>
+      </div>
+      <div class="chain-arrow">▶</div>
+      <div class="chain-node truth">
+        <div class="st">真相期</div>
+        <div class="who">扈氏（主谋）＋谢纾（帮凶）</div>
+        <div class="tr">撵母实为父意 <span class="ch">[第94章 M31]</span></div>
+        <div class="rs">主谋扈氏斩决、帮凶谢纾当众认错 <span class="ch">[第102章]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">误导设计</div>
+    <h3 class="sec-title">谁被怀疑 · 谁在放烟幕</h3>
+    <p class="sec-note">所有误导均有据可查（正文给过原句），属“公平误导”——不靠隐藏信息骗人，而靠“证据虽在、翻案无门”制造悬念。</p>
+    <div class="cards">
+      <div class="card smoke">
+        <h4>谢纾 · 以权威口径封口<span class="badge">烟幕</span></h4>
+        <p>以“<b>人证物证俱在</b>”驳回追问<span class="ch">[第19章 M16]</span>，并以“嫡妻不下堂”“为保谢家体面”装糊涂十余年<span class="ch">[第94章 M32 隐含]</span>——<b>用权威的口径封住翻案的可能</b>。</p>
+      </div>
+      <div class="card smoke">
+        <h4>扈夫人 · 贤名做烟幕<span class="badge">烟幕</span></h4>
+        <p>以“<b>求情免死</b>”捞贤名<span class="ch">[第5章 M7]</span>，把“嫌疑”洗成“贤德”；对外散布清圆生母“因妒生恨、毒杀侍妾”的污名<span class="ch">[第20／26章 M20/M26]</span>，让真相被流言覆盖。</p>
+      </div>
+      <div class="card smoke">
+        <h4>匿名勒索信／“青梅”<span class="badge">枝节烟雾</span></h4>
+        <p>一度成为烟雾——“青梅”及家人遍寻不见、五十两被运煤车顺走<span class="ch">[第13章 M14]</span>，把读者的注意力引向“钱款去向”，<b>实为枝节</b>。</p>
+      </div>
+      <div class="card smoke">
+        <h4>“小丫头病死” · 暗误导<span class="badge">未点破</span></h4>
+        <p>被当成自然死亡，实为封口／灭口（其家一夕置产、兄长开灯油铺）<span class="ch">[第7章 M9]</span>，但书中无人（含清圆）正面点破——<b>留给读者自己判断</b>。</p>
+      </div>
+    </div>
+    <p class="note"><b>误导的公平性：</b>读者若细读，能在第12章就锁定扈夫人；作者不靠隐藏信息骗人，而靠“证据虽在、翻案无门”的处境制造悬念。</p>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">揭秘时序</div>
+    <h3 class="sec-title">从“轮廓”到“昭雪”的 10 个时序节点</h3>
+    <p class="sec-note">提前锁定、延后生效：真凶第12章即向读者半明牌，翻案却拖到第102章。</p>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>时序</th><th>章</th><th>揭秘内容</th><th>方式</th></tr></thead>
+        <tbody>
+          <tr><td class="up">轮廓</td><td class="no">[第5章]</td><td>旧案全貌（争宠—下毒—指认—撵出），清圆推断“一石二鸟”</td><td>借陶嬷嬷之口回溯</td></tr>
+          <tr><td class="up">锁定</td><td class="no">[第11–12章]</td><td>匿名信令扈夫人失态、咒骂“当初就该下狠心”→ 真凶锁定扈夫人</td><td>陶嬷嬷暗探＋间接引语</td></tr>
+          <tr><td class="up">疑点坐实</td><td class="no">[第19章]</td><td>谢纾以“人证物证俱在”驳回，确认其知情不究</td><td>父女对话</td></tr>
+          <tr><td class="up">官方证伪</td><td class="no">[第55章]</td><td>沈润点破“不叫抵命，竟只是赶出去，原就说不通”</td><td>朝中人物旁证</td></tr>
+          <tr><td class="up">当众揭底</td><td class="no">[第63章]</td><td>清圆当众质问老太太“一石二鸟之计……哪里有公道可言”</td><td>正面冲突</td></tr>
+          <tr><td class="up">外家旁证</td><td class="no">[第65章]</td><td>李老夫人“你母亲未必没有冤屈”</td><td>第三方转述</td></tr>
+          <tr><td class="up">点破同谋</td><td class="no">[第88章]</td><td>清圆向清容点破“真凶另有其人、与太太有关”</td><td>姐妹交心</td></tr>
+          <tr><td class="up">隐情曝光</td><td class="no">[第94章]</td><td>谢纾吐露“撵母是父意”、承认靳氏被冤</td><td>病榻摊牌</td></tr>
+          <tr><td class="up">罪状坐实</td><td class="no">[第96–97章]</td><td>谢纾当众写休书休扈氏；扈氏两桩害人旧案（碧痕寺／护国寺）被坐实</td><td>众口揭发</td></tr>
+          <tr><td class="no">昭雪</td><td class="no">[第102章]</td><td>朝堂之上，谢纾当众抖露休妻隐情（主母毒杀妾室、嫁祸另一名妾室）→ 清圆母亲罪名洗清；沈润奏明真凶落网；扈氏一门斩立决</td><td>朝堂对质＋当众供证</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>揭秘方式特征：</b>① 提前锁定、延后生效（“证据虽明、时势不许”）；② 多方旁证叠加——旧仆（陶嬷嬷）、朝臣（沈润）、外家（李老夫人）、当事人（谢纾）四类证人各出一证；③ 终章三重反转（[第102章]）：姚家母女“自尽”实为买凶他杀、沈润“获罪”实为将计就计、谢纾“休妻”反成昭雪之证。</p>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">次要谜题</div>
+    <h3 class="sec-title">6 条次要谜题线</h3>
+    <p class="sec-note">母案之外，另有六条谜题支线，分属“同案、镜像、延伸、背景、枝节、情感”六种功能。</p>
+    <div class="cards">
+      <div class="card minor">
+        <h4>① 夏姨娘之死真相<span class="badge">与核心同案</span></h4>
+        <p><span class="lbl">谜面：</span>夏姨娘“出月子后日日肚疼、半年而死”，究竟死于何因？<span class="ch">[第5章 M4]</span></p>
+        <p><span class="lbl">谜底：</span>扈氏以“下马仙”毒杀夏姨娘、嫁祸靳春晴<span class="ch">[第102章]</span>。</p>
+        <p><span class="lbl">功能：</span>它是母案的<b>另一半</b>——清圆查的虽是“母亲的冤”，揭出的却是“夏姨娘的命案”，一案双尸，互为证据。</p>
+      </div>
+      <div class="card minor">
+        <h4>② 姚家案（皓雪／汪氏）<span class="badge">镜像</span></h4>
+        <p><span class="lbl">谜面：</span>芳纯“踩象胆皮”滑胎是天灾还是人祸？<span class="ch">[第82章 M35]</span></p>
+        <p><span class="lbl">发展：</span>皓雪“无时不在”沈府、暗缠芳纯<span class="ch">[第81章]</span>→ 汪氏劝纳平妻、挑拨夫妻<span class="ch">[第89章]</span>。</p>
+        <p><span class="lbl">揭秘：</span>雀儿供出皓雪借象胆皮致滑胎、离间夫妻、共谋逼娶之全盘算计<span class="ch">[第99章 M35]</span>；姚家母女“牢中上吊”实为扈氏买凶、麻三伪造<span class="ch">[第101–102章 M36/M37/M38]</span>。</p>
+        <p><span class="lbl">功能：</span>朝局—内宅镜像的另一极，把“宅斗”升级为“灭门”，为终章大清算提供由头。</p>
+      </div>
+      <div class="card minor">
+        <h4>③ 宫中事（选妃线）<span class="badge">延伸</span></h4>
+        <p><span class="lbl">谜面：</span>清如、清容为何入宫参选？清如的入宫路为何断？<span class="ch">[第54章 M42]</span></p>
+        <p><span class="lbl">线索：</span>扈夫人借黄门侍郎关系暗中发力<span class="ch">[第54章]</span>；清如护国寺失贞<span class="ch">[第60章]</span>致进宫路断；清容入选才人<span class="ch">[第63章]</span>→ 终章代公主出塞<span class="ch">[第102章]</span>。</p>
+        <p><span class="lbl">功能：</span>既是内宅斗的延伸，也为终章“清容代公主和亲”埋线（与清圆和解的闭环）。</p>
+      </div>
+      <div class="card minor">
+        <h4>④ 沈家连坐／沈润复仇<span class="badge">开放式背景</span></h4>
+        <p><span class="lbl">谜面：</span>沈润之父沈知白为何被弃市？沈润的“复仇名单”指向谁？</p>
+        <p><span class="lbl">线索：</span>沈知白卷入立储风波被弃市、罪及满门<span class="ch">[第14章 M15]</span>；沈润按“十二灯树”复仇名单诛除政敌、尚余最后一盏<span class="ch">[第34章 M41]</span>；后颈“充”字黥印<span class="ch">[第70章]</span>。</p>
+        <p><span class="lbl">状态：</span>复仇名单最后一盏、黥印身世未正面收束，作全书“上位者危险感”的底色。</p>
+      </div>
+      <div class="card minor">
+        <h4>⑤ 匿名勒索信／“青梅”之谜<span class="badge">枝节型</span></h4>
+        <p><span class="lbl">谜面：</span>令扈夫人变色的匿名书信是谁所写？“青梅”及其家人为何遍寻不见？<span class="ch">[第11／13章 M11/M14]</span></p>
+        <p><span class="lbl">状态：</span>钱款被运煤车顺走，“青梅”下落不明<span class="ch">[第13章]</span>，留下开放性疑问（V41：扈夫人欲遣人赴濠州追查索银信）。</p>
+      </div>
+      <div class="card minor">
+        <h4>⑥ 沈润“定亲穆家”幌子<span class="badge">情感线</span></h4>
+        <p><span class="lbl">谜面：</span>沈润当真要与穆二姑娘定亲？<span class="ch">[第64–65章]</span></p>
+        <p><span class="lbl">揭秘：</span>实为沈润与穆家做交易、借“结亲”之名大操大办<span class="ch">[第72章]</span>；清圆以穆二姑娘形貌套问、当场拆穿。</p>
+        <p><span class="lbl">功能：</span>把“情敌”从李从心转向“假想敌”，制造 [第63–71章] 的虐甜交织段落。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">悬疑技法</div>
+    <h3 class="sec-title">悬疑与宅斗结合的写法</h3>
+    <p class="sec-note">悬疑为骨、宅斗为肉；双轨取证在终章合流；反派早明牌、长留白；结局三重翻转收束。</p>
+    <div class="cards">
+      <div class="card tech">
+        <h4><span class="n">1</span>悬疑为骨、宅斗为肉</h4>
+        <p>母案提供“主悬念锚”，宅斗提供“每日推进的戏”；<b>每一次宅斗小胜，都为查案推进一格</b>（青梅试探 [第10章] 排除莲姨娘、暗探 [第12章] 锁定扈夫人），支线服务主线，不散乱。</p>
+      </div>
+      <div class="card tech">
+        <h4><span class="n">2</span>双轨取证（民间＋官方）</h4>
+        <p><b>清圆“内宅线”</b>——青梅试探 [第10章]、盘问旧仆 [第5章]、病榻摊牌 [第94章]；<b>沈润“朝堂线”</b>——刑堂逼供 [第34章]、梁翼供状 [第56／62章]、殿前请旨 [第72章]、朝堂对质 [第102章]。</p>
+        <p>民间先摸清“谁”，官方再补足“证”，两条轨在终章合流。</p>
+      </div>
+      <div class="card tech">
+        <h4><span class="n">3</span>反派“早明牌＋长留白”</h4>
+        <p>真凶扈氏 [第12章] 即半明牌，悬念从“谁是凶手”转向“能否翻案”——<b>用延迟满足拉长悬念寿命</b>。钩子是“读者比女主先知道，却只能陪她等”。</p>
+      </div>
+      <div class="card tech">
+        <h4><span class="n">4</span>结局三重翻转收束 · [第102章]</h4>
+        <p>姚家“自尽→他杀”、沈润“获罪→将计就计”、谢纾“休妻→反成昭雪之证”——把多条谜题线在同一章翻面，<b>以“反转的密度”替代“反转的数量”</b>，制造全书的情绪顶点（唯一 ★5）。</p>
+      </div>
+    </div>
+    <div class="mini-list">
+      <div class="mi"><b>嫁祸逻辑自洽：</b>动机（争宠）、手段（下马仙）、时机（产后虚弱）、伪证（药渣＋小丫头）环环相扣，让旧案“看似铁案”，使翻案的难度本身成为戏剧张力。</div>
+      <div class="mi"><b>证据链分段解锁：</b>药渣（物证）→ 小丫头（人证）→ 封口费／灭口（M9）→ 梁翼供状 [第62章] → 案宗 [第94章] → 朝堂供证 [第102章]，每 5–10 章补一条新证。</div>
+      <div class="mi"><b>“物—证—情”三合一：</b>龙衔珠玉佩既是母亲遗物（物），又是谢纾认罪的引子（证），更是父女情的寄托（情）[第93–94章]。</div>
+      <div class="mi"><b>“寒”与“甜”互为节拍器：</b>每逢谜题推进（寒／悬），几乎必配一段 CP 互动（甜／暖）做缓冲（如 [第34章 寒★4] 后接 [第35–36章 甜]）。</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">可推理性</div>
+    <h3 class="sec-title">读者可推理性与重读暗线</h3>
+    <p class="sec-note">难度评级：中偏易（谜底早泄型）。真正的悬念不在“谁”，而在“如何取证、如何昭雪、清圆如何自处”。</p>
+    <div class="trio">
+      <div class="tri">
+        <h4><span class="dot"></span>读者自查清单</h4>
+        <p>M5（定罪草草）→ M6（人证失踪）→ M9（灭口疑云）→ M7／M12（保贤名／咒骂）→ 即可在 [第12章] 前后锁定扈夫人；M31（父意授逐）→ 补出“谢纾帮凶”的隐层。</p>
+      </div>
+      <div class="tri t2">
+        <h4><span class="dot"></span>三件真正的悬念</h4>
+        <p>① <b>如何取证</b>——从“以卵击石” [第12章] 到“公堂见真章” [第94章]；② <b>如何昭雪</b>——无权无势的庶女，如何让一桩十四年前的定论翻案；③ <b>清圆如何自处</b>——在“认祖归宗”与“替母雪冤”之间做选择 [第102章 拒认祖归宗]。</p>
+      </div>
+      <div class="tri t3">
+        <h4><span class="dot"></span>重读价值</h4>
+        <p>M2（靳姨娘“非出头冒尖之人”）、M9（小丫头家骤富）、M26（污名流言）等属<b>重读才察觉的暗线</b>，与“十二灯树”“黥印”等朝局暗伏共同构成二次阅读的惊喜。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">《一瓯春》拆解 · 蓝图 15 · 谜题与诡计 ｜ 核心谜题 1 ＋ 次要谜题 6 ＋ 线索 42（M1–M42）</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============================ 数据 ============================ */
+/* 类型：线索（指向真相）/ 误导（引偏）/ 揭秘（给出答案） */
+var M = [
+  {id:'M1',  ch:1,   t:'线索', c:'小丫头追问“那个短命姨娘，当真是靳姨娘毒死的吗”被商嬷嬷厉声压下', pt:'靳姨娘冤案（总谜面）'},
+  {id:'M2',  ch:1,   t:'线索', c:'老太太想起靳姨娘当年“并不是个喜欢出头冒尖的人”', pt:'靳姨娘性情，冤案疑点'},
+  {id:'M3',  ch:2,   t:'线索', c:'清圆认定母亲定罪“太多地方说不通”，决心查明', pt:'冤案'},
+  {id:'M4',  ch:5,   t:'线索', c:'夏姨娘出月子后日日肚疼、半年而死，汤药中挑出“下马仙”', pt:'夏姨娘死因'},
+  {id:'M5',  ch:5,   t:'线索', c:'仅凭药渣与一个小丫头指认即定靳姨娘之罪，定罪草草', pt:'冤案（程序疑点）'},
+  {id:'M6',  ch:5,   t:'线索', c:'当年指认靳姨娘的小丫头下落不明', pt:'关键人证'},
+  {id:'M7',  ch:5,   t:'线索', c:'老爷原要绞死靳姨娘、因夫人求情改撵出；清圆推断“最聪明的（捞贤名）是扈夫人”', pt:'指向扈夫人'},
+  {id:'M8',  ch:5,   t:'线索', c:'清圆推断“一石二鸟”：最得宠者一死一逐，背后有人动手脚', pt:'真凶动机'},
+  {id:'M9',  ch:7,   t:'线索', c:'小丫头被送升州后“病死”，其家却一夕置产、兄长开灯油铺', pt:'封口费／灭口'},
+  {id:'M10', ch:10,  t:'误导', c:'以“青梅”之名试探各房，莲姨娘毫无印象', pt:'排除莲姨娘'},
+  {id:'M11', ch:11,  t:'线索', c:'匿名书信令一向端稳的扈夫人变色', pt:'扈夫人涉母案'},
+  {id:'M12', ch:12,  t:'线索', c:'扈夫人咒骂“早知如此，当初就该下了狠心，一了百了”', pt:'主使指向扈夫人'},
+  {id:'M13', ch:12,  t:'误导', c:'陶嬷嬷查得扈夫人未联络梅姨娘', pt:'排除梅姨娘共谋'},
+  {id:'M14', ch:13,  t:'线索', c:'勒索旧信的“青梅”及其家人遍寻不见、五十两被运煤车顺走', pt:'勒索人／钱款去向成谜'},
+  {id:'M15', ch:14,  t:'线索', c:'沈润之父沈知白卷入立储风波、被弃市斩首', pt:'朝局背景／沈润身世'},
+  {id:'M16', ch:19,  t:'误导', c:'清圆直问父亲是否怀疑姨娘遭人陷害，谢纾以“人证物证俱在”驳回', pt:'谢纾知情不究'},
+  {id:'M17', ch:43,  t:'线索', c:'回忆补出：夏姨娘进门后靳春晴彻底失宠；被逐妾室灵位不得进祠堂', pt:'冤案背景'},
+  {id:'M18', ch:44,  t:'线索', c:'掌院补全靳春晴籍贯生卒（扬州人氏、升平九年二月初七生、乾元六年六月廿一卒）', pt:'母亲身份'},
+  {id:'M19', ch:47,  t:'线索', c:'梁翼曾受旧主之女请托行凶', pt:'扈氏害人（遇袭案）'},
+  {id:'M20', ch:55,  t:'线索', c:'内侍监提清圆生母“毒杀侍妾”传闻；沈润点破“不叫抵命，竟只是赶出去，原就说不通”', pt:'冤案疑点'},
+  {id:'M21', ch:56,  t:'线索', c:'遇袭案牵头人梁翼（檄龙卫振威校尉）曾在扈夫人之父麾下任职', pt:'遇袭案主使'},
+  {id:'M22', ch:58,  t:'线索', c:'扈夫人将清圆认作“靳春晴送来讨债的”', pt:'扈夫人心虚'},
+  {id:'M23', ch:60,  t:'线索', c:'清圆内心确认“当初毒死夏姨娘嫁祸她母亲”', pt:'真相'},
+  {id:'M24', ch:63,  t:'线索', c:'清圆当面点出“是太太的一石二鸟之计……这世上哪里有公道可言”', pt:'真相'},
+  {id:'M25', ch:65,  t:'线索', c:'李从心转述李老夫人“你母亲未必没有冤屈，只是深宅大院里真相被掩住了”', pt:'外家旁证'},
+  {id:'M26', ch:80,  t:'误导', c:'御史中丞当众道出清圆母亲“因妒生恨、毒杀谢节使另一名妾侍被逐”传闻', pt:'冤案污名'},
+  {id:'M27', ch:84,  t:'线索', c:'谢纾吞靳家家产、撵靳春晴出府，知夏姨娘死因却只让清圆别管', pt:'谢纾为帮凶'},
+  {id:'M28', ch:86,  t:'线索', c:'清圆当众痛数谢家侵吞靳家家产、致母枉死', pt:'冤案＋家产'},
+  {id:'M29', ch:88,  t:'揭秘', c:'清圆向清容点破“你母亲的死真凶另有其人，此事与太太有关”', pt:'真相，清容动摇'},
+  {id:'M30', ch:93,  t:'线索', c:'谢纾抬手摘下贴身龙衔珠玉佩（母亲遗物）递予清圆', pt:'母亲遗物'},
+  {id:'M31', ch:94,  t:'揭秘', c:'谢纾吐露：当年是他授意太太将靳氏撵出府（是父意，非扈夫人留情）', pt:'冤案隐情'},
+  {id:'M32', ch:94,  t:'揭秘', c:'谢纾亲口承认靳氏被冤、是己之错；清圆扬言“公堂上见真章”', pt:'冤案'},
+  {id:'M33', ch:96,  t:'线索', c:'老太太确认碧痕寺遇强梁、护国寺假和尚皆扈氏安排', pt:'扈氏两桩害人'},
+  {id:'M34', ch:97,  t:'线索', c:'扈夫人自陈“夏姨娘和那小厮的两条性命”及靳春晴之死是其把柄', pt:'扈氏罪状'},
+  {id:'M35', ch:99,  t:'揭秘', c:'雀儿供出皓雪借象胆皮致芳纯滑胎、事后离间夫妻、共谋逼娶之全盘算计', pt:'姚家案'},
+  {id:'M36', ch:101, t:'线索', c:'姚家母女牢中“上吊”，一死一伤', pt:'姚家案（假象）'},
+  {id:'M37', ch:102, t:'线索', c:'仵作验出勒痕为麻绳勒毙（他杀），非自尽', pt:'姚家案他杀'},
+  {id:'M38', ch:102, t:'揭秘', c:'扈夫人说动卢龙军团练使扈重宽、贿通狱卒麻三伪造自尽', pt:'姚家案真凶'},
+  {id:'M39', ch:102, t:'揭秘', c:'谢纾朝堂当众抖露休妻隐情（主母毒杀妾室、嫁祸另一名妾室）', pt:'母案昭雪'},
+  {id:'M40', ch:102, t:'揭秘', c:'沈润以姚家母女为饵、诱扈氏出手的螳螂捕蝉之计', pt:'布局揭秘'},
+  {id:'M41', ch:34,  t:'线索', c:'沈润按“十二灯树”复仇名单诛除政敌、借谢纾之手除付春山', pt:'朝局'},
+  {id:'M42', ch:54,  t:'线索', c:'清如、清容入宫参选（扈夫人借黄门侍郎关系暗中发力）', pt:'宫中事'}
+];
+
+var TYPE = {
+  '线索':{color:'#e8c97a', shape:'circle'},
+  '误导':{color:'#ff6b6b', shape:'tri'},
+  '揭秘':{color:'#69db7c', shape:'square'}
+};
+
+/* ============================ 时间轴渲染 ============================ */
+var NS = 'http://www.w3.org/2000/svg';
+function mk(tag, attrs, parent){
+  var e = document.createElementNS(NS, tag);
+  for(var k in attrs) e.setAttribute(k, attrs[k]);
+  if(parent) parent.appendChild(e);
+  return e;
+}
+
+var VB_W = 1360, VB_H = 450;
+var PADL = 70, PADR = 56;
+var CY = 280, STEP = 28;
+var PLOTW = VB_W - PADL - PADR;         /* 1234 */
+var CH_MAX = 102;
+function xOf(ch){ return PADL + (ch - 1) / (CH_MAX - 1) * PLOTW; }
+
+var svg = document.getElementById('clueGraph');
+svg.style.width = '100%';
+svg.style.height = 'auto';
+
+/* defs：渐变色主线 + 模糊光晕 */
+var defs = mk('defs', {}, svg);
+var gid = mk('linearGradient', {id:'axisGrad', x1:'0', y1:'0', x2:'1', y2:'0'}, defs);
+[['0%','#e8c97a'],['38%','#ff9f9f'],['72%','#74c0fc'],['100%','#69db7c']].forEach(function(s){
+  mk('stop', {offset:s[0], 'stop-color':s[1]}, gid);
+});
+var blur = mk('filter', {id:'glow', x:'-50%', y:'-300%', width:'200%', height:'700%'}, defs);
+mk('feGaussianBlur', {stdDeviation:'7', result:'b'}, blur);
+
+/* 画布分组顺序：网格 → 主轴 → 标记 → 文字 */
+var gGrid = mk('g', {}, svg);
+var gAxis = mk('g', {}, svg);
+var gMark = mk('g', {}, svg);
+var gTxt  = mk('g', {}, svg);
+
+/* 背景网格（整章区间竖线） */
+var GRID_TOP = 200, GRID_BOT = 398;
+var ticks = [1,10,20,30,40,50,60,70,80,90,100,102];
+ticks.forEach(function(ch){
+  var x = xOf(ch);
+  mk('line', {x1:x, y1:GRID_TOP, x2:x, y2:GRID_BOT,
+    stroke:'rgba(255,255,255,0.05)', 'stroke-width':1}, gGrid);
+  mk('line', {x1:x, y1:GRID_BOT, x2:x, y2:GRID_BOT+8,
+    stroke:'rgba(201,169,97,0.35)', 'stroke-width':1}, gGrid);
+  var t = mk('text', {x:x, y:GRID_BOT+22, class:'chtick', 'text-anchor':'middle'}, gGrid);
+  t.textContent = '第' + ch + '章';
+});
+
+/* 关键节点竖带 + 环 */
+var KEY = [
+  {ch:1,   label:'第1章 · 谜面抛出',     lx:8,   ly:66,  anchor:'start', col:'#e8c97a'},
+  {ch:5,   label:'第5章 · 旧案全貌',     lx:6,   ly:96,  anchor:'start', col:'#e8c97a'},
+  {ch:12,  label:'第12章 · 锁定扈夫人',  lx:6,   ly:126, anchor:'start', col:'#e8c97a'},
+  {ch:102, label:'第102章 · 朝堂昭雪',   lx:-8,  ly:66,  anchor:'end',   col:'#69db7c'}
+];
+KEY.forEach(function(k){
+  var x = xOf(k.ch);
+  mk('rect', {x:x-1, y:GRID_TOP, width:2, height:GRID_BOT-GRID_TOP,
+    fill:k.col, opacity:0.16}, gAxis);
+  mk('circle', {cx:x, cy:CY, r:17, fill:'none', stroke:k.col,
+    'stroke-width':1.2, 'stroke-dasharray':'3 3', opacity:0.75}, gAxis);
+  var t = mk('text', {x:x+k.lx, y:k.ly, class:'key-label',
+    'text-anchor':k.anchor, fill:k.col}, gTxt);
+  t.textContent = k.label;
+});
+
+/* 阶段标签 */
+var STAGES = [
+  {x:xOf(7.5),  txt:'悬念埋设', col:'#e8c97a'},
+  {x:xOf(18),   txt:'误导干扰', col:'#ff9f9f'},
+  {x:xOf(64),   txt:'逼近真相', col:'#74c0fc'},
+  {x:xOf(101),  txt:'昭雪',     col:'#69db7c'}
+];
+STAGES.forEach(function(s){
+  var t = mk('text', {x:s.x, y:178, class:'axis-stage',
+    'text-anchor':'middle', fill:s.col}, gTxt);
+  t.textContent = s.txt;
+});
+
+/* 渐变色主线（光晕 + 主体） */
+mk('line', {x1:PADL, y1:CY, x2:VB_W-PADR, y2:CY,
+  stroke:'url(#axisGrad)', 'stroke-width':16, opacity:0.18,
+  'stroke-linecap':'round', filter:'url(#glow)'}, gAxis);
+mk('line', {x1:PADL, y1:CY, x2:VB_W-PADR, y2:CY,
+  stroke:'url(#axisGrad)', 'stroke-width':4, opacity:0.9,
+  'stroke-linecap':'round'}, gAxis);
+
+/* 分组 + 车道分配 */
+var groups = {};
+M.forEach(function(d){ (groups[d.ch] = groups[d.ch] || []).push(d); });
+var ordered = [];
+Object.keys(groups).map(Number).sort(function(a,b){return a-b;}).forEach(function(ch){
+  ordered.push({ch:ch, items:groups[ch]});
+});
+
+var runIdx = 0;
+ordered.forEach(function(g){
+  var n = g.items.length, x = xOf(g.ch);
+  g.items.forEach(function(d, i){
+    var lane;
+    if(n === 1){ lane = (runIdx % 2 === 0) ? -1 : 1; }
+    else { lane = i - (n - 1) / 2; }
+    var y = CY + lane * STEP;
+    d._x = x; d._y = y; d._lane = lane;
+    /* 支杆 */
+    if(Math.abs(y - CY) > 3){
+      mk('line', {x1:x, y1:CY, x2:x, y2:y,
+        stroke:'rgba(255,255,255,0.13)', 'stroke-width':1}, gMark);
+    }
+    var T = TYPE[d.t];
+    var grp = mk('g', {class:'clue-node', 'data-id':d.id}, gMark);
+    grp.style.color = T.color;
+    /* 命中区 */
+    mk('circle', {cx:x, cy:y, r:12, fill:'transparent'}, grp);
+    /* 形状 */
+    if(T.shape === 'circle'){
+      mk('circle', {cx:x, cy:y, r:6, fill:T.color,
+        stroke:'#0b0b10', 'stroke-width':1.2, class:'mk'}, grp);
+    } else if(T.shape === 'tri'){
+      mk('polygon', {points:(x)+','+(y-7.5)+' '+(x-7.5)+','+(y+5)+' '+(x+7.5)+','+(y+5),
+        fill:T.color, stroke:'#0b0b10', 'stroke-width':1.2, class:'mk'}, grp);
+    } else {
+      mk('rect', {x:x-5.5, y:y-5.5, width:11, height:11,
+        fill:T.color, stroke:'#0b0b10', 'stroke-width':1.2, class:'mk'}, grp);
+    }
+    /* 编号标签：向轴外侧偏移 */
+    var lblY = (lane > 0) ? (y + 18) : (y - 12);
+    var lbl = mk('text', {x:x, y:lblY, class:'mk-label',
+      'text-anchor':'middle', fill:T.color}, gTxt);
+    lbl.textContent = d.id;
+    runIdx++;
+    bind(grp, d);
+  });
+});
+
+/* ============================ 悬停弹窗 ============================ */
+var tip = document.getElementById('tip');
+function moveTip(ev){
+  var pad = 16, w = tip.offsetWidth, h = tip.offsetHeight;
+  var x = ev.clientX + pad, y = ev.clientY + pad;
+  if(x + w > window.innerWidth - 12) x = ev.clientX - w - pad;
+  if(y + h > window.innerHeight - 12) y = window.innerHeight - h - 12;
+  if(x < 8) x = 8;
+  if(y < 8) y = 8;
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+}
+function bind(grp, d){
+  var T = TYPE[d.t];
+  grp.addEventListener('mouseenter', function(ev){
+    var other = (d._lane > 0) ? -1 : 1;   /* 其余点淡出，聚焦当前 */
+    svg.querySelectorAll('.clue-node').forEach(function(g){
+      g.classList.toggle('off', g !== grp);
+    });
+    tip.innerHTML =
+      '<div class="tip-name" style="color:' + T.color + '">' + d.id +
+        '<span class="tp" style="color:' + T.color + '">' + d.t + '</span></div>' +
+      '<div class="tip-role">第' + d.ch + '章</div>' +
+      '<div class="tip-desc">' + d.c + '</div>' +
+      '<div class="tip-pt"><b>指向：</b>' + d.pt + '</div>';
+    tip.style.display = 'block';
+    moveTip(ev);
+  });
+  grp.addEventListener('mousemove', moveTip);
+  grp.addEventListener('mouseleave', function(){
+    svg.querySelectorAll('.clue-node').forEach(function(g){ g.classList.remove('off'); });
+    tip.style.display = 'none';
+  });
+}
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

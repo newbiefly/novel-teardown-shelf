@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南城小巷 · 故事概要 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>南城小巷 · 故事概要</h1>
+<blockquote>
+<p>本文档为《南城小巷》创作蓝图第 01 号文件。归纳自 70 张章卡 + 5 本台账 + 原文（章回索引）。<br>所有结论均可作为续写/改写/从 0 创作的&quot;调性与卖点锚点&quot;。</p>
+</blockquote>
+<h2>一、作品信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>书名</td>
+<td>南城小巷</td>
+</tr>
+<tr>
+<td>作者</td>
+<td>时玖远</td>
+</tr>
+<tr>
+<td>章数</td>
+<td>70章</td>
+</tr>
+<tr>
+<td>字数</td>
+<td>约26.4万字</td>
+</tr>
+<tr>
+<td>题材</td>
+<td>现代言情·都市现实·救赎治愈·情有独钟·市井生活</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>统计口径：正文 55 章 + 番外 15 章；中文字数 263808 字（源 <code>原文/章回索引.md</code> 逐章累加，非估算）。</p>
+</blockquote>
+<h2>二、一句话故事（logline）</h2>
+<p>被至亲嫌弃的女孩南久寄居爷爷的茶馆，恋上名义上的&quot;叔&quot;宋霆，历经逐门、商战与生死，终以事业与爱情重回南城。</p>
+<p>（48 字。主线锚点：[第1章]荒道相遇、[第25章]茶山越界、[第39章]被逐、[第70章]完婚）</p>
+<h2>三、核心矛盾</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>要什么</strong></td>
+<td>南久：一个真正属于自己的&quot;家&quot;与被爱的确定感，以及&quot;由自己主宰人生&quot;的事业</td>
+<td>[第36章]&quot;不必向任何人低声借钱、由自己主宰人生的未来&quot;</td>
+</tr>
+<tr>
+<td><strong>要什么</strong></td>
+<td>宋霆：守住爷爷与茶馆（恩义），也想留住南久（私情）——两者天然冲突</td>
+<td>[第48章]自剖&quot;桥归桥、路归路……茶馆我会一直开着&quot;</td>
+</tr>
+<tr>
+<td><strong>谁挡</strong></td>
+<td>① 伦理名分：&quot;名义叔侄&quot;+南家门风（爷爷与旧规矩）② 现实差距：他要安稳守巷、她要外出闯荡 ③ 林颂耀的利益婚姻与商战 ④ 原生家庭的冷漠</td>
+<td>[第39章]杖责逐门、[第34章]&quot;我们不可能在一起&quot;、[第37章]契约婚姻、[第36章]借钱受辱</td>
+</tr>
+<tr>
+<td><strong>怎么升级</strong></td>
+<td>隐忍暧昧 → 身体先于理智越界 → 被南乔宇撞破驱逐 → 决裂&quot;不再见面&quot; → 车祸生死重逢再纠缠 → 成人式摊牌 → 领证日掉头 → 退股返乡 → 公开完婚</td>
+<td>[第15章]→[第25章]→[第39章]→[第42章]→[第47-49章]→[第50-52章]→[第53章]→[第55章]→[第68-70章]</td>
+</tr>
+</tbody></table>
+<p><strong>核心矛盾的本质</strong>：女主与男主共享同一道&quot;原生家庭创伤&quot;（他被父杀母、被爷爷救；她被父母踢来踢去、被爷爷收留），却分处&quot;伦理名分&quot;的两端——<strong>救赎的对象正是禁忌的对象</strong>。矛盾只能靠&quot;她先强大到不必依附、他先挣脱身份缰绳&quot;来化解。</p>
+<h2>四、题材标签</h2>
+<ul>
+<li><strong>主标签</strong>：现代言情 / 都市现实 / 救赎治愈 / 情有独钟</li>
+<li><strong>场域标签</strong>：市井生活（茶馆群像）/ 商战职场（舞蹈演艺行业）</li>
+<li><strong>关系标签</strong>：年龄差 8 岁的&quot;叔侄&quot;禁忌恋 / 双向救赎 / 男二情感三角</li>
+<li><strong>女生向标签</strong>：女主成长逆袭 / 清冷深情男主 / 破镜重圆式&quot;分久必合&quot;</li>
+</ul>
+<h2>五、情感基调</h2>
+<ul>
+<li><strong>总体</strong>：暖与虐交替的&quot;慢热治愈系&quot;。底色是市井烟火（茶馆、茶山、老街）的安稳暖意，冲突层是禁忌与分离的钝痛。</li>
+<li><strong>主线情绪曲线</strong>（据各章&quot;情绪设计&quot;字段）：<ul>
+<li>前半（[第1-26章]）以&quot;暖/甜/谐&quot;打底，靠&quot;暧昧推拉&quot;制造钩子；首个 ★5 高潮在 [第15章]（咬唇划界），[第23-24章]（掳救）达到&quot;悬+燃&quot;峰值。</li>
+<li>中段（[第30-42章]）&quot;虐&quot;比重上升，[第42章]（歪脖子树强吻+&quot;以后不要再见面了&quot;）为全书最虐转折之一。</li>
+<li>后段（[第47-54章]）进入&quot;虐→燃→爽&quot;密集高潮区，[第52章]（痛哭与放手）为全书最强泪点。</li>
+<li>番外（[第56-70章]）转为&quot;甜/暖&quot;全程回收，情绪由紧绷转向松弛圆满，[第70章]以&quot;要个孩子&quot;收束。</li>
+</ul>
+</li>
+<li><strong>语言基调</strong>：克制冷敛的白描 + 大量以物写人（桂花糕、茶、歪脖子树、三花猫、拐杖、床）。</li>
+</ul>
+<h2>六、核心创意（卖点）</h2>
+<ol>
+<li><strong>&quot;叔侄&quot;端的双向救赎</strong>：男主不是强势霸总，而是&quot;被爷爷救过一次的人&quot;；女主不是纯受救者，反在 [第43-52章] 反过来替男主主事茶山、救他的生意。&quot;我救你，你也救我&quot;是区别于同类&quot;老少恋&quot;的最大差异化。</li>
+<li><strong>&quot;茶&quot;作为贯穿全书的意象装置</strong>：桂花糕/第二泡茶/歪脖子树/南乾山三十七棵老茶树/金骏眉/山色共居——把感情线、事业线、身世线全系于一个物象上（[第14章][第41章][第62章][第64章]）。</li>
+<li><strong>草根女主的&quot;硬本事逆袭&quot;</strong>：非金手指，靠&quot;对钱的敏感+管账天赋&quot;（[第9章]揪逃单客）与脚踏实地（[第29章]拉赞助、[第37章]工地&quot;包工头&quot;）一步步掌舵星耀，最终商战反杀（[第53-54章]）。</li>
+</ol>
+<h2>七、一句话主题 / 故事内核</h2>
+<p><strong>两个被原生家庭所伤的人彼此照亮，各自成为自己——救赎从来是双向的。</strong></p>
+<ul>
+<li>男主视角：&quot;我在你身上能看见小时候的我。&quot;[第18章]</li>
+<li>女主视角：从&quot;人不能既要又要&quot;的原生家庭旧伤[第38章]，走到&quot;她不是选择了事业，而是选择了成为自己&quot;[第69章]，再到&quot;既要又要&quot;[第55章]的修正——<strong>&quot;既要又要&quot;不是贪心，而是承认自己配得上完整的人生</strong>。</li>
+<li>收束：&quot;生命完整的形态，是遇见她之前，尽是漂泊的孤岛；遇见她之后，孤岛尽数沉没，唯见朝阳为他轰然降临。&quot;[第70章]</li>
+</ul>
+<blockquote>
+<p>续写/改写红线：不可把女主写成靠男主上位的依附者，也不可把男主写成&quot;因爱黑化&quot;的占有狂——他最终必须走向&quot;成全&quot;（[第52章]&quot;走吧&quot;）。</p>
+</blockquote>
+<h2>八、爽点 / 泪点公式</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>可复用公式</th>
+<th>典型章</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>救赎推拉爽/虐</strong></td>
+<td>隐忍克制 → 身体先于理智越界 → 被第三者撞破 → 男主自我放逐&quot;不再见面&quot; → 生死/重逢击碎防线 → 成人式摊牌 → 男主主动放手成全 → 终得转正</td>
+<td>[第15章]→[第39章]→[第42章]→[第47章]→[第50-52章]→[第68-70章]</td>
+</tr>
+<tr>
+<td><strong>事业逆袭爽</strong></td>
+<td>被看轻的打工者 → 独当一面小胜（拆穿假洋人/揪逃单/办活动） → 遇&quot;冷静的猎人&quot;被审视 → 拒绝捷径 → 白手起家 → 商战反杀（把柄+人墙） → 体面退场 → 自立门户</td>
+<td>[第9章][第13章][第29章][第35章][第37章][第53-54章][第55章][第70章]&quot;南风艺境&quot;</td>
+</tr>
+<tr>
+<td><strong>泪点公式 A（亲情）</strong></td>
+<td>被至亲冷遇羞辱 → 向无血缘的&quot;叔&quot;开口 → 对方不问缘由无条件相助 → 发现他暗藏多年的十万</td>
+<td>[第36章]</td>
+</tr>
+<tr>
+<td><strong>泪点公式 B（告别）</strong></td>
+<td>两人纠缠至深 → 一方以&quot;放手&quot;完成最深的爱 → 撕协议、备避孕药、说&quot;走吧&quot;</td>
+<td>[第52章]</td>
+</tr>
+<tr>
+<td><strong>打脸/反转爽</strong></td>
+<td>领证当日掉头，以股权文件+家族把柄反将掌控者一军；下属自发筑人墙护主</td>
+<td>[第53章][第54章]</td>
+</tr>
+</tbody></table>
+<h2>九、卖点标签组合（含人设标签）</h2>
+<blockquote>
+<p>商业视角：&quot;这本书卖给谁看&quot;。</p>
+</blockquote>
+<ul>
+<li><strong>题材组合</strong>：现代言情 + 都市现实 + 救赎治愈 + 情有独钟 + 市井生活。</li>
+<li><strong>人设标签</strong>：<ul>
+<li>女主 <strong>南久</strong> = &quot;爹不疼娘不爱的落难女孩 + 要强创业女&quot;（一句话卖点：<strong>从被人踢来踢去的累赘，长成能替别人托底的自己</strong>）。</li>
+<li>男主 <strong>宋霆</strong> = &quot;清冷克制、隐忍深情的茶馆堂倌 / 茶山主 + 被救过一次的人&quot;（一句话卖点：<strong>他把&#39;叔&#39;这重身份当成一根缰绳，勒了自己整整八年</strong>。[第61章]）。</li>
+<li>男二 <strong>林颂耀</strong> = &quot;冷静利己的精英男二 / 把婚姻当生意的猎人&quot;（一句话卖点：<strong>他用契约换婚姻，输给了不按规则出牌的她</strong>。[第37章][第53章]）。</li>
+</ul>
+</li>
+<li><strong>反差卖点标签</strong>：男主&quot;寡淡到不像话&quot;的外壳 vs 骑重机/咬吻标记的少年气（[第11章][第33章]）；女主&quot;叛逆脐钉野孩子&quot;外壳 vs 骨子里渴望一个家。</li>
+</ul>
+<h2>十、文案 / 开篇钩子类型</h2>
+<p>开篇（[第1-7章]）以三类钩子组合抓人，<strong>情绪钩为主</strong>：</p>
+<ol>
+<li><strong>情绪钩（主）</strong>：12 岁女孩被亲爸送去后妈家受冷遇、只身百里投奔爷爷——极强代入感的&quot;意难平&quot;开局；随后&quot;她得叫他一声叔&quot;的错位关系，天然带禁忌张力（[第1章][第3章]）。</li>
+<li><strong>好奇钩（辅）</strong>：荒道上为何出现一个修车的男人？他为何被爷爷拉来守着一个小姑娘？（[第1章]）；&quot;山里&quot;到底是什么生意？（[第2-3章]埋，[第17章]揭）；宋霆的父亲为何杀死母亲？（[第6章]埋，[第34章]回收）。</li>
+<li><strong>爽点钩（轻）</strong>：女主&quot;野而机灵&quot;的小反击（[第2章]偷吃茶点、藏拐杖；[第5章]搅黄相亲）——以轻喜剧爽感缓冲沉重底色。</li>
+</ol>
+<blockquote>
+<p>续写开篇建议：沿用&quot;情绪钩（落难+错位关系）+ 好奇钩（一个未解的身份之谜）&quot;的双钩结构，勿用&quot;打脸式&quot;爽点开机。</p>
+</blockquote>
+<h2>十一、核心梗与创新点</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>核心梗</strong></td>
+<td>&quot;年龄差 8 岁的叔侄禁忌救赎恋&quot; + &quot;市井茶馆群像&quot; + &quot;草根女主事业逆袭&quot; 三件套</td>
+</tr>
+<tr>
+<td><strong>比同类新在哪</strong></td>
+<td>① <strong>救赎双向化</strong>：男主是&quot;被救过的人&quot;，女主能反向救他的茶山（[第43-52章]），打破&quot;霸总拯救小白花&quot;套路；② <strong>不靠金手指</strong>：女主的能力来自对钱的敏感与实干，而非系统/重生；③ <strong>意象系统化</strong>：把&quot;茶/桂花糕/歪脖子树&quot;做出贯穿性，兼具文学质感与辨识度；④ <strong>男二不是工具</strong>：林颂耀的契约婚姻提议（[第37章]）与体面退场（[第55章]）自成一线的商业理性视角。</td>
+</tr>
+<tr>
+<td><strong>生命周期判断</strong></td>
+<td>&quot;年龄差+禁忌名分&quot;是长青梗，&quot;救赎治愈+女性成长&quot;正处上升期；本书把两者叠合、并补上&quot;事业硬核&quot;与&quot;意象文学性&quot;，属于旧元素的新组合，仍有仿写空间。跟梗时<strong>微创新方向</strong>：换&quot;名分禁忌&quot;的类型（如师徒/世交/恩人之子），并把&quot;救赎&quot;做成双向。</td>
+</tr>
+</tbody></table>
+<h2>十二、阅读蓝图顺序建议（供 AI 组装创作图纸）</h2>
+<ol>
+<li><code>01_故事概要.md</code>（本文）——先定题材、调性、主题锚点与卖点，避免后续跑偏。</li>
+<li><code>06_分卷大纲.md</code>——搭主线骨架，看清&quot;八阶段怎么推进、几章推进一幕、每卷怎么收钩&quot;。</li>
+<li><code>11_支线地图.md</code>——把每条非主线（事业/男二/家族/茶山/身世/桑丫/社会线）的起承转合与交汇点铺开，供写&quot;多线并进&quot;时对照。</li>
+</ol>
+<blockquote>
+<p>若日后续写：以「故事概要」的主题锚点（救赎双向、成为自己）为价值红线，以「分卷大纲」的节奏配比为长度参考，以「支线地图」的交汇点安排支线插入时机。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

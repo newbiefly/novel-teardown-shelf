@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一瓯春 · 故事概要 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>一瓯春 · 故事概要</h1>
+<blockquote>
+<p>依据：102 张章卡 + 6 本台账归纳。所有结论均带 [第X章] 锚点，可回溯。<br>用途：续写 / 改写 / 从 0 创作时的&quot;创作图纸&quot;入口，定调、定卖点、定钩子。</p>
+</blockquote>
+<h2>〇、作品信息</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>书名</td>
+<td>一瓯春</td>
+</tr>
+<tr>
+<td>作者</td>
+<td>尤四姐</td>
+</tr>
+<tr>
+<td>章数</td>
+<td>102章</td>
+</tr>
+<tr>
+<td>字数</td>
+<td>约40.1万字</td>
+</tr>
+<tr>
+<td>题材</td>
+<td>古代言情（架空朝代·豪门世家·情有独钟·微宅斗）+ 内宅权斗 + 悬疑（母亲冤案）</td>
+</tr>
+<tr>
+<td>主角</td>
+<td>谢清圆（女主·谢家庶女）× 沈润（男主·殿前司指挥使）</td>
+</tr>
+<tr>
+<td>核心悬念</td>
+<td>生母靳春晴被诬&quot;下毒毒死宠妾&quot;而遭逐、含冤而亡的真相</td>
+</tr>
+</tbody></table>
+<h2>一、一句话故事（logline）</h2>
+<blockquote>
+<p>谢家庶女清圆被接回&quot;镇宅&quot;，暗查生母被诬下毒的冤案，与刑狱权臣沈润相斗相撩，终昭雪母冤、嫁作二品诰命。</p>
+</blockquote>
+<p>（40 字）</p>
+<h2>二、题材标签</h2>
+<ul>
+<li><strong>主标签</strong>：古代言情 · 架空朝代 · 豪门世家 · 情有独钟 · 微宅斗</li>
+<li><strong>副标签</strong>：内宅权斗 · 悬疑查案（母亲冤案）· 庶女逆袭 · 权臣甜宠 · 复仇昭雪</li>
+<li><strong>情绪基调标签</strong>：爽（宅斗打脸/昭雪）· 甜（男女主互撩）· 虐（母冤/至亲凉薄）· 悬（查案）· 寒（人心）</li>
+</ul>
+<h2>三、情感基调</h2>
+<ul>
+<li>全书情绪基调以 <strong>爽、虐、悬、甜、寒</strong> 五色交织（逐章见「情绪曲线」，本维度不展开）。</li>
+<li><strong>甜虐双旋</strong>：男女主互动&quot;甜&quot;（夜遇赠佩[第30章]、聘猫定情[第76章]、洞房[第86章]）与女主处境之&quot;虐寒&quot;（寄人篱下、至亲凉薄[第13、84章]）交替，甜是虐的解药，虐是糖的底色。</li>
+<li><strong>悬是底色</strong>：母案悬念从头悬到尾（第1章埋 → 第102章收），为宅斗与恋爱提供&quot;总目标&quot;。</li>
+<li><strong>收束基调</strong>：终章以&quot;爽★5 + 暖★4&quot;收束，情绪落点是&quot;沉冤得雪 + 患难与共&quot;，不留悲剧余味[第102章]。</li>
+</ul>
+<h2>四、核心矛盾</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>要什么</strong></td>
+<td>① 查明生母靳春晴被诬下毒、遭逐冤死的真相，为母洗冤；② 在谢家这个&quot;刀俎&quot;中活下去、嫁得体面（&quot;绝不做别人的玩物/妾&quot;）</td>
+<td>第2章、第5章、第40章</td>
+</tr>
+<tr>
+<td><strong>谁挡</strong></td>
+<td>嫡母<strong>扈夫人</strong>（母案真凶，屡设杀局：芦苇荡行凶[第44章]、护国寺毒计[第59-60章]、买凶伪案[第102章]）；嫡姐<strong>清如</strong>的排挤羞辱[第2、21章]；<strong>老太太</strong>把清圆当联姻棋子与&quot;填窟窿&quot;之物[第13、69章]；亲父<strong>谢纾</strong>知情不究、吞没靳家家产[第84、94章]</td>
+<td>第12、43、60、69、84、94章</td>
+</tr>
+<tr>
+<td><strong>怎么升级</strong></td>
+<td>暗中查证→锁定扈夫人却&quot;以卵击石&quot;按兵不动[第12章]→被贬&quot;只配嫁寒门&quot;、当众掌掴[第13、21章]→遇袭险死、转而借沈润之势[第44-49章]→反杀清如、拿捏扈夫人（勒索五万两）[第60-62章]→被家族弃送入沈府[第69-70章]→借沈润请旨指婚翻身[第72章]→成婚封广郡夫人[第86章]→助父休扈氏[第96-97章]→朝堂昭雪母冤、扈氏斩决[第102章]</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>五、核心创意（卖点内核，1-3 条）</h2>
+<ol>
+<li><strong>&quot;镇宅&quot;名义下的复仇潜行</strong>：女主以&quot;被接回填宅驱邪&quot;的受害者身份潜伏，凶宅（淡月轩空关十四年、靳姨娘旧院哭声[第1章]）恰是母案现场——<strong>最危险的处境即是最好的伪装</strong>，迷信设定同时供给悬疑氛围。</li>
+<li><strong>权臣 × 落难庶女的&quot;斗智式互撩&quot;</strong>：男主沈润是通权术、掌刑狱的&quot;准反派式&quot;权臣（借刀除政敌[第34章]、拿捏扈夫人[第62章]、设局拆散男二[第71章]、以姚家母女为饵[第102章]）；女主察言观色、将计就计（反手引清如入局[第60章]、套话识破定亲幌子[第72章]）。感情不是单向宠，是**&quot;比心眼、斗手段、再交心&quot;的双向推进**。</li>
+<li><strong>母案 × 朝局 × 内宅三线同枢</strong>：母亲冤案（扈氏毒杀夏姨娘、嫁祸靳春晴）既是女主复仇总目标，又是扳倒嫡母、牵动谢家兴衰、逼出沈润布局的枢纽[第60、86、94、102章]——<strong>一桩旧案撬动全局</strong>。</li>
+</ol>
+<h2>六、一句话主题 / 故事内核</h2>
+<blockquote>
+<p><strong>&quot;善恶到头终有报，可有些事，时候一久老天爷就忘了，既然如此，还是我来代劳更直接。&quot;</strong>（第102章·金句）</p>
+</blockquote>
+<p>本书母题：<strong>受害者不自弃——以智谋与坚持，亲手夺回公道与体面</strong>。女主以&quot;睚眦必报、坏而坚定&quot;[第102章]的姿态，把至亲的凉薄、仇人的算计逐一清算，最终母冤得雪、与真正值得的人&quot;同富贵、也可共患难&quot;[第102章]。<br>——续写/改写不能跑偏的价值锚点：<strong>女主会隐忍、绝不圣母；她的反击讲方法、讲时机，但从不放弃清算。</strong></p>
+<h2>七、爽点 / 泪点公式（情绪引擎）</h2>
+<p><strong>爽点公式（宅斗打脸线）</strong>：<br><code>被至亲轻贱/羞辱 → 隐忍蓄势、将计就计 → 借更高权势华丽翻盘 → 仇人自食恶果</code></p>
+<ul>
+<li>轻贱：贬&quot;只配嫁寒门&quot;[第13章]、当众掌掴[第21章]、当&quot;填窟窿&quot;之物送出[第69章]</li>
+<li>反制：以退为进逼老太太表态[第21章]、引清如入局受辱[第60章]、套话拆穿幌子[第72章]</li>
+<li>翻盘：圣旨封广阳郡夫人、谢家闹婚惨败落荒而逃[第86章]</li>
+<li>恶果：扈氏被休、触柱未死[第96-97章]→ 买凶事败、斩立决[第102章]</li>
+</ul>
+<p><strong>爽点公式（权臣护短线）</strong>：<br><code>女主受欺 → 男主以绝对权势当场压制 → 旁观者震惊/闭嘴</code></p>
+<ul>
+<li>射落清如胸前玉佩[第41章]、率殿前司救场[第44章]、拔剑震慑御史中丞[第80章]、押姚家母女入狱[第100章]</li>
+</ul>
+<p><strong>泪点公式</strong>：<br><code>骨肉至亲的凉薄 → 女主强忍/以退为进 → 唯有真心人给暖 → 在可依处卸防落泪</code></p>
+<ul>
+<li>凉薄：祖母&quot;只配嫁寒门&quot;[第13章]、父亲吞产撵母[第84章]、被当礼物送出[第69章]</li>
+<li>暖源：陈老太太&quot;只要不伤心，任何人都伤不了你&quot;[第23章]、抱弦的真心[第21章]、沈润&quot;我可以借个胸怀让你靠着哭&quot;[第61章]</li>
+<li>卸防：在沈润怀中贪恋这刻，却自忖&quot;只怕是要引火烧身&quot;[第61章]</li>
+</ul>
+<p><strong>虐点公式（母案线）</strong>：<code>深宅真相被掩 → 公道难求 → 女主以柔克刚、更坚定→ 终章一次性清算</code>（第65章外家旁证&quot;你母亲未必没有冤屈&quot;；第94章父之坦白&quot;是我之错&quot;；第102章朝堂昭雪）</p>
+<h2>八、卖点标签组合（商业视角）</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>题材标签</strong></td>
+<td>古代言情 · 架空 · 豪门世家 · 情有独钟 · 微宅斗 · 母案悬疑</td>
+</tr>
+<tr>
+<td><strong>人设标签</strong></td>
+<td><strong>落难回府庶女</strong>（腹黑隐忍·能屈能伸·睚眦必报）｜<strong>刑狱权臣男主</strong>（外冷内宠·手段狠辣·&quot;认准一个就是一辈子&quot;[第64章]）｜<strong>伪善嫡母</strong>（毒杀嫁祸+连环设局的终极反派）｜<strong>齐大非偶痴情男二</strong>（小侯爷李从心）｜<strong>护弟媳的当家主母</strong>（妯娌同盟[第87-101章]）</td>
+</tr>
+<tr>
+<td><strong>情绪卖点</strong></td>
+<td>甜宠互撩 × 宅斗打脸 × 沉冤昭雪 × 双向暗涌 × 患难与共</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>人设标签是&quot;卖点符号&quot;，与「人物设定集」中&quot;从行为拆的性格&quot;分工不同。</p>
+</blockquote>
+<h2>九、文案 / 开篇钩子类型</h2>
+<p><strong>结论：好奇钩（主）+ 情绪钩（辅）的组合开篇。</strong></p>
+<ul>
+<li><strong>好奇钩（主）</strong>：开篇首章即抛身份谜 + 冤案谜——小丫头追问&quot;那个短命姨娘，当真是靳姨娘毒死的吗？&quot;被商嬷嬷厉声打断[第1章]；第2章点明&quot;清圆回府的真实目的非认父，而是查明母亲冤案&quot;[第2章]。<strong>&quot;她到底是不是真凶&quot;&quot;她回府想干什么&quot;双谜驱动点击。</strong></li>
+<li><strong>情绪钩（辅）</strong>：寄人篱下的隐忍共情——穿堂煎药尽孝被冷遇[第1章]、穿湿衣不告状反揽过[第2-3章]、当众挨掌掴[第21章]，让读者&quot;替女主憋屈&quot;，追其一朝翻身。</li>
+<li><strong>爽点钩（前段埋伏）</strong>：四两拨千斤的小反击（借湿衣博老太太添人手[第3章]、以&quot;青梅&quot;设局试探各房[第10章]），给&quot;她不好惹&quot;的预期，吊住爽感。</li>
+<li><strong>续写/仿写用法</strong>：若复刻本书开篇，第一场戏应同时做到——<strong>抛一个&quot;死者/旧案&quot;悬念 + 立一个&quot;被轻贱却隐忍有谋&quot;的女主 + 给一处小胜利</strong>，三钩齐发。</li>
+</ul>
+<h2>十、核心梗 + 创新点</h2>
+<p><strong>核心梗（旧套路）</strong>：</p>
+<ol>
+<li>庶女宅斗复仇（隐忍庶女智斗嫡母、母案翻身）</li>
+<li>权臣甜宠（男主以权势与痴情护落难女主）</li>
+<li>伪善嫡母 + 被冤生母的宅门悬案</li>
+</ol>
+<p><strong>创新点（旧元素的新组合）</strong>：</p>
+<ul>
+<li><strong>复仇 ≠ 斗赢宅斗，而是&quot;翻一桩被家族集体掩埋的旧案&quot;</strong>：真凶是一直对女主&quot;怜爱示善&quot;的嫡母[第3、12章]，帮凶竟是亲父（吞产、撵母、知情不究）[第84、94章]——<strong>施害者即最亲近的人</strong>，家庭伦理的背叛感远胜一般宅斗。</li>
+<li><strong>男主是&quot;准反派式&quot;权臣</strong>：不避其狠（刑堂酷刑[第34章]、勒索[第62章]、设局[第71章]、诱杀[第102章]），男女主关系是&quot;斗智式互撩&quot;而非纯宠，<strong>张力来自&quot;他既危险又可依赖&quot;</strong>。</li>
+<li><strong>&quot;镇宅&quot;迷信作情节发动机</strong>：把女主塞回凶案现场，一次设定同时造恐怖氛围、埋伏笔、给伪装[第1章][第2章]。</li>
+<li><strong>生命周期判断</strong>：宅斗+庶女复仇为常青赛道，但&quot;母案悬疑×权臣互撩×家族集体作恶&quot;的组合在同类中仍有辨识度；仿写宜在&quot;真凶=示善者&quot;&quot;男主非完人&quot;两处做微创新。</li>
+</ul>
+<h2>十一、阅读蓝图顺序建议（续写/改写时的取阅顺序）</h2>
+<ol>
+<li>本文件（故事概要）——先定调、定卖点、定钩子</li>
+<li><code>07_分卷大纲.md</code>——看主线骨架与因果链、卷末钩子</li>
+<li>人物设定集·主角 / 配角——立人（男女主+主要反派）</li>
+<li>人物关系网——理清阵营与恩怨</li>
+<li><code>09_支线地图.md</code>——各线起承转合与交汇</li>
+<li>伏笔规划表——回收&quot;母案/玉佩/婚约&quot;等长线</li>
+<li>情绪曲线——对照&quot;该给什么情绪了&quot;</li>
+<li>感情线进度 / 谜题与诡计——专项推进</li>
+</ol>
+<hr>
+<p><em>（本文件仅覆盖&quot;故事概要&quot;维度；剧情脉络见 <code>07_分卷大纲.md</code>，支线拆分见 <code>09_支线地图.md</code>。）</em></p>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兰香缘 · 拆解总览</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(255,255,255,0.08);--card:#111016;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:60px 60px;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 60% 0%,rgba(201,169,97,0.06),transparent 70%);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:48px 32px 80px;}
+
+/* 顶部书籍介绍 */
+.hero{text-align:center;padding-bottom:30px;border-bottom:1px solid var(--line);}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:6px;line-height:1.2;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero .meta{font-size:14px;color:#bbb;margin-top:14px;letter-spacing:1px;font-weight:300;}
+.hero .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.pill{font-size:12px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(201,169,97,0.4);
+  border-radius:16px;padding:5px 15px;background:rgba(201,169,97,0.05);white-space:nowrap;}
+.hero .logline{font-size:14px;color:#bbb;line-height:1.9;margin:18px auto 0;max-width:760px;font-weight:300;}
+
+/* Tab 栏 */
+.tabs{display:flex;justify-content:center;gap:48px;margin:28px 0 0;position:relative;}
+.tab{font-size:18px;letter-spacing:4px;color:#888;cursor:pointer;padding:14px 4px;font-weight:500;
+  background:none;border:none;font-family:inherit;transition:color 0.2s;position:relative;}
+.tab:hover{color:#ccc;}
+.tab.active{color:var(--gold2);font-weight:700;}
+.tab.active::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:var(--gold);}
+.tabs-line{height:1px;background:var(--line);margin-top:-1px;}
+
+/* 面板 */
+.panel{display:none;margin-top:34px;}
+.panel.show{display:block;animation:fade 0.3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* 卡片网格（蓝图/台账）PC 4列 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.card{display:flex;flex-direction:column;justify-content:space-between;min-height:116px;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;
+  text-decoration:none;transition:all 0.2s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background 0.2s;}
+.card:hover{border-color:rgba(201,169,97,0.45);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+.card:hover::before{background:var(--gold);}
+.card-num{font-size:30px;font-weight:900;color:var(--gold);line-height:1;opacity:0.9;}
+.card-name{font-size:15px;color:#eee;font-weight:500;margin-top:14px;letter-spacing:0.5px;}
+
+/* 章卡列表 PC 2列 */
+.ch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.ch-item{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;padding:15px 18px;text-decoration:none;transition:all 0.2s;}
+.ch-item:hover{border-color:rgba(201,169,97,0.4);background:rgba(201,169,97,0.04);}
+.ch-item .n{font-size:13px;color:var(--gold);opacity:0.55;font-weight:700;min-width:34px;}
+.ch-item .t{font-size:14px;color:#ddd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ch-more{text-align:center;margin-top:22px;}
+.ch-more button{background:none;border:1px solid rgba(201,169,97,0.35);color:var(--gold2);
+  font-size:14px;letter-spacing:2px;padding:10px 34px;border-radius:24px;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.ch-more button:hover{background:rgba(201,169,97,0.1);border-color:rgba(201,169,97,0.6);}
+
+.empty{text-align:center;color:#777;font-size:14px;padding:50px 0;}
+
+/* SKILL 面板 */
+.skill-h{font-size:clamp(20px,3vw,26px);font-weight:900;letter-spacing:2px;text-align:center;margin:6px 0 24px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.mode{display:flex;align-items:flex-start;gap:22px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:24px 26px;margin-bottom:14px;transition:all .2s;}
+.mode:hover{border-color:rgba(201,169,97,0.4);transform:translateY(-2px);}
+.mode .glyph{flex:0 0 auto;text-align:center;min-width:48px;}
+.mode .glyph .zi{font-size:40px;font-weight:900;color:var(--gold2);line-height:1;}
+.mode .glyph .lv{font-size:13px;color:#8a8a8a;letter-spacing:1px;margin-top:6px;}
+.mode .txt{font-size:14px;color:#c9c7c4;line-height:1.95;padding-left:22px;border-left:1px solid rgba(255,255,255,0.08);font-weight:300;}
+
+.skill-refs{margin-top:30px;padding-top:24px;border-top:1px solid var(--line);}
+.skill-refs .rh{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;}
+.skill-refs .rg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.skill-refs .r{display:flex;align-items:baseline;gap:10px;background:var(--card);border:1px solid var(--line);
+  border-radius:9px;padding:12px 14px;}
+.skill-refs .r .n{font-size:11px;color:var(--gold);opacity:.6;font-weight:700;min-width:20px;}
+.skill-refs .r .t{font-size:13px;color:#ddd;}
+.skill-refs .stat{font-size:12px;color:#8a8a8a;margin-top:16px;letter-spacing:1px;}
+.skill-refs .stat b{color:var(--gold2);font-weight:700;}
+
+/* 响应式 */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .ch-list{grid-template-columns:1fr;}
+  .tabs{gap:28px;}
+  .wrap{padding:32px 18px 60px;}
+  .skill-refs .rg{grid-template-columns:repeat(2,1fr);}
+  .mode{gap:16px;padding:20px;}
+  .mode .txt{padding-left:16px;}
+}
+@media(max-width:480px){
+  .tab{font-size:16px;letter-spacing:2px;}
+  .tabs{gap:18px;}
+}
+.shelf-back{position:sticky;top:0;z-index:900;display:flex;align-items:center;background:rgba(8,8,12,0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 24px;}.shelf-back a{color:#c9a961;text-decoration:none;font-size:13px;letter-spacing:1px;font-weight:600;transition:opacity .2s;}.shelf-back a:hover{opacity:.72;}.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="shelf-back"><a href="../index.html">← 返回书架</a></div>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="wrap">
+  <div class="hero">
+    <h1>兰香缘</h1>
+    <div class="meta">作者 · 禾晏山　·　355章　·　约112.3万字</div>
+    <div class="pills"><span class="pill">重生</span><span class="pill">宅斗</span><span class="pill">种田经营</span><span class="pill">言情</span><span class="pill">权谋</span></div>
+    <div class="logline">首辅孙女重生为家生丫鬟，在林府宅斗中以画技谋生、历经四朵桃花，从泼辣防备蜕变为慈悲宽厚，终获正名圆满。</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="bp">蓝　图</button>
+    <button class="tab" data-panel="lg">台　账</button>
+    <button class="tab" data-panel="ch">章　卡</button>
+    <button class="tab" data-panel="sk">SKILL</button>
+  </div>
+  <div class="tabs-line"></div>
+
+  <div class="panel show" id="panel-bp">
+    <div class="grid"><a class="card" href="蓝图/01_%E6%95%85%E4%BA%8B%E6%A6%82%E8%A6%81.html">
+      <div class="card-num">01</div>
+      <div class="card-name">故事概要</div>
+   </a>
+<a class="card" href="蓝图/02_%E6%A0%B8%E5%BF%83%E8%AE%BE%E5%AE%9A_%E9%87%8D%E7%94%9F.html">
+      <div class="card-num">02</div>
+      <div class="card-name">核心设定·重生</div>
+   </a>
+<a class="card" href="蓝图/03_%E4%B8%96%E7%95%8C%E8%A7%82%E8%AE%BE%E5%AE%9A%E9%9B%86.html">
+      <div class="card-num">03</div>
+      <div class="card-name">世界观设定集</div>
+   </a>
+<a class="card" href="蓝图/04_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86_%E4%B8%BB%E8%A7%92.html">
+      <div class="card-num">04</div>
+      <div class="card-name">人物设定集·主角</div>
+   </a>
+<a class="card" href="蓝图/05_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86_%E9%85%8D%E8%A7%92.html">
+      <div class="card-num">05</div>
+      <div class="card-name">人物设定集·配角</div>
+   </a>
+<a class="card" href="蓝图/06_%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E7%BD%91.html">
+      <div class="card-num">06</div>
+      <div class="card-name">人物关系网</div>
+   </a>
+<a class="card" href="蓝图/07_%E5%88%86%E5%8D%B7%E5%A4%A7%E7%BA%B2.html">
+      <div class="card-num">07</div>
+      <div class="card-name">分卷大纲</div>
+   </a>
+<a class="card" href="蓝图/08_%E6%97%B6%E9%97%B4%E7%BA%BF.html">
+      <div class="card-num">08</div>
+      <div class="card-name">时间线</div>
+   </a>
+<a class="card" href="蓝图/09_%E6%94%AF%E7%BA%BF%E5%9C%B0%E5%9B%BE.html">
+      <div class="card-num">09</div>
+      <div class="card-name">支线地图</div>
+   </a>
+<a class="card" href="蓝图/10_%E4%BC%8F%E7%AC%94%E8%A7%84%E5%88%92%E8%A1%A8.html">
+      <div class="card-num">10</div>
+      <div class="card-name">伏笔规划表</div>
+   </a>
+<a class="card" href="蓝图/11_%E6%83%85%E7%BB%AA%E6%9B%B2%E7%BA%BF.html">
+      <div class="card-num">11</div>
+      <div class="card-name">情绪曲线</div>
+   </a>
+<a class="card" href="蓝图/12_%E6%84%8F%E8%B1%A1%E7%AC%A6%E5%8F%B7.html">
+      <div class="card-num">12</div>
+      <div class="card-name">意象符号</div>
+   </a>
+<a class="card" href="蓝图/13_%E8%84%B1%E7%B1%8D%E8%B0%8B%E7%94%9F%E7%BA%BF.html">
+      <div class="card-num">13</div>
+      <div class="card-name">脱籍谋生线</div>
+   </a>
+<a class="card" href="蓝图/14_%E9%98%B5%E8%90%A5%E5%8D%9A%E5%BC%88.html">
+      <div class="card-num">14</div>
+      <div class="card-name">阵营博弈</div>
+   </a>
+<a class="card" href="蓝图/15_%E6%84%9F%E6%83%85%E7%BA%BF%E8%BF%9B%E5%BA%A6.html">
+      <div class="card-num">15</div>
+      <div class="card-name">感情线进度</div>
+   </a>
+<a class="card" href="蓝图/16_%E5%86%99%E4%BD%9C%E9%A3%8E%E6%A0%BC.html">
+      <div class="card-num">16</div>
+      <div class="card-name">写作风格</div>
+   </a></div>
+  </div>
+
+  <div class="panel" id="panel-lg">
+    <div class="grid"><a class="card" href="台账/CP%E4%BA%92%E5%8A%A8%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">01</div>
+      <div class="card-name">CP互动台账</div>
+   </a>
+<a class="card" href="台账/%E4%BA%BA%E7%89%A9%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">02</div>
+      <div class="card-name">人物台账</div>
+   </a>
+<a class="card" href="台账/%E4%BC%8F%E7%AC%94%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">03</div>
+      <div class="card-name">伏笔台账</div>
+   </a>
+<a class="card" href="台账/%E5%85%B3%E7%B3%BB%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">04</div>
+      <div class="card-name">关系台账</div>
+   </a>
+<a class="card" href="台账/%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">05</div>
+      <div class="card-name">时间线台账</div>
+   </a>
+<a class="card" href="台账/%E8%84%B1%E7%B1%8D%E7%BB%8F%E8%90%A5%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">06</div>
+      <div class="card-name">脱籍经营台账</div>
+   </a>
+<a class="card" href="台账/%E9%98%B5%E8%90%A5%E5%8D%9A%E5%BC%88%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">07</div>
+      <div class="card-name">阵营博弈台账</div>
+   </a></div>
+  </div>
+
+  <div class="panel" id="panel-ch">
+    <div class="ch-list" id="chList"></div><div class="ch-more" id="chMore"></div>
+  </div>
+
+  <div class="panel" id="panel-sk">
+    <div class="skill-h">将一本书蒸馏为一套可执行 skill</div>
+    <div class="mode"><div class="glyph"><div class="zi">学</div><div class="lv">Lv.1</div></div><div class="txt">把这本书的手法与风格当教材，讲解、拆例、练习，摸清它“为什么这样写”。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">续</div><div class="lv">Lv.2</div></div><div class="txt">承接原作的人物、伏笔与节奏语感，续写番外、if 线或未尽的支线，写得像、接得上。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">改</div><div class="lv">Lv.3</div></div><div class="txt">改动前先评估对伏笔、人设、时间线的牵连，换结局、改走向，改完仍前后自洽。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">造</div><div class="lv">Lv.4</div></div><div class="txt">迁移这本书的结构与手法，脱离原作，创作一部完全属于自己的同类长篇。</div></div>
+    <div class="skill-refs">
+      <div class="rh">招式库 · references（15 份）</div>
+      <div class="rg">
+      <div class="r"><span class="n">01</span><span class="t">故事设计</span></div>
+      <div class="r"><span class="n">02</span><span class="t">设定设计</span></div>
+      <div class="r"><span class="n">03</span><span class="t">世界观</span></div>
+      <div class="r"><span class="n">04</span><span class="t">人物设计</span></div>
+      <div class="r"><span class="n">05</span><span class="t">大纲结构</span></div>
+      <div class="r"><span class="n">06</span><span class="t">时间线</span></div>
+      <div class="r"><span class="n">07</span><span class="t">支线</span></div>
+      <div class="r"><span class="n">08</span><span class="t">伏笔</span></div>
+      <div class="r"><span class="n">09</span><span class="t">正文写作</span></div>
+      <div class="r"><span class="n">10</span><span class="t">文风模板</span></div>
+      <div class="r"><span class="n">11</span><span class="t">情绪设计</span></div>
+      <div class="r"><span class="n">12</span><span class="t">意象</span></div>
+      <div class="r"><span class="n">13</span><span class="t">脱籍谋生</span></div>
+      <div class="r"><span class="n">16</span><span class="t">阵营</span></div>
+      <div class="r"><span class="n">18</span><span class="t">感情线</span></div>
+      </div>
+      <div class="stat">已绑定拆解数据：<b>16</b> 蓝图 · <b>7</b> 台账 · <b>64</b> 章卡　（随 skill 打包，自包含、不需原文）</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab 切换（支持 URL hash，如 index.html#sk 直接打开 SKILL）
+function showTab(id){
+  var t=document.querySelector('.tab[data-panel="'+id+'"]');
+  if(!t)return;
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('show');});
+  t.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('show');
+}
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    showTab(t.dataset.panel);
+    if(history.replaceState)history.replaceState(null,'','#'+t.dataset.panel);
+  });
+});
+(function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+})();
+window.addEventListener('hashchange',function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+});
+
+// 章卡列表（默认前 10 条，可展开全部）
+var CH=[
+{n:"01",t:"第001-005章_重生立威决意进府",f:"单元01_第001-005章_重生立威决意进府.html"},
+{n:"02",t:"第006-009章_落脚罗雪坞妻妾撞胎案",f:"单元02_第006-009章_落脚罗雪坞妻妾撞胎案.html"},
+{n:"03",t:"第010-014章_送礼定策大房归来",f:"单元03_第010-014章_送礼定策大房归来.html"},
+{n:"04",t:"第015-018章_宋柯首现反转汀兰争锋",f:"单元04_第015-018章_宋柯首现反转汀兰争锋.html"},
+{n:"05",t:"第019-024章_双桃花初见曹送信风波",f:"单元05_第019-024章_双桃花初见曹送信风波.html"},
+{n:"06",t:"第025-030章_训女发威搬家毒计寿筵",f:"单元06_第025-030章_训女发威搬家毒计寿筵.html"},
+{n:"07",t:"第031-037章_桃汁案四顺儿事发曹被逐",f:"单元07_第031-037章_桃汁案四顺儿事发曹被逐.html"},
+{n:"08",t:"第038-044章_知春馆新日常林锦楼暗示",f:"单元08_第038-044章_知春馆新日常林锦楼暗示.html"},
+{n:"09",t:"第045-050章_探亲前世诗烫伤赵送琼脂",f:"单元09_第045-050章_探亲前世诗烫伤赵送琼脂.html"},
+{n:"10",t:"第051-054章_画眉捧杀诗社筹备宋柯遥望",f:"单元10_第051-054章_画眉捧杀诗社筹备宋柯遥望.html"},
+{n:"11",t:"第055-060章_诗社一至六",f:"单元11_第055-060章_诗社一至六.html"},
+{n:"12",t:"第061-066章_林锦楼书房调戏赵回娘家离间",f:"单元12_第061-066章_林锦楼书房调戏赵回娘家离间.html"},
+{n:"13",t:"第067-072章_靶子整顿发落哭求",f:"单元13_第067-072章_靶子整顿发落哭求.html"},
+{n:"14",t:"第073-078章_祸起魂断息事牵连挨打",f:"单元14_第073-078章_祸起魂断息事牵连挨打.html"},
+{n:"15",t:"第079-084章_私会脱困宋家养病芳丝",f:"单元15_第079-084章_私会脱困宋家养病芳丝.html"},
+{n:"16",t:"第085-090章_宋家日常四桃花夏芸",f:"单元16_第085-090章_宋家日常四桃花夏芸.html"},
+{n:"17",t:"第091-098章_冲突芳丝自尽香兰交底",f:"单元17_第091-098章_冲突芳丝自尽香兰交底.html"},
+{n:"18",t:"第099-100章_宋柯犹豫贵客郑静娴",f:"单元18_第099-100章_宋柯犹豫贵客郑静娴.html"},
+{n:"19",t:"第101-105章_宋柯表白进京·林锦楼凯旋",f:"单元19_第101-105章_宋柯表白进京·林锦楼凯旋.html"},
+{n:"20",t:"第106-111章_外室偷欢·撞破和离·太子暗渡",f:"单元20_第106-111章_外室偷欢·撞破和离·太子暗渡.html"},
+{n:"21",t:"第112-117章_登门拒妾·脱籍放良·宋柯归来正娶",f:"单元21_第112-117章_登门拒妾·脱籍放良·宋柯归来正娶.html"},
+{n:"22",t:"第118-123章_愁肠抉择·宋柯订亲·香兰决别·夏家作客",f:"单元22_第118-123章_愁肠抉择·宋柯订亲·香兰决别·夏家作客.html"},
+{n:"23",t:"第124-128章_糊弄金马·银蝶诽谤·夏芸辱名",f:"单元23_第124-128章_糊弄金马·银蝶诽谤·夏芸辱名.html"},
+{n:"24",t:"第129-132章_遇故无赖·相告相救·林锦楼救父",f:"单元24_第129-132章_遇故无赖·相告相救·林锦楼救父.html"},
+{n:"24",t:"b_第133-137章_报应四段·曹银覆灭·香兰再入林府",f:"单元24b_第133-137章_报应四段·曹银覆灭·香兰再入林府.html"},
+{n:"25",t:"第138-143章_鸾儿较劲·圆房·设宴对峙",f:"单元25_第138-143章_鸾儿较劲·圆房·设宴对峙.html"},
+{n:"26",t:"第144-149章_药膏哭闹·敬茶开打·林锦楼搬回",f:"单元26_第144-149章_药膏哭闹·敬茶开打·林锦楼搬回.html"},
+{n:"27",t:"第150-156章_共处圆房·平静作画·秦氏松口",f:"单元27_第150-156章_共处圆房·平静作画·秦氏松口.html"},
+{n:"28",t:"第157-160章_接风唱曲·鸾儿绝望·白日行房",f:"单元28_第157-160章_接风唱曲·鸾儿绝望·白日行房.html"},
+{n:"29",t:"第161-165章_婚礼见闻·窥视偷情·画眉暗算",f:"单元29_第161-165章_婚礼见闻·窥视偷情·画眉暗算.html"},
+{n:"30",t:"第166-170章_家中吐苦·子嗣艰难·鸾儿伤风·孔雀屏风",f:"单元30_第166-170章_家中吐苦·子嗣艰难·鸾儿伤风·孔雀屏风.html"},
+{n:"31",t:"第171-176章_夜访发怒·掐脖·崔道姑·口舌大和",f:"单元31_第171-176章_夜访发怒·掐脖·崔道姑·口舌大和.html"},
+{n:"32",t:"第177-179章_相处日常·孔雀屏风·画眉暗算",f:"单元32_第177-179章_相处日常·孔雀屏风·画眉暗算.html"},
+{n:"33",t:"第180-184章_符咒五段·画眉暗算爆发·秦氏搜查",f:"单元33_第180-184章_符咒五段·画眉暗算爆发·秦氏搜查.html"},
+{n:"34",t:"第185-189章_符咒结局·鸾儿撞墙·画眉降格·香兰洗清",f:"单元34_第185-189章_符咒结局·鸾儿撞墙·画眉降格·香兰洗清.html"},
+{n:"35",t:"第190-193章_夜谈三段·铺路·秦氏接纳",f:"单元35_第190-193章_夜谈三段·铺路·秦氏接纳.html"},
+{n:"36",t:"第194-199章_花厅见面·紫黛入馆·忍字当头",f:"单元36_第194-199章_花厅见面·紫黛入馆·忍字当头.html"},
+{n:"37",t:"第200-205章_洗脚水·书染回归·痘疫鹦哥亡·画眉离府",f:"单元37_第200-205章_洗脚水·书染回归·痘疫鹦哥亡·画眉离府.html"},
+{n:"38",t:"第206-210章_栖霞寺大劫·香兰敲钟救母·失踪",f:"单元38_第206-210章_栖霞寺大劫·香兰敲钟救母·失踪.html"},
+{n:"39",t:"第211-215章_客栈真相·堂审惩戒·林东绫除名",f:"单元39_第211-215章_客栈真相·堂审惩戒·林东绫除名.html"},
+{n:"40",t:"第216-220章_旧人暴露·虎穴纷乱·林锦楼救香兰",f:"单元40_第216-220章_旧人暴露·虎穴纷乱·林锦楼救香兰.html"},
+{n:"41",t:"第221-225章_追问病愈·庭院逛园·袁绍仁惊",f:"单元41_第221-225章_追问病愈·庭院逛园·袁绍仁惊.html"},
+{n:"42",t:"第226-231章_见客绣楼·回金陵·抬姨娘",f:"单元42_第226-231章_见客绣楼·回金陵·抬姨娘.html"},
+{n:"43",t:"第232-237章_生分各怀·京城讨好·偷听争论",f:"单元43_第232-237章_生分各怀·京城讨好·偷听争论.html"},
+{n:"44",t:"第238-243章_求医问药·晚归·鲁家遇故三方",f:"单元44_第238-243章_求医问药·晚归·鲁家遇故三方.html"},
+{n:"45",t:"第244-248章_遇故终章·宋柯问身世·醉后爆发",f:"单元45_第244-248章_遇故终章·宋柯问身世·醉后爆发.html"},
+{n:"46",t:"第249-254章_书房身世·荷包误会·中馈操持",f:"单元46_第249-254章_书房身世·荷包误会·中馈操持.html"},
+{n:"47",t:"第255-259章_博浪偷情·帕子酷似·秦氏分寸",f:"单元47_第255-259章_博浪偷情·帕子酷似·秦氏分寸.html"},
+{n:"48",t:"第260-265章_姜家来访·沈嘉莲真相·春菱冲突",f:"单元48_第260-265章_姜家来访·沈嘉莲真相·春菱冲突.html"},
+{n:"49",t:"第266-271章_五女聚书房·琴棋辩论·近远佛语",f:"单元49_第266-271章_五女聚书房·琴棋辩论·近远佛语.html"},
+{n:"50",t:"第272-277章_兰诗社·护膝·玉坠·不甘",f:"单元50_第272-277章_兰诗社·护膝·玉坠·不甘.html"},
+{n:"51",t:"a_第278-280章_府宴展画·莲娘倾诉·私心",f:"单元51a_第278-280章_府宴展画·莲娘倾诉·私心.html"},
+{n:"51",t:"b_第281-284章_吃酒崩溃·秦氏谈判·药毒·嫁祸春菱",f:"单元51b_第281-284章_吃酒崩溃·秦氏谈判·药毒·嫁祸春菱.html"},
+{n:"52",t:"第285-290章_不忍对决·大胆出府·平息",f:"单元52_第285-290章_不忍对决·大胆出府·平息.html"},
+{n:"53",t:"第291-297章_出游六章·小猫·谋反·杀人",f:"单元53_第291-297章_出游六章·小猫·谋反·杀人.html"},
+{n:"54",t:"第298-305章_狰狞对决·香兰杀人·密信撕毁·老太爷",f:"单元54_第298-305章_狰狞对决·香兰杀人·密信撕毁·老太爷.html"},
+{n:"55",t:"第306-313章_病中养伤·敬她就是敬我·送客",f:"单元55_第306-313章_病中养伤·敬她就是敬我·送客.html"},
+{n:"56",t:"第314-319章_完满·痴心·妙之·献画",f:"单元56_第314-319章_完满·痴心·妙之·献画.html"},
+{n:"57",t:"第320-326章_暗潮汹涌·手钏·三重境界",f:"单元57_第320-326章_暗潮汹涌·手钏·三重境界.html"},
+{n:"58",t:"第327-333章_处理家丑·林昭祥训话·失踪",f:"单元58_第327-333章_处理家丑·林昭祥训话·失踪.html"},
+{n:"59",t:"a_第334-339章_思量父子冲突·谋划",f:"单元59a_第334-339章_思量父子冲突·谋划.html"},
+{n:"59",t:"b_第340-343章_绑架冲突·败露·苏媚如结局",f:"单元59b_第340-343章_绑架冲突·败露·苏媚如结局.html"},
+{n:"60",t:"第344-350章_请辞出走·重逢·相处·婚事",f:"单元60_第344-350章_请辞出走·重逢·相处·婚事.html"},
+{n:"61",t:"第351-354章_留脸有孕·袒露·天灯告别",f:"单元61_第351-354章_留脸有孕·袒露·天灯告别.html"}
+];
+var chList=document.getElementById('chList');
+var chMore=document.getElementById('chMore');
+var LIMIT=10, expanded=false;
+function renderCh(){
+  if(!chList)return;
+  var list=expanded?CH:CH.slice(0,LIMIT);
+  chList.innerHTML=list.map(function(c){
+    return '<a class="ch-item" href="章卡/'+encodeURIComponent(c.f)+'"><span class="n">'+c.n+'</span><span class="t">'+c.t+'</span></a>';
+  }).join('');
+  if(CH.length>LIMIT){
+    chMore.innerHTML='<button id="chBtn">'+(expanded?'收起':('查看全部 '+CH.length+' 章 ›'))+'</button>';
+    document.getElementById('chBtn').onclick=function(){expanded=!expanded;renderCh();};
+  }else{chMore.innerHTML='';}
+}
+renderCh();
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="./qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

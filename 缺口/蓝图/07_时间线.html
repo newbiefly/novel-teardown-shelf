@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 时间线（★本书命根子·双时间线交织） · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>07 时间线（★本书命根子·双时间线交织）</h1>
+<blockquote>
+<p>本书双时间线交织叙事，是全书结构的核心。分&quot;过去线（多伦多留学期）&quot;与&quot;现在线（婚姻期→离婚→查真相→复合）&quot;，另附★信息差矩阵（谁在何时知道什么）——信息差是本书虐感与反转的引擎。</p>
+</blockquote>
+<h2>一、过去线（多伦多留学期·按故事内时序）</h2>
+<table>
+<thead>
+<tr>
+<th>序</th>
+<th>事件</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>陈昭家中资产冻结，瞒父母打工攒钱、搬house</td>
+<td>第2/5章</td>
+</tr>
+<tr>
+<td>2</td>
+<td>帮痴呆老人回家；周文宇带江恒进楼，江恒首次留意陈昭</td>
+<td>第2章</td>
+</tr>
+<tr>
+<td>3</td>
+<td>平安夜地铁疯子骚扰，江恒英雄救美</td>
+<td>第3章</td>
+</tr>
+<tr>
+<td>4</td>
+<td>地铁长聊暧昧初生，陈昭喊&quot;圣诞快乐&quot;</td>
+<td>第4章</td>
+</tr>
+<tr>
+<td>5</td>
+<td>跨年夜血汗打工、辞职；江恒授意周文宇邀她聚会</td>
+<td>第5章</td>
+</tr>
+<tr>
+<td>6</td>
+<td>聚会江恒解围/炸金花；江恒赴美陪母被逼回国</td>
+<td>第6-9章</td>
+</tr>
+<tr>
+<td>7</td>
+<td>炸鸡店长谈江恒看透她家境；江恒接父电话/谈医药投资</td>
+<td>第10-11章</td>
+</tr>
+<tr>
+<td>8</td>
+<td>家中被索赔七十万；江恒出主意让她飞纽约谈判</td>
+<td>第12-13章</td>
+</tr>
+<tr>
+<td>9</td>
+<td>陈昭飞纽约谈判成功；江恒帮订房、深夜酒店交心（暗定退缩）</td>
+<td>第14-16章</td>
+</tr>
+<tr>
+<td>10</td>
+<td>陈昭认清阶层鸿沟主动降温；识破周文宇贵重回礼是江恒授意</td>
+<td>第17-18章</td>
+</tr>
+<tr>
+<td>11</td>
+<td>★意餐还房费/公交站台主动疏远诀别——两人错过</td>
+<td>第19章</td>
+</tr>
+<tr>
+<td>12</td>
+<td>错过后各自疗伤；江恒暗中空运零食、支票不兑</td>
+<td>第37章</td>
+</tr>
+<tr>
+<td>13</td>
+<td>江恒发烧，陈昭送药进屋照顾、做烂糊面、黑暗陪他</td>
+<td>第37-39章</td>
+</tr>
+<tr>
+<td>14</td>
+<td>江恒告白被赌气拒→教室追人→中超番茄藤回暖</td>
+<td>第40-42章</td>
+</tr>
+<tr>
+<td>15</td>
+<td>★雪夜车里初吻定情，正式在一起</td>
+<td>第43章</td>
+</tr>
+<tr>
+<td>16</td>
+<td>恋爱甜蜜；陈昭撞见江恒逼母离婚的强势</td>
+<td>第44章</td>
+</tr>
+<tr>
+<td>17</td>
+<td>★第一次亲密圆满</td>
+<td>第45-46章</td>
+</tr>
+<tr>
+<td>18</td>
+<td>（侧写补）此后复合、同居、江恒为她回国、结婚</td>
+<td>回忆</td>
+</tr>
+</tbody></table>
+<h2>二、现在线·婚姻期前因（离婚&quot;之前&quot;·多以回忆/揭示呈现·是离婚的根因）</h2>
+<table>
+<thead>
+<tr>
+<th>序</th>
+<th>事件</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前1</td>
+<td>回国结婚，陈昭管生意/理财，江恒进集团掌权、与父权斗升级</td>
+<td>第53章回忆等</td>
+</tr>
+<tr>
+<td>前2</td>
+<td>江恒被父亲拉入医保骗保泥潭（篡改肿瘤药检测数据、可致坐牢）</td>
+<td>第35章揭示</td>
+</tr>
+<tr>
+<td>前3</td>
+<td>★江亚洲车祸重伤ICU；江恒守夜心软、拒趁机夺权&quot;我是人不是工具&quot;</td>
+<td>第54-55章</td>
+</tr>
+<tr>
+<td>前4</td>
+<td>江亚洲出ICU、当众交权/向龚亦姗忏悔（★病房设局表演·绑炸弹）</td>
+<td>第56/59/62章</td>
+</tr>
+<tr>
+<td>前5</td>
+<td>江恒被设局背刺，为建防火墙隔离陈昭而决定假出轨离婚</td>
+<td>第57章+推断</td>
+</tr>
+<tr>
+<td>前6</td>
+<td>江恒递退休方案逼父交权→江亚洲撕破脸承认设局、喊老徐反扑</td>
+<td>第61-62章</td>
+</tr>
+<tr>
+<td>前7</td>
+<td>江恒反腐清算爪牙烧向江亚洲；支龚亦姗去美国避险、安排后事</td>
+<td>第62/64章</td>
+</tr>
+</tbody></table>
+<h2>三、现在线（离婚→查真相→复合·按故事内时序）</h2>
+<table>
+<thead>
+<tr>
+<th>序</th>
+<th>事件</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>（三月末）撞破温哥华公寓外室、下逐客令；回国提离婚，江恒只认不辩</td>
+<td>第1章</td>
+</tr>
+<tr>
+<td>2</td>
+<td>江恒清晨接江家辱骂电话、主动说&quot;要不你离婚&quot;</td>
+<td>第2章</td>
+</tr>
+<tr>
+<td>3</td>
+<td>离婚后陈昭退租/辞司机/独居；龚亦姗劝挽回被拒</td>
+<td>第20-21章</td>
+</tr>
+<tr>
+<td>4</td>
+<td>江家继母一支内斗；江恒赴家对父道破&quot;不想让她变成我妈&quot;</td>
+<td>第21-22章</td>
+</tr>
+<tr>
+<td>5</td>
+<td>陈昭回家撞见独居喝酒的江恒</td>
+<td>第23章</td>
+</tr>
+<tr>
+<td>6</td>
+<td>★厨房对峙：陈昭跪求&quot;说是误会就和好&quot;，江恒忍痛拒绝、黑暗抱她&quot;我爱你&quot;</td>
+<td>第24章</td>
+</tr>
+<tr>
+<td>7</td>
+<td>邓叔劝何必、江恒拖字诀/给全部财产；周岁宴假扮恩爱、季子扬登场</td>
+<td>第25-26章</td>
+</tr>
+<tr>
+<td>8</td>
+<td>江云飞设局搞李剑峰、江恒强势反杀</td>
+<td>第27章</td>
+</tr>
+<tr>
+<td>9</td>
+<td>陈昭搬离旧家（季子扬帮搬）；电话骂江恒别讨好她妈</td>
+<td>第28-29章</td>
+</tr>
+<tr>
+<td>10</td>
+<td>江亚洲弃江云飞扶江婕；陈昭请季子扬吃饭、江恒嫉妒强吻</td>
+<td>第30-31章</td>
+</tr>
+<tr>
+<td>11</td>
+<td>陈昭扇江恒巴掌摊牌&quot;当朋友尊重&quot;；车里崩溃</td>
+<td>第32章</td>
+</tr>
+<tr>
+<td>12</td>
+<td>江恒吃止疼药硬撑、承认后悔离婚；江婕悟出江恒有软肋</td>
+<td>第33章</td>
+</tr>
+<tr>
+<td>13</td>
+<td>学术会议江恒到场，与陈昭/季子扬同框；江恒失落看她骑行离开</td>
+<td>第34章</td>
+</tr>
+<tr>
+<td>14</td>
+<td>江恒回忆假出轨内情；撞见季子扬约陈昭骑行语音</td>
+<td>第35章</td>
+</tr>
+<tr>
+<td>15</td>
+<td>★因季子扬吃醋、陈昭摘婚戒；第二次黑暗相拥&quot;爱我久一点&quot;，陈昭&quot;后悔遇到你&quot;</td>
+<td>第36章</td>
+</tr>
+<tr>
+<td>16</td>
+<td>陈昭赴法出差认清仍爱江恒；江婕约她</td>
+<td>第47章</td>
+</tr>
+<tr>
+<td>17</td>
+<td>★江婕透露出轨细节、陈昭抓线头起疑；夜跑被撞、母亲逼江恒送医</td>
+<td>第48章</td>
+</tr>
+<tr>
+<td>18</td>
+<td>江恒送医细心照顾、陈昭试探出轨时间、江恒动怒警惕</td>
+<td>第49章</td>
+</tr>
+<tr>
+<td>19</td>
+<td>江恒查封江婕会所护陈昭；刘欣冉透露前男友爸是正亚高管</td>
+<td>第50章</td>
+</tr>
+<tr>
+<td>20</td>
+<td>★陈昭向母亲坦白痛哭；母亲觉离婚&quot;不符合江恒逻辑&quot;起疑</td>
+<td>第51章</td>
+</tr>
+<tr>
+<td>21</td>
+<td>★母亲点破&quot;江恒故意离婚公司有事&quot;，陈昭决意查真相</td>
+<td>第52章</td>
+</tr>
+<tr>
+<td>22</td>
+<td>★陈昭约邓叔逼问出假出轨全部真相（真相对陈昭揭开）</td>
+<td>第53章</td>
+</tr>
+<tr>
+<td>23</td>
+<td>慈善晚宴：季子扬讲学术造假印证设局；江恒吃醋戴项链暧昧回流</td>
+<td>第58-60章</td>
+</tr>
+<tr>
+<td>24</td>
+<td>花园散步看萤火虫；陈昭以&quot;坦诚/可喜欢别人&quot;诀别式刺江恒；江恒差点坦白被打断</td>
+<td>第60-61章</td>
+</tr>
+<tr>
+<td>25</td>
+<td>陈昭还素戒/做面/散步；得知江恒支母去美国避险而恐惧</td>
+<td>第62-63章</td>
+</tr>
+<tr>
+<td>26</td>
+<td>★江恒被送进去；邓叔告知陈昭、托她防范；陈昭抓徐坤儿子线索</td>
+<td>第64章</td>
+</tr>
+<tr>
+<td>27</td>
+<td>★江婕看清江恒被设局、心魔崩塌；陈昭拉拢江婕倒戈</td>
+<td>第65章</td>
+</tr>
+<tr>
+<td>28</td>
+<td>陈昭定&quot;毁你儿子&quot;策略；江婕逼徐坤翻供；邓叔见高寒得暗示；江恒被放出&quot;配不上她&quot;</td>
+<td>第66-67章</td>
+</tr>
+<tr>
+<td>29</td>
+<td>江恒出来独居孤独；龚亦姗/董燕撮合敲打；陈昭旅行疗伤</td>
+<td>第68章</td>
+</tr>
+<tr>
+<td>30</td>
+<td>★车里摊牌：江恒坦白求原谅，陈昭点破&quot;你不信任我&quot;、拒绝复合</td>
+<td>第69章</td>
+</tr>
+<tr>
+<td>31</td>
+<td>江恒天天送花/演奏会偶遇擦腿；陈昭礼貌距离却清晨想念</td>
+<td>第70章</td>
+</tr>
+<tr>
+<td>32</td>
+<td>演奏会强吻示爱、陈昭点破&quot;太自私&quot;；江恒找江婕请教被点破问题</td>
+<td>第71-72章</td>
+</tr>
+<tr>
+<td>33</td>
+<td>★江恒深夜送红薯真诚剖白自省；陈昭心疼牢狱苦流泪</td>
+<td>第73章</td>
+</tr>
+<tr>
+<td>34</td>
+<td>江恒承诺&quot;绝不会有下次&quot;安抚；陈昭动摇让他陪到睡着</td>
+<td>第74章</td>
+</tr>
+<tr>
+<td>35</td>
+<td>★陈昭湖边想通；江恒出差回来做宵夜，两人复合&quot;试试&quot;</td>
+<td>第75章</td>
+</tr>
+<tr>
+<td>36</td>
+<td>★复合后信任重建；邓叔谈信任、告知江亚洲确诊阿兹海默</td>
+<td>第76章</td>
+</tr>
+<tr>
+<td>37</td>
+<td>★大结局：买圣诞树/回娘家跨年/商量养狗；陈昭正式原谅；点题&quot;缺口只有她能填满&quot;</td>
+<td>第77章</td>
+</tr>
+</tbody></table>
+<h2>四、★信息差矩阵（谁在何时知道什么·本书虐感与反转的引擎）</h2>
+<table>
+<thead>
+<tr>
+<th>真相/秘密</th>
+<th>谁知道</th>
+<th>何时（章）</th>
+<th>谁被瞒</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陈昭真实富家女身份（留学时）</td>
+<td>陈昭、其父母</td>
+<td>过去线</td>
+<td>多伦多同学（误以为她打工补贴家用）</td>
+</tr>
+<tr>
+<td>江恒豪门/药厂身份（留学时）</td>
+<td>江恒、周文宇(部分)</td>
+<td>过去线</td>
+<td>陈昭</td>
+</tr>
+<tr>
+<td>过去线江恒逼母与江亚洲离婚</td>
+<td>江恒、龚亦姗</td>
+<td>第44章</td>
+<td>陈昭（怕她同情不细说）</td>
+</tr>
+<tr>
+<td>★假出轨真相=江亚洲设医保骗保局陷害江恒、江恒离婚为保护陈昭</td>
+<td>江恒、邓叔→读者(第35章)→陈昭(第53章)</td>
+<td>第35/53章</td>
+<td>陈昭（第53章前被瞒·全书最大悬念）</td>
+</tr>
+<tr>
+<td>★江亚洲病房交权/和解是设局表演、捏着牵制江恒的东西</td>
+<td>江亚洲→读者(第59/62章)</td>
+<td>第59/62章</td>
+<td>江恒/龚亦姗(一度信以为真)、待清算</td>
+</tr>
+<tr>
+<td>江恒有软肋=陈昭</td>
+<td>江婕(第33章悟)</td>
+<td>第33章</td>
+<td>江恒(不知被盯上)</td>
+</tr>
+<tr>
+<td>陈昭起疑&quot;出轨有假&quot;</td>
+<td>陈昭(第48章抓线头)→查真相</td>
+<td>第48-52章</td>
+<td>江恒(不知她已起疑要查)</td>
+</tr>
+<tr>
+<td>徐坤儿子=刘欣冉前男友(救人突破口)</td>
+<td>陈昭(第66章确认)</td>
+<td>第66章</td>
+<td>刘欣冉(不知被套话)</td>
+</tr>
+<tr>
+<td>★江恒被送进去配合调查</td>
+<td>江恒/邓叔/陈昭/江婕</td>
+<td>第64章</td>
+<td>外界(只知去配合调查)</td>
+</tr>
+<tr>
+<td>★江亚洲确诊阿兹海默</td>
+<td>江恒/邓叔/江家</td>
+<td>第76章</td>
+<td>— (反派落幕·遗忘母题)</td>
+</tr>
+</tbody></table>
+<h2>五、信息差=爽感/虐感来源（创作提示）</h2>
+<ul>
+<li>★本书最大的信息差是&quot;江恒假出轨的真相&quot;：读者第35章就知情（对江恒的痛与深情了然），而女主陈昭到第53章才知——中间近20章，读者眼睁睁看着&quot;无辜深情的男主被误解、看着女主痛苦决绝&quot;，虐感被这个信息差放大到极致（&quot;我知道他是好的，可她不知道&quot;）。</li>
+<li>女主查真相的过程（第48-53章）是信息差逐步收窄的悬疑推进，抓线头→起疑→母亲点破→逼问揭底，节奏紧凑。</li>
+<li>续写/仿写要诀：<strong>用&quot;读者先知、当事人后知&quot;的信息差制造虐感与代入的揪心</strong>；反转揭开的时机要卡在情感最痛处（跪求被拒之后、女主决绝之时）。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

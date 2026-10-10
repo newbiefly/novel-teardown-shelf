@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13 视角分配表 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>13 视角分配表</h1>
+<blockquote>
+<p>逐章统计叙事视角（POV），归纳视角运用规律——谁的眼睛在看、为什么这样切。<br>基于全书99章（第2-100章）&quot;视角标注&quot;字段归纳。</p>
+</blockquote>
+<h2>一、视角基调：第三人称限知·多视角流转</h2>
+<p>本书通篇<strong>第三人称限知视角</strong>，但<strong>频繁在人物间切换</strong>（一章内常2-4个视角流转），核心目的是<strong>服务信息差</strong>——通过&quot;让读者跟着谁的眼睛看&quot;来控制读者知道多少：</p>
+<ul>
+<li>跟周幸视角=读者站在布局者一侧，看她如何算计（但她的底牌仍藏着）</li>
+<li>跟对手视角（齐煊/崔慧/赵执/皇帝）=读者体验&quot;被布局&quot;的震撼与反转</li>
+<li>跟陆酌光视角=读者窥见他的身世与深情</li>
+</ul>
+<h2>二、主要视角人物及其功能</h2>
+<table>
+<thead>
+<tr>
+<th>视角人物</th>
+<th>承担功能</th>
+<th>典型章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>周幸</strong></td>
+<td>布局主视角，展示谋略推进（但保留底牌）</td>
+<td>10/16/17/40/43/78/89/90</td>
+</tr>
+<tr>
+<td><strong>陆酌光</strong></td>
+<td>身世揭底、深情外化、杀手视角</td>
+<td>30/38/58/64/93</td>
+</tr>
+<tr>
+<td><strong>齐煊</strong></td>
+<td>被引入同盟、夺位、&quot;被布局者&quot;的震撼</td>
+<td>12/36/42/67/70/82</td>
+</tr>
+<tr>
+<td><strong>崔慧</strong></td>
+<td>中立观察者→被收编，权斗视角</td>
+<td>9/71/72/88/91</td>
+</tr>
+<tr>
+<td><strong>李言归</strong></td>
+<td>敌方视角、恩义纠葛、旁观陆酌光</td>
+<td>57/58/84/87/99</td>
+</tr>
+<tr>
+<td><strong>赵执</strong></td>
+<td>反派内心、身世悲怆（后期重头）</td>
+<td>66/78/96/99</td>
+</tr>
+<tr>
+<td><strong>皇帝齐宥</strong></td>
+<td>昏君视角、被架空的过程</td>
+<td>45/91/92/98</td>
+</tr>
+<tr>
+<td><strong>配角短视角</strong></td>
+<td>邹业/严寿/陶缨/袁察/雪晴/万斌/云宗鸣等，补全信息或制造悲情</td>
+<td>14/22/24/54/55</td>
+</tr>
+</tbody></table>
+<h2>三、视角运用的四种手法</h2>
+<h3>手法1：多线交叉·同一时段并置（制造全景张力）</h3>
+<p>一章切多个视角，把同时发生的多条线并置。</p>
+<ul>
+<li>[第9章]四线交叉：崔慧（审王地主）+齐煊（守灵回忆）+赵恪房中密谈+周幸（揭真身&quot;少主&quot;）——<strong>四条线收束于&quot;少主&quot;揭底</strong></li>
+<li>[第15章]六视角流转：县衙群戏→赵恪崔慧对峙→陆酌光→冯宗周幸→齐煊崔慧→叶嵘禀报</li>
+<li>[第85章]三线切换：赵府（李言归/赵执）→陆酌光背孩子→周幸金玉坊——<strong>在陆背刺瞬间收束</strong></li>
+</ul>
+<h3>手法2：反派/被布局者视角（制造反转的&quot;受骗体验&quot;）</h3>
+<p>关键反转章故意用&quot;被骗一方&quot;的视角，让读者和他一起被震撼。</p>
+<ul>
+<li>[第67章]全程齐煊视角：跟着他体验&quot;接船功败垂成&quot;的绝望落泪 → [第68章]才揭&quot;计中之计&quot;翻盘 —— <strong>先用受害视角酿足绝望，再反转</strong></li>
+<li>[第91章]皇帝视角：跟着他拆底簿、见调用记录&quot;肝胆俱裂瘫坐&quot; —— 用反派的崩溃演绎实锤的分量</li>
+<li>[第75章]穿插秦焕迷醉视角：读者跟着他&quot;痴醉吐真言&quot;，再切他清醒后&quot;惊觉中计&quot;</li>
+</ul>
+<h3>手法3：单人沉浸视角（承载身世与情感重头戏）</h3>
+<p>身世揭底、情感高潮章用单一视角深潜，情绪浓度最高。</p>
+<ul>
+<li>[第38章]全程陆酌光视角：老陆身世回忆+梦醒觉醒——泪点</li>
+<li>[第43章]周幸视角为主：塞北抢头颅回忆+医堂一吻——虐+甜</li>
+<li>[第36章]齐煊视角为主：验诏+痛哭念&quot;老师&quot;——泪</li>
+<li>[第96章]后半大段赵执视角：14岁人肉汤记忆引爆——全书最惨身世</li>
+</ul>
+<h3>手法4：配角短视角开篇（制造悬念或悲情）</h3>
+<p>用配角视角起笔，再切主线。</p>
+<ul>
+<li>[第2章]李言归视角开篇（调卷宗）→冯宗→群戏</li>
+<li>[第14章]邹业视角（遇害前奏）→周幸→陆酌光杀人全知</li>
+<li>[第24章]陶缨大段回忆视角→切当下多视角——酿足悲情</li>
+<li>[第54章]云宗鸣（受诈）+万斌（劫船）+袁察（托孤）多配角视角轮转</li>
+</ul>
+<h2>四、视角与信息差的配合规律（本书精髓）</h2>
+<p><strong>核心规律：视角选择 = 信息差控制器</strong></p>
+<ol>
+<li><strong>藏底牌时用周幸视角，但只给&quot;她在做&quot;不给&quot;她全想&quot;</strong>：读者看周幸布局的动作，却猜不透最终目的（如三船调包，跟她视角却直到第68章才懂）。</li>
+<li><strong>要制造反转时，切到&quot;被骗者&quot;视角</strong>：让读者和齐煊一起绝望（67章）、和皇帝一起崩溃（91章），反转来时冲击翻倍。</li>
+<li><strong>要揭身世/煽情时，单人沉浸深潜</strong>：陆酌光/赵执/齐煊的身世都用其本人视角深挖，情绪最浓。</li>
+<li><strong>要全景展示大场面时，多视角流转</strong>：戏台连环揭底、劫船、皇城决战都用多视角并置，营造群像史诗感。</li>
+</ol>
+<h2>五、视角设计的独特之处（供仿写）</h2>
+<ol>
+<li><strong>反派视角占比高且深</strong>：赵执（66/78/96/99）、皇帝（45/91/92）都有大段自视角，尤其赵执的身世悲怆用其本人视角呈现，让反派&quot;立得住、恨不起来&quot;——这是本书群像质感的关键。</li>
+<li><strong>&quot;跟错视角&quot;的叙事诡计</strong>：第67章让读者全程跟齐煊相信&quot;失败了&quot;，是叙事层面的&quot;误导&quot;（配合谜题M94/M95），第68章才翻盘——<strong>用视角本身骗读者</strong>。</li>
+<li><strong>周幸视角的&quot;留白&quot;</strong>：即使跟着女主视角，作者也刻意不写她的全盘计划，只写她的动作和只言片语，把&quot;她到底想干什么&quot;的悬念留到揭晓——<strong>限知视角用到极致</strong>。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

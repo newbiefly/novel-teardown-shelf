@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03 人物设定集·主角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>03 人物设定集·主角</h1>
+<hr>
+<h2>一、陈昭（女主）</h2>
+<h3>基础设定（不变核心）</h3>
+<ul>
+<li><strong>姓名</strong>：陈昭（&quot;昭&quot;=明亮，与江家&quot;暗处&quot;的江婕形成对照）[第6章]</li>
+<li><strong>身世</strong>：家具外贸生意家庭独女；家境殷实（隐藏富家女），但非顶级豪门，缺社会资源。父亲陈志川、母亲董燕经营家具厂/外贸。[第2/10/12章]</li>
+<li><strong>外貌</strong>：高挑白皙、锁骨精致、有线条感；爱穿白衬衫/真丝裙，随性利落而高贵。[第20/32/59章]</li>
+<li><strong>欲望</strong>：过得舒适自在、精神愉悦；要&quot;相互信任、共同面对&quot;的亲密关系（不慕财富/权力）。</li>
+<li><strong>恐惧</strong>：失去至亲的陪伴；被辜负信任；成为&quot;不食肉糜&quot;的人。</li>
+<li><strong>信念/准则</strong>：靠自己得到才踏实；情义至上（不能共苦也不背后捅刀）；不慕虚荣、会算账但看淡财富；对人有真心但谨慎。</li>
+<li><strong>技能</strong>：经商谈判（首次谈判即减赔大半）、理财投资（管家庭资产得心应手）、社交（让人舒服、维护人脉）、英语、钢琴（幼时学）。[第15/25/53章]</li>
+<li><strong>信物</strong>：番茄前调香水（江恒送）、钻石手链（母亲买）。</li>
+</ul>
+<h3>性格标签（核心）</h3>
+<ul>
+<li><strong>主标签：清醒决断的&quot;隐藏富家女&quot;</strong>——她果断决绝有棱角（撞破出轨当场提离婚不拖泥带水[第1章]、被无理刁难当场辞职[第5章]），却又通透不慕虚荣（打工不占便宜、离婚净身出户不贪股份[第21章]）。行为佐证：救江恒时决断力爆表&quot;他要毁掉江恒，我就毁掉他的儿子&quot;[第66章]。</li>
+<li><strong>辅标签1：苦中作乐的乐天派</strong>——遇事先吃饱、用冷幽默消解痛苦（&quot;熊来了装死&quot;[第40章]、&quot;进减肥营还能拿钱&quot;[第2章]）。</li>
+<li><strong>辅标签2：赤诚重情义</strong>——对人有真心、记恩情、&quot;情义重到他有事都会帮他&quot;[第53章]；&quot;记吃不记打&quot;、容易放过自己和别人[第75章]。</li>
+<li><strong>反差点</strong>：对外人礼貌得体、界限分明、让人舒服；唯独对最亲近的人（母亲/江恒）才有小脾气、会撒娇、会崩溃大哭——外壳通透强大，内里柔软依赖。[第29/49章]</li>
+</ul>
+<h3>人物阶段卡</h3>
+<ul>
+<li><strong>阶段1·多伦多打工女（过去线前期）</strong>：家中资产冻结，瞒父母打工攒钱、搬house省钱；隐藏富家女身份、不占人便宜、要强。心境：苦中作乐、独立要强。[第2/5章]</li>
+<li><strong>阶段2·恋爱中的她（过去线后期）</strong>：与江恒相恋、依赖他、瞒着妈妈（&quot;背叛感&quot;）；首次商战历练（纽约谈判）建立自信。心境：从独立到甜蜜依赖、初露经商天赋。[第14-15/43-46章]</li>
+<li><strong>阶段3·豪门儿媳/生意能人（婚姻期）</strong>：回国管家族外贸/理财、成能人；支持江恒事业（愿卖资产输血）；婚姻甜蜜但江恒渐忙、被卷入圈子（孙萌事件后更谨慎）。心境：成熟稳妥、看淡物质。[第23/53/64章]</li>
+<li><strong>阶段4·离婚后的她（现在线）</strong>：撞破&quot;出轨&quot;果断离婚→独居疗伤（骑行/跑步/甜食）→查明真相→主导救江恒→拒绝复合又&quot;试试&quot;→信任重建圆满。心境：从心碎决绝→冷静查真相→为爱奔走的担当→复合后的坦诚。[第1/47-77章]</li>
+</ul>
+<h3>人物弧光一句话</h3>
+<p>从&quot;独立要强、凭感觉行事的打工女&quot;→&quot;能一个人过得很好、却也懂得为所爱倾力奔走、并要求平等信任的清醒女性&quot;——她始终没变的是赤诚与决断，成长的是&quot;看透关系本质后仍选择给出全部信任&quot;。</p>
+<h3>关键抉择时刻</h3>
+<ol>
+<li><strong>撞破&quot;出轨&quot;当场平静提离婚</strong>[第1章]：不失态、不纠缠，果断决绝，立住&quot;清醒决断&quot;人设。</li>
+<li><strong>跪求真相被拒</strong>[第24章]：放下所有尊严求江恒说&quot;是误会&quot;，被拒后心冷——她也有为爱卑微的一面（反差）。</li>
+<li><strong>★&quot;他要毁掉江恒，我就毁掉他的儿子&quot;</strong>[第66章]：查明真相后从被保护者转为主动救人，决断狠辣有担当——全书最出彩的女主高光。</li>
+<li><strong>★摊牌点破&quot;信任&quot;、拒绝廉价复合</strong>[第69章]：不因江恒受苦就廉价原谅，点破&quot;你不信任我/替我做决定&quot;的根本问题——她要的是平等，不是保护。</li>
+</ol>
+<hr>
+<h2>二、江恒（男主）</h2>
+<h3>基础设定（不变核心）</h3>
+<ul>
+<li><strong>姓名</strong>：江恒（&quot;恒&quot;=恒心毅力的指望）[第6章]</li>
+<li><strong>身世</strong>：正亚集团（江家药企）之子，外公=保健品帝国创始人、父亲=江亚洲。母亲龚亦姗（外公之女）。高中即独自出国留学，多伦多生化研究生。现任集团实权掌舵者。[第9/22章]</li>
+<li><strong>外貌</strong>：身形挺拔、肩宽、手骨节分明；穿正装/衬衫有型，气场强大有压迫感。[第19/59章]</li>
+<li><strong>欲望</strong>：得到陈昭（藏得最深的执念）、填满内心的缺口；做成事业的成就感（而非权力本身）。</li>
+<li><strong>恐惧</strong>：★失去陈昭/被抛弃（缺口根源）；变成父亲那样被权力异化的人。</li>
+<li><strong>信念/准则</strong>：论迹不论心；把人分有用/没用（成长环境所致，后被陈昭改变）；重承诺、答应的一定做到；对错优先于个人感受（自毁式的&quot;正确&quot;）。</li>
+<li><strong>技能</strong>：商业谈判/管理（狠辣缜密）、投资（医药初创）、制服暴力（地铁救美）、做饭（婚后为陈昭下厨）、健身。[第3/11/27章]</li>
+<li><strong>信物</strong>：素戒（常戴的婚戒，&quot;戴婚戒不管用/喜欢你管我严&quot;）。[第63章]</li>
+</ul>
+<h3>性格标签（核心）</h3>
+<ul>
+<li><strong>主标签：内心有&quot;缺口&quot;的深情占有者</strong>——极致占有欲（&quot;藏得最深的执念、玩具一个都不给别人&quot;[第32章]）+ 患得患失的被抛弃恐惧（&quot;怕她不等他醒就走&quot;[第39章]、&quot;没有你我对生活没有期待&quot;[第69章]）。</li>
+<li><strong>辅标签1：心狠手辣的商业强人</strong>——权斗中把文件砸向江云飞、以&quot;暂停项目查我&quot;逼众人二选一[第27章]、逼宫父亲[第61-62章]；对下属/对手的凶狠。</li>
+<li><strong>辅标签2：自毁式的&quot;为你好&quot;独断者</strong>——过度保守、自以为为她好而替她做决定（当初拒绝她[第19章]、逼母离婚[第44章]、假出轨[第35章]），本质是&quot;满足自己安全感&quot;的自私。</li>
+<li><strong>反差点</strong>：★对外（商界/家族）心狠手辣、气场压人；对陈昭却卑微脆弱、笨拙讨好、在她面前才敢软弱（黑暗中才敢暴露不安）——&quot;恶龙&quot;只对她一人温柔。</li>
+</ul>
+<h3>人物阶段卡</h3>
+<ul>
+<li><strong>阶段1·多伦多隐富青年（过去线）</strong>：隐藏豪门身份混在同学中、混吃等死的表象下暗藏事业野心（投资医药初创）；遇陈昭动心、却因&quot;给不了她幸福/家里复杂&quot;而犹豫退缩，暧昧顶点错过。心境：孤独疏离、动心又怯懦。[第4-19章]</li>
+<li><strong>阶段2·追回并相恋（过去线后期）</strong>：告白被拒后追人、雪夜车里定情；为陈昭决定回国、逼母离婚给她解脱。心境：得到她的安全感、笨拙讨好、露出脆弱。[第40-46章]</li>
+<li><strong>阶段3·掌权与设局受害者（婚姻期）</strong>：进集团大杀四方、与父亲权斗；被父亲设医保骗保局陷害；为保护陈昭假出轨离婚。心境：野心膨胀又警惕权力异化、被逼到墙角、决绝地&quot;为她好&quot;。[第22/35/62章]</li>
+<li><strong>阶段4·追妻火葬场（现在线）</strong>：被送进去→放出后&quot;配不上&quot;不敢找→摊牌被点破→找江婕请教自省→真诚坦白→复合、信任重建。心境：从自我否定→真正认识错误→坦诚→圆满。[第64-77章]</li>
+</ul>
+<h3>人物弧光一句话</h3>
+<p>从&quot;内心有缺口、习惯一个人、把爱藏起来又用&#39;为你好&#39;伤害所爱的孤独者&quot;→&quot;学会信任与坦诚、被爱填满缺口的完整的人&quot;——他的成长是&quot;从替她做决定的自私之爱，走向相互信任的平等之爱&quot;。</p>
+<h3>关键抉择时刻</h3>
+<ol>
+<li><strong>暧昧顶点主动拒绝陈昭</strong>[第19章]：&quot;因为你善良才帮你&quot;——因怯懦/&quot;给不了幸福&quot;而错过，埋下&quot;自以为为她好&quot;的性格病根。</li>
+<li><strong>★假出轨逼陈昭离婚</strong>[第35/62章]：被设局后为保护她&quot;选最糟糕的方式&quot;逼她离开——全书悲剧的核心，深情与自私的统一。</li>
+<li><strong>&quot;我是人，不是工具&quot;拒绝趁父亲车祸夺权</strong>[第55章]：心软的本性，也是他被设局的根源。</li>
+<li><strong>★真诚剖白自省</strong>[第73章]：&quot;把你摘出去我就不怕了、是我的私心&quot;——真正认识&quot;过度保守/为你好式自私&quot;的问题，是他成长/复合的关键转折。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

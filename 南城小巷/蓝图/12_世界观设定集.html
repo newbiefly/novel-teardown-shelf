@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南城小巷 · 世界观设定集 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>南城小巷 · 世界观设定集</h1>
+<blockquote>
+<p>本文档为《南城小巷》创作蓝图第 12 号文件，归纳自 70 张章卡「设定·名词/本章事件」+ 5 本台账 + 原文。<br>本书是<strong>现代都市题材</strong>，不做玄幻/架空设定，本篇梳理的是「<strong>市井生活世界</strong>」——地理空间、行业规则、社会习俗与专有名词。<br>所有条目带 <code>[第X章]</code> 锚点，可作续写/改写/从 0 创作时的&quot;世界规则说明书&quot;。<br><strong>分工边界</strong>：本篇只写&quot;地方/行业/规则/名词是什么&quot;（客观存在的空间、行当、风俗）；人与人之间的恩怨、立场归「05_人物关系网」，不在此展开。</p>
+</blockquote>
+<h2>一、世界坐标总览（&quot;南城—酆市&quot;双城结构）</h2>
+<p>本书是<strong>双城记</strong>式的地理结构：<strong>南城</strong>（故乡·锚点·慢/暖/旧）与<strong>酆市</strong>（大城市·战场·快/冷/新）互为镜像，茶山与黑石洼村是南城两个外延腹地。</p>
+<table>
+<thead>
+<tr>
+<th>地理层</th>
+<th>名称</th>
+<th>性质</th>
+<th>与主线的关系</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>故乡城</td>
+<td><strong>南城</strong></td>
+<td>南久成长的南方小城，&quot;慢得像踱步的老者&quot;</td>
+<td>情感锚点、庇护所（茶馆）、与宋霆的根</td>
+<td>[第40章]&quot;帽儿巷慢得像踱步的老者&quot;</td>
+</tr>
+<tr>
+<td>故乡街巷</td>
+<td><strong>帽儿巷 / 帽儿茶馆</strong></td>
+<td>南城闹市之侧的旧巷与老茶馆</td>
+<td>全书主场景、&quot;家&quot;的实体</td>
+<td>[第1章]&quot;地位如旧时的祠堂&quot;</td>
+</tr>
+<tr>
+<td>郊野茶山</td>
+<td><strong>南乾山</strong></td>
+<td>宋霆承包的后山茶园（仓库＋茶厂＋茶垄＋木屋）</td>
+<td>男主事业根基、二人定情地、双向救赎发生地</td>
+<td>[第17章][第43章]</td>
+</tr>
+<tr>
+<td>山区恶村</td>
+<td><strong>黑石洼村</strong>（邻<strong>乾井村</strong>）</td>
+<td>深山村寨，&quot;买妻&quot;恶俗之地</td>
+<td>社会线/悬疑线，女主劫难与成长</td>
+<td>[第23章][第24章][第46章]</td>
+</tr>
+<tr>
+<td>大城市</td>
+<td><strong>酆市</strong>（含<strong>胜化</strong>CBD）</td>
+<td>南久工作八年的城市（出生地/成长地却&quot;没有栖身之所&quot;）</td>
+<td>事业主战场、商战线舞台</td>
+<td>[第27章][第46章][第55章]</td>
+</tr>
+<tr>
+<td>大城市行业地</td>
+<td><strong>星耀</strong></td>
+<td>酆市舞蹈培训/演艺公司（后转型综合性演艺集团）</td>
+<td>女主事业线核心平台、男二线</td>
+<td>[第27章][第35章][第54章]</td>
+</tr>
+</tbody></table>
+<p><strong>时代锚点</strong>（原文明确出现，续写需对齐的年代质感）：</p>
+<table>
+<thead>
+<tr>
+<th>时间锚点</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2008 年</td>
+<td>茶馆电视还用<strong>卫星锅</strong>、信号差、需上房顶拨天线</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>2012 年</td>
+<td>玛雅末日预言（南久大二前的年份刻度）</td>
+<td>[第7章]</td>
+</tr>
+<tr>
+<td>2014 年</td>
+<td>酆市<strong>全面取消站台票</strong></td>
+<td>[第27章]</td>
+</tr>
+<tr>
+<td>2015 年</td>
+<td>南久把<strong>快闪＋随舞</strong>融合（酆市无人办过的尝试）</td>
+<td>[第29章]</td>
+</tr>
+<tr>
+<td>大二时</td>
+<td>南久用<strong>打工钱买智能机、注册微信</strong></td>
+<td>[第16章]</td>
+</tr>
+<tr>
+<td>民国香港回归年</td>
+<td>南城名匠<strong>冯昌广</strong>为茶馆打制<strong>梨花木架</strong></td>
+<td>[第41章]</td>
+</tr>
+<tr>
+<td>1998 年</td>
+<td>洪水，茶堂墙上留有<strong>洪水线</strong>水渍印</td>
+<td>[第41章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、地理空间（世界地图）</h2>
+<h3>2.1 帽儿巷 · 帽儿茶馆（全书的心脏）</h3>
+<ul>
+<li><strong>定位</strong>：藏于南城<strong>闹市之侧</strong>的旧巷；茶馆在此&quot;地位如旧时的<strong>祠堂</strong>&quot;——街坊<strong>调解纠纷、婚丧破土</strong>都来此解决，是三教九流的公共客厅。[第1章]</li>
+<li><strong>空间结构</strong>（续写必须沿用的物理格局）：<ul>
+<li><strong>一楼堂屋</strong>：茶桌（含&quot;靠里的茶桌&quot;，用于打烊后议事）、柜台（柜台下抽屉收烟）、花盆、躺椅（爷爷）、铜壶。</li>
+<li><strong>偏房</strong>：一楼，南久的住处（爷爷首章收拾给她落脚）。[第1章]</li>
+<li><strong>二楼</strong>：有<strong>浴室（归宋霆专用）</strong>。[第3章]</li>
+<li><strong>二楼廊窗</strong>：可俯视堂屋/巷口——宋霆&quot;以沉默守护/吃醋&quot;的位置（点香、掀窗、目送）。[第16章][第35章]</li>
+<li><strong>阁楼／天窗</strong>：宋霆住处，&quot;儿时南久也曾在此仰望星空&quot;。<code>[第42章]</code></li>
+<li><strong>夹巷</strong>：帽儿巷内高墙之间的<strong>狭窄通道</strong>——最私密/暧昧/被&quot;撞破&quot;的空间。[第34章]</li>
+<li><strong>巷口歪脖子树</strong>：巷口地标（详见意象篇）。</li>
+</ul>
+</li>
+<li><strong>旧物年轮</strong>（茶馆六十年人情的物证，续写时不可随意加总）：98 年洪水线、冯昌广打制的梨花木架、十六户邻居<strong>寄存的茶罐</strong>、南乾山<strong>三十七棵老茶树</strong>专供。[第41章]</li>
+<li><strong>招牌</strong>：&quot;<strong>帽儿茶馆</strong>&quot;旧招牌，被喻为&quot;横在二人之间的无形<strong>结界</strong>&quot;。[第34章]</li>
+<li><strong>现代化改造</strong>（晚年变化）：电子锁、新茶桌、廊窗目送处——新旧更替。[第40-41章]</li>
+</ul>
+<h3>2.2 南城与周边</h3>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>说明</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>坡子上（红房子）</strong></td>
+<td>宋霆旧居，外立面&quot;宛如凝固的血泪&quot;；房子出手后他再没往坡子上走</td>
+<td>[第14章][第6章]</td>
+</tr>
+<tr>
+<td><strong>歪脖子树</strong></td>
+<td>巷口地标；宋母生前在此<strong>撑伞等他放学</strong>；后成重逢/独处/撞破的见证地</td>
+<td>[第10章][第38章][第42章]</td>
+</tr>
+<tr>
+<td><strong>南城老街</strong></td>
+<td>商业街，有钱秃子之子&quot;管招商&quot;、有宋霆的<strong>老街茶叶店</strong>（距帽儿巷步行可达）</td>
+<td>[第9章][第63章]</td>
+</tr>
+<tr>
+<td><strong>齐恒山</strong></td>
+<td>南城周边<strong>收费</strong>景区</td>
+<td>[第31章]</td>
+</tr>
+<tr>
+<td><strong>岘水镇</strong></td>
+<td>南城周边几十公里，可<strong>漂流</strong></td>
+<td>[第32章]</td>
+</tr>
+<tr>
+<td><strong>齐宁山</strong></td>
+<td>沿溪山脉，<strong>免门票</strong>、可玩水（溪边半抱发生地）</td>
+<td>[第32章]</td>
+</tr>
+<tr>
+<td><strong>庭庄 / 抚市</strong></td>
+<td>宋霆此行谈生意之地；<strong>车祸发生地</strong></td>
+<td>[第43章][第47章]</td>
+</tr>
+<tr>
+<td><strong>南城商圈</strong></td>
+<td>任兆平（任总）、郑坤那帮人&quot;在南城叫得上名头的场子背后盘活&quot;</td>
+<td>[第58章][第62章]</td>
+</tr>
+</tbody></table>
+<h3>2.3 南乾山 · 茶山（男主的江山）</h3>
+<ul>
+<li><strong>经营结构</strong>：<strong>仓库＋茶厂＋茶垄</strong>三位一体；山上有<strong>仓库平房</strong>（芹婶接应）、<strong>茶园木屋</strong>（宋霆研究种植时所盖）。[第17章][第21章]</li>
+<li><strong>农事与地理细节</strong>：竹林入口、茶垄、低洼地、山头、通往黑石洼村的狭窄崎岖山路（一侧峭壁、一侧悬崖）。[第17章][第23章]</li>
+<li><strong>茶厂设备</strong>：<strong>杀青机、揉捻机</strong>（抢采期 24 小时连转）。[第46章]</li>
+<li><strong>山色共居</strong>：宋霆计划推倒木屋重建的茶山住所（通透空间、露台、廊檐、半户外、壁炉、院落、大狗）——为&quot;南久同住&quot;做打算。[第62章]</li>
+<li><strong>邻山</strong>：<strong>翠岚山</strong>（黑石洼村人曾采两季茶的邻山）。[第45章]</li>
+</ul>
+<h3>2.4 黑石洼村（恶俗的深渊）</h3>
+<ul>
+<li><strong>地理</strong>：在南乾山<strong>后头</strong>，地处深山洼里；山路未修通前，村里好些人<strong>一辈子没出过大山</strong>。[第23章]</li>
+<li><strong>社会病灶</strong>：重男轻女（女儿吃不好穿不暖、生病舍不得医治、活不到长大）；男多女少→讨老婆难→&quot;各种歪门邪道都使得上&quot;→<strong>买妻</strong>恶俗（把姑娘当货、卖给同村王瞎子之类）。[第23章]</li>
+<li><strong>&quot;警察也管不了&quot;逻辑</strong>：村人&quot;出奇得团结&quot;、无证据、搜寻不到人，警察无法强行执法——这是全书社会线最&quot;寒&quot;的一笔。[第23章]</li>
+<li><strong>邻村关系</strong>：与<strong>乾井村</strong>有宿怨；村支书<strong>向治阳</strong>（乾井/黑石洼一带，县里说得上话、读过书、替几村办惠民政策手续）在此有面子。[第23章][第45章]</li>
+<li><strong>结局</strong>：朱家线于 [第34章] 了结（朱家老大蹲大牢、村被整治、换村长）。</li>
+</ul>
+<h3>2.5 酆市 · 星耀（事业战场）</h3>
+<ul>
+<li><strong>酆市</strong>：南久&quot;出生在酆市、成长在酆市，但酆市从来没有她的栖身之所&quot;——事业与身份的战场，也是她始终无法安家的城市。[第46章]</li>
+<li><strong>胜化 CBD</strong>：南久奋斗八年的写字楼片区；[第55章] 在此重逢夏嫣然。</li>
+<li><strong>星耀</strong>：舞蹈培训/演艺公司，南久供职八年。空间层级：<ul>
+<li><strong>旗舰店</strong>（集品牌展示、体验升级、社群运营、商业变现于一体的&quot;超级中心&quot;）。[第35章]</li>
+<li><strong>总部/写字楼</strong>（南久后来入驻、全面接管）。[第40章]</li>
+</ul>
+</li>
+</ul>
+<h3>2.6 南久的事业落点（结局章）</h3>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>说明</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>浣雨轩</strong></td>
+<td><strong>卷棚歇山顶、带四合院的朱红老字号建筑</strong>（终章&quot;要个孩子&quot;发生地）</td>
+<td>[第70章]</td>
+</tr>
+<tr>
+<td><strong>南风艺境</strong></td>
+<td>南久在南城开设的工作室／门店（自营事业终点）</td>
+<td>[第70章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、社会规则与行业（&quot;这本书的规则是什么&quot;）</h2>
+<h3>3.1 茶馆经营（全书最密集的&quot;行业知识库&quot;）</h3>
+<ul>
+<li><strong>堂倌的定位</strong>：&quot;茶馆最要紧的角色&quot;，须应付三教九流的茶客与五湖四海的旅客。[第1章]</li>
+<li><strong>递烟摸来头（江湖手段）</strong>：茶馆来了<strong>新面孔</strong>，递根烟聊两句，对方的来头基本摸清；<strong>老客之间口角</strong>，拉到一边点上烟，双方情绪都能缓和。<strong>&quot;这烟，他可以不抽，身上不能没有&quot;</strong>——烟是人情世故的工具，非嗜好。[第2章]</li>
+<li><strong>茶点搭配规则</strong>（续写必须遵守的搭配逻辑）：<ul>
+<li>红茶 → 配<strong>酸味果脯</strong>（丰富口感）；</li>
+<li>绿茶（微苦）→ 配<strong>桂花糕、山药糕</strong>等甜点（中和苦涩）；</li>
+<li>坚果（油脂）→ 中和<strong>乌龙茶</strong>中茶多酚对胃的刺激；</li>
+<li>黑茶、白茶各有不同搭配。[第2章]</li>
+</ul>
+</li>
+<li><strong>摆盘讲究</strong>：茶客是&quot;闲情逸致、娓娓而谈&quot;，茶点须<strong>分门别类、赏心悦目</strong>。[第2章]</li>
+<li><strong>接茶规矩</strong>：<strong>手托杯底</strong>、<strong>指甲不能碰杯沿</strong>（南久指甲碰杯沿被爷爷打手心）。[第9章]</li>
+<li><strong>收钱的学问</strong>：<strong>&quot;人教人教不会，事教人一教就会&quot;</strong>；<strong>&quot;收钱是门学问，有的钱要收，有的钱不如不收&quot;</strong>（逃单大爷的儿子在老街管招商，爷爷主张不追）。[第9章]</li>
+<li><strong>茶馆盈利结构</strong>：到店喝茶 ＋ <strong>售卖茶叶</strong>；后者只有南老爷子与宋霆知账（<strong>账本只记到店茶钱，卖茶收入另行</strong>）。[第9章][第12章]</li>
+<li><strong>&quot;茶馆里的三教九流&quot;</strong>：旧时茶铺除喝茶客，还有挖耳、修脚、卖报纸、算命、兜售芝麻糖的——&quot;人一杂就容易出乱子&quot;，须<strong>眼观六路、从中协调</strong>。[第2章]</li>
+<li><strong>现代化升级</strong>（南久带来的新规则）：入驻平台、打造独立 IP [第10章]；<strong>数字化管理</strong>（库存表按<strong>先进先出</strong>设预警线保茶叶新鲜度）[第30章]。</li>
+<li><strong>老偏方</strong>：爷爷存有治腰伤的外用药，&quot;比大医院开的膏药管用&quot;。[第9章]</li>
+</ul>
+<h3>3.2 茶山农事与茶业（男主的行业规则）</h3>
+<ul>
+<li><strong>日常农事</strong>：<strong>开沟疏渠、加固低洼地、防大雨</strong>；<strong>茶园巡查</strong>；山里的天气预报&quot;约等于天气乱报&quot;。[第19章][第20章]</li>
+<li><strong>抢采（全书最重的行业戏）</strong>：恶劣天气前<strong>抢收茶叶</strong>。抉择逻辑：<ul>
+<li><strong>抢采 ＝ 面对一个确定的损失范围；不抢 ＝ 赌一个不确定的收益</strong>。[第45章]</li>
+<li>&quot;<strong>不要去跟天气赌盈亏，账是跟人算的</strong>&quot;——南久的决策信条。[第45章]</li>
+<li>风险可量化为人民币与数字（保守估 70% 概率 48 小时大雨、茶叶降一级、减产超 30%）。[第45章]</li>
+</ul>
+</li>
+<li><strong>加工设备</strong>：杀青机、揉捻机（抢采期连轴转）；<strong>后勤部队</strong>（黑石洼婶子组成的采茶后勤队）。[第46章]</li>
+<li><strong>现代化茶园管理</strong>：宋霆组建<strong>专业管理队伍</strong>，取代传统模式（管理队核心：姜清/姜经理、周卫宁等）。[第43章]</li>
+<li><strong>SCM 系统</strong>：南久向茶山推荐的方案，可做<strong>库存与销售预测、连接客户与分销商</strong>。[第51章]</li>
+<li><strong>专供体系</strong>：南乾山<strong>三十七棵老茶树</strong>专供帽儿茶馆（茶山与茶馆的产业纽带）。[第41章][第43章]</li>
+<li><strong>男女分工（旧规）</strong>：山里女人一般负责<strong>采茶、制茶</strong>，重活累活由男人承担。[第19章]</li>
+</ul>
+<h3>3.3 舞蹈 / 街舞社与商业演出（女主行业规则）</h3>
+<ul>
+<li><strong>街舞社</strong>：南久在校所办/所掌，后交夏嫣然。[第30章]</li>
+<li><strong>快闪 · 随舞</strong>：2015 年酆市无人办过，南久将二者<strong>融合</strong>成个人首场大型活动。[第29章]</li>
+<li><strong>职业跃迁链</strong>：代课老师 → <strong>编舞导师</strong>（课时费涨两倍、照片挂上星耀文化墙）→ 星耀合伙人 → 掌门人 → 自营工作室。[第30章][第37章][第70章]</li>
+<li><strong>星耀合伙人规则</strong>（硬门槛）：内部开放，须<strong>满三年</strong>、具备<strong>独立组织大型活动经验</strong>、<strong>管理能力</strong>。[第35章]</li>
+<li><strong>&quot;铁三角&quot;分工</strong>：林颂耀（人脉背景）、丁骏（行业规则与管理）、南久（点子与搞钱）。[第37章]</li>
+</ul>
+<h3>3.4 酆市&quot;星耀&quot;的商业/股权语境（商战规则）</h3>
+<ul>
+<li><strong>入股门槛</strong>：一次性出资 <strong>30 万</strong>（南久的第一个资本门槛）。[第35-36章]</li>
+<li><strong>契约婚姻／双赢</strong>：林颂耀提出——<strong>以&quot;星耀经营权&quot;换婚姻</strong>，感情只是&quot;调味品&quot;。[第37章]</li>
+<li><strong>星耀的&quot;耀&quot;字之困</strong>：&quot;<strong>只要星耀里面还有一个‘耀’字，就不可能被她全然握于掌心</strong>&quot;——资本控制权与个人事业的根本矛盾。[第53章]</li>
+<li><strong>商战文件</strong>：股权估值报告、财务数据摘要、转让意向书、备选谈判方案。[第53章]</li>
+<li><strong>章程条款武器</strong>：投资协议补充条款<strong>第六章第十三款（股东临时监督与保全权）</strong>——[第54章] 南久以此＋律师团＋下属人墙逼退林颂耀的审计队。</li>
+<li><strong>转型目标</strong>：连锁舞蹈培训机构 → <strong>综合性演艺集团</strong>（教育、演艺、赛事、零售、线上内容一体）；跨界品牌社区平台斩获首轮融资。[第40章][第55章]</li>
+<li><strong>退出条款</strong>：以**&quot;离开酆市&quot;**为唯一条件、高于市价收购全部股份、将未列入退出协议的项目业务量化为补偿款。[第55章]</li>
+</ul>
+<h3>3.5 地方婚俗与社会习俗</h3>
+<ul>
+<li><strong>黑石洼&quot;买妻&quot;恶俗</strong>：把姑娘当货卖出/退回；<strong>彩礼</strong>成买卖的账目（珍敏&quot;攒彩礼钱&quot;实为朱家旧债）。[第21-23章]</li>
+<li><strong>入赘式婚约条件</strong>：周妍家提<strong>随母姓、市区备婚房</strong>（宋霆婉拒&quot;算了吧，不麻烦了&quot;）。[第6章]</li>
+<li><strong>提亲</strong>：柳家父母提水果登门探口风、正式提亲（被宋霆回绝）。[第32-33章]</li>
+<li><strong>寿宴规矩</strong>：南家儿女为寿宴<strong>酒席费用均摊</strong>（宋霆暗付）。[第39章]</li>
+<li><strong>中秋家宴</strong>：南家齐聚的团圆仪式（[第68章] 爷爷当众宣布&quot;宋霆就是咱们自家人了&quot;）。</li>
+<li><strong>&quot;相亲/说亲&quot;</strong>：吴婶常年替宋霆张罗相亲、柳家有意宋霆、廖虹张罗给南久相亲（IT 男）——小城婚配的日常生态。[第5章][第30-33章][第57章]</li>
+</ul>
+<h3>3.6 南家门风与名分规则（主线伦理规则的源头）</h3>
+<ul>
+<li><strong>&quot;名义叔侄&quot;</strong>：南老爷子收宋霆为干儿子 → 宋霆辈分高于南久 → 南久须叫他&quot;<strong>叔</strong>&quot;；且<strong>大她八岁</strong>（8 岁年龄差）。[第1章][第3章] 这是全书一切伦理障碍的起点。</li>
+<li><strong>茶馆&quot;祠堂&quot;级权威</strong>：爷爷是家族/街坊的<strong>秩序之人</strong>；他一句&quot;以后没事就不要回来了&quot;即可&quot;斩断归途&quot;。[第40章]</li>
+<li><strong>代际观念冲突</strong>：老一辈&quot;被裹了大半辈子&quot;的陈规 vs 南久&quot;我才不会被那些陈词滥调裹住&quot;。[第14章]</li>
+</ul>
+<hr>
+<h2>四、专有名词表（分类速查）</h2>
+<h3>4.1 茶馆术语</h3>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>释义</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>堂倌</td>
+<td>茶馆最要紧的角色，应付三教九流</td>
+<td>[第1章]</td>
+</tr>
+<tr>
+<td>递烟摸来头</td>
+<td>递烟探茶客来路/拉架缓和的手段</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>茶点搭配</td>
+<td>红配酸脯、绿配桂花糕山药糕、坚果中和乌龙</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>接茶规矩</td>
+<td>手托杯底、指甲不碰杯沿</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>收钱的学问</td>
+<td>有的钱要收，有的钱不如不收</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>老偏方</td>
+<td>爷爷的治腰外用药</td>
+<td>[第9章]</td>
+</tr>
+<tr>
+<td>梨花木架</td>
+<td>冯昌广打制，茶馆旧物</td>
+<td>[第41章]</td>
+</tr>
+<tr>
+<td>洪水线</td>
+<td>98 年洪水留于茶堂墙的水渍印</td>
+<td>[第41章]</td>
+</tr>
+<tr>
+<td>翻台率／客单价</td>
+<td>宋霆口中&quot;快钱&quot;逻辑的两个词</td>
+<td>[第41章]</td>
+</tr>
+<tr>
+<td>数字化管理</td>
+<td>库存按先进先出设预警线</td>
+<td>[第30章]</td>
+</tr>
+<tr>
+<td>入驻平台／独立 IP</td>
+<td>南久提议的茶馆线上化</td>
+<td>[第10章]</td>
+</tr>
+</tbody></table>
+<h3>4.2 茶山农事术语</h3>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>释义</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>南乾山</td>
+<td>宋霆承包的后山茶园</td>
+<td>[第43章]</td>
+</tr>
+<tr>
+<td>茶垄／低洼地</td>
+<td>茶山农事作业单元</td>
+<td>[第19章]</td>
+</tr>
+<tr>
+<td>开沟疏渠／加固低洼地</td>
+<td>防大雨的农事</td>
+<td>[第19章]</td>
+</tr>
+<tr>
+<td>抢采</td>
+<td>恶劣天气前抢收茶叶</td>
+<td>[第44章]</td>
+</tr>
+<tr>
+<td>杀青机／揉捻机</td>
+<td>茶厂加工设备</td>
+<td>[第46章]</td>
+</tr>
+<tr>
+<td>后勤部队</td>
+<td>黑石洼婶子组成的采茶后勤队</td>
+<td>[第46章]</td>
+</tr>
+<tr>
+<td>SCM 系统</td>
+<td>库存与销售预测、连接客户与分销商</td>
+<td>[第51章]</td>
+</tr>
+<tr>
+<td>三十七棵老茶树</td>
+<td>专供帽儿茶馆的茶树</td>
+<td>[第41章]</td>
+</tr>
+<tr>
+<td>山色共居</td>
+<td>宋霆拟重建的茶山住所</td>
+<td>[第62章]</td>
+</tr>
+</tbody></table>
+<h3>4.3 舞蹈 / 演艺术语</h3>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>释义</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星耀</td>
+<td>酆市舞蹈培训/演艺公司</td>
+<td>[第27章]</td>
+</tr>
+<tr>
+<td>街舞社</td>
+<td>南久所办、后交夏嫣然</td>
+<td>[第30章]</td>
+</tr>
+<tr>
+<td>快闪／随舞</td>
+<td>2015 年南久融合的新尝试</td>
+<td>[第29章]</td>
+</tr>
+<tr>
+<td>编舞导师</td>
+<td>南久在星耀的职位</td>
+<td>[第30章]</td>
+</tr>
+<tr>
+<td>旗舰店</td>
+<td>星耀的超级中心</td>
+<td>[第35章]</td>
+</tr>
+<tr>
+<td>铁三角</td>
+<td>林颂耀＋丁骏＋南久</td>
+<td>[第37章]</td>
+</tr>
+</tbody></table>
+<h3>4.4 商业 / 股权术语</h3>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>释义</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>合伙人资格</td>
+<td>满三年＋办过大型活动＋管理能力</td>
+<td>[第35章]</td>
+</tr>
+<tr>
+<td>入股门槛</td>
+<td>一次性 30 万</td>
+<td>[第35章]</td>
+</tr>
+<tr>
+<td>契约婚姻／双赢</td>
+<td>以经营权换婚姻</td>
+<td>[第37章]</td>
+</tr>
+<tr>
+<td>股权估值报告／转让意向书</td>
+<td>商战文件</td>
+<td>[第53章]</td>
+</tr>
+<tr>
+<td>投资协议补条款第六章第十三款</td>
+<td>股东临时监督与保全权</td>
+<td>[第54章]</td>
+</tr>
+<tr>
+<td>跨界品牌社区平台</td>
+<td>星耀斩获首轮融资的项目</td>
+<td>[第55章]</td>
+</tr>
+<tr>
+<td>综合性演艺集团</td>
+<td>星耀转型目标</td>
+<td>[第40章]</td>
+</tr>
+</tbody></table>
+<h3>4.5 民俗 / 江湖 / 社会术语</h3>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>释义</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>祠堂（喻）</td>
+<td>茶馆在巷中&quot;如旧时祠堂&quot;的地位</td>
+<td>[第1章]</td>
+</tr>
+<tr>
+<td>三教九流</td>
+<td>茶馆茶客的复杂构成</td>
+<td>[第1章]</td>
+</tr>
+<tr>
+<td>买妻（黑石洼）</td>
+<td>把姑娘当货买卖的恶俗</td>
+<td>[第23章]</td>
+</tr>
+<tr>
+<td>彩礼</td>
+<td>婚配账目，被恶俗利用</td>
+<td>[第22-23章]</td>
+</tr>
+<tr>
+<td>入赘</td>
+<td>随母姓、备婚房（周妍家条件）</td>
+<td>[第6章]</td>
+</tr>
+<tr>
+<td>提亲</td>
+<td>柳家登门说亲</td>
+<td>[第32章]</td>
+</tr>
+<tr>
+<td>夹巷</td>
+<td>帽儿巷内的狭窄通道</td>
+<td>[第34章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、续写必须遵守的规则（世界观红线）</h2>
+<ol>
+<li><strong>双城不可混淆</strong>：南城＝慢/暖/旧/根；酆市＝快/冷/新/战场。女主&quot;生在酆市却无家、心归南城&quot;，地域情绪不可写反。[第46章][第55章]</li>
+<li><strong>茶馆规矩不可删改</strong>：茶点搭配、接茶&quot;手托杯底&quot;、递烟摸来头、收钱有取舍——这些是人物&quot;专业能力&quot;的落地证据，续写写茶馆戏必须让规矩在场。[第2章][第9章]</li>
+<li><strong>&quot;名义叔侄&quot;是总闸门</strong>：辈分差（8 岁）与干亲名分是主线一切冲突的伦理源头；续写亲密戏不可绕开这重身份的张力。[第1章][第3章]</li>
+<li><strong>茶山经营＝高风险农事</strong>：抢采的&quot;确定性损失 vs 不确定性收益&quot;逻辑要成立；茶山是全山上百号茶农生计，不可写成男主的私人后院。[第44-45章]</li>
+<li><strong>黑石洼是&quot;规则失效区&quot;</strong>：当地&quot;警察也管不了&quot;，全靠村支书面子＋人情人脉周旋——社会线冲突只能靠&quot;关系/筹码&quot;破解，不能靠报警一键解决。[第23章]</li>
+<li><strong>星耀商业逻辑要合规可辨</strong>：合伙人门槛、30 万入股、股权文件、章程条款、审计队——商战靠<strong>文件与规则</strong>博弈，不是靠斗殴。[第35-54章]</li>
+<li><strong>年代质感对齐</strong>：卫星锅（08）、站台票取消（14）、快闪随舞（15）等锚点是&quot;时代底纹&quot;，续写涉及同期场景须用符合年代的道具与媒介。[第2章][第27章][第29章]</li>
+<li><strong>专有名词用原文用字</strong>：南乾山（非&quot;南山&quot;）、帽儿巷/帽儿茶馆、歪脖子树、坡子上红房子、浣雨轩、南风艺境、山色共居——一律照抄，勿改字。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

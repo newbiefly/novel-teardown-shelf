@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 核心设定 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>02 核心设定</h1>
+<blockquote>
+<p>本篇聚焦全书赖以成立的核心设定、&quot;金手指&quot;、关键规则。完整设定百科见 03世界观设定集。<br>基于全书99章&quot;设定·名词&quot;字段归纳。</p>
+</blockquote>
+<h2>一、故事底层设定：架空古代·大齐王朝</h2>
+<ul>
+<li><strong>架空王朝</strong>：大齐，无对应真实朝代，纪年用&quot;明宣年&quot;（先帝）/&quot;康平年&quot;（当朝）。</li>
+<li><strong>权力结构</strong>：皇帝（齐宥，篡位）—首辅（赵执，权臣）—六部/都察院—地方州府县。禁军由荣国公、吕家亲兵卫、御马监、皇家龙影卫多方掣肘。</li>
+<li><strong>社会底色</strong>：人分贵贱、特权横行、贪腐遍地。&quot;能救百姓的从来是百姓自己&quot;的主题正是对这一底色的反抗。</li>
+</ul>
+<h2>二、核心创意设定（本书区别于同类的独特处）</h2>
+<h3>设定1：无常司——首辅暗养的死士组织</h3>
+<ul>
+<li><strong>性质</strong>：赵执暗中训养的死士暗卫组织，鲜为人知，效仿赫连钦当年养暗卫而建</li>
+<li><strong>结构</strong>：令主（陆酌光/陆敛）&gt; 黑令、白令 &gt; 黑部（杀手，自幼残酷训练专司杀人）、白部（面容姣好善交际充当暗线，常以美妾游走权贵）</li>
+<li><strong>信物</strong>：无常令牌（黑白双色玉/描金&quot;无常&quot;二字/令主专属）</li>
+<li><strong>规矩</strong>：折令（处置罪人最高手段——折断令牌处死掌令人）；内斗鞭刑二十罚粮一日；苗子营（收训幼童成死士的机构）</li>
+<li><strong>功能</strong>：既是反派爪牙，又是男主的枷锁与身世牢笼</li>
+</ul>
+<h3>设定2：巫 / 西域异虫——男主的命数金手指+催命符</h3>
+<ul>
+<li><strong>来源</strong>：西域更北化外之族以世代秘术炼成的异虫</li>
+<li><strong>机制</strong>：种入人体，融合成功→宿主异于常人（五感敏锐/身体强壮/百毒不侵/自愈超强/常年体热如火）；失败→成行尸傀儡</li>
+<li><strong>代价（催命符）</strong>：需独门药方半年一服保持沉睡；一旦清醒即反噬宿主经脉、沿脉络游走蚕食致&quot;千刀万剐&quot;而亡</li>
+<li><strong>陆敛=七童唯一融合成功者</strong>：二十余年前七个幼童试炼，六死一成，唯末位&quot;陆敛&quot;成功</li>
+<li><strong>解法</strong>：无专门解药必死；最终解药方由吕乡音（赵执妻）所制所授</li>
+<li><strong>功能</strong>：给男主&quot;天生强悍&quot;的金手指同时挂了&quot;命数倒计时&quot;的虐点，是感情线生死张力的来源</li>
+</ul>
+<h3>设定3：先帝遗诏——权谋主线的核心麦高芬</h3>
+<ul>
+<li><strong>内容</strong>：明宣二十六年先帝秘密立传位诏书，复齐煊太子位、授国玺继承大统</li>
+<li><strong>凭证</strong>：御宝盖印；尚宝监底簿有调用&quot;皇帝之宝&quot;的记录（存在的铁证）</li>
+<li><strong>流转</strong>：秘密送至郸玉许奉处藏匿（因赫连战死/齐煊远岭南/赵执权倾朝野）</li>
+<li><strong>终极反转</strong>：真诏先帝驾崩夜被文喜焚毁；周幸呈堂那封是&quot;鬼手&quot;以真织锦+拓印皇印+千万遍临摹伪造的赝品——传位为真、诏书是假；齐煊明知假仍封存永藏</li>
+<li><strong>功能</strong>：既是夺位的合法性依据，又是全书最大反转的载体</li>
+</ul>
+<h3>设定4：破台仪式——书名与全书的结构隐喻</h3>
+<ul>
+<li><strong>内容</strong>：新建戏台开台规矩——断活鸡头、洒铜钱生米、黑白二鬼游台，寓意除秽破邪、日后红火</li>
+<li><strong>应用</strong>：许奉密室命案现场（断头鸡+米面铜钱+黑白无常鬼影）实为周幸团队设计的&quot;破台开戏&quot;</li>
+<li><strong>点题</strong>：&quot;荒腔走板&quot;（戏曲术语）——整部权谋大戏是无名之辈唱的一出戏，&quot;唱得赏心悦目也好，荒腔走板也罢，务必让天下记住我等无名之辈&quot;</li>
+</ul>
+<h2>三、女主的&quot;金手指&quot;：将门孤女的三绝+隐秘组织</h2>
+<ul>
+<li><strong>周幸三绝</strong>：射术（母亲周尊宁所授）、骑术（师父所授）、枪法（父亲赫连钦亲授并承袭）——[第90章]明确</li>
+<li><strong>兵器</strong>：竹叶刀（赫连钦亲铸，刀身竹叶纹，藏布八年）、赫连长枪</li>
+<li><strong>隐秘组织</strong>：八年前率八人血洗千路山占山为据点，麾下鬼医（隗谷雨）、鬼手匠（楚照）、义匪（袁察）、暗探（钱不断/燕决/叶嵘）、老鸨（陶缨）、武力（萧涉川），众人称&quot;少主&quot;</li>
+<li><strong>宫中内线</strong>：吴吉安（掌印太监文喜），经黑羽鸟传信六年</li>
+<li><strong>金手指的克制</strong>：周幸不靠武力碾压，靠&quot;运算人心&quot;布局——金手指是&quot;信息+组织+谋略&quot;，不是无脑变强</li>
+</ul>
+<h2>四、关键道具设定速查</h2>
+<table>
+<thead>
+<tr>
+<th>道具</th>
+<th>设定</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>玉青竹/玉竹项链</td>
+<td>赫连钦带回中原竹所制、内灌夫妇骨灰</td>
+<td>周幸身份钥匙+陆护命符+串多线</td>
+</tr>
+<tr>
+<td>守岁铜板</td>
+<td>老陆临死给陆的压岁钱</td>
+<td>陆最珍贵之物→传情信物</td>
+</tr>
+<tr>
+<td>神仙散</td>
+<td>千路山特产菌类孢粉，吸入后言听计从</td>
+<td>密室命案作案手法</td>
+</tr>
+<tr>
+<td>软骨粉/百味枯</td>
+<td>隗谷雨药物（致失明无力/麻痹痛感）</td>
+<td>谋略工具</td>
+</tr>
+<tr>
+<td>致幻烟</td>
+<td>隗谷雨特制，迷醉后有问必答无成瘾</td>
+<td>诱秦焕吐真言</td>
+</tr>
+<tr>
+<td>生幻迷香</td>
+<td>隗谷雨制，乱人心智致惊梦</td>
+<td>乱皇帝心智</td>
+</tr>
+<tr>
+<td>黑羽鸟</td>
+<td>袁察培育，能听人不可闻的哨音识令</td>
+<td>传信/盯梢/追踪</td>
+</tr>
+<tr>
+<td>木雕小马</td>
+<td>齐煊之子齐凌五岁亲雕</td>
+<td>齐煊夺位的情感支点</td>
+</tr>
+<tr>
+<td>腊梅木雕/&quot;枯梅再荣&quot;</td>
+<td>许奉与齐煊的书信暗语</td>
+<td>师徒之约信物</td>
+</tr>
+</tbody></table>
+<h2>五、设定的自洽性与克制</h2>
+<p>本书设定&quot;够用即止&quot;，不堆砌：</p>
+<ul>
+<li>唯一超现实设定是&quot;巫/异虫&quot;（且限定男主一人），其余全是可信的古代权谋要素（死士/遗诏/贪腐/兵制）。</li>
+<li>&quot;巫&quot;设定同时服务&quot;金手指&quot;（男主强）和&quot;虐点&quot;（命数倒计时），一物两用不浪费。</li>
+<li>破台仪式既是书名来源、又是命案诡计、又是全书结构隐喻，一个设定承载三重功能。</li>
+<li><strong>设定始终服务于人物与主题</strong>，不为炫技而设定。</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

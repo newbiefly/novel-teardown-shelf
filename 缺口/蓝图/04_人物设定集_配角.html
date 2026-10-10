@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 人物设定集·配角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>04 人物设定集·配角</h1>
+<h2>重点角色（详卡）</h2>
+<h3>江亚洲（反派·最大boss）</h3>
+<ul>
+<li><strong>身份</strong>：江恒父亲，正亚集团董事长；名校理工男出身，靠外公支持主导收购医药公司、把保健品帝国做成大药企。[第9/62章]</li>
+<li><strong>性格</strong>：<ul>
+<li>主标签：<strong>被权力异化的枭雄/独裁者</strong>——狠戾狂妄、把一切（包括感情）当工具（&quot;感情能降低成本就拿来用&quot;[第62章]）、&quot;最会演戏的生意人&quot;。</li>
+<li>辅标签：<strong>偏执的控制狂</strong>——车祸后越老越怕失控、越想抓权控制身边人（设局绑炸弹控制江恒）。</li>
+<li>反差点：曾对幼年江恒有真实的父爱（讲故事比赛/&quot;爸爸爱你&quot;[第56章]），却在利益/权力面前把亲儿子送进牢里——爱被权力吞噬。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：牢牢掌控权力与所有人（安全感来源）；不甘失控/认输。</li>
+<li><strong>与主角关系</strong>：江恒之父/最大反派，设局陷害江恒。</li>
+<li><strong>关键行动</strong>：设医保骗保局陷害江恒[第35章]/车祸后设局交权表演绑炸弹[第56/62章]/把江恒送进去[第64章]。</li>
+<li><strong>阵营</strong>：江家/反派。<strong>结局</strong>：★彻底失势 + 确诊阿兹海默（因果报应、遗忘母题）[第76章]。</li>
+</ul>
+<h3>邓启政（邓叔·江恒的亦师亦友/最大助力）</h3>
+<ul>
+<li><strong>身份</strong>：正亚集团元老，龚亦姗一支的人，江恒可信任的长辈/执行人。[第11章]</li>
+<li><strong>性格</strong>：主标签<strong>老辣忠诚的军师</strong>——阅历深、心眼多、对江恒亦师亦友、关键时刻稳住局面；辅标签<strong>刀子嘴豆腐心</strong>（劝江恒狠心夺权、又心疼他）。反差点：对江恒理性到&quot;劝他别心软&quot;，内心却把他当亲人、为他奔走。</li>
+<li><strong>欲望动机</strong>：帮江恒成事、护他周全。</li>
+<li><strong>与主角关系</strong>：江恒的长辈/军师；后与陈昭结盟救江恒、发自内心欣赏陈昭。</li>
+<li><strong>关键行动</strong>：向陈昭揭真相[第53章]/江恒进去后稳住局面反扑[第64章]/见高寒求助[第67章]/点题信任[第76章]。</li>
+<li><strong>阵营</strong>：江恒/母族·可信任。</li>
+</ul>
+<h3>龚亦姗（江恒母亲）</h3>
+<ul>
+<li><strong>身份</strong>：外公之女，江亚洲前妻；时髦通透、消息灵通、婚姻中长期忍让。[第9/20章]</li>
+<li><strong>性格</strong>：主标签<strong>口无遮拦的直性子大小姐</strong>——说话不过脑、专挑扎心话讲、火爆冲动；辅标签<strong>脆弱又深爱儿子</strong>。反差点：表面幸灾乐祸江亚洲遭报应/骂江恒，内心极度脆弱、愧疚（设局戏增加可信度害了江恒）、只认陈昭当儿媳。</li>
+<li><strong>欲望动机</strong>：儿子好、自己自由；撮合江恒陈昭复合。</li>
+<li><strong>与主角关系</strong>：江恒之母、珍视陈昭；被江恒支去美国避险。</li>
+<li><strong>关键行动</strong>：过去线逼问江恒回国[第9章]/被江恒逼与江亚洲离婚获解脱[第44章]/撮合复合[第58/70章]。</li>
+<li><strong>阵营</strong>：江家/江恒母族。</li>
+</ul>
+<h3>江婕（江恒同父异母姐姐·从反派到倒戈盟友）</h3>
+<ul>
+<li><strong>身份</strong>：王丽莎之女，开会所傍政要为集团维系人脉。[第21/27章]</li>
+<li><strong>性格</strong>：主标签<strong>追随权力、渴望认同的&quot;影子&quot;</strong>——崇拜父亲江亚洲、憎恶庸常、鄙夷母亲弟弟、想成为江恒又嫉妒他；辅标签<strong>清醒又不甘的聪明人</strong>。反差点：一心追权、对至亲都有算计，却在看清&quot;父亲的偏爱全是假&quot;后心魔崩塌、倒戈救江恒。</li>
+<li><strong>欲望动机</strong>：得到父亲认同/权力/被看见（&quot;活在泥土之下想探出头&quot;）。</li>
+<li><strong>与主角关系</strong>：江恒同父异母姐姐（敌对→倒戈盟友）；被陈昭以情义+退休方案打动。</li>
+<li><strong>关键行动</strong>：给江云飞黑料[第27章]/看清江恒被设局心魔崩塌[第65章]/倒戈逼徐坤翻供救江恒[第66-67章]/成江恒的&quot;军师&quot;（请教感情）[第72章]。</li>
+<li><strong>阵营</strong>：江家继母一支 → 倒戈助江恒/陈昭。</li>
+</ul>
+<h3>董燕（陈昭母亲）</h3>
+<ul>
+<li><strong>身份</strong>：陈昭母亲，经营家具生意，通透慈爱、懂&quot;舍得&quot;、有魄力。[第5/12章]</li>
+<li><strong>性格</strong>：主标签<strong>通透有魄力的智慧母亲</strong>——做生意大气、看人准（点破江恒离婚&quot;不符合逻辑/公司有事&quot;[第52章]）；辅标签<strong>爱女如命、爱就是花钱</strong>。反差点：理性到能冷静分析&quot;江恒可能故意离婚&quot;，感性到女儿一哭就心都揪着、&quot;只偏向你&quot;。</li>
+<li><strong>欲望动机</strong>：女儿过得好、幸福；不愿退休（做事的成就感）。</li>
+<li><strong>与主角关系</strong>：陈昭之母、女儿的港湾；推动陈昭查真相；敲打江恒&quot;再让她哭就离远点&quot;[第68章]。</li>
+<li><strong>关键行动</strong>：过去线给陈昭商战建议/点破孙萌事件[第23章]/点破江恒故意离婚推动查真相[第52章]/坦白后抱女儿痛哭[第51章]。</li>
+<li><strong>阵营</strong>：陈昭家人。</li>
+</ul>
+<h3>李剑峰（江恒心腹爱将）</h3>
+<ul>
+<li><strong>身份</strong>：江恒亲招的集团销售猛将，原顶尖外企履历，江湖气重。[第22章]</li>
+<li><strong>性格</strong>：主标签<strong>野心勃勃、忠诚凶狠的悍将</strong>——赌江恒的江湖气入伙、见证并助其掌权、危机中&quot;把销售网收进自己手里、谁乱军心杀鸡儆猴&quot;。</li>
+<li><strong>与主角关系</strong>：江恒的心腹（生死信任）。<strong>阵营</strong>：江恒团队。</li>
+</ul>
+<h2>次要角色（简卡）</h2>
+<ul>
+<li><strong>王丽莎</strong>：江亚洲现任妻子/继母。当年引产伤身上位、挤走龚亦姗；偏袒无能的儿子江云飞、与女儿江婕离心。性格：算计、依附软弱、恨铁不成钢。反派一支。[第21/29章]</li>
+<li><strong>江云飞</strong>：王丽莎之子、江恒同父异母弟。无能不经打、沉不住气、只盯着钱。设局搞李剑峰反被江恒反杀、被江亚洲弃用赶出公司。反派一支。[第21/27章]</li>
+<li><strong>顾婉怡</strong>：温哥华公寓的年轻女人，江恒&quot;出轨对象&quot;（实为设局伪装的一环，非真出轨）。[第1章]</li>
+<li><strong>徐坤（老徐）</strong>：江亚洲手下、医保骗保项目主导者、咬死江恒的关键证人；儿子在美国（=刘欣冉前男友，陈昭威胁其子逼徐坤翻供）。[第62/64/66章]</li>
+<li><strong>高寒</strong>：京州新履新的高书记（政界人物），江恒爷爷当年资助引荐过的读书人、感念其爱才；成江恒化解设局/翻案的关键外部助力（&quot;清白的人不会被冤枉&quot;）。[第58/67章]</li>
+<li><strong>周文宇（Alex）</strong>：陈昭多伦多同学、江恒好友，热爱社交、两人的媒介。过去线配角。[第2/5章]</li>
+<li><strong>刘欣冉</strong>：老刘之女、美国生物博士、真诚不谙人情；陈昭帮她谋职、从她处套出徐坤儿子线索（友谊或因此受损）。[第30/50/66章]</li>
+<li><strong>梁凌</strong>：陈昭圈中好友/姐姐，善良优秀，教陈昭圈层生存、激励她&quot;做自己&quot;。[第25/26章]</li>
+<li><strong>张勇</strong>：集团投资方合伙人，逐利、认可能带来收益者，会上助江恒化解危机。[第27章]</li>
+</ul>
+<h2>龙套（一句话）</h2>
+<ul>
+<li><strong>陈志川</strong>：陈昭父亲，小气疼女儿但不放心她办事。[第12章]</li>
+<li><strong>季子扬</strong>：神经科学博士、情商低、住陈昭同酒店；追妻线的&quot;搅动者&quot;（男二功能，与陈昭发展骑行友谊、其学术造假讲述印证医保骗保设局），最终未成CP阻碍。[第26/59章]</li>
+<li><strong>Simon</strong>：给陈昭介绍兼职的CBC同学，因贬低女性被疏远。[第3章]</li>
+<li><strong>Emma</strong>：陈昭同专业女生，聚会歧视陈昭被江恒怼。[第6章]</li>
+<li><strong>孙萌</strong>：陈昭国内好友，回国后因供应商事件（被人买通坑江恒公司）与陈昭决裂。[第2/23章]</li>
+<li><strong>李明</strong>：陈昭在温哥华的助理/知情心腹。[第1章]</li>
+<li><strong>江枫</strong>：江亚洲小儿子，在美国读书。[第61章]</li>
+<li><strong>江恒外公</strong>：保健品帝国创始人、独裁一言堂、极看重江恒（已逝/回忆）。[第9章]</li>
+<li><strong>李文卓</strong>：正亚集团副总，性格不够果决。[第33章]</li>
+<li><strong>韩明</strong>：江恒助理。[第33章]</li>
+<li><strong>Guillaume Lefebvre</strong>：陈昭的法国裔大客户，从索赔对立到长期私交。[第15/47章]</li>
+</ul>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

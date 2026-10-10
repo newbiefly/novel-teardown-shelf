@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 人物关系网 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>06 人物关系网</h1>
+<blockquote>
+<p>本篇写&quot;两人之间的关系怎么变&quot;——恩怨情仇、结盟背叛、关系动态。<br>单个人物自身怎么成长见 04/05 人物设定集，本文不重复。基于关系台账全书100章归纳。</p>
+</blockquote>
+<h2>阵营总图（文字版）</h2>
+<pre><code>【周幸阵营·隐秘组织&quot;少主&quot;党】
+  核心：周幸(赫连筠) ── 令下皆从
+    ├─ 陶缨(风月楼老鸨/救命死忠) [第4/24章]
+    ├─ 萧涉川(结义兄/武力担当) [第6章]
+    ├─ 隗谷雨(鬼医/验尸解毒) [第7章]
+    ├─ 袁察(千路山匪首/义匪) [第8章]
+    ├─ 楚照(鬼手匠/机关火药) [第54章]
+    ├─ 钱不断·燕决·叶嵘(侦查/跟踪/暗线) [第10/15章]
+    ├─ 莫惊秋·秦婵(被庇护者) [第11章]
+    └─ 后期收编：陆酌光→崔慧→万斌·青鹰部
+
+【齐煊阵营·夺位复统】
+  齐煊(岭王/前东宫太子) ── 母族旧部
+    ├─ 青鹰军(四千精锐/柳容生旧部) [第36/53章]
+    ├─ 陈守善(藏遗诏忠仆) [第70章]
+    └─ 结盟：周幸(遗诏+青鹰)、樊仲卓(禁军)
+
+【赵执阵营·反派主脑】
+  赵执(首辅/赫连冤案主谋) ── 权倾朝野
+    ├─ 无常司(暗养死士/黑白双部)：令主陆敛(叛)、李言归、郑琪、孟长乐、月明、雪晴
+    ├─ 齐宥(篡位昏君/早年盟友) [第21/96章]
+    ├─ 泠州知府李修德·吕鸿·秦焕·郑逸(贪腐官链) [第19/34/75章]
+    └─ 吕乡音(妻/智症)
+
+【中立→倒戈】
+  崔慧(都察院御史)：查赵家→被周幸三输赌约收编 [第9/71章]
+  樊仲卓·樊蔚(荣国公府/禁军)：情敌线→结盟→弃卒保帅 [第45/70/99章]
+  吴吉安=文喜(掌印太监)：明侍昏君·暗为周幸内线六年 [第61/88/100章]
+</code></pre>
+<h2>一、主CP：周幸(赫连筠) × 陆酌光(陆敛)</h2>
+<p><strong>关系性质</strong>：双向伪装的顶级玩家互相识破→暗杀→倒戈同盟→生死恋人。全书情感主轴。</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>章节</th>
+<th>关系状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初识·单向追求</td>
+<td>[第3-13章]</td>
+<td>周幸主动试探（摸手/紧挨/折腰渡酒），陆酌光耳红婉拒但心动</td>
+</tr>
+<tr>
+<td>识破·暗杀</td>
+<td>[第14-17章]</td>
+<td>周幸目睹陆枭首邹业→下令&quot;必除之&quot;→行刺失败反发现陆=无常司令主</td>
+</tr>
+<tr>
+<td>转折·施救</td>
+<td>[第26-27章]</td>
+<td>周幸中毒，陆为她解毒治伤，除夕木屋共处，立场倒向她</td>
+</tr>
+<tr>
+<td>结盟·招揽</td>
+<td>[第39-40章]</td>
+<td>陆屠随从投名状助杀赵恪；周幸&quot;不谈风月只谈正事&quot;招揽</td>
+</tr>
+<tr>
+<td>情动·拉扯</td>
+<td>[第43-49章]</td>
+<td>惊梦一吻→治病之吻→赠春带彩扳指→约法三章清账</td>
+</tr>
+<tr>
+<td>命数·疏冷</td>
+<td>[第83章]</td>
+<td>周幸得知陆命将尽（体内有&quot;巫&quot;），表面疏冷实为深情回护</td>
+</tr>
+<tr>
+<td>以命相护</td>
+<td>[第80-88章]</td>
+<td>陆二选一弃解药选玉竹(周幸父母骨灰)；周幸反系玉竹护他命</td>
+</tr>
+<tr>
+<td>圆满</td>
+<td>[第93/99-100章]</td>
+<td>设喜堂逼吐真心→拜堂圆房→服解药痊愈→&quot;每年一支花簪&quot;同回塞北</td>
+</tr>
+</tbody></table>
+<p><strong>本质</strong>：两个都在&quot;演戏&quot;的人，用最亲密的动作互相试探（[第11章]按心口测心跳），最终卸下所有伪装彼此救赎。陆的深情是&quot;后天习得&quot;——从不像人的异体，被周幸磨出了活人的心。</p>
+<h2>二、亲缘·血脉线</h2>
+<ul>
+<li><strong>周幸 × 赫连钦（父女）</strong> [第36章]：周幸真名赫连筠，将门赫连钦之女。父亲八年前守塞北和平、拒收复失地，被赵执构陷&quot;投敌&quot;、断援粮火焚全军。<strong>这是全书复仇的动机源头。</strong> 结局周幸持父亲亲铸长枪逼宫[第97章]。</li>
+<li><strong>周幸 × 周尊宁（母女/逼誓）</strong> [第80章]：母亲以刀抵颈逼周幸起誓远离塞北、绝不寻仇，随后诱敌牺牲。母爱以最决绝的方式呈现。</li>
+<li><strong>齐煊 × 柳容生（外孙与外公）</strong> [第53章]：青鹰军原主帅柳容生是齐煊母族，东宫事变下狱死，四千旧部等齐煊东山再起。</li>
+<li><strong>赵执 × 吕乡音（夫妻）</strong> [第41章]：妻近亲畸病智症，赵执对她留一线余地——反派唯一的人性缝隙。</li>
+<li><strong>袁察 × 雪晴（兄妹）</strong> [第54-55章]：玉佩↔银簪互指，雪晴同时是月明之姐。</li>
+</ul>
+<h2>三、主从·义气线（周幸的死忠们）</h2>
+<ul>
+<li><strong>周幸 × 陶缨</strong> [第24章]：周幸救她于青楼求死之际，甘愿赴死不出卖。</li>
+<li><strong>周幸 × 袁察</strong> [第8/31章]：八年前周幸血洗山匪占千路山庇护妇孺，袁察归心；袁察对齐煊亦有施粥之恩的敬佩。</li>
+<li><strong>周幸 × 李言归</strong> [第57章]：以&quot;检举无常司=首辅私兵&quot;要挟逼其入局救陆——<strong>从敌对到被迫合作</strong>。李言归本质是被赵执买回改造的塞北奴隶（原名麻勒），死忠赵执。</li>
+<li><strong>周幸 × 万斌·青鹰部</strong> [第53章]：子夜定盟，万斌归心，成夺位关键武力。</li>
+</ul>
+<h2>四、敌对·宿怨线</h2>
+<ul>
+<li><strong>周幸 × 赵执</strong>：终极对决。工寨摊牌[第78章]周幸自曝&quot;赫连筠已死、我只为苍生活着&quot;；结局[第99章]痛斥赵执屠同胞、断其身后名，逼其自刎。<strong>赵执与赫连钦是宿命对照</strong>——都想强国，一个守和平一个要收复，理念之争酿成灭门血案。</li>
+<li><strong>陆酌光 × 赵执（义子/宿怨）</strong> [第30/96章]：五岁被赵执捡回养为无常司令主；赵府&quot;玉竹vs解药&quot;二选一，陆选玉竹叛离血战出府[第85章]。</li>
+<li><strong>陆酌光 × 李言归（同门→你死我活）</strong> [第79/84章]：泠京同门，立场分明后废其手筋拼死缠斗。</li>
+<li><strong>陆酌光 × 龚泽（手刃父仇）</strong> [第98章]：龚泽害死陆生父陆驰，结局齐煊命陆枭首报仇。</li>
+<li><strong>周幸 × 齐宥（篡位昏君）</strong> [第96/98章]：迷香乱其心智→奉遗诏当众揭其伪造皇命、逼死赫连、篡位虐民。</li>
+</ul>
+<h2>五、同盟·博弈线</h2>
+<ul>
+<li><strong>周幸 × 齐煊</strong> [第28/36章]：查案对手→纸卷&quot;上元戏台相会&quot;引入同盟→献遗诏+青鹰军扶其登基，结局齐煊免其拜、赐封号领兵回塞北。</li>
+<li><strong>齐煊 × 樊仲卓（荣国公）</strong> [第50/70章]：借遗诏之名结盟，禁军是夺位关键。</li>
+<li><strong>崔慧 × 周幸</strong> [第9/71章]：崔慧原是都察院查赵家的心腹→被周幸三输赌约收编→纵火礼库造舆论、双线传令。</li>
+<li><strong>周幸 × 吴吉安=文喜</strong> [第61/88/100章]：宫中内线六年，黑羽鸟传信；文喜真名揭底——为师父武福之死+许奉救命恩入局，明侍昏君暗助新君。</li>
+</ul>
+<h2>六、暧昧·情敌线</h2>
+<ul>
+<li><strong>周幸 × 樊蔚</strong> [第45章]：相识数年的暗线盟友兼情敌，赠玉竹簪示好、助查大运河贪腐；结局樊家弃卒保帅让他入狱逼交兵权，樊蔚追问祖父&quot;遗诏究竟是不是真的&quot;[第100章]。陆酌光为白莲簪/海棠簪吃醋收束这段[第100章]。</li>
+</ul>
+<h2>七、恩义·牺牲线（全书泪点担当）</h2>
+<ul>
+<li><strong>武福 × 许奉（誓死相救）</strong> [第97/100章]：匠师武福为救恩人许奉守遗诏，被酷刑折磨致死；其徒文喜(吴吉安)因此入局。</li>
+<li><strong>许奉 × 齐煊·周幸（以命布局）</strong> [第36/100章]：许奉自戕&quot;以血洗刀斩断齐煊枷锁&quot;，木雕腊梅&quot;枯梅再荣&quot;；分别夜以命为周幸拉开&quot;破台大戏&quot;，嘱&quot;让天下记住无名之辈&quot;。</li>
+<li><strong>李言归 × 赵执（恩义）</strong> [第99章]：赵执买下奴隶麻勒教其&quot;像人一样站起来&quot;，李伏尸痛哭&quot;来生只想做一只羊&quot;——反派阵营里最动人的忠义。</li>
+</ul>
+<h2>关系网的三条隐藏主线</h2>
+<ol>
+<li><strong>玉竹/玉鸟同源</strong>：陆的玉竹（藏周幸父母骨灰）与吴吉安的玉鸟，同出名匠武福之手（赫连钦所赠玉）——把陆、周幸、吴吉安、赫连钦、武福五个人暗中串成一张网[第88/97章]。</li>
+<li><strong>遗诏真伪贯穿全网</strong>：真诏被文喜烧、呈堂是赝品、齐煊明知假仍封存——所有阵营的终极博弈都围绕这封诏书[第100章]。</li>
+<li><strong>&quot;荒腔走板的异类&quot;共同体</strong>：周幸团队、许奉、武福、文喜、李言归这些无名小卒，以恩义相连、以命布局，才是撬动大局的真正力量。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

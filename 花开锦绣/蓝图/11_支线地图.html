@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11 · 支线地图 ·《花开锦绣》</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --orange:#ffa94d; --slate:#8ea0bb;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:#dfe3ee;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:350px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.11), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 28px;padding-right:200px;background:rgba(8,8,12,0.78);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;
+  backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.wrap{max-width:1360px;margin:0 auto;padding:26px 26px 70px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 22px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:2px;}
+.hero .quote{margin:18px auto 0;max-width:860px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+.hero .quote b{color:var(--gold2);font-weight:600;}
+
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:16px;}
+.chip{font-size:11.5px;letter-spacing:1px;color:#aab2c6;padding:5px 14px;border-radius:999px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);}
+.chip b{color:var(--gold2);font-weight:700;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:30px 24px 22px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 16px;line-height:1.8;}
+
+.graph-wrap{border-radius:14px;background:rgba(0,0,0,0.24);
+  border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;}
+#map{width:100%;height:auto;display:block;}
+
+.lband,.node{transition:opacity .18s;}
+.node{cursor:pointer;}
+.node:hover circle{filter:drop-shadow(0 0 8px currentColor);}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;align-items:center;}
+.lg{display:flex;align-items:center;gap:7px;font-size:11.5px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.lg.line i{width:18px;height:0;border-radius:0;border-top:2px solid;background:none!important;}
+.lg.lgd i{width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #e8c97a;
+  box-shadow:0 0 7px rgba(232,201,122,.7);}
+.lg.con i{width:18px;height:0;border-radius:0;border-top:1px dashed rgba(232,201,122,.75);background:none!important;}
+.lg-sep{width:100%;height:0;}
+
+#tip{position:fixed;z-index:999;display:none;max-width:380px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+.tip-name{font-size:16px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:4px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.9;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:24px 0 8px;}
+@media (max-width:720px){
+  .wrap{padding:18px 12px 50px;}
+  .hero h1{font-size:23px;letter-spacing:3px;}
+  .section{padding:26px 12px 18px;}
+  .topbar{padding-right:120px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">支线地图</span>
+</div>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>支线地图</h1>
+    <div class="sub">《花开锦绣》· 吱吱 · 310 章 / 约 86.2 万字 · 12 条线（1 主线 + 11 支线）· 明 · 世家宅斗 · 复仇成长</div>
+    <div class="quote">"三家恩怨"是全书骨架：<b>傅家</b>（旧案 / 宅斗）× <b>俞家</b>（复仇目标）× <b>赵家</b>（从军崛起）——在复仇线处三线合流，感情线则是贯穿 248 章的底色。</div>
+    <div class="stats">
+      <span class="chip"><b>12</b> 条线</span>
+      <span class="chip"><b>91</b> 个站点</span>
+      <span class="chip"><b>11</b> 个换乘站</span>
+      <span class="chip">横轴 = 第 <b>1–314</b> 章 · 实存 310 章卡</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">全 线 路 图</div>
+    <h3 class="sec-title">12 条线并进 · 横向自左到右按章序展开</h3>
+    <p class="sec-note">每条线一种颜色，横轴为章序（第 1 → 314 章）。<b>实心小圆</b>＝普通站点；<b>白色大圆 + 彩色描边</b>＝换乘站；换乘站之间以 <b>金色垂直虚线</b> 相连（同章多线交汇）。悬停任一站点 → 查看「章节 + 事件」；悬停时高亮所属线路。</p>
+    <div class="graph-wrap">
+      <svg id="map" viewBox="0 0 1360 900" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="legend" id="sym"></div>
+  </div>
+
+  <div class="foot">《花开锦绣》拆解 · 蓝图 11 · 支线地图</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ===================================================================
+   数据源：拆解数据/蓝图/11_支线地图.md（逐条提取，未编造）
+   12 条线 = 1 主线 + 11 支线；ch = 用于定位的代表章号；ct = 章节范围文本
+   tx:1 = 换乘站（与其它线同章交汇）
+   =================================================================== */
+const LINES = [
+  {id:'main', name:'主线 · 傅庭筠', color:'#e8c97a', start:1, end:314, nodes:[
+    {ch:1,   ct:'第1章',        t:'碧云庵初遇',   ev:'傅庭筠避祸碧云庵，偶遇逃亡的赵凌；表哥左俊杰持“定情肚兜”诬其私情，命运线自此起。', tx:1},
+    {ch:14,  ct:'第14章',       t:'幽禁灌药',     ev:'被诬陷后遭家族幽禁、灌药，逼近死地。'},
+    {ch:18,  ct:'第16–18章',    t:'托付出逃',     ev:'托付他人、决意出逃，与西行线并轨。', tx:1},
+    {ch:37,  ct:'第37–44章',    t:'西行落脚谋生', ev:'逃出华阴后落脚临春镇，开始谋生立足，与经营生计线并轨。', tx:1},
+    {ch:146, ct:'第146章',      t:'入京 · 成婚',  ev:'赵凌迎娶傅庭筠，二人在京都结为夫妇。', tx:1},
+    {ch:162, ct:'第162章起',    t:'复仇清算起',   ev:'左俊杰招供牵出俞家，复仇清算正式展开。', tx:1},
+    {ch:200, ct:'第162–314章',  t:'赵凌布局',     ev:'赵凌暗中布局、多方收网，复仇线全面铺开。'},
+    {ch:314, ct:'第314章',      t:'俞家没落 · 完', ev:'俞敬修入狱革职、俞阁老流放病死，南京丰乐坊俞家没落，“（正文完）”。', tx:1}
+  ]},
+  {id:'love', name:'感情线', color:'#f783ac', start:1, end:314, nodes:[
+    {ch:1,   ct:'第1章',         t:'碧云庵初遇',   ev:'脸对脸、鼻尖对鼻尖，险遭掐死——傅庭筠 ↔ 赵凌感情线起点。', tx:1},
+    {ch:10,  ct:'第10章',        t:'交换之约',     ev:'两人立下“交换”之约。'},
+    {ch:39,  ct:'第15·21·39章',  t:'患难相护 · 改变', ev:'赵凌救命、维护、改变傅庭筠的处境，情愫由患难中生长。'},
+    {ch:57,  ct:'第57章',        t:'中秋 · 情愫渐生', ev:'中秋共处，情意悄然生长。'},
+    {ch:67,  ct:'第67章',        t:'定意',         ev:'彼此认定心意。'},
+    {ch:119, ct:'第119–120章',   t:'两地别',       ev:'聚少离多、两地相别。'},
+    {ch:146, ct:'第146–152章',   t:'成婚蜜月',     ev:'入京成婚，蜜月相守。', tx:1},
+    {ch:274, ct:'第273–275章',   t:'相守 · 背疤垂泪', ev:'两地别后相守；赵凌见她背疤垂泪（复仇布局的情感动因）。'},
+    {ch:282, ct:'第282章',       t:'五年之约',     ev:'立下五年之约。'},
+    {ch:314, ct:'第310–314章',   t:'静好余韵',     ev:'傅赵余韵——“活着的人，才是真正的痛苦”与孩子们的笑声。', tx:1}
+  ]},
+  {id:'revenge', name:'复仇线', color:'#ff6b6b', start:3, end:314, nodes:[
+    {ch:3,   ct:'第3–4章',        t:'左俊杰逼娶',   ev:'左俊杰冒雪跪门逼娶（反派源头）；第4章定计入庵。'},
+    {ch:122, ct:'第121–123章',    t:'雨微残指揭血案', ev:'雨微残指揭出碧云庵血案真相，旧案追索见底。'},
+    {ch:162, ct:'第162–173章',    t:'招供牵出俞家', ev:'左俊杰京都现身 · 审讯 · 招供，牵出俞家。', tx:1},
+    {ch:179, ct:'第179章',        t:'科场作弊旧案', ev:'谈判逼出科场作弊旧案。'},
+    {ch:199, ct:'第199章',        t:'迁怒断亲',     ev:'傅家迁怒、断亲。'},
+    {ch:209, ct:'第209章',        t:'俞家谋赵凌',   ev:'俞家设局谋害赵凌，与侯府 · 阵营线交汇。', tx:1},
+    {ch:276, ct:'第233·274·276章', t:'赵凌布局收网', ev:'赵凌布局收网，为终局清算铺路。'},
+    {ch:314, ct:'第310–314章',    t:'郭家状告 · 入狱', ev:'郭家状告，俞敬修入狱革职、俞阁老流放病死。', tx:1}
+  ]},
+  {id:'housedou', name:'宅斗线', color:'#ffa94d', start:1, end:314, nodes:[
+    {ch:1,   ct:'第1章',         t:'避祸 · 宅斗起', ev:'傅庭筠避祸碧云庵，宅斗线自名节算计起。', tx:1},
+    {ch:128, ct:'第128–129章',   t:'父女决裂',      ev:'傅家父女决裂。'},
+    {ch:187, ct:'第187章',       t:'范氏之患',      ev:'俞家范氏之患与子嗣危机。'},
+    {ch:197, ct:'第196–199章',   t:'自缢 · 闹门',   ev:'大堂嫂自缢、傅家清誉危机；傅五老爷闹门。'},
+    {ch:205, ct:'第195·204–206章', t:'纳妾生子',    ev:'俞家纳妾生子。'},
+    {ch:266, ct:'第264–269章',   t:'抬妾 · 分家',   ev:'抬费氏为妾；华阴分家。'},
+    {ch:305, ct:'第301–308章',   t:'妻妾婆媳大乱', ev:'俞家妻妾婆媳大乱，内宅衰象尽显。'},
+    {ch:314, ct:'第314章',       t:'随俞家坍塌而止', ev:'俞家内宅随家族坍塌而止。', tx:1}
+  ]},
+  {id:'court', name:'朝局线', color:'#74c0fc', start:18, end:314, nodes:[
+    {ch:18,  ct:'第18章',          t:'朝局线起',     ev:'朝局线起（为西行背景）。', tx:1},
+    {ch:36,  ct:'第35–38章',       t:'藩王与剿匪',   ev:'藩王十六爷与剿匪初显。'},
+    {ch:133, ct:'第111·132–135章', t:'京变',         ev:'秦/庄王病逝、穆王叛乱、京都被围。'},
+    {ch:185, ct:'第180·188·190章', t:'换防与军权',   ev:'换防与军权博弈。'},
+    {ch:246, ct:'第246章',         t:'内阁更替',     ev:'沈阁老致仕，钱东林/陈丹亭入阁。'},
+    {ch:258, ct:'第255–261章',     t:'结盟',         ev:'郝剑锋—吴大人结盟。'},
+    {ch:307, ct:'第307章',         t:'荐云贵总督',   ev:'赵凌荐云贵总督，与军旅线交汇。', tx:1},
+    {ch:314, ct:'第313–314章',     t:'拿人 · 革职',  ev:'大理寺拿人、西平侯流放革职。', tx:1}
+  ]},
+  {id:'wai', name:'外家线', color:'#69db7c', start:2, end:314, nodes:[
+    {ch:2,   ct:'第2章',         t:'婚约 · 亲缘起', ev:'外家线起（俞家婚约背景），傅家亲缘兜底。'},
+    {ch:59,  ct:'第57·59–61章',  t:'舅舅 · 华阴傅家', ev:'渭南舅舅 / 华阴傅家亲缘。'},
+    {ch:112, ct:'第112章',       t:'王夫人赴闽',     ev:'王夫人赴闽。'},
+    {ch:124, ct:'第119–129章',   t:'傅家 · 京都',   ev:'傅家至京都。'},
+    {ch:166, ct:'第166–167章',   t:'傅夫人之丧',     ev:'傅夫人之丧。'},
+    {ch:201, ct:'第201–202章',   t:'姑嫂侄儿别',     ev:'姑嫂、侄儿作别。'},
+    {ch:227, ct:'第223–232章',   t:'返长安 · 团聚', ev:'返长安、姊妹团聚（含赵家迁坟立祠）。'},
+    {ch:299, ct:'第298·300章',   t:'沈家求亲',       ev:'沈家求亲，与家事线交汇。', tx:1},
+    {ch:314, ct:'第314章',       t:'玉鸣山别院',     ev:'玉鸣山赵家别院、三姐夫一线。', tx:1}
+  ]},
+  {id:'west', name:'西行线', color:'#5eead4', start:15, end:89, nodes:[
+    {ch:18, ct:'第15·18章',  t:'救走 · 华阴逃出', ev:'赵凌救走傅庭筠、定下西行路线；扮堕民离华阴西行，与朝局线并轨。', tx:1},
+    {ch:24, ct:'第23–24章',  t:'解家遭屠',       ev:'渭南解家遭屠、投亲死局。'},
+    {ch:30, ct:'第27–33章',  t:'临潼冲突',       ev:'临潼冲突与受伤。'},
+    {ch:37, ct:'第37–44章',  t:'临春镇落脚',     ev:'临春镇落脚谋生，与主线、经营生计线并轨。', tx:1},
+    {ch:55, ct:'第44–67章',  t:'西安府',         ev:'西安府落脚。'},
+    {ch:68, ct:'第68–89章',  t:'张掖扎根',       ev:'张掖扎根。'},
+    {ch:89, ct:'第89章',     t:'辞王夫人 · 定居完成', ev:'辞王夫人回后街，西行定居完成，其后转入京都线。'}
+  ]},
+  {id:'feng', name:'阴谋线 · 冯家', color:'#b197fc', start:83, end:263, nodes:[
+    {ch:85,  ct:'第83–86章',   t:'冯大虎纠缠 · 逼婚', ev:'冯氏抛“赵凌阵亡”之说，图谋以傅庭筠配其弟冯大虎；阿森携傅庭筠投王夫人。'},
+    {ch:90,  ct:'第90章',      t:'恶犬咬伤',         ev:'冯大虎夜入宅中遭恶犬咬伤。'},
+    {ch:100, ct:'第100章',     t:'射杀冯大虎',       ev:'黑衣三箭射杀冯大虎。'},
+    {ch:110, ct:'第101–110章', t:'私盐纠葛',         ev:'唐小姐 / 私盐纠葛。'},
+    {ch:263, ct:'第263章',     t:'旧事重提',         ev:'冯大虎旧事于第263章重提，与侯府 · 阵营线交汇。', tx:1}
+  ]},
+  {id:'hou', name:'侯府 · 阵营线', color:'#9775fa', start:73, end:314, nodes:[
+    {ch:73,  ct:'第73章',        t:'阵营线起',       ev:'侯府 · 阵营线起（西平侯 / 颖川侯）。'},
+    {ch:114, ct:'第112–117章',   t:'召见 · 宿怨',    ev:'颖川侯召见 / 换防；西平侯宿怨与冯大虎案。'},
+    {ch:150, ct:'第147·150·153章', t:'武定侯联姻',  ev:'武定侯联姻。'},
+    {ch:189, ct:'第188·190章',   t:'换防 · 绝交',    ev:'颖川侯换防、与赵凌绝交。'},
+    {ch:209, ct:'第209章',       t:'西平侯谋赵凌',   ev:'西平侯宿怨与俞家谋赵凌，与复仇线交汇。', tx:1},
+    {ch:263, ct:'第262–263章',   t:'私卖战马',       ev:'西平侯私卖战马；冯大虎案重提，与阴谋线交汇。', tx:1},
+    {ch:314, ct:'第312–314章',   t:'西平侯事发',     ev:'西平侯与俞阁老私卖战马事发、流放革职。', tx:1}
+  ]},
+  {id:'army', name:'军旅线', color:'#fcc419', start:56, end:314, nodes:[
+    {ch:56,  ct:'第56章',         t:'投军',         ev:'赵凌投军（伏于第36章十六爷赠名帖劝投军）。'},
+    {ch:68,  ct:'第61·68·77·101章', t:'庄浪卫 / 碾伯所', ev:'戍守庄浪卫 / 碾伯所。'},
+    {ch:97,  ct:'第82–100章',     t:'西宁战功',     ev:'边境战事与西宁战功。'},
+    {ch:134, ct:'第133–134章',    t:'京变随军',     ev:'京变随军。'},
+    {ch:167, ct:'第166–169章',    t:'征蛮 · 贵州',  ev:'出征黔 / 贵州征蛮。'},
+    {ch:207, ct:'第207–208章',    t:'宣府大捷',     ev:'宣府大捷。'},
+    {ch:278, ct:'第278章',        t:'献瑞受封',     ev:'献瑞受封。'},
+    {ch:307, ct:'第307章',        t:'荐云贵总督',   ev:'荐云贵总督，与朝局线交汇。', tx:1},
+    {ch:314, ct:'第314章',        t:'考选军政收束', ev:'考选军政收束。', tx:1}
+  ]},
+  {id:'jia', name:'家事线 · 小儿女', color:'#ffa8a8', start:230, end:311, nodes:[
+    {ch:230, ct:'第230章',       t:'凤仙花之辩',   ev:'呦呦与春饼“凤仙花 / 兰花”之辩，小儿女暗线首现。'},
+    {ch:278, ct:'第212–219·278章', t:'阿森入赘',   ev:'阿森暗恋王家长女与入赘。'},
+    {ch:289, ct:'第287–294章',   t:'厉家纠葛 · 青梅', ev:'呦呦/旭哥儿日常与厉家纠葛；小儿女青梅（春饼 ↔ 呦呦）。'},
+    {ch:299, ct:'第298–301章',   t:'呦呦亲事 · 探问', ev:'呦呦亲事与沈家 / 孟氏探问，与外家线交汇。', tx:1},
+    {ch:309, ct:'第309–311章',   t:'阖家静好',     ev:'阖家静好，紧接复仇收束，与经营生计线交汇。', tx:1}
+  ]},
+  {id:'biz', name:'经营生计线', color:'#8ea0bb', start:37, end:309, nodes:[
+    {ch:37,  ct:'第37章',       t:'落脚谋生起',   ev:'经营生计线起（tag：主线 · 落脚谋生；民生线）。', tx:1},
+    {ch:42,  ct:'第40–44章',    t:'西安府针线买卖', ev:'西安府针线 / 买卖。'},
+    {ch:55,  ct:'第55章',       t:'货比三家',     ev:'“货比三家”敲锣妙计。'},
+    {ch:71,  ct:'第71·115章',   t:'大通号商队',   ev:'大通号商队。'},
+    {ch:131, ct:'第131章',      t:'拒做粮食生意', ev:'拒绝做粮食生意。'},
+    {ch:212, ct:'第212章',      t:'买卖 · 阿森婚事', ev:'买卖与阿森婚事。'},
+    {ch:309, ct:'第309章',      t:'阳关饭庄',     ev:'阳关饭庄生意（“她只参股……”），与家事线交汇。', tx:1}
+  ]}
+];
+
+/* =================================================================== 渲染 */
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('map');
+  function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);
+    for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+  function hexA(hex,a){const n=parseInt(hex.slice(1),16);
+    return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
+
+  const W=1360,H=900;
+  const X0=196, X1=1330, D0=1, D1=314;
+  const ROW0=92, ROWH=62;
+  const xOf=function(ch){return X0+(ch-D0)/(D1-D0)*(X1-X0);};
+  const yOf=function(i){return ROW0+i*ROWH;};
+  const ay=826;                 /* 底部章序轴 */
+
+  const gGrid=mk('g',{},svg), gBand=mk('g',{},svg), gConn=mk('g',{},svg),
+        gNode=mk('g',{},svg), gAxis=mk('g',{},svg);
+
+  /* —— 顶部标题 & 竖向参照网格 —— */
+  const cap=mk('text',{x:X0,y:52,fill:'#e8c97a','font-size':13,'font-weight':600,'letter-spacing':2},svg);
+  cap.textContent='《花开锦绣》支线地图 · 12 条线并进';
+  const cap2=mk('text',{x:X1,y:52,fill:'#6f788c','font-size':11,'text-anchor':'end','letter-spacing':1},svg);
+  cap2.textContent='横向 = 章序（左 → 右）';
+
+  [1,50,100,150,200,250,300].forEach(function(ch){
+    mk('line',{x1:xOf(ch),y1:66,x2:xOf(ch),y2:ay-26,stroke:'rgba(255,255,255,0.032)'},gGrid);
+  });
+
+  /* —— 线路（横向色带 + 左侧线路名） —— */
+  const bandEls=[], nodeEls=[], metas=[];
+  LINES.forEach(function(L,i){
+    const y=yOf(i);
+    const g=mk('g',{class:'lband'},gBand);
+    bandEls.push(g);
+    mk('line',{x1:xOf(L.start),y1:y,x2:xOf(L.end),y2:y,stroke:L.color,
+      'stroke-width':10,'stroke-opacity':0.11,'stroke-linecap':'round'},g);
+    mk('line',{x1:xOf(L.start),y1:y,x2:xOf(L.end),y2:y,stroke:L.color,
+      'stroke-width':4,'stroke-opacity':0.52,'stroke-linecap':'round'},g);
+    /* 端点小帽 */
+    mk('circle',{cx:xOf(L.start),cy:y,r:3.2,fill:L.color,'fill-opacity':0.7},g);
+    mk('circle',{cx:xOf(L.end),cy:y,r:3.2,fill:L.color,'fill-opacity':0.7},g);
+    /* 左侧线路名 */
+    mk('circle',{cx:172,cy:y,r:5,fill:L.color,'fill-opacity':0.92},g);
+    const t=mk('text',{x:160,y:y+4,'text-anchor':'end',fill:L.color,
+      'font-size':12,'font-weight':600,'letter-spacing':0.5},g);
+    t.textContent=L.name;
+  });
+
+  /* —— 站点 —— */
+  LINES.forEach(function(L,i){
+    const y=yOf(i);
+    L.nodes.forEach(function(n){
+      const x=xOf(n.ch);
+      const g=mk('g',{class:'node','data-line':i},gNode);
+      if(n.tx){
+        mk('circle',{cx:x,cy:y,r:10.5,fill:'none',stroke:L.color,'stroke-width':1.1,
+          'stroke-dasharray':'3 3','stroke-opacity':0.85},g);
+        mk('circle',{cx:x,cy:y,r:6.2,fill:'#ffffff',stroke:L.color,'stroke-width':2.2},g);
+      }else{
+        mk('circle',{cx:x,cy:y,r:4.4,fill:L.color,stroke:'#08080c','stroke-width':1.3},g);
+        mk('circle',{cx:x,cy:y,r:1.6,fill:hexA(L.color,0.9)},g);
+      }
+      nodeEls.push(g);
+      const m={g:g,line:i,x:x,y:y,node:n,L:L};
+      metas.push(m);
+      g.onmouseenter=function(ev){onEnter(ev,m);};
+      g.onmousemove=moveTip;
+      g.onmouseleave=onLeave;
+    });
+  });
+
+  /* —— 换乘站：金色垂直虚线 + 虚线圆环已在站点层绘制 —— */
+  const byCh={};
+  metas.forEach(function(m){ if(m.node.tx){ (byCh[m.node.ch]=byCh[m.node.ch]||[]).push(m);} });
+  Object.keys(byCh).forEach(function(ch){
+    const arr=byCh[ch]; if(arr.length<2) return;
+    const ys=arr.map(function(m){return m.y;});
+    const ymin=Math.min.apply(null,ys), ymax=Math.max.apply(null,ys);
+    const x=xOf(+ch);
+    mk('line',{x1:x,y1:ymin,x2:x,y2:ymax,stroke:'rgba(232,201,122,0.42)',
+      'stroke-width':1.2,'stroke-dasharray':'4 5'},gConn);
+  });
+
+  /* —— 底部章序轴 —— */
+  mk('line',{x1:X0,y1:ay,x2:X1,y2:ay,stroke:'rgba(255,255,255,0.12)'},gAxis);
+  const capx=mk('text',{x:X0,y:ay-14,fill:'#7d869c','font-size':10.5,'letter-spacing':1},gAxis);
+  capx.textContent='章序 →（第 1–314 章 · 实存 310 张章卡）';
+  [1,50,100,150,200,250,300,314].forEach(function(ch){
+    const x=xOf(ch);
+    mk('line',{x1:x,y1:ay-4,x2:x,y2:ay+4,stroke:'rgba(255,255,255,0.2)'},gAxis);
+    const t=mk('text',{x:x,y:ay+18,'text-anchor':'middle','font-size':10.5,fill:'#6f788c'},gAxis);
+    t.textContent=(ch===1?'第1章':(ch===314?'314 完':'第'+ch+'章'));
+  });
+
+  /* ============================ 交互 ============================ */
+  const tip=document.getElementById('tip');
+  function moveTip(ev){
+    const pad=16,w=tip.offsetWidth,h=tip.offsetHeight;
+    let x=ev.clientX+pad,y=ev.clientY+pad;
+    if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+    if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+    if(x<8)x=8; if(y<8)y=8;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  }
+  function focusLine(li){
+    bandEls.forEach(function(b,i){ b.setAttribute('opacity', i===li?1:0.16); });
+    nodeEls.forEach(function(g){ g.style.opacity=(+g.dataset.line===li)?1:0.2; });
+  }
+  function clearFocus(){
+    bandEls.forEach(function(b){ b.setAttribute('opacity',1); });
+    nodeEls.forEach(function(g){ g.style.opacity=1; });
+  }
+  function onEnter(ev,m){
+    const n=m.node, L=m.L;
+    focusLine(m.line);
+    tip.innerHTML='<div class="tip-name" style="color:'+L.color+'">'+n.t+'</div>'+
+      '<div class="tip-role">'+L.name+' · '+n.ct+'</div>'+
+      '<div class="tip-desc">'+n.ev+'</div>';
+    tip.style.display='block'; moveTip(ev);
+  }
+  function onLeave(){ tip.style.display='none'; clearFocus(); }
+
+  /* ============================ 图例 ============================ */
+  const lg=document.getElementById('legend');
+  LINES.forEach(function(L){
+    const d=document.createElement('div'); d.className='lg';
+    d.innerHTML='<i style="background:'+L.color+';box-shadow:0 0 7px '+hexA(L.color,.85)+'"></i>'+L.name;
+    lg.appendChild(d);
+  });
+  const sym=document.getElementById('sym');
+  sym.innerHTML=
+    '<div class="lg"><i style="background:#74c0fc"></i>普通站（实心小圆）</div>'+
+    '<div class="lg lgd">换乘站（白色大圆 + 彩色描边）</div>'+
+    '<div class="lg con">换乘连接（同章多线交汇）</div>';
+})();
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

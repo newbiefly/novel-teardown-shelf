@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人物设定集·主角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>人物设定集·主角</h1>
+<blockquote>
+<p>数据源：人物台账 · CP互动台账 · 关系台账 · 脱籍经营台账<br>本篇只写&quot;人物自身怎么变&quot;，两人之间关系怎么变归「06_人物关系网」</p>
+</blockquote>
+<hr>
+<h2>一、陈香兰（沈嘉兰）</h2>
+<h3>1.1 基础设定（不变核心）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>今世：陈香兰 / 前世：沈嘉兰</td>
+</tr>
+<tr>
+<td>身世</td>
+<td>前世：太子少傅沈文翰嫡孙女，簪缨清贵；今世：林家家生丫鬟，陈万全与薛氏之女</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>容貌极美（多次被形容引人注目），被赵月婵因&quot;画圈&quot;猜忌即说明容色出众</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>&quot;有房有地做自由人&quot;——脱籍自立 [第2章]</td>
+</tr>
+<tr>
+<td>核心恐惧</td>
+<td>再次失去自由/再被命运碾碎（前世家族灭门的创伤）</td>
+</tr>
+<tr>
+<td>信念</td>
+<td>&quot;被狗啃了……忍到最后有出头之日&quot; [第14章]；&quot;挺直腰杆做人&quot; [第248章]</td>
+</tr>
+<tr>
+<td>准则</td>
+<td>不做妾、不依附、不攀高枝——即便面对林锦楼也以死相抗 [第113章]</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>① 画技精湛（兰香居士，大画标价50两 [第97章]）② 前世经史书画学识（簪花小楷/对诗 [第57-60章]）③ 管家理财（前世首辅门第管家经验 [第254章]）④ 佛经修养（定逸师太授 [第1章]）</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>翠玉小青蛙（宋柯赠 [第22章]）/ 赤金黄玉小马腰坠（林锦楼赠 [第44章]）/ 孔雀屏风（前世陪嫁 [第177章]）</td>
+</tr>
+</tbody></table>
+<h3>1.2 性格标签</h3>
+<p><strong>主标签：泼辣隐忍者</strong><br>一个把泼辣当武器、把隐忍当策略的底层幸存者。嘴上从不饶人，但每一次退让都是精准计算后的选择。</p>
+<ul>
+<li>佐证：持刀立威吓退邻居 [第2章] / &quot;不是戏子粉头奴才&quot; 怼鸾儿 [第143章] / 被林锦楼打仍回嘴&quot;我也不稀罕&quot; [第248章]</li>
+<li>佐证（隐忍面）：被曹压榨不反抗而选&quot;慢工&quot; [第12章] / 被画眉栽赃不急辩而等反指暖月 [第184章] / 对秦氏&quot;磨&quot;写忍字烧了 [第198-199章]</li>
+</ul>
+<p><strong>辅标签①：经营型务实者</strong><br>不靠复仇不靠男人，靠卖画攒钱买房。全书每一步都有经济账。</p>
+<ul>
+<li>佐证：卖画攒赎身银 [第1章] / 明确规划&quot;攒钱两年后脱籍&quot; [第86章] / 主持中馈管账簿 [第254章] / &quot;自己手里有银子才踏实&quot; [第253章]</li>
+</ul>
+<p><strong>辅标签②：慈悲蜕变者</strong><br>全书354章走完了一条从&quot;言语犀利不饶人&quot;到&quot;不争不辩爱语柔软&quot;的心性曲线。</p>
+<ul>
+<li>佐证：帮鹦哥20两+衣裳 [第174章] / 为赵月婵分点心诵经 [第302-303章] / &quot;当初种种坎坷，不过因我业障未消&quot;的释然 [第354章]</li>
+</ul>
+<p><strong>反差点：前世首辅孙女 vs 今世末等奴才</strong><br>簪缨门第出身的大家闺秀，困在奴才皮囊里做最底层的人——偶尔泄露的学识/气度/审美，和底层身份构成全书最大的戏剧张力。</p>
+<ul>
+<li>佐证：诗社代笔《遗香》技惊四座但以丫鬟身份不能署名 [第55-60章] / 林锦楼看画&quot;哪里是奴才种子，分明像簪缨人家&quot; [第225章] / 境界论令林昭祥赐茶 [第326章]</li>
+</ul>
+<h3>1.3 人生阶段卡</h3>
+<h4>阶段一：重生求存期（ch1-37）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>家生丫鬟，末等，被曹丽环压榨，零资源零人脉</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>带前世记忆的清醒绝望——知道世道残酷，只想脱籍自由</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>泼辣立威震慑邻里 [第2章] → &quot;慢工&quot;减少被压榨 [第12章] → 结盟汀兰小鹃获情报网 [第17章] → 抓住桃汁案当堂作证翻盘 [第35-36章]</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>持刀立威 [第2章] / 替秦氏化解曹送信 [第23-24章] / 桃汁案翻盘升二等 [第37章]</td>
+</tr>
+</tbody></table>
+<h4>阶段二：知春馆求生期（ch38-78）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>知春馆二等，进入权力核心但被林锦楼盯上、被赵月婵打压</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>在林锦楼与宋柯之间挣扎：视宋柯为脱籍路径 [第61章]，恐惧林锦楼</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>以才情(诗/画)赢得吴妈妈倚重 [第53-61章] / 暗中规划靠宋柯脱身 [第61章]</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>代办诗社 [第53-61章] / 被林锦楼截走万念俱灰 [第71-72章] / 被赵打关后极限求生 [第77-78章]</td>
+</tr>
+</tbody></table>
+<h4>阶段三：宋家准夫妻期（ch81-121）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>宋柯截买→到宋家→父母脱籍→自身脱籍→等正娶</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>全书最有希望的阶段——有家有房有人爱</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>卖画攒钱 [第89章] / 主动交底掌控命运 [第97章] / 求宋姨妈放籍 [第114章]</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>向宋柯揭兰香居士身份+交底&quot;正娶否则放我&quot; [第97-98章] / 脱籍成良人 [第114章] / 与宋柯决别&quot;百年好合&quot; [第120章]</td>
+</tr>
+</tbody></table>
+<h4>阶段四：被迫依附期（ch131-193）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>以身换父→再入林府→被强行圆房→困在知春馆</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>&quot;又恨又怕&quot;，内心仍计划逃跑 [第140章]，但开始策略性经营</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>从被动抗拒→主动经营：攀交书染 [第152-153章] / 帮鹦哥以利换和 [第174-176章] / 攒私房溶锭 [第167章]</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>以死抗拒林锦楼 [第113章] / 符咒案中冷静辩解洗清 [第183-185章] / 策略大转折&quot;以利换和&quot; [第176章]</td>
+</tr>
+</tbody></table>
+<h4>阶段五：经营求平等期（ch194-290）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>被秦氏接纳→抬姨奶奶→主持中馈→但仍想脱身</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>&quot;断不能长久做小老婆&quot; [第255章]，但对林锦楼从恨到复杂</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>中馈经营展示能力 [第254章] / 卖画月入七八两 [第253章] / 策略性退权换信任 [第260章] / 境界论赢得敬意 [第271章]</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>醉后正面对抗&quot;活了两辈子都清清白白&quot; [第248章] / 境界论令全室寂静 [第271章] / 逼姜曦云喝假药 [第288章] / 请求出府被拒 [第289章]</td>
+</tr>
+</tbody></table>
+<h4>阶段六：圆满蜕变期（ch291-354+番外）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>经历生死→被认可→正名→正妻→有孕</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>从&quot;别无他求&quot;的释然到&quot;全数倾注&quot;的真情</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>不再靠手段，靠品格和真心</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>杀卢韶堂救林锦楼 [第303章] / 撕毁赵晋密信保政治安全 [第303章] / 主动亲吻林锦楼 [第353章] / 袒露前世完整身世 [第354章]</td>
+</tr>
+</tbody></table>
+<h3>1.4 人物弧光一句话</h3>
+<blockquote>
+<p><strong>从带着前世创伤拼命求活的泼辣丫鬟，蜕变为真正慈悲宽厚、&quot;别无他求&quot;的女性。</strong></p>
+</blockquote>
+<h3>1.5 关键抉择时刻</h3>
+<p><strong>抉择一：以身换父</strong> [第131-132章]</p>
+<ul>
+<li>两难：父亲陈万全被打入狱即将丧命 vs 上林锦楼马车=自由丧失</li>
+<li>选择：上车，用自由换父命</li>
+<li>定义了什么：她可以为至亲牺牲一切——哪怕是她最珍视的自由</li>
+</ul>
+<p><strong>抉择二：杀卢韶堂</strong> [第303章]</p>
+<ul>
+<li>两难：卢韶堂弩箭对准受伤的林锦楼，只有香兰在场 vs 杀人后自己将如何</li>
+<li>选择：从背后以刀击毙卢韶堂</li>
+<li>定义了什么：她已经从&quot;想逃离这个男人&quot;变成了&quot;愿意为这个男人杀人&quot;——全书感情线最终确立的真正标志</li>
+</ul>
+<hr>
+<h2>二、林锦楼</h2>
+<h3>2.1 基础设定（不变核心）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>林锦楼</td>
+</tr>
+<tr>
+<td>身世</td>
+<td>林家嫡长孙，大房大太太秦氏所生，武状元出身</td>
+</tr>
+<tr>
+<td>外貌</td>
+<td>俊朗高大（多处描写引人注目），武将体魄</td>
+</tr>
+<tr>
+<td>核心欲望</td>
+<td>掌控——对权力、对家族、对身边人（尤其对香兰）的绝对掌控</td>
+</tr>
+<tr>
+<td>核心恐惧</td>
+<td>失去（芙蓉被杀、青岚一尸两命、香兰失踪三个月——每次失去都加深他的控制欲）</td>
+</tr>
+<tr>
+<td>信念</td>
+<td>&quot;爷的人谁也不能动&quot; [第132章] / &quot;敬她就是敬我&quot; [第306章]</td>
+</tr>
+<tr>
+<td>准则</td>
+<td>恩怨分明、以势碾压——但对香兰是唯一的例外（最终学会&quot;放手&quot;）</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>① 武艺超群（武状元/杀伐） ② 政治手腕（做局和离/暗送太子/长袖善舞）③ 经商养军（经济头脑）</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>赤金黄玉小马腰坠（反复给香兰的标记物 [第44/135章]）/ 玉兰坠子 [第276章]</td>
+</tr>
+</tbody></table>
+<h3>2.2 性格标签</h3>
+<p><strong>主标签：暴戾权控者→深情守护者</strong><br>全书跨283章完成的蜕变弧度——从&quot;用权力碾压一切&quot;到&quot;做好了失去她的准备&quot;。</p>
+<ul>
+<li>佐证（暴戾面）：踹断四顺儿双腿 [第32章] / 截走威胁&quot;一家都攥爷手里&quot; [第71章] / 强行圆房后怒打 [第138章] / 掐脖 [第173章]</li>
+<li>佐证（深情面）：嘱咐&quot;金陵博古架田产地契给香兰&quot; [第304章] / &quot;我再也别无他求&quot; [第354章] / 番外一生未纳妾</li>
+</ul>
+<p><strong>辅标签：武将式憨夫</strong><br>杀伐决断的一品武将，在香兰面前却像傻小子——这种反差是角色最抓人的地方。</p>
+<ul>
+<li>佐证：想到香兰的嘴就推开琼脂 [第50章] / 送猫&quot;那双眼跟你像&quot; [第294章] / 书染发现他&quot;背对哭&quot; [第344章] / 香兰亲他一口&quot;愣住大喜，忍住不打趣&quot; [第353章]</li>
+</ul>
+<p><strong>反差点：对天下杀伐决断 vs 对香兰笨拙无措</strong><br>能做局扳倒赵家、暗送太子出关、率军剿叛——但面对香兰的泪水束手无策，面对她的逃跑只会更紧地抓。</p>
+<ul>
+<li>佐证：做局捉奸和离赵月婵（精密如棋 [第108-110章]）vs 追香兰只会掐脸说&quot;让爷好生瞧瞧&quot; [第112章]；率军杀叛乱 [第298-300章] vs 读香兰辞别信&quot;背对着哭&quot; [第344章]</li>
+</ul>
+<h3>2.3 人生阶段卡</h3>
+<h4>阶段一：标记与占有欲萌发（ch5-72）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>武状元→千总→经商养军，婚姻不幸（赵月婵非完璧反目）</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>对女人是&quot;消遣/占有&quot;的心态（通房妾室更替频繁）</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>画圈标记→暴力救美→物质收编→强行截走→威胁全家</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>画圈标记 [第5章] / 踹断四顺儿 [第32章] / 截走香兰切断宋柯线 [第71-72章]</td>
+</tr>
+</tbody></table>
+<h4>阶段二：受挫与执念（ch105-137）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>升正四品指挥佥事，做局和离赵月婵→正妻位空出</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>和离后第一时间追问香兰——沉寂半年的执念爆发</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>物件追踪(香囊/嘴型联想) → 登门要人被死拒 → 以恩挟情(救父→换取入府)</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>做局和离 [第108-110章] / 登门被香兰拔钗以死相拒——首次严重受挫 [第112-115章] / 以身换父交易 [第131-132章]</td>
+</tr>
+</tbody></table>
+<h4>阶段三：暴戾占有（ch138-174）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>香兰在身边了，但她不愿意</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>占有欲满足但焦躁——知道她心里有宋柯，嫉妒到发疯</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>暴力圆房+护短+物质补偿的循环</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>强行圆房 [第138章] / 为香兰打弟妹丫鬟立铁律&quot;香兰不可欺&quot; [第147章] / 发现宋柯扇子掐脖 [第173章]</td>
+</tr>
+</tbody></table>
+<h4>阶段四：从占有到经营（ch177-271）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>权势日盛（升从三品→都督），开始尝试&quot;对香兰好&quot;</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>从&quot;她是我的&quot;渐变为&quot;我想让她开心&quot;——暴力频率下降</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>送屏风/送银子/抬姨奶奶/交账簿/带见父母——武将式笨拙的&quot;经营&quot;</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>赏孔雀屏风→香兰第一次叫&quot;好老公&quot; [第178章] / 偷听&quot;被强迫何必取命&quot;内心触动 [第237章] / 承认&quot;挟恩&quot; [第248章] / 境界论后产生&quot;说不清道不明的敬意&quot; [第271章]</td>
+</tr>
+</tbody></table>
+<h4>阶段五：真情确立与正名（ch276-354+番外）</h4>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处境</td>
+<td>从三品都督→入阁在望→一品武将，权势最盛</td>
+</tr>
+<tr>
+<td>心境</td>
+<td>&quot;真正爱重她，是入了心的&quot; [第318章]——从占有到真爱</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>对抗秦氏 [第282章] → 对抗父亲&quot;除非我死&quot; [第337章] → 甲士迎亲 [第348章]</td>
+</tr>
+<tr>
+<td>关键行动</td>
+<td>拒绝搬房对抗秦氏 [第282章] / 掐姜曦云为香兰出头 [第289章] / 嘱托田产地契=&quot;做好了失去她的准备&quot; [第304章] / 向祖父坦白 [第318章] / 甲士迎亲 [第348章] / &quot;我再也别无他求&quot; [第354章]</td>
+</tr>
+</tbody></table>
+<h3>2.4 人物弧光一句话</h3>
+<blockquote>
+<p><strong>从用权力碾压占有的暴戾武将，蜕变为愿意为一个女人放弃一切——包括放手——的深情丈夫。</strong></p>
+</blockquote>
+<h3>2.5 关键抉择时刻</h3>
+<p><strong>抉择一：嘱托田产地契</strong> [第304章]</p>
+<ul>
+<li>两难：重伤濒死，香兰在身边——死前是&quot;绑死她&quot;还是&quot;放了她&quot;</li>
+<li>选择：嘱咐&quot;金陵博古架田产地契给香兰&quot;&quot;若她愿意出去由她&quot;</li>
+<li>定义了什么：全书追妻火葬场的终极证明——他终于学会了&quot;爱是放手&quot;，而不是&quot;爱是占有&quot;</li>
+</ul>
+<p><strong>抉择二：对抗父亲</strong> [第337章]</p>
+<ul>
+<li>两难：林长政&quot;除非我死&quot;反对香兰正名 vs 给香兰正妻名分</li>
+<li>选择：正面硬刚——&quot;妻子名分，儿子定了&quot;</li>
+<li>定义了什么：为了香兰可以与全家族对抗——权力从来不是他的终极目标，这个女人才是</li>
+</ul>
+<hr>
+<h2>三、两个主角的平行对照</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>香兰</th>
+<th>林锦楼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>核心目标</td>
+<td>自由（脱籍独立）</td>
+<td>掌控（权力家族）</td>
+</tr>
+<tr>
+<td>目标冲突</td>
+<td>她要逃 vs 他要留</td>
+<td>他要占 vs 她要走</td>
+</tr>
+<tr>
+<td>弧光方向</td>
+<td>从泼辣防备→慈悲宽厚</td>
+<td>从暴戾占有→深情放手</td>
+</tr>
+<tr>
+<td>蜕变驱动力</td>
+<td>佛理+历经苦难后的觉悟</td>
+<td>被香兰的品格折服+差点失去的恐惧</td>
+</tr>
+<tr>
+<td>信任建立</td>
+<td>极缓——从防备到松动到主动亲吻用了283章</td>
+<td>极急——一开始就想要，但要的方式错了</td>
+</tr>
+<tr>
+<td>最终圆满</td>
+<td>&quot;别无他求&quot; [第354章]</td>
+<td>&quot;别无他求&quot; [第354章]</td>
+</tr>
+</tbody></table>
+<p><strong>设计精妙处</strong>：两人的弧光是<strong>镜像对称</strong>的——香兰从&quot;硬&quot;变&quot;柔&quot;（心性蜕变），林锦楼从&quot;强&quot;变&quot;软&quot;（放下控制）。在交叉点 [第354章]，两人同时到达&quot;别无他求&quot;——一个放下了前世创伤，一个放下了占有执念。</p>
+<hr>
+<blockquote>
+<p>📌 本蓝图基于人物台账+CP互动台账+关系台账+脱籍经营台账归纳，覆盖 [第1章] 至 [番外]。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

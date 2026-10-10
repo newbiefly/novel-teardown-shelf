@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 · 感情线进度 · 一瓯春</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --purple:#b197fc; --cyan:#5eead4; --blue:#74c0fc; --rose:#ef9fb0;
+  --green:#69db7c; --orange:#ffa94d;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:#dfe3ee;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:360px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.12), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:13px 26px;background:rgba(8,8,12,0.78);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:600;}
+
+.wrap{max-width:1320px;margin:0 auto;padding:26px 26px 90px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:5px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#b197fc 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:12px;font-size:12.5px;color:#8b93a7;letter-spacing:1.5px;}
+.hero .quote{margin:18px auto 0;max-width:800px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 22px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 26px 26px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(177,151,252,0.22);border:1px solid rgba(177,151,252,0.35);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;line-height:1.9;}
+
+.graph-wrap{overflow-x:auto;border-radius:14px;background:rgba(0,0,0,0.24);
+  border:1px solid rgba(255,255,255,0.05);padding:6px 4px;}
+#cpTimeline{min-width:1060px;width:100%;height:auto;display:block;}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+.qp{cursor:pointer;}
+.qp .dot{transition:.18s;}
+.qp:hover .dot{filter:drop-shadow(0 0 10px currentColor);}
+.anchor{cursor:pointer;}
+.anchor .adot{transition:.18s;}
+.anchor:hover .adot{r:5.2;}
+
+#tip{position:fixed;z-index:999;display:none;max-width:330px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+.tip-name{font-size:15px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.9;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-desc b{color:#e8c97a;font-weight:600;}
+.tip-desc .v{color:#dfe3ee;font-weight:700;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;}
+.card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;overflow:hidden;position:relative;transition:.2s;}
+.card:hover{border-color:rgba(201,169,97,0.35);}
+.card .bar{height:3px;width:100%;}
+.card-h{padding:15px 16px 13px;cursor:pointer;user-select:none;}
+.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.card-name{font-size:14.5px;font-weight:700;letter-spacing:1px;}
+.card-range{font-size:11px;color:#8b93a7;letter-spacing:.5px;white-space:nowrap;}
+.card-meta{margin-top:9px;display:flex;flex-direction:column;gap:5px;}
+.card-meta div{font-size:11.5px;line-height:1.7;color:#a9b0c4;}
+.card-meta b{color:#cfd6e6;font-weight:600;}
+.card-quote{margin-top:11px;font-size:12.5px;line-height:1.85;color:#d8c79a;
+  border-left:2px solid rgba(201,169,97,0.5);padding:2px 0 2px 11px;background:rgba(201,169,97,0.03);}
+.card-quote span{display:block;font-size:10px;color:#6f788c;margin-top:3px;letter-spacing:1px;}
+.card-toggle{margin-top:11px;font-size:11px;color:var(--gold);letter-spacing:1px;display:flex;
+  align-items:center;gap:6px;}
+.card-toggle .arw{transition:transform .22s;font-size:9px;}
+.card.open .card-toggle .arw{transform:rotate(90deg);}
+.card-b{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.card.open .card-b{max-height:1900px;}
+.card-b-in{padding:6px 16px 16px;border-top:1px dashed rgba(255,255,255,0.08);}
+.node-row{padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.node-row:last-child{border-bottom:none;}
+.node-ch{display:inline-block;font-size:10.5px;color:#0b0b10;font-weight:700;background:var(--gold);
+  border-radius:5px;padding:1px 7px;margin-right:8px;vertical-align:2px;}
+.node-act{font-size:12px;line-height:1.85;color:#c3cadb;}
+.node-sub{font-size:11px;line-height:1.8;color:#8b93a7;margin-top:4px;padding-left:2px;}
+.node-sub em{font-style:normal;color:#a9b0c4;}
+
+.ruler-block{margin-bottom:26px;}
+.ruler-block:last-child{margin-bottom:4px;}
+.rb-head{font-size:12.5px;color:#cfd6e6;letter-spacing:1px;margin-bottom:20px;}
+.rb-head b{color:var(--purple);font-weight:700;}
+.ruler{position:relative;height:64px;margin:0 6px;}
+.ruler .track{position:absolute;left:0;right:0;top:26px;height:6px;border-radius:6px;
+  background:linear-gradient(90deg,rgba(139,147,167,0.18),rgba(177,151,252,0.55),rgba(232,201,122,0.75));}
+.ruler .tick{position:absolute;top:14px;width:1px;height:12px;background:rgba(255,255,255,0.12);}
+.ruler .mk{position:absolute;top:29px;transform:translate(-50%,-50%);}
+.ruler .mk i{display:block;width:13px;height:13px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--purple);box-shadow:0 0 10px rgba(177,151,252,0.7);}
+.ruler .mk.gold i{border-color:var(--gold);box-shadow:0 0 10px rgba(232,201,122,0.8);}
+.ruler .lbl{position:absolute;top:-4px;transform:translateX(-50%);white-space:nowrap;
+  font-size:12px;color:#dfe3ee;letter-spacing:.5px;font-weight:600;}
+.ruler .lbl .ch{display:block;font-size:9.5px;color:#7d869c;font-weight:400;letter-spacing:0;margin-top:2px;}
+.ruler .below{position:absolute;top:40px;transform:translateX(-50%);white-space:nowrap;
+  font-size:9.5px;color:#7d869c;letter-spacing:.5px;}
+
+.quotes{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.quote-card{background:linear-gradient(160deg,rgba(177,151,252,0.06),rgba(201,169,97,0.03));
+  border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 18px 16px;
+  position:relative;transition:.2s;}
+.quote-card:hover{border-color:rgba(201,169,97,0.4);transform:translateY(-2px);}
+.quote-card .qc-mark{position:absolute;top:6px;right:14px;font-size:40px;color:rgba(201,169,97,0.16);
+  font-family:Georgia,serif;line-height:1;}
+.quote-card .qc-text{font-size:13px;line-height:1.95;color:#e2dcc8;letter-spacing:.3px;}
+.quote-card .qc-foot{margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.quote-card .qc-ch{font-size:11px;color:var(--gold);letter-spacing:1px;font-weight:600;}
+.quote-card .qc-tag{font-size:9.5px;color:#8b93a7;letter-spacing:1px;border:1px solid rgba(255,255,255,0.12);
+  border-radius:999px;padding:1px 8px;}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 12px;color:#e8c97a;font-weight:600;letter-spacing:1px;
+  border-bottom:1px solid rgba(201,169,97,0.25);white-space:nowrap;font-size:11.5px;}
+td{padding:10px 12px;color:#b6bdd0;border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.8;vertical-align:top;}
+tr:hover td{background:rgba(177,151,252,0.05);}
+td.num{color:var(--purple);font-weight:700;white-space:nowrap;}
+td.ch{color:#dfe3ee;font-weight:600;white-space:nowrap;}
+td.mean{color:#a9b0c4;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:23px;letter-spacing:2px;}
+  .section{padding:30px 16px 20px;}
+  .cards{grid-template-columns:1fr;}
+}
+
+.tb-right{display:flex;align-items:center;gap:16px;}
+.author-badge{font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.6);border:1px solid rgba(201,169,97,0.3);border-radius:16px;
+  padding:4px 12px;white-space:nowrap;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="tb-right"><div class="dim">12 · 感情线进度</div><span class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</span></div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>谢清圆 × 沈润 · 感情线进度</h1>
+    <div class="sub">《一瓯春》· 尤四姐 · 102 章 · 古代言情 / 宅斗权谋 / 母案悬疑 · 主线 CP 跨度第 25 章 → 第 102 章</div>
+    <div class="quote">一个锁定了"破局捷径"的庶女，一个翻云覆雨的殿前司都指挥使——从冷面审视到携手共难，78 章的推拉里，一件玉佩撑起了 30 章的距离。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">主图</div>
+    <h3 class="sec-title">CP 推进时间轴 · 七阶段 / 12 质变点 / 双线好感</h3>
+    <p class="sec-note">横轴为章号（25 → 102）；七阶段各占一段并配不同色；轨道上的发光圆点为 12 个关系质变点，悬停查看“章号 + 事件 + 意义”。下方两条折线为好感度走势（沈润 → 清圆 / 清圆 → 沈润），悬停数据点查看该章双向好感值。</p>
+    <div class="graph-wrap">
+      <svg id="cpTimeline" viewBox="0 0 1320 600" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">阶段卡</div>
+    <h3 class="sec-title">七阶段 · 关系状态与推拉主调</h3>
+    <p class="sec-note">默认显示阶段名、章节区间、关系状态、推拉主调与一句金句；点击卡片展开该阶段各章的 CP 互动节点。</p>
+    <div class="cards" id="stageWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">称谓标尺</div>
+    <h3 class="sec-title">称呼递进 · 亲密度刻度条</h3>
+    <p class="sec-note">用称谓的变化让读者"听见"关系进度：从疏到亲，每个称呼落在一段刻度上。</p>
+    <div id="rulerWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">金句卡</div>
+    <h3 class="sec-title">名场面金句网格</h3>
+    <p class="sec-note">按章序排列的 CP 金句，右下标为所属阶段。</p>
+    <div class="quotes" id="quoteWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">质变清单</div>
+    <h3 class="sec-title">关系质变点 · 关键 12 个</h3>
+    <p class="sec-note">12 个质变事件的原文落点与意义，可与上方时间轴对照阅读。</p>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>#</th><th>章</th><th>质变事件</th><th>意义</th></tr></thead>
+        <tbody id="qpTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">《一瓯春》拆解 · 蓝图 12 · 感情线进度（谢清圆 × 沈润）</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ====================== 数据 ====================== */
+const STAGES = [
+  {id:1, roman:'一', name:'初遇定"劫"', a:25, b:31, color:'#5eead4',
+   state:'破局目标 → 私密暧昧', fu:'好奇起意 / 戒备惊惧', push:'冷面审视 vs 退缩自保',
+   point:'[第30章] 夜赠贴身玉佩',
+   quote:'他就在她耳畔说话，低低的耳语像羽毛撩拨在心上。', quoteCh:'第30章',
+   nodes:[
+     ['25','清圆献泥金名册、锁定殿前司都使沈澈为捷径，欲插话献计','未见其人、先成破局目标','老太太向通引官打听沈润行踪'],
+     ['26','清圆独自登指挥使府求见，花厅久候至日落，与"眉目清雅的男子"初次相见','正面对接的开端，身份未点明','清圆被老太太推上前台、独自登门'],
+     ['27','清圆误认沈润为都使、当面向其陈情，真沈澈归府揭穿；沈润反复追问其年纪、婚配、与李淳之的关系','首次正面交锋，异性张力起点','沈润冷淡审视、暗中探问；清圆戒备退缩'],
+     ['28','老太太车中剖白"沈家无公婆、配沈润是上上之选"','婚配线正式铺开，清圆无意','清圆以"二姐姐和沈指挥使很相配"自保推脱'],
+     ['29','家宴途中照面，清圆含笑纳福','好感线的微妙推进','沈润冷脸而过却多看她一眼'],
+     ['30','沈润醉酒独寻清圆、压墙、颈间嗅香、强赠贴身兽面透雕玉佩','由公事交涉转向私密暧昧','清圆惊惧、不敢声张，玉佩成"烫手山芋"'],
+     ['31','沈润上马前含笑一瞥、暗赞"谢纾为人不怎么样，生的女儿倒很讨人喜欢"','沈润暗生好感','清圆因玉佩忐忑、揣测其用意']
+   ]},
+  {id:2, roman:'二', name:'玉佩立约', a:32, b:41, color:'#74c0fc',
+   state:'暧昧升温、有约在身', fu:'暗涌热切 / 慌乱别扭', push:'赠 → 还 → 拒 → 转 → 夺',
+   point:'[第40章] "不给人做妾"摊牌；[第41章] 射宝夺佩',
+   quote:'我情愿一辈子不嫁，也绝不做别人的玩物。', quoteCh:'第40章',
+   nodes:[
+     ['32','二人未同场；沈润嘱芳纯好生相迎清圆','沈润留意、清圆为归佩不得而惆怅','清圆屡欲还佩而不得'],
+     ['35','护国寺香炉旁重逢，沈润低声"沈某好像落了东西在你这里了"','推拉开端','清圆欲还玉佩却心头畏缩'],
+     ['36','清圆奉还玉佩遭推拒，改口反问"殿帅究竟落了什么"，沈润道"原来你一直都在盼着沈润"','好感在暗处升温','一问一答彼此试探、清圆以退为进'],
+     ['38','沈润破例在沈府设宴、"初六正好休沐"，暗中介入','沈润主动介入','清圆对沈润发憷、只求还佩脱身'],
+     ['39','清圆转赠玉佩给清如，沈润将清圆拽入密室、近身逼问"我赠你的东西，为什么在别人身上"','密室对峙、张力骤升','清圆挣扎闪避、试图撮合清如，沈润讥讽'],
+     ['40','近身拉锯、沈润替她抿发、应下讨还玉佩、约"日后查验"；清圆坦言"我情愿一辈子不嫁，也绝不做别人的玩物"','暧昧明确升温，沈润承诺取佩护她','沈润借"共处一室"调笑，清圆勇敢摊牌'],
+     ['41','沈润送清圆出密室引其"认认路"、射宝一箭射落清如胸前玉佩、借食盒还佩','报复得手、预感"注定纠缠"','清圆预感与沈润纠缠一生']
+   ]},
+  {id:3, roman:'三', name:'救场挑明', a:42, b:50, color:'#b197fc',
+   state:'公开庇护、心迹挑明', fu:'主动进逼 / 忌惮动摇', push:'救场 vs 划界',
+   point:'[第45章] "你是我私事"；[第49章] 公开庇护',
+   quote:'四姑娘就是沈某的私事。', quoteCh:'第45章',
+   nodes:[
+     ['44','芦苇荡遇伏，沈润率殿前司班直突至解围、亲至相救','危难中相救','沈润冷面挥手"带走！"'],
+     ['45','沈润验佩、点破清圆苦肉计、耳语表白"四姑娘就是沈某的私事""只为想你了"','由"被救／忌惮"转为"被看穿—贴身交锋"，挑明心迹','清圆警醒退避、将信将疑'],
+     ['46','沈润示爱、缠问信物、具夜宵、取单衣覆其身；清圆以"敬同父辈"划界','设防被步步化解、悬于"待答复"','清圆划界遭驳'],
+     ['47','沈润以官袍相戏、缠问、许诺等待；李从心至、沈润吃味','情敌初照面，沈润由攻转守"等她点头"','清圆舒颜迎李从心，沈润生妒'],
+     ['48','沈润借"护名声"亲送清圆归幽州，与李从心二男左右开道','沈润由暗转明、借护送示威','清圆两不应承'],
+     ['49','沈润当众以"救下了发现是四姑娘，也算缘分"暗递情意、以殿前司之势为清圆立护身符','由几回交道升至公开庇护与暧昧关切','清圆当众投怀哭诉，边哭边拿余光瞄沈润'],
+     ['50','拒婚之隙清圆无端想起沈润的脸而心头哆嗦','牵念加深','—']
+   ]},
+  {id:4, roman:'四', name:'求娶躲闪', a:52, b:58, color:'#ef9fb0',
+   state:'当面求娶、攻守易位', fu:'迂回相护 / 由畏转感', push:'沈攻 → 清圆反撩',
+   point:'[第53章] "也没说不喜欢"；[第57章] 反撩',
+   quote:'情意若真到浓时，那点坎坷便不可称之为坎坷。', quoteCh:'第53章',
+   nodes:[
+     ['52','沈润冒雨寻清圆、守柜相候、逼问"脚踏两条船"，直言"要做正室夫人，我这里正好有个缺"','求娶由暗中转为当面明说，躲闪与逼近的推拉升级','清圆躲柜被撞破、以小荷包堵话'],
+     ['53','沈润提亲、洞穿心思、陪做母亲七日法事、准其"脚踏两条船"','清圆松口"也没说不喜欢"，好感显著升温','沈润洞穿"烈火烹油"之虑，清圆由畏转感'],
+     ['56','私下夜宴相会，清圆"信不过天下人也不会信不过殿帅"','交心渐深','沈润牵衣袖、许送胭脂；清圆被逼捂嘴'],
+     ['57','清圆反撩试探沈润定力、达成"共谋"处置清如；沈润送胭脂入谢府','由防守转为反将一军','清圆撑腮反问"难道不是殿帅馋我的美色"'],
+     ['58','胭脂之礼被架上风口','清圆心生不悦，默认沈润胜算远大于李从心','—']
+   ]},
+  {id:5, roman:'五', name:'设局请旨', a:63, b:72, color:'#ffa94d',
+   state:'虐甜拉锯至顶后回暖', fu:'死缠不放 / 情断之念 → 由怨转惜', push:'强拥 → 设局 → 裂痕 → 请旨',
+   point:'[第64章] 强拥告白；[第72章] 认可真心',
+   quote:'我早就恼了，你怎么还看不出来！', quoteCh:'第64章',
+   nodes:[
+     ['61','沈润领兵入府护清圆、当众追问其掌印、"特意没穿甲胄"将她揽入怀中任其哭','由试探转为可倚靠的信赖','清圆贪恋却暗忧"引火烧身"'],
+     ['62','清圆欲还玉佩被拦，沈润赠官署化瘀药','口称守诺、心已软化','—'],
+     ['63','清圆自忖"所幸从未在沈润跟前松口"，决意守诺嫁李从心、请准赴上京了断','情断之念与不舍交织','—'],
+     ['64','清圆登门归还玉佩欲了断；沈润避而不见、以"将与穆家定亲"相激、拽腕逼问、强拥告白"你别嫁给他，嫁给我成吗"','情意彻底挑明、拉扯升级','清圆怒斥自重，沈润"我早就恼了"'],
+     ['65','沈润自行停手道歉、要清圆日后唤他"沈润"','情未断而势已定','各求圆满、缠绵不舍'],
+     ['66','沈润设局使李从心当众言纳妾，清圆寒心；沈润书房弄玉佩暗忖"天助我也"','拆散之计全因清圆而起','清圆被蒙在鼓里'],
+     ['69','沈润以称呼相戏、点破"你家老太太把你送给我了"','关系沦为"求人"的不平等','清圆被迫改口连称"殿帅—沈润—守雅哥哥"'],
+     ['70','沈润亮后颈黥印述连坐之祸、百般示好调情；清圆坚拒"不要三心二意"','清圆走投无路、自伤命运如母','沈润拨耳坠、翻领相逗，清圆掩耳回避'],
+     ['71','沈润翻窗夜访、坦承设局害李从心；清圆怒斥其卑鄙、以枕被轰其出','情感拉锯激化，好感与裂痕并存','清圆怒极相掷，仍暗自动心'],
+     ['72','清圆识破"定亲穆家"乃幌子、沈润殿前请旨指婚、将清圆归置陈家门下','清圆由怨转惜、认可其真心，关系转向亲近','清圆拆穿幌子，"全世界辜负她，还有一个沈润不会辜负她"']
+   ]},
+  {id:6, roman:'六', name:'聘猫定情', a:73, b:81, color:'#69db7c',
+   state:'依礼求娶、双向心动', fu:'求饶用心 / 心动预备嫁人', push:'博弈 → 推心置腹',
+   point:'[第76章] 携手聘猫；[第81章] 定婚期',
+   quote:'聘猫事小，聘人事才大。', quoteCh:'第76章',
+   nodes:[
+     ['73','清圆主动唤"守雅哥哥"、备酒、指尖擦其唇角；雨夜闯屋逼问"你喜欢我么"','进入"使心眼比手段"的暧昧推拉','沈润答"从来只有你一个人"，以"抱抱你"岔开'],
+     ['74','雨夜相拥、十指紧扣；陈家二老登门立"依礼求娶"之规','由暧昧推拉转为"求娶与拿捏"的博弈，清圆重获底气','清圆改称"殿帅"凉着他施压'],
+     ['75','沈润登门送聘、承诺"一辈子只有她一个""子嗣不健旺亦不纳妾"；清圆写纳猫契刁难','沈润由强势转求饶','清圆借"已知内情"占上风'],
+     ['76','沈润坦白假意定亲内情、连夜苦学聘猫，两人同赴市集买鱼盐聘猫；自称"润"','由对峙转为推心置腹、携手聘猫，清圆心动','牵手"就像系住一辈子似的"'],
+     ['77','牵手游街、袖下指缠腕扣；沈润当众宣示"做了我的夫人，才是对他们最有力的报复"','夫妻名分半公开','清圆气恼咬其指头'],
+     ['78','沈润赠六万两妆奁、约定石堡城平定后请期迎娶、以清圆之意治家','婚事实质议定、互信加深','清圆"看在你长得好看的份上，我再信你一回"'],
+     ['80','沈润题猫名"大圆子"、夜访偷香被识破，清圆勾颈索吻','私昵成形、双向升温','清圆"你要是不亲我，我可是要亲你了"'],
+     ['81','夜访吻戏、上门请期、定下十一月初六婚期','关系更进一步，清圆渐将沈润家事视为己事','沈润克己守礼']
+   ]},
+  {id:7, roman:'七', name:'结发共难', a:84, b:102, color:'#e8c97a',
+   state:'夫妻情深、同心对外', fu:'笃定守护 / 情更深', push:'甜 → 患难与共',
+   point:'[第85—86章] 成婚；[第102章] 共患难',
+   quote:'得妻若此，夫复何求。', quoteCh:'第98章',
+   nodes:[
+     ['84','沈润与清圆议婚宴应对、约三日内不相见','情笃而平等','沈润"我花了那么大的心思才抢来的夫人，不小心爱护着，怕你跑了"'],
+     ['85','沈润红衣登门迎亲、拜堂暗勾清圆食指，结为夫妻','正式成婚','谢老太太闹婚，沈润当众揭谢家夜送清圆求情旧事'],
+     ['86','圣旨封清圆为广阳郡夫人；却扇、同牢合卺、洞房花烛','正式成婚、清圆封诰命','谢家闹婚惨败落荒而逃'],
+     ['87','新婚黏缠、沈润撒娇唤"娘子"','闺房情深','清圆"我在外头是当家主母，在你跟前就做娇滴滴的可人儿"'],
+     ['88','沈润宫门前等候、执手呵气取暖','夫妻情深','—'],
+     ['92','沈润返京述职、闺房缱绻惜别','情感更笃','沈润"我会一辈子对你好的"'],
+     ['97','沈润负伤归家，清圆扔了手炉跑出、验伤落泪，劝其辞官被拒','夫妻情深、清圆失态落泪','沈润撒娇"你可得照顾我"'],
+     ['98','夫妻新婚缠绵','情深','沈润"得妻若此，夫复何求"'],
+     ['100','沈润回房与清圆温情收尾','共进退、同心对外','沈润"娶了个聪明的夫人，功在当代利在千秋"'],
+     ['101','清圆亲手为沈润制新衣、沈润赠金元宝压岁钱；许诺替其正名','夫妻情更深','—'],
+     ['102','沈润假称被解职试探，清圆甘愿"同富贵，也可共患难"；携手缓行，末句疑其有孕','反证患难与共，感情至笃，正文收束','沈润调侃清圆"睚眦必报，坏而坚定"']
+   ]}
+];
+
+/* 12 关系质变点 */
+const QP = [
+  {n:1, ch:27,   x:'27',    ev:'误认 → 揭穿，沈润追问年纪婚配', mean:'异性张力起点', short:'误认揭穿 · 张力起点'},
+  {n:2, ch:30,   x:'30',    ev:'夜赠贴身玉佩', mean:'公事 → 私密的界碑', short:'夜赠贴身玉佩'},
+  {n:3, ch:40,   x:'40',    ev:'"不给人做妾"摊牌 + "查验"之约', mean:'界定关系性质：明媒正娶', short:'绝不做别人的玩物'},
+  {n:4, ch:41,   x:'41',    ev:'射宝夺佩、借食盒还佩', mean:'玉佩成情感信物', short:'射宝夺佩 · 信物'},
+  {n:5, ch:45,   x:'45',    ev:'"你是我私事""只为想你了"', mean:'心迹首次挑明', short:'你是我私事'},
+  {n:6, ch:49,   x:'49',    ev:'当众立护身符、公开庇护', mean:'关系半公开', short:'当众立护身符'},
+  {n:7, ch:53,   x:'53',    ev:'清圆默认"喜欢"', mean:'女方好感确认', short:'默认"喜欢"'},
+  {n:8, ch:57,   x:'57',    ev:'清圆反撩', mean:'攻守易位', short:'清圆反撩 · 攻守易位'},
+  {n:9, ch:64,   x:'64',    ev:'强拥告白"嫁给我成吗"', mean:'情意摆上台面', short:'强拥告白'},
+  {n:10,ch:72,   x:'72',    ev:'请旨指婚 + 归置陈家门下', mean:'由怨转惜、名分落定', short:'请旨指婚 · 名分落定'},
+  {n:11,ch:85.5, x:'85—86', ev:'成婚、封诰命', mean:'关系合法化、出身翻转', short:'成婚 · 封诰命'},
+  {n:12,ch:102,  x:'102',   ev:'共患难反证', mean:'感情终局定性', short:'共患难反证'}
+];
+
+/* 好感度双线：[章, 沈→谢, 谢→沈] */
+const AFFS = [
+  [25,25,8],[27,40,10],[30,55,14],[35,58,18],[40,68,26],[41,72,30],
+  [45,82,38],[49,86,46],[53,88,58],[57,90,62],[64,94,55],[71,95,50],
+  [72,96,70],[76,97,80],[81,98,86],[85,99,92],[97,99,96],[102,100,100]
+];
+
+/* 称呼递进标尺 */
+const RULERS = [
+  {who:'沈润 → 对清圆（自称 / 对外称谓）', marks:[
+    {pos:9,  gold:false, label:'沈某', ch:'疏 · [27—53章]', below:'敬而远之的自称'},
+    {pos:58, gold:false, label:'（过渡）', ch:'[53—76章]', below:'求娶拉锯期'},
+    {pos:83, gold:true,  label:'润', ch:'亲 · [76章]', below:'连名都只说一个字'},
+    {pos:93, gold:true,  label:'娘子', ch:'对外 · [87章]', below:'婚内自称其妻'}
+  ]},
+  {who:'谢清圆 → 对沈润（称谓递进）', marks:[
+    {pos:9,  gold:false, label:'殿帅', ch:'敬 · [25—58章]', below:'以官职相称'},
+    {pos:55, gold:true,  label:'沈润', ch:'[64—65章]', below:'直呼其名'},
+    {pos:72, gold:true,  label:'守雅哥哥', ch:'[69章]', below:'连名带字的亲昵'},
+    {pos:92, gold:true,  label:'婚内昵称', ch:'[87章起]', below:'当家主母 ↔ 可人儿'}
+  ]}
+];
+
+/* 金句卡 */
+const QUOTES = [
+  {t:'他就在她耳畔说话，低低的耳语像羽毛撩拨在心上。', ch:'第30章', tag:'阶段一 · 初遇'},
+  {t:'我情愿一辈子不嫁，也绝不做别人的玩物。', ch:'第40章', tag:'阶段二 · 立约'},
+  {t:'四姑娘就是沈某的私事。／沈某长途跋涉从上京赶往幽州，不为旁的，只为想你了。', ch:'第45章', tag:'阶段三 · 挑明'},
+  {t:'情意若真到浓时，那点坎坷便不可称之为坎坷。', ch:'第53章', tag:'阶段四 · 攻守'},
+  {t:'我早就恼了，你怎么还看不出来！', ch:'第64章', tag:'阶段五 · 强拥'},
+  {t:'你别嫁给他，嫁给我成吗。', ch:'第64章', tag:'阶段五 · 告白'},
+  {t:'全世界辜负她，还有一个沈润，他不会辜负她。', ch:'第72章', tag:'阶段五 · 转惜'},
+  {t:'聘猫事小，聘人事才大。', ch:'第76章', tag:'阶段六 · 聘猫'},
+  {t:'早些吃过苦，以后便只剩享福了，只要你在我身边，我哪一天不像过节似的！', ch:'第76章', tag:'阶段六 · 定情'},
+  {t:'我花了那么大的心思才抢来的夫人，不小心爱护着，怕你跑了。', ch:'第84章', tag:'阶段七 · 婚前'},
+  {t:'我在外头是当家主母，在你跟前就做娇滴滴的可人儿。', ch:'第87章', tag:'阶段七 · 新婚'},
+  {t:'我会一辈子对你好的。', ch:'第92章', tag:'阶段七 · 述职'},
+  {t:'得妻若此，夫复何求。', ch:'第98章', tag:'阶段七 · 情深'},
+  {t:'善恶到头终有报，可有些事，时候一久老天爷就忘了，既然如此，还是我来代劳更直接。', ch:'第102章', tag:'阶段七 · 终局'}
+];
+
+/* ====================== 主图 SVG ====================== */
+const NS='http://www.w3.org/2000/svg';
+const W=1320, H=600, PADL=58, PADR=34;
+const plotW=W-PADL-PADR;           /* 1228 */
+const CH0=25, CH1=102;
+function cx(ch){ return PADL + (ch-CH0)/(CH1-CH0)*plotW; }
+const BAND_Y=104, BAND_H=42, RAIL_Y=214;
+const AFF_TOP=276, AFF_BOT=556;
+function vy(v){ return AFF_BOT - v/100*(AFF_BOT-AFF_TOP); }
+function hexA(hex,a){ const n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')'; }
+function mk(tag,attrs,parent){ const e=document.createElementNS(NS,tag);
+  for(const k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+function smooth(pts){
+  if(pts.length<2) return '';
+  let d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
+  for(let i=0;i<pts.length-1;i++){
+    const p0=pts[i-1]||pts[i], p1=pts[i], p2=pts[i+1], p3=pts[i+2]||pts[i+1];
+    const c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+    const c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+    d+=' C'+c1x.toFixed(1)+' '+c1y.toFixed(1)+','+c2x.toFixed(1)+' '+c2y.toFixed(1)+','+p2[0].toFixed(1)+' '+p2[1].toFixed(1);
+  }
+  return d;
+}
+function stageColor(ch){ for(const s of STAGES){ if(ch>=s.a&&ch<=s.b) return s.color; } return '#8ea0bb'; }
+
+const svg=document.getElementById('cpTimeline');
+const NSsvg=NS;
+const defs=mk('defs',{},svg);
+/* 渐变：两条好感线 */
+function grad(id,c){
+  const g=mk('linearGradient',{id:id,x1:'0',y1:'0',x2:'0',y2:'1'},defs);
+  mk('stop',{offset:'0','stop-color':c,'stop-opacity':'0.30'},g);
+  mk('stop',{offset:'1','stop-color':c,'stop-opacity':'0'},g);
+}
+grad('gShen','#e8c97a'); grad('gXie','#b197fc');
+
+/* --- 0. 章号刻度尺（顶部） --- */
+const RULER_Y=64;
+mk('line',{x1:PADL,y1:RULER_Y,x2:W-PADR,y2:RULER_Y,stroke:'rgba(255,255,255,0.12)','stroke-width':1},svg);
+const TICKS=[25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,102];
+TICKS.forEach(function(ch){
+  const x=cx(ch);
+  mk('line',{x1:x.toFixed(1),y1:RULER_Y-5,x2:x.toFixed(1),y2:RULER_Y+5,stroke:'rgba(201,169,97,0.45)','stroke-width':1},svg);
+  const t=mk('text',{x:x.toFixed(1),y:RULER_Y-11,'text-anchor':'middle',fill:'#8b93a7','font-size':10,'letter-spacing':.5},svg);
+  t.textContent=ch+(ch===25?' 起':ch===102?' 终':'');
+});
+const axL=mk('text',{x:PADL-14,y:RULER_Y+4,'text-anchor':'start',fill:'#6f788c','font-size':9.5,'letter-spacing':1},svg);
+axL.textContent='章号';
+
+/* --- 1. 阶段色带 --- */
+STAGES.forEach(function(s){
+  const x0=cx(s.a), x1=cx(s.b);
+  mk('rect',{x:x0.toFixed(1),y:BAND_Y,width:Math.max(2,(x1-x0)).toFixed(1),height:BAND_H,rx:8,
+    fill:hexA(s.color,0.14),stroke:hexA(s.color,0.5),'stroke-width':1.2},svg);
+  mk('rect',{x:x0.toFixed(1),y:BAND_Y,width:Math.max(2,(x1-x0)).toFixed(1),height:3,rx:1.5,fill:s.color,opacity:.95},svg);
+  const mid=(x0+x1)/2;
+  const nm=mk('text',{x:mid.toFixed(1),y:BAND_Y+26,'text-anchor':'middle',fill:s.color,'font-size':11.5,'font-weight':600,'letter-spacing':.5},svg);
+  nm.textContent=s.roman+' '+s.name;
+  const rg=mk('text',{x:mid.toFixed(1),y:BAND_Y+BAND_H+14,'text-anchor':'middle',fill:'#6f788c','font-size':10,'letter-spacing':.5},svg);
+  rg.textContent=s.a+'—'+s.b+'章';
+});
+
+/* --- 2. 质变点轨道（标签按轨道分配错行，避免重叠） --- */
+mk('line',{x1:PADL,y1:RAIL_Y,x2:W-PADR,y2:RAIL_Y,stroke:'rgba(255,255,255,0.08)','stroke-width':1},svg);
+const LANES=[
+  {yc:RAIL_Y-13, ys:RAIL_Y-25, dir:'up'},
+  {yc:RAIL_Y-31, ys:RAIL_Y-43, dir:'up'},
+  {yc:RAIL_Y+20, ys:RAIL_Y+32, dir:'down'},
+  {yc:RAIL_Y+38, ys:RAIL_Y+50, dir:'down'}
+];
+const laneOcc=[[],[],[],[]];
+function laneFit(l,x0,x1){ return laneOcc[l].every(function(o){ return x1<o.x0-4 || x0>o.x1+4; }); }
+const qpG=mk('g',{},svg);
+QP.forEach(function(q,idx){
+  const x=cx(q.ch), color=stageColor(q.ch);
+  const chLabel='第'+q.x+'章';
+  const wCh=chLabel.length*11.5, wSh=q.short.length*11;
+  const hw=Math.max(wCh,wSh)/2+7, x0=x-hw, x1=x+hw;
+  const pref=[0,2,1,3];
+  let lane=pref[0];
+  for(const l of pref){ if(laneFit(l,x0,x1)){ lane=l; break; } }
+  laneOcc[lane].push({x0:x0,x1:x1});
+  const L=LANES[lane];
+  /* 连到色带的虚线 */
+  mk('line',{x1:x.toFixed(1),y1:BAND_Y+BAND_H+2,x2:x.toFixed(1),y2:RAIL_Y-8,
+    stroke:hexA(color,0.28),'stroke-width':1,'stroke-dasharray':'2 3'},svg);
+  const g=mk('g',{class:'qp','data-qi':idx},qpG);
+  mk('circle',{cx:x.toFixed(1),cy:RAIL_Y,r:7,fill:hexA(color,0.22)},g);
+  mk('circle',{class:'dot',cx:x.toFixed(1),cy:RAIL_Y,r:4,fill:color,stroke:'#08080c','stroke-width':1.4,
+    style:'color:'+color},g);
+  const ct=mk('text',{x:x.toFixed(1),y:L.yc.toFixed(1),'text-anchor':'middle',fill:color,'font-size':10.5,'font-weight':700},g);
+  ct.textContent=chLabel;
+  const st=mk('text',{x:x.toFixed(1),y:L.ys.toFixed(1),'text-anchor':'middle',fill:'#a9b0c4','font-size':9.8},g);
+  st.textContent=q.short;
+});
+
+/* --- 3. 好感度双线 --- */
+const gridG=mk('g',{},svg);
+[0,25,50,75,100].forEach(function(v){
+  const y=vy(v);
+  mk('line',{x1:PADL,y1:y.toFixed(1),x2:W-PADR,y2:y.toFixed(1),
+    stroke:v===0?'rgba(255,255,255,0.12)':'rgba(255,255,255,0.05)','stroke-width':1,
+    'stroke-dasharray':v===0?'':'2 4'},gridG);
+  const t=mk('text',{x:PADL-10,y:(y+3.5).toFixed(1),'text-anchor':'end',fill:'#6f788c','font-size':9.5},gridG);
+  t.textContent=v;
+});
+const yl=mk('text',{x:PADL-10,y:AFF_TOP-12,'text-anchor':'end',fill:'#6f788c','font-size':9.5,'letter-spacing':1},gridG);
+yl.textContent='好感度';
+
+const shenPts=AFFS.map(function(r){ return [cx(r[0]), vy(r[1])]; });
+const xiePts =AFFS.map(function(r){ return [cx(r[0]), vy(r[2])]; });
+/* 面积 */
+mk('path',{d:smooth(shenPts)+' L'+cx(102).toFixed(1)+' '+vy(0)+' L'+cx(25).toFixed(1)+' '+vy(0)+' Z',
+  fill:'url(#gShen)',stroke:'none'},svg);
+mk('path',{d:smooth(xiePts)+' L'+cx(102).toFixed(1)+' '+vy(0)+' L'+cx(25).toFixed(1)+' '+vy(0)+' Z',
+  fill:'url(#gXie)',stroke:'none'},svg);
+/* 线 */
+mk('path',{d:smooth(shenPts),fill:'none',stroke:'#e8c97a','stroke-width':2.6,'stroke-linecap':'round',
+  'stroke-opacity':.95},svg);
+mk('path',{d:smooth(xiePts),fill:'none',stroke:'#b197fc','stroke-width':2.6,'stroke-linecap':'round',
+  'stroke-opacity':.95},svg);
+/* 端点标注 */
+[{p:shenPts,name:'沈润 → 清圆',c:'#e8c97a'},{p:xiePts,name:'清圆 → 沈润',c:'#b197fc'}].forEach(function(o){
+  const last=o.p[o.p.length-1];
+  const t=mk('text',{x:(last[0]+8).toFixed(1),y:(last[1]+3).toFixed(1),fill:o.c,'font-size':10.5,'font-weight':600},svg);
+  t.textContent=o.name;
+});
+/* 数据点（悬停） */
+const anG=mk('g',{},svg);
+AFFS.forEach(function(r,i){
+  const x=cx(r[0]);
+  const g=mk('g',{class:'anchor','data-ai':i},anG);
+  mk('circle',{cx:x.toFixed(1),cy:vy(r[1]).toFixed(1),r:2.6,fill:'#e8c97a',opacity:.9},g);
+  mk('circle',{cx:x.toFixed(1),cy:vy(r[2]).toFixed(1),r:2.6,fill:'#b197fc',opacity:.9},g);
+  mk('circle',{class:'adot',cx:x.toFixed(1),cy:((vy(r[1])+vy(r[2]))/2).toFixed(1),r:3.2,fill:'transparent',
+    stroke:'rgba(255,255,255,0.001)','stroke-width':14,style:'pointer-events:all'},g);
+});
+
+/* ====================== 悬停弹窗 ====================== */
+const tip=document.getElementById('tip');
+function moveTip(ev){
+  const pad=16,w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+pad,y=ev.clientY+pad;
+  if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+  if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+  if(x<8)x=8; if(y<8)y=8;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+qpG.querySelectorAll('.qp').forEach(function(el){
+  el.addEventListener('mouseenter',function(ev){
+    const q=QP[+el.getAttribute('data-qi')], color=stageColor(q.ch);
+    tip.innerHTML='<div class="tip-name" style="color:'+color+'">第'+q.x+'章</div>'+
+      '<div class="tip-role">关系质变点 · #'+q.n+'</div>'+
+      '<div class="tip-desc"><b>事件</b>：'+q.ev+'<br><b>意义</b>：'+q.mean+'</div>';
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){ tip.style.display='none'; });
+});
+anG.querySelectorAll('.anchor').forEach(function(el){
+  el.addEventListener('mouseenter',function(ev){
+    const r=AFFS[+el.getAttribute('data-ai')];
+    tip.innerHTML='<div class="tip-name" style="color:#e8c97a">第'+r[0]+'章</div>'+
+      '<div class="tip-role">好感度</div>'+
+      '<div class="tip-desc">沈润 → 清圆：<span class="v" style="color:#e8c97a">'+r[1]+'</span><br>'+
+      '清圆 → 沈润：<span class="v" style="color:#b197fc">'+r[2]+'</span></div>';
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){ tip.style.display='none'; });
+});
+
+/* ====================== 图例 ====================== */
+const lg=document.getElementById('legend');
+STAGES.forEach(function(s){
+  const d=document.createElement('div'); d.className='lg';
+  d.innerHTML='<i style="background:'+s.color+';box-shadow:0 0 8px '+hexA(s.color,.9)+'"></i>'+
+    s.roman+' · '+s.name+'（'+s.a+'—'+s.b+'）';
+  lg.appendChild(d);
+});
+[{n:'好感度 · 沈润 → 清圆',c:'#e8c97a'},{n:'好感度 · 清圆 → 沈润',c:'#b197fc'}].forEach(function(o){
+  const d=document.createElement('div'); d.className='lg';
+  d.innerHTML='<i style="background:'+o.c+';box-shadow:0 0 8px '+hexA(o.c,.9)+'"></i>'+o.n;
+  lg.appendChild(d);
+});
+
+/* ====================== 阶段卡 ====================== */
+const sw=document.getElementById('stageWrap');
+STAGES.forEach(function(s){
+  const d=document.createElement('div'); d.className='card';
+  const nodesHtml=s.nodes.map(function(n){
+    return '<div class="node-row"><span class="node-ch">'+n[0]+'</span>'+
+      '<span class="node-act">'+n[1]+'</span>'+
+      '<div class="node-sub"><em>好感/质变：</em>'+n[2]+'　<em>推拉：</em>'+n[3]+'</div></div>';
+  }).join('');
+  d.innerHTML=
+    '<div class="bar" style="background:'+s.color+'"></div>'+
+    '<div class="card-h">'+
+      '<div class="card-top"><span class="card-name" style="color:'+s.color+'">'+s.roman+' · '+s.name+'</span>'+
+      '<span class="card-range">第 '+s.a+'—'+s.b+' 章</span></div>'+
+      '<div class="card-meta">'+
+        '<div><b>关系状态</b>　'+s.state+'</div>'+
+        '<div><b>好感度</b>　'+s.fu+'</div>'+
+        '<div><b>推拉主调</b>　'+s.push+'</div>'+
+        '<div><b>质变点</b>　'+s.point+'</div>'+
+      '</div>'+
+      '<div class="card-quote">'+s.quote+'<span>'+s.quoteCh+'</span></div>'+
+      '<div class="card-toggle"><span class="arw">▶</span>展开该阶段 '+s.nodes.length+' 个 CP 互动节点</div>'+
+    '</div>'+
+    '<div class="card-b"><div class="card-b-in">'+nodesHtml+'</div></div>';
+  d.querySelector('.card-h').addEventListener('click',function(){ d.classList.toggle('open'); });
+  sw.appendChild(d);
+});
+
+/* ====================== 称呼递进标尺 ====================== */
+const rw=document.getElementById('rulerWrap');
+RULERS.forEach(function(r){
+  const blk=document.createElement('div'); blk.className='ruler-block';
+  let ticks='';
+  for(let i=0;i<=20;i++){ ticks+='<div class="tick" style="left:'+(i*5)+'%"></div>'; }
+  const marks=r.marks.map(function(m){
+    return '<div class="mk'+(m.gold?' gold':'')+'" style="left:'+m.pos+'%"><i></i></div>'+
+      '<div class="lbl" style="left:'+m.pos+'%">'+m.label+'<span class="ch">'+m.ch+'</span></div>'+
+      '<div class="below" style="left:'+m.pos+'%">'+m.below+'</div>';
+  }).join('');
+  blk.innerHTML='<div class="rb-head"><b>'+r.who+'</b></div>'+
+    '<div class="ruler"><div class="track"></div>'+ticks+marks+'</div>';
+  rw.appendChild(blk);
+});
+
+/* ====================== 金句卡 ====================== */
+const qw=document.getElementById('quoteWrap');
+QUOTES.forEach(function(q){
+  const d=document.createElement('div'); d.className='quote-card';
+  d.innerHTML='<div class="qc-mark">“</div>'+
+    '<div class="qc-text">'+q.t+'</div>'+
+    '<div class="qc-foot"><span class="qc-ch">'+q.ch+'</span><span class="qc-tag">'+q.tag+'</span></div>';
+  qw.appendChild(d);
+});
+
+/* ====================== 质变点表 ====================== */
+const qt=document.getElementById('qpTable');
+QP.forEach(function(q){
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td class="num">'+q.n+'</td><td class="ch">'+q.x+'</td><td>'+q.ev+'</td><td class="mean">'+q.mean+'</td>';
+  qt.appendChild(tr);
+});
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

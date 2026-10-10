@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 时间线 ·《花开锦绣》 · 创作蓝图</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --orange:#ffa94d;
+  --bronze:#c07a4a; --bronze2:#e0955f;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:#e8e6e3;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;min-height:100vh;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:360px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.13), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+/* ===== topbar ===== */
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 28px;padding-right:200px;background:rgba(8,8,12,0.8);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:600;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:110;font-size:12px;color:var(--gold);
+  letter-spacing:1px;font-weight:500;background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.32);
+  border-radius:16px;padding:4px 12px;white-space:nowrap;backdrop-filter:blur(10px);}
+.author-badge b{color:var(--gold2);font-weight:700;}
+
+/* ===== layout ===== */
+.wrap{max-width:1360px;margin:0 auto;padding:26px 26px 90px;position:relative;z-index:1;}
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:5px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#b197fc 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:12px;font-size:12.5px;color:#8b93a7;letter-spacing:1.5px;line-height:1.9;}
+.hero .quote{margin:18px auto 0;max-width:860px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 22px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 28px 24px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.22);border:1px solid rgba(201,169,97,0.4);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 20px;line-height:1.95;}
+.sec-note b{color:#cfd6e6;font-weight:600;}
+
+/* ===== 双轨时间线 ===== */
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.track{background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:18px 16px 14px;}
+.track.pre{border-color:rgba(192,122,74,0.30);}
+.track.main{border-color:rgba(201,169,97,0.30);}
+.track-hd{font-size:13px;font-weight:700;letter-spacing:1px;padding-bottom:12px;margin-bottom:16px;
+  border-bottom:1px dashed rgba(255,255,255,0.1);display:flex;align-items:center;gap:9px;}
+.track.pre .track-hd{color:var(--bronze2);}
+.track.main .track-hd{color:var(--gold2);}
+.tk-dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;}
+.track.pre .tk-dot{background:var(--bronze);box-shadow:0 0 10px rgba(192,122,74,0.9);}
+.track.main .tk-dot{background:var(--gold);box-shadow:0 0 10px rgba(201,169,97,0.9);}
+.track-hd .tcnt{margin-left:auto;font-size:10.5px;font-weight:400;color:#8b93a7;letter-spacing:.5px;}
+
+.tl{position:relative;}
+.tl::before{content:'';position:absolute;left:6px;top:4px;bottom:6px;width:2px;border-radius:2px;}
+.track.pre .tl::before{background:linear-gradient(180deg,rgba(192,122,74,0.08),rgba(192,122,74,0.62),rgba(192,122,74,0.08));}
+.track.main .tl::before{background:linear-gradient(180deg,rgba(201,169,97,0.08),rgba(201,169,97,0.55),rgba(201,169,97,0.08));}
+
+.nd{position:relative;padding:0 0 14px 26px;}
+.nd:last-child{padding-bottom:2px;}
+.nd-dot{position:absolute;left:1px;top:4px;width:12px;height:12px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--gold);}
+.track.pre .nd-dot{border-color:var(--bronze);}
+.track.main .nd.key .nd-dot{background:rgba(201,169,97,0.35);box-shadow:0 0 9px rgba(232,201,122,0.9);}
+.track.pre .nd.key .nd-dot{background:rgba(192,122,74,0.4);box-shadow:0 0 9px rgba(224,149,95,0.9);}
+.nd-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px;}
+.nd-ch{font-size:10px;font-weight:700;color:#0b0b10;background:var(--gold);border-radius:5px;padding:1px 7px;white-space:nowrap;}
+.track.pre .nd-ch{background:var(--bronze2);}
+.nd-anchor{font-size:10px;color:#8b93a7;letter-spacing:.3px;}
+.nd-ev{font-size:12px;line-height:1.75;color:#c3cadb;}
+.nd.key .nd-ev{color:#dfe3ee;}
+
+/* 前史线索分组 */
+.pg{margin-bottom:14px;}
+.pg:last-child{margin-bottom:0;}
+.pg-hd{font-size:11.5px;color:var(--bronze2);letter-spacing:1px;font-weight:700;
+  padding:5px 0 5px 26px;position:relative;}
+.pg-hd::before{content:'';position:absolute;left:2px;top:9px;width:7px;height:7px;
+  background:var(--bronze);transform:rotate(45deg);box-shadow:0 0 8px rgba(192,122,74,0.7);}
+
+/* 主线卷分组 */
+.vol{margin-bottom:4px;}
+.vol-hd{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12px;color:var(--gold2);
+  font-weight:600;padding:8px 12px 8px 26px;background:rgba(201,169,97,0.06);
+  border:1px solid rgba(201,169,97,0.16);border-radius:9px;cursor:pointer;user-select:none;
+  margin-bottom:10px;transition:.2s;position:relative;}
+.vol-hd:hover{background:rgba(201,169,97,0.12);border-color:rgba(201,169,97,0.34);}
+.vol-hd .vt{font-size:10.5px;color:#8b93a7;font-weight:400;letter-spacing:.3px;}
+.vol-hd .vex{margin-left:auto;font-size:10.5px;color:var(--gold);background:rgba(201,169,97,0.12);
+  border:1px solid rgba(201,169,97,0.3);border-radius:20px;padding:1px 10px;white-space:nowrap;}
+.vol-hd .arw{font-size:9px;color:var(--gold);transition:transform .22s;margin-left:2px;}
+.vol.open .vol-hd .arw{transform:rotate(90deg);}
+.vol .nd.more{display:none;}
+.vol.open .nd.more{display:block;}
+
+/* ===== 信息矩阵 ===== */
+.matrix-wrap{overflow-x:auto;border-radius:14px;border:1px solid rgba(255,255,255,0.07);background:rgba(0,0,0,0.22);}
+table.matrix{width:100%;border-collapse:collapse;font-size:11px;min-width:760px;}
+table.matrix thead th{background:rgba(201,169,97,0.15);color:var(--gold2);font-weight:600;
+  letter-spacing:.5px;padding:10px 8px;text-align:center;white-space:nowrap;font-size:10.5px;
+  border-bottom:1px solid rgba(201,169,97,0.3);}
+table.matrix th.rowh{text-align:left;min-width:190px;background:rgba(201,169,97,0.15);
+  position:sticky;left:0;z-index:3;padding-left:14px;color:var(--gold2);}
+table.matrix td{padding:8px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.055);
+  vertical-align:middle;}
+table.matrix td.rowh{text-align:left;padding:9px 12px 9px 14px;color:#dfe3ee;font-weight:600;
+  font-size:11px;line-height:1.6;background:#0a0b10;position:sticky;left:0;z-index:2;
+  border-right:1px solid rgba(255,255,255,0.07);}
+table.matrix tr:hover td{background:rgba(201,169,97,0.05);}
+table.matrix tr:hover td.rowh{background:#101119;}
+.mdot{width:12px;height:12px;border-radius:50%;display:inline-block;cursor:help;transition:.16s;}
+.mdot:hover{transform:scale(1.35);}
+.mdot.g{background:#69db7c;box-shadow:0 0 9px rgba(105,219,124,0.75);}
+.mdot.o{background:#ffa94d;box-shadow:0 0 9px rgba(255,169,77,0.75);}
+.mdot.p{background:#b197fc;box-shadow:0 0 9px rgba(177,151,252,0.75);}
+.mdot.r{background:#ff6b6b;box-shadow:0 0 9px rgba(255,107,107,0.75);}
+.mdot.n{background:rgba(255,255,255,0.09);width:5px;height:5px;cursor:default;}
+.mdot.n:hover{transform:none;}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:7px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg .mdot{cursor:default;}
+.lg .mdot:hover{transform:none;}
+
+/* ===== 信息差爽感 ===== */
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;}
+.tipc{background:linear-gradient(160deg,rgba(201,169,97,0.07),rgba(177,151,252,0.03));
+  border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 18px 16px;position:relative;transition:.2s;}
+.tipc:hover{border-color:rgba(201,169,97,0.4);transform:translateY(-2px);}
+.tipc .tno{position:absolute;top:12px;right:16px;font-size:26px;font-weight:700;
+  color:rgba(201,169,97,0.18);font-family:Georgia,serif;line-height:1;}
+.tipc .tn{font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:700;margin-bottom:9px;padding-right:34px;}
+.tipc .tt{font-size:12.5px;line-height:1.95;color:#d8dbe4;}
+.tipc .tt b{color:var(--gold2);font-weight:700;}
+.tipc .tt em{font-style:normal;color:var(--purple);font-weight:600;}
+.redline{margin-top:16px;border:1px solid rgba(255,107,107,0.35);background:rgba(255,107,107,0.06);
+  border-radius:14px;padding:16px 20px;}
+.redline .rh{color:var(--red);font-weight:700;font-size:12.5px;letter-spacing:1px;margin-bottom:9px;
+  display:flex;align-items:center;gap:8px;}
+.redline .rh::before{content:'';width:7px;height:7px;background:var(--red);border-radius:50%;
+  box-shadow:0 0 9px rgba(255,107,107,0.9);}
+.redline .rb{font-size:12px;line-height:2;color:#e2c9c9;}
+.redline .rb b{color:#ffb3b3;font-weight:700;}
+
+/* ===== 地理路线 ===== */
+.geo{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:24px 24px;}
+.geo-node{position:relative;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:14px 14px 13px;transition:.2s;}
+.geo-node:hover{border-color:rgba(201,169,97,0.42);background:rgba(201,169,97,0.05);}
+.geo-node:not(:last-child)::after{content:'→';position:absolute;right:-18px;top:44%;
+  transform:translateY(-50%);color:var(--gold);font-size:16px;opacity:.75;font-weight:700;}
+.geo-node .gi{font-size:10px;color:#0b0b10;font-weight:700;background:var(--gold);border-radius:5px;
+  padding:1px 7px;display:inline-block;}
+.geo-node .gn{font-size:13px;font-weight:700;color:var(--gold2);letter-spacing:.5px;margin-top:8px;}
+.geo-node .gc{font-size:10px;color:#8b93a7;margin-top:3px;letter-spacing:.4px;}
+.geo-node .ge{font-size:11px;color:#b6bdd0;line-height:1.75;margin-top:8px;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;line-height:1.9;}
+
+/* ===== tooltip ===== */
+#tip{position:fixed;z-index:999;display:none;max-width:300px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.3);border-radius:12px;
+  padding:11px 14px;box-shadow:0 14px 40px rgba(0,0,0,0.7);font-size:11.5px;line-height:1.8;color:#c3cadb;}
+#tip b{color:var(--gold2);font-weight:700;}
+
+/* ===== responsive ===== */
+@media (max-width:980px){
+  .dual{grid-template-columns:1fr;}
+}
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .topbar{padding:10px 14px;padding-right:150px;}
+  .author-badge{font-size:10.5px;padding:3px 9px;top:11px;right:10px;}
+  .hero h1{font-size:22px;letter-spacing:2px;}
+  .section{padding:30px 15px 20px;}
+  .geo{grid-template-columns:1fr;gap:18px;}
+  .geo-node:not(:last-child)::after{content:'↓';right:50%;top:auto;bottom:-19px;transform:translateX(50%);}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__topbar_pad">.topbar{padding-right:220px !important;}@media(max-width:600px){.topbar{padding-right:104px !important;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="dim">时间线</div>
+</div>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>时间线 ·《花开锦绣》</h1>
+    <div class="sub">吱吱 · 310 章 / 约 86.2 万字 · 明代背景 · 古代言情 / 世家宅斗 / 复仇成长<br>
+      女主 傅庭筠（华阴傅氏九小姐） · 男主 赵凌（赵九爷） · 地理主线：华阴 → 西安府 → 甘州 → 西安府 → 京都 → 西安府</div>
+    <div class="quote">一条是"书前已成"的暗线，一条是"书内推进"的正轨——前史 21 条根脉沉在暗处，主线 310 条时序摊在明面；真正的张力不在"发生了什么"，而在"谁，在第几章，才知道什么"。</div>
+  </div>
+
+  <!-- 1 · 双轨时间线 -->
+  <div class="section">
+    <div class="sec-tag">双轨时间线</div>
+    <h3 class="sec-title">前史（暗） × 主线（明） · 纵向双轨</h3>
+    <p class="sec-note">左轨为 <b>前史 21 条</b>（书前发生，按 5 条线索归类，暗红 / 古铜色）；右轨为 <b>主线 310 条</b>（故事内时序，按 8 卷分组，金色）。主线默认仅展开关键节点，点击任一"卷"标题即可展开该卷全部章节。</p>
+    <div class="dual">
+      <div class="track pre">
+        <div class="track-hd"><span class="tk-dot"></span>前史 · 书前发生<span class="tcnt">21 条 / 5 线索</span></div>
+        <div class="tl" id="preTl"></div>
+      </div>
+      <div class="track main">
+        <div class="track-hd"><span class="tk-dot"></span>主线 · 故事内时序<span class="tcnt">310 条 / 8 卷</span></div>
+        <div class="tl" id="mainTl"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 · 信息流转矩阵 -->
+  <div class="section">
+    <div class="sec-tag">信息流转矩阵</div>
+    <h3 class="sec-title">关键信息 × 关键人物 · 谁在何时知道什么</h3>
+    <p class="sec-note">行 = 10 条关键信息 / 秘密；列 = 13 位关键人物。<b>绿 = 知 · 橙 = 隐约 · 紫 = 部分 · 红 = 不知</b>；灰点表示与本条信息不相干。悬停任一色点查看"第几章得知"的备注。</p>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr id="mxHead"></tr>
+        </thead>
+        <tbody id="mxBody"></tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <div class="lg"><span class="mdot g"></span>知（已明确知晓）</div>
+      <div class="lg"><span class="mdot o"></span>隐约（有所察觉 / 疑似）</div>
+      <div class="lg"><span class="mdot p"></span>部分（知之不全 / 分次获知）</div>
+      <div class="lg"><span class="mdot r"></span>不知（锚点之前不得知情）</div>
+      <div class="lg"><span class="mdot n"></span>不相干</div>
+    </div>
+  </div>
+
+  <!-- 3 · 信息差 = 爽感 -->
+  <div class="section">
+    <div class="sec-tag">信息差 = 爽感</div>
+    <h3 class="sec-title">三条核心信息差 · 与一条续写红线</h3>
+    <p class="sec-note">读者"全知"而局中人"后知"的落差，正是本书爽感的主要来源。以下三条均取自蓝图原表，并附续写红线。</p>
+    <div class="tips" id="tipsWrap"></div>
+    <div class="redline">
+      <div class="rh">续写红线（防角色提前知情）</div>
+      <div class="rb">某角色在其知情锚点之前，<b>不得表现出已知该信息</b>；加粗锚点为重点。<br>
+        例：范氏确认"傅氏即傅庭筠"在第 <b>210</b> 章、傅庭筠 / 赵凌确证俞家构陷在第 <b>179</b> 章、赵凌身世完整揭开在第 <b>110</b> 章、赵凌复仇布局全貌在第 <b>274</b> 章、西平侯贩马案事发在第 <b>314</b> 章——在这些章之前，相关角色须严格"不知情"。</div>
+    </div>
+  </div>
+
+  <!-- 4 · 地理迁移路线 -->
+  <div class="section">
+    <div class="sec-tag">地理迁移路线</div>
+    <h3 class="sec-title">华阴 → 西安府 → 甘州 → 西安府 → 京都 → 西安府 · 8 段</h3>
+    <p class="sec-note">全书地理主线共 <b>8 段</b>，以章节区间串联；箭头为行进方向。长安 / 西安府段两次往返、京都段两度落脚，构成"西行—东归—再西行"的大回环。</p>
+    <div class="geo" id="geoWrap"></div>
+  </div>
+
+  <div class="foot">《花开锦绣》拆解 · 蓝图 10 · 时间线（前史 21 · 主线 310 · 信息差 10 · 地理 8 段）<br>
+    资料来源：拆解数据 / 蓝图 / 10_时间线.md</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ====================== 前史数据（21 条 / 5 线索） ====================== */
+const PRESTORY = [
+  {name:'俞傅婚约线', nodes:[
+    {id:'前1', anchor:'第3章；第158章', key:true, ev:'傅庭筠自幼与南京丰乐坊俞家俞敬修订婚约（束氏提亲、祖母做主）；俞家求娶真因——祖母、母亲皆“宜生养”、请龙虎山天一道长看她八字断为“宜男命格”'},
+    {id:'前2', anchor:'第172章', ev:'俞敬修与恩师柳叔同（受熙平二十三年丙辰科舞弊案牵连、以代考为生）之女私相授受，欲退与傅庭筠之婚'},
+    {id:'前3', anchor:'第172–173章；第179章', key:true, ev:'俞敬修翻柳叔同早年时文，发现傅五老爷当年中会元的文章乃柳叔同练笔之作，据此挟制傅家'},
+    {id:'前4', anchor:'第172–173章', key:true, ev:'俞敬修以“保其考中进士”为饵，指使左俊杰以“定情肚兜”诬陷傅庭筠，逼傅家退婚'}
+  ]},
+  {name:'左俊杰积怨线', nodes:[
+    {id:'前5', anchor:'第2章', ev:'大堂嫂左氏捧亡夫牌位守节，招胞弟左俊杰投奔；傅家腾院给月例、送其入族学'},
+    {id:'前6', anchor:'第2–3章', ev:'左俊杰中秀才后求娶傅家女，嫌长房二堂姐庶出无陪嫁而不满；改求二房三小姐被拒，私请媒提亲被二伯母告发，二堂姐改许蒲城黄姓童生'},
+    {id:'前7', anchor:'第3章', ev:'左俊杰乡试落第后冒雪跪求回傅氏族学、中举后置田买仆成华阴“金龟婿”；四伯母欲许五堂姐被祖母当众掌掴，左俊杰扬言“非官宦人家的小姐不娶”，与傅家交恶'},
+    {id:'前8', anchor:'第3章', ev:'约两个月前，左俊杰登门向五太太称“与九小姐情投意合”、求结百年之好（凭空捏造）'},
+    {id:'前9', anchor:'第4章', ev:'傅家定计：以“赴碧云庵上香”为名送傅庭筠入庵避祸、暗中查内贼；父亲（翰林院侍讲）写信求援'},
+    {id:'前10', anchor:'第173章；第17章', key:true, ev:'傅五老爷写信给傅大老爷，大老爷改主意要杀左俊杰、牺牲傅庭筠；左俊杰被傅家反诬“调戏伯父小妾”、功名将革'}
+  ]},
+  {name:'赵凌身世线', nodes:[
+    {id:'前11', anchor:'第110章', ev:'赵凌祖上自涿州逃难至江南淞江定居，历几代成淞江富贾'},
+    {id:'前12', anchor:'第110章', ev:'赵凌父赵集云中贡士、殿试二甲、钦点翰林庶吉士，平熙十七年中式、平熙二十二年补授山西朔平府知府，平熙二十五年积劳病故任上'},
+    {id:'前13', anchor:'第110章', key:true, ev:'赵氏族人欺孤儿寡母、诬赵凌母与家父乳兄周升有染；赵母不堪受辱，腊月初九自缢于赵氏祠堂门外'},
+    {id:'前14', anchor:'第110章', key:true, ev:'赵凌六岁丧父、七岁辞家，辗转入漳县天一观为焚纸摇铃道僮，八岁拜师、十三岁师亡；为筹回江南之资赴凉州贩马、并贩私盐'},
+    {id:'前15', anchor:'第50章', ev:'赵凌十六岁（成书前约五年）置杨柳巷老宅，房契挂吕老爷名下；今年二十一'}
+  ]},
+  {name:'皇家旧事线', nodes:[
+    {id:'前16', anchor:'第134章', ev:'武宗立三后；先帝为元后嫡长子、五岁立太子、行事跋扈；武定侯长女汪氏为继后、生子封宁王，武宗曾欲废长立幼'},
+    {id:'前17', anchor:'第134章', ev:'宁王（穆王之父）八岁丧父，太皇太后自请入庵清修以保其命，宁王改封穆王、就藩荆州、未及三十而卒'},
+    {id:'前18', anchor:'第134章', ev:'武定侯因“私养战马”被御史弹劾夺爵、贬为庶人、流放死于途中'},
+    {id:'前19', anchor:'第179章', key:true, ev:'熙平二十三年丙辰科科举舞弊案，牵出皇上潜邸军师肁廷宜与代考者柳叔同；傅五老爷会元文章系柳叔同练笔代作'}
+  ]},
+  {name:'颖川侯旧怨线', nodes:[
+    {id:'前20', anchor:'第134章', ev:'颖川侯（辅国公第三子）幼与宜春侯长女邵氏定亲，邵氏十三岁为当今圣上所夺'},
+    {id:'前21', anchor:'第134章', key:true, ev:'颖川侯从征苗栗成一代名将、娶梅氏；圣上争储时主动示好，后献邵王妃庶妹为妾被拒，邵王妃召梅氏入府、梅氏归即腹痛而亡（两子皆梅氏所生）；圣上欲以邵王妃胞妹为其续弦，辅国公不允而颖川侯应之，约七年前赴张掖'}
+  ]}
+];
+
+/* ====================== 主线数据（310 条 / 8 卷） ====================== */
+const VOLUMES = [
+  {no:'卷一', name:'华阴风波', a:1, b:17, anchor:'盛夏（近七月初四）', nodes:[
+    {ch:'第1章', anchor:'夏（碧云庵避暑）', key:true, ev:'傅庭筠避祸碧云庵，正午攀老槐树探路，墙头撞见翻墙而入的赵凌、被掐颈威胁'},
+    {ch:'第2章', anchor:'—', ev:'傅庭筠逃回静月堂遮掩外出痕迹，回想左俊杰诬陷之始末'},
+    {ch:'第3章', anchor:'约两月前（回溯）', ev:'左俊杰登门称与九小姐“情投意合”求亲；补出俞傅婚约'},
+    {ch:'第4章', anchor:'—', ev:'左俊杰持“定情肚兜”要挟；母亲定计送她入碧云庵、查内贼'},
+    {ch:'第5章', anchor:'—', ev:'傅庭筠抵碧云庵静养五六天，陈妈妈带婆子把她软禁'},
+    {ch:'第6章', anchor:'—', ev:'傅庭筠察觉被软禁、与外界断绝；向寒烟绿萼交底、主仆结盟'},
+    {ch:'第7章', anchor:'—', ev:'庵中粮米被盗，傅庭筠向寒烟吐露遇男子之事；赵凌夜入静月堂从背后捏住她脖子'},
+    {ch:'第8章', anchor:'—', ev:'赵凌夜访索粮，傅庭筠被迫周旋，赵凌称“明天再来”'},
+    {ch:'第9章', anchor:'—', ev:'傅庭筠派寒烟翻墙回城送信，计划败露、寒烟被陈妈妈截回'},
+    {ch:'第10章', anchor:'—', key:true, ev:'傅庭筠与赵凌达成“交换”——赵凌替她送家信给母亲'},
+    {ch:'第11章', anchor:'—', ev:'赵凌报碧波家的失踪；城中“通奸”流言传开'},
+    {ch:'第12章', anchor:'—', ev:'傅庭筠向赵凌吐露被左俊杰诬陷始末；赵凌夜入傅府查明左俊杰被拘'},
+    {ch:'第13章', anchor:'期限“七月初四以前回府”', ev:'赵凌偷粮，傅庭筠默许配合；陈妈妈透露“七月初四以前回府”'},
+    {ch:'第14章', anchor:'七月初四前', key:true, ev:'陈妈妈以“大老爷送药”为名逼傅庭筠服毒，傅庭筠拼死挣扎'},
+    {ch:'第15章', anchor:'—', key:true, ev:'赵凌赶到救下傅庭筠，带往潼关外破庙救治，定下西行路线（约八月十五西安平安里永福客栈会合）'},
+    {ch:'第16章', anchor:'—', ev:'赵凌转交母亲银镯银票与重托，告知傅家已为她“报丧退婚”'},
+    {ch:'第17章', anchor:'—', ev:'傅庭筠得知左俊杰之事的官方口径；阿森透露受命暗中看护她'}
+  ]},
+  {no:'卷二', name:'西行患难', a:18, b:45, anchor:'七月下旬—八月十五前后', nodes:[
+    {ch:'第18章', anchor:'—', ev:'赵凌携傅庭筠、阿森扮堕民离华阴西行，道出陕西粮政与朝局'},
+    {ch:'第19章', anchor:'—', ev:'途中遇野狗围攻，阿森以齐眉棍打死恶犬、显露狠厉'},
+    {ch:'第20章', anchor:'—', ev:'傅庭筠怜阿森身世，察觉赵九爷命部众守口'},
+    {ch:'第21章', anchor:'—', ev:'傅庭筠发现食物定量供应、自己一直受优待'},
+    {ch:'第22章', anchor:'—', ev:'遇饥民围抢，赵凌、阿森击退饥民'},
+    {ch:'第23章', anchor:'—', ev:'沿驿道同行、目睹殍尸；提议改走李家凹近道'},
+    {ch:'第24章', anchor:'—', key:true, ev:'李家凹惊闻舅舅解家被“赈济的流民”焚杀满门；赵凌编谎护主'},
+    {ch:'第25章', anchor:'—', ev:'赵凌携傅庭筠同赴西安府，以三条小黄鱼向李家凹购粮水'},
+    {ch:'第26章', anchor:'—', ev:'傅庭筠向阿森打听金条来历、众人分食'},
+    {ch:'第27章', anchor:'—', ev:'三人离李家凹，赶路四五日入临潼境；李某跟踪'},
+    {ch:'第28章', anchor:'—', key:true, ev:'东安村夜半冯老四围杀，赵凌藏傅庭筠入破水缸、齐眉棍被削断'},
+    {ch:'第29章', anchor:'—', ev:'冯四爷悬赏五万两；赵凌反杀冯四爷、救回阿森'},
+    {ch:'第30章', anchor:'—', ev:'赵凌留匕首给傅庭筠、独赴临潼会冯三爷'},
+    {ch:'第31章', anchor:'—', ev:'赵凌归、决定南下绕蓝田；肩伤发作昏倒'},
+    {ch:'第32章', anchor:'—', ev:'阿森揭赵凌右肩刀伤；傅庭筠定计送其入临春镇城隍庙'},
+    {ch:'第33章', anchor:'—', ev:'匪徒夜闯，傅庭筠持匕首重伤来犯者、力竭置刃于颈'},
+    {ch:'第34章', anchor:'—', key:true, ev:'赵凌突然现身、抱病血战救傅庭筠力竭倒地；十六爷一党尽屠匪众'},
+    {ch:'第35章', anchor:'—', key:true, ev:'十六爷为赵凌诊伤；傅庭筠窥破其藩王身份，谎称二人是未婚夫妻'},
+    {ch:'第36章', anchor:'—', ev:'十六爷盘问二人来历，赵凌真名公开；十六爷赠名帖劝其投军'},
+    {ch:'第37章', anchor:'—', ev:'一行人进临春镇，小五道出西安府已封城、董翰文只顾巴结太监'},
+    {ch:'第38章', anchor:'—', ev:'二人辨认十六爷名帖，推断其为藩王、行事小心'},
+    {ch:'第39章', anchor:'—', ev:'赵凌制止傅庭筠下楼、向她交底，二人斗嘴和好'},
+    {ch:'第40章', anchor:'—', ev:'赵凌推演十六爷设局试探、判定“被软禁”；派阿森回西安府报信'},
+    {ch:'第41章', anchor:'—', ev:'傅庭筠赠食给抱孩子的妇人，结识郑三娘'},
+    {ch:'第42章', anchor:'—', ev:'陌毅误认傅庭筠为赵凌“弟妹”，误会加深'},
+    {ch:'第43章', anchor:'—', ev:'赵凌为郑三娘之子取名“临春”'},
+    {ch:'第44章', anchor:'—', ev:'阿森自西安府归来；赵凌拍板当夜即赴西安府'},
+    {ch:'第45章', anchor:'—', key:true, ev:'一行人趁夜坐吊篮入西安府；赵凌许“确认你安全之后再离开”'}
+  ]},
+  {no:'卷三', name:'西安府·杀局情生', a:46, b:67, anchor:'八月中—八月二十七', nodes:[
+    {ch:'第46章', anchor:'—', ev:'杨玉成登场，认出阿森与赵凌重逢；陌毅起疑'},
+    {ch:'第47章', anchor:'—', ev:'陌毅与陶牧密谈，主张“宁可杀错、不可放过”'},
+    {ch:'第48章', anchor:'—', key:true, ev:'金元宝查明陌毅身份（颖川侯麾下游击将军）；赵凌令众人散伙逃生'},
+    {ch:'第49章', anchor:'—', key:true, ev:'赵凌以“避嫌”为由让傅庭筠迁往杨柳巷，实为保护她'},
+    {ch:'第50章', anchor:'—', ev:'傅庭筠赠冬衣与银票，迁入杨柳巷赵凌私宅、见吕老爷夫妇（房契挂名）'},
+    {ch:'第51章', anchor:'—', ev:'傅庭筠逼问阿森，推演出赵凌抢蒲田井盐、贩私盐的始末'},
+    {ch:'第52章', anchor:'—', ev:'傅庭筠识破赵凌“化暗为明”断后之计，决意阻止'},
+    {ch:'第53章', anchor:'—', ev:'傅庭筠以“文谏死”之典折服杨玉成，杨誓死听命'},
+    {ch:'第54章', anchor:'—', ev:'阿森偷名帖被识破，赵凌反而宣布改主意'},
+    {ch:'第55章', anchor:'—', ev:'杨玉成道破十六爷势力网；傅庭筠献“敲锣示警”之计'},
+    {ch:'第56章', anchor:'—', key:true, ev:'林迟率弩手夜袭喜升客栈，赵凌借铜锣引来官差退敌'},
+    {ch:'第57章', anchor:'中秋', key:true, ev:'中秋，赵凌宣布八月二十五再去都司衙门投军'},
+    {ch:'第58章', anchor:'中秋后', ev:'傅庭筠拜月被赵凌撞见，二人隔几分茶闲话（“蜀锦/青花”暗赞）'},
+    {ch:'第59章', anchor:'—', ev:'傅庭筠追忆幼年、反复咀嚼赵凌之语'},
+    {ch:'第60章', anchor:'—', ev:'赵凌道出唐岱山私盐旧事、赠二百两为舅舅做法事'},
+    {ch:'第61章', anchor:'—', ev:'金元宝报傅夫人已赴京都、华阴流言四起；陌毅告赵凌被遣往庄浪卫'},
+    {ch:'第64章', anchor:'—', ev:'傅庭筠偷听得知自己成了陌毅牵制赵凌的“人质”'},
+    {ch:'第65章', anchor:'—', ev:'赵凌宣布众人安置庄浪卫；傅庭筠偷听其真心话，决意同去张掖'},
+    {ch:'第66章', anchor:'—', ev:'傅庭筠收拾行囊；赵凌忆初见、检视己心'},
+    {ch:'第67章', anchor:'—', key:true, ev:'傅庭筠暗购马车、执意同去张掖，赵凌无奈妥协'}
+  ]},
+  {no:'卷四', name:'甘州军旅', a:68, b:120, anchor:'八月二十七启程 → 次年腊月', nodes:[
+    {ch:'第68章', anchor:'八月二十七', key:true, ev:'众人八月二十七日自西安府启程西行；抵永靖县'},
+    {ch:'第69章', anchor:'—', ev:'赵凌首次向傅庭筠详述父母旧事'},
+    {ch:'第70章', anchor:'—', ev:'傅庭筠随赵凌游永靖县城，初见色目人、回回'},
+    {ch:'第71章', anchor:'—', ev:'杨玉成等禀报鲁成底细；途中现“八字胡”叶老爷的大通号商队'},
+    {ch:'第72章', anchor:'—', ev:'赵凌借“陌毅”之势压永昌卫百户，向傅庭筠和盘托出“借势”谋略'},
+    {ch:'第73章', anchor:'—', ev:'赵凌与叶老爷同行抵张掖，坚持寻临街客房'},
+    {ch:'第74章', anchor:'—', ev:'傅庭筠因“未婚妻”之言心神不宁、独自落泪'},
+    {ch:'第75章', anchor:'—', ev:'众人定下备报总兵府的礼单与“演戏”之策'},
+    {ch:'第76章', anchor:'—', ev:'傅庭筠误以为被当“人质”，赵凌道出真意（怕她在庄浪卫受闲气）'},
+    {ch:'第77章', anchor:'腊月二十二将近', key:true, ev:'赵凌托陌毅典宅安置傅庭筠、交付全部家当，赴庄浪卫；转瞬腊月二十二'},
+    {ch:'第78章', anchor:'年三十将近', ev:'邻居戚太太来访探底；年三十将近，赵凌归来'},
+    {ch:'第79章', anchor:'过年', ev:'傅庭筠细算账目；赵凌为陪鲁成送礼而回张掖'},
+    {ch:'第80章', anchor:'大年初一前后', ev:'陌毅求教鲁氏规矩，赵凌回绝；赵凌托傅庭筠备年三十祭祖'},
+    {ch:'第81章', anchor:'元月底', ev:'大雪；王夫人下针点破傅庭筠“与赵总旗只是订亲”的名声风险'},
+    {ch:'第82章', anchor:'三月中旬', ev:'张掖刮黑风；蒙人进犯，鲁氏透露战事机密；傅庭筠赴大佛寺为赵凌祈福'},
+    {ch:'第83章', anchor:'三月末—四月初', ev:'傅庭筠被冯大虎等纠缠；三月末战报胡参将阵亡；四月初碾伯卫失守、鲁成失踪'},
+    {ch:'第84章', anchor:'—', ev:'傅庭筠见王夫人；冯氏主动上门刺探'},
+    {ch:'第85章', anchor:'—', ev:'冯氏抛“赵凌阵亡名册列第一”之说，傅庭筠悲痛'},
+    {ch:'第86章', anchor:'—', ev:'冯氏图谋以傅庭筠配其弟冯大虎，傅庭筠严拒'},
+    {ch:'第87章', anchor:'—', ev:'冯氏命人捉拿，阿森携傅庭筠夺门而出、投靠王夫人'},
+    {ch:'第88章', anchor:'—', ev:'王夫人带回刘副总兵否认之词，冯氏撒泼丑闻传开'},
+    {ch:'第89章', anchor:'—', ev:'傅庭筠辞王夫人回后街'},
+    {ch:'第90章', anchor:'—', ev:'冯大虎夜入宅中，被傅庭筠设伏、遭恶犬咬伤'},
+    {ch:'第91章', anchor:'—', ev:'衙役见冯大虎伤重；郑三自陈屋主身份；阿森将同党丢入陌毅院'},
+    {ch:'第92章', anchor:'—', ev:'江大人赶到，王夫人携傅庭筠解围；两男子从陌毅家翻墙而出'},
+    {ch:'第93章', anchor:'—', ev:'王夫人定计送金创药、行攻心之谋'},
+    {ch:'第94章', anchor:'—', ev:'傅庭筠看破阿森之计，鲁氏丑闻被钉死'},
+    {ch:'第95章', anchor:'—', key:true, ev:'魏石报赵凌救鲁成脱险，傅庭筠喜不自胜'},
+    {ch:'第96章', anchor:'五月底', ev:'刘副总兵被弹劾罢职、王义任甘肃副总兵；赵凌信试探“家中是否有事”'},
+    {ch:'第97章', anchor:'五月下旬', ev:'金元宝归家详述赵凌立功经过；冯氏被弃'},
+    {ch:'第98章', anchor:'六月中旬', ev:'封赏：赵凌、杨玉成、金元宝各升百户；傅庭筠惊觉赵凌过门不入'},
+    {ch:'第99章', anchor:'—', ev:'赵凌暂代碾伯卫千户；陌毅来问鲁姨娘流言'},
+    {ch:'第100章', anchor:'—', ev:'黑衣人（疑赵凌）三箭射死冯大虎；傅庭筠决意赴碾伯卫'},
+    {ch:'第101章', anchor:'—', ev:'傅庭筠日夜兼程抵碾伯所、闯入内室'},
+    {ch:'第102章', anchor:'—', key:true, ev:'唐小姐求见；傅庭筠醋意大发、当众宣告“一刀两断”'},
+    {ch:'第103章', anchor:'—', ev:'赵凌追至小河畔；傅庭筠坦露“怕管不住自己”'},
+    {ch:'第104章', anchor:'—', ev:'赵凌辩解唐小姐事，二人落水、议定往民和镇'},
+    {ch:'第105章', anchor:'—', ev:'赵凌装醉套取傅庭筠闺名、郑重陈情，二人冰释'},
+    {ch:'第106章', anchor:'—', ev:'傅庭筠报姓名“傅庭筠，小字荃蕙”，追问冯大虎之死'},
+    {ch:'第107章', anchor:'—', ev:'赵凌自陈杀冯大虎之因，二人立誓'},
+    {ch:'第108章', anchor:'—', ev:'唐小姐泣诉身世、求赵凌收留'},
+    {ch:'第109章', anchor:'—', ev:'傅庭筠以律令献“招赘”之议'},
+    {ch:'第110章', anchor:'—', key:true, ev:'赵凌逐客唐小姐，完整揭开自己的身世'},
+    {ch:'第111章', anchor:'盂兰盆节', ev:'盂兰盆节放河灯；赵鸣报秦王五月二十二病逝、停婚嫁娶六十日'},
+    {ch:'第112章', anchor:'—', ev:'傅庭筠返张掖，见王夫人赴闽、颖川侯如夫人萧氏'},
+    {ch:'第113章', anchor:'—', ev:'三福登门，赵凌借口去临泽外出'},
+    {ch:'第114章', anchor:'—', ev:'萧氏泄露“赵凌千里杀人”的传言'},
+    {ch:'第115章', anchor:'—', ev:'赵凌坦白马贼、西平侯与离间之谋'},
+    {ch:'第116章', anchor:'—', ev:'傅庭筠送叶掌柜先走；林迟来传孟大人召见'},
+    {ch:'第117章', anchor:'—', key:true, ev:'颖川侯当面揭赵凌底细；赵凌求亲'},
+    {ch:'第118章', anchor:'进九月', ev:'颖川侯命赵凌联手鲁成牵制吕荣；金元宝带回京都傅家异状'},
+    {ch:'第119章', anchor:'—', key:true, ev:'赵凌遣人护送傅庭筠回京都'},
+    {ch:'第120章', anchor:'—', ev:'赵凌详解家底与置业盘算，二人分别'}
+  ]},
+  {no:'卷五', name:'京都重逢·大婚', a:121, b:155, anchor:'腊八 → 次年八月初六', nodes:[
+    {ch:'第121章', anchor:'腊八', key:true, ev:'傅庭筠一行东归；腊八宿渭南驿站遇旧婢雨微'},
+    {ch:'第122章', anchor:'—', ev:'雨微揭傅家当年构陷、逼供、灭口'},
+    {ch:'第123章', anchor:'—', ev:'雨微续诉丫鬟之死与碧云庵内幕'},
+    {ch:'第124章', anchor:'—', ev:'揭出墨香受左俊杰指使偷贴身衣物栽赃'},
+    {ch:'第125章', anchor:'二月头', key:true, ev:'傅庭筠一行抵京都（保定府过春节、元宵后启程）'},
+    {ch:'第126章', anchor:'—', ev:'傅庭筠递银镯求见母亲被拒'},
+    {ch:'第127章', anchor:'—', ev:'傅少奶奶认出傅庭筠、以“冒认官亲”驱赶'},
+    {ch:'第128章', anchor:'—', ev:'傅五老爷斥傅庭筠“冒认官亲”并掌掴'},
+    {ch:'第129章', anchor:'二月十四', ev:'傅庭筠迁入京都史家胡同新宅'},
+    {ch:'第130章', anchor:'—', ev:'修竹家的传傅夫人之意、代问赵凌底细'},
+    {ch:'第131章', anchor:'四月发榜', ev:'俞敬修点状元；傅庭筠拒与叶三掌柜合伙做生意'},
+    {ch:'第132章', anchor:'二月后（先帝驾崩）', ev:'皇上驾崩、庄王继统；傅庭筠探得赵凌书信经“湖广”辗转而来'},
+    {ch:'第133章', anchor:'四月二十八—六月十四', ev:'叶三掌柜参出“穆王反了”、穆王起兵；六月十四京都被围'},
+    {ch:'第134章', anchor:'—', ev:'太皇太后回宫；叶三掌柜讲皇家旧事与颖川侯旧怨'},
+    {ch:'第135章', anchor:'—', ev:'皇上禅位穆王；赵凌忽归，二人重逢'},
+    {ch:'第136章', anchor:'—', ev:'赵凌告知“皇上答应为我们的婚事做主”'},
+    {ch:'第137章', anchor:'—', ev:'魏石…赵凌任羽林卫左卫指挥使；雨微认主'},
+    {ch:'第138章', anchor:'—', ev:'傅庭筀拦门辱骂，傅五老爷以“护妻病体”阻拦相见'},
+    {ch:'第139章', anchor:'七月中旬', ev:'傅庭筠立内宅分工；赵凌休沐同往四喜胡同'},
+    {ch:'第140章', anchor:'—', ev:'赵凌当众跪下向傅夫人提亲（被掌掴不避）'},
+    {ch:'第141章', anchor:'—', ev:'赵凌拔刀护傅庭筠见母；傅夫人许女、交换庚帖'},
+    {ch:'第142章', anchor:'定八月初六吉日', ev:'傅夫人翻黄历定八月初六吉日'},
+    {ch:'第143章', anchor:'—', ev:'傅夫人拒搬回正房；宫中传太皇太后召见'},
+    {ch:'第144章', anchor:'—', ev:'太皇太后赐婚、赐金簪'},
+    {ch:'第145章', anchor:'—', ev:'雨微坦白自遇傅庭筠即吃素；婚事筹备'},
+    {ch:'第146章', anchor:'八月初六', key:true, ev:'傅庭筠与赵凌成亲（新婚夜圆房延至第148章）'},
+    {ch:'第147章', anchor:'—', ev:'吴夫人透露太皇太后曾动赐婚之念'},
+    {ch:'第148章', anchor:'—', ev:'二人圆房'},
+    {ch:'第149章', anchor:'—', ev:'郑三娘为傅庭筠将养身子'},
+    {ch:'第150章', anchor:'—', ev:'三日回门；二人定“回长安定居”之约'},
+    {ch:'第151章', anchor:'—', ev:'夫妻情浓'},
+    {ch:'第152章', anchor:'—', ev:'二人赴西大街灯会游乐'},
+    {ch:'第153章', anchor:'中秋', key:true, ev:'赵凌背傅庭筠回家；夫妻发现共同爱好（围棋）；中秋'},
+    {ch:'第155章', anchor:'八月二十', ev:'为吕老爷饯行；赵凌吐露欲调陕西'}
+  ]},
+  {no:'卷六', name:'京都恩怨·傅俞交锋', a:156, b:200, anchor:'立春 → 次年八月', nodes:[
+    {ch:'第156章', anchor:'—', ev:'杨玉成、金元宝等自张掖来投'},
+    {ch:'第157章', anchor:'—', ev:'傅庭筠诊出喜脉'},
+    {ch:'第158章', anchor:'—', ev:'傅夫人透露“宜男命格”之由'},
+    {ch:'第159章', anchor:'立春后', ev:'吴夫人来访打探赵凌置办家业（大雪）'},
+    {ch:'第160章', anchor:'—', ev:'探得颖川侯将调回京都的内情'},
+    {ch:'第161章', anchor:'—', ev:'肁先生借傅庭筠劝赵凌出征之来意被《女训》挡回'},
+    {ch:'第162章', anchor:'—', ev:'傅庭筠潭柘寺遇俞家婆媳、认出乞丐左俊杰'},
+    {ch:'第163章', anchor:'—', ev:'傅五老爷只在意俞家颜面，傅庭筠对父死心'},
+    {ch:'第164章', anchor:'—', ev:'赵凌借五城兵马司寻左俊杰'},
+    {ch:'第165章', anchor:'—', key:true, ev:'傅庭筠产女呦呦'},
+    {ch:'第166章', anchor:'五月初十满月；戌初二刻', key:true, ev:'呦呦满月；次日傅夫人去世'},
+    {ch:'第167章', anchor:'—', ev:'傅夫人死因揭秘；赵凌、傅庭筠遥祭'},
+    {ch:'第168章', anchor:'八月二十六', ev:'赵凌随征贵州（皇上定二十六启程）'},
+    {ch:'第169章', anchor:'小寒', ev:'傅庭筠为杨玉成相看张家姑娘；贵州捷报'},
+    {ch:'第170章', anchor:'上九日', ev:'胡同口撞见左俊杰'},
+    {ch:'第171章', anchor:'—', ev:'左俊杰被擒、密囚三眼胡同'},
+    {ch:'第172章', anchor:'—', ev:'左俊杰吐露幕后主使（俞敬修）'},
+    {ch:'第173章', anchor:'—', ev:'左俊杰供出俞敬修允诺与柳叔同之线索'},
+    {ch:'第174章', anchor:'—', ev:'傅庭筠推知另有隐情、约见俞敬修'},
+    {ch:'第175章', anchor:'—', ev:'金元宝搬出赵凌之势敲打俞敬修'},
+    {ch:'第176章', anchor:'—', ev:'傅五老爷登门，傅庭筠拒随行'},
+    {ch:'第177章', anchor:'十月初十', ev:'傅庭筠改信行离间计；夜袭者被捉；杨玉成婚期定十月初十'},
+    {ch:'第178章', anchor:'—', ev:'赵凌提前回京；傅大老爷自金华来见'},
+    {ch:'第179章', anchor:'—', key:true, ev:'傅大老爷揭出傅五老爷科场作弊、俞敬修挟制之真相'},
+    {ch:'第180章', anchor:'—', ev:'夫妻推知俞阁老用意；赵凌透露皇上问其去宣同、颖川侯将与辽东总兵何福换防'},
+    {ch:'第181章', anchor:'—', ev:'赵凌放出“陌毅去宣同”的风声；同赴俞家鸿门宴'},
+    {ch:'第182章', anchor:'—', ev:'赵凌挡傅五老爷；俞阁老见识傅庭筠'},
+    {ch:'第183章', anchor:'—', ev:'俞阁老命俞敬修赔罪；傅庭筠揭穿其谎言'},
+    {ch:'第184章', anchor:'—', ev:'赵凌抛叶碧旧怨，两家彻底翻脸'},
+    {ch:'第185章', anchor:'—', ev:'傅庭筠定下处置左俊杰之计'},
+    {ch:'第186章', anchor:'呦呦周岁', ev:'呦呦周岁礼；萧姨娘托送厚礼'},
+    {ch:'第187章', anchor:'四月二十三—二十四', ev:'范氏与“五年之约”；赵家赴潭柘寺办周岁宴'},
+    {ch:'第188章', anchor:'—', ev:'萧姨娘登门，傅庭筠悟颖川侯“答谢加绝交”'},
+    {ch:'第189章', anchor:'—', ev:'俞夫人教子；赵家赴张家湾避暑'},
+    {ch:'第190章', anchor:'六月中旬', key:true, ev:'隆平侯荫封、陌毅升宣同总兵、赵凌得世袭百户并任宣同副总兵（赐字“虎臣”）'},
+    {ch:'第191章', anchor:'八月二十', key:true, ev:'赵凌赴宣同；傅庭筠疑有身孕、借办杨玉成婚事排遣'},
+    {ch:'第192章', anchor:'二月（次年）', ev:'确诊喜脉；金元宝定亲'},
+    {ch:'第193章', anchor:'—', ev:'俞夫人隔街认出有孕的傅庭筠；赵凌提前返家'},
+    {ch:'第194章', anchor:'—', ev:'俞夫人道破“相看丫鬟”是假动作'},
+    {ch:'第195章', anchor:'五月十日', ev:'傅庭筠产长子曦哥儿；俞夫人定计为俞敬修纳吴小姐'},
+    {ch:'第196章', anchor:'九月二十六（回溯）', ev:'依桐传出大堂嫂自缢的噩耗'},
+    {ch:'第197章', anchor:'—', ev:'潭柘寺遇吴夫人携“侄女”、遇俞夫人'},
+    {ch:'第198章', anchor:'—', ev:'金元宝另立门户；傅五老爷登门吵闹'},
+    {ch:'第199章', anchor:'—', ev:'揭傅五老爷失升迁真相（皇上“修身齐家”之评）'},
+    {ch:'第200章', anchor:'—', ev:'俞家定“先发制人”查赵凌底细'}
+  ]},
+  {no:'卷七', name:'京都角力·立祠布局', a:201, b:280, anchor:'二月初一 → 太皇太后七十大寿', nodes:[
+    {ch:'第201章', anchor:'—', ev:'傅少奶奶登门辞行、决意携子回华阴'},
+    {ch:'第202章', anchor:'二月初一', ev:'送傅少奶奶回华阴；赵凌回信“三月初一前赶回”'},
+    {ch:'第203章', anchor:'—', ev:'傅庭筠与俞家车夫摩擦，束妈妈认出她'},
+    {ch:'第204章', anchor:'—', ev:'吴姨娘得知生子系于命运'},
+    {ch:'第205章', anchor:'—', ev:'吴姨娘与范氏相继怀孕'},
+    {ch:'第206章', anchor:'—', ev:'俞夫人由攻转守、暗中布子'},
+    {ch:'第207章', anchor:'—', ev:'赵凌信报宣府鞑子行踪、推迟进京'},
+    {ch:'第208章', anchor:'—', key:true, ev:'俞阁老报赵凌宣府大捷（率榆林卫五千兵俘三万鞑子）'},
+    {ch:'第209章', anchor:'—', ev:'西平侯递密信（赵凌贩私盐）；俞家定下构陷之计'},
+    {ch:'第210章', anchor:'五月', key:true, ev:'范氏确认“傅氏”即傅庭筠；鞑子递降书'},
+    {ch:'第211章', anchor:'—', ev:'傅庭筠潭柘寺遇俞夫人、范氏'},
+    {ch:'第212章', anchor:'—', ev:'叶三掌柜劝傅庭筠做买卖；阿森暗恋王家长女'},
+    {ch:'第213章', anchor:'—', ev:'王家答应阿森入赘条件；傅庭筠赴十里铺迎接赵凌'},
+    {ch:'第214章', anchor:'五月十八', ev:'赵凌归家重逢'},
+    {ch:'第215章', anchor:'—', ev:'议让杨玉成、金元宝随赵凌去宣府；赵凌允阿森入赘'},
+    {ch:'第216章', anchor:'七月', ev:'阿森定亲；鞑子可汗派长子额穆讷来降、皇上定午门受降'},
+    {ch:'第217章', anchor:'—', ev:'议自立门户、迁坟；王家议亲'},
+    {ch:'第218章', anchor:'—', ev:'得知吴小姐作了俞敬修的妾室'},
+    {ch:'第219章', anchor:'七月二十六', ev:'吴姨娘小产；定下阿森小定'},
+    {ch:'第221章', anchor:'—', ev:'赵凌道破引赵家内讧之计'},
+    {ch:'第222章', anchor:'八月', key:true, ev:'赵凌回淞江起坟；傅庭筠携子赴长安'},
+    {ch:'第223章', anchor:'九月中旬', ev:'傅庭筠抵西安府'},
+    {ch:'第224章', anchor:'—', ev:'傅庭筠议买坟地祭田；依桐随行'},
+    {ch:'第225章', anchor:'—', ev:'依桐转述华阴近况（傅家败落）'},
+    {ch:'第226章', anchor:'—', ev:'五堂姐来访、姊妹重逢'},
+    {ch:'第227章', anchor:'—', ev:'七堂姐来访；议十月初二聚会'},
+    {ch:'第228章', anchor:'十月初二', ev:'姊妹相聚'},
+    {ch:'第229章', anchor:'—', ev:'议定对外说词、发请帖'},
+    {ch:'第230章', anchor:'—', ev:'三堂姐携二子（春饼、元宵）到来'},
+    {ch:'第231章', anchor:'十月', ev:'姊妹各散；赵凌护送父母棺椁自淞江北上将归'},
+    {ch:'第232章', anchor:'—', ev:'赵凌引见赵棋；迁坟仪式完成'},
+    {ch:'第233章', anchor:'—', ev:'吴昕求赵凌周旋；赵凌谋西平侯'},
+    {ch:'第234章', anchor:'十月二十启程·腊月二十一', ev:'傅庭筠一行腊月二十一抵京都'},
+    {ch:'第235章', anchor:'正月初三', ev:'赵凌升贵州总兵（实为出征）；皇上特旨正月初三启程'},
+    {ch:'第236章', anchor:'—', ev:'赵凌坦诚出征内情；赴潭柘寺求平安符'},
+    {ch:'第237章', anchor:'—', ev:'傅庭筠遇吴姨娘（俞敬修妾室）'},
+    {ch:'第238章', anchor:'—', ev:'吴姨娘追来道谢'},
+    {ch:'第239章', anchor:'—', ev:'吴姨娘向俞夫人提“遇见赵太太”'},
+    {ch:'第240章', anchor:'—', ev:'俞夫人起疑、命人监视吴姨娘；俞阁老遣俞槐安赴华阴'},
+    {ch:'第241章', anchor:'三月', ev:'傅氏消息在华阴走漏；三堂姐来京；收赵凌家书'},
+    {ch:'第242章', anchor:'—', ev:'为三姐夫谋划吏部左给事中'},
+    {ch:'第243章', anchor:'—', ev:'傅庭筠提议争取吏部左给事中'},
+    {ch:'第244章', anchor:'四月', ev:'傅庭筠赴潭柘寺见肁先生'},
+    {ch:'第245章', anchor:'—', ev:'肁先生应允相助；傅庭筠临产'},
+    {ch:'第246章', anchor:'五月（寅时）', key:true, ev:'傅庭筠产次子旭哥儿（赵凌取名“昀”）；钱东林、陈丹亭入阁'},
+    {ch:'第247章', anchor:'—', ev:'俞敬修另走陈丹亭门路、谋卖陪嫁山头'},
+    {ch:'第248章', anchor:'—', ev:'三姐夫补吏部左给事中之缺'},
+    {ch:'第249章', anchor:'—', ev:'钱东林亲点三姐夫；俞敬修得知落空'},
+    {ch:'第250章', anchor:'—', ev:'俞阁老揭沈任思即傅氏三堂姐夫、走傅氏路子'},
+    {ch:'第251章', anchor:'—', ev:'俞家风雨飘摇；吴姨娘暗查'},
+    {ch:'第252章', anchor:'—', ev:'吴姨娘失言泄“赵太太与俞家结仇”'},
+    {ch:'第253章', anchor:'—', ev:'三堂姐与傅庭筠遇傅五老爷，傅庭筠绝情'},
+    {ch:'第254章', anchor:'—', ev:'三堂姐站队；南京送来两位表小姐'},
+    {ch:'第255章', anchor:'—', ev:'郝剑锋查得赵太太即傅家九小姐'},
+    {ch:'第256章', anchor:'—', ev:'吴夫人向计夫人外传身世线索'},
+    {ch:'第257章', anchor:'—', ev:'祖母去世；沈任思走赵凌门路、系连襟之秘外泄'},
+    {ch:'第258章', anchor:'—', ev:'吴夫人确认傅庭筠身世并外传'},
+    {ch:'第259章', anchor:'—', ev:'三堂姐回华阴奔丧；傅五老爷同行'},
+    {ch:'第260章', anchor:'—', ev:'傅五老爷当众泄露女儿闺名“荃蕙”'},
+    {ch:'第261章', anchor:'—', ev:'郝剑锋将傅庭筠身世全貌告吴大人'},
+    {ch:'第262章', anchor:'—', ev:'吴姨娘吐露俞家与西平侯暗通、并报知傅庭筠'},
+    {ch:'第263章', anchor:'—', ev:'岑大人道出赵凌与西平侯恩怨的真相'},
+    {ch:'第264章', anchor:'—', ev:'俞夫人逼抬费氏为妾'},
+    {ch:'第265章', anchor:'—', ev:'费氏献策劝俞敬修放手'},
+    {ch:'第266章', anchor:'七月二十八', ev:'费氏抬妾、新婚夜以退为进'},
+    {ch:'第267章', anchor:'—', ev:'俞敬修将赴山东任御史'},
+    {ch:'第268章', anchor:'—', ev:'费氏冬衣立功；三堂姐转述为郝剑锋牵线之意'},
+    {ch:'第269章', anchor:'—', ev:'舒明回华阴令六叔提分家；傅庭筠“死讯”旧事传开'},
+    {ch:'第270章', anchor:'—', ev:'郝剑锋借古围棋搭上肁先生'},
+    {ch:'第271章', anchor:'—', ev:'俞阁老得知郝剑锋走赵凌路子'},
+    {ch:'第272章', anchor:'—', ev:'范氏偷听受辱；赵凌悄然归来'},
+    {ch:'第273章', anchor:'—', ev:'赵凌坦白回京缘由（献寿）'},
+    {ch:'第274章', anchor:'—', key:true, ev:'赵凌坦露赴陕布局之谋（谋俞家）'},
+    {ch:'第275章', anchor:'—', ev:'家庭日常；议为旭哥儿延师习武'},
+    {ch:'第276章', anchor:'—', ev:'金元宝登门；赵凌剖析冯家求和的利害'},
+    {ch:'第277章', anchor:'太皇太后七十大寿（圣旨颁）', key:true, ev:'太皇太后七十大寿；赵凌悄然回京告知陕西之行成果'},
+    {ch:'第278章', anchor:'十一月十八·二月二·二月二十一', ev:'阿森入赘；赵凌献苍鸟；傅氏封三品淑人；二月二十一皇上于保和殿设筵、太皇太后受贺'},
+    {ch:'第279章', anchor:'寿筵', key:true, ev:'慈宁宫寿筵，太皇太后招见傅庭筠'},
+    {ch:'第280章', anchor:'—', ev:'俞夫人以傅氏显贵敲打俞敬修'}
+  ]},
+  {no:'卷八', name:'复仇·俞家坍塌', a:281, b:314, anchor:'春 → 七月中旬', nodes:[
+    {ch:'第281章', anchor:'—', ev:'俞敬修误认费氏所做衣裳；遇傅赵一家观烟火'},
+    {ch:'第282章', anchor:'—', ev:'安道长应诺为曦哥儿、旭哥儿做习武师傅'},
+    {ch:'第283章', anchor:'—', ev:'费氏向范氏屋套话；吴姨娘定“以不变应万变”'},
+    {ch:'第284章', anchor:'—', ev:'费氏以花露接近、事发拍门'},
+    {ch:'第285章', anchor:'—', ev:'费氏闯入劝架，得知俞敬修用银真因（帮闵小姐）'},
+    {ch:'第286章', anchor:'—', ev:'费氏送杏仁露、献计'},
+    {ch:'第287章', anchor:'—', ev:'范氏病倒；俞槐安报赵凌将升'},
+    {ch:'第288章', anchor:'—', ev:'呦呦误伤厉十三、揪出诈伤'},
+    {ch:'第289章', anchor:'—', ev:'呦呦受罚；三堂姐来访'},
+    {ch:'第290章', anchor:'—', ev:'厉夫人赔礼；厉十三翻墙纠缠呦呦'},
+    {ch:'第291章', anchor:'暑', ev:'赴玉鸣山避暑；春饼赠桃花糕'},
+    {ch:'第292章', anchor:'—', ev:'春饼暗恋呦呦被三堂姐察觉'},
+    {ch:'第293章', anchor:'端午将至', ev:'厉十三上玉鸣山赔罪'},
+    {ch:'第294章', anchor:'—', ev:'三姐夫欲令春饼、元宵习武'},
+    {ch:'第295章', anchor:'七月底', key:true, ev:'傅庭筠有孕；莲心传吴姨娘之托（查闵小姐）'},
+    {ch:'第296章', anchor:'八月底', ev:'傅庭筠回绝、疑闵小姐身份；安心回京'},
+    {ch:'第297章', anchor:'次年三月（切俞家）', ev:'安心探闵小姐底细；俞夫人知俞敬修助闵小姐寻弟'},
+    {ch:'第298章', anchor:'晗哥儿百日', ev:'俞夫人看透费氏之算；晗哥儿百日'},
+    {ch:'第299章', anchor:'—', ev:'孟氏来贺、探呦呦亲事'},
+    {ch:'第300章', anchor:'—', ev:'闵小姐有未婚夫郭公子；见肁先生挡亲'},
+    {ch:'第301章', anchor:'—', ev:'皇上以赵凌节制云贵；郭公子被害'},
+    {ch:'第302章', anchor:'—', ev:'闵氏买凶杀人；范氏得知俞敬修与闵氏来往'},
+    {ch:'第303章', anchor:'—', ev:'费氏暴露奉俞敬修之命送银'},
+    {ch:'第304章', anchor:'—', ev:'范氏求俞夫人出面阻止闵氏进门'},
+    {ch:'第305章', anchor:'—', ev:'俞敬修要卖吴姨娘'},
+    {ch:'第306章', anchor:'—', ev:'俞阁老、俞夫人出面；吴姨娘哭求留下'},
+    {ch:'第307章', anchor:'—', ev:'吴夫人出面为吴姨娘赎身；莲心借雨微递信'},
+    {ch:'第308章', anchor:'—', ev:'吴姨娘离开俞家'},
+    {ch:'第309章', anchor:'三月（进京述职者离京）', ev:'吴姑娘坦白弃胎真相'},
+    {ch:'第310章', anchor:'—', key:true, ev:'赵凌回京；布局郭家告状'},
+    {ch:'第311章', anchor:'—', ev:'闵氏怀孕；赵凌定先小后大之策'},
+    {ch:'第312章', anchor:'—', key:true, ev:'郭家状告俞敬修“杀夫夺妻”；俞阁老昏倒'},
+    {ch:'第313章', anchor:'—', ev:'俞敬修被大理寺带走；俞家凑银打点'},
+    {ch:'第314章', anchor:'六月初流放·七月中旬病死', key:true, ev:'俞家败落、俞阁老流放庄浪卫、病死平凉；南京丰乐坊俞家没落（正文完）'}
+  ]}
+];
+
+/* ====================== 信息流转矩阵数据 ====================== */
+const MX_COLS = ['读者','傅庭筠','赵凌','傅家','俞敬修','俞阁老','俞夫人','范氏','吴姨娘','郝剑锋','吴夫人','左俊杰','费氏'];
+/* state: g=知 / o=隐约 / p=部分 / r=不知 / n=不相干 */
+const MX_ROWS = [
+  {name:'傅庭筠身世（＝华阴傅氏九小姐，闺名荃蕙；对外“病逝”为假）', cells:[
+    ['g','<b>第1章</b> 开篇即以“华阴傅氏九小姐”立人设'],
+    ['g','<b>全程</b> 本人'],
+    ['g','<b>第1–12章</b> 初见即知；第179章傅庭筠回忆其眼中“一丝不屑”'],
+    ['g','<b>全程</b> 定计报丧、绝情否认者（五老爷/大老爷）'],
+    ['g','<b>第172章前后</b> 指使左俊杰诬陷前已明知其身份'],
+    ['n',''],
+    ['n',''],
+    ['g','<b>第210章</b> 确认“傅氏”即傅庭筠'],
+    ['n',''],
+    ['g','<b>第255章</b> 查实、第261章告吴大人'],
+    ['g','<b>第256章</b> 外传线索、第258章确认并外传'],
+    ['g','施害者，知情'],
+    ['n','']
+  ]},
+  {name:'左俊杰诬陷系俞敬修（俞家）指使', cells:[
+    ['g','<b>第173章</b>'],
+    ['g','<b>第174章</b> 推知 → 第179章得傅大老爷确证'],
+    ['g','<b>第172章</b> 密囚审讯左俊杰得供'],
+    ['g','与俞家共谋自保（傅五老爷，第173章透露通信）'],
+    ['g','主使'],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['g','<b>全程</b> 受指使者'],
+    ['n','']
+  ]},
+  {name:'傅五老爷科场作弊（会元文章系柳叔同代作）', cells:[
+    ['g','<b>第179章</b>'],
+    ['g','<b>第179章</b> 傅大老爷揭出真相'],
+    ['g','<b>第179章</b> 与傅庭筠同闻真相'],
+    ['g','傅五老爷当事人；大老爷第173章前已知'],
+    ['g','<b>第172章</b> 翻柳叔同旧文发现、据以挟制'],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n','']
+  ]},
+  {name:'傅夫人之死（死因）', cells:[
+    ['g','<b>第166章</b> 讣闻 / 第167章 死因'],
+    ['g','<b>第167章</b> 赵凌转述死因'],
+    ['g','<b>第166章前</b> 早知病重、瞒傅庭筠'],
+    ['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n','']
+  ]},
+  {name:'赵凌身世（涿州 → 淞江 → 父母之死 → 道僮 → 贩马贩盐）', cells:[
+    ['g','<b>第110章</b> 完整揭开（前50章只知“身世成谜”）'],
+    ['p','<b>第69章</b> 父母旧事 → <b>第110章</b> 完整；第117章再听最痛处'],
+    ['g','全程'],
+    ['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n','']
+  ]},
+  {name:'赵凌的复仇布局（对俞家 / 西平侯 / 淞江赵家）', cells:[
+    ['g','<b>第233章</b> 铺垫 → 第274章 全盘 → 第311章 先小后大'],
+    ['p','<b>第217/219/274/311章</b> 逐步知情'],
+    ['g','全程 布局者'],
+    ['n',''],
+    ['o','<b>第200章</b> 起自查赵凌底细'],
+    ['o','<b>第209章</b> 定构陷之计、第210章 知贩私盐'],
+    ['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n','']
+  ]},
+  {name:'碧云庵血案 / 傅家灭口内幕（丫鬟折柳、剪草等惨死）', cells:[
+    ['g','<b>第122–124章</b> 雨微揭发'],
+    ['g','<b>第122–124章</b> 雨微当面揭；第124章推知赵凌“灭口”另有隐情'],
+    ['g','全程（第14–15章在场）；傅庭筠第124章方想通其隐情'],
+    ['g','全程 施害者（大太太/陈妈妈）'],
+    ['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n','']
+  ]},
+  {name:'西平侯贩马案（西平侯勾结俞阁老私卖战马，全书终局铁案）', cells:[
+    ['g','<b>第115章</b> 埋线 → 第310–311章 定策 → 第314章 事发'],
+    ['p','<b>第262→263→310章</b> 渐次知情'],
+    ['g','<b>第115章</b> 起（马贼案）→ 第310章周知全案'],
+    ['n',''],
+    ['n',''],
+    ['r','<b>第314章</b> 事发方知上当'],
+    ['n',''],['n',''],['n',''],['n',''],['n',''],['n',''],['n','']
+  ]},
+  {name:'俞敬修 ↔ 闵氏（外室、买凶害人）', cells:[
+    ['g','<b>第285章</b> 用银真因 → 第300章 有未婚夫 → 第301–302章 买凶害死郭公子'],
+    ['p','<b>第295–296章</b> 疑闵小姐身份'],
+    ['n',''],
+    ['n',''],
+    ['g','全程 助闵小姐寻弟、往来、迎其进门'],
+    ['n',''],
+    ['g','<b>第297章</b> 方知助闵小姐寻弟'],
+    ['g','<b>第302章</b> 得知俞敬修与闵氏来往'],
+    ['g','<b>第296章前</b> 借莲心“变着法子”告知傅庭筠'],
+    ['n',''],['n',''],['n',''],
+    ['g','<b>第285章</b> 闯入劝架得知用银真因']
+  ]},
+  {name:'吴姨娘（吴小姐）身份、“自愿病逝”为妾、转为内应', cells:[
+    ['g','<b>第195章</b> 首次登场（隐姓埋名）'],
+    ['g','<b>第197章</b> 遇、第237–238章知其为俞敬修妾'],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['n',''],
+    ['g','<b>第239章</b> 起疑、第240章命人监视'],
+    ['n',''],
+    ['g','<b>第262章</b> 吐露俞家与西平侯暗通，成赵家“内应”'],
+    ['n',''],
+    ['g','<b>第261–262章</b> 借吴姨娘之口探得俞家机密'],
+    ['n',''],
+    ['n','']
+  ]}
+];
+
+/* ====================== 信息差爽感 ====================== */
+const TIPS = [
+  {no:'01', tn:'身世信息差 · 近 200 章的“读者全知”',
+   t:'读者第 <b>1</b> 章即知傅庭筠＝华阴傅氏九小姐，而范氏要拖到第 <b>210</b> 章才确认“傅氏即傅庭筠”、吴夫人第 <b>258</b> 章才确认并外传；赵凌虽第 1–12 章初见即知，局中人却迟至两百章后才陆续“对上号”。<em>读者领先局中人的这段距离，就是持续两百章的优越感来源。</em>'},
+  {no:'02', tn:'布局信息差 · 埋收跨越近 200 章',
+   t:'赵凌对俞家 / 西平侯 / 淞江赵家的复仇布局，读者第 <b>233</b> 章见铺垫、第 <b>274</b> 章见全盘、第 <b>311</b> 章见次序，而俞家直到第 <b>314</b> 章“事发方知上当”（原文自陈“用德圃牵制我们的视线……”）。<em>从第115章埋下“马贼与西平侯有关”到第314章事发，埋收跨度近 200 章。</em>'},
+  {no:'03', tn:'身世解锁信息差 · 分层揭底，最痛处留到最后',
+   t:'赵凌身世读者第 <b>110</b> 章才完整揭开，前 50 章只知其“身世成谜”；傅庭筠分两次获知——第 <b>69</b> 章先闻父母旧事、第 <b>110</b> 章方见完整、第 <b>117</b> 章再听最痛处（母被诬自尽）。<em>信息不是一次给完，而是按“痛感”层层加码。</em>'}
+];
+
+/* ====================== 地理迁移（8 段） ====================== */
+const GEO = [
+  {i:'起点', n:'华阴', c:'傅府 / 碧云庵 · 第1–17章', e:'碧云庵后院初遇赵凌[第1章]；傅府软禁[第5章]；潼关外破庙[第15章]'},
+  {i:'西行一', n:'华阴 → 西安府途', c:'渭南·临潼·临春镇 · 第18–45章', e:'扮堕民西行[第18章]；李家凹[第23–26章]；东安村[第28章]；城隍庙十六爷[第34章]；趁夜吊篮入西安府[第45章]'},
+  {i:'落脚', n:'西安府', c:'杨柳巷 / 喜升客栈 · 第46–67章', e:'迁杨柳巷[第50章]；敲锣退敌[第56章]；中秋[第57章]；决意同赴张掖[第67章]'},
+  {i:'西行二', n:'西安府 → 甘州', c:'永靖·张掖·庄浪卫·碾伯所 · 第68–120章', e:'八月二十七启程[第68章]；永靖县[第70章]；抵张掖[第73章]；碾伯所[第101章]；返张掖[第112章]'},
+  {i:'东归', n:'张掖 → 返西安府转东 → 京都', c:'第119–125章', e:'赵凌遣人护送[第119章]；腊八宿渭南驿站遇雨微[第121章]；抵京都[第125章]'},
+  {i:'京都一', n:'京都', c:'史家胡同新宅·四喜胡同 · 第125–234章', e:'新宅[第129章]；成婚[第146章]；随征贵州送别[第168章]；阿森入赘、午门受降[第216/278章]'},
+  {i:'西行三', n:'京都 → 重返西安府/长安', c:'陕西 · 第222–234章', e:'携子赴长安[第222章]；抵西安府[第223章]；姊妹相聚[第228章]；迁坟[第232章]；赵凌暗赴陕布局[第274章]'},
+  {i:'京都二', n:'返京都', c:'第234–314章', e:'腊月二十一抵京都[第234章]；太皇太后寿诞[第277–279章]；终局俞家败落[第314章]'}
+];
+
+/* ====================== 渲染：双轨时间线 ====================== */
+(function(){
+  const preTl=document.getElementById('preTl');
+  PRESTORY.forEach(function(g){
+    const box=document.createElement('div'); box.className='pg';
+    let h='<div class="pg-hd">'+g.name+'</div>';
+    g.nodes.forEach(function(n){
+      h+='<div class="nd'+(n.key?' key':'')+'">'+
+           '<span class="nd-dot"></span>'+
+           '<div class="nd-body">'+
+             '<div class="nd-meta"><span class="nd-ch">'+n.id+'</span><span class="nd-anchor">'+n.anchor+'</span></div>'+
+             '<div class="nd-ev">'+n.ev+'</div>'+
+           '</div>'+
+         '</div>';
+    });
+    box.innerHTML=h;
+    preTl.appendChild(box);
+  });
+
+  const mainTl=document.getElementById('mainTl');
+  VOLUMES.forEach(function(v){
+    const box=document.createElement('div'); box.className='vol';
+    const total=v.nodes.length, keyN=v.nodes.filter(function(n){return n.key;}).length;
+    let h='<div class="vol-hd"><span class="arw">▶</span>'+v.no+' · '+v.name+
+          '<span class="vt">第'+v.a+'–'+v.b+'章 ｜ '+v.anchor+'</span>'+
+          '<span class="vex">'+keyN+' / '+total+' 章</span></div>';
+    v.nodes.forEach(function(n){
+      h+='<div class="nd'+(n.key?' key':' more')+'">'+
+           '<span class="nd-dot"></span>'+
+           '<div class="nd-body">'+
+             '<div class="nd-meta"><span class="nd-ch">'+n.ch+'</span><span class="nd-anchor">'+(n.anchor||'—')+'</span></div>'+
+             '<div class="nd-ev">'+n.ev+'</div>'+
+           '</div>'+
+         '</div>';
+    });
+    box.innerHTML=h;
+    box.querySelector('.vol-hd').addEventListener('click',function(){ box.classList.toggle('open'); });
+    mainTl.appendChild(box);
+  });
+})();
+
+/* ====================== 渲染：信息矩阵 ====================== */
+(function(){
+  const head=document.getElementById('mxHead');
+  let h='<th class="rowh">信息 / 秘密</th>';
+  MX_COLS.forEach(function(c){ h+='<th>'+c+'</th>'; });
+  head.innerHTML=h;
+
+  const body=document.getElementById('mxBody');
+  MX_ROWS.forEach(function(r){
+    let tr='<tr><td class="rowh">'+r.name+'</td>';
+    r.cells.forEach(function(cell){
+      const st=cell[0], note=cell[1]||'';
+      if(st==='n'||!st){ tr+='<td><span class="mdot n"></span></td>'; }
+      else{
+        tr+='<td><span class="mdot '+st+'" data-tip="'+note.replace(/"/g,'&quot;')+'"></span></td>';
+      }
+    });
+    tr+='</tr>';
+    body.insertAdjacentHTML('beforeend',tr);
+  });
+})();
+
+/* ====================== 渲染：信息差爽感 ====================== */
+(function(){
+  const w=document.getElementById('tipsWrap');
+  TIPS.forEach(function(t){
+    const d=document.createElement('div'); d.className='tipc';
+    d.innerHTML='<div class="tno">'+t.no+'</div>'+
+      '<div class="tn">'+t.tn+'</div>'+
+      '<div class="tt">'+t.t+'</div>';
+    w.appendChild(d);
+  });
+})();
+
+/* ====================== 渲染：地理路线 ====================== */
+(function(){
+  const w=document.getElementById('geoWrap');
+  GEO.forEach(function(g){
+    const d=document.createElement('div'); d.className='geo-node';
+    d.innerHTML='<span class="gi">'+g.i+'</span>'+
+      '<div class="gn">'+g.n+'</div>'+
+      '<div class="gc">'+g.c+'</div>'+
+      '<div class="ge">'+g.e+'</div>';
+    w.appendChild(d);
+  });
+})();
+
+/* ====================== 悬停弹窗 ====================== */
+(function(){
+  const tip=document.getElementById('tip');
+  function moveTip(ev){
+    const pad=16,w=tip.offsetWidth,ht=tip.offsetHeight;
+    let x=ev.clientX+pad,y=ev.clientY+pad;
+    if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+    if(y+ht>window.innerHeight-12) y=ev.clientY-ht-pad;
+    if(x<8)x=8; if(y<8)y=8;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  }
+  document.body.addEventListener('mouseover',function(e){
+    const t=e.target.closest('[data-tip]');
+    if(t && t.getAttribute('data-tip')){
+      tip.innerHTML=t.getAttribute('data-tip');
+      tip.style.display='block'; moveTip(e);
+    }
+  });
+  document.body.addEventListener('mousemove',function(e){
+    if(tip.style.display==='block') moveTip(e);
+  });
+  document.body.addEventListener('mouseout',function(e){
+    const t=e.target.closest('[data-tip]');
+    if(t) tip.style.display='none';
+  });
+})();
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

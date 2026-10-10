@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 · 人物关系网 ·《一瓯春》</title>
+<style>
+:root{
+  --bg:#08080c; --gold:#c9a961; --gold2:#e8c97a;
+  --red:#ff6b6b; --green:#69db7c; --blue:#74c0fc;
+  --purple:#b197fc; --cyan:#5eead4; --slate:#8ea0bb; --rose:#ef9fb0;
+  --indigo:#6366f1; --sky:#38bdf8; --orange:#ffa94d; --mist:#a8b3c7; --dead:#5f6b7f;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:#dfe3ee;
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+body::before{
+  content:'';position:fixed;top:0;left:0;right:0;height:340px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(201,169,97,0.10), transparent 70%);
+}
+::-webkit-scrollbar{width:4px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.5);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.8);}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:13px 26px;background:rgba(8,8,12,0.74);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:1px;transition:.2s;}
+.topbar a:hover{color:var(--gold2);}
+.topbar .dim{font-size:13px;color:#8b93a7;letter-spacing:2px;}
+
+.wrap{max-width:1320px;margin:0 auto;padding:26px 26px 80px;position:relative;z-index:1;}
+
+.hero{text-align:center;padding:14px 0 30px;}
+.hero h1{margin:0;font-size:32px;letter-spacing:6px;font-weight:700;
+  background:linear-gradient(120deg,#e8c97a,#c9a961 45%,#e8c97a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero .sub{margin-top:10px;font-size:12.5px;color:#8b93a7;letter-spacing:2px;}
+.hero .quote{margin:18px auto 0;max-width:820px;font-size:13px;line-height:2;color:#a9b0c4;
+  border-left:2px solid rgba(201,169,97,0.45);border-right:2px solid rgba(201,169,97,0.45);
+  padding:8px 20px;background:rgba(201,169,97,0.04);border-radius:6px;}
+
+.section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:34px 26px 24px;margin-bottom:20px;position:relative;}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;
+  font-weight:600;background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px;}
+.sec-title{font-size:15px;color:var(--gold2);letter-spacing:2px;margin:0 0 4px;}
+.sec-note{font-size:11.5px;color:#7d869c;letter-spacing:.5px;margin:0 0 18px;}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.fbtn{font-size:11.5px;letter-spacing:1px;padding:5px 13px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#aab2c6;
+  transition:.18s;user-select:none;}
+.fbtn:hover{color:#fff;background:rgba(255,255,255,0.07);}
+.fbtn.active{color:#0b0b10;font-weight:600;}
+.hint{font-size:11px;color:#6f788c;letter-spacing:.5px;margin:0 0 12px;}
+
+.graph-wrap{overflow-x:auto;border-radius:14px;background:rgba(0,0,0,0.22);
+  border:1px solid rgba(255,255,255,0.05);position:relative;}
+#graph{min-width:1000px;width:100%;height:auto;display:block;}
+
+.node{cursor:pointer;transition:opacity .2s;}
+.node circle{transition:stroke-width .18s, filter .18s;}
+.node:hover circle{stroke-width:3.4;filter:drop-shadow(0 0 8px currentColor);}
+.node.off{opacity:0.12;}
+.node text{pointer-events:none;user-select:none;}
+.nname{font-weight:600;letter-spacing:.5px;}
+.nrole{font-size:10px;fill:#828ba1;letter-spacing:.5px;}
+
+.edge path{transition:stroke-opacity .18s;fill:none;}
+.edge .elabel{font-size:10.5px;letter-spacing:.4px;opacity:0;transition:opacity .18s;
+  paint-order:stroke;stroke:#08080c;stroke-width:4.5px;stroke-linejoin:round;font-weight:500;}
+.edge.on path{stroke-opacity:1 !important;}
+.edge.on .elabel{opacity:1;}
+.edge.off path{stroke-opacity:0.04 !important;}
+.edge.off .elabel{opacity:0;}
+
+.legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:16px;}
+.lg{display:flex;align-items:center;gap:6px;font-size:11px;color:#98a1b6;letter-spacing:.5px;}
+.lg i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+
+#tip{position:fixed;z-index:999;display:none;max-width:348px;pointer-events:none;
+  background:rgba(16,17,23,0.97);border:1px solid rgba(201,169,97,0.28);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.65);}
+#tip.wide{max-width:520px;}
+.tip-name{font-size:16px;font-weight:700;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.5px;}
+.tip-desc{font-size:12px;line-height:1.85;color:#c3cadb;margin-top:10px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tip-tags span{font-size:10px;padding:2px 8px;border-radius:999px;color:#aab2c6;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);}
+.rl-title{margin-top:11px;border-top:1px dashed rgba(255,255,255,0.09);padding-top:9px;
+  font-size:10px;color:#6f788c;letter-spacing:1.5px;margin-bottom:7px;}
+.tip-rels{display:flex;flex-direction:column;gap:3px;}
+.tip-rels.two{display:block;column-count:2;column-gap:22px;}
+.tip-rels.two .tip-rel{break-inside:avoid;margin-bottom:2px;}
+.tip-rel{font-size:11px;line-height:1.75;color:#a2abc0;display:flex;gap:6px;}
+.tip-rel b{color:#dfe3ee;font-weight:600;flex-shrink:0;}
+
+.tl{position:relative;padding-left:30px;}
+.tl::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,#e8c97a,#b197fc 45%,#69db7c);border-radius:2px;opacity:.6;}
+.tl-item{position:relative;padding:0 0 20px 0;}
+.tl-item::before{content:'';position:absolute;left:-27px;top:5px;width:9px;height:9px;border-radius:50%;
+  background:#e8c97a;box-shadow:0 0 10px rgba(232,201,122,.85);}
+.tl-item.p2::before{background:#b197fc;box-shadow:0 0 10px rgba(177,151,252,.85);}
+.tl-item.p3::before{background:#69db7c;box-shadow:0 0 10px rgba(105,219,124,.85);}
+.tl-h{font-size:13px;color:#e8c97a;font-weight:600;letter-spacing:1px;}
+.tl-ch{font-size:10.5px;color:#7d869c;margin-left:10px;letter-spacing:.5px;}
+.tl-b{font-size:12px;line-height:1.9;color:#b6bdd0;margin-top:5px;}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px;}
+.acc{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;overflow:hidden;}
+.acc-h{padding:13px 16px;font-size:13px;color:#dfe3ee;letter-spacing:1px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;transition:.18s;}
+.acc-h:hover{background:rgba(201,169,97,0.06);}
+.acc-h .arw{color:var(--gold);font-size:11px;transition:transform .22s;}
+.acc.open .acc-h .arw{transform:rotate(90deg);}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .32s ease;}
+.acc.open .acc-b{max-height:1400px;}
+.acc-b-in{padding:12px 16px 16px;font-size:12px;line-height:2;color:#b6bdd0;
+  border-top:1px dashed rgba(255,255,255,0.08);}
+.acc-b-in .ch{color:var(--gold);font-size:11px;white-space:nowrap;}
+
+.grudge{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:16px 18px;}
+.grudge h4{margin:0 0 8px;font-size:13px;color:#ff9f9f;letter-spacing:1px;}
+.grudge p{margin:0;font-size:12px;line-height:1.95;color:#b6bdd0;}
+.grudge .tag{display:inline-block;font-size:10px;color:#8b93a7;margin-left:8px;
+  padding:1px 7px;border-radius:999px;background:rgba(255,255,255,0.05);}
+
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;padding:10px 12px;color:#e8c97a;font-weight:600;letter-spacing:1px;
+  border-bottom:1px solid rgba(201,169,97,0.25);white-space:nowrap;font-size:11.5px;}
+td{padding:10px 12px;color:#b6bdd0;border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.75;}
+tr:hover td{background:rgba(201,169,97,0.04);}
+td.camp{color:#dfe3ee;font-weight:600;white-space:nowrap;}
+
+.foot{text-align:center;font-size:11px;color:#5e6678;letter-spacing:1px;padding:26px 0 10px;}
+@media (max-width:640px){
+  .wrap{padding:18px 14px 60px;}
+  .hero h1{font-size:24px;letter-spacing:3px;}
+  .section{padding:30px 16px 20px;}
+}
+
+.tb-right{display:flex;align-items:center;gap:16px;}
+.author-badge{font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.6);border:1px solid rgba(201,169,97,0.3);border-radius:16px;
+  padding:4px 12px;white-space:nowrap;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="tb-right"><div class="dim">06 · 人物关系网</div><span class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</span></div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>人物关系网</h1>
+    <div class="sub">《一瓯春》· 尤四姐 · 102 章 / 约 40.1 万字 · 状态基准 = 全书终（第102章 昭雪）</div>
+    <div class="quote">一个寄养十四年、无根基的庶女，被"填"进当年的凶宅；一个掌刑狱、能翻云覆雨的权臣。<br>从"最危险的处境即最好的伪装"，走到"同富贵，也可共患难"。</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">关系总图</div>
+    <h3 class="sec-title">以 谢清圆 × 沈润 为双中心</h3>
+    <p class="sec-note">悬停任意节点 → 查看人物卡与该节点的全部关系；点下方色块 → 按阵营筛选。</p>
+    <div class="filters" id="filters"></div>
+    <p class="hint">线色 = 关系性质（金＝主线CP · 紫＝情缘/男二 · 蓝＝血缘亲属 · 绿＝内宅同盟 · 青＝养育后盾 · 靛＝沈家夫家 · 天蓝＝朝局内廷 · 橙＝姚家反派 · 玫＝姻亲 · 灰＝中立 · 红＝敌对）</p>
+    <div class="graph-wrap">
+      <svg id="graph" viewBox="0 0 1440 1180" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">主线演变</div>
+    <h3 class="sec-title">谢清圆 × 沈润：审视戒备 → 试探推拉 → 求娶 → 结发 → 同患难</h3>
+    <p class="sec-note">7 个关系阶段，跨度约 78 章，全书第一长线。</p>
+    <div class="tl" id="tlMain"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">支线演变</div>
+    <h3 class="sec-title">五条关系支线的走向</h3>
+    <p class="sec-note">点击展开每条支线的完整链路。</p>
+    <div class="cards" id="accWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">核心恩怨</div>
+    <h3 class="sec-title">全书六条恩怨线</h3>
+    <p class="sec-note">冲突的源头，续写时可挂回这些线。</p>
+    <div class="cards" id="grudgeWrap"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">阵营一览</div>
+    <h3 class="sec-title">立场与终局状态</h3>
+    <p class="sec-note">按阵营汇总"对清圆的立场"与"终局状态"。</p>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>阵营</th><th>核心成员</th><th>对清圆的立场</th><th>终局状态</th></tr></thead>
+        <tbody id="campTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-tag">续写红线</div>
+    <h3 class="sec-title">关系体系的规则（不可违反）</h3>
+    <p class="sec-note">续写 / 改写时，关系不能脱离"嫡庶／门第／户籍"三规则。</p>
+    <div id="rulesWrap" style="font-size:12.5px;line-height:2.05;color:#b6bdd0;"></div>
+  </div>
+
+  <div class="foot">《一瓯春》拆解 · 蓝图 06 · 人物关系网</div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============================ 数据 ============================ */
+const CAMP = {
+  hero:     {name:'主角',              color:'#e8c97a'},
+  cp:       {name:'主线CP',            color:'#b197fc'},
+  xie_bad:  {name:'谢家 · 嫡母房',      color:'#ff6b6b'},
+  xie_rule: {name:'谢家 · 家长与旁支',   color:'#8ea0bb'},
+  xie_ally: {name:'谢家 · 妾室同盟',     color:'#69db7c'},
+  chen:     {name:'陈家 · 养育后盾',     color:'#5eead4'},
+  shen:     {name:'沈家 · 夫家',        color:'#6366f1'},
+  court:    {name:'朝局 / 内廷',        color:'#38bdf8'},
+  yao:      {name:'姚家 · 外家反派',     color:'#ffa94d'},
+  spouse:   {name:'姻亲 · 男二',        color:'#ef9fb0'},
+  servant:  {name:'心腹 · 仆从',        color:'#a8b3c7'},
+  dead:     {name:'已故',              color:'#5f6b7f'}
+};
+const KIND = {
+  cp:'#e8c97a', family:'#74c0fc', ally:'#69db7c', love:'#b197fc',
+  villain:'#ff6b6b', court:'#38bdf8', serv:'#a8b3c7', neutral:'#8ea0bb'
+};
+
+const NODES = [
+  {id:'qingyuan', name:'谢清圆', x:620, y:520, r:46, camp:'hero', role:'女主',
+   desc:'谢家四姑娘（庶出），生母靳姨娘含冤而亡，寄养横塘陈家十四年。被以"镇宅"之名接回谢府，实为暗查母冤。腹黑隐忍、能屈能伸、睚眦必报；后嫁沈润，封广阳郡夫人。',
+   tags:['女主','谢家庶女','官至二品诰命']},
+  {id:'shenrun', name:'沈润', x:905, y:560, r:42, camp:'cp', role:'男主',
+   desc:'殿前司都指挥使（殿帅），掌禁中警备与全国侦缉刑狱；后加幽州卢龙军节度使。父沈知白因立储风波弃市、罪及满门，后颈留"充"字黥印。外冷内宠，手段狠辣，"认准一个就是一辈子"。',
+   tags:['男主','刑狱权臣','准反派式']},
+
+  {id:'hufuren', name:'扈夫人', x:215, y:140, r:33, camp:'xie_bad', role:'嫡母 · 终极反派',
+   desc:'谢纾正妻、谢家大太太，掌中馈。毒杀夏姨娘、嫁祸靳春晴（"一石二鸟"）；屡设杀局——芦苇荡行凶、护国寺毒计、买凶伪造自尽。由打压升为"必除"，终被休、斩立决。',
+   tags:['母案真凶','掌中馈','第102章斩决']},
+  {id:'qingru', name:'清如', x:95, y:275, r:27, camp:'xie_bad', role:'嫡姐',
+   desc:'谢家二姑娘，扈夫人嫡女。纵婢泼湿清圆、当众掌掴，与清圆彻底反目；痴缠李从心求做外室；护国寺失贞、进宫路断，被禁足绮兰苑。',
+   tags:['嫡出','主要对手']},
+  {id:'zhengze', name:'正则', x:370, y:100, r:23, camp:'xie_bad', role:'大少爷',
+   desc:'扈夫人之子、谢家大少爷。母子异心，阳奉阴违、力阻其行险；清如佩玉招摇时替妹蒙羞。',
+   tags:['大房长子','母子异心']},
+  {id:'qiushi', name:'邱氏', x:470, y:175, r:21, camp:'xie_bad', role:'大少奶奶',
+   desc:'正则之妻、谢家大奶奶。姑嫂不和，心底鄙薄清如。',
+   tags:['大房长媳']},
+  {id:'sunmama', name:'孙嬷嬷', x:135, y:115, r:21, camp:'xie_bad', role:'嫡母心腹',
+   desc:'扈夫人陪房、心腹。代其向老太太进言，大房合谋婚宴发难之计；事发后被老太太当众掌掴、发落。',
+   tags:['心腹','婚宴发难']},
+  {id:'cailian', name:'彩练', x:330, y:200, r:20, camp:'xie_bad', role:'嫡母心腹婢',
+   desc:'扈夫人心腹婢女。受命查匿名信送信人；听墙角窃得"李从心求娶四姑娘"之关键信息。',
+   tags:['心腹婢']},
+
+  {id:'laotaitai', name:'谢老太太', x:300, y:325, r:30, camp:'xie_rule', role:'祖母 · 当家人',
+   desc:'谢家老太君，掌中馈、偏袒嫡脉。当众定调清圆"只配嫁寒门"，把庶出孙女当联姻棋子与"填窟窿"之物；婚宴发难惨败，与清圆决裂。',
+   tags:['最高长辈','偏袒嫡脉']},
+  {id:'xieshu', name:'谢纾', x:470, y:300, r:30, camp:'xie_rule', role:'父 · 家主',
+   desc:'谢家老爷，剑南道节度使→幽州刺史→复职。明知夏姨娘死因却知情不究、吞没靳家家产、撵母出府，是母案"帮凶"；末章朝堂自曝家丑认错，助清圆昭雪，清圆仍不认祖归宗。',
+   tags:['父','知情不究的帮凶']},
+  {id:'jiangshi', name:'蒋氏', x:575, y:225, r:23, camp:'xie_rule', role:'二太太 · 风向标',
+   desc:'东府二太太谢训之妻。由暗斗转明面结怨、反目互揭，终公然反戈大房、向清圆告密婚宴之计——内宅风向标。',
+   tags:['见风使舵','倒向清圆']},
+  {id:'qingrong', name:'清容', x:245, y:430, r:24, camp:'xie_rule', role:'三姐',
+   desc:'谢家三姑娘，夏姨娘之女。敌意最盛；被清圆点破其母死因另有真凶后动摇；长秋宫才人，终受封代公主出塞和亲，感念清圆。',
+   tags:['三姐','敌意→和解']},
+
+  {id:'qinghe', name:'清和', x:95, y:440, r:26, camp:'xie_ally', role:'大姐 · 知己',
+   desc:'谢家大姑娘，莲姨娘之女，后嫁开国伯大公子李观灵。由排斥转亲近、屡次回护，与清圆结盟共指扈夫人，是清圆的贴心知己。',
+   tags:['同盟','贴心知己']},
+  {id:'lianyi', name:'莲姨娘', x:185, y:530, r:23, camp:'xie_ally', role:'妾室 · 借刀',
+   desc:'谢纾妾室、清和生母。被扈夫人摊派钱财结怨；借清圆的酥饼暗号向谢纾告发扈夫人谋退婚，是清圆第一根"借刀"。',
+   tags:['妾室同盟','第一根借刀']},
+  {id:'meiyi', name:'梅姨娘', x:100, y:610, r:22, camp:'xie_ally', role:'妾室 · 暗盟',
+   desc:'谢纾妾室（原通房丫头，留作"贤良幌子"），正伦之母。被清圆刻意亲近、暗结同盟以撼扈夫人。',
+   tags:['暗结同盟']},
+  {id:'zhenglun', name:'正伦', x:230, y:655, r:22, camp:'xie_ally', role:'二少爷',
+   desc:'谢家二少爷。由冷淡转主动示好、以愧意致歉反得亲近；曾因是否求沈润一事与清圆起冲突。',
+   tags:['堂兄妹']},
+  {id:'mingshi', name:'明氏', x:135, y:725, r:20, camp:'xie_ally', role:'二少奶奶',
+   desc:'正伦之妻。明帮暗刺扈夫人房，与妾室旁支隔岸观火。',
+   tags:['二房']},
+
+  {id:'chenlaotaitai', name:'陈老太太', x:150, y:850, r:26, camp:'chen', role:'养祖母 · 后盾',
+   desc:'横塘陈家长辈，清圆养祖母。以红木妆盒作退路，"只要不伤心，任何人都伤不了你"；立"依礼求娶"之规逼住沈润，授清圆持家防人之道，点化芳纯倒向清圆。',
+   tags:['养育之恩','全书唯一真骨肉']},
+  {id:'chenlaotaiye', name:'陈老太爷', x:300, y:900, r:27, camp:'chen', role:'养祖父',
+   desc:'横塘陈家长辈，清圆养祖父。临别赠钱物作退路，雨夜入幽州接走清圆，留钱袋子暗许二人独处，为清圆送嫁。',
+   tags:['养育之恩','退路']},
+
+  {id:'shenche', name:'沈澈', x:1120, y:300, r:28, camp:'shen', role:'小叔 · 都使',
+   desc:'沈润之弟，殿前司都使，芳纯之夫。随性开朗；与兄长心照不宣、联手设局拆散清圆与李从心；妻子濒临和离时颓丧，终坚决护妻。',
+   tags:['兄弟','二房']},
+  {id:'fangchun', name:'芳纯', x:1270, y:400, r:27, camp:'shen', role:'妯娌 · 盟友',
+   desc:'沈澈之妻、都使夫人，姚家外甥女。由陌生结为姐妹；失子后经皓雪挑拨与沈澈生怨、濒临和离；经清圆设局"惊醒"，认清娘家真面目，彻底倒向清圆。',
+   tags:['妯娌盟友','姚家外甥女']},
+
+  {id:'shengren', name:'圣人', x:1200, y:110, r:24, camp:'court', role:'皇帝',
+   desc:'当朝皇帝。选妃、平衡朝局；准殿前司派兵，圣旨封清圆为广阳郡夫人；末章朝堂处置沈润、扈氏。',
+   tags:['朝廷']},
+  {id:'huanghou', name:'皇后', x:1340, y:130, r:24, camp:'court', role:'中宫',
+   desc:'中宫皇后。清圆入长秋宫谢恩献策、一见投缘，结下亲厚之谊，与沈家结好。',
+   tags:['知遇']},
+  {id:'liuang', name:'刘昂', x:1040, y:130, r:22, camp:'court', role:'御史中丞 · 政敌',
+   desc:'御史中丞。因沈润娶谢纾之女被当众揶揄、揭清圆生母旧案，被沈润拔剑震慑并暗中查办，结仇未消。',
+   tags:['朝中政敌','结仇未消']},
+  {id:'taifu', name:'太傅', x:900, y:120, r:21, camp:'court', role:'朝中太傅',
+   desc:'朝中太傅。谢纾战败待斩时主斩，与沈润"力保功臣"相对。',
+   tags:['反沈润一方']},
+
+  {id:'haoxue', name:'皓雪', x:1370, y:570, r:26, camp:'yao', role:'姚九姑娘 · 反派',
+   desc:'宣州少尹姚绍之女，芳纯表姐妹。借象胆皮致芳纯滑胎、挑拨夫妻、共谋逼娶；欲迷奸沈澈反被当场捉奸，入狱后殒命（年十八）。',
+   tags:['第二内宅反派','灭门']},
+  {id:'wangshi', name:'汪氏', x:1370, y:690, r:23, camp:'yao', role:'姚家太太',
+   desc:'芳纯表姑母、皓雪之母。登门劝芳纯纳平妻、包藏祸心；与皓雪同被押入卢龙军大牢，牢中上吊（一死一伤）。',
+   tags:['姚家','挑拨']},
+  {id:'yaoshao', name:'姚绍', x:1370, y:810, r:21, camp:'yao', role:'宣州少尹',
+   desc:'皓雪之父。夜闯指挥使府为妻女求情被拒；终由宣州少尹贬为蜀地都水使者。',
+   tags:['姚家']},
+
+  {id:'licongxin', name:'李从心', x:1210, y:780, r:28, camp:'spouse', role:'男二 · 丹阳侯三公子',
+   desc:'丹阳侯家三公子（名淳之），正头夫人嫡子。春日宴初见单方起意，当众长揖请娶、携父母之命提亲；因本性优柔、被人设局而失去清圆，鸿雁楼彻底两清。后与清如痴缠。',
+   tags:['男二','善意但无能']},
+  {id:'liguanling', name:'李观灵', x:1120, y:900, r:22, camp:'spouse', role:'开国伯大公子',
+   desc:'开国伯大公子（名兰山），清和之未婚夫。相看定亲、将请期完婚，是莲姨娘房的体面依托。',
+   tags:['姻亲','清和之夫']},
+
+  {id:'baoxian', name:'抱弦', x:720, y:960, r:24, camp:'servant', role:'贴身大丫鬟',
+   desc:'清圆贴身大丫鬟，心腹。随侍清圆、受托打听靳姨娘旧人，以"坏到极处坏无可坏"宽解清圆。',
+   tags:['心腹']},
+  {id:'chuntai', name:'春台', x:880, y:1020, r:21, camp:'servant', role:'丫头',
+   desc:'谢府丫头，后归清圆。曾传话告知靳姨娘旧人下落；第95章被清圆以妆奁银两赎回。',
+   tags:['心腹']},
+  {id:'taomomo', name:'陶嬷嬷', x:520, y:990, r:24, camp:'servant', role:'查案心腹',
+   desc:'靳姨娘旧仆，母亲旧人。与清圆主仆重逢结盟，受命暗查母冤，探得扈夫人失态、回禀"看来是太太无疑"；第95章以妆奁赎回。',
+   tags:['查案心腹','母案关键']},
+  {id:'shangmomo', name:'商嬷嬷', x:400, y:940, r:21, camp:'servant', role:'灶房耳目',
+   desc:'谢府灶房婆子。第1章厉声打断众人追问靳姨娘旧案；第10章为清圆所用，私下探莲姨娘口风。',
+   tags:['暗线耳目']},
+  {id:'xiaoxi', name:'小喜', x:630, y:840, r:21, camp:'servant', role:'由眼线转主仆',
+   desc:'谢府丫头。初为扈夫人安插的眼线，被清圆识破却留而用之；被拿住把柄、听命赎罪，结成新主仆默契。',
+   tags:['眼线→心腹']},
+
+  {id:'jinyiniang', name:'靳姨娘', x:800, y:830, r:26, camp:'dead', role:'生母 · 冤案主角',
+   desc:'谢纾宠妾、清圆生母（名靳春晴）。被诬"毒死夏姨娘"遭逐、郁结而亡（扬州人氏）；实为扈夫人"一石二鸟"之计的替罪者，第102章朝堂昭雪。',
+   tags:['已故','母案受害者']},
+  {id:'xiayiniang', name:'夏姨娘', x:960, y:930, r:21, camp:'dead', role:'宠妾 · 清容生母',
+   desc:'谢纾宠妾、清容生母。十四年前出月子后日日肚疼、半年而亡，汤药中挑出毒物"下马仙"——实为扈氏毒杀后嫁祸靳春晴。',
+   tags:['已故','一案双尸']},
+  {id:'shenzhibai', name:'沈知白', x:1080, y:990, r:21, camp:'dead', role:'沈润之父',
+   desc:'沈润、沈澈之父。因搅进立储风波被弃市斩首、罪及满门——沈润复仇与狠厉的根源。',
+   tags:['已故','沈家血仇']}
+];
+
+const EDGES = [
+  {a:'qingyuan', b:'shenrun', k:'cp', hero:1, label:'主线CP · 审视→求娶→成婚→共患难', ch:'第27→102章',
+   d:'初见面冷淡审视、暗中探问[27]→醉赠玉佩[30]→密室逼问[39—40]→"你是我私事"[45]→当面求娶[52—53]→强拥告白"嫁给我成吗"[64]→设局请旨指婚[72]→聘猫定情[76]→成婚封诰命[85—86]→"同富贵，也可共患难"[102]'},
+
+  {a:'qingyuan', b:'hufuren', k:'villain', hero:1, label:'宿敌 · 庶女 vs 嫡母', ch:'第3、12 → 102章',
+   d:'表面"怜爱"、实以"命苦"打压[3]→锁定真凶"看来是太太无疑"[12]→识破玉佩之计、定碧痕寺杀局[43]→芦苇荡设伏[44]→护国寺毒计反中计[58—60]→被勒索五万两[62]→当众撕破[94]→买凶事败、斩立决[102]'},
+  {a:'qingyuan', b:'qingru', k:'villain', label:'姐妹 · 嫡庶反目', ch:'第2、21章',
+   d:'纵婢倾伞泼湿清圆[2]→言语贬抑[15]→当众掌掴[21]，姊妹彻底反目成仇'},
+  {a:'qingyuan', b:'laotaitai', k:'neutral', hero:1, label:'祖孙 · 冷遇→利用→决裂', ch:'第3、13、69、85章',
+   d:'冷遇转微生怜惜、为淡月轩添人[3]→当众贬"只配嫁寒门"[13]→当联姻棋子与"填窟窿"之物[69]→婚宴发难惨败、决裂[85—86]'},
+  {a:'qingyuan', b:'xieshu', k:'family', hero:1, label:'父女 · 生疏→摊牌→不认父', ch:'第14、94、102章',
+   d:'首次相见生疏客套[14]→追问母冤被"人证物证俱在"驳回[19]→当面摊牌、以官称相称[94]→谢纾当众认错，清圆仍不认祖归宗[102]'},
+  {a:'qingyuan', b:'qinghe', k:'ally', label:'姐妹 · 结盟共指扈夫人', ch:'第6、94、97章',
+   d:'由排斥转亲近、屡次回护[6—13]→彻底交心[79]→共指扈夫人结盟[94]→视清圆为贴心知己[97]'},
+  {a:'qingyuan', b:'qingrong', k:'neutral', label:'姐妹 · 敌意→和解', ch:'第5、88、102章',
+   d:'敌意最盛、辱骂讥讽[5]→点破其母死因真凶另有其人、清容动摇[88]→长秋宫出塞之约、感念清圆[102]'},
+  {a:'qingyuan', b:'lianyi', k:'ally', label:'试探 → 同盟', ch:'第10、33、96章',
+   d:'以"青梅"试探排除嫌疑[10]→借酥饼暗号促其向谢纾告发[33]→联手攻扈[96]'},
+  {a:'qingyuan', b:'meiyi', k:'ally', label:'暗结同盟以撼扈夫人', ch:'第24、96章',
+   d:'迁幽州途中刻意亲近[24]→及笄礼赠钗逼扈夫人破财[24]→联手攻扈[96]'},
+  {a:'qingyuan', b:'jiangshi', k:'neutral', label:'婶侄 · 利用结盟', ch:'第15、50、83章',
+   d:'由敌意转彼此利用的临时结盟[15]→转热络巴结[50]→结为利益同谋、通风报信[83]'},
+  {a:'qingyuan', b:'zhengze', k:'family', label:'堂兄妹 · 平和', ch:'第17、43章', d:'平和往来、指望沈润提携[43]'},
+  {a:'qingyuan', b:'zhenglun', k:'family', label:'堂兄妹 · 示好→冲突', ch:'第35、51、68章',
+   d:'一改冷淡主动示好[35]→以愧意致歉反得亲近[51]→因是否求沈润起冲突[68]'},
+  {a:'qingyuan', b:'chenlaotaitai', k:'family', hero:1, label:'祖孙（养育之恩）· 后盾', ch:'第23、74、98章',
+   d:'临别以红木妆盒相托[23]→祖孙团圆、立"依礼求娶"之规[74—75]→点化芳纯靠拢清圆[98]'},
+  {a:'qingyuan', b:'chenlaotaiye', k:'family', label:'祖孙（养育之恩）', ch:'第23、75章', d:'赠钱物作退路[23]→立规矩逼住沈润[75]'},
+  {a:'qingyuan', b:'jinyiniang', k:'family', hero:1, label:'母女 · 为母洗冤（已故）', ch:'第1、5、102章',
+   d:'冤案第1章抛出[1]→陶嬷嬷回溯旧案始末[5]→朝堂昭雪、清圆高举母亲牌位[102]'},
+  {a:'qingyuan', b:'shenche', k:'family', label:'叔嫂 · 共理家事', ch:'第27、99章', d:'一面之缘[27]→共理家事、设局捉奸皓雪时协作[99]'},
+  {a:'qingyuan', b:'fangchun', k:'ally', hero:1, label:'妯娌 · 盟友', ch:'第32、99、101章',
+   d:'一见如故、互称姐妹[32]→设局"惊醒"芳纯、同盟确立[99]→妯娌情谊稳固、彻底信服[101]'},
+  {a:'qingyuan', b:'haoxue', k:'villain', label:'主客 · 暗敌', ch:'第81、91、99章',
+   d:'初见暗存戒备[81]→明面交锋、结为暗敌[91]→设局揭破[99]'},
+  {a:'qingyuan', b:'licongxin', k:'love', label:'男二 · 议亲→退亲', ch:'第9、63、68章',
+   d:'春日宴拾球赔罪、单方起意[9]→当众长揖请娶[48]→携父母之命提亲[63]→撞破其私情、当场退亲[68]'},
+  {a:'qingyuan', b:'huanghou', k:'court', label:'君臣 · 知遇', ch:'第88章', d:'入长秋宫谢恩献策、一见投缘，结下亲厚之谊[88]'},
+  {a:'qingyuan', b:'baoxian', k:'serv', label:'主仆', ch:'第1、95章', d:'贴身随侍、共愤老太太偏私[13]'},
+  {a:'qingyuan', b:'chuntai', k:'serv', label:'主仆 · 赎回', ch:'第2、95章', d:'传话告知旧人下落[2]→以妆奁赎回[95]'},
+  {a:'qingyuan', b:'taomomo', k:'serv', hero:1, label:'主仆 · 查案心腹', ch:'第4、12、95章',
+   d:'主仆重逢结同盟[4]→暗查母案、回禀"看来是太太无疑"[12]→以妆奁赎回[95]'},
+  {a:'qingyuan', b:'shangmomo', k:'serv', label:'主仆 · 灶房耳目', ch:'第10章', d:'灶房婆子为其所用、串联外用线索[10]'},
+  {a:'qingyuan', b:'xiaoxi', k:'serv', label:'眼线 → 新主仆', ch:'第16、59章', d:'被识破眼线却留而用之[16]→被拿住把柄、听命赎罪[59—60]'},
+
+  {a:'jinyiniang', b:'hufuren', k:'villain', label:'被诬嫁祸 · 母冤真凶', ch:'第5、102章',
+   d:'扈氏毒杀夏姨娘、嫁祸靳春晴（一石二鸟）→靳氏被逐出府、郁结而亡；其罪名第102章才由谢纾朝堂洗清'},
+  {a:'jinyiniang', b:'xieshu', k:'family', label:'宠妾 · 知情不究的帮凶', ch:'第5、94章',
+   d:'谢纾宠妾；当年"夫人求情改绞为逐"实为谢纾授意——他明知真假难辨却按罪欲绞，因不忍其死才暗示太太将人撵出[94]'},
+  {a:'jinyiniang', b:'xiayiniang', k:'neutral', label:'一案双尸 · 同案罹难', ch:'第5、102章',
+   d:'十四年前淡月轩"一口气折损了两位姨娘"；一案双尸、互为证据[5、102]'},
+  {a:'xiayiniang', b:'hufuren', k:'villain', label:'被毒杀（一案双尸）', ch:'第5、102章',
+   d:'出月子后日日肚疼、半年而亡，汤药中挑出毒物"下马仙"——实为扈氏毒杀[5、102]'},
+  {a:'xiayiniang', b:'qingrong', k:'family', label:'母女（已故）', ch:'第5、12章', d:'清容生母；第12章其身份被揭[12]'},
+
+  {a:'hufuren', b:'xieshu', k:'family', label:'夫妻 · 当众决裂休妻', ch:'第96—97章', d:'二十年夫妻当众决裂、谢纾写休书休扈氏，扈氏触柱未死被遣回娘家[96—97]'},
+  {a:'hufuren', b:'qingru', k:'family', label:'母女（嫡）', ch:'第11、54章', d:'一心为清如谋丹阳侯家亲事、送其入宫备选[11、54]'},
+  {a:'hufuren', b:'laotaitai', k:'neutral', label:'婆媳 · 明和暗斗', ch:'第54、60章', d:'选妃一事太太占上风[54]→护国寺事发、为护家声弹压、矛盾激化[60]'},
+  {a:'hufuren', b:'lianyi', k:'villain', label:'主母·妾室 · 结怨', ch:'第29、33章', d:'摊派钱财（酒瓮银子）→莲姨娘当面告状、结怨加深[29—33]'},
+  {a:'hufuren', b:'meiyi', k:'villain', label:'主母·妾室 · 摊派', ch:'第29、34章', d:'因酒瓮银子再生怨怼[34]'},
+  {a:'hufuren', b:'qingrong', k:'family', label:'母女（庶）· 倒戈', ch:'第61章', d:'多年依附一朝倒戈、弃证自保，恩义决裂[61]'},
+  {a:'hufuren', b:'zhengze', k:'family', label:'母子 · 异心', ch:'第43章', d:'正则阳奉阴违、力阻扈夫人行险[43]'},
+  {a:'hufuren', b:'sunmama', k:'serv', label:'主仆（心腹）', ch:'第12、79章', d:'心腹知情、代其进言、大房合谋婚宴发难之计[43、79]'},
+  {a:'hufuren', b:'cailian', k:'serv', label:'主仆（心腹婢）', ch:'第12、20章', d:'受命查匿名信送信人[12]'},
+  {a:'hufuren', b:'jiangshi', k:'villain', label:'妯娌 · 反目反戈', ch:'第63、83章', d:'面善心恶暗中拆台→反目互揭、公然反戈[78、83]'},
+  {a:'hufuren', b:'shenrun', k:'villain', label:'被殿前司拿捏勒索', ch:'第62章', d:'严复登门以查案结果勒索五万两、逼其阻断清圆亲事[62]'},
+  {a:'qingru', b:'qinghe', k:'villain', label:'姐妹 · 彻底反目', ch:'第6、96章', d:'因开国伯家择清和结亲生隙→清和当众掌掴清如、彻底反目[96]'},
+  {a:'qingru', b:'qingrong', k:'neutral', label:'姐妹（曾同盟）', ch:'第5、26章', d:'曾结针对清圆的同盟→生嫌隙[26]'},
+  {a:'qingru', b:'licongxin', k:'love', label:'单方痴缠', ch:'第17、67章', d:'改称"淳之哥哥"主动示好→痴缠求做外室[67]'},
+  {a:'qingru', b:'zhengze', k:'family', label:'兄妹', ch:'第39章', d:'兄长替妹蒙羞[39]'},
+  {a:'qingru', b:'qiushi', k:'neutral', label:'姑嫂不和', ch:'第43章', d:'邱氏心底鄙薄小姑[43]'},
+  {a:'zhengze', b:'qiushi', k:'family', label:'夫妻', ch:'', d:''},
+  {a:'laotaitai', b:'xieshu', k:'family', label:'母子', ch:'', d:''},
+  {a:'laotaitai', b:'licongxin', k:'neutral', label:'长辈与求婚者', ch:'第37、68章', d:'就清如与李从心达成默契→拒其求情[68]'},
+  {a:'qinghe', b:'liguanling', k:'love', label:'未婚夫妻', ch:'第8、63章', d:'相看定亲、将请期完婚[8、63]'},
+  {a:'lianyi', b:'qinghe', k:'family', label:'母女', ch:'', d:''},
+  {a:'meiyi', b:'zhenglun', k:'family', label:'母子', ch:'', d:''},
+  {a:'zhenglun', b:'mingshi', k:'family', label:'夫妻', ch:'', d:''},
+
+  {a:'shenrun', b:'shenche', k:'family', hero:1, label:'兄弟 · 联手设局', ch:'第55、99章', d:'心照不宣、联手设局拆散清圆与李从心[64、66]→兄长为弟弟开解[87]'},
+  {a:'shenche', b:'fangchun', k:'family', label:'夫妻 · 患难情深', ch:'第82、100章', d:'失子后经皓雪挑拨生怨、濒临和离[82、84]→沈澈坚决护妻、夫妻情更深[100]'},
+  {a:'shenrun', b:'shenzhibai', k:'family', label:'父子（血仇·已故）', ch:'第14章', d:'立储案弃市、罪及满门，沈润背负血仇、后颈留"充"字黥印[14、70]'},
+  {a:'fangchun', b:'haoxue', k:'villain', label:'表姐妹 · 彻底反目', ch:'第81、99章', d:'由芳纯引荐入府→借象胆皮致滑胎、挑拨夫妻→被一脚踢倒、彻底反目[99]'},
+  {a:'fangchun', b:'wangshi', k:'villain', label:'表姑侄 · 挑拨', ch:'第89、98章', d:'表姑母由恩情转为心机利用、劝纳平妻[89]'},
+  {a:'shenrun', b:'haoxue', k:'villain', label:'敌对 · 押入大牢', ch:'第100章', d:'命班直将姚家母女押入卢龙军大牢[100]'},
+  {a:'shenrun', b:'yaoshao', k:'villain', label:'敌对 · 姚绍远贬', ch:'第100、102章', d:'姚绍求情被拒、终被远贬蜀地[100、102]'},
+  {a:'wangshi', b:'yaoshao', k:'family', label:'夫妻', ch:'第100章', d:'同被押入大牢[100]'},
+  {a:'haoxue', b:'yaoshao', k:'family', label:'父女', ch:'第100章', d:'父为妻女求情被拒[100]'},
+  {a:'haoxue', b:'wangshi', k:'family', label:'母女 · 同谋', ch:'第89、99章', d:'同谋逼娶平妻、图入主西府[89、99]'},
+
+  {a:'shenrun', b:'shengren', k:'court', hero:1, label:'君臣', ch:'第72、102章', d:'请旨指婚、力保谢纾、平石堡城得赏→末章仅受轻罚[72、84、102]'},
+  {a:'shenrun', b:'liuang', k:'villain', label:'同僚 → 结仇', ch:'第80章', d:'被当众揶揄、拔剑震慑、暗中查办其罪，结仇未消[80]'},
+  {a:'shenrun', b:'taifu', k:'villain', label:'政敌 · 主斩谢纾', ch:'第72章', d:'太傅主斩谢纾，沈润力谏不可杀功臣、请调禁军奇袭[72]'},
+  {a:'xieshu', b:'shengren', k:'court', label:'君臣', ch:'第14、84章', d:'失势→复起→功过相抵、颜面扫地[14、84]'},
+  {a:'qingrong', b:'huanghou', k:'court', label:'君臣（长秋宫才人）', ch:'第88、102章', d:'入长秋宫为才人→受封代公主出塞[88、102]'},
+  {a:'shenrun', b:'xieshu', k:'neutral', label:'同科故交 → 互惠', ch:'第28、34章', d:'旧怨（剑门关冷遇）→借谢纾之手扳倒付春山、转互惠[34]→谢纾欲攀亲而沈润不认[84]'},
+
+  {a:'licongxin', b:'shenrun', k:'villain', label:'情敌 · 设局拆散', ch:'第47、66章', d:'沈润强改宴地、公开情敌、场面暗斗→设局拆散、情敌落败退亲[47—48、66—68]'},
+  {a:'licongxin', b:'shenche', k:'neutral', label:'挚友', ch:'第38章', d:'多年挚友重逢[38]'},
+  {a:'licongxin', b:'liguanling', k:'family', label:'堂亲', ch:'第8章', d:'春日宴同场、互为引荐[8—9]'}
+];
+
+/* 主线 7 阶段（清圆 × 沈润） */
+const TL_MAIN = [
+  {t:'初遇定"劫"', c:'第25—31章', p:1, b:'清圆锁定殿前司为破局目标[25]→独自登门、误认沈润为都使、首次正面交锋[26—27]→醉酒独寻她、压墙嗅香、强赠贴身兽面玉佩[30]。"他就在她耳畔说话，低低的耳语像羽毛撩拨在心上。"'},
+  {t:'玉佩立约', c:'第32—41章', p:1, b:'还佩遭拒、彼此试探[35—36]→转赠引祸、被拽入密室逼问[39]→清圆摊牌"我情愿一辈子不嫁，也绝不做别人的玩物"[40]→射宝夺佩、借食盒还佩[41]，玉佩成情感信物。'},
+  {t:'救场挑明', c:'第42—50章', p:2, b:'芦苇荡遇伏、沈润率殿前司救场[44]→耳语挑明"四姑娘就是沈某的私事""只为想你了"[45]→当众立护身符、公开庇护[49]。主动权从家族手里落到清圆心上。'},
+  {t:'求娶躲闪 · 攻守易位', c:'第52—58章', p:2, b:'冒雨守柜、当面求娶[52]→清圆松口"也没说不喜欢"[53]→清圆反撩"难道不是殿帅馋我的美色"[57]，攻守易位、进入互撩阶段。'},
+  {t:'设局请旨', c:'第63—72章', p:2, b:'还佩欲了断、被强拥告白"你别嫁给他，嫁给我成吗""我早就恼了"[64]→设局败露、最大裂痕[71]→殿前请旨指婚、归置陈家门下[72]。"全世界辜负她，还有一个沈润，他不会辜负她。"'},
+  {t:'聘猫定情', c:'第73—81章', p:3, b:'斗心眼、以"喜欢我么"逼问[73]→陈家立"依礼求娶"之规[74—75]→坦白假意定亲、同赴市集聘猫定情[76]→定下十一月初六婚期[81]。"聘猫事小，聘人事才大。"'},
+  {t:'结发共难', c:'第84—102章', p:3, b:'圣旨封广阳郡夫人、却扇合卺[85—86]→护妻清算姚家[99—100]→末年制衣赠金、假称解职试探，清圆甘愿共患难[102]。出身完成翻转，回扣[第13章]"只配嫁寒门"之判。'}
+];
+
+/* 支线（5 条） */
+const ACC = [
+  {h:'谢清圆 × 谢家：寄养归来受冷遇 → 隐忍周旋 → 被当棋子 → 决裂 → 不认祖归宗', b:[
+    ['回府受冷遇、被"镇宅"填入旧院', '第1—2章'], ['当众贬"只配嫁寒门"', '第13章'],
+    ['被掌掴、自请回陈家', '第21章'], ['被当"填窟窿"之物送出', '第69章'],
+    ['婚宴当众陈情决裂', '第86章'], ['谢纾认错、仍不认父', '第102章']
+  ]},
+  {h:'谢清圆 × 扈夫人：暗防 → 锁定真凶 → 明面交锋 → 杀局升级 → 了断', b:[
+    ['陶嬷嬷暗查锁定"看来是太太无疑"', '第12章'], ['识破玉佩之计、忌日法事设局', '第43章'],
+    ['芦苇荡伏击、遇袭险死', '第44章'], ['护国寺毒计反中计、清如失贞', '第58—60章'],
+    ['当众撕破、矛盾白热化', '第94章'], ['买凶伪造自尽事败、斩立决', '第102章']
+  ]},
+  {h:'谢清圆 × 李从心：单方起意 → 当众提亲 → 议亲 → 撞破私情退亲 → 彻底两清', b:[
+    ['春日宴拾球赔罪、单方起意', '第9章'], ['当众长揖请娶', '第48章'],
+    ['携父母之命回幽州提亲', '第63章'], ['东皋夜宴言"纳妾识大体"生隔阂', '第66章'],
+    ['撞破别业私情、退亲', '第68章'], ['鸿雁楼彻底两清', '第77章'], ['席间截断话头、划清界限', '第98章']
+  ]},
+  {h:'沈家西府三角（芳纯 × 沈澈 × 皓雪）：外家渗透 → 挑拨生怨 → 濒临和离 → 设局揭破 → 夫妻情深', b:[
+    ['皓雪由芳纯引荐入府', '第81章'], ['借象胆皮致其滑胎、挑拨夫妻', '第82章'],
+    ['芳纯提"和离"', '第84章'], ['清圆设团圆宴说合、立"年前不提和离"之约', '第87章'],
+    ['汪氏逼纳平妻、清圆开导', '第89—90章'], ['设局捉奸、姚家母女入狱', '第99—100章'],
+    ['沈澈坚决护妻、夫妻情更深', '第100章']
+  ]},
+  {h:'沈润 × 朝局：背负血仇 → 借刀复仇 → 借谢家之力 → 借军功翻身 → 借善政与情谊自保', b:[
+    ['按"十二灯树"名单诛除政敌、借谢纾之手扳倒付春山', '第34章'],
+    ['与内侍省默契令清如落选', '第55章'], ['殿前请旨指婚、力保谢纾', '第72章'],
+    ['拔剑震慑御史中丞、暗中查办', '第80章'], ['平石堡城、加卢龙军指挥使、荫封母妻', '第84章'],
+    ['孤独园善政成圣人宽宥之由头', '第88、102章'], ['以姚家母女为饵诱扈氏出手、仅受轻罚', '第102章']
+  ]}
+];
+
+/* 核心恩怨（6 条） */
+const GRUDGES = [
+  {h:'清圆 × 扈夫人', tag:'母案宿敌',
+   p:'扈氏毒杀夏姨娘、嫁祸靳姨娘（母冤真凶）；芦苇荡设伏、护国寺毁清白。扈氏被休[96—97]→买凶事败→斩立决[102]。'},
+  {h:'清圆 × 清如', tag:'嫡庶压制',
+   p:'嫡庶压制、同一门亲事被并提、夺亲羞辱、当众掌掴[21]。清如失贞、进宫路断、被禁足，姊妹反目成仇[97]。'},
+  {h:'清圆 × 谢老太太', tag:'被当棋子',
+   p:'被当棋子、贬抑"只配嫁寒门"[13]、婚宴发难[79、83]。婚宴惨败、谢家溃退，祖孙决裂[85—86]。'},
+  {h:'清圆 × 谢纾', tag:'至亲凉薄',
+   p:'知情不究、吞没靳家家产、撵母出府为帮凶[84、94]。当众认错、旧怨以道歉了结，清圆仍不认父[102]。'},
+  {h:'沈润 × 姚家', tag:'外家入侵',
+   p:'姚家渗透西府、皓雪害芳纯滑胎[82、99]。姚家母女押入卢龙军大牢、皓雪殒命、姚绍远贬[100、102]。'},
+  {h:'沈润 × 御史中丞刘昂', tag:'朝中结仇',
+   p:'因娶谢纾之女被当众揶揄[80]，沈润拔剑震慑、暗中查办其罪，结仇未消；末章朝堂攻讦沈润[102]。'}
+];
+
+/* 阵营一览（10 行） */
+const CAMPTABLE = [
+  ['谢家 · 嫡母房', '扈夫人、清如、正则、孙嬷嬷、彩练', '宿敌（母案主使，几番加害）', '扈氏被休→斩立决；清如失贞禁足'],
+  ['谢家 · 家长 / 旁支', '谢纾、谢老太太、蒋氏、清容', '冷待→利用→决裂 / 摇摆', '家长失势、清容和亲、蒋氏倒戈'],
+  ['谢家 · 妾室同盟', '清和、莲姨娘、梅姨娘、正伦、明氏', '由对立 / 观望 → 盟友 / 暗盟', '扈氏倒台后协理中馈'],
+  ['陈家（横塘）', '陈老太爷、陈老太太', '坚实基础后盾、唯一真骨肉情', '清圆的退路与体面来源'],
+  ['沈家 · 夫家', '沈润、沈澈、芳纯', '最强外援 / 男主 / 妯娌盟友', '清圆执掌东府，上下一心'],
+  ['姚家（外家）', '姚绍、汪氏、皓雪', '反派（挑拨滑胎、谋平妻）', '灭门：一死一伤、姚绍远贬'],
+  ['朝局 / 内廷', '圣人、皇后、刘昂、太傅', '间接助清圆 / 政敌', '刘昂结仇未消，留有余地'],
+  ['姻亲 · 男主线', '李从心、李观灵', '单方求娶 → 退亲 / 联姻', '男二落败，清和成婚'],
+  ['清圆心腹 · 仆从', '抱弦、春台、陶嬷嬷、商嬷嬷、小喜', '全力效忠', '母案关键证人（陶嬷嬷）'],
+  ['已故', '靳姨娘、夏姨娘、沈知白', '—（清圆复仇的起点）', '母案昭雪 / 血仇未雪']
+];
+
+/* 续写红线 */
+const RULES = [
+  '<b style="color:#e8c97a">① 嫡庶 / 门第 / 户籍三规则</b>：所有关系都不能脱离"嫡庶／门第／户籍"。清圆出身翻转靠的是圣旨改入陈氏户籍[第86章]，不是"身份自动洗白"。',
+  '<b style="color:#e8c97a">② 母案贯穿全书</b>：母案是全书总悬念，第1章埋、第102章收。续写不得提前泄底或让反派过早伏法。',
+  '<b style="color:#e8c97a">③ 两条反派线独立</b>：扈夫人（内宅）与姚家（外家）是两条独立反派线，终章才交汇（扈氏借姚家母女案做饵行凶）；不要过早合流。',
+  '<b style="color:#e8c97a">④ 无公婆压力</b>：沈润父母双亡，婚后矛盾是"妯娌＋外家（姚家）"，不是传统婆媳——续写沈家线须守此设定差异。',
+  '<b style="color:#e8c97a">⑤ 殿前司权能边界</b>：殿前司 = 禁中警备＋全国侦缉刑狱，是全书唯一"终极权力外援"，不可凭空给它超范围的权能，也不可让男主提前下场摆平一切。',
+  '<b style="color:#e8c97a">⑥ 续写切入建议</b>：扈氏一门已清算、姚家已出局；若要续写新冲突，宜从<b>朝局（刘昂 / 沈润复仇名单余党）</b>与<b>沈家子嗣 / 芳纯线</b>切入。'
+];
+
+/* ============================ 渲染 ============================ */
+const NS='http://www.w3.org/2000/svg';
+const byId={}; NODES.forEach(n=>byId[n.id]=n);
+function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);
+  for(const k in attrs)e.setAttribute(k,attrs[k]); if(parent)parent.appendChild(e); return e;}
+function hexA(hex,a){const n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
+/* 把阵营色混入深底，得到不透明填充（连线从节点后面穿过时会被遮住） */
+function solid(hex,t){
+  const n=parseInt(hex.slice(1),16), bg=[10,11,16];
+  const r=Math.round(bg[0]*(1-t)+(n>>16&255)*t),
+        g=Math.round(bg[1]*(1-t)+(n>>8&255)*t),
+        b=Math.round(bg[2]*(1-t)+(n&255)*t);
+  return 'rgb('+r+','+g+','+b+')';
+}
+/* 二次贝塞尔：控制点自适应 —— 挑一条不穿过任何其它节点的弧 */
+function qpt(A,C,B,t){const u=1-t;
+  return [u*u*A.x+2*u*t*C.x+t*t*B.x, u*u*A.y+2*u*t*C.y+t*t*B.y];}
+function minDistToNodes(A,C,B){
+  let m=Infinity; const S=[]; for(let i=0;i<=20;i++)S.push(qpt(A,C,B,i/20));
+  NODES.forEach(function(n){
+    if(n===A||n===B) return;
+    for(const p of S){ const d=Math.hypot(n.x-p[0],n.y-p[1]);
+      if(d-n.r<m){ m=d-n.r; if(m<0) return; } }
+  });
+  return m;
+}
+function bestCurve(A,B){
+  const dx=B.x-A.x, dy=B.y-A.y, len=Math.hypot(dx,dy)||1;
+  const nx=-dy/len, ny=dx/len, mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+  let best=null;
+  const KS=[0,0.07,0.13,0.19,0.26,0.34];
+  for(const sg of [1,-1]){
+    for(const k of KS){
+      const C={x:mx+nx*sg*k*len, y:my+ny*sg*k*len};
+      const sc=minDistToNodes(A,C,B);
+      if(!best||sc>best.sc) best={sc:sc,C:C};
+      if(best.sc>16) break;
+    }
+    if(best.sc>16) break;
+  }
+  return best.C;
+}
+
+const svg=document.getElementById('graph');
+const gE=mk('g',{},svg), gN=mk('g',{},svg);
+const edgeEls=[], nodeEls={};
+const adj={}; NODES.forEach(n=>adj[n.id]=[]);
+const nbr={}; NODES.forEach(n=>nbr[n.id]=new Set());
+
+EDGES.forEach(function(e){
+  const A=byId[e.a], B=byId[e.b]; if(!A||!B) return;
+  const col=KIND[e.k]||'#8ea0bb';
+  const C=bestCurve(A,B);
+  const g=mk('g',{class:'edge','data-k':e.k,'data-a':e.a,'data-b':e.b},gE);
+  mk('path',{d:'M'+A.x+' '+A.y+' Q'+C.x.toFixed(1)+' '+C.y.toFixed(1)+' '+B.x+' '+B.y,
+    stroke:col, 'stroke-width': e.k==='cp'?2.8:(e.hero?1.7:1.1),
+    'stroke-opacity': e.hero?0.60:0.28,'stroke-linecap':'round'},g);
+  const lp=qpt(A,C,B,0.5);
+  const t=mk('text',{x:lp[0].toFixed(1), y:(lp[1]-5).toFixed(1), class:'elabel',
+    'text-anchor':'middle', fill:col},g);
+  t.textContent=e.label||'';
+  if(e.hero) t.setAttribute('data-hero','1');
+  edgeEls.push({g:g,e:e,el:t});
+  adj[e.a].push(e); adj[e.b].push(e);
+  nbr[e.a].add(e.b); nbr[e.b].add(e.a);
+});
+
+NODES.forEach(function(n){
+  const c=CAMP[n.camp];
+  const g=mk('g',{class:'node','data-id':n.id,'data-camp':n.camp},gN);
+  mk('circle',{cx:n.x,cy:n.y,r:n.r,fill:solid(c.color,0.15),stroke:c.color,'stroke-width':1.7},g);
+  const fs = n.r>=42?19 : n.r>=32?13.5 : n.r>=27?11.5 : n.r>=24?10.5 : 10;
+  const t=mk('text',{x:n.x,y:n.y+fs*0.36,class:'nname','text-anchor':'middle',
+    fill:c.color,'font-size':fs},g);
+  t.textContent=n.name;
+  const rl=mk('text',{x:n.x,y:n.y+n.r+14,class:'nrole','text-anchor':'middle'},g);
+  rl.textContent=n.role;
+  nodeEls[n.id]={g:g};
+});
+
+const tip=document.getElementById('tip');
+let state={mode:'none',id:null};
+
+function apply(){
+  edgeEls.forEach(function(o){
+    let on=false;
+    if(state.mode==='node') on = (o.e.a===state.id||o.e.b===state.id);
+    o.g.classList.toggle('on',on);
+    o.g.classList.toggle('off',state.mode!=='none' && !on);
+  });
+  NODES.forEach(function(n){
+    let on=true;
+    if(state.mode==='node') on = (n.id===state.id || nbr[state.id].has(n.id));
+    if(state.mode==='camp') on = (n.camp===state.camp);
+    nodeEls[n.id].g.classList.toggle('off',!on);
+  });
+}
+
+function relHtml(id){
+  const list=adj[id]; if(!list.length) return '';
+  const rows=list.map(function(e){
+    const other = e.a===id? byId[e.b] : byId[e.a];
+    const oc=CAMP[other.camp].color;
+    return '<div class="tip-rel"><b style="color:'+oc+'">'+other.name+'</b><span>'+
+      (e.label||'—')+(e.ch?' <span style="color:#6f788c">['+e.ch+']</span>':'')+'</span></div>';
+  }).join('');
+  return '<div class="rl-title">关 系 · '+list.length+' 条</div><div class="tip-rels'+(list.length>12?' two':'')+'">'+rows+'</div>';
+}
+
+function moveTip(ev){
+  const pad=16,w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+pad,y=ev.clientY+pad;
+  if(x+w>window.innerWidth-12) x=ev.clientX-w-pad;
+  if(y+h>window.innerHeight-12) y=window.innerHeight-h-12;
+  if(x<8)x=8; if(y<8)y=8;
+  tip.style.left=x+'px'; tip.style.top=y+'px';
+}
+
+function bindNode(el){
+  const id=el.getAttribute('data-id'), n=byId[id], c=CAMP[n.camp];
+  el.addEventListener('mouseenter',function(ev){
+    state={mode:'node',id:id}; apply();
+    tip.classList.toggle('wide', adj[id].length>12);
+    tip.innerHTML='<div class="tip-name" style="color:'+c.color+'">'+n.name+'</div>'+
+      '<div class="tip-role">'+n.role+' · <span style="color:'+c.color+'">'+c.name+'</span></div>'+
+      '<div class="tip-desc">'+n.desc+'</div>'+
+      '<div class="tip-tags">'+n.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>'+
+      relHtml(id);
+    tip.style.display='block'; moveTip(ev);
+  });
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',function(){
+    tip.style.display='none'; state={mode:curCamp?'camp':'none',camp:curCamp}; apply();
+  });
+}
+
+svg.querySelectorAll('.node').forEach(bindNode);
+
+/* 阵营筛选 */
+let curCamp=null;
+const fw=document.getElementById('filters');
+Object.keys(CAMP).forEach(function(k){
+  const b=document.createElement('div');
+  b.className='fbtn'; b.textContent=CAMP[k].name;
+  b.style.borderColor=hexA(CAMP[k].color,.45);
+  b.addEventListener('click',function(){
+    if(curCamp===k){ curCamp=null; } else { curCamp=k; }
+    fw.querySelectorAll('.fbtn').forEach(function(x){
+      const on = x.dataset.camp===curCamp;
+      x.classList.toggle('active',on);
+      x.style.background = on? x.dataset.color : 'rgba(255,255,255,0.03)';
+      x.style.color = on? '#0b0b10' : '';
+    });
+    state = curCamp? {mode:'camp',camp:curCamp} : {mode:'none'};
+    tip.style.display='none'; apply();
+  });
+  b.dataset.camp=k; b.dataset.color=CAMP[k].color;
+  fw.appendChild(b);
+});
+
+/* 图例 */
+const lg=document.getElementById('legend');
+Object.keys(CAMP).forEach(function(k){
+  const d=document.createElement('div'); d.className='lg';
+  d.innerHTML='<i style="background:'+CAMP[k].color+';box-shadow:0 0 7px '+hexA(CAMP[k].color,.9)+'"></i>'+CAMP[k].name;
+  lg.appendChild(d);
+});
+
+/* 主线时间线 */
+const tl=document.getElementById('tlMain');
+TL_MAIN.forEach(function(s){
+  const d=document.createElement('div');
+  d.className='tl-item'+(s.p===2?' p2':s.p===3?' p3':'');
+  d.innerHTML='<div><span class="tl-h">'+s.t+'</span><span class="tl-ch">'+s.c+'</span></div>'+
+    '<div class="tl-b">'+s.b+'</div>';
+  tl.appendChild(d);
+});
+
+/* 支线折叠 */
+const aw=document.getElementById('accWrap');
+ACC.forEach(function(a){
+  const d=document.createElement('div'); d.className='acc';
+  d.innerHTML='<div class="acc-h"><span>'+a.h+'</span><span class="arw">▶</span></div>'+
+    '<div class="acc-b"><div class="acc-b-in">'+
+      a.b.map(function(it){return '· '+it[0]+' <span class="ch">['+it[1]+']</span>';}).join('<br>')+
+    '</div></div>';
+  d.querySelector('.acc-h').addEventListener('click',function(){ d.classList.toggle('open'); });
+  aw.appendChild(d);
+});
+
+/* 恩怨 */
+const gw=document.getElementById('grudgeWrap');
+GRUDGES.forEach(function(g){
+  const d=document.createElement('div'); d.className='grudge';
+  d.innerHTML='<h4>'+g.h+'<span class="tag">'+g.tag+'</span></h4><p>'+g.p+'</p>';
+  gw.appendChild(d);
+});
+
+/* 阵营表 */
+const ct=document.getElementById('campTable');
+CAMPTABLE.forEach(function(r){
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td class="camp">'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td>';
+  ct.appendChild(tr);
+});
+
+/* 续写红线 */
+document.getElementById('rulesWrap').innerHTML = RULES.map(function(r){return '<p style="margin:0 0 8px">'+r+'</p>';}).join('');
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

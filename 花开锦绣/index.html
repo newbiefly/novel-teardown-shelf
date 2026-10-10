@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花开锦绣 · 拆解总览</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(255,255,255,0.08);--card:#111016;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:60px 60px;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 60% 0%,rgba(201,169,97,0.06),transparent 70%);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:48px 32px 80px;}
+
+/* 顶部书籍介绍 */
+.hero{text-align:center;padding-bottom:30px;border-bottom:1px solid var(--line);}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:6px;line-height:1.2;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero .meta{font-size:14px;color:#bbb;margin-top:14px;letter-spacing:1px;font-weight:300;}
+.hero .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.pill{font-size:12px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(201,169,97,0.4);
+  border-radius:16px;padding:5px 15px;background:rgba(201,169,97,0.05);white-space:nowrap;}
+.hero .logline{font-size:14px;color:#bbb;line-height:1.9;margin:18px auto 0;max-width:760px;font-weight:300;}
+
+/* Tab 栏 */
+.tabs{display:flex;justify-content:center;gap:48px;margin:28px 0 0;position:relative;}
+.tab{font-size:18px;letter-spacing:4px;color:#888;cursor:pointer;padding:14px 4px;font-weight:500;
+  background:none;border:none;font-family:inherit;transition:color 0.2s;position:relative;}
+.tab:hover{color:#ccc;}
+.tab.active{color:var(--gold2);font-weight:700;}
+.tab.active::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:var(--gold);}
+.tabs-line{height:1px;background:var(--line);margin-top:-1px;}
+
+/* 面板 */
+.panel{display:none;margin-top:34px;}
+.panel.show{display:block;animation:fade 0.3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* 卡片网格（蓝图/台账）PC 4列 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.card{display:flex;flex-direction:column;justify-content:space-between;min-height:116px;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;
+  text-decoration:none;transition:all 0.2s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background 0.2s;}
+.card:hover{border-color:rgba(201,169,97,0.45);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+.card:hover::before{background:var(--gold);}
+.card-num{font-size:30px;font-weight:900;color:var(--gold);line-height:1;opacity:0.9;}
+.card-name{font-size:15px;color:#eee;font-weight:500;margin-top:14px;letter-spacing:0.5px;}
+
+/* 章卡列表 PC 2列 */
+.ch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.ch-item{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;padding:15px 18px;text-decoration:none;transition:all 0.2s;}
+.ch-item:hover{border-color:rgba(201,169,97,0.4);background:rgba(201,169,97,0.04);}
+.ch-item .n{font-size:13px;color:var(--gold);opacity:0.55;font-weight:700;min-width:34px;}
+.ch-item .t{font-size:14px;color:#ddd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ch-more{text-align:center;margin-top:22px;}
+.ch-more button{background:none;border:1px solid rgba(201,169,97,0.35);color:var(--gold2);
+  font-size:14px;letter-spacing:2px;padding:10px 34px;border-radius:24px;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.ch-more button:hover{background:rgba(201,169,97,0.1);border-color:rgba(201,169,97,0.6);}
+
+.empty{text-align:center;color:#777;font-size:14px;padding:50px 0;}
+
+/* SKILL 面板 */
+.skill-h{font-size:clamp(20px,3vw,26px);font-weight:900;letter-spacing:2px;text-align:center;margin:6px 0 24px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.mode{display:flex;align-items:flex-start;gap:22px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:24px 26px;margin-bottom:14px;transition:all .2s;}
+.mode:hover{border-color:rgba(201,169,97,0.4);transform:translateY(-2px);}
+.mode .glyph{flex:0 0 auto;text-align:center;min-width:48px;}
+.mode .glyph .zi{font-size:40px;font-weight:900;color:var(--gold2);line-height:1;}
+.mode .glyph .lv{font-size:13px;color:#8a8a8a;letter-spacing:1px;margin-top:6px;}
+.mode .txt{font-size:14px;color:#c9c7c4;line-height:1.95;padding-left:22px;border-left:1px solid rgba(255,255,255,0.08);font-weight:300;}
+
+.skill-refs{margin-top:30px;padding-top:24px;border-top:1px solid var(--line);}
+.skill-refs .rh{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;}
+.skill-refs .rg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.skill-refs .r{display:flex;align-items:baseline;gap:10px;background:var(--card);border:1px solid var(--line);
+  border-radius:9px;padding:12px 14px;}
+.skill-refs .r .n{font-size:11px;color:var(--gold);opacity:.6;font-weight:700;min-width:20px;}
+.skill-refs .r .t{font-size:13px;color:#ddd;}
+.skill-refs .stat{font-size:12px;color:#8a8a8a;margin-top:16px;letter-spacing:1px;}
+.skill-refs .stat b{color:var(--gold2);font-weight:700;}
+
+/* 响应式 */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .ch-list{grid-template-columns:1fr;}
+  .tabs{gap:28px;}
+  .wrap{padding:32px 18px 60px;}
+  .skill-refs .rg{grid-template-columns:repeat(2,1fr);}
+  .mode{gap:16px;padding:20px;}
+  .mode .txt{padding-left:16px;}
+}
+@media(max-width:480px){
+  .tab{font-size:16px;letter-spacing:2px;}
+  .tabs{gap:18px;}
+}
+.shelf-back{position:sticky;top:0;z-index:900;display:flex;align-items:center;background:rgba(8,8,12,0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 24px;}.shelf-back a{color:#c9a961;text-decoration:none;font-size:13px;letter-spacing:1px;font-weight:600;transition:opacity .2s;}.shelf-back a:hover{opacity:.72;}.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="shelf-back"><a href="../index.html">← 返回书架</a></div>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="wrap">
+  <div class="hero">
+    <h1>花开锦绣</h1>
+    <div class="meta">作者 · 吱吱　·　310章　·　约86.2万字</div>
+    <div class="pills"><span class="pill">古代言情</span><span class="pill">世家宅斗</span><span class="pill">复仇成长</span><span class="pill">感情主线</span></div>
+    <div class="logline">- 一句话故事：华阴傅家九小姐傅庭筠遭表哥诬陷私情、被家族灌毒灭口，获军官赵凌舍命相救，二人患难相守成婚，终联袂复仇、扳倒构陷她的南京俞家。</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="bp">蓝　图</button>
+    <button class="tab" data-panel="lg">台　账</button>
+    <button class="tab" data-panel="ch">章　卡</button>
+    <button class="tab" data-panel="sk">SKILL</button>
+  </div>
+  <div class="tabs-line"></div>
+
+  <div class="panel show" id="panel-bp">
+    <div class="grid"><a class="card" href="蓝图/01_%E6%95%85%E4%BA%8B%E6%A6%82%E8%A6%81.html">
+      <div class="card-num">01</div>
+      <div class="card-name">故事概要</div>
+   </a>
+<a class="card" href="蓝图/02_%E5%86%99%E4%BD%9C%E9%A3%8E%E6%A0%BC.html">
+      <div class="card-num">02</div>
+      <div class="card-name">写作风格</div>
+   </a>
+<a class="card" href="蓝图/03_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86%C2%B7%E4%B8%BB%E8%A7%92.html">
+      <div class="card-num">03</div>
+      <div class="card-name">人物设定集·主角</div>
+   </a>
+<a class="card" href="蓝图/04_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86%C2%B7%E9%85%8D%E8%A7%92.html">
+      <div class="card-num">04</div>
+      <div class="card-name">人物设定集·配角</div>
+   </a>
+<a class="card" href="蓝图/05_%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E7%BD%91.html">
+      <div class="card-num">05</div>
+      <div class="card-name">人物关系网</div>
+   </a>
+<a class="card" href="蓝图/06_%E5%88%86%E5%8D%B7%E5%A4%A7%E7%BA%B2.html">
+      <div class="card-num">06</div>
+      <div class="card-name">分卷大纲</div>
+   </a>
+<a class="card" href="蓝图/07_%E4%BC%8F%E7%AC%94%E8%A7%84%E5%88%92%E8%A1%A8.html">
+      <div class="card-num">07</div>
+      <div class="card-name">伏笔规划表</div>
+   </a>
+<a class="card" href="蓝图/08_%E6%83%85%E7%BB%AA%E6%9B%B2%E7%BA%BF.html">
+      <div class="card-num">08</div>
+      <div class="card-name">情绪曲线</div>
+   </a>
+<a class="card" href="蓝图/09_%E4%B8%96%E7%95%8C%E8%A7%82%E8%AE%BE%E5%AE%9A%E9%9B%86.html">
+      <div class="card-num">09</div>
+      <div class="card-name">世界观设定集</div>
+   </a>
+<a class="card" href="蓝图/10_%E6%97%B6%E9%97%B4%E7%BA%BF.html">
+      <div class="card-num">10</div>
+      <div class="card-name">时间线</div>
+   </a>
+<a class="card" href="蓝图/11_%E6%94%AF%E7%BA%BF%E5%9C%B0%E5%9B%BE.html">
+      <div class="card-num">11</div>
+      <div class="card-name">支线地图</div>
+   </a>
+<a class="card" href="蓝图/12_%E6%84%9F%E6%83%85%E7%BA%BF%E8%BF%9B%E5%BA%A6.html">
+      <div class="card-num">12</div>
+      <div class="card-name">感情线进度</div>
+   </a>
+<a class="card" href="蓝图/13_%E9%98%B5%E8%90%A5%E5%8D%9A%E5%BC%88.html">
+      <div class="card-num">13</div>
+      <div class="card-name">阵营博弈</div>
+   </a>
+<a class="card" href="蓝图/14_%E8%A7%86%E8%A7%92%E5%88%86%E9%85%8D%E8%A1%A8.html">
+      <div class="card-num">14</div>
+      <div class="card-name">视角分配表</div>
+   </a>
+<a class="card" href="蓝图/15_%E6%84%8F%E8%B1%A1%E7%AC%A6%E5%8F%B7.html">
+      <div class="card-num">15</div>
+      <div class="card-name">意象符号</div>
+   </a>
+<a class="card" href="蓝图/16_%E8%B0%9C%E9%A2%98%E4%B8%8E%E8%AF%A1%E8%AE%A1.html">
+      <div class="card-num">16</div>
+      <div class="card-name">谜题与诡计</div>
+   </a></div>
+  </div>
+
+  <div class="panel" id="panel-lg">
+    <div class="grid"><a class="card" href="台账/CP%E4%BA%92%E5%8A%A8%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">01</div>
+      <div class="card-name">CP互动台账</div>
+   </a>
+<a class="card" href="台账/%E4%BA%BA%E7%89%A9%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">02</div>
+      <div class="card-name">人物台账</div>
+   </a>
+<a class="card" href="台账/%E4%BC%8F%E7%AC%94%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">03</div>
+      <div class="card-name">伏笔台账</div>
+   </a>
+<a class="card" href="台账/%E5%85%B3%E7%B3%BB%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">04</div>
+      <div class="card-name">关系台账</div>
+   </a>
+<a class="card" href="台账/%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">05</div>
+      <div class="card-name">时间线台账</div>
+   </a>
+<a class="card" href="台账/%E8%B0%9C%E9%A2%98%E7%BA%BF%E7%B4%A2%E5%8F%B0%E8%B4%A6.html">
+      <div class="card-num">06</div>
+      <div class="card-name">谜题线索台账</div>
+   </a></div>
+  </div>
+
+  <div class="panel" id="panel-ch">
+    <div class="ch-list" id="chList"></div><div class="ch-more" id="chMore"></div>
+  </div>
+
+  <div class="panel" id="panel-sk">
+    <div class="skill-h">将一本书蒸馏为一套可执行 skill</div>
+    <div class="mode"><div class="glyph"><div class="zi">学</div><div class="lv">Lv.1</div></div><div class="txt">把这本书的手法与风格当教材，讲解、拆例、练习，摸清它“为什么这样写”。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">续</div><div class="lv">Lv.2</div></div><div class="txt">承接原作的人物、伏笔与节奏语感，续写番外、if 线或未尽的支线，写得像、接得上。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">改</div><div class="lv">Lv.3</div></div><div class="txt">改动前先评估对伏笔、人设、时间线的牵连，换结局、改走向，改完仍前后自洽。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">造</div><div class="lv">Lv.4</div></div><div class="txt">迁移这本书的结构与手法，脱离原作，创作一部完全属于自己的同类长篇。</div></div>
+    <div class="skill-refs">
+      <div class="rh">招式库 · references（15 份）</div>
+      <div class="rg">
+      <div class="r"><span class="n">01</span><span class="t">故事设计</span></div>
+      <div class="r"><span class="n">02</span><span class="t">写作风格</span></div>
+      <div class="r"><span class="n">03</span><span class="t">人物设计</span></div>
+      <div class="r"><span class="n">04</span><span class="t">大纲结构</span></div>
+      <div class="r"><span class="n">05</span><span class="t">伏笔设计</span></div>
+      <div class="r"><span class="n">06</span><span class="t">情绪设计</span></div>
+      <div class="r"><span class="n">07</span><span class="t">世界观设定</span></div>
+      <div class="r"><span class="n">08</span><span class="t">时间线</span></div>
+      <div class="r"><span class="n">09</span><span class="t">支线设计</span></div>
+      <div class="r"><span class="n">10</span><span class="t">感情线设计</span></div>
+      <div class="r"><span class="n">11</span><span class="t">阵营博弈</span></div>
+      <div class="r"><span class="n">12</span><span class="t">视角调度</span></div>
+      <div class="r"><span class="n">13</span><span class="t">意象符号</span></div>
+      <div class="r"><span class="n">14</span><span class="t">谜题诡计</span></div>
+      <div class="r"><span class="n">15</span><span class="t">正文写作</span></div>
+      </div>
+      <div class="stat">已绑定拆解数据：<b>16</b> 蓝图 · <b>6</b> 台账 · <b>310</b> 章卡　（随 skill 打包，自包含、不需原文）</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab 切换（支持 URL hash，如 index.html#sk 直接打开 SKILL）
+function showTab(id){
+  var t=document.querySelector('.tab[data-panel="'+id+'"]');
+  if(!t)return;
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('show');});
+  t.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('show');
+}
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    showTab(t.dataset.panel);
+    if(history.replaceState)history.replaceState(null,'','#'+t.dataset.panel);
+  });
+});
+(function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+})();
+window.addEventListener('hashchange',function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+});
+
+// 章卡列表（默认前 10 条，可展开全部）
+var CH=[
+{n:"001",t:"碧云庵",f:"第001章_碧云庵.html"},
+{n:"002",t:"不安",f:"第002章_不安.html"},
+{n:"003",t:"左俊杰",f:"第003章_左俊杰.html"},
+{n:"004",t:"定计",f:"第004章_定计.html"},
+{n:"005",t:"避祸",f:"第005章_避祸.html"},
+{n:"006",t:"惊变",f:"第006章_惊变.html"},
+{n:"007",t:"有贼",f:"第007章_有贼.html"},
+{n:"008",t:"再见",f:"第008章_再见.html"},
+{n:"009",t:"挫折",f:"第009章_挫折.html"},
+{n:"010",t:"交换",f:"第010章_交换.html"},
+{n:"011",t:"消息",f:"第011章_消息.html"},
+{n:"012",t:"探听",f:"第012章_探听.html"},
+{n:"013",t:"异梦",f:"第013章_异梦.html"},
+{n:"014",t:"生死",f:"第014章_生死.html"},
+{n:"015",t:"救命",f:"第015章_救命.html"},
+{n:"016",t:"托付",f:"第016章_托付.html"},
+{n:"017",t:"迷雾",f:"第017章_迷雾.html"},
+{n:"018",t:"离开",f:"第018章_离开.html"},
+{n:"019",t:"路途",f:"第019章_路途.html"},
+{n:"020",t:"阿森",f:"第020章_阿森.html"},
+{n:"021",t:"维护",f:"第021章_维护.html"},
+{n:"022",t:"抢夺",f:"第022章_抢夺.html"},
+{n:"023",t:"渭南",f:"第023章_渭南.html"},
+{n:"024",t:"茫然",f:"第024章_茫然.html"},
+{n:"025",t:"徘徊",f:"第025章_徘徊.html"},
+{n:"026",t:"李家凹",f:"第026章_李家凹.html"},
+{n:"027",t:"临潼",f:"第027章_临潼.html"},
+{n:"028",t:"狭路",f:"第028章_狭路.html"},
+{n:"029",t:"受伤",f:"第029章_受伤.html"},
+{n:"030",t:"解决",f:"第030章_解决.html"},
+{n:"031",t:"倒下",f:"第031章_倒下.html"},
+{n:"032",t:"处境",f:"第032章_处境.html"},
+{n:"033",t:"匕首",f:"第033章_匕首.html"},
+{n:"034",t:"初见",f:"第034章_初见.html"},
+{n:"035",t:"救命",f:"第035章_救命.html"},
+{n:"036",t:"盘问",f:"第036章_盘问.html"},
+{n:"037",t:"临春镇",f:"第037章_临春镇.html"},
+{n:"038",t:"名帖",f:"第038章_名帖.html"},
+{n:"039",t:"改变",f:"第039章_改变.html"},
+{n:"040",t:"策略",f:"第040章_策略.html"},
+{n:"041",t:"郑三娘",f:"第041章_郑三娘.html"},
+{n:"042",t:"讷于言",f:"第042章_讷于言.html"},
+{n:"043",t:"有人来",f:"第043章_有人来.html"},
+{n:"044",t:"西安府",f:"第044章_西安府.html"},
+{n:"045",t:"承诺",f:"第045章_承诺.html"},
+{n:"046",t:"玉成",f:"第046章_玉成.html"},
+{n:"047",t:"困惑",f:"第047章_困惑.html"},
+{n:"048",t:"取舍",f:"第048章_取舍.html"},
+{n:"049",t:"离别",f:"第049章_离别.html"},
+{n:"050",t:"相劝",f:"第050章_相劝.html"},
+{n:"051",t:"佯装",f:"第051章_佯装.html"},
+{n:"052",t:"阻止",f:"第052章_阻止.html"},
+{n:"053",t:"奔走",f:"第053章_奔走.html"},
+{n:"054",t:"夏夜",f:"第054章_夏夜.html"},
+{n:"055",t:"货比三家",f:"第055章_货比三家.html"},
+{n:"056",t:"不上当",f:"第056章_不上当.html"},
+{n:"057",t:"中秋节",f:"第057章_中秋节.html"},
+{n:"058",t:"解释",f:"第058章_解释.html"},
+{n:"059",t:"纠结",f:"第059章_纠结.html"},
+{n:"060",t:"银子",f:"第060章_银子.html"},
+{n:"061",t:"意外",f:"第061章_意外.html"},
+{n:"064",t:"何去",f:"第064章_何去.html"},
+{n:"065",t:"何从",f:"第065章_何从.html"},
+{n:"066",t:"执念",f:"第066章_执念.html"},
+{n:"067",t:"决定",f:"第067章_决定.html"},
+{n:"068",t:"西行",f:"第068章_西行.html"},
+{n:"069",t:"永靖",f:"第069章_永靖.html"},
+{n:"070",t:"县城",f:"第070章_县城.html"},
+{n:"071",t:"张掖",f:"第071章_张掖.html"},
+{n:"072",t:"借势",f:"第072章_借势.html"},
+{n:"073",t:"客栈",f:"第073章_客栈.html"},
+{n:"074",t:"伤心",f:"第074章_伤心.html"},
+{n:"075",t:"认识",f:"第075章_认识.html"},
+{n:"076",t:"感动",f:"第076章_感动.html"},
+{n:"077",t:"停留",f:"第077章_停留.html"},
+{n:"078",t:"邻居",f:"第078章_邻居.html"},
+{n:"079",t:"过年",f:"第079章_过年.html"},
+{n:"080",t:"来往",f:"第080章_来往.html"},
+{n:"081",t:"教训",f:"第081章_教训.html"},
+{n:"082",t:"开战",f:"第082章_开战.html"},
+{n:"083",t:"骚扰",f:"第083章_骚扰.html"},
+{n:"084",t:"打听",f:"第084章_打听.html"},
+{n:"085",t:"噩耗",f:"第085章_噩耗.html"},
+{n:"086",t:"吓唬",f:"第086章_吓唬.html"},
+{n:"087",t:"躲避",f:"第087章_躲避.html"},
+{n:"088",t:"打架",f:"第088章_打架.html"},
+{n:"089",t:"后街",f:"第089章_后街.html"},
+{n:"090",t:"咬人",f:"第090章_咬人.html"},
+{n:"091",t:"后果",f:"第091章_后果.html"},
+{n:"092",t:"事发",f:"第092章_事发.html"},
+{n:"093",t:"谈笑",f:"第093章_谈笑.html"},
+{n:"094",t:"流言",f:"第094章_流言.html"},
+{n:"095",t:"音讯",f:"第095章_音讯.html"},
+{n:"096",t:"平安",f:"第096章_平安.html"},
+{n:"097",t:"见面",f:"第097章_见面.html"},
+{n:"098",t:"过门不入",f:"第098章_过门不入.html"},
+{n:"099",t:"告状",f:"第099章_告状.html"},
+{n:"100",t:"冯大虎",f:"第100章_冯大虎.html"},
+{n:"101",t:"碾伯所",f:"第101章_碾伯所.html"},
+{n:"102",t:"狮吼",f:"第102章_狮吼.html"},
+{n:"103",t:"深情",f:"第103章_深情.html"},
+{n:"104",t:"明白",f:"第104章_明白.html"},
+{n:"105",t:"冰释",f:"第105章_冰释.html"},
+{n:"106",t:"喜悦",f:"第106章_喜悦.html"},
+{n:"107",t:"无惧",f:"第107章_无惧.html"},
+{n:"108",t:"乘凉",f:"第108章_乘凉.html"},
+{n:"109",t:"直言",f:"第109章_直言.html"},
+{n:"110",t:"从前",f:"第110章_从前.html"},
+{n:"111",t:"甜蜜",f:"第111章_甜蜜.html"},
+{n:"112",t:"团聚",f:"第112章_团聚.html"},
+{n:"113",t:"匆匆",f:"第113章_匆匆.html"},
+{n:"114",t:"惊愕",f:"第114章_惊愕.html"},
+{n:"115",t:"绸缪",f:"第115章_绸缪.html"},
+{n:"116",t:"生变",f:"第116章_生变.html"},
+{n:"117",t:"激情",f:"第117章_激情.html"},
+{n:"118",t:"曲折",f:"第118章_曲折.html"},
+{n:"119",t:"东去",f:"第119章_东去.html"},
+{n:"120",t:"分别",f:"第120章_分别.html"},
+{n:"121",t:"驿站",f:"第121章_驿站.html"},
+{n:"122",t:"故人",f:"第122章_故人.html"},
+{n:"123",t:"谣言",f:"第123章_谣言.html"},
+{n:"124",t:"谁偷的",f:"第124章_谁偷的.html"},
+{n:"125",t:"京都",f:"第125章_京都.html"},
+{n:"126",t:"四喜胡同",f:"第126章_四喜胡同.html"},
+{n:"127",t:"亲人",f:"第127章_亲人.html"},
+{n:"128",t:"父亲",f:"第128章_父亲.html"},
+{n:"129",t:"搬迁",f:"第129章_搬迁.html"},
+{n:"130",t:"遗憾",f:"第130章_遗憾.html"},
+{n:"131",t:"大比之年",f:"第131章_大比之年.html"},
+{n:"132",t:"交替",f:"第132章_交替.html"},
+{n:"133",t:"忐忑",f:"第133章_忐忑.html"},
+{n:"134",t:"恩怨",f:"第134章_恩怨.html"},
+{n:"135",t:"更换",f:"第135章_更换.html"},
+{n:"136",t:"重逢",f:"第136章_重逢.html"},
+{n:"137",t:"拜访",f:"第137章_拜访.html"},
+{n:"138",t:"哥哥",f:"第138章_哥哥.html"},
+{n:"139",t:"立家",f:"第139章_立家.html"},
+{n:"140",t:"争吵",f:"第140章_争吵.html"},
+{n:"141",t:"尊严",f:"第141章_尊严.html"},
+{n:"142",t:"婚事",f:"第142章_婚事.html"},
+{n:"143",t:"头痛",f:"第143章_头痛.html"},
+{n:"144",t:"觐见",f:"第144章_觐见.html"},
+{n:"145",t:"准备",f:"第145章_准备.html"},
+{n:"146",t:"成亲",f:"第146章_成亲.html"},
+{n:"147",t:"新房",f:"第147章_新房.html"},
+{n:"148",t:"小登科",f:"第148章_小登科.html"},
+{n:"149",t:"新婚",f:"第149章_新婚.html"},
+{n:"150",t:"甜蜜",f:"第150章_甜蜜.html"},
+{n:"151",t:"缠绵",f:"第151章_缠绵.html"},
+{n:"152",t:"灯会",f:"第152章_灯会.html"},
+{n:"153",t:"琴瑟",f:"第153章_琴瑟.html"},
+{n:"155",t:"送行",f:"第155章_送行.html"},
+{n:"156",t:"旧识",f:"第156章_旧识.html"},
+{n:"157",t:"喜讯",f:"第157章_喜讯.html"},
+{n:"158",t:"母女",f:"第158章_母女.html"},
+{n:"159",t:"说项",f:"第159章_说项.html"},
+{n:"160",t:"调动",f:"第160章_调动.html"},
+{n:"161",t:"如此",f:"第161章_如此.html"},
+{n:"162",t:"潭柘寺",f:"第162章_潭柘寺.html"},
+{n:"163",t:"死心",f:"第163章_死心.html"},
+{n:"164",t:"寻人",f:"第164章_寻人.html"},
+{n:"165",t:"初为父母",f:"第165章_初为父母.html"},
+{n:"166",t:"命殒",f:"第166章_命殒.html"},
+{n:"167",t:"祭拜",f:"第167章_祭拜.html"},
+{n:"168",t:"出征",f:"第168章_出征.html"},
+{n:"169",t:"相看",f:"第169章_相看.html"},
+{n:"170",t:"抓贼",f:"第170章_抓贼.html"},
+{n:"171",t:"审讯",f:"第171章_审讯.html"},
+{n:"172",t:"问话",f:"第172章_问话.html"},
+{n:"173",t:"招供",f:"第173章_招供.html"},
+{n:"174",t:"主动",f:"第174章_主动.html"},
+{n:"175",t:"胁迫",f:"第175章_胁迫.html"},
+{n:"176",t:"办法",f:"第176章_办法.html"},
+{n:"177",t:"偷袭",f:"第177章_偷袭.html"},
+{n:"178",t:"回朝",f:"第178章_回朝.html"},
+{n:"179",t:"谈判",f:"第179章_谈判.html"},
+{n:"180",t:"换防",f:"第180章_换防.html"},
+{n:"181",t:"夹道街",f:"第181章_夹道街.html"},
+{n:"182",t:"俞阁老",f:"第182章_俞阁老.html"},
+{n:"183",t:"道歉",f:"第183章_道歉.html"},
+{n:"184",t:"翻脸",f:"第184章_翻脸.html"},
+{n:"185",t:"俞夫人",f:"第185章_俞夫人.html"},
+{n:"186",t:"周岁",f:"第186章_周岁.html"},
+{n:"187",t:"范氏",f:"第187章_范氏.html"},
+{n:"188",t:"颖川侯",f:"第188章_颖川侯.html"},
+{n:"189",t:"避暑",f:"第189章_避暑.html"},
+{n:"190",t:"差事",f:"第190章_差事.html"},
+{n:"191",t:"上任",f:"第191章_上任.html"},
+{n:"192",t:"双喜",f:"第192章_双喜.html"},
+{n:"193",t:"沉不住",f:"第193章_沉不住.html"},
+{n:"194",t:"分歧",f:"第194章_分歧.html"},
+{n:"195",t:"长子",f:"第195章_长子.html"},
+{n:"196",t:"青鸟",f:"第196章_青鸟.html"},
+{n:"197",t:"相遇",f:"第197章_相遇.html"},
+{n:"198",t:"吵闹",f:"第198章_吵闹.html"},
+{n:"199",t:"迁怒",f:"第199章_迁怒.html"},
+{n:"200",t:"主意",f:"第200章_主意.html"},
+{n:"201",t:"嫂嫂",f:"第201章_嫂嫂.html"},
+{n:"202",t:"花树",f:"第202章_花树.html"},
+{n:"203",t:"摩擦",f:"第203章_摩擦.html"},
+{n:"204",t:"问诊",f:"第204章_问诊.html"},
+{n:"205",t:"怀孕",f:"第205章_怀孕.html"},
+{n:"206",t:"孩子",f:"第206章_孩子.html"},
+{n:"207",t:"情理之中",f:"第207章_情理之中.html"},
+{n:"208",t:"意料之外",f:"第208章_意料之外.html"},
+{n:"209",t:"手段",f:"第209章_手段.html"},
+{n:"210",t:"不甘",f:"第210章_不甘.html"},
+{n:"211",t:"避让",f:"第211章_避让.html"},
+{n:"212",t:"买卖",f:"第212章_买卖.html"},
+{n:"213",t:"迎接",f:"第213章_迎接.html"},
+{n:"214",t:"小别",f:"第214章_小别.html"},
+{n:"215",t:"商量",f:"第215章_商量.html"},
+{n:"216",t:"透音",f:"第216章_透音.html"},
+{n:"217",t:"节礼",f:"第217章_节礼.html"},
+{n:"218",t:"妾室",f:"第218章_妾室.html"},
+{n:"219",t:"说项",f:"第219章_说项.html"},
+{n:"221",t:"对付",f:"第221章_对付.html"},
+{n:"222",t:"出京",f:"第222章_出京.html"},
+{n:"223",t:"重返西安",f:"第223章_重返西安.html"},
+{n:"224",t:"杨柳巷",f:"第224章_杨柳巷.html"},
+{n:"225",t:"傅家",f:"第225章_傅家.html"},
+{n:"226",t:"姊妹",f:"第226章_姊妹.html"},
+{n:"227",t:"释然",f:"第227章_释然.html"},
+{n:"228",t:"相聚",f:"第228章_相聚.html"},
+{n:"229",t:"请帖",f:"第229章_请帖.html"},
+{n:"230",t:"筵席",f:"第230章_筵席.html"},
+{n:"231",t:"立祠",f:"第231章_立祠.html"},
+{n:"232",t:"顺利",f:"第232章_顺利.html"},
+{n:"233",t:"送上门",f:"第233章_送上门.html"},
+{n:"234",t:"回家",f:"第234章_回家.html"},
+{n:"235",t:"升迁",f:"第235章_升迁.html"},
+{n:"236",t:"平安符",f:"第236章_平安符.html"},
+{n:"237",t:"逛寺院",f:"第237章_逛寺院.html"},
+{n:"238",t:"直言",f:"第238章_直言.html"},
+{n:"239",t:"试探",f:"第239章_试探.html"},
+{n:"240",t:"纷乱",f:"第240章_纷乱.html"},
+{n:"241",t:"水落",f:"第241章_水落.html"},
+{n:"242",t:"争取",f:"第242章_争取.html"},
+{n:"243",t:"分析",f:"第243章_分析.html"},
+{n:"244",t:"门路",f:"第244章_门路.html"},
+{n:"245",t:"援手",f:"第245章_援手.html"},
+{n:"246",t:"气急",f:"第246章_气急.html"},
+{n:"247",t:"关系",f:"第247章_关系.html"},
+{n:"248",t:"落空",f:"第248章_落空.html"},
+{n:"249",t:"败坏",f:"第249章_败坏.html"},
+{n:"250",t:"打击",f:"第250章_打击.html"},
+{n:"251",t:"动摇",f:"第251章_动摇.html"},
+{n:"252",t:"石出",f:"第252章_石出.html"},
+{n:"253",t:"温言",f:"第253章_温言.html"},
+{n:"254",t:"疏远",f:"第254章_疏远.html"},
+{n:"255",t:"真相",f:"第255章_真相.html"},
+{n:"256",t:"风波",f:"第256章_风波.html"},
+{n:"257",t:"报丧",f:"第257章_报丧.html"},
+{n:"258",t:"暗流",f:"第258章_暗流.html"},
+{n:"259",t:"奔丧",f:"第259章_奔丧.html"},
+{n:"260",t:"泄露",f:"第260章_泄露.html"},
+{n:"261",t:"对策",f:"第261章_对策.html"},
+{n:"262",t:"报信",f:"第262章_报信.html"},
+{n:"263",t:"害怕",f:"第263章_害怕.html"},
+{n:"264",t:"挑明",f:"第264章_挑明.html"},
+{n:"265",t:"劝说",f:"第265章_劝说.html"},
+{n:"266",t:"体贴",f:"第266章_体贴.html"},
+{n:"267",t:"动静",f:"第267章_动静.html"},
+{n:"268",t:"出门",f:"第268章_出门.html"},
+{n:"269",t:"出头",f:"第269章_出头.html"},
+{n:"270",t:"牵线",f:"第270章_牵线.html"},
+{n:"271",t:"着落",f:"第271章_着落.html"},
+{n:"272",t:"回程",f:"第272章_回程.html"},
+{n:"273",t:"欢快",f:"第273章_欢快.html"},
+{n:"274",t:"絮语",f:"第274章_絮语.html"},
+{n:"275",t:"温馨",f:"第275章_温馨.html"},
+{n:"276",t:"布局",f:"第276章_布局.html"},
+{n:"277",t:"寿礼",f:"第277章_寿礼.html"},
+{n:"278",t:"拜寿",f:"第278章_拜寿.html"},
+{n:"279",t:"瞩目",f:"第279章_瞩目.html"},
+{n:"280",t:"训子",f:"第280章_训子.html"},
+{n:"281",t:"春暖",f:"第281章_春暖.html"},
+{n:"282",t:"收徒",f:"第282章_收徒.html"},
+{n:"283",t:"各自",f:"第283章_各自.html"},
+{n:"284",t:"花露",f:"第284章_花露.html"},
+{n:"285",t:"劝架",f:"第285章_劝架.html"},
+{n:"286",t:"走近",f:"第286章_走近.html"},
+{n:"287",t:"生病",f:"第287章_生病.html"},
+{n:"288",t:"打人",f:"第288章_打人.html"},
+{n:"289",t:"互动",f:"第289章_互动.html"},
+{n:"290",t:"潜行",f:"第290章_潜行.html"},
+{n:"291",t:"吃食",f:"第291章_吃食.html"},
+{n:"292",t:"别样",f:"第292章_别样.html"},
+{n:"293",t:"胡闹",f:"第293章_胡闹.html"},
+{n:"294",t:"玉鸣山",f:"第294章_玉鸣山.html"},
+{n:"295",t:"下山",f:"第295章_下山.html"},
+{n:"296",t:"明了",f:"第296章_明了.html"},
+{n:"297",t:"底细",f:"第297章_底细.html"},
+{n:"298",t:"败儿",f:"第298章_败儿.html"},
+{n:"299",t:"百日",f:"第299章_百日.html"},
+{n:"300",t:"发现",f:"第300章_发现.html"},
+{n:"301",t:"等候",f:"第301章_等候.html"},
+{n:"302",t:"兴趣",f:"第302章_兴趣.html"},
+{n:"303",t:"气闷",f:"第303章_气闷.html"},
+{n:"304",t:"夹缝",f:"第304章_夹缝.html"},
+{n:"305",t:"发怒",f:"第305章_发怒.html"},
+{n:"306",t:"打脸",f:"第306章_打脸.html"},
+{n:"307",t:"出面",f:"第307章_出面.html"},
+{n:"308",t:"离开",f:"第308章_离开.html"},
+{n:"309",t:"原谅",f:"第309章_原谅.html"},
+{n:"310",t:"谋划",f:"第310章_谋划.html"},
+{n:"311",t:"静好",f:"第311章_静好.html"},
+{n:"312",t:"状告",f:"第312章_状告.html"},
+{n:"313",t:"反应",f:"第313章_反应.html"},
+{n:"314",t:"坍塌",f:"第314章_坍塌.html"}
+];
+var chList=document.getElementById('chList');
+var chMore=document.getElementById('chMore');
+var LIMIT=10, expanded=false;
+function renderCh(){
+  if(!chList)return;
+  var list=expanded?CH:CH.slice(0,LIMIT);
+  chList.innerHTML=list.map(function(c){
+    return '<a class="ch-item" href="章卡/'+encodeURIComponent(c.f)+'"><span class="n">'+c.n+'</span><span class="t">'+c.t+'</span></a>';
+  }).join('');
+  if(CH.length>LIMIT){
+    chMore.innerHTML='<button id="chBtn">'+(expanded?'收起':('查看全部 '+CH.length+' 章 ›'))+'</button>';
+    document.getElementById('chBtn').onclick=function(){expanded=!expanded;renderCh();};
+  }else{chMore.innerHTML='';}
+}
+renderCh();
+</script>
+<div class="qr-float" title="作者微信二维码"><img src="./qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

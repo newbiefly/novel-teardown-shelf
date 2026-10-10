@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一瓯春 · 分卷大纲 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>一瓯春 · 分卷大纲</h1>
+<blockquote>
+<p>依据：时间线台账 + 102 张章卡的「本章事件/人物动态/情绪设计/章末钩子」。归纳主线骨架（宏观结构·起承转合），不展开支线（支线见 <code>09_支线地图.md</code>）。<br>分段标准 = <strong>主角目标的阶段性变化</strong>，并对用户预设边界按下述章卡实况做了校正（迁居幽州实际发生于第24章，故&quot;横塘篇&quot;收在第23章）。</p>
+</blockquote>
+<h2>〇、分卷总览</h2>
+<table>
+<thead>
+<tr>
+<th>卷</th>
+<th>章节区间</th>
+<th>章数</th>
+<th>占全书</th>
+<th>一句话主旨</th>
+<th>高潮章（情绪峰值）</th>
+<th>转折章</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>卷一·横塘镇宅</td>
+<td>第1-23章</td>
+<td>23</td>
+<td>22.5%</td>
+<td>归府潜伏查母冤，宅斗立身，谢家失势</td>
+<td>第5章、第12章、<strong>第21章★4</strong></td>
+<td>第12章、第21章、第22章</td>
+</tr>
+<tr>
+<td>卷二·幽州求生</td>
+<td>第24-62章</td>
+<td>39</td>
+<td>38.2%</td>
+<td>迁幽州求生复起，借沈润破局，选妃风波与反杀</td>
+<td><strong>第34章★4、第60章★4</strong></td>
+<td>第34章、第52-53章、第54章</td>
+</tr>
+<tr>
+<td>卷三·议亲定亲</td>
+<td>第63-84章</td>
+<td>22</td>
+<td>21.6%</td>
+<td>退李从心之亲、被沈润求娶，请旨指婚</td>
+<td><strong>第64章★4</strong>、第72章、第76章</td>
+<td>第68章、第72章</td>
+</tr>
+<tr>
+<td>卷四·成婚当家</td>
+<td>第85-101章</td>
+<td>17</td>
+<td>16.7%</td>
+<td>嫁入沈家封诰，当家护弟媳，清算扈氏与姚家</td>
+<td><strong>第86章★4、第96章★4、第99章★4、第100章★4</strong></td>
+<td>第97章、第99章</td>
+</tr>
+<tr>
+<td>终章·昭雪</td>
+<td>第102章</td>
+<td>1</td>
+<td>1.0%</td>
+<td>买凶伪案败露，朝堂昭雪母冤，全书终</td>
+<td><strong>第102章★5</strong></td>
+<td>第102章</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>篇幅配比提示（续写/仿写参考）：<strong>卷二最长（近四成）</strong>，是&quot;求生—破局—宅斗—选妃&quot;多重任务叠加的&quot;发展段&quot;；<strong>作者把最重的情感高潮压在卷四第96章与终章第102章</strong>，属于&quot;慢蓄力、终局总清算&quot;的结构。</p>
+</blockquote>
+<hr>
+<h2>卷一·横塘镇宅（第1-23章｜22.5%）</h2>
+<h3>阶段目标</h3>
+<ul>
+<li><strong>女主目标</strong>：以&quot;被接回镇宅尽孝&quot;为伪装，潜伏查出母亲冤案真相；在谢家立住脚、不被嫡脉拿捏。</li>
+<li><strong>谢家目标</strong>：议定姑娘们的亲事（清和、清如、清圆），攀附更好的门第。</li>
+</ul>
+<h3>核心事件（按序）</h3>
+<ol>
+<li><strong>立身与示弱</strong>：清圆回府一月，穿堂煎药示孝被冷遇[第1章]；被清如纵婢泼湿、不告状反揽过，借湿衣博老太太给淡月轩添人手[第2-3章]。</li>
+<li><strong>查案启动</strong>：托月鉴调回母旧仆陶嬷嬷结盟[第4章]→ 陶嬷嬷回溯冤案始末，清圆推断&quot;一石二鸟&quot;（最得宠者一死一逐，背后有人动手脚）[第5章]。</li>
+<li><strong>宅斗排雷</strong>：以&quot;青梅&quot;之名设局试探三房，排除莲姨娘、锁定扈夫人[第10-12章]；查得关键人证小丫头被送升州后&quot;病死&quot;、其家骤富[第7章]。</li>
+<li><strong>感情线起点</strong>：春日宴上清和相看李观灵[第6-8章]；清圆被蹴球砸中，初遇丹阳侯三公子李从心[第9章]。</li>
+<li><strong>外力与压力</strong>：谢纾实为停职查办归家[第13-14章]；蒋氏作梗坏清如婚事[第15-17章]；李从心赠酥、清如拍翻酥盒失仪[第15章]；清圆识破眼线小喜却留而用之[第16章]。</li>
+<li><strong>逼婚与反目</strong>：清圆追问父冤情被&quot;人证物证俱在&quot;驳回[第19章]；李从心求娶、侯府托观察使夫人撇清、老太太怒召[第20章]；<strong>清如当众掌掴清圆，清圆以退为进自请回陈家</strong>[第21章]。</li>
+<li><strong>格局剧变</strong>：谢纾由节度使改贬幽州刺史、举家迁幽州[第22章]；清圆回陈家道别、受赠红木妆盒作退路[第23章]。</li>
+</ol>
+<h3>关键转折与因果链</h3>
+<ul>
+<li><strong>第12章（暗线转折）</strong>：查案锁定扈夫人，但&quot;单凭这点证据完全是以卵击石&quot;→ 埋下&quot;取证/借势&quot;的长期需求，逼出后续&quot;借沈润翻案&quot;的主线走向。</li>
+<li><strong>第21章（关系转折）</strong>：从&quot;暗中较劲&quot;升级为&quot;当众动手&quot;→ 清圆以退为进测出老太太底线，心念&quot;新仇旧恨一齐算&quot;，由被动忍耐转为主动蓄势。</li>
+<li><strong>第22章（环境转折）</strong>：谢纾贬谪 → 谢家由&quot;一方大吏&quot;跌为&quot;犯官家眷、受人监管&quot;[第22章]，为全书的&quot;以女换援&quot;、迁幽州遇沈润埋下总因。</li>
+</ul>
+<h3>卷末钩子（悬念升级）</h3>
+<p>老太太拉拢清圆随行身边照应，清圆心明&quot;世上没有无缘无故的示好&quot;——她这个半路捡回的孙女&quot;到了发挥作用的时候&quot;[第22章]；同时清圆及笄将至[第23章]、殿前司监管落地[第24章]。<strong>由&quot;内宅小斗&quot;升级为&quot;戴罪之身上京场&quot;，舞台随之更换。</strong></p>
+<hr>
+<h2>卷二·幽州求生（第24-62章｜38.2%）</h2>
+<h3>阶段目标</h3>
+<ul>
+<li><strong>女主目标</strong>：为谢家求援→ 借沈润之势自保 → 逃脱&quot;齐大非偶&quot;婚局与宅斗杀局 → 继续追索母案。</li>
+<li><strong>沈润目标</strong>：稳住谢家这笔政治账，并逐步对清圆起意、逼近。</li>
+</ul>
+<h3>核心事件（按序）</h3>
+<ol>
+<li><strong>求生开局</strong>：举家迁幽州、受殿前司监管造册[第24-25章]；清圆献泥金名册、独自登沈府求见[第25-26章]。</li>
+<li><strong>初会沈润</strong>：清圆误认沈润为都使、当面向其陈情，真沈澈归府揭穿[第27章]；沈润冷淡审视、暗中追问其婚配[第27章]。</li>
+<li><strong>旧怨与交易</strong>：老太太暗示沈润为良配[第28章]；谢纾登门，沈润点破&quot;剑门关冷遇&quot;旧怨[第28章]；家宴夜沈润醉赠兽面透雕玉佩[第30章]。</li>
+<li><strong>复起</strong>：沈润借谢纾之手扳倒政敌付春山，谢纾官复原职[第34章]；沈润显露刑狱手段与&quot;十二灯树&quot;复仇名单[第34章]。</li>
+<li><strong>玉佩纠葛与心迹</strong>：护国寺还佩遭拒[第35-36章]；沈府设宴、密室对峙，清圆直言&quot;不给人做妾&quot;[第38-40章]；沈润一箭射落清如胸前玉佩[第41章]。</li>
+<li><strong>险局</strong>：碧痕寺芦苇荡遇伏（苦肉计失控，小厮被杀），沈润率殿前司救场[第44章]；被押入殿前司、点破苦肉计、挑明&quot;你是我私事&quot;[第45-46章]。</li>
+<li><strong>提亲与缓兵</strong>：李从心当众提亲、扬言回横塘下聘[第49章]；清圆以&quot;父母之命&quot;婉拒，实为缓兵之计[第50章]；宫中选妃口谕至[第51章]。</li>
+<li><strong>求娶明说与选妃</strong>：沈润守柜提亲、&quot;我这里正好有个缺&quot;、陪清圆做满母亲七日法事[第52-53章]；诏命清如、清容入宫备选[第54章]。</li>
+<li><strong>宅斗决战（反杀）</strong>：沈润借选妃布局令清如落选[第55章]；清圆反撩沈润、共谋处置清如、送胭脂[第57章]；扈夫人护国寺设毒计，清圆将计就计、引清如入局受辱[第58-60章]；清容倒戈、沈润领兵入府护清圆、当众敲打扈夫人[第61章]。</li>
+<li><strong>拿捏</strong>：沈润遣严复登门，以买凶证据勒索扈夫人五万两、逼其阻断清圆亲事[第62章]。</li>
+</ol>
+<h3>关键转折与因果链</h3>
+<ul>
+<li><strong>第34章（势力转折）</strong>：沈润借谢纾除政敌 → 谢家否极泰来，也为&quot;谢家此后仰沈润鼻息、清圆被当筹码&quot;埋因。</li>
+<li><strong>第52-53章（感情质变）</strong>：沈润由暗中纠缠转为<strong>当面求娶</strong>、并陪伴做母亲法事 → 清圆&quot;由畏转感&quot;，好感显著升温（&quot;也没说不喜欢&quot;）。</li>
+<li><strong>第54章（战场转移）</strong>：选妃 → 宅斗由内宅升级到宫闱/内侍省，扈夫人公然违逆老太太，矛盾公开化。</li>
+<li><strong>第60章（宅斗高潮）</strong>：护国寺毒计反噬其女 → 清圆&quot;以彼之道还施彼身&quot;，清如失贞、进宫路断，<strong>扈夫人房声势大跌、众叛亲离</strong>[第60-61章]。</li>
+</ul>
+<h3>卷末钩子（悬念升级）</h3>
+<p>第62章：扈夫人被严复勒索、被迫变卖产业，且被逼&quot;阻断清圆与丹阳侯家婚事&quot;，她暗下决心&quot;你嫁不成小侯爷，清圆也嫁不成&quot;[第62章]——<strong>由&quot;内宅斗狠&quot;转入&quot;对清圆婚事的直接破坏&quot;，引出卷三的议亲/退亲风暴。</strong></p>
+<hr>
+<h2>卷三·议亲定亲（第63-84章｜21.6%）</h2>
+<h3>阶段目标</h3>
+<ul>
+<li><strong>女主目标</strong>：守诺嫁李从心 → 识破真相后退亲 → 在&quot;依礼求娶&quot;的规矩里夺回主动权。</li>
+<li><strong>沈润目标</strong>：拆散清圆与李从心、把清圆娶进门；同时为谢家解围以固宠清圆。</li>
+</ul>
+<h3>核心事件（按序）</h3>
+<ol>
+<li><strong>提亲与了断</strong>：李从心携丹阳侯夫妇手书回幽州提亲[第63章]；清圆赴上京归还玉佩欲了断，沈润避而不见、以&quot;将与穆家定亲&quot;相激、强拥告白&quot;你别嫁给他，嫁给我成吗&quot;[第64章]；清圆回幽州议定与李从心亲事[第65章]。</li>
+<li><strong>设局拆散</strong>：东皋夜宴李从心当众言&quot;她识大体&quot;（沈润设局），清圆寒心[第66章]；谢纾战败获罪[第67章]；清圆晨赴侯府别业撞破李从心私情、当场退亲[第68章]。</li>
+<li><strong>弃女与请旨</strong>：谢家求援无门，沈润暗示&quot;救谢家须清圆亲来&quot;，老太太&quot;把人骗过去&quot;[第69章]；沈润留清圆、亮后颈&quot;充&quot;字黥印述连坐之祸[第70章]；清圆怒逐设局的沈润、芳纯一句&quot;大嫂子&quot;泄底[第71章]；清圆套话识破&quot;定亲穆家&quot;实为幌子，沈润殿前请旨指婚、将清圆归置陈家门下[第72章]。</li>
+<li><strong>依礼求娶</strong>：清圆一反常态回撩、陈家二老入幽州接走清圆、立&quot;依礼求娶&quot;之规[第73-74章]；沈润登门送聘、过二老关，清圆以纳猫契刁难[第75章]；坦白内情、二人同赴市集聘猫定情[第76章]。</li>
+<li><strong>宣示与备战</strong>：游街、鸿雁楼当众宣示娶清圆、回怼谢家[第77章]；赠六万两妆奁、约定石堡城平定后请期[第78章]；谢家知受骗、定下婚宴逼拜之计[第79章]。</li>
+<li><strong>定婚期</strong>：沈润殿前震慑诋毁之臣、题&quot;大圆子&quot;寄情[第80章]；初识皓雪、芳纯坠胎[第81章]；蒋氏告密婚宴发难之计、清圆以利结盟二房[第83章]；谢纾班师失势、沈澈因芳纯欲和离、定婚期十一月初六[第84章]。</li>
+</ol>
+<h3>关键转折与因果链</h3>
+<ul>
+<li><strong>第68章（感情抉择转折）</strong>：撞破李从心私情 → 李从心线终结，清圆&quot;有恃无恐&quot;的局面消失，退婚反而把自己推入更被动之境，只能&quot;求沈润&quot;。</li>
+<li><strong>第72章（婚局定盘）</strong>：识破幌子 + 沈润请旨指婚 → <strong>婚姻由&quot;交易/算计&quot;落定为&quot;圣旨+真心&quot;</strong>，清圆由怨转惜（&quot;全世界辜负她，还有一个沈润不会辜负她&quot;）。</li>
+<li><strong>因果主线</strong>：沈润&quot;拆李从心—请旨—依礼求娶&quot;三连布局 → 谢家无从插手 → 引出卷四&quot;谢家婚宴发难 vs 圣旨&quot;的正面对撞。</li>
+</ul>
+<h3>卷末钩子（悬念升级）</h3>
+<p>第84章：婚期将近，<strong>谢家密谋&quot;携户籍册子、婚宴逼拜、叫清圆在贵人圈抬不起头&quot;</strong>[第79章]；同时沈家突发**芳纯要与沈澈&quot;和离&quot;**之变[第84章]——大喜前夜，双线危机同时压顶。</p>
+<hr>
+<h2>卷四·成婚当家（第85-101章｜16.7%）</h2>
+<h3>阶段目标</h3>
+<ul>
+<li><strong>女主目标</strong>：站稳沈家主母之位、执掌中馈、护住妯娌芳纯、清算姚家与谢家旧怨。</li>
+</ul>
+<h3>核心事件（按序）</h3>
+<ol>
+<li><strong>成婚与翻盘</strong>：谢老太太率扈夫人闯婚宴、当众质问&quot;无媒无聘&quot;[第85章]；黄门宣旨封清圆&quot;广阳郡夫人&quot;，谢家争无所据、闹婚惨败[第86章]。</li>
+<li><strong>当家与说合</strong>：新婚次日设团圆宴说合沈澈、芳纯[第87章]；入宫谢恩、向皇后献策，点破清容&quot;母亲冤案真凶另有其人&quot;[第88章]；布崔婆子为耳目、防皓雪[第89章]；开导芳纯破&quot;纳妾&quot;心结、以&quot;第一碗茶汤&quot;敲打皓雪[第90-91章]。</li>
+<li><strong>回谢府清算</strong>：沈润返京、清圆回陈家探祖、拒谢家求和[第92章]；清和、正则登门苦求，清圆松口回谢府探病父[第93章]；谢纾示靳氏龙衔珠遗玉、吐露&quot;撵母是父意&quot;隐情、承认靳氏被冤[第94章]；清圆以妆奁赎回春台、陶嬷嬷[第94-95章]。</li>
+<li><strong>休扈氏</strong>：清和得知清如纠缠李观灵，大闹上房[第96章]；谢纾当众写休书休扈夫人、扈氏触柱未死被遣回娘家[第96-97章]；沈润负伤归来、暗查&quot;余孽&quot;[第97章]。</li>
+<li><strong>清算姚家</strong>：指挥使府首度大宴、引姚家母女出花厅[第98章]；清圆设局诱皓雪现形，皓雪欲迷奸沈澈反被捉奸[第99章]；沈润押姚家母女入卢龙军大牢[第100章]。</li>
+<li><strong>年节与变起</strong>：沈家头一个团圆年、孤独园善政见效[第101章]；大年初一惊闻姚家母女牢中&quot;上吊&quot;一死一伤[第101章]。</li>
+</ol>
+<h3>关键转折与因果链</h3>
+<ul>
+<li><strong>第97章（仇怨转折）</strong>：扈氏被休、遣回娘家 → 母案仇人第一次落败，且&quot;此景与当年撵靳春晴出府似曾相识&quot;[第97章]，因果循环；扈氏因&quot;夏姨娘、小厮两条人命在身&quot;不敢闹大，为终章行凶埋因。</li>
+<li><strong>第99章（外家线转折）</strong>：设局捉奸 + 雀儿供出象胆皮滑胎真相 → 姚家（芳纯娘家）图谋彻底破产，芳纯倒向清圆。</li>
+<li><strong>因果主线</strong>：清圆借沈润之权完成&quot;内宅清算&quot;（休扈氏）+ 掌握姚家案 → 姚家母女入狱 → 为终章&quot;扈氏借狱中伪案反击&quot;提供舞台。</li>
+</ul>
+<h3>卷末钩子（悬念升级）</h3>
+<p>第101章：团圆年被命案打断——<strong>姚家母女牢中&quot;上吊&quot;，一死一伤</strong>，沈润随即陷入&quot;私设刑狱、逼死命官家眷&quot;的绝境[第102章]。危机从&quot;宅斗胜利&quot;骤然翻转为&quot;灭顶之灾&quot;，直接引爆终章。</p>
+<hr>
+<h2>终章·昭雪（第102章｜1.0%）</h2>
+<h3>核心事件</h3>
+<ol>
+<li><strong>反转起点</strong>：姚家母女&quot;自尽&quot;经仵作验出麻绳勒痕（他杀），沈润被陷、姚绍入京告御状[第102章]。</li>
+<li><strong>真凶与布局</strong>：被休的扈夫人说动卢龙军团练使幼弟扈重宽、贿通狱卒麻三伪造自尽，欲借命案扳倒沈润[第102章]；沈润实为<strong>将计就计、以姚家母女为饵诱扈氏出手</strong>的&quot;螳螂捕蝉&quot;之局[第102章]。</li>
+<li><strong>朝堂昭雪</strong>：谢纾为脱&quot;无故休妻&quot;之罪，当众抖露休妻隐情（<strong>主母毒杀妾室、嫁祸另一名妾室</strong>）→ 清圆母亲靳春晴的毒杀罪名洗清；沈润奏明真凶落网，仅受&quot;罚俸半年、解职一月&quot;轻罚（实为婚假）[第102章]。</li>
+<li><strong>清算与收官</strong>：扈氏一门三人斩立决，清圆携母亲牌位观刑、沉冤得雪，沈润抬手遮住她的眼[第102章]；姚绍贬为蜀地都水使者；清容受封代公主出塞和亲[第102章]。</li>
+<li><strong>感情收束</strong>：沈润假称被解职试探，清圆甘愿&quot;同富贵、也可共患难&quot;[第102章]；末句沈润疑清圆有孕，&quot;你不会怀上了吧&quot;戛然收束。</li>
+</ol>
+<h3>情绪峰值</h3>
+<p>第102章情绪达全书最高——爽★5、暖★4、反转★4、泪★3；名场面：<strong>朝堂昭雪 + 法场观刑、沈润遮眼</strong>[第102章]。</p>
+<hr>
+<h2>附一：全书因果主链（一句话串联）</h2>
+<blockquote>
+<p>谢纾当年在剑门关冷遇落难的沈家兄弟（旧怨）[第28章] → 谢纾遭贬、谢家失势（犯官家眷）[第22章] → 老太太以清圆为棋子、为&quot;填窟窿&quot;之物[第13、69章] → 清圆借沈润之势求生、查母案[第34-53章] → 沈润因对清圆起意而连环布局（勒索扈夫人[第62章]、设局拆李从心[第71章]、请旨指婚[第72章]）→ 谢家弃女、清圆嫁入沈家封诰[第86章] → 清圆借沈润之权回谢府清算、休扈氏[第96-97章] → 姚家案发、母女入狱[第100章] → 沈润将计就计诱扈氏买凶[第102章] → 朝堂昭雪母冤、扈氏斩决，全书终[第102章]。</p>
+</blockquote>
+<h2>附二：&quot;未完待续&quot;开放线索（正文虽完，台账标记&quot;未回收&quot;的长线，可作续写抓手）</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>埋于</th>
+<th>未收内容</th>
+<th>可延伸方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V2</td>
+<td>第1章</td>
+<td>老太太信&quot;镇宅&quot;之说、淡月轩空关养鬼</td>
+<td>旧宅灵异/母案现场再探</td>
+</tr>
+<tr>
+<td>V12</td>
+<td>第7章</td>
+<td>指认靳姨娘的小丫头&quot;病死&quot;，其家却骤富、兄长开灯油铺（疑封口费）</td>
+<td>母案人证链的深挖</td>
+</tr>
+<tr>
+<td>V37</td>
+<td>第34章</td>
+<td>沈润&quot;十二灯树&quot;复仇名单，尚余最后一盏（仗妹妹入宫为妃者）未除</td>
+<td>朝局线续篇</td>
+</tr>
+<tr>
+<td>V41</td>
+<td>第42章</td>
+<td>扈夫人欲遣人赴濠州追查当年那封索银信</td>
+<td>母案余波</td>
+</tr>
+<tr>
+<td>V51</td>
+<td>第56章</td>
+<td>沈润暗挖江南厨子（为婚后清圆吃家乡菜铺垫）未在正文点收</td>
+<td>婚后日常/彩蛋</td>
+</tr>
+<tr>
+<td>V63</td>
+<td>第70章</td>
+<td>沈润后颈&quot;充&quot;字黥印、沈家连坐旧事</td>
+<td>沈润身世前传</td>
+</tr>
+<tr>
+<td>V67</td>
+<td>第80章</td>
+<td>沈润命暗查御史中丞刘昂以权谋私之罪，未结</td>
+<td>朝局线续篇</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>（本文件仅覆盖&quot;分卷大纲&quot;维度；各条支线独立追踪见 <code>09_支线地图.md</code>，时序与信息差见「时间线」维度。）</em></p>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

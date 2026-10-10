@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>核心设定·重生金手指 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>核心设定·重生金手指</h1>
+<hr>
+<h2>重生机制</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>标准重生（带前世完整记忆），无系统/面板/异能</td>
+<td>[第1章]</td>
+</tr>
+<tr>
+<td>前世身份</td>
+<td>沈嘉兰，大周首辅沈尚书嫡长孙女</td>
+<td>[第2章回忆]</td>
+</tr>
+<tr>
+<td>死亡方式</td>
+<td>家族因八王夺嫡株连→充军发配→夫萧杭途中病死→香兰贫病交加病亡</td>
+<td>[第2章回忆][第354章补完]</td>
+</tr>
+<tr>
+<td>触发条件</td>
+<td>流放途中在破败观音小庙跪拜发愿：&quot;谁能替沈氏一门收尸，来世为奴为婢，结草衔环来报&quot;</td>
+<td>[第354章·香兰对林锦楼袒露]</td>
+</tr>
+<tr>
+<td>重生载体</td>
+<td>陈万全之女陈香兰（具体机制未明确：附体/顶替/天然）</td>
+<td>原文未说明</td>
+</tr>
+<tr>
+<td>重生解释</td>
+<td>林家祖坟供奉了沈家先人→发愿应验→重生为林家家生丫鬟</td>
+<td>[第354章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>金手指能力清单</h2>
+<h3>拥有的能力</h3>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>具体内容</th>
+<th>使用场景</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前世完整记忆</td>
+<td>沈嘉兰全部记忆：大家闺秀教育/首辅家族处世经验/前世婚姻情感</td>
+<td>全书——超越出身的气质/能力核心来源</td>
+<td>[第1章起]</td>
+</tr>
+<tr>
+<td>前世技能</td>
+<td>书画（祖父亲授·簪花小楷·工笔花鸟）/ 管家经验 / 棋艺 / 经史子集 / 针线女红</td>
+<td>&quot;兰香居士&quot;画作收入[第89章]；主持中馈[第254章]；诗社代笔[第57章]</td>
+<td>多处</td>
+</tr>
+<tr>
+<td>旧物识别</td>
+<td>认出前世陪嫁孔雀屏风[第177章]；认出沈家书信字画[第354章]</td>
+<td>触发情绪/推动身世线</td>
+<td>[第177章][第354章]</td>
+</tr>
+<tr>
+<td>前世人物识别（感觉层）</td>
+<td>对宋柯有&quot;恍惚想起前世&quot;的感知（暗示宋柯=萧杭转世）</td>
+<td>感情线核心伏笔</td>
+<td>[第14章][第28章][第46章]</td>
+</tr>
+</tbody></table>
+<h3>不拥有的能力（能力边界）</h3>
+<table>
+<thead>
+<tr>
+<th>不能做的事</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>预知未来</td>
+<td>只有前世记忆，不能预知今生走向。香兰面对每个新危机都是现场应对</td>
+</tr>
+<tr>
+<td>特殊异能/系统/道具</td>
+<td>无。全书偏写实，无超自然元素（除重生本身）</td>
+</tr>
+<tr>
+<td>认识当下人物</td>
+<td>前世与林锦楼仅&quot;议亲未果&quot;一面之缘[第2章]，不了解林府内部人物</td>
+</tr>
+<tr>
+<td>控制记忆传递</td>
+<td>宋柯可能有前世萧杭的片段感知，但香兰无法主动激发或阻止</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>旧物识别（前世物件·关键伏笔）</h2>
+<table>
+<thead>
+<tr>
+<th>物件</th>
+<th>前世来历</th>
+<th>今生发现</th>
+<th>叙事作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>孔雀屏风</td>
+<td>沈嘉兰前世陪嫁</td>
+<td>[第177章]画眉献给林锦楼，香兰认出</td>
+<td>伏笔激活：林沈两家有深层渊源</td>
+</tr>
+<tr>
+<td>沈家书信字画（一匣）</td>
+<td>沈公书信字帖（林家曾留作字帖）</td>
+<td>[第354章]林锦楼取出赠香兰</td>
+<td>触发前世身世袒露</td>
+</tr>
+<tr>
+<td>前世诗（宋柯扇子上）</td>
+<td>&quot;小楼闻夜笛，岑寂已三更&quot;——萧杭的诗</td>
+<td>[第46章]香兰街上看见宋柯扇子</td>
+<td>★铁证宋柯=萧杭转世</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>金手指的叙事代价</h2>
+<p>作者刻意限制金手指，使香兰的一切成就来自<strong>前世积累的教育底蕴 + 今世努力忍耐 + 心性成长</strong>。代价包括：</p>
+<ol>
+<li><strong>前世情感包袱</strong>：萧杭→宋柯的两世纠缠，横跨ch14-313共约300章，是香兰最大的感情负担</li>
+<li><strong>身份认同困惑</strong>：&quot;我到底是沈嘉兰还是陈香兰？&quot;——直到天灯夜[第354章]才彻底释怀</li>
+<li><strong>前世亲人的遗憾</strong>：无法当面告别，以宗教仪式（天灯书信）完成情感释放[第354章]</li>
+<li><strong>暴露风险</strong>：前世记忆一旦泄露=疯子/妖怪，全书香兰只对三人不同程度透露（宋柯半知[第245章]/袁绍仁偶知[第224章]/林锦楼全知[第354章]）</li>
+</ol>
+<hr>
+<h2>续写红线</h2>
+<table>
+<thead>
+<tr>
+<th>红线</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不能加预知/系统/异能</td>
+<td>全书写实基调，加超自然元素会崩</td>
+</tr>
+<tr>
+<td>宋柯身份不能明确</td>
+<td>原文有意保留&quot;宋柯是否萧杭转世&quot;的模糊——有强暗示但从未明确确认，续写应保持此留白</td>
+</tr>
+<tr>
+<td>孔雀屏风来路不宜深究</td>
+<td>原文未做深度解释（前世陪嫁为何流落林家），是有意留白</td>
+</tr>
+<tr>
+<td>重生发愿机制不宜展开</td>
+<td>[第354章]揭晓一半（林家祖坟供奉），完整因果链并未铺开，续写不应&quot;补全设定&quot;</td>
+</tr>
+<tr>
+<td>香兰心性不能退行</td>
+<td>全书354章的蜕变弧度（泼辣→慈悲）是核心资产，续写中香兰不应退回泼辣状态</td>
+</tr>
+</tbody></table>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

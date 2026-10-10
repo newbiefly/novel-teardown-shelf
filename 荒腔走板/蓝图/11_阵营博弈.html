@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11 阵营博弈 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>11 阵营博弈</h1>
+<blockquote>
+<p>本篇写各方势力的力量对比、博弈手段、力量消长与最终格局。<br>人物间关系见 06关系网，剧情推进见 07分卷大纲。基于关系/时间线台账全书100章归纳。</p>
+</blockquote>
+<h2>一、四方势力（开局态势）</h2>
+<table>
+<thead>
+<tr>
+<th>势力</th>
+<th>首脑</th>
+<th>底牌/资源</th>
+<th>目标</th>
+<th>定位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>周幸阵营</strong></td>
+<td>周幸（赫连筠·&quot;少主&quot;）</td>
+<td>隐秘组织（暗探/鬼医/鬼手匠/义匪山寨）、遗诏、信息优势、三绝武艺</td>
+<td>复仇昭雪→扶正统→为苍生</td>
+<td>明弱暗强·布局者</td>
+</tr>
+<tr>
+<td><strong>齐煊阵营</strong></td>
+<td>齐煊（岭王/前东宫太子）</td>
+<td>青鹰军四千母族旧部、正统名分、腊梅暗语</td>
+<td>夺回帝位、复统</td>
+<td>潜龙·待时</td>
+</tr>
+<tr>
+<td><strong>赵执阵营</strong></td>
+<td>赵执（首辅）</td>
+<td>无常司死士（黑白双部）、遍布朝野的贪腐官链、皇帝信任</td>
+<td>维持权势、瓦解王朝&quot;求公平&quot;</td>
+<td>明强·反派主脑</td>
+</tr>
+<tr>
+<td><strong>皇帝阵营</strong></td>
+<td>齐宥（篡位昏君）</td>
+<td>龙影卫、皇权、御马监禁军</td>
+<td>保皇位、除隐患</td>
+<td>名义最强·实则空虚</td>
+</tr>
+</tbody></table>
+<p><strong>开局力量对比</strong>：赵执&gt;皇帝&gt;齐煊&gt;周幸（表面）。但周幸掌握信息与遗诏，是真正的操盘手。</p>
+<h2>二、博弈手段图谱</h2>
+<h3>周幸的博弈术（本书谋略美学核心）</h3>
+<ol>
+<li><strong>借私心成局</strong>：不硬拼，精准利用每个人的私心让他们自己站队——利用赵恪的猜疑（散布&quot;周陆定情&quot;离间）、皇帝的疑心（引疑赵执藏遗诏）、御史的忠（收编崔慧）、荣国公的野心（借遗诏结盟）</li>
+<li><strong>借刀杀人</strong>：引皇帝龙影卫杀入无常司据地[第90]，让两拨敌人自相残杀</li>
+<li><strong>偷梁换柱</strong>：三船调包[第68]，把&quot;计划失败&quot;演成&quot;计中之计&quot;，一举坑倒兵部尚书+荣国公</li>
+<li><strong>造舆论</strong>：礼库纵火+&quot;逆贼篡位&quot;血字+荧惑逆行天象+生幻迷香乱皇帝[第90-96]，把&quot;官逼民反&quot;舆论和禁军空虚同时做出</li>
+<li><strong>信息差碾压</strong>：永远比对手多知道一层（贪腐证据/遗诏/对手身世）</li>
+</ol>
+<h3>赵执的博弈术（反派主脑）</h3>
+<ol>
+<li><strong>暗养死士</strong>：无常司黑白双部+令主，清理门户（灭李修德口、追杀陆敛）</li>
+<li><strong>株连要挟</strong>：以陆驰旧案要挟崔慧检举恩师龚泽[第50]</li>
+<li><strong>劫质逼命</strong>：劫齐煊之子、勒杀王妃郑欣伪装自缢[第76-77]</li>
+<li><strong>绝境布局</strong>：&quot;留一线生机&quot;的山道诱杀[第79]</li>
+</ol>
+<ul>
+<li><strong>弱点</strong>：树敌太多、爪牙可被&quot;借刀&quot;清除、执念（收复塞北/求公平）使他孤注一掷</li>
+</ul>
+<h3>齐煊的博弈术</h3>
+<ol>
+<li><strong>正统名分</strong>：借遗诏之名结盟荣国公樊仲卓（禁军）[第70]</li>
+<li><strong>早朝告发</strong>：呈郸玉卷宗当众告发赵执，半朝请命[第82]</li>
+<li><strong>潜伏待时</strong>：青鹰军假扮难民/藏帝陵修陵队伍，借调令混入京城[第95]</li>
+</ol>
+<h2>三、力量消长关键节点</h2>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>事件</th>
+<th>力量变化</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[第20-21章]</td>
+<td>金矿案挖49具白骨→赵执停职→又以&quot;军饷&quot;脱罪复职</td>
+<td>赵执受创但未伤根本</td>
+</tr>
+<tr>
+<td>[第36章]</td>
+<td>周幸获遗诏结盟齐煊+青鹰军</td>
+<td>周齐联盟成型，暗势力壮大</td>
+</tr>
+<tr>
+<td>[第39章]</td>
+<td>手刃赵恪削首挑旗</td>
+<td>赵执丧子（右膀）+无常司受创</td>
+</tr>
+<tr>
+<td>[第68章]</td>
+<td>三船调包坑倒郑逸+荣国公、樊蔚下狱</td>
+<td>瓦解赵执朝中党羽</td>
+</tr>
+<tr>
+<td>[第75章]</td>
+<td>秦焕吐真言+遗诏曝光</td>
+<td>赫连冤案+篡位舆论引爆</td>
+</tr>
+<tr>
+<td>[第90章]</td>
+<td>借龙影卫火并灭无常司、枪挑玄狼</td>
+<td><strong>赵执爪牙尽失</strong></td>
+</tr>
+<tr>
+<td>[第92章]</td>
+<td>君相决裂→赵执下狱抄府</td>
+<td><strong>赵执垮台</strong>，皇帝孤立</td>
+</tr>
+<tr>
+<td>[第94-96章]</td>
+<td>京仓民变+青鹰部混入京城+迷香乱帝+改敕谕调走禁军</td>
+<td><strong>皇帝势力空虚化</strong></td>
+</tr>
+<tr>
+<td>[第97-98章]</td>
+<td>青鹰部夺城门+荣国公献枪压城+周幸持枪逼宫→奉遗诏揭篡位</td>
+<td><strong>总决战·齐煊登基</strong></td>
+</tr>
+</tbody></table>
+<p><strong>消长逻辑</strong>：周幸用&quot;分化+借刀+造势&quot;三板斧，让赵执与皇帝先内斗（君相决裂），再逐一清除赵执爪牙，最后趁皇帝势力空虚一击定乾坤。<strong>从不正面硬碰强敌，永远让敌人先自己削弱自己。</strong></p>
+<h2>四、关键中间派的倒戈</h2>
+<p>倒戈是本书博弈的胜负手——周幸擅长把敌方/中立方策反：</p>
+<table>
+<thead>
+<tr>
+<th>人物</th>
+<th>原属</th>
+<th>倒戈契机</th>
+<th>倒戈后作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陆酌光</td>
+<td>赵执无常司令主</td>
+<td>老陆遗训觉醒+爱周幸</td>
+<td>屠随从投名状、白部资源、护航血战</td>
+</tr>
+<tr>
+<td>崔慧</td>
+<td>都察院（查赵家）</td>
+<td>三输赌约+认同大义</td>
+<td>纵火造舆论、改敕谕、双线传令</td>
+</tr>
+<tr>
+<td>樊仲卓·樊蔚</td>
+<td>荣国公（骑墙）</td>
+<td>遗诏正统+野心</td>
+<td>禁军、神兵营驰援、献赫连枪压城</td>
+</tr>
+<tr>
+<td>吴吉安·文喜</td>
+<td>皇帝掌印太监</td>
+<td>师父武福之死+许奉恩（六年潜伏）</td>
+<td>宫中内线、逼皇帝证遗诏、引疑赵执</td>
+</tr>
+<tr>
+<td>李言归</td>
+<td>赵执无常司黑部</td>
+<td>被周幸要挟入局救陆</td>
+<td>一度合作救陆（后仍死忠赵执劫狱）</td>
+</tr>
+</tbody></table>
+<p><strong>策反规律</strong>：周幸抓的是每个人&quot;心里的一根刺&quot;——陆的老陆遗训、崔慧的寒门理想、荣国公的野心、吴吉安的师恩。<strong>不是收买，是唤醒/利用他们本就有的动机。</strong></p>
+<h2>五、最终格局</h2>
+<ul>
+<li><strong>赵执</strong>：垮台下狱→被李言归劫狱→被周幸对峙逼自刎（动机&quot;只求公平&quot;的悲怆反派）</li>
+<li><strong>皇帝齐宥</strong>：势力被架空→被擒</li>
+<li><strong>齐煊</strong>：奉遗诏承正统、登基</li>
+<li><strong>周幸阵营</strong>：功成身退，赐赫连封号领兵回塞北</li>
+<li><strong>荣国公</strong>：助登基，樊家弃卒保帅（樊蔚入狱逼交兵权）</li>
+</ul>
+<h2>六、阵营博弈的主题落点</h2>
+<p>博弈的胜负不在兵力（周幸阵营兵力最弱），而在**&quot;人心向背&quot;**——周幸赢在能唤醒&quot;荒腔走板的异类&quot;们（陆、崔慧、吴吉安、李言归、无名百姓）为大义站到一起；赵执输在把所有人当棋子、树敌太多。呼应主题&quot;能救百姓的从来是百姓自己&quot;——真正的力量是被唤醒的人心，不是死士与禁军。</p>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

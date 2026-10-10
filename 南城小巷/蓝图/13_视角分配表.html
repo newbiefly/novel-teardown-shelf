@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南城小巷 · 视角分配表 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>南城小巷 · 视角分配表</h1>
+<blockquote>
+<p>本文档为《南城小巷》创作蓝图第 13 号文件，归纳自全部 70 张章卡的 <strong>&quot;视角标注&quot;字段</strong>。<br>全书统一为 <strong>第三人称限知</strong>，以 <strong>南久</strong> 为叙事锚点；下方为逐章视角归属、切换规则与 POV 占比统计。<br>占比口径按&quot;每章一个主视角&quot;统计：<strong>南久主视角 61 章 / 南久×宋霆双主角视角 8 章 / 宋霆独立主视角 1 章</strong>。</p>
+</blockquote>
+<hr>
+<h2>一、逐章视角归属表</h2>
+<table>
+<thead>
+<tr>
+<th>章</th>
+<th>主视角（叙事锚点）</th>
+<th>切镜 / 次要视角</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[第1章]</td>
+<td>南久</td>
+<td>结尾略向外收（全知点题&quot;她碰见了她的干叔叔，宋霆&quot;）</td>
+</tr>
+<tr>
+<td>[第2章]</td>
+<td>南久</td>
+<td>中段一句南老爷子视角点评</td>
+</tr>
+<tr>
+<td>[第3章]</td>
+<td>南久</td>
+<td>宋霆归家一段以他视线打量南久</td>
+</tr>
+<tr>
+<td>[第4章]</td>
+<td>南久</td>
+<td>无（全程贴南久）</td>
+</tr>
+<tr>
+<td>[第5章]</td>
+<td>南久</td>
+<td>相亲桌一段切宋霆短暂注视</td>
+</tr>
+<tr>
+<td>[第6章]</td>
+<td>南久</td>
+<td>后半切宋霆收桌、吴婶说亲的场外视角</td>
+</tr>
+<tr>
+<td>[第7章]</td>
+<td>南久</td>
+<td>夜谈一段双人视角交替</td>
+</tr>
+<tr>
+<td>[第8章]</td>
+<td>南久</td>
+<td>结尾切宋霆视角看她的变化</td>
+</tr>
+<tr>
+<td>[第9章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第10章]</td>
+<td>南久</td>
+<td>歪脖子树一段短暂切宋霆视角</td>
+</tr>
+<tr>
+<td>[第11章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第12章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第13章]</td>
+<td>南久</td>
+<td>无（本章宋霆未出场）</td>
+</tr>
+<tr>
+<td>[第14章]</td>
+<td>南久</td>
+<td>末尾切宋霆视角回望旧巷</td>
+</tr>
+<tr>
+<td>[第15章]</td>
+<td>南久</td>
+<td>中段切宋霆视角（冲澡、搓衣、铺地铺、熬粥）</td>
+</tr>
+<tr>
+<td>[第16章]</td>
+<td>南久</td>
+<td>廊窗一段为受限制的视角（她只看到人影与火点）</td>
+</tr>
+<tr>
+<td>[第17章]</td>
+<td>南久</td>
+<td>珍敏出场处短暂以其视线打量南久</td>
+</tr>
+<tr>
+<td>[第18章]</td>
+<td>南久</td>
+<td>门外一段切宋霆视角</td>
+</tr>
+<tr>
+<td>[第19章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第20章]</td>
+<td>南久</td>
+<td>珍敏观察处短暂切外部视角</td>
+</tr>
+<tr>
+<td>[第21章]</td>
+<td>南久</td>
+<td>宋霆独坐一段为他的视角</td>
+</tr>
+<tr>
+<td>[第22章]</td>
+<td>南久</td>
+<td>宋霆寻人一段为他的视角（含心理）</td>
+</tr>
+<tr>
+<td>[第23章]</td>
+<td>南久</td>
+<td>珍敏报警与宋霆赶来两段为外部视角</td>
+</tr>
+<tr>
+<td>[第24章]</td>
+<td>南久</td>
+<td>结尾切宋霆/朱大海的外部视角</td>
+</tr>
+<tr>
+<td>[第25章]</td>
+<td>南久</td>
+<td>间插宋霆心理（&quot;他明知道不应该……他不能，但他还是默许了&quot;）</td>
+</tr>
+<tr>
+<td>[第26章]</td>
+<td>南久</td>
+<td>开篇宋霆内心独白；间插珍敏、南乔宇的局部视角</td>
+</tr>
+<tr>
+<td>[第27章]</td>
+<td>南久</td>
+<td>间插南乔宇的局部视角</td>
+</tr>
+<tr>
+<td>[第28章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第29章]</td>
+<td>南久</td>
+<td>中段转入宋霆内心独白</td>
+</tr>
+<tr>
+<td>[第30章]</td>
+<td><strong>宋霆</strong></td>
+<td>重逢段落兼采南久视角</td>
+</tr>
+<tr>
+<td>[第31章]</td>
+<td>南久</td>
+<td>三花猫来历一段为宋霆视角的回溯补叙</td>
+</tr>
+<tr>
+<td>[第32章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第33章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第34章]</td>
+<td>南久</td>
+<td>柳茵回忆宋霆少年一段为柳茵视角；结尾宋霆身世回溯为全知补叙</td>
+</tr>
+<tr>
+<td>[第35章]</td>
+<td>南久</td>
+<td>离巷段落切入宋霆视角</td>
+</tr>
+<tr>
+<td>[第36章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第37章]</td>
+<td>南久</td>
+<td>穿插林颂耀视角（对合伙人/婚姻的盘算）与林盛康父子的车内视角</td>
+</tr>
+<tr>
+<td>[第38章]</td>
+<td>南久</td>
+<td>巷口对峙后半段切入宋霆视角</td>
+</tr>
+<tr>
+<td>[第39章]</td>
+<td>南久</td>
+<td>穿插宋霆（受杖、认错）与林颂耀（见家长布局）视角</td>
+</tr>
+<tr>
+<td>[第40章]</td>
+<td>南久</td>
+<td>穿插宋霆（听闻婚讯）与帽儿巷群像视角</td>
+</tr>
+<tr>
+<td>[第41章]</td>
+<td>南久</td>
+<td>穿插宋霆（审视林颂耀、不忍她难堪）视角</td>
+</tr>
+<tr>
+<td>[第42章]</td>
+<td>南久</td>
+<td>阁楼与浴室段切入宋霆视角（自剖恩义、越界、失控与恐惧）</td>
+</tr>
+<tr>
+<td>[第43章]</td>
+<td>南久</td>
+<td>偶入林颂耀视角（被&quot;玩&quot;的屈辱）</td>
+</tr>
+<tr>
+<td>[第44章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第45章]</td>
+<td>南久</td>
+<td>无</td>
+</tr>
+<tr>
+<td>[第46章]</td>
+<td>南久</td>
+<td>末段切姜清视角（见村民赶来的激动）并引宋霆登场</td>
+</tr>
+<tr>
+<td>[第47章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>前段宋霆（车祸、住院、回山），中后段南久</td>
+</tr>
+<tr>
+<td>[第48章]</td>
+<td>南久</td>
+<td>尾段切入宋霆内心（自剖与占有之欲）</td>
+</tr>
+<tr>
+<td>[第49章]</td>
+<td>南久</td>
+<td>中段切入宋霆内心（独占之欲）</td>
+</tr>
+<tr>
+<td>[第50章]</td>
+<td>南久</td>
+<td>后段切入宋霆内心（自嘲与嫉妒）</td>
+</tr>
+<tr>
+<td>[第51章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>前段宋霆（失而复得的心悸），中后段回到南久</td>
+</tr>
+<tr>
+<td>[第52章]</td>
+<td>南久</td>
+<td>中段大段切入宋霆内心（&quot;这方寸之地困不住她一生一世&quot;）</td>
+</tr>
+<tr>
+<td>[第53章]</td>
+<td>南久</td>
+<td>中段插入宋霆的帽儿巷段落（旧照片与&quot;不知道&quot;）</td>
+</tr>
+<tr>
+<td>[第54章]</td>
+<td>南久</td>
+<td>尾段转入林颂耀内心（&quot;看清结局&quot;的失重）</td>
+</tr>
+<tr>
+<td>[第55章]</td>
+<td>南久</td>
+<td>办公室谈判段转林颂耀视角；结尾转宋霆视角</td>
+</tr>
+<tr>
+<td>[第56章]</td>
+<td>南久</td>
+<td>兼宋霆、南老爷子视角</td>
+</tr>
+<tr>
+<td>[第57章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>双视角交错</td>
+</tr>
+<tr>
+<td>[第58章]</td>
+<td>南久</td>
+<td>含宋霆视角</td>
+</tr>
+<tr>
+<td>[第59章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>双视角</td>
+</tr>
+<tr>
+<td>[第60章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>穿插路人（工作人员）侧写</td>
+</tr>
+<tr>
+<td>[第61章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>含宋霆往事内心独白；穿插吴婶侧写</td>
+</tr>
+<tr>
+<td>[第62章]</td>
+<td>南久</td>
+<td>含宋霆视角（回想视频后的冲动与心落地）</td>
+</tr>
+<tr>
+<td>[第63章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>穿插吴婶、姚洁侧写</td>
+</tr>
+<tr>
+<td>[第64章]</td>
+<td>南久</td>
+<td>含宋霆视角片段；穿插小张、姚洁、肖洋侧写</td>
+</tr>
+<tr>
+<td>[第65章]</td>
+<td><strong>南久 × 宋霆（双）</strong></td>
+<td>含吴婶侧写</td>
+</tr>
+<tr>
+<td>[第66章]</td>
+<td>南久</td>
+<td>中段转入南老爷子视角（饭桌等饭、观察宋霆的变化）</td>
+</tr>
+<tr>
+<td>[第67章]</td>
+<td>南久</td>
+<td>开篇与中段部分转入宋霆视角；章末转南乔宇</td>
+</tr>
+<tr>
+<td>[第68章]</td>
+<td>南久（隐性主视角）</td>
+<td>开场为南振东/廖虹视角；中段穿插南乔宇内心独白</td>
+</tr>
+<tr>
+<td>[第69章]</td>
+<td>南久</td>
+<td>开篇为全知解释视角（老爷子用意）；中段转入南振东/廖虹视角</td>
+</tr>
+<tr>
+<td>[第70章]</td>
+<td>南久</td>
+<td>中段以丁骏转述、新闻侧写林颂耀线；结尾回到南久与宋霆</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、视角切换规则</h2>
+<ol>
+<li><p><strong>基线：第三人称限知，全篇以&quot;南久&quot;为叙事锚点。</strong><br>70 章中 61 章以南久为主视角；南久几乎每一章都在场（唯一明显例外是 [第30章] 以宋霆为主、与她&quot;错身&quot;的守茶馆叙事）。</p>
+</li>
+<li><p><strong>切镜幅度小，多为&quot;段落级插入&quot;，极少整章换人。</strong><br>整章更换主视角全书仅 <strong>[第30章]</strong> 一次（宋霆守馆段）；其余均为某一场景/某一段落临时切出，切完即回。双主角并列也集中在番外与第47/51章两处高潮。</p>
+</li>
+<li><p><strong>切镜三大触发情境：</strong></p>
+<ul>
+<li><strong>① 男主动情或自剖时刻</strong>：把宋霆的隐忍与占有欲&quot;亮给读者&quot;（[第15][第21][第25][第29][第42][第48-52]章）——解决&quot;男主话少&quot;的难题，让读者看见他没说出口的在意。</li>
+<li><strong>② 配角对主角的&quot;打量&quot;（外部凝视）</strong>：用外部视角侧写女主的美/成长/震慑力——珍敏（[第17][第20]章）、柳茵（[第34章]）、林颂耀（[第37][第39][第43][第54][第55]章）、路人/同事（[第60]章）。</li>
+<li><strong>③ 场外/全知补叙</strong>：身世回溯（[第34章]）、群像洪流（[第40]章帽儿巷群像）、新闻侧写（[第70]章林颂耀线）。</li>
+</ul>
+</li>
+<li><p><strong>双主角视角的用法＝&quot;双向心理对照&quot;。</strong><br>集中在 [第47章]（车祸—重逢，他濒死、她力竭）、[第51章]（钥匙试探，他要确认她停留、她把主动权交还），以及番外 [第57][第59][第60][第61][第63][第65] 章（甜蜜日常的&quot;你来我往&quot;）——同一情境两人各自心里话交替呈现，制造&quot;明明都在意却都不说破&quot;的甜/虐。</p>
+</li>
+<li><p><strong>悬置视角（限制性留白）</strong>：[第16章] 廊窗场景严格跟随南久受限视线（&quot;她只看到人影与火点&quot;），故意不切宋霆，把&quot;他为什么点香&quot;变成悬念；[第39章] 茶堂&quot;短暂交汇一眼&quot;也仅给南久侧，宋霆受杖以外部写。<br>→ <strong>规则：凡涉及情感悬念处，宁可少给信息、不轻易切全知。</strong></p>
+</li>
+<li><p><strong>反派/外人出场多用外部视角保持距离</strong>：朱家（[第23-24]章）、林颂耀（[第37][第43][第54][第55]章）多以&quot;被观察&quot;呈现，避免读者过度贴近反派内心；只在其&quot;结局失重&quot;时（[第54]章尾）短暂给内心，完成收束。</p>
+</li>
+<li><p><strong>结尾收束习惯</strong>：多以&quot;南久视角 + 一个外部定格&quot;收章（[第1章]全知点题、[第46章]姜清视角引出宋霆、[第55章]宋霆视角回望），形成&quot;钩子式&quot;转场。</p>
+</li>
+</ol>
+<hr>
+<h2>三、各 POV 占比统计</h2>
+<h3>3.1 整体占比（按每章一个主视角计）</h3>
+<table>
+<thead>
+<tr>
+<th>主视角类型</th>
+<th>章数</th>
+<th>占比</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>南久</strong>（唯一/主视角锚点）</td>
+<td>61</td>
+<td><strong>87.1%</strong></td>
+<td>除第30章及下列双视角章外的全部</td>
+</tr>
+<tr>
+<td><strong>南久 × 宋霆</strong>（双主角并列）</td>
+<td>8</td>
+<td>11.4%</td>
+<td>第47、51、57、59、60、61、63、65章</td>
+</tr>
+<tr>
+<td><strong>宋霆</strong>（独立主视角）</td>
+<td>1</td>
+<td>1.4%</td>
+<td>第30章</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>70</td>
+<td>100%</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>等价表述：<strong>南久参与主导叙述的章＝69 章（98.6%）</strong>；<strong>宋霆作为主/并列视点的章＝9 章（12.9%）</strong>。</p>
+</blockquote>
+<h3>3.2 主要配角&quot;切镜&quot;频次（作为次要视角出现的章）</h3>
+<table>
+<thead>
+<tr>
+<th>切镜人物</th>
+<th>出现章</th>
+<th>次数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>宋霆（局部/双）</td>
+<td>第3、5、6、8、10、14、15、18、21、22、24、25、26、29、31、35、38、39、40、41、42、48、49、50、52、53、55 等</td>
+<td>≥27</td>
+<td>亮出&quot;隐忍/占有&quot;内心，制造信息差</td>
+</tr>
+<tr>
+<td>林颂耀</td>
+<td>第37、39、43、54、55章</td>
+<td>5</td>
+<td>男二&quot;猎人视角&quot;，反衬女主自立</td>
+</tr>
+<tr>
+<td>珍敏</td>
+<td>第17、20、26章</td>
+<td>3</td>
+<td>外部凝视女主／茶山视角</td>
+</tr>
+<tr>
+<td>南乔宇</td>
+<td>第26、27、67章</td>
+<td>3</td>
+<td>同辈竞争视角、贪念</td>
+</tr>
+<tr>
+<td>南老爷子</td>
+<td>第2、66章</td>
+<td>2</td>
+<td>长辈审视/兜底视角</td>
+</tr>
+<tr>
+<td>南振东 / 廖虹</td>
+<td>第68、69章</td>
+<td>2</td>
+<td>家族算计视角</td>
+</tr>
+<tr>
+<td>柳茵</td>
+<td>第34章</td>
+<td>1</td>
+<td>见证者（撞破私情）</td>
+</tr>
+<tr>
+<td>姜清</td>
+<td>第46章</td>
+<td>1</td>
+<td>茶山管理队视角，引出宋霆登场</td>
+</tr>
+<tr>
+<td>吴婶（侧写）</td>
+<td>第61、63、65章</td>
+<td>3</td>
+<td>街坊旁观、风波放大器</td>
+</tr>
+<tr>
+<td>丁骏 / 新闻（侧写）</td>
+<td>第70章</td>
+<td>1</td>
+<td>男二线收束的转述视角</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>统计口径：同一章若有多位配角切镜，按实际出现计次；宋霆切镜横跨全书，是&quot;第一配角视角&quot;。</p>
+</blockquote>
+<h3>3.3 按卷分布（双/独宋霆视角的集中位置）</h3>
+<table>
+<thead>
+<tr>
+<th>卷</th>
+<th>宋霆独立/并列主视角章</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>卷一 初一</td>
+<td>无</td>
+<td>纯南久</td>
+</tr>
+<tr>
+<td>卷二 高二</td>
+<td>无</td>
+<td>仅局部切宋霆</td>
+</tr>
+<tr>
+<td>卷三 大二</td>
+<td>无</td>
+<td>局部切宋霆密集（第15、21、25章等）</td>
+</tr>
+<tr>
+<td>卷四 大三</td>
+<td>无</td>
+<td>[第29章]中段宋霆独白</td>
+</tr>
+<tr>
+<td>卷五 大四</td>
+<td>无</td>
+<td>局部</td>
+</tr>
+<tr>
+<td>卷六 进入社会</td>
+<td>无</td>
+<td>纯南久</td>
+</tr>
+<tr>
+<td>卷七 人生旅途</td>
+<td>[第30章]（宋霆）、[第47章]、[第51章]</td>
+<td>高潮段起用双/独视角</td>
+</tr>
+<tr>
+<td>卷八 番外</td>
+<td>[第57、59、60、61、63、65章]</td>
+<td>甜蜜段双视角密集</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>规律：<strong>正文主线严守&quot;南久单锚点&quot;</strong>（宋霆仅供局部插入），到<strong>卷七高潮与卷八番外</strong>才放开双主角视角——视角的&quot;松绑&quot;本身呼应了关系从&quot;秘密&quot;走向&quot;公开&quot;。</p>
+</blockquote>
+<hr>
+<h2>四、视角调度技法提炼（可复用）</h2>
+<ol>
+<li><strong>单锚点限知写长线暗恋</strong>：全书用南久一个锚点，让&quot;读者只能跟着她猜男主心思&quot;，把&quot;宋霆到底在不在意&quot;做成贯穿全书的悬念（[第5][第8][第16]章）。</li>
+<li><strong>&quot;男主内心独白&quot;作定点投放</strong>：不整章切，只在关键动情处给一小段宋霆心理（[第15][第25][第42][第48-52]章），像&quot;幕间偷看&quot;，密度低但杀伤力强——<strong>用最省笔墨的方式立住寡言男主</strong>。</li>
+<li><strong>配角凝视＝侧写女主的镜子</strong>：让珍敏/柳茵/林颂耀/路人&quot;看她&quot;，读者从他人眼里确认女主的能力与美（[第17][第34][第37][第60]章）——<strong>避免自夸，改借他人之眼</strong>。</li>
+<li><strong>限制性留白制造悬念</strong>：[第16章]廊窗只给女主受限视线；关键时刻按&quot;情感悬念优先&quot;原则不切全知。</li>
+<li><strong>双视角＝甜的倍增器</strong>：番外用南久/宋霆交替内心，让同一件小事（喝茶、买床、吃醋）产生双向回甘（[第57][第59][第63][第65]章）。</li>
+<li><strong>视角松绑＝关系解禁的隐喻</strong>：正文锁死单锚点，番外放开双视角，形式与内容同构（关系从隐秘走向公开）。</li>
+<li><strong>外部视角收尾做钩子</strong>：章末常定格在&quot;他人眼中&quot;（[第1章]全知点题、[第46章]姜清惊喜、[第55章]宋霆回望），把悬念交到下一章。</li>
+</ol>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

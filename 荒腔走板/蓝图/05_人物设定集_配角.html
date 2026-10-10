@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人物设定集·配角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>人物设定集·配角</h1>
+<blockquote>
+<p>归纳自人物台账 + CP互动台账 + 关系台账 + 章卡（第2-100章，全书已拆完）。<br>主角（周幸、陆酌光）见《04_人物设定集_主角》，本篇只写配角。<br>分级：重点配角详卡（主+辅标签+反差点）／次要角色简卡（一句话性格）／龙套省略。<br>性格标签均从行为拆出，带 [第X章] 佐证；人名用原文用字。</p>
+</blockquote>
+<hr>
+<h2>一、重点配角详卡</h2>
+<h3>齐煊（岭王 / 前东宫太子）</h3>
+<ul>
+<li><strong>身份</strong>：大齐皇室宗亲，岭王（曾为东宫太子，十二年前东宫事变后被贬&quot;岭南王&quot;），许奉的学生，赫连钦冤案与皇位真相的核心相关人。全书查案—夺位主线的第二主角。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜护师护民的暴烈赤子</strong>：恩师许奉被杀，护师心切一触即炸，两次暴怒险些当场抓人 [第2章]；查案数日无果疲累至极仍不肯放手 [第9/12章]；岭南施粥救济落难的袁察，善政七年后仍有回响 [第8章]。心是热的，情绪外露，与工于城府的赵执、陆酌光形成反差。</li>
+<li><strong>辅标签①｜隐忍待时的夺位者</strong>：由避祸游王转向主动逼宫夺位，庙中枯坐一夜求见荣国公未果 [第50章]；冷静数点京中各方兵力、锁定荣国公禁军为关键变数 [第50章]；皇城惊变中新君归位 [第98章]。</li>
+<li><strong>辅标签②｜藏痛于物的孤父</strong>：随身携带幼子齐凌所雕木雕小马（情感寄托）[第12章]；私藏东宫太子时期的木雕、被幼子看破&quot;藏起来偶尔看就是喜欢&quot;&quot;盼爹不再哭泣&quot; [第50章]。</li>
+<li><strong>反差点</strong>：对苍生慈悲、对恩师赤诚（暴烈护短） vs 对夺位大业能压下私怒、步步为营（隐忍谋断）；表面&quot;无权无能的小王爷&quot; vs 内里胸怀东宫壮志的储君。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：为恩师许奉伸冤 → 查赫连钦冤案真相 → 夺回本属于自己的皇位（先帝遗诏传位齐煊，被叔父齐宥篡夺）。</li>
+<li><strong>与主角关系</strong>：与周幸从各查各案到结盟共谋夺位，商议由陆酌光亲手斩仇人龚泽为周幸报父仇 [第98章]；是周幸复仇与自身夺位的最大同盟。</li>
+<li><strong>关键行动</strong>：护师暴怒险抓人 [第2章]；&quot;赵大人&quot;一句身份压服赵恪 [第8章]；义庄守灵回忆师恩 [第12章]；庙中求见荣国公、算清各方兵力定夺位决心 [第50章]；以&quot;随波逐流安身、坚守本心立命&quot;点醒崔慧 [第50章]；递剑助陆酌光斩龚泽 [第98章]；新君归位 [第98章]。</li>
+<li><strong>阵营</strong>：皇室宗亲 / 查案—夺位主导方（与周幸联盟）。</li>
+</ul>
+<hr>
+<h3>赵执（当朝首辅）</h3>
+<ul>
+<li><strong>身份</strong>：大齐当朝首辅，赵恪之父，陆酌光（陆敛）义父，&quot;无常司&quot;缔造者。全书<strong>反派主脑</strong>。妻吕乡音（近亲所生智症）。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜隐在幕后的操盘手</strong>：早年为异族侯王赫连钦门客，反手效仿其暗卫模式豢养死士建&quot;无常司&quot;黑白两部 [第15/21章]；构陷赫连钦&quot;战败投敌&quot;枭首满门 [第34章]；三十年冤案、金矿案、大运河贪腐皆有其手 [第50/34章]。做事不亲自沾手，靠棋子与把柄操控满朝——裹挟兵部尚书郑瑈（私售官盐）、要挟崔慧（陆驰名单）[第50章]。</li>
+<li><strong>辅标签①｜睚眦必报的清算者</strong>：金矿案被停职后复职即下杀令清剿周幸 [第15章]；丧子（赵恪死）后不哀反谋、冷静策划反击 [第21章之后]。</li>
+<li><strong>辅标签②｜留一线余地的丈夫</strong>：对近亲畸病的妻子吕乡音临死仍留其活路 [第99章]——反派身上唯一的人性缝隙。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：把持朝纲、铲除一切威胁（周幸/赫连旧案知情者）、维系与齐宥&quot;收复国土&quot;的旧誓与既得权柄。</li>
+<li><strong>与主角关系</strong>：周幸的<strong>杀父灭门仇敌</strong>（构陷赫连钦）与陆酌光的<strong>义父兼囚主</strong>（以巫毒吊命之药控制陆敛）；被周幸亲手所杀 [第99章]。</li>
+<li><strong>关键行动</strong>：赫连门客反建无常司 [第15/21章]；构陷赫连钦满门抄斩 [第34章]；下杀令清剿周幸 [第15章]；以陆驰名单要挟崔慧 [第50章]；临死留妻吕乡音活路 [第99章]；被周幸诛杀 [第99章]。</li>
+<li><strong>阵营</strong>：朝廷权臣 / 反派核心（与皇帝齐宥共谋冤案）。</li>
+</ul>
+<hr>
+<h3>崔慧（都察院官员 → 倒戈）</h3>
+<ul>
+<li><strong>身份</strong>：出身寒门，都察院官员、左都御史龚泽亲信，后被贬翰林院七品编修。查案小组名义成员，实则另有使命。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜律法为尺的持重者</strong>：言必称&quot;大齐律法&quot;，持重守规 [第2章]；此行真实目的是查赵家在郸玉隐瞒什么，冷静布局派暗卫夜探赵恪寝房取金石 [第12章]——外表守规、内里有谋。</li>
+<li><strong>辅标签｜信仰崩塌后求&quot;立命&quot;的抉择者</strong>：被赵执以&quot;陆驰冤案&quot;名单要挟，得知恩师龚泽三十年前疑曾徇私舞弊，信仰崩塌；向齐煊倾诉&quot;为官求安身还是求立命&quot; [第50章]；最终在安身与立命间选择本心。</li>
+<li><strong>反差点</strong>：循规蹈矩的律法信徒 vs 敢暗探首辅之子寝房、敢在要挟下背离恩师阵营的破局者。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：查明赵家在郸玉隐瞒的真相 → 在&quot;安身（随波逐流）&quot;与&quot;立命（坚守本心）&quot;间做出选择。</li>
+<li><strong>与主角关系</strong>：与周幸方从各自查案到目标趋同的间接盟友；受齐煊&quot;安身立命&quot;点拨而定志向。</li>
+<li><strong>关键行动</strong>：以&quot;大齐律法&quot;持重查案 [第2章]；派暗卫夜探赵恪寝房取金石 [第12章]；被赵执以陆驰名单要挟 [第50章]；向齐煊倾诉抉择困惑 [第50章]；掌殿试卷、钓局设宴套秦焕自曝赫连冤死内幕 [第50/73章]。</li>
+<li><strong>阵营</strong>：都察院 / 第三方势力（龚泽亲信）→ 抉择后倒向查案伸冤一方。</li>
+</ul>
+<hr>
+<h3>李言归（无常司黑部 / 悲情）</h3>
+<ul>
+<li><strong>身份</strong>：无常司黑部成员（持半块黑色玉牌），赵恪侍卫头领出身，陆酌光身边的得力干将，曾竞争令主之位输给郑颖。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜忠诚干练的冷面杀手</strong>：赵恪属下时忠诚干练、先行调查卷宗 [第2章]；无常司黑部干将，办事利落 [第17章]；被赵恪派去截杀崔慧 [第17章]。</li>
+<li><strong>辅标签｜市井气的抠门年轻人</strong>：半夜找陆酌光借钱讨媳妇 [第17章]；被陆酌光就&quot;如何讨回被占的便宜&quot;求教（帮陆参谋感情事）[第47章]——冷血身份下藏着接地气的烟火气。</li>
+<li><strong>反差点</strong>：自幼残酷训练的黑部杀手（冷面办脏活） vs 借钱讨媳妇、给人出感情主意的抠门青年（市井温度）。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：早期效忠陆酌光/无常司体系 → 随陆酌光倒戈后转向助周幸方；竞令主失败后的失落与去向。</li>
+<li><strong>与主角关系</strong>：陆酌光的贴身副手与倾诉对象（陆多次向他袒露心迹，如&quot;没受美人计蛊惑&quot;&quot;如今选择是心之所向&quot; [第84章]）；随陆倒向周幸阵营，收留误认陆为仇人的窦二娘之孙、揭其知恩人真相 [第85章]。</li>
+<li><strong>关键行动</strong>：先行调查许奉案卷宗 [第2章]；把脉确认陆酌光身体特殊、猜到刺客是周幸 [第17章]；被派截杀崔慧 [第17章]；替陆参谋感情 [第47章]；竞令主输给郑颖 [第45/47章]；收留窦二娘之孙 [第85章]。</li>
+<li><strong>阵营</strong>：无常司黑部（赵执势力）→ 随陆酌光倒向周幸。</li>
+</ul>
+<hr>
+<h3>袁察（千路山大当家 / 忠仆）</h3>
+<ul>
+<li><strong>身份</strong>：千路山大当家（非原贼寇，七年前岭南寻亲落难受齐煊施粥之恩后落脚为匪），雪晴、月明之兄，赫连钦旧部一脉（青鹰部关联）。周幸阵营核心武力。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜有恩必报的义匪</strong>：外表壮硕威猛虎目锐利，实则礼节周到、谈吐大方，颠覆山匪预期 [第8章]；七年前受齐煊施粥之恩，由衷敬佩、有恩必报 [第8章]。</li>
+<li><strong>辅标签①｜嫉恶如仇的直性子</strong>：当众怒骂陆酌光&quot;认贼作父、连狗不如、当悬梁赎罪&quot; [第50章]；被吕鸿冒犯即拍桌大怒 [第8章]——藏不住恨意，眼里揉不得沙。</li>
+<li><strong>辅标签②｜牵挂老母的孝子</strong>：连夜转移老母避赵恪追查 [第50章]；熬夜探母归来报母亲近况 [第50章]。</li>
+<li><strong>反差点</strong>：占山为王、拧断胸骨的悍匪（威猛狠厉） vs 待恩人执礼、为老母提心吊胆的孝义之人（周到柔软）。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：报齐煊施粥之恩 → 追随周幸为赫连钦（旧主一脉）复仇雪冤 → 护住老母与妹弟。</li>
+<li><strong>与主角关系</strong>：周幸最可靠的武力与忠仆之一（担心其死&quot;影响周幸心绪&quot;被陆酌光点破 [第54章]）；揭破周幸颈上玉竹项链装着爹娘骨灰 [第54章]。</li>
+<li><strong>关键行动</strong>：岭南受恩、拍桌怒斥赵恪 [第8章]；承认山有神仙散并每年巡山销毁 [第8章]；踹断严寿胸骨 [第22/36章]；怒斥折鸟对峙陆酌光 [第50章]；揭玉竹藏骨灰 [第54章]；率青鹰部假扮难民入京、皇城惊变夺城门 [第53/97章]。</li>
+<li><strong>阵营</strong>：周幸阵营核心武力（赫连钦旧部一脉）。</li>
+</ul>
+<hr>
+<h3>陶缨（风月楼老鸨 / 忠仆）</h3>
+<ul>
+<li><strong>身份</strong>：郸玉风月楼（青楼）老鸨，原为青衣戏旦，与周幸交好、隐属周幸统领的隐秘组织。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜历尽风尘的消息通</strong>：青楼经营者，八面结交，第一个爆出许奉常来听曲+运河贪腐醉话的关键线索 [第4章]；看人极准，旁议&quot;周幸喜欢陆秀才&quot; [第55章]。</li>
+<li><strong>辅标签｜舍身护主的忠仆</strong>：赵恪将其押来当众胁迫、逼陆酌光射杀，命悬一线仍是周幸阵营一员 [第23/24章]。</li>
+<li><strong>反差点</strong>：逢场作戏、见惯世情的风尘老鸨（世故) vs 甘做棋子被押上刑场也不叛主的忠仆（赤诚）。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：追随周幸（少主），以青楼为据点供给情报、掩护行动。</li>
+<li><strong>与主角关系</strong>：周幸的忠仆与情报眼线；被赵恪押作要挟周幸的人质 [第23/24章]。</li>
+<li><strong>关键行动</strong>：爆料许奉听曲+运河贪腐醉话 [第4章]；被赵恪押来当众胁迫 [第23/24章]；旁议点破周幸对陆酌光的心意 [第55章]。</li>
+<li><strong>阵营</strong>：周幸阵营（隐秘组织成员）。</li>
+</ul>
+<hr>
+<h3>吴吉安（文喜 / 掌印太监·内线）</h3>
+<ul>
+<li><strong>身份</strong>：大齐掌印太监，本名文喜，随身携国玺，御工监名匠太监武福的徒弟。守先帝遗诏一脉的关键人物。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜藏锋守诺的深宫棋手</strong>：身居掌印太监高位、随身携国玺 [第45章]；向齐宥进谏裁减军匠、召民间匠人，看似进言实为布局 [第45章]；用迷香逼疯篡位者齐宥 [第99/98章]——在皇帝身边下最深的一步棋。</li>
+<li><strong>辅标签｜承师遗志的守诺人</strong>：师父武福受托守先帝遗诏、誓死救恩人许奉被酷刑折磨致死 [第97/100章]；文喜承其衣钵，卸任后收小徒小靥传下去 [第100章]。</li>
+<li><strong>反差点</strong>：伺候篡位昏君、随侍君侧的近侍（顺从） vs 暗中守遗诏、亲手迷疯皇帝助新君归位的倒戈者（谋逆）。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：承师父武福遗志守护先帝遗诏 → 助真正的储君齐煊归位、还赫连冤案公道。</li>
+<li><strong>与主角关系</strong>：周幸—齐煊夺位一方的深宫内线；师承守遗诏一脉，与许奉、武福同为这条暗线的牺牲/传承者。</li>
+<li><strong>关键行动</strong>：进谏裁军匠召民间匠人、送票拟 [第45章]；迷香逼疯齐宥 [第98/99章]；卸任收小靥为徒传衣钵 [第100章]。</li>
+<li><strong>阵营</strong>：皇帝近侍（明） / 守遗诏一脉·周幸齐煊系统（暗）。</li>
+</ul>
+<hr>
+<h3>齐宥（宥王 / 篡位昏君）</h3>
+<ul>
+<li><strong>身份</strong>：大齐皇帝，齐煊的叔父（先帝之弟），年过半百旧疾缠身。全书朝廷层面的最高反派。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜心虚护党的篡位者</strong>：皇位来路不正（先帝遗诏本传齐煊，齐宥篡夺、散布&quot;先帝越三子传弟&quot;谣言）[第21/98章]；明知蹊跷仍保赵执 [第21章]；知情并压制赫连钦冤案 [第21章]——靠遮掩与结党维系不正的皇权。</li>
+<li><strong>辅标签｜困于旧誓的病君</strong>：与赵执有年轻时&quot;收复国土&quot;的共同誓言，被这段旧誓与既得利益捆绑 [第21章]。</li>
+<li><strong>反差点</strong>：高踞龙椅的一国之君（至尊) vs 皇位得来不正、终被迷香逼疯、定&quot;篡位反贼&quot;之名被废的失位者（虚弱可悲）。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：保住篡夺来的皇位 → 压制赫连冤案与遗诏真相、庇护共谋的赵执。</li>
+<li><strong>与主角关系</strong>：周幸（赫连冤案）与齐煊（夺位）共同的朝廷对手；被吴吉安迷香逼疯、皇城惊变中被废 [第98章]。</li>
+<li><strong>关键行动</strong>：篡位散谣 [第21/98章]；明知蹊跷仍保赵执、压制赫连冤案 [第21章]；被吴吉安迷香逼疯、被废定&quot;篡位反贼&quot;之名 [第98章]。</li>
+<li><strong>阵营</strong>：朝廷 / 反派（篡位昏君，与赵执共谋冤案）。</li>
+</ul>
+<hr>
+<h3>樊蔚（松公子 / 常松，荣国公长孙 / 情敌）</h3>
+<ul>
+<li><strong>身份</strong>：荣国公樊仲卓长孙，二十六岁，亲兵卫/锦衣卫，化名&quot;松公子/常松&quot;。周幸的暗线盟友兼感情线情敌。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜风流周旋的贵公子暗线</strong>：与周幸相识数年、暗中联络查大运河贪腐 [第45章]；助周幸抓云宗鸣、挂靠赃船 [第45章]——纨绔皮相下是查贪腐的实干盟友。</li>
+<li><strong>辅标签｜情深难得的追求者</strong>：赠周幸玉竹簪（后为白莲簪）示好，是陆酌光吃醋的源头 [第45/100章]；出狱后向陆酌光索还白莲簪 [第100章]，情意不减。</li>
+<li><strong>反差点</strong>：出身荣国公府、看似逢场作戏的松公子（轻佻) vs 为查贪腐甘做暗线、被家族弃卒保帅下狱仍不改初衷的实干者（深沉）。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：查大运河贪腐 → 追求周幸（未果）→ 在家族利益（交兵权）与自身立场间挣扎。</li>
+<li><strong>与主角关系</strong>：周幸的多年暗线盟友+<strong>感情线情敌</strong>（陆酌光因他数次吃醋 [第45/74/100章]）；被荣国公故意扣京、下狱，家族借其逼交兵权 [第45章之后]。</li>
+<li><strong>关键行动</strong>：暗中联络周幸查贪腐 [第45章]；赠玉竹/白莲簪示好 [第45章]；助抓云宗鸣挂靠赃船 [第45章]；被家族弃卒保帅下狱 [第45章之后]；出狱向陆酌光索还白莲簪 [第100章]。</li>
+<li><strong>阵营</strong>：荣国公府 / 周幸暗线盟友（情敌线）。</li>
+</ul>
+<hr>
+<h3>隗谷雨（鬼医仵作）</h3>
+<ul>
+<li><strong>身份</strong>：七十多岁道医仵作，打一辈子光棍，耳背脾气古怪，莫惊秋（唯一徒弟）之师。周幸阵营核心成员，全书探案的&quot;技术担当&quot;。</li>
+<li><strong>性格</strong>：<ul>
+<li><strong>主标签｜通神验尸的古怪神医</strong>：验尸查出&quot;神仙散&quot;孢粉+许奉自刺而死的真正死因、发现腹中瓷瓶 [第7-9章]，是破案的关键技术核心；诊出陆酌光身体亏空、近两年难有子嗣 [第96章]。</li>
+<li><strong>辅标签｜刀子嘴热心肠的老仵作</strong>：耳背脾气古怪，却主动劝身体僵硬的周幸&quot;用些药吧&quot; [第17章]；救治叶嵘毒腿保腿 [第14章之后]；婚礼上勒令陆酌光不准动手护其命 [第97章]。</li>
+<li><strong>反差点</strong>：古怪孤僻的七旬光棍老头（冷硬) vs 处处替人保命续命、护着一群晚辈的隐性长辈（温热）。</li>
+</ul>
+</li>
+<li><strong>欲望动机</strong>：追随周幸、以医术验尸探案与护佑众人性命；钻研解陆酌光巫毒之法。</li>
+<li><strong>与主角关系</strong>：周幸阵营核心技术成员；破案的验尸担当，也是陆酌光续命/解毒的主治者。</li>
+<li><strong>关键行动</strong>：验出神仙散孢粉与许奉真正死因、发现腹中瓷瓶 [第7-9章]；劝周幸用药 [第17章]；救治叶嵘毒腿 [第14章之后]；诊出陆酌光身体亏空 [第96章]；婚礼护陆命 [第97章]。</li>
+<li><strong>阵营</strong>：周幸阵营核心成员（技术担当）。</li>
+</ul>
+<hr>
+<h2>二、次要角色简卡（一句话性格）</h2>
+<ul>
+<li><strong>钱不断</strong> [第10章]：周幸手下/线人，眼尖话密，捡废纸侦查陆酌光、通报邹业回归，也是点破周幸偏心陆酌光的&quot;嘴替&quot; [第13/47/50章]。</li>
+<li><strong>燕决</strong> [第10章]：周幸手下，沉默的跟踪能手，专司跟紧邹业保其活命。</li>
+<li><strong>莫惊秋</strong> [第11章]：隗谷雨唯一徒弟，药堂坐诊专为妇孺看病，心软含泪熬药，忠厚可靠的乖徒弟 [第50章]。</li>
+<li><strong>萧涉川</strong> [第6章]：赌坊东家，与周幸结义兄妹，经商奇才家财万贯的武力担当，揭邹业私藏金子（自认功夫不及李言归）[第6/10章]。</li>
+<li><strong>楚照（鬼手娘）</strong> [第17章]：周幸手下，圆脸酒窝的书肆老板，精通古法机关&quot;鬼手&quot;，夜潜刨土碾炭、以假乱真替换云船火药文书的技术核心 [第54章]。</li>
+<li><strong>雪晴</strong> [第33章]：无常司白部，陆酌光徒弟，袁察之妹、月明之姐；探赃船受伤被周幸所救后，服&quot;百味枯&quot;死战报恩护隗谷雨、倒向周幸的知恩烈女。</li>
+<li><strong>月明</strong> [第46章]：无常司白部，陆酌光徒弟，被赵恪毒哑的哑巴，雪晴之弟、袁察之弟；潜伏樊蔚身边两年、藏刀片绝活的隐忍暗子。</li>
+<li><strong>孙盼宁</strong> [第31章]：秦婵之女，十六七岁暗恋萧涉川的少女；被赵恪劫为质逼带路破迷阵，靠周幸心法&quot;见碑抬脚&quot;机敏脱险。</li>
+<li><strong>秦婵（秦寡妇/肉饼西施）</strong> [第11章]：卖肉饼的寡妇，孙盼宁之母，常年受周幸护佑摊子无人敢闹的市井母亲。</li>
+<li><strong>赵恪（表字谦）</strong> [第2章]：赵执之子，嬉皮笑脸实则专横独断的世家公子，截瓶下灭口令、逼射陶缨，判断力有盲区（小看周幸）的前期主要反派（死于第21章前后）。</li>
+<li><strong>孟长乐（长乐）</strong> [第9/22章]：无常司白部，赵恪美妾，两指拧断锁扣、行走无声的蛇蝎美人暗器高手；山林追杀周幸反被杀，濒死以毒针反扑（已死[第26章]）。</li>
+<li><strong>郑琪（郑老）</strong> [第51章]：无常司元老前令主，陆敛五岁起的师父、郑颖养母；奉命&quot;清理门户&quot;擒杀叛徒陆敛、杀窦二娘断腕逼陆的狠辣老杀手（已死[第60章]）。</li>
+<li><strong>郑颖</strong> [第45章]：无常司新任令主，郑琪养女，竞争令主胜过李言归上位、留守据地迎战周幸的接班人。</li>
+<li><strong>万斌（大万）</strong> [第52/53章]：青鹰部参将，赫连钦/柳容生旧部；率四千青鹰部假扮难民借修陵入京、劫船夺城门的猛将。</li>
+<li><strong>樊仲卓</strong> [第45/50章]：荣国公，樊蔚祖父，掌京中禁军（实战约四万），齐煊夺位绕不过的关键军事变数，弃卒保帅扣押亲孙的老谋家主。</li>
+<li><strong>赫连钦（赫连将军）</strong> [第33/34章]：大齐唯一异族侯王，周幸生父，曾救先帝于逼宫；军粮被扣、火林死战全军覆没，被构陷&quot;战败投敌&quot;枭首满门的一代冤将（已死）。</li>
+<li><strong>许奉</strong> [第2章]：郸玉知县，齐煊恩师，不敬鬼神禁戏、知运河贪腐；密室喉中插刀身亡（实为受托守遗诏被卷入而死），全书开篇的死者兼引线（已死）。</li>
+<li><strong>吕鸿</strong> [第5/34章]：曾任郸玉知县实为延丰县官，肥头大耳极尽谄媚；当年扣军粮致赫连大败、凭&quot;守城大功&quot;上位，金矿案下狱供出旧案的罪证关键人。</li>
+<li><strong>秦焕（元朗）</strong> [第73章]：大理寺卿幼子，京营挂闲职的销金窟&quot;地头蛇&quot;；被崔慧钓局设宴、致幻烟下自曝赫连冤死内幕与遗诏存在的破口。</li>
+<li><strong>郑逸</strong> [第61章]：兵部尚书，齐煊岳丈（王妃郑欣之父），赵执门下贩私盐被放一马者；截青鹰部密信、贪赈灾银挂靠云氏船被识破，下狱满门抄斩。</li>
+<li><strong>陈守善</strong> [第70章]：原司礼监秉笔太监，装疯卖傻多年的守遗诏忠仆；向齐煊揭遗诏送出宫秘史、以死指证传位诏书存在，被皇帝灭口（已死[第91章]）。</li>
+<li><strong>武福</strong> [第97/100章]：御工监名匠太监，雕玉竹/玉鸟信物，文喜之师；受托守先帝遗诏、誓死救恩人许奉，被酷刑折磨致死的守诺匠人（已死）。</li>
+<li><strong>老陆（陆驰/怀霄）</strong> [第50/84/88章]：三十年前苏州会元，陆酌光养父；拒殿试舞弊被龚泽构陷、打断手脚家破人亡行乞；捡养陆敛、教其写&quot;命&quot;字、遗训&quot;考状元救万民/人命不分贵贱&quot;的精神灯塔（已死）。</li>
+<li><strong>窦二娘（窦三娘）</strong> [第56章]：吉祥包子铺老板娘，左手缺小指；曾施舍行乞的老陆包子，被郑琪杀害断腕以刺激陆酌光的无辜恩人（已死）。</li>
+<li><strong>吕乡音</strong> [第41/99章]：赵执之妻，近亲所生智症如少女；每年亲手制陆酌光吊命药、唯一会制解药之人，将解药方教予周幸的无辜可悯者。</li>
+<li><strong>周尊宁</strong> [第80章]：周幸生母，外族人取汉名，倔强坚韧睚眦必报；塞北逼周幸对灵位起毒誓、乘插旗马车诱敌牺牲、留血书&quot;好好活着&quot;的刚烈母亲（已死）。</li>
+</ul>
+<hr>
+<h2>三、龙套（一句带过，不单列）</h2>
+<p>冯宗（郸玉县丞，老练圆滑夹缝求生）、邹业（许奉小妾奸夫，私藏金子的嫌疑人）、香月（许奉小妾，与邹业私通密谋）、叶嵘（衙役实为周幸暗线，搬军书通线索）、严寿（齐煊侍卫实为赵恪内应，抢遗诏被杀）、齐凌（齐煊幼子，雕木雕盼爹不哭）、郑欣（齐煊王妃，以家族为先跪求停查）、龚泽（左都御史，三十年前构陷陆驰的旧案主谋，被陆酌光斩杀）、郑瑈（兵部尚书，被赵执以私盐把柄裹挟）、云宗鸣（云氏船东，大运河贪腐链，被周幸诈败）、吕康（泠京兵部尚书，借赃船翻身的贪腐官）、柳容生（齐煊外公，青鹰军原主帅，遗言另举新主）、季晗（樊蔚部下，供周幸差使兼盯梢）、楚铮（金鸣，荣国公神兵营指挥使，被周幸枪救）、玄狼（龙影卫领队当代第一高手，被周幸一枪钉死）、陈晋（锦衣卫指挥使，识赫连枪法退让）、窦二娘之孙（残足小儿，误认陆酌光为仇人行刺后被点化）、小靥（文喜小徒，送信接头、继衣钵）、赫连筠（周幸另一至亲，玉竹关联者，追述）等。</p>
+<hr>
+<blockquote>
+<p>基于全书100章（已拆完）归纳。重点配角性格标签均从章卡行为拆出并借附录词库命名（如&quot;幕后操盘手&quot;&quot;笑面佛式冷面杀手&quot;&quot;有恩必报的义匪&quot;等），未套模板；人名严格用原文用字。</p>
+</blockquote>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>

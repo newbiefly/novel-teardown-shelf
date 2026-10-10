@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 分卷大纲 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>07 分卷大纲</h1>
+<blockquote>
+<p>整体剧情按幕分——宏观结构、主线起承转合、卷与卷的因果链。<br>具体事件先后+信息差见 08时间线；各支线各自推进见 09支线地图。本文只写主线骨架。<br>基于全书100章（正文2-100章）归纳。全书按主角所在地+核心事件自然分为五卷。</p>
+</blockquote>
+<h2>全书篇幅配比一览</h2>
+<table>
+<thead>
+<tr>
+<th>卷</th>
+<th>章节区间</th>
+<th>章数</th>
+<th>占比</th>
+<th>核心事件</th>
+<th>阶段功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一卷 郸玉篇</td>
+<td>2-41</td>
+<td>40</td>
+<td>40%</td>
+<td>密室命案→金矿贪腐→揭赫连冤案→结盟齐煊</td>
+<td>起：探案开局，身份/复仇底牌逐层揭开</td>
+</tr>
+<tr>
+<td>转场 辞别郸玉</td>
+<td>42-44</td>
+<td>3</td>
+<td>3%</td>
+<td>惊梦揭旧伤/祭空坟/启程北上</td>
+<td>承上启下·情感沉淀</td>
+</tr>
+<tr>
+<td>第二卷 泠京篇</td>
+<td>45-55</td>
+<td>11</td>
+<td>11%</td>
+<td>大运河贪腐案→劫船→坑倒荣国公·兵部</td>
+<td>承：格局放大到运河洗钱，收编盟友</td>
+</tr>
+<tr>
+<td>第三卷 京城篇</td>
+<td>56-96</td>
+<td>41</td>
+<td>41%</td>
+<td>翻案（秦焕吐真）→夺位布局→赵执反扑→民变夺城前夜</td>
+<td>转：多线绞杀，全书主体，赌注拉满</td>
+</tr>
+<tr>
+<td>第四卷 皇城决战·结局</td>
+<td>97-100</td>
+<td>4</td>
+<td>5%</td>
+<td>逼宫→奉遗诏揭篡位→齐煊登基→遗诏反转落幕</td>
+<td>合：终极对决+主题升华</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>节奏特征</strong>：两个大卷（郸玉40章·京城41章）撑起80%篇幅，各是一个完整的&quot;局中局&quot;；泠京篇11章是过渡性中场，快节奏推进；结局仅4章却密度极高（逼宫/登基/自刎/大反转四件事一气呵成）。<strong>约40章推进一个完整幕</strong>，符合百万字长篇的&quot;一案一夺一决战&quot;三段式。</p>
+</blockquote>
+<hr>
+<h2>第一卷 郸玉篇（2-41章）</h2>
+<p><strong>核心目标</strong>：查明许奉密室命案 → 目标逐层升级为揭金矿贪腐、扳倒赵执爪牙、结盟岭王。</p>
+<p><strong>因果链</strong>：</p>
+<ul>
+<li>许奉密室被杀（断头鸡/米面铜钱/黑白无常）→ 齐煊率查案组入郸玉，冯宗引荐&quot;万事通&quot;周幸 → <strong>周幸实为幕后布局者</strong>，命案本身是她团队设计的&quot;破台开戏&quot;</li>
+<li>隗谷雨验尸得死因=神仙散控制后自刺 → 线索指向邹业 → <strong>陆酌光月下枭首邹业灭口，周幸目睹→定计除陆</strong> → 行刺失败反发现陆=无常司令主</li>
+<li>冯宗当堂揭真相：许奉阻止李巩私采金矿被打断手脚，幕后是泠州知府李修德（赵执左膀右臂）→ 金矿案爆发挖出49具白骨 → 李修德自戕保赵执，赵执以&quot;军饷&quot;脱罪复职 → <strong>矛盾直指首辅赵执</strong></li>
+<li>赵恪除夕鸿门宴逼供陶缨→陆酌光故意射偏→周幸诱敌入山反杀孟长乐中毒→<strong>陆酌光解毒守护，立场倒向周幸</strong></li>
+<li>上元夜戏台总爆发：周幸揭赫连将军冤案（吕鸿扣军粮/兵部改战报）、出示**先帝遗诏（复齐煊太子位）**结盟齐煊、承认真名&quot;赫连筠&quot;、手刃赵恪削首挑旗；陆酌光梦醒身世觉醒、叛离无常司、屠随从做投名状 → 招揽入伙</li>
+</ul>
+<p><strong>高潮章</strong>：第35-40章（上元夜戏台连环揭底+结盟+叛离+手刃赵恪）<br><strong>转折章</strong>：第17章（发现陆=令主）、第36章（遗诏+真名&quot;赫连筠&quot;）、第38章（陆酌光觉醒叛离）<br><strong>卷末钩子</strong>：周幸带陆酌光归队北上，京城赵执丧子（赵恪）另布新局请崔慧——反派开始反扑。</p>
+<hr>
+<h2>转场 辞别郸玉（42-44章）</h2>
+<p><strong>功能</strong>：情感沉淀+信息补全+空间转换。</p>
+<ul>
+<li>齐煊回京带回吕鸿卷宗，私谈惊觉满朝老臣早知赫连冤案（<strong>格局提示：这不是几个贪官，是整个朝堂共谋</strong>）</li>
+<li>周幸畏寒惊梦揭八年前抢父亲头颅冻穿脊骨的旧伤成因，陆酌光夜探、二人初吻</li>
+<li>周幸祭拜父母空坟（碑上无名，等复仇成功再刻）→ 率众启程赴泠京<br><strong>卷末钩子</strong>：青鹰军假扮难民、兵器藏商船运京的谋划浮出——夺位棋局落子。</li>
+</ul>
+<hr>
+<h2>第二卷 泠京篇（45-55章）</h2>
+<p><strong>核心目标</strong>：查大运河贪腐洗钱案，取赈灾银铁证，收编盟友。</p>
+<p><strong>因果链</strong>：</p>
+<ul>
+<li>抵泠京会樊蔚（荣国公长孙/暗线），共查云氏商船 → 周幸夜探赃船（官窑/赈灾银铁证）救下重伤雪晴</li>
+<li>陆酌光&quot;治病之吻&quot;→周幸答应用药（寒疾七天一服）；袁察揭陆时限（六月异虫苏醒仅剩七月活头）→<strong>命数倒计时明确</strong></li>
+<li>会青鹰参将万斌定盟（四千精锐已抵泠京）→ 劫船计划：楚照早把火药换成炭，诈破云宗鸣底牌</li>
+<li>宅院遭皇帝龙影卫夜袭，雪晴（=袁察妹）李言归报恩死战；陆酌光遇师父郑琪现身挑衅（亮窦二娘断腕银镯）</li>
+</ul>
+<p><strong>高潮章</strong>：第54章（劫船调包）、第55章（龙影卫夜袭死战）<br><strong>转折章</strong>：第51章（龙影卫围困，陆顶替袁察哨声护航——立场彻底站定）<br><strong>卷末钩子</strong>：郑琪下令双生子诛杀陆酌光，无常司清理门户，把危机烧到陆身上。</p>
+<hr>
+<h2>第三卷 京城篇（56-96章）</h2>
+<p><strong>核心目标</strong>：京城翻案（坐实赫连冤案）+ 扶齐煊夺位 + 应对赵执反扑，全书主体。</p>
+<p><strong>因果链（四条线交织推进）</strong>：</p>
+<ol>
+<li><strong>救陆线</strong>：周幸以无常令要挟李言归入局同救陆→反杀无常司杀手→出城截杀郑琪割耳；陆昏迷苏醒、赠春带彩扳指清账式表白、约法三章</li>
+<li><strong>翻案线</strong>：偷梁换柱三船调包坑倒兵部尚书郑逸+荣国公（樊蔚下狱）→ 致幻烟诱秦焕吐真言（兵部改战报/吕鸿扣兵/火烧将士+先帝传位诏书曝光）→ 赫连冤情+遗诏流言传遍京城</li>
+<li><strong>夺位线</strong>：齐煊借遗诏结盟荣国公樊仲卓；陈守善揭遗诏送出宫秘史；收编崔慧</li>
+<li><strong>赵执反扑线</strong>：劫齐煊之子、勒杀王妃郑欣伪装自缢 → 周幸工寨自曝弃仇为苍生、救王子 → 火药山道逼杀（洞口炸塌，赵执误判二人身死）→ 陆背周幸救寒疾、摸到守岁铜板</li>
+</ol>
+<ul>
+<li><strong>命数摊牌</strong>：千里镖局密信揭陆=陆敛、七童唯一融合者、清醒即反噬死；陆独闯赵府弃解药方选玉竹（周幸父母骨灰）→ 被窦二娘残足孙背刺重伤濒死</li>
+<li><strong>收束布局</strong>：周幸反戴玉竹护陆命；引龙影卫火并灭无常司；崔慧纵火烧礼库造&quot;篡位&quot;天兆；吴吉安逼皇帝证实遗诏、引疑赵执 → <strong>君相决裂，赵执下狱抄府</strong></li>
+<li>静嘉县设喜堂拜堂圆房立誓解毒；京仓民变（青鹰部借修陵调令混入京城）；生幻迷香乱皇帝心智、改敕谕调走御马监禁军</li>
+</ul>
+<p><strong>高潮章</strong>：第75章（秦焕吐真+遗诏曝光）、第90章（火并灭无常司枪挑玄狼）、第93章（拜堂圆房）、第96章（赵执身世+被劫狱+起事信号）<br><strong>转折章</strong>：第83章（陆命数真相→周幸转冷）、第92章（君相决裂赵执下狱）<br><strong>卷末钩子</strong>：京城烟花起事信号升空——决战一触即发。</p>
+<hr>
+<h2>第四卷 皇城决战·结局（97-100章）</h2>
+<p><strong>核心目标</strong>：逼宫夺位，为赫连昭雪，全书主题升华。</p>
+<p><strong>因果链</strong>：</p>
+<ul>
+<li>寅时青鹰部夺城门+荣国公献赫连枪领禁军压城→<strong>周幸持父枪逼宫</strong>；吴吉安揭与周幸六年传信、玉竹玉鸟同源、武福护诏惨死</li>
+<li>奉乾殿早朝：周幸奉遗诏当众揭齐宥篡位（伪造皇命/逼死赫连/篡位虐民）→ 陆酌光手刃害父仇人龚泽 → 齐宥被擒、<strong>齐煊登基</strong></li>
+<li>周幸对峙赵执逼其自尽（揭其&quot;只求公平&quot;的悲怆动机）、李言归伏尸痛哭&quot;来生只想做一只羊&quot;；吕乡音授巫毒解药方→<strong>陆酌光服药痊愈</strong></li>
+<li><strong>终极反转</strong>：真遗诏早在先帝驾崩夜被文喜焚毁，周幸呈堂那封是&quot;鬼手&quot;伪造赝品（传位为真、诏书是假）；齐煊在郸玉废戏楼第一眼就看破是假，明知假仍封存永藏——&quot;真假由皇上说了算&quot;</li>
+</ul>
+<p><strong>高潮章</strong>：第98章（奉遗诏揭篡位+登基）、第100章（遗诏反转+破台戏落幕点题）<br><strong>主题升华</strong>：破台戏落幕满座喝彩&quot;好戏！好戏！&quot;，回应许奉&quot;让天下记住我等无名之辈&quot;——点题&quot;能救百姓的从来是百姓自己&quot;&quot;这浑浊人世需要些荒腔走板的异类&quot;。</p>
+<hr>
+<h2>未完待续/开放线索</h2>
+<p>全书为完整闭环（HE），结局仅留温情留白：周幸与陆酌光定&quot;每年一支花簪&quot;之约、同回塞北；文喜卸任收小靥为徒传衣钵。无硬性续集钩子。</p>
+
+</div>
+<div class="qr-float" title="作者微信二维码"><img src="../qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
+</body>
+</html>
