@@ -123,8 +123,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 
   <div class="tabs">
     <button class="tab active" data-panel="bp">蓝　图</button>
-    <button class="tab" data-panel="lg">台　账</button>
-    <button class="tab" data-panel="ch">章　卡</button>
     <button class="tab" data-panel="sk">SKILL</button>
   </div>
   <div class="tabs-line"></div>
@@ -196,36 +194,9 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
    </a></div>
   </div>
 
-  <div class="panel" id="panel-lg">
-    <div class="grid"><a class="card" href="台账/CP%E4%BA%92%E5%8A%A8%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">01</div>
-      <div class="card-name">CP互动台账</div>
-   </a>
-<a class="card" href="台账/%E4%BA%BA%E7%89%A9%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">02</div>
-      <div class="card-name">人物台账</div>
-   </a>
-<a class="card" href="台账/%E4%BC%8F%E7%AC%94%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">03</div>
-      <div class="card-name">伏笔台账</div>
-   </a>
-<a class="card" href="台账/%E5%85%B3%E7%B3%BB%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">04</div>
-      <div class="card-name">关系台账</div>
-   </a>
-<a class="card" href="台账/%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">05</div>
-      <div class="card-name">时间线台账</div>
-   </a>
-<a class="card" href="台账/%E8%B0%9C%E9%A2%98%E7%BA%BF%E7%B4%A2%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">06</div>
-      <div class="card-name">谜题线索台账</div>
-   </a></div>
-  </div>
+  
 
-  <div class="panel" id="panel-ch">
-    <div class="ch-list" id="chList"></div><div class="ch-more" id="chMore"></div>
-  </div>
+  
 
   <div class="panel" id="panel-sk">
     <div class="skill-h">将一本书蒸馏为一套可执行 skill</div>
@@ -282,127 +253,6 @@ window.addEventListener('hashchange',function(){
   if(h&&document.getElementById('panel-'+h))showTab(h);
 });
 
-// 章卡列表（默认前 10 条，可展开全部）
-var CH=[
-{n:"001",t:"无题",f:"第001章_无题.html"},
-{n:"002",t:"无题",f:"第002章_无题.html"},
-{n:"003",t:"无题",f:"第003章_无题.html"},
-{n:"004",t:"无题",f:"第004章_无题.html"},
-{n:"005",t:"无题",f:"第005章_无题.html"},
-{n:"006",t:"无题",f:"第006章_无题.html"},
-{n:"007",t:"无题",f:"第007章_无题.html"},
-{n:"008",t:"无题",f:"第008章_无题.html"},
-{n:"009",t:"无题",f:"第009章_无题.html"},
-{n:"010",t:"无题",f:"第010章_无题.html"},
-{n:"011",t:"无题",f:"第011章_无题.html"},
-{n:"012",t:"无题",f:"第012章_无题.html"},
-{n:"013",t:"无题",f:"第013章_无题.html"},
-{n:"014",t:"无题",f:"第014章_无题.html"},
-{n:"015",t:"无题",f:"第015章_无题.html"},
-{n:"016",t:"无题",f:"第016章_无题.html"},
-{n:"017",t:"无题",f:"第017章_无题.html"},
-{n:"018",t:"无题",f:"第018章_无题.html"},
-{n:"019",t:"无题",f:"第019章_无题.html"},
-{n:"020",t:"无题",f:"第020章_无题.html"},
-{n:"021",t:"无题",f:"第021章_无题.html"},
-{n:"022",t:"无题",f:"第022章_无题.html"},
-{n:"023",t:"无题",f:"第023章_无题.html"},
-{n:"024",t:"无题",f:"第024章_无题.html"},
-{n:"025",t:"无题",f:"第025章_无题.html"},
-{n:"026",t:"无题",f:"第026章_无题.html"},
-{n:"027",t:"无题",f:"第027章_无题.html"},
-{n:"028",t:"无题",f:"第028章_无题.html"},
-{n:"029",t:"无题",f:"第029章_无题.html"},
-{n:"030",t:"无题",f:"第030章_无题.html"},
-{n:"031",t:"无题",f:"第031章_无题.html"},
-{n:"032",t:"无题",f:"第032章_无题.html"},
-{n:"033",t:"无题",f:"第033章_无题.html"},
-{n:"034",t:"无题",f:"第034章_无题.html"},
-{n:"035",t:"无题",f:"第035章_无题.html"},
-{n:"036",t:"无题",f:"第036章_无题.html"},
-{n:"037",t:"无题",f:"第037章_无题.html"},
-{n:"038",t:"无题",f:"第038章_无题.html"},
-{n:"039",t:"无题",f:"第039章_无题.html"},
-{n:"040",t:"无题",f:"第040章_无题.html"},
-{n:"041",t:"无题",f:"第041章_无题.html"},
-{n:"042",t:"无题",f:"第042章_无题.html"},
-{n:"043",t:"无题",f:"第043章_无题.html"},
-{n:"044",t:"无题",f:"第044章_无题.html"},
-{n:"045",t:"无题",f:"第045章_无题.html"},
-{n:"046",t:"无题",f:"第046章_无题.html"},
-{n:"047",t:"无题",f:"第047章_无题.html"},
-{n:"048",t:"无题",f:"第048章_无题.html"},
-{n:"049",t:"无题",f:"第049章_无题.html"},
-{n:"050",t:"无题",f:"第050章_无题.html"},
-{n:"051",t:"无题",f:"第051章_无题.html"},
-{n:"052",t:"无题",f:"第052章_无题.html"},
-{n:"053",t:"无题",f:"第053章_无题.html"},
-{n:"054",t:"无题",f:"第054章_无题.html"},
-{n:"055",t:"无题",f:"第055章_无题.html"},
-{n:"056",t:"无题",f:"第056章_无题.html"},
-{n:"057",t:"无题",f:"第057章_无题.html"},
-{n:"058",t:"无题",f:"第058章_无题.html"},
-{n:"059",t:"无题",f:"第059章_无题.html"},
-{n:"060",t:"无题",f:"第060章_无题.html"},
-{n:"061",t:"无题",f:"第061章_无题.html"},
-{n:"062",t:"无题",f:"第062章_无题.html"},
-{n:"063",t:"无题",f:"第063章_无题.html"},
-{n:"064",t:"无题",f:"第064章_无题.html"},
-{n:"065",t:"无题",f:"第065章_无题.html"},
-{n:"066",t:"无题",f:"第066章_无题.html"},
-{n:"067",t:"无题",f:"第067章_无题.html"},
-{n:"068",t:"无题",f:"第068章_无题.html"},
-{n:"069",t:"无题",f:"第069章_无题.html"},
-{n:"070",t:"无题",f:"第070章_无题.html"},
-{n:"071",t:"无题",f:"第071章_无题.html"},
-{n:"072",t:"无题",f:"第072章_无题.html"},
-{n:"073",t:"无题",f:"第073章_无题.html"},
-{n:"074",t:"无题",f:"第074章_无题.html"},
-{n:"075",t:"无题",f:"第075章_无题.html"},
-{n:"076",t:"无题",f:"第076章_无题.html"},
-{n:"077",t:"无题",f:"第077章_无题.html"},
-{n:"078",t:"无题",f:"第078章_无题.html"},
-{n:"079",t:"无题",f:"第079章_无题.html"},
-{n:"080",t:"无题",f:"第080章_无题.html"},
-{n:"081",t:"无题",f:"第081章_无题.html"},
-{n:"082",t:"无题",f:"第082章_无题.html"},
-{n:"083",t:"无题",f:"第083章_无题.html"},
-{n:"084",t:"无题",f:"第084章_无题.html"},
-{n:"085",t:"无题",f:"第085章_无题.html"},
-{n:"086",t:"无题",f:"第086章_无题.html"},
-{n:"087",t:"无题",f:"第087章_无题.html"},
-{n:"088",t:"无题",f:"第088章_无题.html"},
-{n:"089",t:"无题",f:"第089章_无题.html"},
-{n:"090",t:"无题",f:"第090章_无题.html"},
-{n:"091",t:"无题",f:"第091章_无题.html"},
-{n:"092",t:"无题",f:"第092章_无题.html"},
-{n:"093",t:"无题",f:"第093章_无题.html"},
-{n:"094",t:"无题",f:"第094章_无题.html"},
-{n:"095",t:"无题",f:"第095章_无题.html"},
-{n:"096",t:"无题",f:"第096章_无题.html"},
-{n:"097",t:"无题",f:"第097章_无题.html"},
-{n:"098",t:"无题",f:"第098章_无题.html"},
-{n:"099",t:"无题",f:"第099章_无题.html"},
-{n:"100",t:"无题",f:"第100章_无题.html"},
-{n:"101",t:"无题",f:"第101章_无题.html"},
-{n:"102",t:"无题",f:"第102章_无题.html"}
-];
-var chList=document.getElementById('chList');
-var chMore=document.getElementById('chMore');
-var LIMIT=10, expanded=false;
-function renderCh(){
-  if(!chList)return;
-  var list=expanded?CH:CH.slice(0,LIMIT);
-  chList.innerHTML=list.map(function(c){
-    return '<a class="ch-item" href="章卡/'+encodeURIComponent(c.f)+'"><span class="n">'+c.n+'</span><span class="t">'+c.t+'</span></a>';
-  }).join('');
-  if(CH.length>LIMIT){
-    chMore.innerHTML='<button id="chBtn">'+(expanded?'收起':('查看全部 '+CH.length+' 章 ›'))+'</button>';
-    document.getElementById('chBtn').onclick=function(){expanded=!expanded;renderCh();};
-  }else{chMore.innerHTML='';}
-}
-renderCh();
 </script>
-<div class="qr-float" title="作者微信二维码"><img src="./qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
 </body>
 </html>

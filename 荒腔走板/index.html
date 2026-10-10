@@ -123,8 +123,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 
   <div class="tabs">
     <button class="tab active" data-panel="bp">蓝　图</button>
-    <button class="tab" data-panel="lg">台　账</button>
-    <button class="tab" data-panel="ch">章　卡</button>
     <button class="tab" data-panel="sk">SKILL</button>
   </div>
   <div class="tabs-line"></div>
@@ -196,36 +194,9 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
    </a></div>
   </div>
 
-  <div class="panel" id="panel-lg">
-    <div class="grid"><a class="card" href="台账/CP%E4%BA%92%E5%8A%A8%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">01</div>
-      <div class="card-name">CP互动台账</div>
-   </a>
-<a class="card" href="台账/%E4%BA%BA%E7%89%A9%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">02</div>
-      <div class="card-name">人物台账</div>
-   </a>
-<a class="card" href="台账/%E4%BC%8F%E7%AC%94%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">03</div>
-      <div class="card-name">伏笔台账</div>
-   </a>
-<a class="card" href="台账/%E5%85%B3%E7%B3%BB%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">04</div>
-      <div class="card-name">关系台账</div>
-   </a>
-<a class="card" href="台账/%E6%97%B6%E9%97%B4%E7%BA%BF%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">05</div>
-      <div class="card-name">时间线台账</div>
-   </a>
-<a class="card" href="台账/%E8%B0%9C%E9%A2%98%E7%BA%BF%E7%B4%A2%E5%8F%B0%E8%B4%A6.html">
-      <div class="card-num">06</div>
-      <div class="card-name">谜题线索台账</div>
-   </a></div>
-  </div>
+  
 
-  <div class="panel" id="panel-ch">
-    <div class="ch-list" id="chList"></div><div class="ch-more" id="chMore"></div>
-  </div>
+  
 
   <div class="panel" id="panel-sk">
     <div class="skill-h">将一本书蒸馏为一套可执行 skill</div>
@@ -281,124 +252,6 @@ window.addEventListener('hashchange',function(){
   if(h&&document.getElementById('panel-'+h))showTab(h);
 });
 
-// 章卡列表（默认前 10 条，可展开全部）
-var CH=[
-{n:"002",t:"荒谬悬案",f:"第002章_荒谬悬案.html"},
-{n:"003",t:"俗民周幸",f:"第003章_俗民周幸.html"},
-{n:"004",t:"青楼老鸨",f:"第004章_青楼老鸨.html"},
-{n:"005",t:"学术交流",f:"第005章_学术交流.html"},
-{n:"006",t:"赌坊东家",f:"第006章_赌坊东家.html"},
-{n:"007",t:"鬼医仵作",f:"第007章_鬼医仵作.html"},
-{n:"008",t:"山匪老大",f:"第008章_山匪老大.html"},
-{n:"009",t:"生旦净末",f:"第009章_生旦净末.html"},
-{n:"010",t:"言归正传",f:"第010章_言归正传.html"},
-{n:"011",t:"愿者上钩",f:"第011章_愿者上钩.html"},
-{n:"012",t:"粉戏夜宴",f:"第012章_粉戏夜宴.html"},
-{n:"013",t:"折腰渡酒",f:"第013章_折腰渡酒.html"},
-{n:"014",t:"月下红梅",f:"第014章_月下红梅.html"},
-{n:"015",t:"车前有路",f:"第015章_车前有路.html"},
-{n:"016",t:"笔下乾坤",f:"第016章_笔下乾坤.html"},
-{n:"017",t:"无常令主",f:"第017章_无常令主.html"},
-{n:"018",t:"死里逃生",f:"第018章_死里逃生.html"},
-{n:"019",t:"公堂问审",f:"第019章_公堂问审.html"},
-{n:"020",t:"图穷匕见",f:"第020章_图穷匕见.html"},
-{n:"021",t:"君臣一心",f:"第021章_君臣一心.html"},
-{n:"022",t:"秀才难哄",f:"第022章_秀才难哄.html"},
-{n:"023",t:"百密一疏",f:"第023章_百密一疏.html"},
-{n:"024",t:"箭下求生",f:"第024章_箭下求生.html"},
-{n:"025",t:"不善射术",f:"第025章_不善射术.html"},
-{n:"026",t:"攻守易形",f:"第026章_攻守易形.html"},
-{n:"027",t:"除夕之夜",f:"第027章_除夕之夜.html"},
-{n:"028",t:"孤男寡女",f:"第028章_孤男寡女.html"},
-{n:"029",t:"守岁铜板",f:"第029章_守岁铜板.html"},
-{n:"030",t:"以貌取人",f:"第030章_以貌取人.html"},
-{n:"031",t:"占山为王",f:"第031章_占山为王.html"},
-{n:"032",t:"留风相邀",f:"第032章_留风相邀.html"},
-{n:"033",t:"百年戏台",f:"第033章_百年戏台.html"},
-{n:"034",t:"不为人知",f:"第034章_不为人知.html"},
-{n:"035",t:"股掌之间",f:"第035章_股掌之间.html"},
-{n:"036",t:"枯梅再荣",f:"第036章_枯梅再荣.html"},
-{n:"037",t:"夜山围困",f:"第037章_夜山围困.html"},
-{n:"038",t:"酌饮天光",f:"第038章_酌饮天光.html"},
-{n:"039",t:"献投名状",f:"第039章_献投名状.html"},
-{n:"040",t:"不谈风月",f:"第040章_不谈风月.html"},
-{n:"041",t:"初战告捷",f:"第041章_初战告捷.html"},
-{n:"042",t:"兵分两路",f:"第042章_兵分两路.html"},
-{n:"043",t:"人之常情",f:"第043章_人之常情.html"},
-{n:"044",t:"今日一别",f:"第044章_今日一别.html"},
-{n:"045",t:"暗潮汹涌",f:"第045章_暗潮汹涌.html"},
-{n:"046",t:"闻风听哨",f:"第046章_闻风听哨.html"},
-{n:"047",t:"扪心自问",f:"第047章_扪心自问.html"},
-{n:"048",t:"七窍玲珑",f:"第048章_七窍玲珑.html"},
-{n:"049",t:"出尔反尔",f:"第049章_出尔反尔.html"},
-{n:"050",t:"安身立命",f:"第050章_安身立命.html"},
-{n:"051",t:"灯火庆节",f:"第051章_灯火庆节.html"},
-{n:"052",t:"心有偏颇",f:"第052章_心有偏颇.html"},
-{n:"053",t:"泠京生乱",f:"第053章_泠京生乱.html"},
-{n:"054",t:"劫船之夜",f:"第054章_劫船之夜.html"},
-{n:"055",t:"挟恩图报",f:"第055章_挟恩图报.html"},
-{n:"056",t:"稚子无知",f:"第056章_稚子无知.html"},
-{n:"057",t:"进退两难",f:"第057章_进退两难.html"},
-{n:"058",t:"天外飞箭",f:"第058章_天外飞箭.html"},
-{n:"059",t:"百步穿杨",f:"第059章_百步穿杨.html"},
-{n:"060",t:"恶果不休",f:"第060章_恶果不休.html"},
-{n:"061",t:"同室操戈",f:"第061章_同室操戈.html"},
-{n:"062",t:"大动肝火",f:"第062章_大动肝火.html"},
-{n:"063",t:"悄自留心",f:"第063章_悄自留心.html"},
-{n:"064",t:"收获颇丰",f:"第064章_收获颇丰.html"},
-{n:"065",t:"千里寻信",f:"第065章_千里寻信.html"},
-{n:"066",t:"各行其是",f:"第066章_各行其是.html"},
-{n:"067",t:"功败垂成",f:"第067章_功败垂成.html"},
-{n:"068",t:"计出万全",f:"第068章_计出万全.html"},
-{n:"069",t:"谈情说爱",f:"第069章_谈情说爱.html"},
-{n:"070",t:"师出有名",f:"第070章_师出有名.html"},
-{n:"071",t:"时局纷更",f:"第071章_时局纷更.html"},
-{n:"072",t:"皮里阳秋",f:"第072章_皮里阳秋.html"},
-{n:"073",t:"勤俭持家",f:"第073章_勤俭持家.html"},
-{n:"074",t:"逢场作戏",f:"第074章_逢场作戏.html"},
-{n:"075",t:"祸从口出",f:"第075章_祸从口出.html"},
-{n:"076",t:"劫数难逃",f:"第076章_劫数难逃.html"},
-{n:"077",t:"三思而行",f:"第077章_三思而行.html"},
-{n:"078",t:"殊途同归",f:"第078章_殊途同归.html"},
-{n:"079",t:"山重水复",f:"第079章_山重水复.html"},
-{n:"080",t:"柳暗花明",f:"第080章_柳暗花明.html"},
-{n:"081",t:"吊命之药",f:"第081章_吊命之药.html"},
-{n:"082",t:"秋后算账",f:"第082章_秋后算账.html"},
-{n:"083",t:"镜花水月",f:"第083章_镜花水月.html"},
-{n:"084",t:"欠债还钱",f:"第084章_欠债还钱.html"},
-{n:"085",t:"雨夜惊心",f:"第085章_雨夜惊心.html"},
-{n:"086",t:"万般由命",f:"第086章_万般由命.html"},
-{n:"087",t:"宝物易主",f:"第087章_宝物易主.html"},
-{n:"088",t:"巧设连环",f:"第088章_巧设连环.html"},
-{n:"089",t:"借刀杀人",f:"第089章_借刀杀人.html"},
-{n:"090",t:"斩草除根",f:"第090章_斩草除根.html"},
-{n:"091",t:"精心罗网",f:"第091章_精心罗网.html"},
-{n:"092",t:"君臣相隙",f:"第092章_君臣相隙.html"},
-{n:"093",t:"天作之合",f:"第093章_天作之合.html"},
-{n:"094",t:"官逼民反",f:"第094章_官逼民反.html"},
-{n:"095",t:"莫望天援",f:"第095章_莫望天援.html"},
-{n:"096",t:"天下一统",f:"第096章_天下一统.html"},
-{n:"097",t:"皇城惊变",f:"第097章_皇城惊变.html"},
-{n:"098",t:"新君归位",f:"第098章_新君归位.html"},
-{n:"099",t:"遗臭万年",f:"第099章_遗臭万年.html"},
-{n:"100",t:"荒腔走板",f:"第100章_荒腔走板.html"}
-];
-var chList=document.getElementById('chList');
-var chMore=document.getElementById('chMore');
-var LIMIT=10, expanded=false;
-function renderCh(){
-  if(!chList)return;
-  var list=expanded?CH:CH.slice(0,LIMIT);
-  chList.innerHTML=list.map(function(c){
-    return '<a class="ch-item" href="章卡/'+encodeURIComponent(c.f)+'"><span class="n">'+c.n+'</span><span class="t">'+c.t+'</span></a>';
-  }).join('');
-  if(CH.length>LIMIT){
-    chMore.innerHTML='<button id="chBtn">'+(expanded?'收起':('查看全部 '+CH.length+' 章 ›'))+'</button>';
-    document.getElementById('chBtn').onclick=function(){expanded=!expanded;renderCh();};
-  }else{chMore.innerHTML='';}
-}
-renderCh();
 </script>
-<div class="qr-float" title="作者微信二维码"><img src="./qrcode.jpg" alt="作者微信二维码"><span>扫码加作者微信</span></div>
 </body>
 </html>
