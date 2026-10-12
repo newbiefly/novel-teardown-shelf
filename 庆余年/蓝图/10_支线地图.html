@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 · 支线地图（《庆余年》创作蓝图）</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:5px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:13px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity .2s;}
+.topbar a:hover{opacity:.65;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.wrap{max-width:1360px;margin:0 auto;padding:32px 24px 80px;position:relative;z-index:1;}
+
+h1{font-size:24px;color:var(--gold2);letter-spacing:3px;font-weight:800;margin-bottom:10px;}
+.sub{font-size:13px;color:#8d8a84;line-height:1.9;margin-bottom:8px;}
+.sub code{color:var(--gold);background:rgba(201,169,97,.09);padding:1px 6px;border-radius:4px;}
+h2{font-size:17px;color:var(--gold2);letter-spacing:2px;font-weight:700;margin:0 0 16px;
+  border-left:3px solid var(--gold);padding-left:12px;display:flex;align-items:center;gap:10px;}
+h2 .tag{font-size:11px;color:var(--gold);border:1px solid rgba(201,169,97,.35);border-radius:20px;padding:1px 10px;letter-spacing:1px;font-weight:600;}
+section{margin-top:38px;}
+.card{background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px 20px;}
+
+/* ---------- 地铁图 ---------- */
+svg{display:block;width:100%;height:auto;overflow:visible;}
+.lane{cursor:pointer;transition:opacity .18s;}
+svg.has-active .lane{opacity:.14;}
+svg.has-active .lane.active{opacity:1;}
+svg.has-active .st{opacity:.14;}
+svg.has-active .st.active{opacity:1;}
+.lane-name{font-size:11.5px;font-weight:700;letter-spacing:.3px;cursor:pointer;transition:opacity .18s;}
+svg.has-active .lane-name{opacity:.14;}
+svg.has-active .lane-name.active{opacity:1;}
+.st-lab{font-size:8px;pointer-events:none;}
+.axis-t{font-size:10px;fill:#6f6c67;}
+
+/* ---------- 图例 ---------- */
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:9px 20px;margin-top:18px;}
+.legend .lg{display:flex;align-items:center;gap:9px;font-size:12px;color:#c3bfb8;padding:5px 10px;border-radius:9px;
+  cursor:pointer;transition:background .15s;border:1px solid transparent;}
+.legend .lg:hover{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08);}
+.legend .lg .bar{width:22px;height:6px;border-radius:4px;flex:none;}
+
+/* ---------- 支线卡片 ---------- */
+.scards{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:18px;margin-top:8px;}
+.scard{background:rgba(255,255,255,.022);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 18px;
+  border-left:3px solid var(--gold);transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+.scard::before{content:'';position:absolute;inset:0;background:radial-gradient(120px 60px at 0 0,rgba(201,169,97,.10),transparent 70%);pointer-events:none;}
+.scard:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.45);}
+.scard .shead{display:flex;align-items:center;gap:10px;margin-bottom:12px;position:relative;}
+.scard .shead .no{font-size:11px;font-weight:800;color:#131108;border-radius:7px;padding:2px 8px;flex:none;letter-spacing:.5px;}
+.scard .shead h4{font-size:14px;color:var(--gold2);font-weight:700;letter-spacing:.5px;}
+.scard .shead em{font-style:normal;font-size:10.5px;color:#131108;border-radius:20px;padding:1px 9px;font-weight:700;flex:none;margin-left:auto;white-space:nowrap;}
+.rows{display:flex;flex-direction:column;gap:8px;position:relative;}
+.r{display:flex;gap:10px;font-size:12px;line-height:1.78;color:#c1bdb6;}
+.r .lb{flex:none;width:36px;height:20px;border-radius:6px;font-size:10.5px;font-weight:800;letter-spacing:.5px;
+  display:flex;align-items:center;justify-content:center;}
+.lb.q{background:rgba(127,179,213,.16);color:#9fc4dd;border:1px solid rgba(127,179,213,.34);}
+.lb.c{background:rgba(107,199,168,.14);color:#8fd8c0;border:1px solid rgba(107,199,168,.32);}
+.lb.z{background:rgba(224,142,109,.15);color:#e7a98b;border:1px solid rgba(224,142,109,.34);}
+.lb.h{background:rgba(217,116,139,.15);color:#e497a7;border:1px solid rgba(217,116,139,.34);}
+.lb.j{background:rgba(232,201,122,.16);color:var(--gold2);border:1px solid rgba(232,201,122,.38);}
+.lb.v{background:rgba(201,169,97,.14);color:var(--gold);border:1px solid rgba(201,169,97,.34);}
+.r .tx b{color:var(--gold2);}
+.r.re{background:rgba(201,169,97,.05);border-radius:9px;padding:8px 10px;border:1px dashed rgba(201,169,97,.22);}
+
+#tip{position:fixed;z-index:9999;pointer-events:none;opacity:0;transition:opacity .12s;
+  background:rgba(14,14,20,.97);border:1px solid rgba(201,169,97,.45);border-radius:9px;
+  padding:9px 13px;font-size:12px;color:#eee;max-width:320px;line-height:1.6;box-shadow:0 10px 30px rgba(0,0,0,.6);}
+#tip b{color:var(--gold2);}
+#tip .c{color:var(--gold);font-weight:700;}
+
+@media(max-width:600px){.wrap{padding:24px 14px 70px;}h1{font-size:20px;}.scards{grid-template-columns:1fr;}}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">庆余年 · 支线蓝图</span>
+</div>
+
+<div class="wrap">
+  <h1>10 · 支线地图</h1>
+  <p class="sub">13 条支线 = 13 条彩色"线路" —— 横轴＝章号（0 → 746）；<b style="color:var(--gold2)">站点＝关键事件（标章号），换乘站＝与主线/其它支线的交汇点</b>。悬停/点击某条线可高亮其全路径。</p>
+  <p class="sub">数据源：<code>拆解数据/蓝图/10_支线地图.md</code>｜章号一律为全书连续编号。</p>
+
+  <section>
+    <h2>一、支线地铁线路图<span class="tag">13 线 · 0 → 746</span></h2>
+    <div class="card">
+      <div id="metro"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>二、13 条支线档案<span class="tag">起 · 承 · 转 · 合 + 交汇点 + 复用价值</span></h2>
+    <div class="scards" id="scards"></div>
+  </section>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* =========================================================
+   支线数据（取自 10_支线地图.md）
+   ========================================================= */
+var lines = [
+  {no:1, name:'身世与叶轻眉之谜线', rel:'核心主干', color:'#c9a961',
+   st:[0,34,53,141,178,321,640,726,733],
+   q:'第0章，襁褓范闲为"天脉者的孩子"，母"小姐"（叶轻眉）遭京都王公贵族围杀，被五竹救出。',
+   c:'第1—39章澹州——母亲之谜（第3、第29章）；第34—35章五竹雨夜讲史、交托黑皮箱；第53—54章监察院石碑认出"叶轻眉"之名；第141章读母致五竹遗信（母亲同源、借种生子）。',
+   z:'第178章陈萍萍道出追随叶轻眉的六人与母亲领路之功；第321—327章身世流言震动京都、入宫"相认"、见母画像；第476—478章金桂香识破北齐帝女儿身（旁证"同源"体质）；第640章范闲向若若道破"生父是庆帝"。',
+   h:'第726章神庙即前代文明博物馆；第730—733章揭母亲死因真相与文明毁灭史，身世之谜彻底揭底。',
+   j:'第0章（总根）、第141章（开箱读信）、第324章（身世惊雷）、第640章（对若若道破）、第726—733章（神庙揭底）——身世线本身就是主线。',
+   v:'"母亲之死+我是谁"的双钩结构——用一个缺席的母亲（叶轻眉）牵引全书谜题与复仇动机，可作长线悬疑的标准骨架；"大人物私生子"身份反转（第326章）是权谋类爆点模板；"身世=能力来源"把设定与血缘绑定，避免设定空悬。'},
+
+  {no:2, name:'复仇线（被杀 → 清算）', rel:'核心主干', color:'#d9748b',
+   st:[0,34,101,440,677,680,686,711,716,745],
+   q:'第0章太平别院血案，叶轻眉被围杀；第34章五竹讲史点明"因行善与王公贵族为敌、被围杀"。',
+   c:'第79、85章范建讲述叶家产业充入内库、京都流血月为叶家复仇旧事；第101章御前以四顾剑栽赃遮掩；第440—441章秦老爷子揭旧账；第677—678章御书房"你为什么要杀她"。',
+   z:'第680章陈萍萍以轮椅火器行刺庆帝，把"母仇"从迷雾变成确证（庆帝是杀母元凶）；第686—689章陈萍萍之死使范闲与庆帝正式决裂。',
+   h:'第711—715章布衣朝天子逼定"公平一战"；第716—719章苍山合刺、摘星楼重狙；第743—745章五竹黑布落地、彩虹贯帝、庆帝身死——母仇得报。',
+   j:'第101章（栽赃遮掩）、第324章（身世惊雷后复仇目标显影）、第680—686章（决裂）、第745章（弑君）——复仇动机随时间"由私人转向道义"。',
+   v:'"复仇动机递进三段式"——①不知仇人（澹州—京都）→②知仇人但不能动（陈萍萍死前）→③有能力清算（弑君）。适合作长线复仇文的动机管理；"杀母之仇落在生父身上"是最强伦理冲突设计点。'},
+
+  {no:3, name:'感情线·范闲×林婉儿', rel:'情感主线', color:'#e8a0b4',
+   st:[56,82,104,146,404,579,746],
+   q:'第56—57章庆庙偏殿"鸡腿姑娘"一见钟情。',
+   c:'第80—81章乔装诊脉、隔幔相认；第82—83章翻窗定情、留药许诺同去苍山；第87章感情升温、婉儿病体渐好。',
+   z:'第104章林若甫允婚、婚事获肯；第115—118章拜岳父、避暑庄定情；第146—147章大婚（柳氏扶正、皇帝亲笔"百年好合"）。',
+   h:'第404—406章婉儿停药求子风波、范闲向婉儿坦陈逼宫之谋；第579章思思生女、范闲初为人父替婉儿洗脚；第746章末章西湖夫妻相守。',
+   j:'第44章（婚事=夺回叶家产业的政治工具）、第104章（婚事落定绑定范林两家）、第406章（夺嫡布局向妻子摊牌）、第579章（新生命象征范闲的第二人生）。',
+   v:'"甜宠包裹政治联姻"——先给一见钟情（纯情钩），再揭婚事是产业图谋（权谋钩），最后把妻子还给政治（坦陈逼宫）。婉儿"病弱→停药求子→母婴早逝风险"是拉满共情与隐痛的点。'},
+
+  {no:4, name:'感情线·范闲×海棠朵朵', rel:'情感副线/北齐线', color:'#e8c97a',
+   st:[197,210,340,400,593,594,706,733,746],
+   q:'第197章雾渡河畔海棠现身，奉苦荷命欲杀肖恩灭口。',
+   c:'第198—201章以毒/春药连招缠斗、讨解药换"一日不出手"之诺；第208章珠帘见太后与海棠同出；第210—211章识破"村姑步"拉近关系；第340章背对背换功疗伤、范闲坦承"经脉全碎"。',
+   z:'第400—401章海棠吐"嫁给你怎么样"、大被同眠论婚事障碍；第407—409章梧州议婚谈判（老丈人道破君山会）；第593章荒漠重逢、道破"松芝仙令"身份（喀尔纳王女）。',
+   h:'第594—597章心战三日、各留一手、真气逆行震断金针、拒随回中原；第706章海棠赴京"要一个说法"；第733章并肩砸神庙；第746章末章以"珠串"意象轻收。',
+   j:'第197章（保肖恩→探神庙）、第340章（换功解真气之危）、第593—597章（草原局）、第716—717章（并肩合刺庆帝）、第733章（共探神庙）。',
+   v:'"敌对阵营的白月光"——异国、敌对身份、两次"该杀却放"、以"三日"作情感隔离期，是"意难平/克制型"感情副线的模板；"换功"让感情线与主角能力短板互救，绑定更牢。'},
+
+  {no:5, name:'北齐线（言冰云/司理理/换俘）', rel:'重大支线', color:'#7fb3d5',
+   st:[26,131,132,182,191,193,202,218,226,242,251,722,736],
+   q:'第26章"遣言冰云赴北齐"（澹州案牵出）；第131章王启年证实言冰云在上京被北齐生擒。',
+   c:'第132章定"救言冰云、杀肖恩"之策并派提司北上；第182—183章押解肖恩出京；第185—186章与司理理马车暧昧、查出"毒人计划"；第191章司理理真名李离思（开国皇族遗孙）。',
+   z:'第193章肖恩越狱；第202—209章过雾渡河入齐、入宫面圣；第218—225章营救言冰云、撕袍见伤、结盟；第226—233章上杉虎劫囚事败；第237—240章绝壁神庙秘。',
+   h:'第242—248章告肖恩身世、殿前假打；第251—252章庄墨韩死赠书、长亭别司理理与海棠；第722章末段上京遥送（北齐帝抱小公主红豆饭）。',
+   j:'第131—132章（换俘立局）、第220—225章（言冰云结盟=得北方谍网）、第239章（肖恩口吐神庙秘闻）、第722章（北齐线以"血脉"收束）。',
+   v:'"敌国换俘换回关键盟友"——用一个我方人质（言冰云）换回敌方元老（肖恩），再让肖恩身上带出核心秘密（神庙），是"出使线如何服务于主线悬疑"的范本；司理理=亡国皇族遗孙，把谍战线与"正统性"主题勾连。'},
+
+  {no:6, name:'内库与江南商战线（明家）', rel:'重大支线', color:'#6bc7a8',
+   st:[44,85,258,343,356,361,370,374,389,394,484,660,746],
+   q:'第44章范建揭破婚事意在夺回充入内库的叶家产业；第85章庆余堂十七位掌柜皆叶家旧人。',
+   c:'第258—261章范闲受命掌内库；第343—350章苏州亮银立威、内库整肃斩司库主事、请叶家老掌柜出山。',
+   z:'第356—360章内库开门招标、夏栖飞压轴登场；第361—369章夏栖飞夺标认兄、明家天价夺标一千一百五十万两；第370—373章伪造遗书家产官司动摇嫡长继承论。',
+   h:'第374—377章夜杀袁梦、蚕食明家；第389—393章明园惊变、明青达缢母夺权暗投；第394—398章一剑倾楼、明家线收尾；第484—493章招商钱庄收网、明园易主；第660章太平钱庄真相、第746章杭州会。',
+   j:'第44章（夺产=主角做事动机起点）、第261章（掌内库=财权在手）、第368章（商战高潮反哺朝局）、第406章（内库工艺与逼宫筹码）、第712—713章（内库赋税作为"公平一战"筹码）。',
+   v:'"商战即权谋"的落地写法——把"内库/明家/钱庄/招标"做成可视化权力角斗场，商战胜利直接兑换政治资本；夏栖飞（认祖夺产）、明青达（缢母夺权）等"灰色代理人"是主角不方便亲手做之事的替手。'},
+
+  {no:7, name:'监察院线（陈萍萍/院长之争）', rel:'重大支线', color:'#9b8ec4',
+   st:[6,13,52,175,262,309,581,635,678,680,721,745],
+   q:'第6章费介（监察院三处主办）入府授毒，侧面引出监察院；第13章范闲惊动监察院全院。',
+   c:'第52—54章范闲访监察院、见母亲石碑；第175—177章费介引入监察院、见陈萍萍相拥、得提司身份、六处"影子"现身；第262—265章兼管一处并整风。',
+   z:'第309章陈萍萍向五竹坦承"没有真正的神仙局"；第581—582章陈萍萍点破皇帝或将选范闲继位、道破陛下是大宗师；第635—638章范闲逼陈萍萍退隐、讨得监察院院长之位、收权夺院。',
+   h:'第678章陈萍萍揭监察院本为监察皇帝而立；第680—681章火器行刺、以"一根手指"令全院臣服；第721章言冰云与范闲论"公器"；第745章后监察院在新朝的定位。',
+   j:'第176章（入监察院=权谋线主干）、第309章（神仙局真相）、第335—338章（以监察院之力收水寨设暗桩）、第685章（陈萍萍之死=主角决裂导火索）。',
+   v:'"组织型导师的养成与献祭"——陈萍萍从"考验者"→"扶手"→"以死点燃主角"，是把一个组织（监察院）与一个人（老院长）打包做长线情感与权力工具的高级写法；"机构本为监察最高权力而立"是给暴力组织赋道义底色的点睛设定。'},
+
+  {no:8, name:'长公主与太子党线', rel:'主要反派线', color:'#e08e6d',
+   st:[44,77,103,130,143,192,270,388,467,494,556,570,574],
+   q:'第44章范建揭破婚事关联长公主所掌内库；第77—78章宫中太后掌掴长公主、四年前澹州刺杀旧案浮现。',
+   c:'第103章林若甫允婚并与长公主决裂；第130章长公主"我想杀你"；第143章言纸掀翻长公主、离京赴信阳；第192章信阳密谈吐露"谁说女子就不能在天下这个舞台上发光"。',
+   z:'第270章范闲揭破二皇子即长公主一党；第388章太子与二皇子流晶河结盟、长公主点局；第467—479章太子与长公主私情、抓奸局；第494—499章雷雨宫变、血洗东宫广信宫、幽禁长公主、遣太子赴南诏。',
+   h:'第556—566章太平别院逼长公主、揭"以四大宗师为皇兄陪葬"之谋；第570章长公主腹插黑匕自尽、"朕回来了"；第574章二皇子服毒自尽；第494章太子恨视父皇、后被废。',
+   j:'第44章（夺产矛盾）、第101章（刺杀主谋）、第273章（朝堂杖责）、第496—499章（宫变）、第570章（自尽）。',
+   v:'"双线反派网（后宫母系+皇子派系）"——长公主（掌内库/后宫）+太子（东宫）+二皇子（军方/清名）三层反派的层递出现，可供多卷长线反派设计；"太子与长公主私情"是极端伦理爆点，"一人一党分期清算"是收网节奏模板。'},
+
+  {no:9, name:'东夷城/剑庐线（四顾剑/影子）', rel:'重大支线', color:'#b0a07a',
+   st:[34,101,148,399,501,612,631,654,660,665],
+   q:'第34章五竹讲叶轻眉"于东夷城暗中经商、创叶家"；第101章御前以四顾剑栽赃；第148章费介换四顾剑一脉不主动生事之诺。',
+   c:'第399—403章范闲召众议"如何杀死一位大宗师"、影子报四顾剑六年未出剑庐；第501—502章四顾剑判范闲"最不可能……他没心"、论"种子"。',
+   z:'第612—630章剑庐开庐、断杨入庐、剑庐问鼎（四顾剑以树枝青叶出手定调）；第631—634章城主府血洗授剑、影子二十年后复仇一剑刺兄未果、四顾剑"非圣人不能用之"。',
+   h:'第654—659章四顾剑临终传道、把东夷城与剑庐交给范闲、坐化于朝阳金光中；第660—665章东夷城兵不血刃归庆、接手剑庐与太平钱庄。',
+   j:'第101章（栽赃引线）、第501—502章（种因）、第617—634章（范闲"半个东夷人"身份利用）、第657—663章（得东夷之力，为弑君添筹码）。',
+   v:'"以大宗师为活棋盘的势力并购"——把一位宗师之死做成"和平归附"的政治交易；"影子=四顾剑之弟"隐藏近全书（第632章才亮），是同名/蒙面角色的长效反转模板。'},
+
+  {no:10, name:'神庙线与叶轻眉之谜', rel:'世界观底牌', color:'#8fb0c9',
+   st:[10,26,31,141,178,239,316,324,501,686,723,726,730,733],
+   q:'第10章费介道出"四大宗师、叶流云、苦荷、神庙"秘闻；第26章叶轻眉石碑之谜。',
+   c:'第31章五竹忆起"和小姐出来的地方"；第141章遗信提"子弹""神庙"；第178章陈萍萍嘱打探神庙；第239—240章崖底神庙秘闻（肖恩口述）。',
+   z:'第316—320章苦荷踏雪授意"让全天下都知道"、范闲破译"叶"字；第324章五竹诱杀神庙布衣宗师；第501—504章叶轻眉"种子"说、五竹的伤。',
+   h:'第686—689章箱中"枪"与大雪山意象；第723章北行神庙（"勿"字路线谜题）；第726章神庙即前代文明博物馆（三个M）；第730—733章文明毁灭史与四定律、叶轻眉死因真相、砸庙。',
+   j:'第10章（首现）、第141章（子弹与神庙悬置）、第239章（神庙秘闻）、第324章（神庙布衣宗师）、第726—733章（世界观揭底）。',
+   v:'"金手指/异象来源即世界观底牌"——把穿越者（范闲）、先知（叶轻眉）、绝世武力（五竹）统一归于"神庙（前代文明）"，一个设定解释三条线；"文明轮回+辐射/元气"的伪科学包装，是东方奇幻里的科幻化落点模板。'},
+
+  {no:11, name:'西胡/草原线（海棠/松芝仙令）', rel:'边境支线', color:'#c98f6b',
+   st:[477,586,589,593,594,595,598,602,705],
+   q:'第477—479章燕小乙归北、西胡/北齐军情浮现。',
+   c:'第586—588章范闲定州密会胡歌、套出"松芝仙令"之名；第589—592章入草原王庭、窥单于速必达。',
+   z:'第593章荒漠重逢、道破松芝仙令即失踪两年的海棠朵朵；第594章海棠喀尔纳王女身世。',
+   h:'第595—597章以"留你三天"为局、影子屠王庭北齐人、王十三郎刺左贤王、黑骑伪野马突围；第598—602章红山口会合、清谍成功、城门悬尸。',
+   j:'第586章（密旨查西胡）、第593章（海棠身份揭底）、第595章（借西胡局回敬北齐皇帝）、第705章（红山口血战、胡歌自刎）。',
+   v:'"边境线作为配角归宿与主线回旋镖"——草原线既是主角布局的外围战场，也是海棠、李弘成、叶灵儿等配角的落地处；"松芝仙令"用神秘代号吊胃口、再用旧人揭底，是低成本高回报的悬念手法。'},
+
+  {no:12, name:'范家家族线（范建/思辙/若若）', rel:'家族情感支线', color:'#a8c98f',
+   st:[40,44,60,85,286,377,480,576,579,746],
+   q:'第40—43章入京都范府认亲、与柳氏/范若若/范思辙相见。',
+   c:'第44章父子书房夜谈（揭婚事真意）；第60—61章范思辙筹办澹泊书局、范闲资助；第85章范建讲叶家产业与流血月。',
+   z:'第286—295章抱月楼真东家是亲弟范思辙、家法鞭弟流放北齐；第377章柳氏哭求、范建以"子不教父之过"压住；第480—483章思思有喜、范闲将为人父；第576—580章思思生女、范闲初为人父。',
+   h:'第579章初为人父抱女洗脚；第746章末章回澹州、子女成群、范若若—李弘成、范思辙古董生意。',
+   j:'第44章（家族使命驱动夺产）、第290—295章（家族伦理与朝局两难）、第480章（子嗣=第二人生）、第746章（家族收于太平）。',
+   v:'"家族作为主角的人性锚"——范建（父/使命）、范思辙（憨弟/喜剧+牺牲）、范若若（才女/传承）、思思（香火/柔软）各担一角；"家法鞭弟"是权谋文里罕见的家族伦理名场面，让主角"对外狠、对内也狠"更真实。'},
+
+  {no:13, name:'宗师线（叶流云/苦荷/四顾剑/庆帝）', rel:'力量线/世界观', color:'#d5c07f',
+   st:[10,31,64,148,317,398,517,530,567,654,716,744,745],
+   q:'第10章费介道出四大宗师秘闻；第31章叶流云乘舟而来、五竹倾船一战。',
+   c:'第64、第398章叶流云一剑（斩塌抱月楼）；第148章费介谈四顾剑；第317—320章苦荷踏雪授意、青山布局。',
+   z:'第517—529章东山四宗（叶流云、四顾剑、苦荷登顶）；第530章四大宗师围杀庆帝；第567—568章庆帝真身揭晓、王道杀苦荷、一拳废四顾剑。',
+   h:'第654—658章四顾剑之死、叶流云海上送别；第716—719章苍山合刺、摘星楼重狙；第744—745章五竹黑布落地、彩虹贯帝、庆帝身死（四大宗师尽灭）。',
+   j:'第31章（首现）、第398章（一剑倾楼）、第530—568章（东山宗师战=最大武力奇观）、第745章（庆帝之死）。',
+   v:'"四大宗师四象限"与"最强者是皇帝"的反转——用四位宗师（东夷四顾剑、北齐苦荷、游历叶流云、隐者庆帝）锚定天下武力版图，"最强者即最高权力者"是权谋仙侠的顶级设定；"五竹是超越四宗的第五人"则是收尾的最强底牌。'}
+];
+
+/* =========================================================
+   地铁图渲染
+   ========================================================= */
+var tip = document.getElementById('tip');
+function showTip(html, x, y){
+  tip.innerHTML = html; tip.style.opacity = 1;
+  var w = tip.offsetWidth, h = tip.offsetHeight;
+  var px = x + 16, py = y + 16;
+  if(px + w > window.innerWidth - 12) px = x - w - 16;
+  if(py + h > window.innerHeight - 12) py = y - h - 16;
+  tip.style.left = px + 'px'; tip.style.top = py + 'px';
+}
+function hideTip(){ tip.style.opacity = 0; }
+
+var MAX = 746;
+(function(){
+  var laneTop = 92, gap = 60;
+  var x0 = 172, x1 = 1326, span = x1 - x0;
+  function X(ch){ return x0 + ch / MAX * span; }
+  var H = laneTop + (lines.length - 1) * gap + 44;
+
+  // 统计交汇点（章号被 ≥2 条线共享）
+  var cnt = {};
+  lines.forEach(function(L){ L.st.forEach(function(ch){ cnt[ch] = (cnt[ch]||0) + 1; }); });
+  var inter = {};
+  Object.keys(cnt).forEach(function(k){ if(cnt[k] >= 2) inter[k] = true; });
+
+  var s = [];
+
+  // 顶部刻度与竖向网格
+  for(var c = 0; c <= 700; c += 100){
+    var gx = X(c);
+    s.push('<line x1="'+gx.toFixed(1)+'" y1="52" x2="'+gx.toFixed(1)+'" y2="'+(H-30)+'" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>');
+    s.push('<text class="axis-t" x="'+gx.toFixed(1)+'" y="42" text-anchor="middle">第'+c+'章</text>');
+  }
+  var g746 = X(746);
+  s.push('<line x1="'+g746.toFixed(1)+'" y1="52" x2="'+g746.toFixed(1)+'" y2="'+(H-30)+'" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>');
+  s.push('<text class="axis-t" x="'+g746.toFixed(1)+'" y="42" text-anchor="middle">746</text>');
+  s.push('<text class="axis-t" x="'+(x0-8)+'" y="42" text-anchor="end" style="fill:#8a867f">章号</text>');
+
+  // 换乘通道（先画，垫在车道之下）
+  lines.forEach(function(L){
+    L.st.forEach(function(ch){
+      if(!inter[ch]) return;
+      var ys = [];
+      lines.forEach(function(L2, j){ if(L2.st.indexOf(ch) >= 0) ys.push(laneTop + j*gap); });
+      if(ys.length < 2) return;
+      var ymin = Math.min.apply(null, ys), ymax = Math.max.apply(null, ys);
+      s.push('<line x1="'+X(ch).toFixed(1)+'" y1="'+ymin.toFixed(1)+'" x2="'+X(ch).toFixed(1)+'" y2="'+ymax.toFixed(1)+'" stroke="rgba(232,201,122,0.16)" stroke-width="1.4" stroke-dasharray="3 4"/>');
+    });
+  });
+
+  // 各条线路（车轨）
+  lines.forEach(function(L, i){
+    var y = laneTop + i*gap;
+    s.push('<g class="lane" data-i="'+i+'">');
+    s.push('<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" stroke="'+L.color+'" stroke-width="3.2" stroke-linecap="round" opacity="0.9"/>');
+    s.push('</g>');
+    s.push('<text class="lane-name" data-i="'+i+'" x="'+x0+'" y="'+(y+4)+'" text-anchor="end" fill="'+L.color+'">'+(L.no<10?'0':'')+L.no+' · '+L.name+'</text>');
+  });
+
+  // 站点 + 章号标签
+  lines.forEach(function(L, i){
+    var y = laneTop + i*gap;
+    L.st.forEach(function(ch, k){
+      var x = X(ch), isInt = !!inter[ch];
+      s.push('<g class="st" data-i="'+i+'">');
+      if(isInt){
+        s.push('<circle cx="'+x.toFixed(1)+'" cy="'+y+'" r="7" fill="#08080c" stroke="'+L.color+'" stroke-width="2.4"/>');
+        s.push('<circle cx="'+x.toFixed(1)+'" cy="'+y+'" r="3" fill="'+L.color+'"/>');
+      }else{
+        s.push('<circle cx="'+x.toFixed(1)+'" cy="'+y+'" r="4.2" fill="'+L.color+'" stroke="#08080c" stroke-width="1.6"/>');
+      }
+      s.push('<circle cx="'+x.toFixed(1)+'" cy="'+y+'" r="11" fill="transparent"/>');
+      s.push('</g>');
+      var ly = y + (k % 2 === 0 ? 17 : 30);
+      s.push('<text class="st-lab" x="'+x.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="end" transform="rotate(-55 '+x.toFixed(1)+' '+ly.toFixed(1)+')" fill="'+L.color+'" opacity="'+(isInt?0.95:0.6)+'">'+(isInt?'换乘 ':'')+'第'+ch+'章</text>');
+    });
+  });
+
+  document.getElementById('metro').innerHTML =
+    '<svg id="svg" viewBox="0 0 1360 '+H+'" width="100%" role="img" aria-label="庆余年 13 条支线地铁线路图">'+s.join('')+'</svg>';
+
+  // ---- 交互 ----
+  var svg = document.getElementById('svg');
+  var lanes = Array.prototype.slice.call(svg.querySelectorAll('.lane'));
+  var names = Array.prototype.slice.call(svg.querySelectorAll('.lane-name'));
+  var sts   = Array.prototype.slice.call(svg.querySelectorAll('.st'));
+
+  function clearActive(){
+    lanes.forEach(function(e){e.classList.remove('active');});
+    names.forEach(function(e){e.classList.remove('active');});
+    sts.forEach(function(e){e.classList.remove('active');});
+    svg.classList.remove('has-active');
+  }
+  function setActive(i){
+    svg.classList.add('has-active');
+    lanes.forEach(function(e){ e.classList.toggle('active', +e.getAttribute('data-i')===i); });
+    names.forEach(function(e){ e.classList.toggle('active', +e.getAttribute('data-i')===i); });
+    sts.forEach(function(e){ e.classList.toggle('active', +e.getAttribute('data-i')===i); });
+  }
+  function nearestCh(ev, L){
+    var pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
+    var loc = pt.matrixTransform(svg.getScreenCTM().inverse());
+    var best = null, bd = 1e9;
+    L.st.forEach(function(ch){ var d = Math.abs(X(ch) - loc.x); if(d < bd){ bd = d; best = ch; } });
+    return bd < 42 ? best : null;
+  }
+
+  function bindLine(el){
+    var i = +el.getAttribute('data-i');
+    el.addEventListener('mouseenter', function(){ setActive(i); });
+    el.addEventListener('mouseleave', clearActive);
+    el.addEventListener('click', function(){ setActive(i); scrollToCard(i); });
+  }
+  lanes.forEach(bindLine);
+  names.forEach(bindLine);
+
+  sts.forEach(function(g){
+    var i = +g.getAttribute('data-i');
+    g.addEventListener('mouseenter', function(){ setActive(i); });
+    g.addEventListener('mousemove', function(ev){
+      var L = lines[i], ch = nearestCh(ev, L);
+      var html = '<b>支线 '+L.no+' · '+L.name+'</b><br><span class="c">'+(ch!==null?('关键站点 · 第'+ch+'章'):L.rel)+'</span>'+
+                 '<br><span style="color:#9c988f">'+L.rel+'</span>';
+      showTip(html, ev.clientX, ev.clientY);
+    });
+    g.addEventListener('mouseleave', function(){ hideTip(); clearActive(); });
+    g.addEventListener('click', function(){ setActive(i); scrollToCard(i); });
+  });
+
+  // ---- 图例 ----
+  document.getElementById('legend').innerHTML = lines.map(function(L,i){
+    return '<div class="lg" data-i="'+i+'"><span class="bar" style="background:'+L.color+'"></span>'+
+      (L.no<10?'0':'')+L.no+' · '+L.name+'<span style="margin-left:auto;font-size:10px;color:#7c7972">'+L.rel+'</span></div>';
+  }).join('');
+  Array.prototype.slice.call(document.querySelectorAll('#legend .lg')).forEach(function(el){
+    var i = +el.getAttribute('data-i');
+    el.addEventListener('mouseenter', function(){ setActive(i); });
+    el.addEventListener('mouseleave', clearActive);
+    el.addEventListener('click', function(){ setActive(i); scrollToCard(i); });
+  });
+})();
+
+/* =========================================================
+   支线档案卡片
+   ========================================================= */
+document.getElementById('scards').innerHTML = lines.map(function(L,i){
+  return '<div class="scard" id="scard'+i+'" style="border-left-color:'+L.color+'">'+
+    '<div class="shead"><span class="no" style="background:linear-gradient(135deg,'+L.color+',#e8c97a)">'+(L.no<10?'0':'')+L.no+'</span>'+
+    '<h4>'+L.name+'</h4><em style="background:'+L.color+'">'+L.rel+'</em></div>'+
+    '<div class="rows">'+
+      '<div class="r"><span class="lb q">起</span><div class="tx">'+L.q+'</div></div>'+
+      '<div class="r"><span class="lb c">承</span><div class="tx">'+L.c+'</div></div>'+
+      '<div class="r"><span class="lb z">转</span><div class="tx">'+L.z+'</div></div>'+
+      '<div class="r"><span class="lb h">合</span><div class="tx">'+L.h+'</div></div>'+
+      '<div class="r"><span class="lb j">交汇</span><div class="tx">'+L.j+'</div></div>'+
+      '<div class="r re"><span class="lb v">复用</span><div class="tx">'+L.v+'</div></div>'+
+    '</div></div>';
+}).join('');
+
+function scrollToCard(i){
+  var el = document.getElementById('scard'+i);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+}
+</script>
+</body>
+</html>

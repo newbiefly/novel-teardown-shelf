@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>17 · 谜题与诡计（《庆余年》创作蓝图）</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,8,12,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity .2s;}
+.topbar a:hover{opacity:.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.wrap{max-width:1280px;margin:0 auto;padding:32px 24px 80px;position:relative;z-index:1;}
+h1{font-size:24px;color:var(--gold2);letter-spacing:3px;font-weight:900;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);margin-bottom:18px;}
+h2{font-size:18px;color:var(--gold2);letter-spacing:2px;margin:44px 0 16px;border-left:3px solid var(--gold);padding-left:14px;font-weight:700;}
+h3{font-size:14px;color:var(--gold2);letter-spacing:1px;margin:24px 0 10px;font-weight:700;}
+p{font-size:13px;line-height:1.95;color:#c9c6c0;margin-bottom:10px;}
+strong{color:var(--gold2);font-weight:600;}
+em{color:var(--gold);font-style:normal;}
+blockquote{background:rgba(201,169,97,0.05);border-left:3px solid rgba(201,169,97,0.3);border-radius:0 10px 10px 0;
+  padding:14px 20px;margin:14px 0;font-size:12.5px;color:#b6b3ad;line-height:1.9;}
+blockquote strong{color:var(--gold2);}
+code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.chart{background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px;margin:16px 0;overflow:hidden;}
+.chart svg{display:block;width:100%;height:auto;}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);}
+.legend span{font-size:11.5px;color:#a9a6a0;display:flex;align-items:center;gap:6px;}
+.legend i{width:12px;height:10px;border-radius:3px;display:inline-block;flex:none;}
+.grid{display:grid;gap:14px;}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g2{grid-template-columns:repeat(2,1fr);}
+@media(max-width:1020px){.g3{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:720px){.g3,.g2{grid-template-columns:1fr;}}
+#tip{position:fixed;pointer-events:none;z-index:999;background:rgba(12,12,18,0.97);
+  border:1px solid rgba(201,169,97,0.45);border-radius:9px;padding:9px 12px;font-size:12px;color:#e8e6e3;
+  max-width:320px;line-height:1.65;display:none;box-shadow:0 10px 34px rgba(0,0,0,0.7);}
+#tip b{color:var(--gold2);}
+.hint{font-size:11px;color:#87847e;margin-top:8px;letter-spacing:.5px;line-height:1.85;}
+.hint strong{color:var(--gold2);}
+svg text{font-family:'PingFang SC','Microsoft YaHei',sans-serif;}
+
+/* 谜题卡片 */
+.pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+@media(max-width:1020px){.pcards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:720px){.pcards{grid-template-columns:1fr;}}
+.pcard{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 15px;transition:.2s;}
+.pcard:hover{border-color:rgba(201,169,97,0.5);background:rgba(201,169,97,0.045);transform:translateY(-2px);}
+.pcard.core{border-color:rgba(217,107,107,0.35);background:rgba(217,107,107,0.04);}
+.pcard.core:hover{border-color:rgba(217,107,107,0.7);background:rgba(217,107,107,0.09);}
+.pc-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.pc-head .mid{font-size:11px;font-weight:800;color:#08080c;background:var(--gold);border-radius:4px;padding:2px 7px;letter-spacing:.5px;}
+.pcard.core .pc-head .mid{background:#d96b6b;color:#1a0f0f;}
+.pc-head .ptitle{font-size:12.5px;color:var(--gold2);font-weight:700;flex:1;min-width:120px;}
+.pc-head .ctag{font-size:10px;color:#e8b0b0;border:1px solid rgba(217,107,107,0.5);border-radius:10px;padding:1px 8px;white-space:nowrap;}
+.pc-row{display:grid;grid-template-columns:44px 1fr;gap:8px;font-size:11.5px;line-height:1.75;padding:5px 0;border-top:1px dashed rgba(255,255,255,0.07);}
+.pc-row em{color:var(--gold);font-style:normal;font-weight:600;flex:none;}
+.pc-row span{color:#c2bfb9;}
+.pc-foot{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);font-size:11px;color:#a9a6a0;line-height:1.75;}
+.pc-foot b{color:var(--gold2);}
+
+.blk{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px 18px;transition:.2s;}
+.blk:hover{border-color:rgba(201,169,97,0.4);}
+.blk h3{margin-top:0;display:flex;align-items:center;gap:8px;}
+.blk h3 .tag{font-size:10px;color:#08080c;background:var(--gold);border-radius:4px;padding:1px 7px;font-weight:700;}
+.blk ol,.blk ul{padding-left:20px;margin:6px 0 0;}
+.blk li{font-size:12px;line-height:1.9;color:#c2bfb9;margin-bottom:5px;}
+.blk li b{color:var(--gold2);}
+.blk li em{color:var(--gold);font-style:normal;}
+.mis td{font-size:11.5px;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.06);color:#c2bfb9;line-height:1.7;vertical-align:top;}
+.mis th{font-size:11.5px;color:var(--gold2);text-align:left;padding:8px 10px;background:rgba(201,169,97,0.12);}
+.mis{border-collapse:collapse;width:100%;margin-top:6px;}
+.mis b{color:var(--gold2);}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">庆余年 · 谜题与诡计蓝图</span>
+</div>
+<div class="wrap">
+  <h1>17 · 谜题与诡计</h1>
+  <blockquote>
+    书：《庆余年》猫腻 · 745章 / 307.4万字；数据源：<code>拆解数据/蓝图/17_谜题与诡计.md</code> ＋ <code>拆解数据/台账/谜题线索台账.md</code>（32 谜题组）<br>
+    本篇 ＝ <strong>谜题设计法提炼</strong>，非剧情复述。谜题组共 <strong>32 组（M01~M32）</strong>，其中 <strong>3 组为全书核心谜</strong>（M04 叶轻眉之谜 / M13 庆帝真相 / M17 神庙）。章号一律<strong>全书连续编号</strong>。
+  </blockquote>
+
+  <h2>一、三大核心谜 · 分层揭示</h2>
+  <p>三大核心谜<strong>不是一次性揭晓</strong>，而是<strong>分层推进</strong>——由外到内，每揭一层，读者以为"真相到手"，其实只是下一层的入口。悬停圆环 / 图例查看每层揭示内容与章号。</p>
+  <div class="chart"><div id="core"></div>
+    <div class="hint">分层逻辑：<strong>叶轻眉</strong>从"她是谁"→"谁杀的"→"怎么杀的"→"为什么杀"；<strong>庆帝</strong>先缩范围→再揭真身→后挖内核；<strong>神庙</strong>从"神话"→"机构"→"科幻废墟"→"有意志的法则"。</div>
+  </div>
+
+  <h2>二、谜题揭示时间轴（32 组）</h2>
+  <p>横轴＝章号（0 → 746）；每一条横条 ＝ 一组谜题，<strong>条长＝悬置跨度</strong>（从"谜面出现"到"揭秘"）。悬停查看谜面与起止章号。</p>
+  <div class="chart"><div id="timeline"></div>
+    <div class="legend">
+      <span><i style="background:#4f7f6a"></i>短悬置（≤60章）</span>
+      <span><i style="background:#6f8fa8"></i>中（≤200章）</span>
+      <span><i style="background:#c9a961"></i>长（≤500章）</span>
+      <span><i style="background:#e8c97a"></i>超长（>500章）</span>
+      <span><i style="background:#d96b6b"></i>核心谜</span>
+    </div>
+    <div class="hint">全书最长的物理悬念锚点：<strong>M07 黑皮箱</strong> 与 <strong>M02 五竹身世</strong>（第1章 → 第745章），读者惦记箱子＝惦记主线。</div>
+  </div>
+
+  <h2>三、32 组谜题卡片</h2>
+  <p>每组五要素：<strong>谜面 → 线索 → 误导 → 揭秘时机 → 结构功能</strong>。</p>
+  <div class="pcards" id="cards"></div>
+
+  <h2>四、谜题设计法（可复用清单）</h2>
+  <div class="grid g2">
+    <div class="blk">
+      <h3><span class="tag">埋谜面</span>如何埋谜面（3 条）</h3>
+      <ol>
+        <li><b>开篇密集抛谜，多谜并置</b>：楔子 + 前三章就抛出 5-6 个谜面（身世、母亲、五竹、箱子、身世信）<em>[第0-6章]</em>。谜面不是一个个给，是<strong>一把撒出去</strong>。</li>
+        <li><b>每个谜面配一个"看得见的锚点"</b>：身世↔箱子、母亲↔石碑、神庙↔"大雪山"意象、庆帝↔洪四痒。抽象谜面挂一个<strong>具体物件 / 人物</strong>，方便惦记、方便复现。</li>
+        <li><b>谜面分层抛出，一层套一层</b>：大谜（叶轻眉之死）里套中谜（谁杀的）套小谜（凶手名单），<strong>每解一层立刻生出新谜面</strong>，悬念不断档。</li>
+      </ol>
+    </div>
+    <div class="blk">
+      <h3><span class="tag">分层揭秘</span>如何分层揭秘（4 条）</h3>
+      <ol>
+        <li><b>"解一层立生新谜"</b>：第134章解开箱子谜，立刻抛"子弹下落"新谜；第677章解开血案环链，立刻指向"神庙为何配合"。<strong>揭秘不是终点，是下一段的起点。</strong></li>
+        <li><b>节奏由密到疏、由缓到急</b>：中段每 20-40 章揭一层（第300/468/502章），末卷每章揭 3-4 条（第713-745章）——<strong>终局密度陡增</strong>。</li>
+        <li><b>大谜分层，各层独立成立</b>：叶轻眉之谜的四层，每层单独看都是完整故事，合起来才是全貌。<strong>层内自洽</strong>，否则显得为反转而反转。</li>
+        <li><b>揭秘点要"打脸式回响"</b>：真相揭晓后让前文台词原句回响（陈萍萍"做第二条狗"、长公主"去问萍萍"、肖恩"别去神庙"）——<strong>用旧台词当新揭秘的注脚</strong>。</li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>误导四法（黄金法则：误导必须"有据可依"）</h3>
+  <div class="blk">
+    <table class="mis">
+      <thead><tr><th style="width:150px">误导法</th><th style="width:280px">定义</th><th>本书用例</th></tr></thead>
+      <tbody>
+        <tr><td><b>替身误导</b></td><td>给真反派配一个"看似大 boss"的替身</td><td>洪四痒替庆帝；太子 / 长公主替庆帝 <em>[第121/317/568章]</em></td></tr>
+        <tr><td><b>弱点误导</b></td><td>把真反派的能力伪装成"性格弱点"</td><td>皇帝"多疑失策"实为伪装 <em>[第515/562章]</em></td></tr>
+        <tr><td><b>编号 / 物证误导</b></td><td>用一个"看似铁证"的物证把人引向错误方向</td><td>城弩编号疑指定州叶家，成功误导两方 <em>[第433章]</em></td></tr>
+        <tr><td><b>群体共识误导</b></td><td>让所有剧中人（含主角）共同相信一个错误结论</td><td>"叶家是二皇子之党"（太子 / 二皇子 / 秦业皆信）<em>[第557章]</em></td></tr>
+      </tbody>
+    </table>
+    <div class="hint">误导的金律：编号、口供、旁观者都是真的，只是被<strong>解释错了</strong>。这样读者回头不觉得"被骗"，只觉得"自己没想到"。</div>
+  </div>
+
+  <h3>谜题设计总清单（10 条）</h3>
+  <div class="grid g2" id="checklist"></div>
+
+  <blockquote style="margin-top:28px">
+    本书专属高阶技法：<strong>民间传说 = 残存真相</strong>——把世界观谜题先包装成"神话传说"供人膜拜，最后用"科技 / 历史真相"解释，一次性反转整个世界的性质。
+  </blockquote>
+</div>
+<div id="tip"></div>
+<script>
+/* —— tooltip 属性安全：属性值里禁止出现裸引号/尖括号（否则 SVG 解析崩坏），白名单标签保留 —— */
+function __esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function __tip(s){
+  var K=['<b>','</b>','<br>','<br/>','<span>','</span>','<em>','</em>'],t=String(s),i;
+  for(i=0;i<K.length;i++){t=t.split(K[i]).join('\u0001'+i+'\u0002');}
+  t=__esc(t);
+  for(i=0;i<K.length;i++){t=t.split('\u0001'+i+'\u0002').join(K[i]);}
+  return t;
+}
+
+/* ============ 三大核心谜分层 ============ */
+(function(){
+ const CORES=[
+  {name:'叶轻眉之谜',tag:'M04 · 道德重心',cx:230,layers:[
+    {r:150,t:'第1层 · 母亲是谁',c:'叶轻眉＝庆余堂 / 监察院石头的主人，被王公围杀',ch:'第26/53/107章'},
+    {r:112,t:'第2层 · 谁杀的',c:'凶手名单分批公开：皇后、长公主 → 秦家',ch:'第86章 → 第466/574章'},
+    {r:76,t:'第3层 · 血案环链',c:'太平别院血案多环拆解：秦业、叶重、北齐、五竹、神庙各占一环',ch:'第677章'},
+    {r:42,t:'第4层 · 真凶与动机',c:'主谋＝庆帝（"自己人"）；神庙借其手（第零定律）',ch:'第731章 → 第745章'}
+  ]},
+  {name:'庆帝真相',tag:'M13 · 全书终极反转',cx:680,layers:[
+    {r:150,t:'第1层 · 皇帝有秘密',c:'洪四痒身份成谜；"最神秘的大宗师在庆国皇宫"',ch:'第121章 → 第317章'},
+    {r:100,t:'第2层 · 真身揭晓',c:'大东山暴露：洪四庠为幌子、皇帝本人即最神秘的大宗师',ch:'第568章'},
+    {r:55,t:'第3层 · 身份内核',c:'"体内没有经脉"（练下半卷）、运用神庙、五竹乃"庙里人"',ch:'第654/715/731章'}
+  ]},
+  {name:'神庙',tag:'M17 · 世界观级反转',cx:1130,layers:[
+    {r:150,t:'第1层 · 存在性',c:'神庙存在（苦荷 / 肖恩三十年前去过）、"神庙在北边"',ch:'第238-242章'},
+    {r:112,t:'第2层 · 性质',c:'神庙是"死物"、庙中使者并不强大、五竹已回神庙',ch:'第655章'},
+    {r:76,t:'第3层 · 真身',c:'神庙＝博物馆；天地元气 / 经脉＝辐射与适应',ch:'第726-729章'},
+    {r:42,t:'第4层 · 意志与动机',c:'第零定律"保护人类整体利益"→借庆帝之手杀叶轻眉',ch:'第731章'}
+  ]}
+ ];
+ const cy=224;
+ let s='<svg viewBox="0 0 1360 700" width="100%" role="img" aria-label="三大核心谜分层图">';
+ s+='<text x="24" y="24" fill="#e8c97a" font-size="15" font-weight="700" letter-spacing="1.5">三大核心谜 · 由外到内的分层揭示</text>';
+ CORES.forEach(g=>{
+   s+=`<text x="${g.cx}" y="44" text-anchor="middle" fill="#e8c97a" font-size="14.5" font-weight="700">${g.name}</text>`;
+   s+=`<text x="${g.cx}" y="62" text-anchor="middle" fill="#d96b6b" font-size="10.5">${g.tag}</text>`;
+   g.layers.forEach((L,i)=>{
+     const op=0.03+i*0.028;
+     s+=`<circle cx="${g.cx}" cy="${cy}" r="${L.r}" fill="rgba(201,169,97,${op.toFixed(3)})" stroke="rgba(201,169,97,0.4)" stroke-width="1" data-tip="${__tip('<b>'+g.name+' · '+L.t+'</b><br>'+L.c+'<br><b>'+L.ch+'</b>')}"/>`;
+     s+=`<text x="${g.cx}" y="${cy-L.r+16}" text-anchor="middle" fill="#e8c97a" font-size="9.5" font-weight="600">${L.t}</text>`;
+   });
+   s+=`<circle cx="${g.cx}" cy="${cy}" r="6" fill="#d96b6b"/>`;
+   /* 图例 */
+   const lx=g.cx-205, ly=396;
+   g.layers.forEach((L,i)=>{
+     const y0=ly+i*60;
+     s+=`<rect x="${lx}" y="${y0}" width="410" height="52" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(201,169,97,0.18)" data-tip="${__tip('<b>'+g.name+' · '+L.t+'</b><br>'+L.c+'<br><b>'+L.ch+'</b>')}"/>`;
+     s+=`<rect x="${lx+8}" y="${y0+9}" width="22" height="22" rx="5" fill="rgba(201,169,97,0.18)" stroke="rgba(201,169,97,0.5)"/>`;
+     s+=`<text x="${lx+19}" y="${y0+24}" text-anchor="middle" fill="#e8c97a" font-size="11" font-weight="700">${i+1}</text>`;
+     s+=`<text x="${lx+40}" y="${y0+21}" fill="#e8c97a" font-size="10.5" font-weight="700">${L.t.replace('第'+(i+1)+'层 · ','')}</text>`;
+     s+=`<text x="${lx+40}" y="${y0+37}" fill="#a9a6a0" font-size="9.5">${L.c.length>30?L.c.slice(0,30)+'…':L.c}</text>`;
+     s+=`<text x="${lx+400}" y="${y0+44}" text-anchor="end" fill="#7d7a75" font-size="9">${L.ch}</text>`;
+   });
+ });
+ s+='</svg>';
+ document.getElementById('core').innerHTML=s;
+})();
+
+/* ============ 谜题揭示时间轴 ============ */
+(function(){
+ const T=[
+  ['M01','范闲身世与天脉者血脉',0,745,0],
+  ['M02','五竹身世（蒙眼·失忆·黑布）',1,745,0],
+  ['M03','范闲无名真气来路',1,576,0],
+  ['M04','叶轻眉是谁、为何而死',1,745,1],
+  ['M05','澹州下毒"猫扣子"主使',12,25,0],
+  ['M06','京都穿越者与石头记作者',12,250,0],
+  ['M07','黑皮箱之谜',34,745,0],
+  ['M08','入京冲喜婚事的真意',34,83,0],
+  ['M09','司理理离京之谜',62,477,0],
+  ['M10','四年前澹州刺杀真凶',74,224,0],
+  ['M11','牛栏街伏杀主使',82,103,0],
+  ['M12','陈萍萍深藏的图谋',104,687,0],
+  ['M13','庆帝真相（最神秘的大宗师）',121,568,1],
+  ['M14','洪四痒是否大宗师',121,567,0],
+  ['M15','谁把言冰云卖给北齐',127,687,0],
+  ['M16','海棠与苦荷一脉',178,593,0],
+  ['M17','神庙',178,731,1],
+  ['M18','影子身份',244,618,0],
+  ['M19','北齐皇帝性别',245,722,0],
+  ['M20','内库博弈',257,708,0],
+  ['M21','五竹对若若的图谋与婚事',149,743,0],
+  ['M22','太子-长公主私情与夺嫡',468,497,0],
+  ['M23','抱月楼真主与监察院内鬼',279,290,0],
+  ['M24','范闲真气隐患（散功危机）',296,717,0],
+  ['M25','陈萍萍查太后/太平别院旧案',300,677,0],
+  ['M26','明家家产之争与夏栖飞身世',332,393,0],
+  ['M27','君山会',356,398,0],
+  ['M28','招商钱庄东家',356,489,0],
+  ['M29','山谷狙杀主使与秦家',433,582,0],
+  ['M30','四顾剑与东夷归附',374,664,0],
+  ['M31','大东山之变',510,570,0],
+  ['M32','北伐与终局收束',703,745,0]
+ ];
+ const L=92,R=1320,MAXC=746;
+ const X=c=>L+c/MAXC*(R-L);
+ const col=d=>{
+   if(d[4])return '#d96b6b';
+   const sp=d[3]-d[2];
+   if(sp<=60)return '#4f7f6a';
+   if(sp<=200)return '#6f8fa8';
+   if(sp<=500)return '#c9a961';
+   return '#e8c97a';
+ };
+ const H=64+T.length*17+76;
+ let s=`<svg viewBox="0 0 1360 ${H}" width="100%" role="img" aria-label="谜题揭示时间轴">`;
+ s+='<text x="24" y="26" fill="#e8c97a" font-size="15" font-weight="700" letter-spacing="1.5">谜题揭示时间轴 · 32 组（条长 = 悬置跨度）</text>';
+ for(let c=0;c<=700;c+=100){
+   s+=`<line x1="${X(c)}" y1="50" x2="${X(c)}" y2="${64+T.length*17}" stroke="rgba(255,255,255,0.04)"/>`;
+   s+=`<text x="${X(c)}" y="${64+T.length*17+24}" text-anchor="middle" fill="#767370" font-size="10.5">第${c}章</text>`;
+ }
+ T.forEach((d,i)=>{
+   const y=64+i*17, x0=X(d[2]), x1=X(d[3]), w=Math.max(3,x1-x0);
+   const c=col(d);
+   s+=`<text x="84" y="${y+10}" text-anchor="end" fill="#a9a6a0" font-size="10.5" font-weight="700">${d[0]}</text>`;
+   s+=`<rect x="${x0}" y="${y}" width="${w}" height="12" rx="3" fill="${c}" opacity="${d[4]?0.95:0.75}" stroke="${d[4]?'#ff9d9d':'none'}" stroke-width="${d[4]?1:0}" data-tip="${__tip('<b>'+d[0]+' · '+d[1]+'</b><br>谜面出现 第'+d[2]+'章 → 揭秘 第'+d[3]+'章<br>悬置跨度 '+(d[3]-d[2])+' 章')}"/>`;
+   s+=`<circle cx="${x0}" cy="${y+6}" r="2.5" fill="#e8e6e3" opacity="0.55"/>`;
+   s+=`<circle cx="${x1}" cy="${y+6}" r="2.5" fill="#08080c" stroke="${c}" stroke-width="1.5"/>`;
+ });
+ s+=`<text x="${R}" y="${64+T.length*17+50}" text-anchor="end" fill="#8f8c86" font-size="11">全书章号 →</text>`;
+ s+='</svg>';
+ document.getElementById('timeline').innerHTML=s;
+})();
+
+/* ============ 32 谜题卡片 ============ */
+(function(){
+ const C=[
+  ['M01','范闲身世与天脉者血脉',0,'婴儿体内为何是异世界灵魂？"天脉者"血脉意味着什么？[第0章]','中年人称婴儿"天脉者的孩子"[第0章]；母亲"刚生下就没了"[第3章]；陈萍萍"十六年前那个婴儿的死亡…是不可改变的事实"[第177章]；苦荷凭《留余庆》+官职+五竹断定身世[第317章]','二皇子令范闲"眼熟"、李弘成以"像娘们儿"打岔[第158章]；"父亲太爱他"暗指身世[第274章]','第326章皇帝认子→第745章遗信+神庙第零定律合证','全书总谜面，把亲情/朝堂/复仇/穿越四线拧成一股。'],
+  ['M02','五竹身世（蒙眼、失忆、黑布）',0,'五竹为何蒙眼、为何不亲授？曾与神庙强者大战而失忆？[第1章][第241章]','黄书留自五竹[第2章]；无声击晕八名五品侍卫[第6章]；叶流云识得他、暗示同门[第30章]；神庙为何知五竹在南方[第318章]；去神庙三年未归[第653章]','五竹自称"没练过真气"（掩盖其神庙使者身份）[第6章]','第741章"渐生情绪"→第745章"黑布后是彩虹/射线"','把"最强护卫"写成"最大的谜"，用他的失忆反向牵引神庙之谜。'],
+  ['M03','范闲无名真气来路（霸道/王道卷）',0,'范闲体内的无名真气是什么来路？[第1章]','幼年真气霸道难控[第1章]；无名功诀下半卷现身、"须无经脉者"[第576章]','以为只是"霸道功诀"的副作用（散功危机）','第576章"下半卷=王道，范闲只练成上半部霸道"','把"爽感来源（金手指）"同时写成"隐患来源"，一箭双雕。'],
+  ['M04','叶轻眉是谁、为何而死',1,'范闲的母亲是谁、为何而死？为何监察院门口立其石碑？[第1章][第4章]','叶家商号与"改变一些事情"[第34章]；叶轻眉墓地与自身身世[第107章]；神庙符号（自神庙跑出的小姑娘）[第401章]；长公主"去问萍萍"、范建点出秦家[第571章]；"自己人是谁"（读者可推为庆帝）[第639章]','老太太与藤子京以为只是为"前程"[第34章]；祖母对死因含糊其辞[第428章]','第677章血案多环拆解→第731章神庙借庆帝之手→第745章遗信+第零定律合证','道德重心——范闲最终反帝的正当性出口。'],
+  ['M05','澹州下毒"猫扣子"主使',0,'谁在给范闲下毒？[第12章]','毒药手法"像监察院的手段"[第22章]；二太太背后是谁[第23章]','周管家只是"鞭子"[第12章]；表面"监院下毒刺杀"，实为二太太势力借力试探[第23章]','第23-25章（卷内即收）','开篇小谜，教读者"本书所有表象都会反转"的阅读习惯。'],
+  ['M06','京都穿越者与石头记作者',0,'京都改元、办报是否另有穿越者？石头记作者是谁？[第12章][第246章]','报纸与新政[第15章]；桑文唱词会否暴露作者[第119章]；石头记"犯忌讳"影射何物[第251章][第406章]','庄墨韩警告"犯忌讳"（引导往政治影射想）[第251章]','第250章（作者=范闲）；禁忌缘由第406章','用"穿越者彩蛋"制造读者优越感，同时把"文学"变成政治斗争的引信。'],
+  ['M07','黑皮箱之谜',0,'黑皮箱里装的是什么？钥匙在哪？[第34章]','"钥匙在京都"[第35章]；钥匙藏皇宫何处[第121章]；子弹下落（新谜）[第134章]；庆帝知不知箱子在范闲手上[第581章]；箱子如今在谁手中[第721章]','以为箱中只是"遗物/信物"，低估其杀伤力','第134章（钥匙+箱中物=狙击枪+身世信）→第686章（陈萍萍"我也有"）→第745章（在若若手）','全书最长的物理悬念锚点，读者惦记箱子＝惦记主线。'],
+  ['M08','入京冲喜婚事的真意',0,'父亲急召范闲入京、以"冲喜"说亲的真正目的？未婚妻是谁？[第34章]','亲事=冲喜[第38章]；林婉儿认出范闲声音却认不出其脸[第74章]','以为只是"家族联姻/看病"','第82-83章（定情+身份确认）','把"感情线开局"藏进"政治布局"，一石二鸟。'],
+  ['M09','司理理离京之谜',0,'司理理为何恰在官司前夕离京？其与陈萍萍的协议内容？[第62章][第191章]','吞露真名（李离思）[第191章]；当年小庙一夜"揉太阳穴之手=北齐帝"[第477章]','以为只是"郭家做局"的一枚棋子','第191-252章（协议）→第477章（真身）','把一个"证人"写成贯穿两国的暗线，收束时爆性别秘密。'],
+  ['M10','四年前澹州刺杀真凶',0,'四年前澹州刺杀的真凶是谁？[第74章]','行凶者真伪（实为五竹、被栽赃四顾剑）[第99章]；成为言冰云对范闲敌意之因[第224章]','官方"查明"为北齐主使[第89章]','第74章（皇后、长公主）','把"主角童年创伤"写成可回收的旧案，给后党一个具体罪名。'],
+  ['M11','牛栏街伏杀主使',0,'牛栏街伏杀者与主使是谁？斗笠人身份？[第82章]','谁与北齐勾结、箭手如何混入京都[第89章]；吴伯安（司理理口供）[第98章]；五竹已在京都、为帝所知[第101章]','尸体被火化灭迹[第89章]','第103章（长公主为幕后）','全书第一个"朝堂级"谜题，确立"后党=第一反派群"。'],
+  ['M12','陈萍萍深藏的图谋',0,'陈萍萍回京却不召见范闲、他到底要做什么？[第104/177章]','"有心疾"之另一条路[第424章]；大东山"动过什么心思"[第609章]；三年前"让自己中毒"[第638章]；临终"这玩意儿我也有"[第686章]','范闲一度以为陈萍萍"疏远自己"或"另有私心"','第639章（割裂计划）→第685-687章（赴死+亲笔信"做第二条狗"）','把"守护者的谎言"做成贯穿全书的暗线，收在情感最高点。'],
+  ['M13','庆帝真相（最神秘的大宗师）',1,'洪四痒是否即隐藏的大宗师？皇帝为何总能绝处逢生？[第121章]','苦荷指"最神秘的大宗师一直在庆国皇宫"[第317章]；洪四庠真气"是借的"[第567章]；皇帝体内"没有经脉"[第654章]','皇帝"多疑失策"被读作弱点[第165/274/562章]；第515章"以身为饵"让读者以为他弱；洪四痒被当成大宗师（替身）','第568章"皇帝第四位大宗师"揭晓（洪四痒为幌子）','全书终极反转——读者以为的反派（太子/长公主）打完，真反派（皇帝）才登场。'],
+  ['M14','洪四痒是否大宗师',0,'洪公公（洪四庠）是否早看出范闲真气暴戾？为何出面破局？[第340章][第458章]','洪四庠真气"是借的"、以死化真气[第567章]','范闲疑洪公公"看不出"真气暴戾（其实不忍/不能）','第567章（假宗师）','作为 M13 的替身/烟雾弹，独立成谜又服务于主谜。'],
+  ['M15','谁把言冰云卖给北齐',0,'谁把言冰云卖给北齐？言冰云生死？[第127章]','言冰云与沈小姐关系真相[第219章]；沈大小姐的去处[第253章]；能否以"第二条狗"保住监察院[第687章]','认为北齐单纯是敌人（其实涉及庆国内奸朱格）','后揭朱格；言冰云生还[第225章]','用"内奸"把敌国线与监察院线焊在一起。'],
+  ['M16','海棠与苦荷一脉',0,'苦荷关门弟子"海棠"的身份之谜？[第178章]','苦荷因何离京[第252章]；收徒/祥瑞真假[第276章]；"松芝仙令"是谁[第586章]','"松芝仙令"先不提真名（读者可推为海棠）','第593章（松芝仙令=海棠）','把"敌国国师一脉"逐步转成范闲的隐性盟友。'],
+  ['M17','神庙',1,'神庙究竟在哪里、是什么？[第178章]','肖恩秘密=神庙所在[第200章]；肖恩遗言"别去神庙"[第242章]；梦境"大雪山"[第689章]；"勿"字符[第723章]','全当"神仙居所/武林圣地"来想','第726章（=博物馆）→第729章（第零定律：追杀叶轻眉之据、辐射与经脉）→第731章（藏功诀之因）','世界观级反转——把武侠世界接到"现代文明残存"上。'],
+  ['M18','影子身份',0,'陈萍萍护卫"影子"是谁？白衣剑客真实身份？[第244/310章]','影子对王十三郎"目光复杂"[第600章]；是否即四顾剑幼弟[第614章]；"剑庐第一位弟子"暗藏何意[第632章]','院方反对"四顾剑之弟"之说[第310章]','第551章（影子身份）→第618章（四顾剑幼弟坐实）','把"江湖最大高手家族"与"主角身边护卫"用血缘缝合。'],
+  ['M19','北齐皇帝性别',0,'北齐皇帝真实身份（性别）成疑？[第245章]','金桂花香囊（贴身物）[第477章]；不娶大臣女、四侧妃平民[第478章]；"亦男亦女""红豆饭"之名[第722章]','北齐帝以"求贤/策反"姿态接近范闲，读作政治拉拢','第478章（识破女子身）→第622章（当面坐实）','给冷硬权谋加反差温情；把敌国元首变成"隐性半个自己人"。'],
+  ['M20','内库博弈',0,'内库的亏损/弊端真相？工艺图纸下落？[第257章][第346章][第352章]','"海盗即明家自抢"[第346章]；老掌柜一出即解"技术不可替代"之谜[第350章]；招标新规是为"尽快击垮范闲"[第708章]','皇帝称内库"难堪"（实为拓边财源）；长公主放任工潮（实为诱敌）','分阶段（第346-350章弊情、第708章新规动机）','把"财政"写成"权力载体"，是全书中段主战场。'],
+  ['M21','五竹对若若的图谋与若若婚事',0,'五竹对范若若的图谋？若若深夜外出之谜？婚事去向？[第149/156/259章]','"你能保守秘密吗"[第153章]；"师傅"是谁（留白）[第278章]；庆帝为何独不准若若婚事[第637章]','以为只是普通婚配纠纷','第607章（若若入局）→第697章（留宫真因：皇帝要人印证自己是好皇帝）→第743章（若若是摘星楼重狙刺客）','把"妹妹"写成终局关键一击（刺客+外科医生）。'],
+  ['M22','太子-长公主私情与夺嫡',0,'太子与长公主私情之真假？太子花柳病如何痊愈？[第468章]','玉玦/绣布/时辰（抓奸之局）[第479章]；送药链背后"被人算好的"之手[第473章]；洪竹如何在宫中配合引爆[第471章]','"过程太没有问题"引皇帝猜疑（连皇帝都怀疑是局）[第492章]','第485章（抓奸局引爆）→第492-497章（经皇帝之手坐实）','把"宫闱丑闻"做成扳倒后党的关键一击，兼具猎奇与政治功能。'],
+  ['M23','抱月楼真主与监察院内鬼',0,'抱月楼真主是谁？监察院内鬼是谁？[第279/281章]','东家出尚书巷、主事姓袁[第281章]；偷听铜管收集官员秘辛[第281章]','以为是单一"黑恶势力"（实为三皇子+范思辙+二皇子）','第286章（东家揭晓=三皇子+范思辙）','把"家族（弟弟）"与"夺嫡"绑进同一案，逼主角"断腕"。'],
+  ['M24','范闲真气隐患（散功危机）',0,'范闲真气暴走能否化解？费介药丸该不该吃？[第296/300/306章]','费介所留散功救命药丸[第299章]；经脉炸碎、雪山命门真气将爆[第340章]','以为吃药/散功即可解决（实为长线危机）','第659章（真气回流）、第716-717章（离体剑气实战）','把"金手指隐患"做成持续数十章的"身体悬念"，替代武力升级线。'],
+  ['M25','陈萍萍查太后/太平别院旧案',0,'陈萍萍对太后/太平别院旧案的隐情？[第300/306章]','秦家涉血案之细节[第466章]；靖王点出秦家与血案关联[第457章]','—','第677章（血案真凶环链）','作为 M04 的通道谜，把"叶轻眉之死"的线索从监察院内部流出。'],
+  ['M26','明家家产之争与夏栖飞身世',0,'明家家产之争？夏栖飞身世（明家七少）？遗书真伪？[第332/335/356/370章]','明家海外海盗灭口之谜[第356章]；周管家下落（脱逃）[第390章]','遗书先"验为真"[第372章]（明家后来识破为假）','第362章（夏栖飞=明七少）→第393章（明老太君被亲子缢杀）','把"商战"与"家族伦理"缝合，让夺产官司有情感重量。'],
+  ['M27','君山会',0,'君山会究竟为何物？集合了天下多少势力的重要人物？[第356/379章]','苦修士为何插手商事[第361章]；竹笠客是谁（先误导为四顾剑，揭为叶流云）[第397章]','竹笠客误导向四顾剑（本书最典型的一次身份误导）','第398章（叶流云为叶家后人/受君山会供养）','把"朝堂—江湖—商界"用"君山会"串成一张暗网。'],
+  ['M28','招商钱庄东家',0,'招商钱庄背景（沈家/东夷）？东家是谁？[第356/484章]','M26 商战中的资金链（明家夺标动用招商钱庄现票）[第368章]','以为是与明家同源的"东夷资本"','第489章（真东家=范闲）','"用敌人的钱打敌人"——反转商业谍战。'],
+  ['M29','山谷狙杀主使与秦家',0,'山谷狙杀主使是谁？秦家为何背叛皇帝？[第433/571章]','城弩编号疑指定州叶家（误导）[第433章]；荆戈与秦家旧仇[第411章]；秦老爷子深藏九品上[第555章]','城弩编号指向叶家[第433章]（成功误导两方判断）','第438章（主谋=秦家）→第582章（秦家因范闲崛起必叛）','把"军方"作为独立反派引入，为宫变提供武力对手。'],
+  ['M30','四顾剑与东夷归附',0,'四顾剑六年未出剑庐、临终想见范闲的真正用意？[第398/599章]','"种子"计划[第502章]；"当年酒楼上的协议"[第615章]；影子是否即幼弟[第614章]','以为四顾剑只是"两不相帮的隐者"（实为两面押注的棋手）','第616-664章（剑庐开庐→东夷归附）','把"武力收购"写成一场大戏，一次收齐城、人、钱。'],
+  ['M31','大东山之变',0,'沧州大捷是否"演戏"？皇帝为何远离京都赴澹州？皇帝能否活着下来？[第510/511/530章]','叶流云两度放过范闲、悬空庙宫典失岗[第562章]；长公主断言"四大宗师全灭"[第565章]','太子、二皇子、秦业皆以为叶家是二皇子之党（最大规模群体误导）[第557章]；众人（含范闲）长期以为陛下"多疑失策"是弱点[第562章]','第567-568章（宗师战+皇帝真身）→第570章（皇帝生还）','全书中期最大高潮，一次收束"宗师线+宫变线+帝王真身线"。'],
+  ['M32','北伐与终局收束',0,'北齐出兵的终极目的？庆帝发动北伐的真实意图？梅妃腹中为何"只能是公主"？[第703/711/736章]','北齐皇帝有孕[第704章]；叶完破局[第705章]；范闲借御膳房"杀精"断帝子息[第699章]','"公平一战"是真是假（双方各有底牌）[第713章]','第736章（北伐真意=逼范闲现身）→第738章（梅妃之死）→第745章（庆帝死、李承平继位）','终局总收束，把边关线、皇嗣线、父子线一次并账。']
+ ];
+ document.getElementById('cards').innerHTML=C.map(d=>
+  `<div class="pcard ${d[2]?'core':''}">
+    <div class="pc-head"><span class="mid">${d[0]}</span><span class="ptitle">${d[1]}</span>${d[2]?'<span class="ctag">核心谜</span>':''}</div>
+    <div class="pc-row"><em>谜面</em><span>${d[3]}</span></div>
+    <div class="pc-row"><em>线索</em><span>${d[4]}</span></div>
+    <div class="pc-row"><em>误导</em><span>${d[5]}</span></div>
+    <div class="pc-row"><em>揭秘</em><span>${d[6]}</span></div>
+    <div class="pc-foot"><b>结构功能：</b>${d[7]}</div>
+  </div>`).join('');
+})();
+
+/* ============ 设计总清单 ============ */
+(function(){
+ const CK=[
+  ['谜海战术','开篇一把撒 5-6 个谜面，多谜并置，让读者每一章都在解谜。'],
+  ['锚点化','每个谜面挂一个看得见的物件/人物（箱子/石碑/洪四痒），反复复现当路标。'],
+  ['层套层','大谜套中谜套小谜，每解一层立刻生新谜，悬念永不断档。'],
+  ['有据误导','误导靠"真物证+错解释"，不靠硬编，读者回看不觉得被骗。'],
+  ['示弱伪装','真反派刻意示弱（尤其"性格弱点"），反转前先加固错误认知。'],
+  ['替身烟雾弹','给真 boss 配替身，让读者先打假 boss、再打真 boss。'],
+  ['分层揭秘','核心谜分 3-4 层，层内自洽、层间递进，从"是什么"到"为什么"。'],
+  ['旧台词回响','揭秘时让前文台词原句复现作注脚，制造"原来早说过"的回甘。'],
+  ['终局加速','末卷把揭秘密度拉到每章 3-4 条，制造停不下来的收官节奏。'],
+  ['民间传说=残存真相','把世界观谜题先包装成"神话传说"供人膜拜，最后用"科技/历史真相"解释，一次性反转整个世界。']
+ ];
+ document.getElementById('checklist').innerHTML=CK.map((d,i)=>
+  `<div class="card" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 16px;transition:.2s">
+    <h4 style="font-size:12.5px;color:var(--gold2);margin-bottom:8px;display:flex;gap:8px;align-items:center">
+      <span style="font-size:10.5px;color:#08080c;background:var(--gold);border-radius:4px;padding:1px 6px;font-weight:700;flex:none">${i+1}</span>${d[0]}</h4>
+    <p style="font-size:11.5px;line-height:1.85;color:#c2bfb9;margin:0">${d[1]}</p>
+  </div>`).join('');
+})();
+
+/* ============ tooltip ============ */
+const tip=document.getElementById('tip');
+document.addEventListener('mousemove',e=>{
+  const el=e.target.closest('[data-tip]');
+  if(el){
+    tip.innerHTML=el.getAttribute('data-tip');
+    tip.style.display='block';
+    let x=e.clientX+16,y=e.clientY+16;
+    const r=tip.getBoundingClientRect();
+    if(x+r.width>innerWidth-12)x=e.clientX-r.width-16;
+    if(y+r.height>innerHeight-12)y=e.clientY-r.height-16;
+    tip.style.left=Math.max(6,x)+'px';tip.style.top=Math.max(6,y)+'px';
+  }else tip.style.display='none';
+});
+</script>
+</body>
+</html>

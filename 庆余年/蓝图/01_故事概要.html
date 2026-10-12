@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 · 故事概要 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>01 · 故事概要</h1>
+<blockquote>
+<p>依据：139 张单元卡（一句话剧情 / 本章事件 / 情绪设计 / 伏笔）+ 金句·手法·情绪分片 + 全书原文抽样。<br>章号一律为<strong>全书连续编号</strong>（第0章=楔子，第1~745章=正文，第746章=末章）。<br>用途：给&quot;据此续写 / 仿写 / 定调&quot;的创作者一份<strong>可迁移的方法提炼</strong>，非剧情复述。剧情骨架细节归 <code>08_分卷大纲</code>。</p>
+</blockquote>
+<hr>
+<h2>一、作品信息表</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>书名</td>
+<td>庆余年</td>
+</tr>
+<tr>
+<td>作者</td>
+<td>猫腻</td>
+</tr>
+<tr>
+<td>章数</td>
+<td>745章</td>
+</tr>
+<tr>
+<td>字数</td>
+<td>约307.4万字</td>
+</tr>
+<tr>
+<td>题材</td>
+<td>古代权谋 · 群像多POV · 穿越武侠 · 冒险旅途</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>7 卷（1 在澹州 / 2 在京都 / 3 苍山雪 / 4 北海雾 / 5 京华江南 / 6 殿前欢 / 7 朝天子）</td>
+</tr>
+<tr>
+<td>结局状态</td>
+<td>完结（主角弑君、隐退西湖，新帝继位，天下太平）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>二、一句话故事（Logline）</h2>
+<blockquote>
+<p>现代病亡者重生于庆国，成了权臣&quot;私生子&quot;，从澹州少年一步步走进庙堂中心——直到查出自己真正的身份：那位二十年前被&quot;至亲&quot;害死的理想主义者之子。[第0章][第242章][第677章]</p>
+</blockquote>
+<hr>
+<h2>三、故事内核（一句话立意的抽象）</h2>
+<blockquote>
+<p><strong>一个&quot;被留下的余庆&quot;，如何替母亲讨回一个时代，又如何在复仇尽头选择&quot;既来之，则安之&quot;。</strong></p>
+</blockquote>
+<p>书中反复用&quot;留余庆 / 庆余年&quot;三字点题——主角不是改变世界的那个理想主义者（那是母亲叶轻眉），而是&quot;余庆&quot;：<strong>继承遗产、延续火种、最终清算旧账的人</strong>。全书的价值锚点在于叶轻眉刻在监察院门前的石碑：</p>
+<blockquote>
+<p>&quot;我希望庆国的人民都能成为不羁之民……我希望庆国的国民，每一位都能成为王，都能成为统治被称为自己这块领土的……独一无二的……&quot;[第26章][第678章]</p>
+</blockquote>
+<p>而收束全书的却是主角的自我定位——<strong>不做神、不做王，做一个想好好活着的俗人</strong>：</p>
+<blockquote>
+<p>&quot;我的人生，大概便是……既来之，则安之。&quot;[第746章]</p>
+</blockquote>
+<blockquote>
+<p>⚠️ 续写铁律：不要把范闲写成&quot;想当皇帝 / 想改造世界&quot;的人。他的驱动力始终是 <strong>&quot;活下去 + 护住身边人 + 弄清身世、替母复仇&quot;</strong>，格局是被局势推大的，不是自我膨胀的。</p>
+</blockquote>
+<hr>
+<h2>四、主线因果链（起因 → 发展 → 转折 → 高潮 → 结局）</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>卷 / 章</th>
+<th>因（谁为何做何）</th>
+<th>果（导致何、埋下何）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>起因</strong></td>
+<td>楔子 · 第0章</td>
+<td>现代人范慎病死，魂魄投生为&quot;天脉者&quot;叶轻眉之婴；生母于太平别院血案中被杀</td>
+<td>被五竹救出、由陈萍萍议定&quot;新的身份&quot;送养澹州 → 全书最大悬念（谁杀了母亲）就此埋下 [第0章]</td>
+</tr>
+<tr>
+<td><strong>起因·成长期</strong></td>
+<td>1 在澹州 · 第1-39章</td>
+<td>四岁藏魂的范闲习霸道真气、学毒、抄词扬名</td>
+<td>惊动监察院与京都暗线；五竹揭叶轻眉身世 → 奉召赴京成亲，离乡 [第1-39章]</td>
+</tr>
+<tr>
+<td><strong>发展·入京扎根</strong></td>
+<td>2 在京都 · 第40-104章</td>
+<td>入范府、卷入林婉儿婚事与身世、结怨权贵</td>
+<td>诗会扬名、公堂脱身、牛栏街刺杀、收亲信开书局 → 被纳入皇帝与陈萍萍的棋局 [第40-104章]</td>
+</tr>
+<tr>
+<td><strong>发展·苍山定鼎</strong></td>
+<td>3 苍山雪 · 第105-153章</td>
+<td>祭母旧居、点卯太常寺、受任北齐谈判副使</td>
+<td>殿前夜宴诗百首扬名&quot;诗仙&quot;[第134章]、夜盗钥匙开箱得狙击枪与身世真相[第140-141章]、言纸掀翻长公主、大婚 [第105-153章]</td>
+</tr>
+<tr>
+<td><strong>发展·北海出使</strong></td>
+<td>4 北海雾 · 第154-252章</td>
+<td>出使北齐、押解肖恩、营救言冰云</td>
+<td>崖底闻&quot;神庙在北边&quot;秘闻[第238章]、猎虎反转、与海棠交心定计 → 掌内库的门票到手 [第154-252章]</td>
+</tr>
+<tr>
+<td><strong>发展·京华江南</strong></td>
+<td>5 京华江南 · 第253-406章</td>
+<td>封爵掌内库、兼管监察院一处、下江南收明家</td>
+<td>揭二皇子=长公主一党、抱月楼认弟逐弟、悬空庙刺驾重伤、身世流言惊雷、一句&quot;养兵的钱&quot;锁定长公主 → 江南商战成，财权在手 [第253-406章]</td>
+</tr>
+<tr>
+<td><strong>转折·东北方棋局</strong></td>
+<td>6 殿前欢 · 第407-584章</td>
+<td>清洗胶州水师、归宗封公、识破北齐皇帝女儿身、收明家、雷雨宫变</td>
+<td><strong>大东山祭天 → 四宗会东山 → 庆帝大宗师真身揭晓</strong>[第567章]；长公主二皇子自尽；范闲得女 [第407-584章]</td>
+</tr>
+<tr>
+<td><strong>高潮·弑君</strong></td>
+<td>7 朝天子 · 第585-745章</td>
+<td>草原寻海棠、收东夷城、达州对峙、陈萍萍复仇被擒</td>
+<td><strong>陈萍萍凌迟、范闲&quot;我回来晚了&quot;</strong>[第685章]→ 与帝冷战 → 血洗京都 → 布衣朝天子[第711-715章]→ 皇城狙杀重创庆帝[第719章]→ 神庙揭底唤醒五竹[第726-733章]→ <strong>彩虹贯帝、庆帝身死、李承平继位</strong>[第745章]</td>
+</tr>
+<tr>
+<td><strong>结局</strong></td>
+<td>末章 · 第746章</td>
+<td>数年后，范闲隐居西湖</td>
+<td>与新帝君臣相持、坚持&quot;我早已不是庆国之臣&quot;；收于&quot;既来之，则安之&quot;的太平释然 [第746章]</td>
+</tr>
+</tbody></table>
+<p><strong>因果主轴一句话</strong>：<em>杀母之谜 → 查身世 → 掌权（内库/监察院）→ 与母之理想、父之权术对峙 → 弑君报仇 → 放下与隐退</em>。</p>
+<hr>
+<h2>五、主线关键章号速查</h2>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>楔子·托孤（身份起点）</td>
+<td>第0章</td>
+</tr>
+<tr>
+<td>母亲身世初揭</td>
+<td>第34-39章</td>
+</tr>
+<tr>
+<td>与林婉儿定情</td>
+<td>第82-88章</td>
+</tr>
+<tr>
+<td>殿前诗仙（最高&quot;燃&quot;点）</td>
+<td>第134章</td>
+</tr>
+<tr>
+<td>开箱得枪与身世真相</td>
+<td>第140-141章</td>
+</tr>
+<tr>
+<td>北齐崖底闻神庙秘</td>
+<td>第238章</td>
+</tr>
+<tr>
+<td>掌内库 / 整风一处</td>
+<td>第258-263章</td>
+</tr>
+<tr>
+<td>抱月楼认弟逐弟</td>
+<td>第284-294章</td>
+</tr>
+<tr>
+<td>悬空庙刺驾</td>
+<td>第303-305章</td>
+</tr>
+<tr>
+<td>庆帝即大宗师真身</td>
+<td>第567章</td>
+</tr>
+<tr>
+<td>陈萍萍凌迟 / 送萍</td>
+<td>第682-689章</td>
+</tr>
+<tr>
+<td>布衣朝天子</td>
+<td>第711-715章</td>
+</tr>
+<tr>
+<td>神庙揭底 / 砸庙</td>
+<td>第724-733章</td>
+</tr>
+<tr>
+<td>弑君 / 彩虹贯帝</td>
+<td>第743-745章</td>
+</tr>
+<tr>
+<td>末章·后来</td>
+<td>第746章</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>六、主题与母题</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>内容</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>主题（作者想说什么）</strong></td>
+<td>权力能夺走一切，唯独夺不走&quot;人想成为自己&quot;的意志；理想主义者（叶轻眉）虽死，火种（监察院石碑、内库、庆余堂）仍在人间延续</td>
+<td>石碑 [第26章][第678章]</td>
+</tr>
+<tr>
+<td><strong>母题①·权力 vs 情义</strong></td>
+<td>帝王要&quot;死任何人都可以&quot;，主角偏要护短、护人；陈萍萍以&quot;活着&quot;为复仇，是全书最深的&quot;情&quot;</td>
+<td>[第678章][第679章]</td>
+</tr>
+<tr>
+<td><strong>母题②·孤独的帝王</strong></td>
+<td>庆帝最终四字判词&quot;鳏寡孤独&quot;，把&quot;最强&quot;写成&quot;最孤&quot;</td>
+<td>[第578章]</td>
+</tr>
+<tr>
+<td><strong>母题③·穿越者的过客感</strong></td>
+<td>&quot;我只是一个行走在这世间的游客&quot;——重生者始终与世界保持一层隔膜</td>
+<td>[第726章]</td>
+</tr>
+<tr>
+<td><strong>母题④·复仇与放下</strong></td>
+<td>大仇得报后&quot;便会觉得事情很无聊了&quot;；终局选择隐退而非登基</td>
+<td>[第491章][第746章]</td>
+</tr>
+<tr>
+<td><strong>母题⑤·理想主义与现实的碰撞</strong></td>
+<td>叶轻眉的&quot;人人成王&quot;理想，在庆帝的新政里被抽空为&quot;改名字&quot;——理想落地之难</td>
+<td>[第678章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>七、目标读者</h2>
+<ul>
+<li><strong>核心</strong>：男频古代权谋 / 穿越爽文读者（看扬名打脸、权谋翻盘、身份揭秘）。</li>
+<li><strong>延伸</strong>：偏爱群像权谋、历史架空、武侠、父子伦理 / 复仇母题、以及&quot;文青气&quot;网文（诗词、典故、细腻心理）的读者。</li>
+<li><strong>情绪偏好</strong>：既要&quot;爽&quot;（诗仙、权臣、清算），也要&quot;虐与泪&quot;（陈萍萍、四顾剑之死），还要&quot;幽默文青&quot;（现代吐槽减压）。</li>
+<li><strong>避雷的人群</strong>：只想看单主角打怪升级、无耐心读群像与留白的读者。</li>
+</ul>
+<hr>
+<h2>八、爽点结构（&quot;爽&quot;从哪来、节奏怎么铺）</h2>
+<p>全书爽感由<strong>三部引擎</strong>驱动，且互相换挡，避免单一爽点疲劳：</p>
+<table>
+<thead>
+<tr>
+<th>引擎</th>
+<th>机制（可复用公式）</th>
+<th>代表章</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>① 知识降维</strong></td>
+<td>穿越者以&quot;前世诗词 / 知识&quot;碾压本土，把不可能变成理所当然</td>
+<td>殿前三百诗封&quot;诗仙&quot; [第134章]；《红楼梦》风靡天下 [第246-250章]</td>
+</tr>
+<tr>
+<td><strong>② 扮猪吃虎 / 身份亮牌</strong></td>
+<td>被当众看低 → 亮出隐藏身份 → 满座震骇跪服</td>
+<td>亮提司令牌反转 [第174章]；夏栖飞当众认祖&quot;小七&quot; [第362章]；达州轮椅现身满场跪 [第670章]</td>
+</tr>
+<tr>
+<td><strong>③ 权谋清算</strong></td>
+<td>隐忍布局多年 → 搜集把柄 → 借势一击 → 令敌无从招架</td>
+<td>内库整肃斩主事 [第348章]；收明家（钱庄/官司/夜杀三线）[第484-493章]；血洗京都格杀贺派 [第707-710章]</td>
+</tr>
+</tbody></table>
+<p><strong>节奏铺法</strong>：</p>
+<ul>
+<li><strong>小爽点</strong>每 3-5 章一个（打脸 / 扬名 / 立威 / 小反转）；</li>
+<li><strong>大爽点</strong>每卷 1-2 个（殿前诗仙、四大宗师会东山、庆帝真身、弑君）；</li>
+<li><strong>换挡减压</strong>：冷峻权谋之间穿插&quot;幽默文青&quot;段落（整风恶搞、村姑斗嘴、病中爬桅杆），再以&quot;虐 / 泪&quot;（陈萍萍之死、四顾剑之死）垫高终局情绪。</li>
+<li><strong>反爽伏笔</strong>：每次大胜巅峰必埋隐患（雨街胜后真气暴走病倒 [第299章]；弑君后与帝冷战），把&quot;爽&quot;重新拉回悬念。</li>
+</ul>
+<hr>
+<h2>九、爽点 / 泪点公式</h2>
+<ul>
+<li><strong>爽点公式 A（扬名型）</strong>：<code>才华被质疑 → 当众被逼到死角 → 底牌一次性掀开 → 满座震骇</code>（第134章）。</li>
+<li><strong>爽点公式 B（身份型）</strong>：<code>身份卑微 / 被轻慢 → 一句身份或一个动作引爆 → 旁观者集体跪服</code>（第174章、第362章、第670章）。</li>
+<li><strong>爽点公式 C（清算型）</strong>：<code>隐忍布局 → 敌人自以为得计 → 借规则/流言/皇权反将 → 一朝拔根</code>（第348章、第493章、第710章）。</li>
+<li><strong>泪点公式</strong>：<code>关系至深者以极刑或牺牲退场 × 主角千里奔驰却&quot;迟到一步&quot; × 克制到极点后的第一次崩溃</code>——陈萍萍凌迟中全程沉默、范闲破城抱住老人说&quot;我回来晚了&quot;[第685章]，随即雨中&quot;重生二十载第一次摧心断肠的大哭&quot;[第686章]。</li>
+</ul>
+<hr>
+<h2>十、卖点标签组合（含人设标签）</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>题材标签</strong></td>
+<td>穿越架空 · 古代权谋 · 群像多POV · 武侠 · 复仇史诗</td>
+</tr>
+<tr>
+<td><strong>情感基调</strong></td>
+<td>冷峻权谋为骨、幽默文青为皮、悲怆与温情为高潮底色</td>
+</tr>
+<tr>
+<td><strong>人设标签（可对标的卖点符号）</strong></td>
+<td>范闲＝&quot;穿越权臣·诗仙·腹黑护短&quot;；庆帝＝&quot;隐于深宫的大宗师·孤家寡人&quot;；陈萍萍＝&quot;轮椅上的黑暗复仇者·护短老院长&quot;；叶轻眉＝&quot;不在场的理想主义穿越者母亲（全书隐形核心）&quot;；林婉儿＝&quot;鸡腿姑娘·病弱深情贤内助&quot;；五竹＝&quot;蒙眼无敌·最不像人的最强&quot;；海棠朵朵＝&quot;村姑圣女 / 草原王女&quot;</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>人设标签是&quot;一眼能记、能对标市场&quot;的符号；人物内在性格的拆解归 <code>05_人物设定集·主角</code> / <code>06_人物设定集·配角</code>。</p>
+</blockquote>
+<hr>
+<h2>十一、文案 / 开篇钩子类型</h2>
+<p><strong>判定：好奇钩为主（身份谜）+ 爽点钩（知识降维）+ 情绪钩（母子 / 父子隔世恩怨）三钩组合。</strong></p>
+<table>
+<thead>
+<tr>
+<th>钩型</th>
+<th>本书用法</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>好奇钩</strong></td>
+<td>楔子以&quot;婴儿能伸手抹血、却被亲信称&#39;天脉者的孩子&#39;&quot;制造反常，身世与追杀缘由全部留白</td>
+<td>[第0章]</td>
+</tr>
+<tr>
+<td><strong>好奇钩</strong></td>
+<td>层层嵌套的终极谜面：叶轻眉是谁 → 谁杀了她 → 箱子是什么 → 神庙是什么</td>
+<td>[第34章][第140章][第238章][第726章]</td>
+</tr>
+<tr>
+<td><strong>情绪钩</strong></td>
+<td>私生子飘零、与亡母画像隔世照面一句&quot;谢谢&quot;、父子相残的伦理撕裂</td>
+<td>[第327章][第714章]</td>
+</tr>
+<tr>
+<td><strong>爽点钩</strong></td>
+<td>穿越者用前世诗词 / 知识降维打击，&quot;诗仙&quot;之名全城震动</td>
+<td>[第131-134章]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>续写开篇 / 仿写时：<strong>先用一句话的反常细节（而非设定说明）勾住读者</strong>（楔子手法），再在 5-8 章内给一次&quot;知识降维&quot;的小爽点维持留存。</p>
+</blockquote>
+<hr>
+<h2>十二、核心梗与创新点</h2>
+<ul>
+<li><strong>核心梗</strong>：<code>穿越 + 权谋 + 身世复仇</code> 的老三件套。本书的&quot;新&quot;不在元素本身，而在组合逻辑——<ol>
+<li><strong>&quot;母亲才是那个穿越者&quot;</strong>：主角不是改变世界的理想主义者，而是其&quot;余庆&quot;；穿越由&quot;个人外挂&quot;升格为<strong>母题起点</strong>（&quot;庆余年＝留余庆&quot;）。</li>
+<li><strong>终极反派＝父 + 君 + 大宗师三位一体</strong>：把&quot;家庭伦理&quot;与&quot;天下权谋&quot;焊在同一个对手身上，敌我冲突自带亲情撕裂的浓度。</li>
+<li><strong>群像多POV</strong>：全书多视角并行（见 <code>14_视角分配表</code>），主角不是唯一叙事源，格局靠群像撑。</li>
+<li><strong>科幻底</strong>：终极真相&quot;神庙＝前代文明（核战后）的军事博物馆&quot;[第726章]，给权谋武侠世界观一个&quot;唯物主义的悲凉&quot;收束。</li>
+<li><strong>反爽收束</strong>：&quot;既来之，则安之&quot;的隐居释然，取代&quot;登基称帝&quot;的常规爽文结局[第746章]。</li>
+</ol>
+</li>
+<li><strong>梗的生命周期</strong>：穿越 / 权谋 / 身世之谜至今长盛不衰；<strong>微创新方向</strong>——换性别、换系统、换场景（末世 / 星际），或写&quot;母亲叶轻眉视角&quot;的前传。</li>
+</ul>
+<hr>
+<h2>十三、与前作 / 同类题材的差异点</h2>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>常规穿越权谋爽文</th>
+<th>《庆余年》</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>外挂定位</td>
+<td>主角靠金手指一路开挂</td>
+<td>金手指（记忆/真气/重狙）<strong>层层设硬边界</strong>，主角强而不无敌，常被压制（见 <code>03_核心设定</code>）</td>
+</tr>
+<tr>
+<td>穿越意义</td>
+<td>个人爽点工具</td>
+<td>升格为<strong>母题</strong>（母亲也是穿越者、主角是其&quot;余庆&quot;）</td>
+</tr>
+<tr>
+<td>反派</td>
+<td>与主角家族无关</td>
+<td>反派＝父/君/大宗师，伦理与天下合一</td>
+</tr>
+<tr>
+<td>叙事视角</td>
+<td>单主角为主</td>
+<td><strong>群像多POV</strong>，配角有独立叙事线</td>
+</tr>
+<tr>
+<td>结局</td>
+<td>登顶 / 称帝</td>
+<td><strong>隐退西湖、天下太平</strong>，反高潮释然</td>
+</tr>
+<tr>
+<td>底色</td>
+<td>热血爽</td>
+<td>冷峻权谋 + 幽默文青 + 悲怆，文青气重</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>猫腻前作：《朱雀记》《间客》；《庆余年》是其二度封神之作，被视作&quot;文青权谋网文&quot;的标杆之一——**&quot;高配文的格局 + 爽文的节奏&quot;**是其可迁移的核心竞争力。</p>
+</blockquote>
+<hr>
+<h2>十四、阅读蓝图顺序建议（供使用者导航）</h2>
+<ol>
+<li><strong>定调</strong>：<code>01_故事概要</code>（本份）→ <code>02_写作风格</code>（语言神似）。</li>
+<li><strong>建世界</strong>：<code>03_核心设定</code> → <code>04_世界观设定集</code> → <code>15_力量体系</code>。</li>
+<li><strong>立人物</strong>：<code>05_主角</code> → <code>06_配角</code> → <code>07_人物关系网</code>。</li>
+<li><strong>搭骨架</strong>：<code>08_分卷大纲</code> → <code>09_时间线</code> → <code>10_支线地图</code> → <code>11_伏笔规划表</code> → <code>12_情绪曲线</code>。</li>
+<li><strong>补质感</strong>：<code>13_阵营博弈</code> → <code>14_视角分配表</code> → <code>16_意象符号</code> → <code>17_谜题与诡计</code>。</li>
+</ol>
+<blockquote>
+<p><strong>续写优先读</strong>：<code>02 写作风格</code>（保神似）+ <code>03 核心设定</code>（保不崩）+ <code>05 主角</code>（保人设）。</p>
+</blockquote>
+
+</div>
+</body>
+</html>

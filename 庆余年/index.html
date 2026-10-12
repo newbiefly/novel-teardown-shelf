@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>庆余年 · 拆解总览</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(255,255,255,0.08);--card:#111016;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);background-size:60px 60px;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 60% 0%,rgba(201,169,97,0.06),transparent 70%);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:48px 32px 80px;}
+
+/* 顶部书籍介绍 */
+.hero{text-align:center;padding-bottom:30px;border-bottom:1px solid var(--line);}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:900;letter-spacing:6px;line-height:1.2;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero .meta{font-size:14px;color:#bbb;margin-top:14px;letter-spacing:1px;font-weight:300;}
+.hero .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.pill{font-size:12px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(201,169,97,0.4);
+  border-radius:16px;padding:5px 15px;background:rgba(201,169,97,0.05);white-space:nowrap;}
+.hero .logline{font-size:14px;color:#bbb;line-height:1.9;margin:18px auto 0;max-width:760px;font-weight:300;}
+
+/* Tab 栏 */
+.tabs{display:flex;justify-content:center;gap:48px;margin:28px 0 0;position:relative;}
+.tab{font-size:18px;letter-spacing:4px;color:#888;cursor:pointer;padding:14px 4px;font-weight:500;
+  background:none;border:none;font-family:inherit;transition:color 0.2s;position:relative;}
+.tab:hover{color:#ccc;}
+.tab.active{color:var(--gold2);font-weight:700;}
+.tab.active::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:var(--gold);}
+.tabs-line{height:1px;background:var(--line);margin-top:-1px;}
+
+/* 面板 */
+.panel{display:none;margin-top:34px;}
+.panel.show{display:block;animation:fade 0.3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* 卡片网格（蓝图/台账）PC 4列 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.card{display:flex;flex-direction:column;justify-content:space-between;min-height:116px;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;
+  text-decoration:none;transition:all 0.2s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background 0.2s;}
+.card:hover{border-color:rgba(201,169,97,0.45);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+.card:hover::before{background:var(--gold);}
+.card-num{font-size:30px;font-weight:900;color:var(--gold);line-height:1;opacity:0.9;}
+.card-name{font-size:15px;color:#eee;font-weight:500;margin-top:14px;letter-spacing:0.5px;}
+
+/* 章卡列表 PC 2列 */
+.ch-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.ch-item{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;padding:15px 18px;text-decoration:none;transition:all 0.2s;}
+.ch-item:hover{border-color:rgba(201,169,97,0.4);background:rgba(201,169,97,0.04);}
+.ch-item .n{font-size:13px;color:var(--gold);opacity:0.55;font-weight:700;min-width:34px;}
+.ch-item .t{font-size:14px;color:#ddd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ch-more{text-align:center;margin-top:22px;}
+.ch-more button{background:none;border:1px solid rgba(201,169,97,0.35);color:var(--gold2);
+  font-size:14px;letter-spacing:2px;padding:10px 34px;border-radius:24px;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.ch-more button:hover{background:rgba(201,169,97,0.1);border-color:rgba(201,169,97,0.6);}
+
+.empty{text-align:center;color:#777;font-size:14px;padding:50px 0;}
+
+/* SKILL 面板 */
+.skill-h{font-size:clamp(20px,3vw,26px);font-weight:900;letter-spacing:2px;text-align:center;margin:6px 0 24px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.mode{display:flex;align-items:flex-start;gap:22px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:24px 26px;margin-bottom:14px;transition:all .2s;}
+.mode:hover{border-color:rgba(201,169,97,0.4);transform:translateY(-2px);}
+.mode .glyph{flex:0 0 auto;text-align:center;min-width:48px;}
+.mode .glyph .zi{font-size:40px;font-weight:900;color:var(--gold2);line-height:1;}
+.mode .glyph .lv{font-size:13px;color:#8a8a8a;letter-spacing:1px;margin-top:6px;}
+.mode .txt{font-size:14px;color:#c9c7c4;line-height:1.95;padding-left:22px;border-left:1px solid rgba(255,255,255,0.08);font-weight:300;}
+
+.skill-refs{margin-top:30px;padding-top:24px;border-top:1px solid var(--line);}
+.skill-refs .rh{font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;}
+.skill-refs .rg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.skill-refs .r{display:flex;align-items:baseline;gap:10px;background:var(--card);border:1px solid var(--line);
+  border-radius:9px;padding:12px 14px;}
+.skill-refs .r .n{font-size:11px;color:var(--gold);opacity:.6;font-weight:700;min-width:20px;}
+.skill-refs .r .t{font-size:13px;color:#ddd;}
+.skill-refs .stat{font-size:12px;color:#8a8a8a;margin-top:16px;letter-spacing:1px;}
+.skill-refs .stat b{color:var(--gold2);font-weight:700;}
+
+/* 响应式 */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .ch-list{grid-template-columns:1fr;}
+  .tabs{gap:28px;}
+  .wrap{padding:32px 18px 60px;}
+  .skill-refs .rg{grid-template-columns:repeat(2,1fr);}
+  .mode{gap:16px;padding:20px;}
+  .mode .txt{padding-left:16px;}
+}
+@media(max-width:480px){
+  .tab{font-size:16px;letter-spacing:2px;}
+  .tabs{gap:18px;}
+}
+</style>
+<style>.shelf-back{position:sticky;top:0;z-index:900;display:flex;align-items:center;background:rgba(8,8,12,0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 24px;}.shelf-back a{color:#c9a961;text-decoration:none;font-size:13px;letter-spacing:1px;font-weight:600;transition:opacity .2s;}.shelf-back a:hover{opacity:.72;}</style></head>
+<body><div class="shelf-back"><a href="../index.html">← 返回书架</a></div>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="wrap">
+  <div class="hero">
+    <h1>庆余年</h1>
+    <div class="meta">作者 · 猫腻　·　745章　·　约307.4万字</div>
+    <div class="pills"><span class="pill">古代权谋</span><span class="pill">群像多POV</span><span class="pill">穿越武侠</span><span class="pill">冒险旅途</span></div>
+    <div class="logline">139 张单元卡（一句话剧情 / 本章事件 / 情绪设计 / 伏笔）+ 金句·手法·情绪分片 + 全书原文抽样。</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="bp">蓝　图</button>
+    <button class="tab" data-panel="sk">SKILL</button>
+  </div>
+  <div class="tabs-line"></div>
+
+  <div class="panel show" id="panel-bp">
+    <div class="grid"><a class="card" href="蓝图/01_%E6%95%85%E4%BA%8B%E6%A6%82%E8%A6%81.html">
+      <div class="card-num">01</div>
+      <div class="card-name">故事概要</div>
+   </a>
+<a class="card" href="蓝图/02_%E5%86%99%E4%BD%9C%E9%A3%8E%E6%A0%BC.html">
+      <div class="card-num">02</div>
+      <div class="card-name">写作风格</div>
+   </a>
+<a class="card" href="蓝图/03_%E6%A0%B8%E5%BF%83%E8%AE%BE%E5%AE%9A.html">
+      <div class="card-num">03</div>
+      <div class="card-name">核心设定</div>
+   </a>
+<a class="card" href="蓝图/04_%E4%B8%96%E7%95%8C%E8%A7%82%E8%AE%BE%E5%AE%9A%E9%9B%86.html">
+      <div class="card-num">04</div>
+      <div class="card-name">世界观设定集</div>
+   </a>
+<a class="card" href="蓝图/05_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86%C2%B7%E4%B8%BB%E8%A7%92.html">
+      <div class="card-num">05</div>
+      <div class="card-name">人物设定集·主角</div>
+   </a>
+<a class="card" href="蓝图/06_%E4%BA%BA%E7%89%A9%E8%AE%BE%E5%AE%9A%E9%9B%86%C2%B7%E9%85%8D%E8%A7%92.html">
+      <div class="card-num">06</div>
+      <div class="card-name">人物设定集·配角</div>
+   </a>
+<a class="card" href="蓝图/07_%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E7%BD%91.html">
+      <div class="card-num">07</div>
+      <div class="card-name">人物关系网</div>
+   </a>
+<a class="card" href="蓝图/08_%E5%88%86%E5%8D%B7%E5%A4%A7%E7%BA%B2.html">
+      <div class="card-num">08</div>
+      <div class="card-name">分卷大纲</div>
+   </a>
+<a class="card" href="蓝图/09_%E6%97%B6%E9%97%B4%E7%BA%BF.html">
+      <div class="card-num">09</div>
+      <div class="card-name">时间线</div>
+   </a>
+<a class="card" href="蓝图/10_%E6%94%AF%E7%BA%BF%E5%9C%B0%E5%9B%BE.html">
+      <div class="card-num">10</div>
+      <div class="card-name">支线地图</div>
+   </a>
+<a class="card" href="蓝图/11_%E4%BC%8F%E7%AC%94%E8%A7%84%E5%88%92%E8%A1%A8.html">
+      <div class="card-num">11</div>
+      <div class="card-name">伏笔规划表</div>
+   </a>
+<a class="card" href="蓝图/12_%E6%83%85%E7%BB%AA%E6%9B%B2%E7%BA%BF.html">
+      <div class="card-num">12</div>
+      <div class="card-name">情绪曲线</div>
+   </a>
+<a class="card" href="蓝图/13_%E9%98%B5%E8%90%A5%E5%8D%9A%E5%BC%88.html">
+      <div class="card-num">13</div>
+      <div class="card-name">阵营博弈</div>
+   </a>
+<a class="card" href="蓝图/14_%E8%A7%86%E8%A7%92%E5%88%86%E9%85%8D%E8%A1%A8.html">
+      <div class="card-num">14</div>
+      <div class="card-name">视角分配表</div>
+   </a>
+<a class="card" href="蓝图/15_%E5%8A%9B%E9%87%8F%E4%BD%93%E7%B3%BB.html">
+      <div class="card-num">15</div>
+      <div class="card-name">力量体系</div>
+   </a>
+<a class="card" href="蓝图/16_%E6%84%8F%E8%B1%A1%E7%AC%A6%E5%8F%B7.html">
+      <div class="card-num">16</div>
+      <div class="card-name">意象符号</div>
+   </a>
+<a class="card" href="蓝图/17_%E8%B0%9C%E9%A2%98%E4%B8%8E%E8%AF%A1%E8%AE%A1.html">
+      <div class="card-num">17</div>
+      <div class="card-name">谜题与诡计</div>
+   </a></div>
+  </div>
+
+  
+
+  
+
+  <div class="panel" id="panel-sk">
+    <div class="skill-h">将一本书蒸馏为一套可执行 skill</div>
+    <div class="mode"><div class="glyph"><div class="zi">学</div><div class="lv">Lv.1</div></div><div class="txt">把这本书的手法与风格当教材，讲解、拆例、练习，摸清它“为什么这样写”。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">续</div><div class="lv">Lv.2</div></div><div class="txt">承接原作的人物、伏笔与节奏语感，续写番外、if 线或未尽的支线，写得像、接得上。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">改</div><div class="lv">Lv.3</div></div><div class="txt">改动前先评估对伏笔、人设、时间线的牵连，换结局、改走向，改完仍前后自洽。</div></div>
+    <div class="mode"><div class="glyph"><div class="zi">造</div><div class="lv">Lv.4</div></div><div class="txt">迁移这本书的结构与手法，脱离原作，创作一部完全属于自己的同类长篇。</div></div>
+    <div class="skill-refs">
+      <div class="rh">招式库 · references（15 份）</div>
+      <div class="rg">
+      <div class="r"><span class="n">01</span><span class="t">故事设计</span></div>
+      <div class="r"><span class="n">02</span><span class="t">写作风格</span></div>
+      <div class="r"><span class="n">03</span><span class="t">世界观</span></div>
+      <div class="r"><span class="n">04</span><span class="t">人物设计</span></div>
+      <div class="r"><span class="n">05</span><span class="t">大纲结构</span></div>
+      <div class="r"><span class="n">06</span><span class="t">时间线</span></div>
+      <div class="r"><span class="n">07</span><span class="t">支线设计</span></div>
+      <div class="r"><span class="n">08</span><span class="t">伏笔设计</span></div>
+      <div class="r"><span class="n">09</span><span class="t">群像POV</span></div>
+      <div class="r"><span class="n">10</span><span class="t">阵营博弈</span></div>
+      <div class="r"><span class="n">11</span><span class="t">力量体系</span></div>
+      <div class="r"><span class="n">12</span><span class="t">谜题诡计</span></div>
+      <div class="r"><span class="n">13</span><span class="t">意象符号</span></div>
+      <div class="r"><span class="n">14</span><span class="t">情绪设计</span></div>
+      <div class="r"><span class="n">15</span><span class="t">正文写作</span></div>
+      </div>
+      <div class="stat">已绑定拆解数据：<b>17</b> 蓝图 · <b>7</b> 台账 · <b>139</b> 章卡　（随 skill 打包，自包含、不需原文）</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab 切换（支持 URL hash，如 index.html#sk 直接打开 SKILL）
+function showTab(id){
+  var t=document.querySelector('.tab[data-panel="'+id+'"]');
+  if(!t)return;
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('show');});
+  t.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('show');
+}
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    showTab(t.dataset.panel);
+    if(history.replaceState)history.replaceState(null,'','#'+t.dataset.panel);
+  });
+});
+(function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+})();
+window.addEventListener('hashchange',function(){
+  var h=(location.hash||'').replace('#','');
+  if(h&&document.getElementById('panel-'+h))showTab(h);
+});
+
+</script>
+</body>
+</html>

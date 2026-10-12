@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 · 人物设定集 · 配角 · 庆余年蓝图</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;background-attachment:fixed;}
+body::-webkit-scrollbar{width:6px;height:6px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:6px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:13px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+
+.wrap{max-width:1280px;margin:0 auto;padding:32px 24px 80px;position:relative;z-index:1;}
+
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:3px;font-weight:900;margin-bottom:10px;}
+.hero p{font-size:13px;color:#9a9a9a;line-height:1.9;margin-bottom:18px;}
+.stat-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;}
+.stat{flex:1 1 160px;background:rgba(201,169,97,0.05);border:1px solid rgba(201,169,97,0.18);
+  border-radius:12px;padding:16px 18px;}
+.stat b{display:block;font-size:26px;color:var(--gold2);font-weight:900;letter-spacing:1px;}
+.stat span{font-size:12px;color:#a8a8a8;letter-spacing:1px;}
+
+h2.sec{font-size:17px;color:var(--gold2);letter-spacing:2px;font-weight:700;margin:44px 0 6px;
+  border-left:3px solid var(--gold);padding-left:14px;}
+.sec-desc{font-size:12px;color:#8f8f8f;line-height:1.9;margin:0 0 20px 17px;}
+
+/* ---------- 详卡卡片 ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008));
+  border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px 18px 16px;
+  position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cc,var(--gold));opacity:.75;}
+.card:hover{border-color:rgba(201,169,97,0.55);transform:translateY(-3px);box-shadow:0 10px 30px -12px rgba(201,169,97,0.35);}
+.card .idx{position:absolute;right:14px;top:12px;font-size:11px;color:rgba(201,169,97,0.4);font-weight:700;letter-spacing:1px;}
+.card h3{font-size:16px;color:var(--gold2);letter-spacing:1px;font-weight:800;margin-bottom:6px;padding-right:34px;}
+.card .role{font-size:11.5px;color:#a0a0a0;line-height:1.7;margin-bottom:10px;min-height:34px;}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.pill{font-size:10.5px;padding:3px 9px;border-radius:20px;border:1px solid rgba(201,169,97,0.3);
+  color:var(--gold2);background:rgba(201,169,97,0.08);white-space:nowrap;}
+.pill.dim{border-color:rgba(255,255,255,0.12);color:#b5b5b5;background:rgba(255,255,255,0.03);}
+.card .func{font-size:11.5px;color:#c8c8c8;line-height:1.85;margin-bottom:10px;padding-left:10px;border-left:2px solid rgba(255,255,255,0.08);}
+.card .scenes{list-style:none;}
+.card .scenes li{font-size:11px;color:#9e9e9e;line-height:1.7;margin-bottom:3px;padding-left:12px;position:relative;}
+.card .scenes li::before{content:'\25B8';position:absolute;left:0;color:rgba(201,169,97,0.6);}
+.card .scenes .ch{color:var(--gold);font-size:10px;font-weight:600;}
+
+/* ---------- 图谱 ---------- */
+.graph-box{background:radial-gradient(ellipse at 50% 45%,rgba(201,169,97,0.05),transparent 65%);
+  border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:6px;margin-bottom:14px;overflow:hidden;}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.lg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:#b5b5b5;padding:4px 11px;border-radius:20px;
+  border:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.025);cursor:pointer;transition:all .2s;user-select:none;}
+.lg-item:hover{border-color:rgba(201,169,97,0.5);color:var(--gold2);}
+.lg-item.off{opacity:.32;}
+.lg-dot{width:9px;height:9px;border-radius:50%;}
+.lg-line{width:14px;height:3px;border-radius:2px;}
+svg .node{cursor:pointer;transition:opacity .2s;}
+svg .node circle{transition:r .18s,stroke-width .18s;}
+svg .edge{transition:opacity .2s;}
+svg text{cursor:default;}
+
+/* ---------- 简卡表 ---------- */
+.tablewrap{overflow-x:auto;border:1px solid rgba(255,255,255,0.07);border-radius:12px;}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:640px;}
+thead{background:rgba(201,169,97,0.13);}
+th{padding:11px 14px;text-align:left;color:var(--gold2);font-weight:700;letter-spacing:1px;font-size:11.5px;white-space:nowrap;}
+td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.045);color:#c2c2c2;line-height:1.7;vertical-align:top;}
+tbody tr:hover{background:rgba(201,169,97,0.04);}
+td.nm{color:#e8e6e3;font-weight:600;white-space:nowrap;}
+td.ch{color:var(--gold);font-size:10.5px;white-space:nowrap;}
+tbody tr:last-child td{border-bottom:none;}
+
+/* ---------- 龙套归类 ---------- */
+.chips-row{margin-bottom:14px;}
+.chips-row .lbl{font-size:12px;color:var(--gold2);font-weight:700;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.chips-row .lbl i{width:8px;height:8px;border-radius:50%;display:inline-block;font-style:normal;}
+.chips{display:flex;flex-wrap:wrap;gap:7px;}
+.chip{font-size:11px;color:#b5b5b5;padding:4px 11px;border-radius:8px;background:rgba(255,255,255,0.035);
+  border:1px solid rgba(255,255,255,0.07);}
+.chip:hover{border-color:rgba(201,169,97,0.4);color:var(--gold2);}
+
+/* ---------- 塑造法 ---------- */
+.methods{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
+.method{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px 18px;transition:all .22s;}
+.method:hover{border-color:rgba(201,169,97,0.45);background:rgba(201,169,97,0.045);}
+.method b{display:block;color:var(--gold2);font-size:13.5px;letter-spacing:1px;margin-bottom:7px;font-weight:700;}
+.method p{font-size:12px;color:#b0b0b0;line-height:1.9;}
+.mech{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:14px;}
+.mech .method b{color:var(--gold);}
+
+@media (max-width:640px){
+  .wrap{padding:22px 14px 60px;}
+  .topbar{padding:11px 16px;}
+  .hero h1{font-size:20px;letter-spacing:2px;}
+  .cards{grid-template-columns:1fr;}
+  .stat b{font-size:22px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">庆余年 · 配角蓝图</span>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>06 · 人物设定集 · 配角</h1>
+    <p>猫腻《庆余年》· 745 章 / 约 307.4 万字 &nbsp;|&nbsp; 数据源：人物台账（205 人）+ 关系台账（795 条）+ 139 张章卡。章号一律为全书连续编号。分级：<b style="color:var(--gold2)">详卡</b>（核心配角）/ <b style="color:var(--gold2)">简卡</b>（中等配角）/ <b style="color:var(--gold2)">龙套</b>（按阵营·职能归类）。</p>
+    <div class="stat-row">
+      <div class="stat"><b>30</b><span>详卡 · 核心配角（含 2 张合并卡）</span></div>
+      <div class="stat"><b>69</b><span>简卡 · 中等配角一行一人</span></div>
+      <div class="stat"><b>13</b><span>龙套归类 · 按阵营（另按职能 8 类）</span></div>
+      <div class="stat"><b>33</b><span>关系图谱节点（范闲为中心）</span></div>
+    </div>
+  </div>
+
+  <h2 class="sec">一 · 详卡卡片网格</h2>
+  <p class="sec-desc">核心配角按重要性排序；左侧色条标示所属阵营，主标签为金色 pill，反差点见"性格"栏。共 30 张。</p>
+  <div class="cards" id="cards"></div>
+
+  <h2 class="sec">二 · 阵营关系图谱</h2>
+  <p class="sec-desc">以「范闲」为圆心，核心配角按阵营分区环绕；节点色＝阵营归属，连线色＝关系性质。悬停节点高亮其全部关系；点击下方图例可按阵营筛选。</p>
+  <div class="legend" id="campLegend"></div>
+  <div class="legend" id="typeLegend" style="margin-bottom:12px"></div>
+  <div class="graph-box">
+    <svg id="graph" width="100%" viewBox="0 0 1360 920" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <h2 class="sec">三 · 简卡（中等配角 · 一行一人）</h2>
+  <p class="sec-desc">身份 + 功能 + 代表章。共 69 条。</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>人物</th><th>身份</th><th>功能</th><th>代表章</th></tr></thead>
+      <tbody id="briefBody"></tbody>
+    </table>
+  </div>
+
+  <h2 class="sec">四 · 龙套 / 功能型角色归类</h2>
+  <p class="sec-desc">按阵营与职能双重归类，便于续写时"按需取用"。</p>
+  <div id="extrasByCamp"></div>
+
+  <h2 class="sec">五 · 群像塑造法</h2>
+  <p class="sec-desc">本书如何立住配角、并用配角推进主线。</p>
+  <div class="methods" id="methods"></div>
+  <div class="mech" id="mechs"></div>
+
+</div>
+
+<script>
+/* ============ 配色 ============ */
+var CAMPS={
+  chaoran:{name:'超然 · 血脉',color:'#e8c97a'},
+  fanjia:{name:'范家 / 盟友',color:'#c9a961'},
+  jiangnan:{name:'江南 / 明家',color:'#b08060'},
+  xihu:{name:'西胡 / 草原',color:'#c0a050'},
+  dongyi:{name:'东夷城 / 剑庐',color:'#4fb8b0'},
+  beiqi:{name:'北齐',color:'#6ac07a'},
+  jcy:{name:'监察院',color:'#5a8fd0'},
+  sudi:{name:'军 / 文宿敌',color:'#d08080'},
+  huangquan:{name:'南庆皇权',color:'#9a6fd0'},
+  chang:{name:'长公主党',color:'#d06a6a'},
+  donggong:{name:'东宫 / 二皇子',color:'#d08f5a'}
+};
+var CAMPORDER=['chaoran','fanjia','jiangnan','xihu','dongyi','beiqi','jcy','sudi','huangquan','chang','donggong'];
+var RTYPE={亲缘:'#e0a0a0',师徒:'#8fd0a0',君臣:'#8fb0e0',友:'#e8d08a',敌:'#e07070',主从:'#b8a0e0',情:'#e8a0d0'};
+var RTYPENAME=['亲缘','师徒','君臣','友','敌','主从','情'];
+
+/* ============ 详卡数据（30 张） ============ */
+var detailCards=[
+{c:'huangquan',n:'庆帝',r:'南庆皇帝 · 四大宗师之一（隐藏身份）· 叶轻眉恋人与杀她之人 · 范闲生父',t:['以天下为棋盘的孤家寡人','惜才而狠绝','偏执的控制欲'],f:'全书终极反派 + 权力母题化身：一身三重身份（生父/君主/杀母仇人）把"亲情、忠君、复仇"焊死在主角身上。',s:[['大东山之战，以身为饵诱杀宗师','525-529'],['凌迟陈萍萍','679-687'],['皇城重狙对决、"朕没有错"','718-745']]},
+{c:'jcy',n:'陈萍萍',r:'监察院院长 · 庆帝潜邸旧仆 · 叶轻眉旧识 · 坐轮椅',t:['以残躯伺虎、二十年隐忍下一盘死棋','心狠手辣的护道者','叶轻眉信仰的唯一继承者'],f:'范闲的引路人 / 保护神 / 接班人铺垫者；监察院制度的灵魂，也是推动"范闲与庆帝决裂"的关键引信。',s:[['传位提司','262-269'],['御书房二十年隐忍一吐','676-678'],['以火器行刺庆帝、被凌迟','679-687']]},
+{c:'chaoran',n:'五竹',r:'叶轻眉的蒙眼仆人 · 宗师级护卫 · 神庙前使者（非人）',t:['绝对忠诚的机械人格','沉默、迟钝','对小姐与范闲有隐秘深情'],f:'范闲的终极武力底牌 + 母亲记忆的活载体；"神庙 / 非人"谜题的核心。',s:[['楔子铁钎救婴','0'],['澹州授武、杀周管家','25'],['独闯皇宫称庆帝"小李子"、黑布落下','744-745']]},
+{c:'fanjia',n:'范建',r:'司南伯 · 范闲养父 · 范族族长 · 南庆户部尚书',t:['表面温厚、内里算尽的老狐狸式慈父','隐忍、护家、有底线'],f:'范闲的家族靠山 + 朝堂同盟；"父掌国库、子掌内库"的权臣格局承载者。',s:[['以父亲身份见子','44'],['称病不朝、硬挺不辞搅浑朝局','303'],['共谋"第二内库"动摇国本','651-652']]},
+{c:'chaoran',n:'叶轻眉（"小姐"）',r:'范闲生母 · 神庙来人 · 庆余堂与内库创立者 · 五竹之主人（已逝）',t:['看轻天下须眉的旷世奇女子','理想主义的建设者','济世的改革者'],f:'全书身世之谜的谜底 + 所有人动机的源头；"缺席的绝对主角"。',s:[['石碑理想"不羁之民"','26'],['大青树下与四顾剑的伙伴往事','628-630'],['遗信被范闲读于结局','745']]},
+{c:'chang',n:'长公主李云睿',r:'庆帝之妹 · 林婉儿生母 · 君山会主使 · 内库旧主',t:['疯批美人式的权欲囚徒','心狠手辣、精于算计'],f:'第一阶段的头号反派势力主脑；"范家—监察院"阵营的主要对立方。',s:[['被太后掌掴','77'],['传单战被逼退信阳','142-145'],['读"朕回来了"后垂袖自尽','570']]},
+{c:'fanjia',n:'范若若',r:'范建之女 · 范闲幼妹 · 医者 · 拜苦荷为师入天一道',t:['外柔内刚、认死理的才女','执拗、善良、成长型'],f:'范闲的情感软肋 + 关键证人 / 眼线 + 结局的"医术救赎者"。',s:[['助范闲手术、立志学医','256'],['拜苦荷赴北齐行医','341'],['持枪配合、终不忍伤父','745']]},
+{c:'jcy',n:'言冰云',r:'监察院北谍头目 · 四处主事 · 第三任提司 · 言若海之子',t:['冷酷高傲的信仰主义者','专业、克制、有自欺的软肋'],f:'范闲在北方的谍网伙伴 + 政治镜像；finale 的"追缉者 / 放过者"。',s:[['被范闲营救疗伤','218-221'],['托付北方谍网','229'],['放范闲生路、以院长身份追捕旧主','720-721']]},
+{c:'fanjia',n:'王启年',r:'昔日独行贼 · 监察院文职 · 范闲首席亲信 · "启年小组"头目',t:['滴水不漏的忠仆 + 滑不留手的老江湖','擅追踪隐迹、重情义'],f:'范闲的情报 / 执行手 + 唯一能"替范闲发声"的人，是主角能力的"外挂身体"。',s:[['误闯相识、成亲信','53 / 91'],['假死三年藏身监察院','584 / 669'],['抗命追范闲、舍命报讯','670']]},
+{c:'jcy',n:'费介',r:'监察院三处主办 · 天下用毒三大家之一 · 范闲用毒之师',t:['亦师亦父的市井奇人','毒辣与温情并存、通透'],f:'范闲能力体系的起点 + 澹州童年的温情锚；结局"海畔永别"收束师徒线。',s:[['深夜被袭、拜师学毒','4-7'],['卖四顾剑人情、进言范闲前途','175-176'],['海畔重逢即永别','658']]},
+{c:'beiqi',n:'海棠朵朵',r:'北齐圣女 · 苦荷高徒（天一道掌门）· 北齐年轻一代最强 · "村姑"',t:['村姑习性的绝世高手、悲天悯人的反战者','嘴硬心软'],f:'范闲最重要的跨国知己 / 暧昧对象；"天一道心法—北齐—内库银钱"三条线的连接点。',s:[['雾渡猎虎被春药暗算结怨','197'],['"大被同眠"、约不成婚','400-401'],['草原心战三日、金针决裂','594-596'],['雪原相依取暖','725']]},
+{c:'beiqi',n:'司理理（李离思）',r:'京都头牌名妓 · 北齐女谍 · 庆国皇族遗孙 · 后为北齐理贵妃',t:['以身入局的漂泊谍者','隐忍、机变','对范闲由怨转信'],f:'北齐线的关键棋子 + 范闲在北齐皇宫的眼线 + 情感线之一。',s:[['天牢受刑吐供以命换活口','97-98'],['马车中递解药、吐露真名','185-191'],['旧情重叙','619']]},
+{c:'beiqi',n:'战豆豆（北齐小皇帝）',r:'北齐皇帝 · 女扮男装 · 红迷（《红楼梦》粉丝）',t:['少年天子的随性与深沉双面','擅权术、看重长远'],f:'范闲在北方的最高合作者 / 对手 / 情缘；"抄崔家分赃""借北齐之手牵内库"的跨国权谋枢纽。',s:[['识破范闲身世','317-318'],['东夷被擒、识破女子身','620-625'],['有孕（暗线）','704']]},
+{c:'fanjia',n:'林若甫（宰相）',r:'南庆宰相 · 林婉儿之父 · 林珙 / 林大宝之父',t:['被称作千古奸相、实为深谋老臣','父爱、政治嗅觉极强'],f:'范闲的岳父 / 政治导师；联姻后牵动"林家—范家—二皇子"阵营，退位后仍以"点局"助范闲。',s:[['丧子后与东宫 / 长公主决裂、联范','103'],['被逼退、黯然请辞','174'],['归乡后指点范闲','409-410']]},
+{c:'donggong',n:'四位皇子（合并详卡）',r:'太子李承乾 / 二皇子李承泽 / 大皇子（和亲王）/ 三皇子李承平',t:['必死的傀儡储君','体面的败者','粗豪的善终者','被选中的继承者'],f:'夺嫡路上四具镜像：四人分别象征"必死的傀儡、体面的败者、粗豪的善终者、被选中的继承者"。',s:[['太子兵败东华门投降','555'],['二皇子夺嫡失败服毒自尽','575'],['大皇子携手守城、共治东夷','548 / 663'],['三皇子危局登基、敬范闲为先生','745']]},
+{c:'huangquan',n:'洪四庠（洪公公）',r:'宫中老太监 · 皇帝身边深不可测的护卫 · 大宗师级',t:['皇帝之刀的工具人','沉默、忠诚、可牺牲'],f:'庆帝的最强护盾 + 大东山"以身诱杀宗师"计划的关键执行者。',s:[['与五竹交手被证实最高深','136'],['大东山直身显露霸道真气、与苦荷对掌','525-529'],['以死成全皇帝的"演局"','567-568']]},
+{c:'sudi',n:'燕小乙',r:'庆国九品上箭手 · 枢密院 / 军方',t:['为子复仇、执念成魔的箭手','刚猛、护家'],f:'范闲的军方死敌，"杀子之仇"贯穿中后段追杀线。',s:[['一箭惊宫、显露实力','139'],['公开向范闲立誓索命','438-439'],['连环箭皆未成、大东山中箭阵亡','525']]},
+{c:'jcy',n:'影子',r:'监察院六处真正头目 · 天下第一刺客 · 四顾剑之弟',t:['崇拜五竹、以"影子"自居的终极刺客','沉默、有执念','重旧主情义'],f:'范闲的暗杀搭档 + 复仇班底；"四顾剑兄弟血仇"支线的另一极。',s:[['正面单挑重创四顾剑','632'],['因陈萍萍之死奔回京都','694'],['配合五竹、舍第一目标','744']]},
+{c:'dongyi',n:'王十三郎（王羲 / 铁相）',r:'四顾剑关门弟子 · 范闲心腹',t:['身手莫测却心怀慈悲的猛士','重诺、隐忍'],f:'范闲的剑庐线代理人 + 后期生死之交；连接东夷城 / 叶灵儿。',s:[['入庆投范闲','433'],['践诺刺左贤王重伤而归','596'],['以壮烈一剑刺伤大宗师、右臂半废','717']]},
+{c:'dongyi',n:'四顾剑',r:'东夷城剑圣 · 大宗师 · 剑庐之主 · 影子之兄',t:['大青树下走出的偏执剑圣','重情、护徒、狡黠'],f:'东夷城势力的化身 + 范闲的授业宗师 + 神庙 / 叶轻眉往事的见证者。',s:[['单剑破百虎卫、登大东山','529'],['向范闲授剑、点破影子身世','626-630'],['临终托付东夷城与剑庐、安然坐化','654-659']]},
+{c:'beiqi',n:'苦荷',r:'北齐国师 · 大宗师 · 天一道创立者 · 海棠 / 狼桃之师',t:['以道门操控国运的宗教老大','识人极准','以"遗命"支配他人一生'],f:'北齐的精神 / 武力支柱；借"天一道—内库—范家"笼络范闲；"遗命"这一悲剧装置的制造者。',s:[['收范若若为徒、随使团南下证婚','341'],['识破范闲身世决意昭告天下','317-318'],['大东山与洪四庠对掌','525'],['临终托付道门、定策"保陈萍萍性命"','583 / 609']]},
+{c:'chaoran',n:'叶流云',r:'庆国大宗师 · "流云散手"· 歌者 · 叶家后人',t:['闲云野鹤的散人宗师','重旧情、不信权谋'],f:'范闲遭遇的第一个"神级"威慑（澹州交手），也是"君山会 / 叶家"线人物；海上送别者。',s:[['澹州与五竹交手未分胜负、泛残船而去','30'],['破浪一剑重伤范闲后登大东山','398 / 528'],['海上送别四顾剑与费介','658']]},
+{c:'beiqi',n:'肖恩',r:'北魏（北齐前身）密谍大头目 · 上杉虎义父',t:['二十年牢囚、隐忍怨毒的旧谍王','狠、硬、认命后的坦然'],f:'"神庙秘密"的活钥匙 + 范闲北行的关键情报源。',s:[['出狱越狱、借毒逼毒','182-193'],['重伤被擒、双腿被断','199'],['崖底卸下秘密、坦然赴死','237-241']]},
+{c:'beiqi',n:'庄墨韩',r:'北齐文坛领袖 · 苦荷首徒',t:['爱惜清名却临老亏德的大家','知错能改、惜才'],f:'文化战线的对手 → 和解的忘年之交（"赠书范闲"使南庆在文脉上得分）。',s:[['受长公主指使构陷范闲、吐血认输','137-138'],['病逝前赔罪、赠书托付','251-252']]},
+{c:'jiangnan',n:'明家群像（合并详卡）',r:'明青达 / 明老太君 / 夏栖飞（明青城）/ 明兰石',t:['弑母夺位的傀儡家主','疯癫家长','逆袭私生子','纨绔少主'],f:'江南明家是"内库—江南"篇的主要反派家族：一家四口覆盖"傀儡→真主 / 癫狂家长 / 复仇私生子 / 纨绔少主"四种典型。',s:[['明青达亲手扼杀小妾灭口','356'],['明青达弑母夺位、暗中投范闲','393 / 489'],['夏栖飞认祖归宗、成明家家主','464 / 489'],['明兰石私盐败露入狱','487']]},
+{c:'beiqi',n:'沈重',r:'北齐镇抚使（锦衣卫指挥使）· 太后党',t:['表面慈和、实则纵火的老辣酷吏','城府极深'],f:'北齐上京线的主要反派；范闲"营救言冰云"的直接对手。',s:[['借劫囚局反将上杉虎一军','222'],['纵火杀肖恩（假局）','234']]},
+{c:'dongyi',n:'云之澜',r:'东夷城剑术大家 → 剑庐首徒 → 东夷城城主',t:['替师门与城池处处算计、善在夹缝求存的人','识时务、有守护之心'],f:'东夷城线的"现实主义者"；由敌到"名义共治伙伴与制衡者"。',s:[['湖上遭伏重创','133'],['被师尊一叶逼退跪伏','488'],['跪服庆军、成东夷政务主持','634 / 662-663']]},
+{c:'jcy',n:'荆戈（黑骑五处副统领）',r:'黑骑五处副统领（银面）· 监察院',t:['沉默复仇的黑骑刀','忠诚、受命无异议'],f:'范闲的黑骑执行者；秦家血仇线的当事人。',s:[['得范闲赐名、自陈与秦家结仇','389'],['刺秦业报家仇','560-561'],['忠诚拦截燕京军','702']]},
+{c:'sudi',n:'高达',r:'虎卫首领 · 刀法惊人',t:['从虎卫到隐姓埋名刀客的"退休逃兵"','重情、惜命又求死的两难'],f:'范闲的护卫之一 + "小人物悲剧"的样本（达州城门之死）。',s:[['一招制谭武','185'],['被四顾剑斩飞、决意脱虎卫身份','394'],['被逼绝境死达州城门','670']]},
+{c:'fanjia',n:'藤子京（藤梓荆）',r:'司南伯爵府主事 · 范闲护卫头领',t:['忠心得偿的老家人','稳、忍'],f:'范闲入京的引路人与早期贴身护卫；"为护主重伤断腿"是范闲"护自己人"的第一次具体化。',s:[['奉命赴澹州接范闲','34'],['途中透露"亲事"','38'],['为护主重伤断腿','88']]}
+];
+
+/* ============ 图谱节点（33） ============ */
+var GNODES=[
+ {n:'叶轻眉',c:'chaoran',r:'范闲生母 · 神庙来人（已逝）'},
+ {n:'五竹',c:'chaoran',r:'叶轻眉蒙眼仆人 · 宗师级护卫 · 非人'},
+ {n:'范建',c:'fanjia',r:'司南伯 · 户部尚书 · 范闲养父'},
+ {n:'范若若',c:'fanjia',r:'范建之女 · 范闲幼妹 · 天一道医者'},
+ {n:'林婉儿',c:'fanjia',r:'林若甫之女 · 范闲妻（谋士式同盟）'},
+ {n:'林若甫',c:'fanjia',r:'南庆宰相 · 范闲岳父'},
+ {n:'李弘成',c:'fanjia',r:'靖王世子 · 范闲挚友'},
+ {n:'明青达',c:'jiangnan',r:'明家家主 · 弑母夺位者'},
+ {n:'夏栖飞',c:'jiangnan',r:'江南水寨 → 监察院暗桩 → 明家家主'},
+ {n:'速必达',c:'xihu',r:'草原单于 · 对海棠痴情'},
+ {n:'四顾剑',c:'dongyi',r:'东夷城剑圣 · 大宗师 · 剑庐之主'},
+ {n:'王十三郎',c:'dongyi',r:'四顾剑关门弟子 · 范闲生死之交'},
+ {n:'云之澜',c:'dongyi',r:'剑庐首徒 → 东夷城城主'},
+ {n:'战豆豆',c:'beiqi',r:'北齐小皇帝 · 女扮男装'},
+ {n:'苦荷',c:'beiqi',r:'北齐国师 · 大宗师 · 天一道创立者'},
+ {n:'海棠朵朵',c:'beiqi',r:'北齐圣女 · 天一道掌门'},
+ {n:'司理理',c:'beiqi',r:'京都名妓 · 北齐女谍 · 理贵妃'},
+ {n:'上杉虎',c:'beiqi',r:'北齐第一名将 · 肖恩义父'},
+ {n:'陈萍萍',c:'jcy',r:'监察院院长 · 叶轻眉旧识'},
+ {n:'言冰云',c:'jcy',r:'监察院北谍头目 · 第三任提司'},
+ {n:'费介',c:'jcy',r:'监察院三处主办 · 范闲用毒之师'},
+ {n:'影子',c:'jcy',r:'监察院六处头目 · 天下第一刺客'},
+ {n:'燕小乙',c:'sudi',r:'庆国九品上箭手 · 范闲军方死敌'},
+ {n:'贺宗纬',c:'sudi',r:'寒门才子 → 左都御史 · 范闲宿敌'},
+ {n:'叶重',c:'sudi',r:'京都守备 → 定州大都督 · 皇帝伏棋'},
+ {n:'庆帝',c:'huangquan',r:'南庆皇帝 · 四大宗师（隐）· 范闲生父'},
+ {n:'洪四庠',c:'huangquan',r:'宫中老太监 · 大宗师级护卫'},
+ {n:'三皇子李承平',c:'huangquan',r:'宜贵嫔之子 · 范闲学生 · 南庆新帝'},
+ {n:'大皇子',c:'huangquan',r:'宁才人之子 · 征西军名将'},
+ {n:'长公主',c:'chang',r:'李云睿 · 庆帝之妹 · 君山会主使'},
+ {n:'庄墨韩',c:'chang',r:'北齐文坛领袖 · 苦荷首徒'},
+ {n:'太子李承乾',c:'donggong',r:'庆帝长子 · 储君'},
+ {n:'二皇子李承泽',c:'donggong',r:'叶家之婿 · 清雅名士'}
+];
+var GEDGES=[
+ {a:'范闲',b:'范建',t:'亲缘'},{a:'范闲',b:'范若若',t:'亲缘'},{a:'范闲',b:'林婉儿',t:'情'},
+ {a:'范闲',b:'林若甫',t:'亲缘'},{a:'范闲',b:'李弘成',t:'友'},
+ {a:'范闲',b:'陈萍萍',t:'主从'},{a:'范闲',b:'言冰云',t:'君臣'},{a:'范闲',b:'费介',t:'师徒'},{a:'范闲',b:'影子',t:'主从'},
+ {a:'范闲',b:'庆帝',t:'亲缘'},{a:'范闲',b:'洪四庠',t:'敌'},{a:'范闲',b:'三皇子李承平',t:'师徒'},{a:'范闲',b:'大皇子',t:'友'},
+ {a:'范闲',b:'燕小乙',t:'敌'},{a:'范闲',b:'贺宗纬',t:'敌'},{a:'范闲',b:'叶重',t:'敌'},
+ {a:'范闲',b:'长公主',t:'敌'},{a:'范闲',b:'庄墨韩',t:'敌'},
+ {a:'范闲',b:'太子李承乾',t:'敌'},{a:'范闲',b:'二皇子李承泽',t:'敌'},
+ {a:'范闲',b:'战豆豆',t:'情'},{a:'范闲',b:'苦荷',t:'友'},{a:'范闲',b:'海棠朵朵',t:'情'},{a:'范闲',b:'司理理',t:'情'},{a:'范闲',b:'上杉虎',t:'敌'},
+ {a:'范闲',b:'四顾剑',t:'师徒'},{a:'范闲',b:'王十三郎',t:'友'},{a:'范闲',b:'云之澜',t:'友'},
+ {a:'范闲',b:'明青达',t:'敌'},{a:'范闲',b:'夏栖飞',t:'主从'},{a:'范闲',b:'速必达',t:'敌'},
+ {a:'范闲',b:'叶轻眉',t:'亲缘'},{a:'范闲',b:'五竹',t:'师徒'},
+ {a:'庆帝',b:'陈萍萍',t:'君臣'},{a:'庆帝',b:'长公主',t:'亲缘'},{a:'庆帝',b:'洪四庠',t:'主从'},
+ {a:'庆帝',b:'三皇子李承平',t:'亲缘'},{a:'庆帝',b:'大皇子',t:'亲缘'},{a:'庆帝',b:'太子李承乾',t:'亲缘'},
+ {a:'庆帝',b:'二皇子李承泽',t:'亲缘'},{a:'庆帝',b:'叶重',t:'主从'},{a:'庆帝',b:'叶轻眉',t:'情'},
+ {a:'陈萍萍',b:'言冰云',t:'主从'},{a:'陈萍萍',b:'费介',t:'友'},{a:'陈萍萍',b:'影子',t:'主从'},{a:'陈萍萍',b:'叶轻眉',t:'友'},{a:'陈萍萍',b:'范建',t:'友'},
+ {a:'长公主',b:'林婉儿',t:'亲缘'},{a:'长公主',b:'庄墨韩',t:'主从'},{a:'长公主',b:'太子李承乾',t:'友'},
+ {a:'苦荷',b:'海棠朵朵',t:'师徒'},{a:'苦荷',b:'战豆豆',t:'君臣'},{a:'苦荷',b:'范若若',t:'师徒'},
+ {a:'四顾剑',b:'王十三郎',t:'师徒'},{a:'四顾剑',b:'影子',t:'亲缘'},{a:'四顾剑',b:'云之澜',t:'师徒'},{a:'四顾剑',b:'叶轻眉',t:'友'},
+ {a:'范建',b:'范若若',t:'亲缘'},{a:'林若甫',b:'林婉儿',t:'亲缘'},{a:'叶轻眉',b:'五竹',t:'主从'},{a:'叶轻眉',b:'庆帝',t:'情'}
+];
+
+/* ============ 简卡（69） ============ */
+var briefs=[
+['柳如玉','范建续弦、范思辙之母','范府主母；对范闲由忌惮到暗中生怨','41 / 291'],
+['范思辙','范建与柳氏之子、商人','经商天才；抱月楼 / 澹泊书局；"断腕—流放—归来"支线','47 / 287-294 / 722'],
+['叶灵儿','守备叶重之女、二皇妃','范闲女徒；叶家 / 二皇子线纽带；后与王十三郎生情','66 / 601'],
+['李弘成','靖王世子、范闲挚友','由盟友到决裂再到边关挚友；痴随范若若','40 / 288 / 746'],
+['靖王爷李治','李弘成之父','以"无欲则刚"替范闲硬顶皇权','62 / 466'],
+['叶重','京都守备 → 定州大都督','皇帝伏棋；护圣被影子重创而废','44 / 744'],
+['宫典','大内侍卫副统领 → 禁军统领','忠于庆帝；识出五竹真身的恐惧者','51 / 706'],
+['贺宗纬','寒门才子 → 左都御史','范闲宿敌；由投机者到复仇者，终被"毒针断肠"','40 / 710'],
+['宜贵嫔','三皇子李承平之母','与范府结政治盟友、掌选秀','127 / 308'],
+['淑贵妃 / 宁才人','庆帝妃嫔','后宫政治标本；宁才人母命护范闲（报恩）','128 / 323'],
+['皇太后','庆帝之母','家法 / 皇权象征；护范闲又压制后党；终成废人','74 / 534'],
+['皇后','太子生母','太子党核心；与长公主"与虎谋皮"；堕城自尽','74 / 406'],
+['言若海','监察院四处主办、言冰云之父','忍辱救子；"用自己的脑袋保范闲的脑袋"','26 / 721'],
+['朱格','监察院一处头目','内奸，私通长公主；自尽','143'],
+['沐铁','监察院一处主簿','被范闲点醒、效忠','90 / 262'],
+['沐风儿','启年小组头目、沐铁之子','接替王启年总管范闲细务','262 / 587'],
+['邓子越','监察院官员','北方谍网 / 西凉情报干将','258 / 602'],
+['史阐立','范门四子之一','抱月楼大东家；与桑文暗生情愫','168 / 643'],
+['侯季常','范门四子之一','由门生到背师（投贺宗纬）','168 / 705'],
+['成佳林','范门四子之一','随范闲仕途','168'],
+['杨万里','范门四子之一、清官','被冤受刑 → 范闲亲赴大理寺救之','161 / 701'],
+['苏文茂','监察院内库负责人','范闲内库心腹','262 / 348'],
+['郭攸之','礼部尚书、会试总裁','弊案倒台，朝野震动','164'],
+['郭保坤','郭家子弟、纨绔','范闲早期仇敌（牛栏街）','40 / 72'],
+['秦恒','秦家二代领军','军方新星；京都守备','158 / 438'],
+['秦业','枢密院正使、军方第一人','幕后主谋；被三名刺客阵前阴杀','438 / 561'],
+['上杉虎','北齐第一名将、肖恩义父','劫囚救父失败、留京','186 / 232'],
+['狼桃','苦荷首徒、北齐帝师','护帝武力；与大东山对掌','234 / 736'],
+['何道人','九品剑客、太后门人','截杀肖恩反被重创；战死','234'],
+['胡歌','西胡左贤王帐下第一高手','受范闲指使佯攻被伏身死','585'],
+['速必达','草原单于','对海棠痴情；将计就计遭毁灭性伏击','592'],
+['王曈儿','王志昆独女','由刁蛮小姐被范闲训成"小白兔"；单恋大皇子','603'],
+['王志昆','燕京大都督','骑墙于皇帝与范闲 / 大皇子','611'],
+['李伯华','剑庐二弟子、太平钱庄主人','执掌天下第一钱庄；纳范闲阵营','660'],
+['叶完','叶帅长子、南庆第一高手','新崛起将星；与范闲结宿怨','706 / 739-740'],
+['梅妃','南庆妃嫔、怀龙种','被范闲告诫、埋下怨恨','711'],
+['洪亦青','启年小组成员','追慕洪常青改名；领西凉草原联络','690 / 692'],
+['薛清','江南总督','与范闲达成默契、判其"孤臣"；率先上折"进谏废储"','343 / 509'],
+['许茂才','叶家旧人（泉州水师）','忠叶轻眉；欲拥范闲造反被拒','417 / 521'],
+['洪常青','东海小岛唯一活口','范闲亲信；替主挡箭而死','356 / 524'],
+['关妩媚','大江女悍匪、水寨之主','被擒断臂后助范闲；战死','331 / 649'],
+['孙敬修','京都府尹','"这条命也只有卖给范闲"','540 / 690'],
+['孙颦儿','孙敬修之女、红楼痴女','为范闲内应、单方痴慕','539-540'],
+['张德清','城门司统领','长公主暗子、反转背叛','547 / 550'],
+['木蓬','北齐青山神医','苦荷遗命暗子、被若若识破','581 / 609'],
+['洪竹','宫中太监 → 范闲最深暗线','深宫钉子；终转范宅管家','277 / 746'],
+['戴公公','宣旨太监','由红人跌势；私开宫门立功','93'],
+['姚太监','皇帝近侍','看透全局的旁观者','310'],
+['袁宏道','宰相谋士、实为陈萍萍钉子','反水逼宰相下台','103 / 189'],
+['林大宝','林若甫痴呆长子','天真可爱；"老跳太累"点出无为意趣','103'],
+['林珙','林若甫长子','被五竹所杀，促林若甫与东宫决裂','99'],
+['思思','范闲贴身大丫环 → 妾','澹州情感线；怀胎入妾室','17 / 429'],
+['冬儿','原伯爵别府大丫环','范闲心绪的安放处；坚拒进京','24 / 431'],
+['老夫人','范氏祖母','暗掌澹州全局；"站在陛下身前"的教诲','3 / 512'],
+['周管家','二太太心腹','被五竹所杀，京澹矛盾导火索','17 / 25'],
+['北齐大公主','和亲嫁大皇子','思乡、以退为进','253 / 605'],
+['北齐太后','北齐掌后党者','与皇帝争权；安排海棠盯范闲','202'],
+['沈大小姐','沈重之女','家破人亡、夫妻破裂；告密复仇者','218 / 721'],
+['宋世仁','天下第一讼师','家产尽失后投监察院；成心腹状师','62 / 585'],
+['陈伯常','江南名讼师','死守庆律嫡长条款的对手','372'],
+['柔嘉郡主','范闲堂妹','单方爱慕、以"闲哥哥"求助','466 / 608'],
+['苦修士 / 庆庙大祭司','庆庙信仰者','神庙信仰的见证与崩塌者','307 / 724'],
+['剑童','四顾剑剑童','引路传话的精灵小童','626'],
+['东夷城城主','东夷城城主','随四顾剑布局、被血洗','612'],
+['青鸟 / 神庙老者','神庙造物 / 显现体','神庙"死物逻辑"的呈现者','724'],
+['北齐小公主红豆饭','北齐小公主','司理理抱以掩饰身世','721'],
+['长宁侯','北齐太后亲兄','好酒迂庸；被"走私"饵诱','122'],
+['上杉破','上杉虎族人','绝壁神庙秘相关','234'],
+['卫华','北齐锦衣卫指挥使','生忌惮却不敢下手','202']
+];
+
+/* ============ 龙套归类（按阵营） ============ */
+var extras=[
+ {c:'fanjia',l:'范家 / 府内',m:['四祺（丫鬟）','藤大（藤大家媳妇）','思思','冬儿','范淑宁（女婴）','范良','麦新儿','桑家姑娘']},
+ {c:'jcy',l:'监察院',m:['七处光头前主办（牢头）','慕容燕（二处主簿）','宗追（双翼之一）','沐铁','沐风儿','苏文茂','邓子越','荆戈（黑骑）']},
+ {c:'huangquan',l:'南庆皇权 / 宫廷',m:['侯公公（侯三儿）','姚太监','戴公公','黄公公','何七干','醒儿（宫女）','郑拓（暗桩）','洪竹']},
+ {c:'sudi',l:'南庆文官',m:['舒芜（大学士）','胡大学士','颜行书（吏部）','任少卿','辛其物','张子乾','梅执礼','郭铮','韩志维','方达人','戴震','赖名成','方廷石','申冲文','曲向东','吴格非']},
+ {c:'sudi',l:'南庆军方',m:['许寿山','施提督','谢苏','陈一江','史飞','常昆','党骁波']},
+ {c:'jiangnan',l:'江南 / 明家',m:['明二爷','明三爷','明四爷（瓜王）','明六爷','明家帐房先生','二姨太','邹磊','周先生','杨继美','熊百龄','孙吉祥']},
+ {c:'fanjia',l:'叶家 / 庆余堂',m:['叶大掌柜','七叶（老掌柜）','叶掌柜','许茂才','洪常青','马楷','叶参将','单达','萧敬','胡金林']},
+ {c:'beiqi',l:'北齐',m:['上杉破','卫英宁','白参','萧元炳','萧副指挥使','谭武','长安侯','长安侯小公子','魏无忌','盛怀仁','余老板','林静 / 林文','卫华','崔公子','副招抚使','老掌柜','程巨树','成朴竹','战清风','北齐太傅']},
+ {c:'dongyi',l:'东夷城 / 剑庐',m:['吕思思（剑庐徒孙）','剑童','李伯华','云之澜','东夷城城主']},
+ {c:'xihu',l:'西胡 / 草原',m:['左贤王','速必达','胡歌','玛索索','魏无成']},
+ {c:'chaoran',l:'庆庙 / 神庙',m:['三石大师（二祭祀）','苦修士','庆庙大祭司','青鸟','神庙老者']},
+ {c:'chang',l:'抱月楼 / 市井',m:['袁梦（幕后）','石清儿（当家）','妍儿（红牌）','桑文']},
+ {c:'donggong',l:'其他',m:['王启年之流','二皇子八家将（谢必安、范无救、杨攻城）','林大宝','林珙','吴伯安','周管家','方达人']}
+];
+
+/* ============ 群像塑造法 ============ */
+var methods=[
+ ['① "一技一癖"定标签','每个重要配角给一个可辨识的行为癖好即立住——五竹的"面无表情"、王启年的市侩算计、海棠的"村姑步与吃"、范思辙的"唯算账认真"。不写满，只写一个记忆钩子。'],
+ ['② "借他人之口"双面呈现','配角登场常先由旁人评价（"千古奸相"林若甫、"天下第一讼师"宋世仁），再用一个反转行为推翻评价——先给标签再撕标签。'],
+ ['③ "功能即人设"','每个配角都被分配一个不可替代的叙事功能（言冰云＝北方谍网、荆戈＝黑骑刀、洪竹＝深宫眼线），功能本身塑造性格——能干的事决定他是谁。'],
+ ['④ "成长弧光只给少数人"','详卡级配角给完整弧光（王启年、范若若、言冰云），简卡级只给"一个高光瞬间"，龙套只给"一个功能"——分级配置笔墨，避免人人立传。'],
+ ['⑤ "反差 / 错位"造张力','把配角放进与其人格相悖的处境（陈萍萍的残躯 vs 钢铁意志；海棠的村姑 vs 绝世武力；洪四庠的大宗师 vs 奴仆自弃），反差点即记忆点。']
+];
+var mechs=[
+ ['机制一 · "关系网发动机"','配角是关系网络的节点，一个配角的一步棋（长公主卖言冰云换肖恩 [第138章]）就推动多线并进。主线不是主角一个人跑的，是配角互相拧出来的。'],
+ ['机制二 · "阵营代表"','一位主角配一个阵营代言人（军方＝秦业 / 燕小乙、文官＝贺宗纬 / 舒芜、江南＝明家、北齐＝苦荷 / 战豆豆），让政治博弈有具体的"脸"。'],
+ ['机制三 · "情感杠杆"','配角的死 / 背叛 / 牺牲是主角转变的扳机（陈萍萍之死→范闲与庆帝决裂；范建 / 婉儿 / 若若的存在→范闲的软肋）。用一个配角的命运，撬动主角的选择。']
+];
+
+/* ============ 渲染：详卡 ============ */
+document.getElementById('cards').innerHTML=detailCards.map(function(c,i){
+  var cc=CAMPS[c.c]?CAMPS[c.c].color:'#c9a961';
+  var pills=c.t.map(function(x,j){return '<span class="pill'+(j>0?' dim':'')+'">'+x+'</span>';}).join('');
+  var sc=c.s.map(function(s){return '<li>'+s[0]+' <span class="ch">[第'+s[1]+'章]</span></li>';}).join('');
+  return '<div class="card" style="--cc:'+cc+'">'
+   +'<span class="idx">'+(i+1<10?'0':'')+(i+1)+'</span>'
+   +'<h3>'+c.n+'</h3>'
+   +'<div class="role">'+c.r+'</div>'
+   +'<div class="pills">'+pills+'</div>'
+   +'<div class="func">'+c.f+'</div>'
+   +'<ul class="scenes">'+sc+'</ul>'
+   +'</div>';
+}).join('');
+
+/* ============ 渲染：简卡表 ============ */
+document.getElementById('briefBody').innerHTML=briefs.map(function(b){
+  return '<tr><td class="nm">'+b[0]+'</td><td>'+b[1]+'</td><td>'+b[2]+'</td><td class="ch">第'+b[3]+'章</td></tr>';
+}).join('');
+
+/* ============ 渲染：龙套归类 ============ */
+document.getElementById('extrasByCamp').innerHTML=extras.map(function(e){
+  var col=CAMPS[e.c]?CAMPS[e.c].color:'#c9a961';
+  return '<div class="chips-row"><div class="lbl"><i style="background:'+col+'"></i>'+e.l+'</div>'
+   +'<div class="chips">'+e.m.map(function(m){return '<span class="chip">'+m+'</span>';}).join('')+'</div></div>';
+}).join('');
+
+/* ============ 渲染：塑造法 ============ */
+document.getElementById('methods').innerHTML=methods.map(function(m){
+  return '<div class="method"><b>'+m[0]+'</b><p>'+m[1]+'</p></div>';
+}).join('');
+document.getElementById('mechs').innerHTML=mechs.map(function(m){
+  return '<div class="method"><b>'+m[0]+'</b><p>'+m[1]+'</p></div>';
+}).join('');
+
+/* ============ 渲染：关系图谱 ============ */
+(function renderGraph(){
+  var cx=680,cy=460,R1=300,R2=410;
+  var svg=document.getElementById('graph');
+  var NS='http://www.w3.org/2000/svg';
+  var nodeMap={};
+
+  var ordered=[];
+  CAMPORDER.forEach(function(c){
+    GNODES.filter(function(n){return n.c===c;}).forEach(function(n){ordered.push(n);});
+  });
+  var N=ordered.length, step=360/N;
+  ordered.forEach(function(n,i){
+    var ang=(-90+i*step)*Math.PI/180;
+    var rad=(i%2===0)?R1:R2;
+    n.x=cx+rad*Math.cos(ang);
+    n.y=cy+rad*Math.sin(ang);
+    n.ang=i*step-90;
+    nodeMap[n.n]=n;
+  });
+  nodeMap['范闲']={n:'范闲',x:cx,y:cy,ang:0,c:'#center'};
+
+  function el(tag,attrs){var e=document.createElementNS(NS,tag);for(var k in attrs){e.setAttribute(k,attrs[k]);}return e;}
+
+  var gEdges=el('g',{}); svg.appendChild(gEdges);
+  var gNodes=el('g',{}); svg.appendChild(gNodes);
+
+  /* 阵营弧带 */
+  CAMPORDER.forEach(function(c){
+    var mem=ordered.filter(function(n){return n.c===c;});
+    if(!mem.length)return;
+    var a0=mem[0].ang*Math.PI/180, a1=mem[mem.length-1].ang*Math.PI/180;
+    var R=455;
+    var x0=cx+R*Math.cos(a0),y0=cy+R*Math.sin(a0),x1=cx+R*Math.cos(a1),y1=cy+R*Math.sin(a1);
+    svg.appendChild(el('path',{d:'M'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+R+' '+R+' 0 0 1 '+x1.toFixed(1)+' '+y1.toFixed(1),
+      fill:'none',stroke:CAMPS[c].color,'stroke-width':'2','stroke-dasharray':'3 6',opacity:'0.26'}));
+    var mid=(mem[0].ang+mem[mem.length-1].ang)/2*Math.PI/180;
+    var lx=cx+478*Math.cos(mid), ly=cy+478*Math.sin(mid);
+    if(lx>40&&lx<1320&&ly>24&&ly<898){
+      var t=el('text',{x:lx.toFixed(1),y:ly.toFixed(1),fill:CAMPS[c].color,'font-size':'12','font-weight':'700',
+        'text-anchor':'middle','letter-spacing':'1',opacity:'0.85'});
+      t.textContent=CAMPS[c].name; svg.appendChild(t);
+    }
+  });
+
+  GEDGES.forEach(function(e){
+    var a=nodeMap[e.a], b=nodeMap[e.b];
+    if(!a||!b)return;
+    var col=RTYPE[e.t]||'#888';
+    var isC=(e.a==='范闲'||e.b==='范闲');
+    var line=el('line',{x1:a.x.toFixed(1),y1:a.y.toFixed(1),x2:b.x.toFixed(1),y2:b.y.toFixed(1),
+      stroke:col,'stroke-width':isC?'1.6':'1.1',opacity:isC?'0.5':'0.3','class':'edge'});
+    line.dataset.a=e.a; line.dataset.b=e.b;
+    var tt=el('title',{}); tt.textContent=e.a+' ⟷ '+e.b+'　关系：'+e.t;
+    line.appendChild(tt);
+    gEdges.appendChild(line);
+  });
+
+  ordered.forEach(function(n){
+    var col=CAMPS[n.c].color;
+    var g=el('g',{'class':'node'}); g.dataset.name=n.n;
+    var isCore=['庆帝','陈萍萍','五竹','范建','叶轻眉','长公主','林婉儿','苦荷','四顾剑','战豆豆','海棠朵朵'].indexOf(n.n)>=0;
+    var r=isCore?24:19;
+    g.appendChild(el('circle',{cx:n.x.toFixed(1),cy:n.y.toFixed(1),r:r,fill:col,'fill-opacity':'0.88',stroke:'#08080c','stroke-width':'2'}));
+    var ini=el('text',{x:n.x.toFixed(1),y:(n.y+4).toFixed(1),'text-anchor':'middle','font-size':isCore?'11':'10','font-weight':'800',fill:'#08080c','pointer-events':'none'});
+    ini.textContent=n.n.slice(0,1); g.appendChild(ini);
+    var below=(Math.sin(n.ang*Math.PI/180)>=0);
+    var ty=below? n.y+r+15 : n.y-r-8;
+    var lbl=el('text',{x:n.x.toFixed(1),y:ty.toFixed(1),'text-anchor':'middle','font-size':'11.5',fill:'#cfcfcf','font-weight':'600','pointer-events':'none'});
+    lbl.textContent=n.n; g.appendChild(lbl);
+    var tt=el('title',{}); tt.textContent=n.n+'　·　'+n.r+'　【'+CAMPS[n.c].name+'】'; g.appendChild(tt);
+    g.addEventListener('mouseenter',function(){highlight(n.n);});
+    g.addEventListener('mouseleave',resetHL);
+    gNodes.appendChild(g);
+  });
+
+  (function(){
+    var g=el('g',{'class':'node'}); g.dataset.name='范闲';
+    g.appendChild(el('circle',{cx:cx,cy:cy,r:46,fill:'none',stroke:'#c9a961','stroke-width':'1',opacity:'0.35','stroke-dasharray':'4 6'}));
+    g.appendChild(el('circle',{cx:cx,cy:cy,r:36,fill:'#c9a961',stroke:'#08080c','stroke-width':'3'}));
+    var t=el('text',{x:cx,y:cy+7,'text-anchor':'middle','font-size':'20','font-weight':'900',fill:'#08080c','pointer-events':'none'});
+    t.textContent='范闲'; g.appendChild(t);
+    var tt=el('title',{}); tt.textContent='范闲　·　本书主角 · 关系网圆心（监察院提司 / 内库转运司正使 / 澹泊公）'; g.appendChild(tt);
+    g.addEventListener('mouseenter',function(){highlight('fanxian-all');});
+    g.addEventListener('mouseleave',resetHL);
+    gNodes.appendChild(g);
+  })();
+
+  function highlight(name){
+    gEdges.querySelectorAll('.edge').forEach(function(ln){
+      var hit=(name==='fanxian-all')?(ln.dataset.a==='范闲'||ln.dataset.b==='范闲'):(ln.dataset.a===name||ln.dataset.b===name);
+      ln.setAttribute('opacity',hit?'0.95':'0.06');
+      ln.setAttribute('stroke-width',hit?'2.6':'1');
+    });
+    gNodes.querySelectorAll('.node').forEach(function(nd){
+      if(name==='fanxian-all'){nd.setAttribute('opacity','1');return;}
+      nd.setAttribute('opacity',nd.dataset.name===name?'1':'0.22');
+    });
+  }
+  function resetHL(){
+    gEdges.querySelectorAll('.edge').forEach(function(ln){
+      var c=(ln.dataset.a==='范闲'||ln.dataset.b==='范闲');
+      ln.setAttribute('opacity',c?'0.5':'0.3');
+      ln.setAttribute('stroke-width',c?'1.6':'1.1');
+    });
+    gNodes.querySelectorAll('.node').forEach(function(nd){nd.setAttribute('opacity','1');});
+  }
+
+  var chosen=null;
+  var cl=document.getElementById('campLegend');
+  cl.innerHTML='<span style="font-size:11px;color:#7a7a7a;padding:4px;letter-spacing:1px">阵营筛选 ▸</span>'
+   + CAMPORDER.map(function(c){return '<span class="lg-item" data-camp="'+c+'"><i class="lg-dot" style="background:'+CAMPS[c].color+'"></i>'+CAMPS[c].name+'</span>';}).join('');
+  cl.querySelectorAll('.lg-item').forEach(function(item){
+    item.addEventListener('click',function(){
+      var c=item.dataset.camp;
+      if(chosen===c){
+        chosen=null;
+        cl.querySelectorAll('.lg-item').forEach(function(x){x.classList.remove('off');});
+      }else{
+        chosen=c;
+        cl.querySelectorAll('.lg-item').forEach(function(x){x.classList.toggle('off',x.dataset.camp!==c);});
+      }
+      applyFilter();
+    });
+  });
+  function applyFilter(){
+    gNodes.querySelectorAll('.node').forEach(function(nd){
+      var nm=nd.dataset.name;
+      if(!chosen){nd.setAttribute('opacity','1');return;}
+      var camp=nodeMap[nm]?nodeMap[nm].c:null;
+      nd.setAttribute('opacity',(camp===chosen||nm==='范闲')?'1':'0.12');
+    });
+    gEdges.querySelectorAll('.edge').forEach(function(ln){
+      if(!chosen){ln.setAttribute('opacity',(ln.dataset.a==='范闲'||ln.dataset.b==='范闲')?'0.5':'0.3');return;}
+      var ca=nodeMap[ln.dataset.a], cb=nodeMap[ln.dataset.b];
+      var hit=(ca&&ca.c===chosen)||(cb&&cb.c===chosen);
+      ln.setAttribute('opacity',hit?'0.6':'0.05');
+    });
+  }
+
+  var tl=document.getElementById('typeLegend');
+  tl.innerHTML='<span style="font-size:11px;color:#7a7a7a;padding:4px;letter-spacing:1px">关系性质 ▸</span>'
+   + RTYPENAME.map(function(t){return '<span class="lg-item" style="cursor:default"><i class="lg-line" style="background:'+RTYPE[t]+'"></i>'+t+'</span>';}).join('');
+})();
+</script>
+</body>
+</html>

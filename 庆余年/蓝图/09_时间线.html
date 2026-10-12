@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 · 时间线（《庆余年》创作蓝图）</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:5px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:5px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:13px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity .2s;}
+.topbar a:hover{opacity:.65;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.wrap{max-width:1360px;margin:0 auto;padding:32px 24px 80px;position:relative;z-index:1;}
+
+h1{font-size:24px;color:var(--gold2);letter-spacing:3px;font-weight:800;margin-bottom:10px;}
+.sub{font-size:13px;color:#8d8a84;line-height:1.9;margin-bottom:8px;}
+.sub code{color:var(--gold);background:rgba(201,169,97,.09);padding:1px 6px;border-radius:4px;}
+h2{font-size:17px;color:var(--gold2);letter-spacing:2px;font-weight:700;margin:0 0 16px;
+  border-left:3px solid var(--gold);padding-left:12px;display:flex;align-items:center;gap:10px;}
+h2 .tag{font-size:11px;color:var(--gold);border:1px solid rgba(201,169,97,.35);border-radius:20px;padding:1px 10px;letter-spacing:1px;font-weight:600;}
+section{margin-top:38px;}
+.card{background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px 22px;}
+
+/* ---------- 双轨时间轴 ---------- */
+.chart-box{padding:8px 4px 4px;}
+svg{display:block;width:100%;height:auto;overflow:visible;}
+.tk-label{font-size:12px;font-weight:700;letter-spacing:1px;}
+.node{cursor:pointer;transition:r .15s;}
+.node:hover{filter:drop-shadow(0 0 6px var(--gold2));}
+.ch-num{font-size:9px;fill:rgba(201,169,97,.62);}
+.vol-lab{font-size:10.5px;font-weight:700;letter-spacing:.5px;}
+.axis-t{font-size:10px;fill:#6f6c67;}
+
+.tk-legend{display:flex;flex-wrap:wrap;gap:9px 18px;margin:16px 0 4px;}
+.tk-legend .item{font-size:11.5px;color:#b8b4ad;display:flex;align-items:center;gap:7px;}
+.tk-legend .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+
+/* ---------- 事件清单 ---------- */
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:20px;}
+.ex-list{border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.018);}
+.ex-list h3{font-size:12.5px;color:var(--gold2);letter-spacing:1px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed rgba(201,169,97,.2);}
+.ex-list ol{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.ex-list li{font-size:12px;line-height:1.65;color:#c9c6c0;display:flex;gap:9px;}
+.ex-list li .mk{flex:none;width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;background:rgba(201,169,97,.12);color:var(--gold2);border:1px solid rgba(201,169,97,.28);}
+.ex-list li .ch{color:var(--gold);font-weight:600;flex:none;}
+.ex-list li .tx{color:#b5b1aa;}
+
+/* ---------- 热力图 ---------- */
+.hm-note{font-size:11.5px;color:#8d8a84;margin:4px 0 14px;line-height:1.9;}
+.scale{display:inline-flex;align-items:center;gap:8px;font-size:11px;color:#9c988f;margin-left:6px;}
+.scale .bar{display:inline-block;width:130px;height:11px;border-radius:6px;
+  background:linear-gradient(90deg,rgba(201,169,97,.85),rgba(201,169,97,.42),rgba(201,169,97,.07));border:1px solid rgba(255,255,255,.08);}
+table.hm{width:100%;border-collapse:separate;border-spacing:5px;margin-top:6px;}
+table.hm th.corner{background:transparent;}
+table.hm th.rh{text-align:left;font-size:12px;color:var(--gold2);font-weight:700;letter-spacing:.5px;
+  background:rgba(255,255,255,.02);border-radius:9px;padding:0 14px;min-width:170px;}
+table.hm th.ch{font-size:12px;color:var(--gold2);font-weight:700;letter-spacing:1px;padding:8px 0;
+  background:rgba(201,169,97,.08);border-radius:9px;}
+table.hm td{text-align:center;border-radius:10px;padding:11px 8px;font-size:11.5px;line-height:1.5;
+  border:1px solid rgba(255,255,255,.07);transition:transform .12s,box-shadow .12s;cursor:default;}
+table.hm td:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.5);}
+table.hm td .chp{font-weight:800;font-size:13px;display:block;letter-spacing:.5px;}
+table.hm td .ct{font-size:10px;opacity:.82;display:block;margin-top:3px;}
+
+/* ---------- 技法卡片 ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:8px;}
+.tech{background:rgba(255,255,255,.022);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:16px 18px;
+  position:relative;transition:border-color .2s,transform .2s;}
+.tech:hover{border-color:rgba(201,169,97,.42);transform:translateY(-3px);}
+.tech .no{position:absolute;top:-11px;left:16px;width:24px;height:24px;border-radius:8px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#131108;font-size:12px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(201,169,97,.3);}
+.tech h4{font-size:13px;color:var(--gold2);font-weight:700;letter-spacing:.5px;margin:6px 0 8px;}
+.tech p{font-size:11.8px;line-height:1.85;color:#b3afa8;}
+
+/* ---------- tooltip ---------- */
+#tip{position:fixed;z-index:9999;pointer-events:none;opacity:0;transition:opacity .12s;
+  background:rgba(14,14,20,.97);border:1px solid rgba(201,169,97,.45);border-radius:9px;
+  padding:9px 13px;font-size:12px;color:#eee;max-width:300px;line-height:1.6;box-shadow:0 10px 30px rgba(0,0,0,.6);}
+#tip b{color:var(--gold2);}
+#tip .c{color:var(--gold);font-weight:700;}
+
+@media(max-width:900px){.lists{grid-template-columns:1fr;}}
+@media(max-width:560px){.wrap{padding:24px 14px 70px;}h1{font-size:20px;}table.hm th.rh{min-width:0;font-size:11px;}}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">庆余年 · 时间线蓝图</span>
+</div>
+
+<div class="wrap">
+  <h1>09 · 时间线</h1>
+  <p class="sub">双轨并行时间轴 + 信息差矩阵热力图 —— 回答两件事：<b style="color:var(--gold2)">①事件谁先谁后 ②谁在何时知道什么</b>。</p>
+  <p class="sub">数据源：<code>拆解数据/台账/时间线台账.md</code>（前史 10 + 主线 238）｜章号口径：全书连续编号 <code>第0章 ~ 第746章</code>。</p>
+
+  <section>
+    <h2>一、双轨时间轴<span class="tag">上下轨共用横轴 0 → 746</span></h2>
+    <div class="card chart-box">
+      <div id="timeline"></div>
+      <div class="tk-legend" id="vol-legend"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="lists">
+      <div class="ex-list">
+        <h3>上轨 · 前史编年（10 条 · 按披露章号锚定）</h3>
+        <ol id="pre-list"></ol>
+      </div>
+      <div class="ex-list">
+        <h3>下轨 · 主线骨干（18 节点 · 覆盖 7 卷）</h3>
+        <ol id="main-list"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>二、信息差矩阵热力图<span class="tag">核心机密 × 谁在何时知道</span></h2>
+    <p class="hm-note">行＝核心信息｜列＝主角（范闲）／读者／势力侧。色阶＝<b style="color:var(--gold2)">越早揭示越亮，越晚越暗</b>；格内标首次揭示章号（读者列＝叙事交底处）。
+      <span class="scale"><span>早·亮</span><span class="bar"></span><span>晚·暗</span></span>
+    </p>
+    <div class="card"><div style="overflow-x:auto"><table class="hm" id="heat"></table></div></div>
+  </section>
+
+  <section>
+    <h2>三、信息差技法归纳<span class="tag">8 条可复用清单</span></h2>
+    <div class="cards" id="tech-cards"></div>
+  </section>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* =========================================================
+   数据（全部取自蓝图/台账真实章号，硬编码）
+   ========================================================= */
+// ---- 上轨：前史 10 条 ----
+var preEvents = [
+  {ch:0,   s:'I',   e:'太平别院血案',           d:'京都王公贵族（秦业等）乘隙围杀叶轻眉，襁褓范闲被五竹救出', off:0},
+  {ch:10,  s:'II',  e:'四大宗师往事',           d:'四顾剑一剑守东夷城、苦荷据北齐青山、叶流云游历天下（第四位隐而未宣）', off:0},
+  {ch:34,  s:'III', e:'叶轻眉·五竹自神庙入世',  d:'叶轻眉姓叶、天资绝世，从神庙带出功诀散与世人', off:-20},
+  {ch:34,  s:'IV',  e:'叶轻眉东夷城创叶家',     d:'暗中经商、创立"叶家"，行善济民、广结人心', off:20},
+  {ch:85,  s:'V',   e:'入京都助庆帝·创监察院内库', d:'聚敛天下财富、推行新政', off:0},
+  {ch:141, s:'VI',  e:'旧世界文明覆灭·神庙遗迹', d:'极北雪山遗下"神庙"遗迹——即叶轻眉、五竹来历之所', off:-20},
+  {ch:141, s:'VII', e:'叶庆相恋·借种生子',      d:'叶轻眉与庆帝相恋、借种生子（范闲）——"母亲同源"之谜由此埋下', off:20},
+  {ch:178, s:'VIII',e:'六人追随叶轻眉',         d:'陈萍萍等六人追随叶轻眉（陈萍萍为其所救），后成庆国朝局中坚', off:0},
+  {ch:440, s:'IX',  e:'秦业等军中元老涉案',     d:'军中元老与叶轻眉之死旧案相关，埋下京都日后动荡的远因', off:0},
+  {ch:568, s:'X',   e:'庆帝隐为四大宗师之末',   d:'以洪四庠为障眼，君臣合演二十年（"无间道"的最上层）', off:0}
+];
+
+// ---- 下轨：主线骨干 18 节点 ----
+var mainEvents = [
+  {ch:0,   i:1,  e:'黑布托孤',                       d:'范闲（前世范慎病亡）投生婴儿，被五竹救出太平别院，黑甲骑兵送澹州乳母处'},
+  {ch:34,  i:2,  e:'五竹叙往事·交托黑皮箱',           d:'五竹叙叶轻眉往事、交托黑皮箱；庆历四年春辞别澹州赴京'},
+  {ch:56,  i:3,  e:'庆庙奇缘',                       d:'监察院石碑确认母亲"叶轻眉"；庆庙香案下偶遇白衣少女（林婉儿）一见钟情'},
+  {ch:85,  i:4,  e:'牛栏街刺杀',                     d:'翻窗定情；范建述叶家惨案；牛栏街刺杀，护卫死、藤子京断腿，范闲重伤杀巨汉'},
+  {ch:141, i:5,  e:'诗仙盗钥·开箱读遗信',             d:'背三百首吐血认输；夜潜皇宫取钥匙、中箭逃；开箱得 M82A1、读母亲遗信'},
+  {ch:146, i:6,  e:'范林大婚',                       d:'以传单毁长公主声誉、审出内奸朱格；长公主离京；范林大婚'},
+  {ch:178, i:7,  e:'押解肖恩·入监察院',               d:'使团押肖恩北行、向肖恩下毒；入监察院见陈萍萍领四项任务，点破"皇帝为唯一真强者"'},
+  {ch:242, i:8,  e:'对肖恩说出身世',                 d:'与海棠、北齐皇帝闲谈论天下；对肖恩说出自己是叶轻眉之子；肖恩死'},
+  {ch:266, i:9,  e:'奏章惊动朝堂',                   d:'整肃监察院一处、向言冰云摊查二皇子之意图；奏章惊动朝堂'},
+  {ch:305, i:10, e:'悬空庙刺',                       d:'悬空庙赏菊起火、连环行刺；范闲救驾、追凶至死巷真气崩散被刺重伤'},
+  {ch:368, i:11, e:'天价夺标',                       d:'明家以一千一百五十万两天价夺标；内库商战高潮反哺朝局'},
+  {ch:398, i:12, e:'一剑倾楼',                       d:'叶流云一剑斩塌抱月楼顶楼；范闲逃命当街痛骂'},
+  {ch:525, i:13, e:'四宗会东山',                     d:'四大宗师会于大东山、大东山之变爆发'},
+  {ch:568, i:14, e:'揭晓庆帝真身',                   d:'揭晓庆帝即四大宗师中最神秘者；击碎苦荷经脉、拳飞断臂四顾剑；"朕回来了"逼死长公主'},
+  {ch:639, i:15, e:'淡茶知冷暖',                     d:'陈萍萍完整交底三十年心结与复仇（秦业是刀、陛下是根）'},
+  {ch:685, i:16, e:'陈萍萍凌迟',                     d:'陈萍萍行刺庆帝被擒、遭凌迟于皇宫前法场；范闲雨中送陈萍萍'},
+  {ch:716, i:17, e:'苍山剑有霜·合刺庆帝',            d:'布衣入宫面圣与庆帝决裂；苍山四剑合刺、皇城太极殿重狙'},
+  {ch:745, i:18, e:'彩虹贯帝·庆帝身死',              d:'五竹黑布落地、黑布后为"彩虹"（射线）能穿庆帝；庆帝身死——母仇得报'}
+];
+
+// ---- 7 卷分色 ----
+var volumes = [
+  {a:0,  b:39,  n:'①在澹州',  c:'#7fb3d5'},
+  {a:40, b:103, n:'②在京都',  c:'#c9a961'},
+  {a:104,b:153, n:'③苍山雪',  c:'#e8c97a'},
+  {a:154,b:252, n:'④北海雾',  c:'#9b8ec4'},
+  {a:253,b:406, n:'⑤京华江南',c:'#6bc7a8'},
+  {a:407,b:584, n:'⑥殿前欢',  c:'#e08e6d'},
+  {a:585,b:746, n:'⑦朝天子',  c:'#d9748b'}
+];
+
+// ---- 信息差矩阵 ----
+var matrix = [
+  {row:'范闲身世', cells:[
+    {who:'主角', ch:34,  t:'第34章初闻→第53确认→第141遗信→第326认子'},
+    {who:'读者', ch:0,   t:'第0章独知"天脉者的孩子"'},
+    {who:'势力', ch:178, t:'陈萍萍/皇帝独知真相（第178章点破）'}
+  ]},
+  {row:'叶轻眉之死真相', cells:[
+    {who:'主角', ch:440, t:'第438-442章由秦业视点揭开；第639章完整真相'},
+    {who:'读者', ch:0,   t:'第0章直击太平别院血案'},
+    {who:'势力', ch:440, t:'秦业独知（第440-441章）；庆帝第677章当面承认'}
+  ]},
+  {row:'庆帝真身', cells:[
+    {who:'主角', ch:170, t:'第170-177章起疑；第567-568章坐实'},
+    {who:'读者', ch:567, t:'第567-568章揭晓庆帝即第四宗师、洪四庠为幌子'},
+    {who:'势力', ch:177, t:'陈萍萍独知（第177章）'}
+  ]},
+  {row:'陈萍萍计划', cells:[
+    {who:'主角', ch:177, t:'第177章得暗示；第639章完整交底'},
+    {who:'读者', ch:177, t:'同步（第639章完整揭示复仇暗局）'},
+    {who:'势力', ch:609, t:'长公主"隐约看出"、苦荷"看出少许"（第609章）'}
+  ]},
+  {row:'五竹记忆身份', cells:[
+    {who:'主角', ch:34,  t:'第34章交托；第730-733章知被神庙抹忆；第743-745章黑布真相'},
+    {who:'读者', ch:0,   t:'第0章知五竹救范闲；第743-745章揭晓黑布后为"彩虹"'},
+    {who:'势力', ch:6,   t:'费介第6章认出"五大人"；陈萍萍第423章'}
+  ]}
+];
+
+// ---- 8 条技法 ----
+var techs = [
+  {h:'"读者—主角—势力"三层错位法', p:'同一机密安排三档知情人——读者先于主角（第0章托孤）、主角先于势力（范闲知帝真身而皇帝不知他已知，第314/326章）、势力独知而主角蒙在鼓里（陈萍萍暗局、皇帝放火，第309/303章）。三档错位 = 三种张力源。'},
+  {h:'"装不知道"的隐性优势', p:'范闲"起初想让皇帝不知道自己知道"（第326章）——掌握信息而不暴露掌握，把信息差从"防守"转为"进攻"。续写关键：让主角对已知机密保持表演性无知。'},
+  {h:'身份机密的"分级引爆"', p:'身世非一次性揭穿，而是"澹州初闻(34)→石碑确认(53)→遗信同源(141)→传闻四起(321)→认子(326)"五级递进，每级比上一级多一层人知道。规律：核心身份拆成"主角知→小圈知→势力知→天下知"四档漏斗。'},
+  {h:'"谣言即武器"', p:'范闲主动放"言纸"（第142章）、陈萍萍放"身世消息"（第324章）、监察院压传言反证传言——信息差可被一方当作攻击手段，制造"越辟谣越坐实"的悖论。'},
+  {h:'"密会的双边盲区"', p:'京都一日内两场密会（第104章），"知者不足范闲十指之数，范闲全然不知"——让关键密会发生在主角视角之外，读者与主角同级信息，靠事后追查补课。'},
+  {h:'"物证型信息"的延时揭破', p:'箱子（第141章得）→ 枪的用途（第525章首杀）→ 黑布真相（第745章）——同一物件承载多层信息，每隔百余章解锁一层。规律：大伏笔物件要"一层信息一层战力"地长线解锁。'},
+  {h:'揭示与"势力反应"配对', p:'每次主角获知大秘，立即跟一段各方反应（如第321-324章身世传开后，皇后/太子/宁才人/朝廷多线并写）——让信息差"落地"为盘面变化，而非空悬。'},
+  {h:'"知情者即目标"', p:'陈萍萍、五竹因知情而被追杀/灭口（第324章陈萍萍推知皇帝欲除五竹）；双面间谍（袁宏道、言若海、洪竹）因知情而危险——信息本身是杀伤力，掌控信息的人先成为靶子。'}
+];
+
+/* =========================================================
+   渲染工具
+   ========================================================= */
+var tip = document.getElementById('tip');
+function showTip(html, x, y){
+  tip.innerHTML = html; tip.style.opacity = 1;
+  var w = tip.offsetWidth, h = tip.offsetHeight;
+  var px = x + 16, py = y + 16;
+  if(px + w > window.innerWidth - 12) px = x - w - 16;
+  if(py + h > window.innerHeight - 12) py = y - h - 16;
+  tip.style.left = px + 'px'; tip.style.top = py + 'px';
+}
+function hideTip(){ tip.style.opacity = 0; }
+
+var MAX = 746;
+
+/* =========================================================
+   一、双轨时间轴
+   ========================================================= */
+(function(){
+  var W = 1360, H = 292, x0 = 118, x1 = 1322, span = x1 - x0;
+  function X(ch){ return x0 + ch / MAX * span; }
+  var yPre = 68, yMain = 168, yBand = 200, yAxis = 240;
+  var s = [];
+
+  // 竖向网格 + 刻度
+  for(var c = 0; c <= 700; c += 100){
+    var gx = X(c);
+    s.push('<line x1="'+gx.toFixed(1)+'" y1="34" x2="'+gx.toFixed(1)+'" y2="'+yAxis+'" stroke="rgba(255,255,255,0.045)" stroke-width="1"/>');
+    s.push('<text class="axis-t" x="'+gx.toFixed(1)+'" y="'+(yAxis+16)+'" text-anchor="middle">第'+c+'章</text>');
+  }
+  var gx746 = X(746);
+  s.push('<line x1="'+gx746.toFixed(1)+'" y1="34" x2="'+gx746.toFixed(1)+'" y2="'+yAxis+'" stroke="rgba(255,255,255,0.045)" stroke-width="1"/>');
+  s.push('<text class="axis-t" x="'+gx746.toFixed(1)+'" y="'+(yAxis+16)+'" text-anchor="middle">746</text>');
+
+  // 轴向线
+  s.push('<line x1="'+x0+'" y1="'+yAxis+'" x2="'+x1+'" y2="'+yAxis+'" stroke="rgba(201,169,97,0.35)" stroke-width="1"/>');
+  s.push('<text class="axis-t" x="'+(x0-12)+'" y="'+(yAxis+4)+'" text-anchor="end" style="fill:#8a867f">章号</text>');
+
+  // 卷分色带
+  volumes.forEach(function(v){
+    var xa = X(v.a), xb = X(v.b);
+    var w = Math.max(2, xb - xa - 3);
+    s.push('<rect x="'+(xa+1.5).toFixed(1)+'" y="'+yBand+'" width="'+w.toFixed(1)+'" height="15" rx="3" fill="'+v.c+'" opacity="0.82"/>');
+    s.push('<text class="vol-lab" x="'+(xa+5).toFixed(1)+'" y="'+(yBand-8)+'" fill="'+v.c+'">'+v.n+'</text>');
+  });
+
+  // 轨道底纹
+  s.push('<line x1="'+x0+'" y1="'+yPre+'" x2="'+x1+'" y2="'+yPre+'" stroke="rgba(201,169,97,0.30)" stroke-width="2" stroke-dasharray="2 5"/>');
+  s.push('<line x1="'+x0+'" y1="'+yMain+'" x2="'+x1+'" y2="'+yMain+'" stroke="rgba(232,201,122,0.55)" stroke-width="2.5"/>');
+  s.push('<rect x="'+x0+'" y="'+(yMain-3)+'" width="'+span+'" height="6" fill="rgba(232,201,122,0.06)"/>');
+
+  // 轨标签
+  s.push('<text class="tk-label" x="'+x0+'" y="28" fill="#9fb8d0">上轨 · 前史编年（叶轻眉时代 → 血案 → 庆帝隐为宗师）</text>');
+  s.push('<text class="tk-label" x="'+x0+'" y="118" fill="#e8c97a">下轨 · 主线正序（范闲时间线 · 139 单元）</text>');
+
+  // 前史节点
+  preEvents.forEach(function(e){
+    var x = X(e.ch), y = yPre + (e.off||0);
+    var isBlood = e.ch === 0 && e.s === 'I';
+    var col = isBlood ? '#e56b7a' : '#9fb8d0';
+    s.push('<line x1="'+x.toFixed(1)+'" y1="'+yPre+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="'+col+'" stroke-width="1" opacity="0.5"/>');
+    s.push('<circle class="node" data-k="pre" data-i="'+preEvents.indexOf(e)+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(isBlood?6:4.5)+'" fill="'+col+'" stroke="#08080c" stroke-width="1.5"/>');
+    s.push('<text class="ch-num" x="'+x.toFixed(1)+'" y="'+(yPre-14)+'" text-anchor="middle" style="fill:'+col+';opacity:.75">'+e.s+'</text>');
+  });
+
+  // 主线节点
+  mainEvents.forEach(function(e){
+    var x = X(e.ch);
+    s.push('<circle class="node" data-k="main" data-i="'+mainEvents.indexOf(e)+'" cx="'+x.toFixed(1)+'" cy="'+yMain+'" r="5.5" fill="#e8c97a" stroke="#08080c" stroke-width="1.6"/>');
+    s.push('<circle cx="'+x.toFixed(1)+'" cy="'+yMain+'" r="9" fill="none" stroke="rgba(232,201,122,0.28)" stroke-width="1"/>');
+    s.push('<text class="ch-num" x="'+x.toFixed(1)+'" y="'+(yMain+18)+'" text-anchor="end" transform="rotate(-45 '+x.toFixed(1)+' '+(yMain+18)+')">'+e.ch+'</text>');
+  });
+
+  var svg = '<svg viewBox="0 0 1360 '+H+'" width="100%" role="img" aria-label="庆余年前史与主线双轨时间轴">'+s.join('')+'</svg>';
+  document.getElementById('timeline').innerHTML = svg;
+
+  // 卷例
+  document.getElementById('vol-legend').innerHTML = volumes.map(function(v){
+    return '<span class="item"><span class="dot" style="background:'+v.c+'"></span>'+v.n+'</span>';
+  }).join('') + '<span class="item"><span class="dot" style="background:#9fb8d0"></span>上轨·前史</span><span class="item"><span class="dot" style="background:#e8c97a"></span>下轨·主线骨干</span>';
+
+  // hover
+  document.querySelectorAll('#timeline .node').forEach(function(n){
+    n.addEventListener('mousemove', function(ev){
+      var k = n.getAttribute('data-k'), i = +n.getAttribute('data-i');
+      var e = (k === 'pre') ? preEvents[i] : mainEvents[i];
+      var html = k === 'pre'
+        ? '<b>'+e.s+' · '+e.e+'</b><br><span class="c">披露锚点：第'+e.ch+'章</span><br>'+e.d
+        : '<b>'+e.e+'</b><br><span class="c">第'+e.ch+'章</span><br>'+e.d;
+      showTip(html, ev.clientX, ev.clientY);
+    });
+    n.addEventListener('mouseleave', hideTip);
+  });
+
+  // 前史清单
+  document.getElementById('pre-list').innerHTML = preEvents.map(function(e){
+    return '<li><span class="mk">'+e.s+'</span><span class="ch">第'+e.ch+'章</span><span class="tx">'+e.e+'</span></li>';
+  }).join('');
+
+  // 主线清单
+  var volOf = function(ch){ for(var k=0;k<volumes.length;k++){ if(ch>=volumes[k].a && ch<=volumes[k].b) return volumes[k]; } return null; };
+  document.getElementById('main-list').innerHTML = mainEvents.map(function(e){
+    var v = volOf(e.ch);
+    return '<li><span class="mk" style="background:'+v.c+'22;border-color:'+v.c+'66;color:'+v.c+'">'+e.i+'</span><span class="ch">第'+e.ch+'章</span><span class="tx">'+e.e+'</span></li>';
+  }).join('');
+})();
+
+/* =========================================================
+   二、信息差矩阵热力图
+   ========================================================= */
+(function(){
+  // 越早越亮：b = 1 - ch/MAX
+  function cell(ch){
+    var b = 1 - ch / MAX;                 // 0(晚) ~ 1(早)
+    var a = 0.07 + 0.80 * b;              // 透明度
+    var bg = 'rgba(201,169,97,'+a.toFixed(3)+')';
+    var color = b > 0.60 ? '#171307' : (b > 0.28 ? '#e8e6e3' : '#b8b4ad');
+    var border = b > 0.60 ? 'rgba(232,201,122,.55)' : 'rgba(255,255,255,.07)';
+    return {bg:bg, color:color, border:border, b:b};
+  }
+  var h = '<thead><tr><th class="corner"></th><th class="ch">主角 · 范闲</th><th class="ch">读者</th><th class="ch">势力侧</th></tr></thead><tbody>';
+  matrix.forEach(function(r){
+    h += '<tr><th class="rh">'+r.row+'</th>';
+    r.cells.forEach(function(c){
+      var st = cell(c.ch);
+      h += '<td style="background:'+st.bg+';color:'+st.color+';border-color:'+st.border+'" title="'+c.t.replace(/"/g,'')+'">'
+         + '<span class="chp">第'+c.ch+'章</span><span class="ct">'+c.t+'</span></td>';
+    });
+    h += '</tr>';
+  });
+  h += '</tbody>';
+  document.getElementById('heat').innerHTML = h;
+})();
+
+/* =========================================================
+   三、技法卡片
+   ========================================================= */
+document.getElementById('tech-cards').innerHTML = techs.map(function(t,i){
+  return '<div class="tech"><div class="no">'+(i+1)+'</div><h4>'+t.h+'</h4><p>'+t.p+'</p></div>';
+}).join('');
+</script>
+</body>
+</html>

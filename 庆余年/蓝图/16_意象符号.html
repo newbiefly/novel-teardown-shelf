@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16 · 意象符号 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>16 · 意象符号</h1>
+<blockquote>
+<p>依据：139 张单元卡「金句」「设定·名词」+ 手法分片（意象呼应类）。<br>章号一律为<strong>全书连续编号</strong>（第0章=楔子）。<br><strong>归纳逻辑</strong>：追每条意象的 <strong>首现 → 复现 → 升华</strong> 轨迹，析含义与用法，给出可复用的&quot;意象埋设法&quot;。<br>⚠️ 只写原著真实出现的意象与锚点，不脑补。</p>
+</blockquote>
+<hr>
+<h2>一、贯穿性物品</h2>
+<h3>1. 黑布（五竹的蒙眼布）——全书第一意象，终于&quot;彩虹&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首现</strong></td>
+<td>楔子血案：瞎少年&quot;蒙黑布、持铁钎、一击致命&quot;；结尾&quot;蒙住了他的双眼，也蒙住了这天&quot;</td>
+<td>[第0章]</td>
+</tr>
+<tr>
+<td><strong>复现</strong></td>
+<td>五竹历次出场皆蒙黑布；&quot;这个世界上只有一个五竹&quot;成为其符号</td>
+<td>[第545章]</td>
+</tr>
+<tr>
+<td><strong>前收束</strong></td>
+<td>庆帝&quot;一掌拂落那块蒙了千万年的黑布&quot;</td>
+<td>[第745章]</td>
+</tr>
+<tr>
+<td><strong>升华</strong></td>
+<td>黑布之下是一道<strong>彩虹</strong>——自五竹双眼喷出、贯穿庆帝、点燃太极殿；&quot;使者亲临人间，凡人焉敢不敬&quot;</td>
+<td>[第745章]</td>
+</tr>
+<tr>
+<td><strong>回旋</strong></td>
+<td>末章&quot;彩虹之上（Over the Rainbow）&quot;为全书作回旋记号</td>
+<td>[第746章]</td>
+</tr>
+</tbody></table>
+<p><strong>含义</strong>：黑布=叶轻眉/五竹的&quot;来处&quot;（神庙之谜）与&quot;神性&quot;的遮蔽。<strong>首章用黑布遮住&quot;他是谁&quot;，末章用黑布解开&quot;他是谁&quot;</strong>，是全书最大闭环。</p>
+<hr>
+<h3>2. 箱子（黑皮箱）——&quot;打不开的谜与遗产&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首现</strong></td>
+<td>母亲遗物、&quot;无钥匙&quot;，&quot;<strong>钥匙在京都</strong>&quot;</td>
+<td>[第35章]</td>
+</tr>
+<tr>
+<td><strong>复现</strong></td>
+<td>副使任上，钥匙之谜与三处禁地并列为&quot;终极目标&quot;</td>
+<td>[第121-126章]</td>
+</tr>
+<tr>
+<td><strong>揭晓</strong></td>
+<td>盗钥开箱：箱中为<strong>狙击枪 M82A1 + 身世信</strong>（同时解锁&quot;力量&quot;与&quot;身世&quot;）</td>
+<td>[第134-141章]</td>
+</tr>
+<tr>
+<td><strong>升华</strong></td>
+<td>箱子即重狙；结局&quot;失踪的箱子&quot;原在范若若手中，一枪轰断庆帝左臂</td>
+<td>[第745章]</td>
+</tr>
+<tr>
+<td><strong>余韵</strong></td>
+<td>箱子下落作为开放式悬念留存</td>
+<td>[第746章]</td>
+</tr>
+</tbody></table>
+<p><strong>含义</strong>：箱子=<strong>母亲留给范闲的两份遗产——&quot;身世&quot;与&quot;杀招&quot;</strong>。一件旧物同时承载&quot;我是谁&quot;与&quot;我能做什么&quot;两问。</p>
+<hr>
+<h3>3. 钥匙——开箱的&quot;前置钩子&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首现</strong></td>
+<td>&quot;钥匙在京都&quot;（把&quot;开箱&quot;变成跨卷长线）</td>
+<td>[第35章]</td>
+</tr>
+<tr>
+<td><strong>复现</strong></td>
+<td>单元16名即&quot;副使与钥匙&quot;；钥匙藏于皇宫何处成未解之谜</td>
+<td>[第121章]</td>
+</tr>
+<tr>
+<td><strong>收束</strong></td>
+<td>&quot;诗仙盗钥&quot;[单元18]——钥匙开启箱子</td>
+<td>[第134-141章]</td>
+</tr>
+</tbody></table>
+<p><strong>含义</strong>：钥匙=<strong>欲望的&quot;差一步&quot;装置</strong>。用一把钥匙把&quot;进京&quot;与&quot;开箱&quot;绑定，使每一次&quot;接近权力中心&quot;都同时是&quot;接近真相&quot;。</p>
+<hr>
+<h3>4. 重狙（M82A1，箱子里的武器）——跨文明的&quot;弑神之器&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首现</strong></td>
+<td>箱子开启，获远程刺杀底牌</td>
+<td>[第140章]</td>
+</tr>
+<tr>
+<td><strong>操练</strong></td>
+<td>苍山蜜月练枪（测距、算风差），五竹判其&quot;七品&quot;实力</td>
+<td>[第152章]</td>
+</tr>
+<tr>
+<td><strong>信物</strong></td>
+<td>叶轻眉所赠 <strong>M82A1 子弹头</strong>（许茂才持之认主）——&quot;信物证身世&quot;</td>
+<td>[第419章]</td>
+</tr>
+<tr>
+<td><strong>绝境底牌</strong></td>
+<td>怒海追逃，&quot;被压抑一整段的低调，用开箱组重狙一举翻转&quot;</td>
+<td>[第524章]</td>
+</tr>
+<tr>
+<td><strong>封神</strong></td>
+<td>弑九品上燕小乙：&quot;<strong>这东西叫枪，是一个文明的精华所在</strong>&quot;</td>
+<td>[第526章]</td>
+</tr>
+<tr>
+<td><strong>重伤帝国</strong></td>
+<td>皇城狙杀，一枪重伤大宗师庆帝（胸骨碎裂）</td>
+<td>[第719章]</td>
+</tr>
+<tr>
+<td><strong>终局</strong></td>
+<td>范若若持枪、心软只打手臂，范闲补刀；庆帝死</td>
+<td>[第745章]</td>
+</tr>
+<tr>
+<td><strong>去向</strong></td>
+<td>神庙博物馆内另藏&quot;巴雷特&quot;；跨文明武器来历直通神庙真相</td>
+<td>[第729章]</td>
+</tr>
+</tbody></table>
+<p><strong>含义</strong>：重狙=<strong>&quot;现代文明&quot;对&quot;冷兵器世界&quot;的碾压性隐喻</strong>。它不常出手，一出即改写历史；弹药有限，故只能是&quot;最后一击&quot;。</p>
+<hr>
+<h3>5. 彩虹——自然异象作帝王挽歌</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首现并升华</strong></td>
+<td>黑布后&quot;彩虹&quot;击穿庆帝；东方天穹雨后另现一道彩虹俯瞰人间</td>
+<td>[第745章]</td>
+</tr>
+<tr>
+<td><strong>回旋</strong></td>
+<td>末章&quot;彩虹之上（Over the Rainbow）&quot;</td>
+<td>[第746章]</td>
+</tr>
+</tbody></table>
+<p><strong>含义</strong>：彩虹=<strong>&quot;神性/现代文明余晖&quot;的视觉化</strong>。它既是五竹的真身（射线），也是新纪元开始的天象。&quot;东方天穹的彩虹&quot;把&quot;旧帝之死&quot;与&quot;新世之始&quot;合为一象。</p>
+<hr>
+<h3>6. 诗词卷（《半闲斋诗集》）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首现</strong></td>
+<td>范闲诗集成书（殿前三百诗的产物）</td>
+<td>[第145章]</td>
+</tr>
+<tr>
+<td><strong>复现</strong></td>
+<td>北齐文坛大家庄墨韩临终为其诗集<strong>作注</strong>并赠书</td>
+<td>[第251-252章]</td>
+</tr>
+<tr>
+<td><strong>余响</strong></td>
+<td>逃难时误入红楼痴女闺房，&quot;满架《石头记》与半闲斋诗&quot;暗写其文名</td>
+<td>[第540章]</td>
+</tr>
+</tbody></table>
+<p><strong>含义</strong>：诗集=<strong>范闲&quot;文化影响力&quot;的实体凭证</strong>（&quot;借他人抬主角&quot;）。以庄墨韩之死与赠书，侧面确立其&quot;天下士子&quot;地位。</p>
+<hr>
+<h3>7. 《红楼梦》（石头记 / 风月宝鉴）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首现（提及）</strong></td>
+<td>初入京都，书坊盗版伪书；《红楼梦》别名石头记/风月宝鉴</td>
+<td>[第44章]</td>
+</tr>
+<tr>
+<td><strong>化名</strong></td>
+<td>化名<strong>曹先生/雪芹先生</strong>，以书会友</td>
+<td>[第246章]</td>
+</tr>
+<tr>
+<td><strong>高光</strong></td>
+<td>北齐皇帝以&quot;林妹妹&quot;逼问作者身份（身份错位喜剧）</td>
+<td>[第250章]</td>
+</tr>
+<tr>
+<td><strong>引用</strong></td>
+<td>引&quot;东风压倒西风&quot;（石头记八十二回）论天下</td>
+<td>[第254章]</td>
+</tr>
+<tr>
+<td><strong>触忌</strong></td>
+<td>巧姐辞令之忌（影射时政风险）；庄墨韩曾以&quot;犯忌讳&quot;警告</td>
+<td>[第406章][第251章]</td>
+</tr>
+<tr>
+<td><strong>余响</strong></td>
+<td>逃难插曲再现&quot;红楼粉&quot;</td>
+<td>[第540章]</td>
+</tr>
+</tbody></table>
+<p><strong>含义</strong>：《红楼梦》=<strong>穿越者&quot;双面身份&quot;的载体</strong>（范闲/曹先生）与<strong>文化话语权</strong>的来源；同时也是&quot;文名招忌&quot;的伏笔（触时政之忌）。</p>
+<hr>
+<h2>二、诗词意象（范闲所&quot;作&quot;诗文与功能）</h2>
+<table>
+<thead>
+<tr>
+<th>诗词</th>
+<th>首现章</th>
+<th>功能类别</th>
+<th>具体用法与效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>《丑奴儿·书博山道中壁》（辛弃疾）</td>
+<td>[第13章]</td>
+<td><strong>埋线·喜剧悬念</strong></td>
+<td>谎托&quot;贩盐的老辛&quot;，引得监察院满世界查一个不存在的人（&quot;一个谎言滚成大雪球&quot;）</td>
+</tr>
+<tr>
+<td>《登高》（杜甫）</td>
+<td>[第68章]</td>
+<td><strong>扬名·打脸</strong></td>
+<td>诗会斗酒碾压郭保坤，&quot;恶人三重施压、主角三次加码&quot;的阶梯式打脸</td>
+</tr>
+<tr>
+<td>《短歌行》&quot;周公吐哺，天下归心&quot;</td>
+<td>[第133章]</td>
+<td><strong>立威·讽喻</strong></td>
+<td>夜宴引诗，以枭雄胸怀压场</td>
+</tr>
+<tr>
+<td>殿前&quot;三百诗&quot;</td>
+<td>[第134章]</td>
+<td><strong>扬名·封神</strong></td>
+<td>一场戏推满全书最&quot;燃&quot;场面，得&quot;诗仙&quot;之名</td>
+</tr>
+<tr>
+<td>《牡丹亭》曲文&quot;原来姹紫嫣红开遍&quot;</td>
+<td>[第119章]</td>
+<td><strong>传情</strong></td>
+<td>以曲文代情书赠予心上人，&quot;礼物寄意&quot;</td>
+</tr>
+<tr>
+<td>《知否知否》（李清照）</td>
+<td>[第256章]</td>
+<td><strong>传情·扬名</strong></td>
+<td>范闲&quot;破例&quot;所作小令，传遍天下</td>
+</tr>
+<tr>
+<td>《留余庆》（红楼曲）</td>
+<td>[第246章][第317章]</td>
+<td><strong>点题·解谜</strong></td>
+<td>&quot;留余庆，庆余年&quot;——<strong>书名由来</strong>；苦荷借此断出范闲身世</td>
+</tr>
+<tr>
+<td>《沁园春·雪》</td>
+<td>[第327章]</td>
+<td><strong>抒怀·写人</strong></td>
+<td>对母亲叶轻眉画像抒怀，&quot;画词写人&quot;侧立母亲形象</td>
+</tr>
+<tr>
+<td>李白&quot;我醉欲眠君且去&quot;</td>
+<td>[第134章]</td>
+<td><strong>狂放·立人</strong></td>
+<td>白日诗仙的狂放一面</td>
+</tr>
+<tr>
+<td>《敕勒歌》&quot;天苍苍，野茫茫&quot;</td>
+<td>[第589章]</td>
+<td><strong>意象·抒情</strong></td>
+<td>草原场景的主题曲</td>
+</tr>
+<tr>
+<td>范仲淹&quot;先天下之忧而忧&quot;</td>
+<td>[第209章]</td>
+<td><strong>讽世·立言</strong></td>
+<td>范门四子语，成范闲北齐名言</td>
+</tr>
+<tr>
+<td>&quot;我挥一挥衣袖，要把所有银子带走&quot;</td>
+<td>[第330章]</td>
+<td><strong>自嘲·打油</strong></td>
+<td>改徐志摩名句为打油诗——<strong>&quot;记忆会损耗、可打油&quot;的文本证据</strong></td>
+</tr>
+</tbody></table>
+<p><strong>诗词功能规律（可复用）</strong>：</p>
+<ol>
+<li><strong>扬名</strong>用最&quot;重&quot;的名篇（登高/三百诗）——一次性炸场；</li>
+<li><strong>传情</strong>用最&quot;柔&quot;的曲文小令（牡丹亭/知否）——一击入心；</li>
+<li><strong>讽世/立言</strong>用&quot;先忧后乐&quot;式格言——抬人格；</li>
+<li><strong>打油/自嘲</strong>用&quot;记得不全&quot;的改句——保真实、防&quot;神化&quot;（与 <code>03_核心设定</code> 的记忆损耗红线呼应）。</li>
+</ol>
+<hr>
+<h2>三、名字寓意</h2>
+<h3>3.1 主角与核心</h3>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>寓意 / 呼应</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>范闲（字安之）</strong></td>
+<td>&quot;闲&quot;字暗合&quot;留余庆、庆余年&quot;的出世气质；字&quot;<strong>安之</strong>&quot;取&quot;<strong>既来之，则安之</strong>&quot;——全书价值锚点，也是穿越者宿命自解</td>
+<td>[第746章]</td>
+</tr>
+<tr>
+<td><strong>安之</strong>（被反复点破）</td>
+<td>陈萍萍揭&quot;安之&quot;二字真意；庆帝评&quot;安之这孩子什么都好，就是性情太过直接倔狠了些&quot;</td>
+<td>[第270章][第695章]</td>
+</tr>
+<tr>
+<td><strong>叶轻眉</strong></td>
+<td>名即宣言——&quot;<strong>看轻天下须眉</strong>&quot;，由范闲自己一语点出深意（埋身世线）</td>
+<td>[第79章]</td>
+</tr>
+<tr>
+<td><strong>陈萍萍</strong></td>
+<td>&quot;萍&quot;漂泊无根、隐于暗处；坐轮椅、畏光、藏锋的形象与名相合；监察院铁板一块靠&quot;护短&quot;</td>
+<td>[第26章][第688章]</td>
+</tr>
+<tr>
+<td><strong>五竹</strong></td>
+<td>由叶轻眉命名；旧人唤&quot;五大人/老五&quot;，监察院第一任提司；&quot;这个世界上只有一个五竹&quot;</td>
+<td>[第423章][第545章]</td>
+</tr>
+<tr>
+<td><strong>林婉儿</strong></td>
+<td>&quot;婉&quot;取温婉；&quot;晨郡主&quot;出身；与范闲&quot;喜欢上一位姑娘……我的运气很好&quot;</td>
+<td>[第83章]</td>
+</tr>
+</tbody></table>
+<h3>3.2 苦荷一脉（以植物命名）</h3>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>来历</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>苦荷</strong></td>
+<td>天一道掌门、苦行僧；得神庙天授</td>
+<td>单元02</td>
+</tr>
+<tr>
+<td><strong>狼桃 / 海棠 / 白参 / 木蓬</strong></td>
+<td>苦荷<strong>以植物为徒取名</strong>：狼桃（首徒）、海棠朵朵、白参、木蓬（关门二弟子，化名&quot;逢春&quot;）</td>
+<td>[第607章]</td>
+</tr>
+<tr>
+<td><strong>海棠朵朵</strong></td>
+<td>&quot;天脉者&quot;传说身份；草原化名&quot;松芝仙令&quot;</td>
+<td>[第593章]</td>
+</tr>
+</tbody></table>
+<h3>3.3 皇族与&quot;命运名&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>寓意</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>李承乾 / 李承泽 / 李承平</strong></td>
+<td>三位皇子的名字取**《易经》卦名**（乾/泽/平），暗合其命运：太子（承乾）被废、二皇子（承泽）服毒、三皇子（承平）终继位</td>
+<td>单元84-138</td>
+</tr>
+<tr>
+<td><strong>战豆豆</strong></td>
+<td>北齐女帝，小名&quot;<strong>豆豆</strong>&quot;（&quot;你此时可以叫朕豆豆&quot;）；女扮男装</td>
+<td>[第624章]</td>
+</tr>
+<tr>
+<td><strong>司理理</strong></td>
+<td>皈依天一道；入宫为理贵妃（北齐小公主&quot;红豆饭&quot;之母侧线）</td>
+<td>[第267章][第722章]</td>
+</tr>
+</tbody></table>
+<h3>3.4 配角与&quot;符号名&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>寓意 / 呼应</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>洪四庠</strong></td>
+<td>&quot;幌子·假宗师&quot;，内廷老太监；名与&quot;洪竹&quot;构成内廷符号</td>
+<td>[第567章]</td>
+</tr>
+<tr>
+<td><strong>洪竹</strong></td>
+<td>小太监，&quot;身为一个太监，其实也可以改变这个天下&quot;</td>
+<td>[第479章]</td>
+</tr>
+<tr>
+<td><strong>影子</strong></td>
+<td>四顾剑幼弟、六处主办、<strong>天下第一刺客</strong>；名即身份——&quot;处理六处事务之前，我首先是一个影子&quot;</td>
+<td>[第618章]</td>
+</tr>
+<tr>
+<td><strong>王十三郎</strong>（青幡/铁相/王羲）</td>
+<td>剑庐关门弟子、四顾剑传人</td>
+<td>[第488章]</td>
+</tr>
+<tr>
+<td><strong>荆戈</strong></td>
+<td>银面黑骑副统领，由范闲&quot;赐名收将&quot;</td>
+<td>单元67[第561章]</td>
+</tr>
+<tr>
+<td><strong>宁才人</strong></td>
+<td>东夷女俘、大皇子生母（北伐被救、赖叶轻眉说情）</td>
+<td>[第496章]</td>
+</tr>
+<tr>
+<td><strong>叶重 / 叶流云 / 叶灵儿</strong></td>
+<td>定州叶家一线（流云散手/大劈棺）</td>
+<td>[第466章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>四、其他贯穿意象（器物类）</h2>
+<table>
+<thead>
+<tr>
+<th>意象</th>
+<th>含义</th>
+<th>首现 → 升华</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>金线菊</strong></td>
+<td>悬空庙赏菊大会的定调物</td>
+<td>首现[第303章]；&quot;满城白霜&quot;式景语作结</td>
+<td>[第303章][第393章]</td>
+</tr>
+<tr>
+<td><strong>白绫</strong></td>
+<td>太后赐叶轻眉自尽之物（被她原封送回）</td>
+<td>首现[第745章]；与遗信同盒，为母之死定谳</td>
+<td>[第745章]</td>
+</tr>
+<tr>
+<td><strong>莲衣</strong></td>
+<td>监察院特制黑色官服（&quot;莲衣&quot;，舒学士取名）</td>
+<td>首现[第265章]；&quot;莲衣不渗水&quot;成朝堂意象辩驳的道具</td>
+<td>[第265章][第271章]</td>
+</tr>
+<tr>
+<td><strong>青花</strong></td>
+<td>长公主中毒后眉角青痕</td>
+<td>首现[第571章]；&quot;一种意象＝一个败者的死相&quot;</td>
+<td>[第571章]</td>
+</tr>
+<tr>
+<td><strong>小黄花</strong></td>
+<td>陈萍萍鬓边花（别小白花、以花写人）</td>
+<td>[第688章]</td>
+<td>[第688章]</td>
+</tr>
+<tr>
+<td><strong>大魏天子剑</strong></td>
+<td>王启年所赠，范闲随身；&quot;这剑太亮，还是不要拿了&quot;（弃剑）</td>
+<td>[第404章][第458章]</td>
+<td>[第404章]</td>
+</tr>
+<tr>
+<td><strong>玻璃 / 银镜</strong></td>
+<td>内库/叶轻眉遗泽；&quot;这是玻璃。是我做的&quot;（五竹语）无声带出母系遗产</td>
+<td>[第486章][第740章]</td>
+<td>[第740章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、意象使用规律（可复用创作法）</h2>
+<ol>
+<li><strong>&quot;一件遗物 = 一个人物/一段身世&quot;</strong>：箱子（叶轻眉）、黑布（五竹）、诗集（范闲）、子弹头（母系）。凡是重要人物/秘密，都配一件专属旧物。→ 公式「以一件旧物凝固一个人物」。</li>
+<li><strong>首现即埋、末章方收</strong>：黑布（第0章埋 → 第745章&quot;彩虹&quot;收）、箱子（第35章埋 → 第745章收）、钥匙（第35章 → 第141章）。<strong>长线意象的埋收间隔可与全书同长</strong>。→ 公式「首尾同物闭环」。</li>
+<li><strong>同一意象的&quot;复现&quot;必带升级</strong>：彩虹一次即&quot;神性显形&quot;；重狙每出手都比上次更重（燕小乙 → 庆帝）。→ 公式「同物递进加码」。</li>
+<li><strong>天象作结</strong>：以&quot;彩虹贯帝 + 东方天穹彩虹 + Over the Rainbow&quot;三重天象，把帝王之死写成新世之始。→ 公式「以天象作结」。</li>
+<li><strong>名字即判词</strong>：叶轻眉（看轻须眉）、范安之（既来之则安之）、承乾/承泽/承平（卦名预示命运）、苦荷一脉（植物命名）。→ 公式「命名预设命运」。</li>
+<li><strong>意象回旋当&quot;落幕记号&quot;</strong>：末章以&quot;彩虹之上&quot;&quot;红宝石珠串&quot;&quot;玻璃窗&quot;回旋，把史诗收进市井温情。→ 公式「意象回旋」。</li>
+<li><strong>防止神化的自嘲</strong>：诗词可打油（&quot;我挥一挥衣袖&quot;），黑布后是&quot;射线&quot;而非神迹——<strong>越是神秘设定，越用&quot;冷硬的现实逻辑&quot;拆穿</strong>（呼应 <code>03_核心设定</code> 红线：世间无神）。→ 公式「用考据消解神话」。</li>
+</ol>
+<hr>
+<blockquote>
+<p>说明：本篇覆盖全书已拆解 139 个单元。意象的&quot;首次出现章号&quot;以单元卡所载为准；同物多章出现时取&quot;最具意义的一次&quot;为锚点。机制层面的硬设定（真气机理、九品上限等）见 <code>03_核心设定</code>，制度与势力见 <code>04_世界观设定集</code>。</p>
+</blockquote>
+
+</div>
+</body>
+</html>

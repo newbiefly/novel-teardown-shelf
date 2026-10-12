@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 · 写作风格（定稿） · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>02 · 写作风格（定稿）</h1>
+<blockquote>
+<p>依据：139 张单元卡「写作手法」「情绪设计」「金句」+ 全书原文抽样精读 + 逐字统计。<br>章号一律为<strong>全书连续编号</strong>（第0章=楔子，第1~745章=正文，第746章=末章）。<br><strong>本份为两段式定稿</strong>：初稿印象（扫描阶段）→ 8 维度定稿（精读）。<br>用途：续写 / 改写&quot;神似原作&quot;、从 0 创作&quot;定调&quot;的唯一依据。语言风格入蓝图后，任何人直接读即可照做，不必再单独蒸馏。</p>
+</blockquote>
+<hr>
+<h2>一、初稿印象（扫描阶段 · 保留备查）</h2>
+<p>读简介 + 楔子 + 前 3 章 + 中段 + 结尾时扑面而来的 4 条印象：</p>
+<ol>
+<li><strong>腔调&quot;文青味 + 冷幽默&quot;并存</strong>：明明是权谋大书，开篇却先来自嘲式吐槽（&quot;重症肌无力，就是特别适合言情小说男主角的那种病&quot;[第0章]）。</li>
+<li><strong>句式文白夹杂、短长交错</strong>：叙述骨是白话，点缀以文言碑文、诗词、章回式标题。</li>
+<li><strong>爱用&quot;以物写人 / 以景写情&quot;的意象</strong>：黑布、箱子、彩虹、秋雨，反复回旋。</li>
+<li><strong>爱&quot;留一句&quot;收束</strong>：常以极简台词或留白断章（&quot;那又如何？&quot;[第678章]）。</li>
+</ol>
+<blockquote>
+<p>以上 4 条已在下方 8 维度定稿中被扩展、校准。</p>
+</blockquote>
+<hr>
+<h2>二、8 维度定稿（各配原文例句 + [第X章]）</h2>
+<h3>维度 1 · 叙事腔调：冷热双频、克制反煽情</h3>
+<ul>
+<li><strong>底层是&quot;克制&quot;</strong>：最惨烈的死亡也几乎不直接抒情，用动作与物象让读者自己痛。陈萍萍受凌迟，通篇没有呼号：<blockquote>
+<p>&quot;没有惨嚎，没有悲鸣，没有求饶……只是一味地沉默，死一般地沉默。&quot;[第684章]</p>
+</blockquote>
+</li>
+<li><strong>克制到极点才爆发</strong>：全书最重的泪点，靠&quot;从不哭的人第一次哭&quot;来撬动：<blockquote>
+<p>&quot;重生以来二十载，范闲从来不哭人……秋雨中的小木台上，骤然爆出了一声大哭，哭得摧心断肠，哭得撕肝痛肺。&quot;[第686章]</p>
+</blockquote>
+</li>
+<li><strong>旁白常带反讽 / 超然评点</strong>：叙述者会跳出人物，对荒诞局面冷嘲一句（&quot;抄你MB，袭你MB！&quot;[第134章]）。</li>
+<li><strong>热频（煽情）只用在&quot;理想 / 亲情&quot;母题上</strong>，且必配具象物：石碑、画像、骨灰。<blockquote>
+<p>&quot;我希望庆国的人民都能成为不羁之民。&quot;[第678章]</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>可迁移要点</strong>：全书情绪引擎 = <strong>冷调叙述 × 高频克制 × 极少数的定点爆发</strong>。写手最常犯的错是把每一场都写得很&quot;燃&quot;，而猫腻恰恰相反——<strong>越重的情，写得越静</strong>。</p>
+<h3>维度 2 · 句式节奏：短句铺动作，长句铺气韵，四字连击</h3>
+<ul>
+<li><strong>打斗用短句堆叠</strong>，一个动作一个分句：<blockquote>
+<p>&quot;他去得潇洒，刺得随心如意，凌厉却又自然，可是他退得却是更加快速，狼狈不堪，惊心动魄！&quot;[第717章]</p>
+</blockquote>
+</li>
+<li><strong>四字词语连用</strong>是其标志性节奏（&quot;狼狈不堪，惊心动魄&quot;&quot;摧心断肠，撕肝痛肺&quot;）。</li>
+<li><strong>写景 / 写境用长句 + 比喻</strong>，一气流贯：<blockquote>
+<p>&quot;雪空中一道闪电般的剑光，就这样照亮了阴晦的天地，照亮了每一朵雪花，每一片鹅毛，清晰得可以看见雪花的边缘！&quot;[第717章]</p>
+</blockquote>
+</li>
+<li><strong>语录 / 对话极短</strong>，常以单句、四字、甚至单字成段：<blockquote>
+<p>&quot;那又如何？&quot;[第678章]；&quot;很爽。&quot;[第717章]；&quot;意外。&quot;[第305章]</p>
+</blockquote>
+</li>
+<li><strong>省略号、破折号密集</strong>（句末&quot;……&quot;全书出现约 864 次），用于人物喘息、留白、欲言又止。</li>
+</ul>
+<p><strong>节奏公式</strong>：<code>短句（动作/对白）+ 转折词（然而/可是/忽然）+ 长句（心理/环境）</code> 交替推进。</p>
+<h3>维度 3 · 修辞偏好：意象化比喻 + 以景写心 + 反讽</h3>
+<ul>
+<li><strong>最标志的修辞＝&quot;以物写人、以景写情&quot;</strong>。用自然物托人情，几乎成套路：<blockquote>
+<p>&quot;云朵就像是受惊的小动物一样……打着寒栗，颜色渐深。&quot;（以云写帝王之寒）[第678章]<br>&quot;脚下雪地如莲花一绽，爆出一朵花来。&quot;（以雪莲写剑势）[第717章]</p>
+</blockquote>
+</li>
+<li><strong>通感 / 夸张</strong>：把情绪&quot;物理化&quot;。<blockquote>
+<p>&quot;那又如何，只是四个字……却像是给整间御书房加上了一层又一层的冰霜气息。&quot;[第678章]</p>
+</blockquote>
+</li>
+<li><strong>反讽 / 双关</strong>：粗鄙话拆解庄严命题。<blockquote>
+<p>&quot;死了张屠夫，难道就要吃带毛猪？&quot;[第349章]<br>&quot;抄你MB，袭你MB！&quot;[第134章]</p>
+</blockquote>
+</li>
+<li><strong>对仗 / 排比收情绪</strong>：临终、送别处用排比铺深情。<blockquote>
+<p>&quot;是诚王府里打架时溅起来的泥土？是太平别院冬日里盛开的一枝梅？是监察院方正阴森建筑后院里自在嬉游的浅池小鱼儿？&quot;[第686章]</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>可迁移要点</strong>：遇情绪高点，<strong>先找一件物、一处景</strong>，把情&quot;寄&quot;上去；直接抒情反而弱。</p>
+<h3>维度 4 · 对话与旁白配比：对白极重、旁白解构</h3>
+<ul>
+<li><strong>&quot;说道&quot;是全书最高频的对话标记</strong>（约 10248 次）——重对白，靠人物说话推进信息与交锋。</li>
+<li><strong>对话功能三分</strong>：① 借他人之口铺世界观（费介讲宗师、范建讲内库）；② 交锋（绵里藏针，一句定生死）；③ 幽默斗嘴。</li>
+<li><strong>一人一腔</strong>：<ul>
+<li>庆帝——冷、短、帝王气：<code>&quot;死任何人都可以。&quot;[第678章]</code></li>
+<li>陈萍萍——刻薄、老辣、带讥：<code>&quot;她待我好，是像朋友一样待我，陛下待我好，是像奴才一样待我，这能一样吗？&quot;[第678章]</code></li>
+<li>范闲——现代腔 + 腹黑：<code>&quot;报我的名字。&quot;[第263章]</code></li>
+<li>海棠——&quot;村姑&quot;糙话、短促。</li>
+</ul>
+</li>
+<li><strong>旁白会&quot;抢话&quot;</strong>：叙述者常越过人物直接下场吐槽或定性（&quot;见过写诗的，没见过这么写诗的！&quot;[第134章]）。</li>
+</ul>
+<p><strong>配比经验值</strong>：<code>对白 ≈ 5-6 成，叙述 + 心理 ≈ 4-5 成</code>；大场面（朝会/宗师战）旁白偏多，日常段落对白偏多。</p>
+<h3>维度 5 · 幽默与吐槽：现代语汇错位 + 网络粗口 + 反差萌</h3>
+<p>这是本书最鲜明的&quot;作者指纹&quot;，三种手法混用：</p>
+<ol>
+<li><strong>现代语汇错位</strong>（古代场景套现代管理话术）：<blockquote>
+<p>&quot;不要问朝廷为你们做了什么，要问问自己为朝廷做了什么。&quot;（恶搞肯尼迪名言）[第263章]<br>&quot;整风&quot;&quot;报我的名字&quot;&quot;加强事务化工作的条理性&quot;[第263章]</p>
+</blockquote>
+</li>
+<li><strong>网络梗 / 粗口 / 吐槽旁白</strong>：<blockquote>
+<p>&quot;打打杀杀不健康，四处挖宝不环保！&quot;[第1章]<br>&quot;抄你MB，袭你MB！&quot;[第134章]；&quot;我醉欲眠君且去，去你妈的。&quot;[第134章]<br>&quot;范闲就像一个打不死的小强一样。&quot;[第717章]</p>
+</blockquote>
+</li>
+<li><strong>反差萌</strong>：庄严场景塞市井元素。<blockquote>
+<p>&quot;这是他妈的什么博物馆！&quot;[第726章]（面对神迹的第一反应是骂街）</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>可迁移要点</strong>：幽默是本书的&quot;减压阀&quot;，多用在<strong>重场面之前或之后</strong>（战前斗嘴、战后谐趣），用来对冲权谋的沉重；但<strong>幽默落点几乎总在主角或叙述者，帝王 / 宗师极少被写滑稽</strong>。</p>
+<h3>维度 6 · 古文与白话的混用：白话为骨、文言点睛</h3>
+<ul>
+<li><strong>骨架是白话口语</strong>，阅读门槛低。</li>
+<li><strong>文言 / 诗词只作&quot;点睛&quot;，用在三类场合</strong>：<ul>
+<li><strong>庄重 / 帝王口吻</strong>：<code>&quot;非澹泊无以明志，非宁静无以致远。&quot;[第462章]</code>；<code>&quot;那又如何？&quot;[第678章]</code></li>
+<li><strong>碑文 / 遗言 / 题词</strong>：叶轻眉石碑[第678章]、陈萍萍墓诗[第746章]。</li>
+<li><strong>诗词引用做情感 / 格局的锚点</strong>：《登高》[第68章]、殿前三百诗[第134章]、&quot;先天下之忧而忧&quot;[第209章]。</li>
+</ul>
+</li>
+<li><strong>章回标题本身讲究&quot;文&quot;</strong>：多为对句 / 诗性短语——&quot;苍山有雪剑有霜&quot;[第716-717章]、&quot;监天察地不肯退&quot;[第678章]、&quot;田园将芜胡不归&quot;[第734-735章]。</li>
+<li><strong>比例经验值</strong>：文言 / 诗句占比<strong>低（约 1-2 成）</strong>，但都放在情绪或格局的&quot;钉子位置&quot;，故记忆点极高。</li>
+</ul>
+<h3>维度 7 · 视角与自由间接引语：贴人物、多POV、群像侧写</h3>
+<ul>
+<li><strong>主体为第三人称全知</strong>，但极频繁使用<strong>自由间接引语</strong>——叙述的口吻即人物心声，不加引号：<blockquote>
+<p>&quot;见过写诗的，没见过这么写诗的！作诗，绝对不是在菜场里搬大菜——&quot;（叙述者与众人心声混合）[第134章]<br>&quot;如今这片大陆上……他已经就是天下第二，他自己也承认过这一点。&quot;（贴近范闲自我评估）[第717章]</p>
+</blockquote>
+</li>
+<li><strong>群像多 POV</strong>（本书硬特征，详见 <code>14_视角分配表</code>）：同一事件常切多个视角先后称重（如范闲/皇帝/贺宗纬三方算账 [第644-647章]）。</li>
+<li><strong>大量&quot;旁观者侧写&quot;抬主角</strong>：不正面写主角多强，写旁人如何被震住。<blockquote>
+<p>&quot;众人的脚下意识里往后退去。&quot;[第349章]；&quot;满场官员衙役齐齐跪地。&quot;[第670章]</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>可迁移要点</strong>：<strong>限制视点 + 全知补叙</strong>（覆盖人物看不到的场面）+ <strong>自由间接引语</strong>（贴着写内心），是本书&quot;既有代入感、又不失格局&quot;的配方。</p>
+<h3>维度 8 · 留白与信息控制：一句收束 / 关键谈话不写</h3>
+<ul>
+<li><strong>极简重锤</strong>：用最少的字承载最重的态度，留白即杀伤。<blockquote>
+<p>&quot;那又如何？&quot;[第678章]；<code>&quot;这……玩意儿……我……也有。&quot;[第686章]</code></p>
+</blockquote>
+</li>
+<li><strong>关键谈话故意不写</strong>：帝王与老臣的密谈内容全部略去，只写&quot;余波&quot;[第100章]（章卡手法：&quot;最关键的谈话不写，只写余波&quot;）。</li>
+<li><strong>章末断章钩子</strong>：常在动作高潮或一句未竟之言处截断（&quot;等等！&quot;[第161章]；&quot;[第318章]范闲死，庆国亡。&quot;）。</li>
+<li><strong>身世 / 真相层层延宕</strong>：叶轻眉之谜、庆帝真身、神庙之谜，都是&quot;埋近百章才反转&quot;的长线留白。</li>
+</ul>
+<p><strong>可迁移要点</strong>：<strong>&quot;说七分，藏三分&quot;</strong>；越关键的机密，越晚点破、越用侧面透露；章末必留一个&quot;想知道下文&quot;的钩。</p>
+<hr>
+<h2>三、高频词 / 高频句式统计（全书正文逐字统计）</h2>
+<blockquote>
+<p>统计口径：对 <code>原文/第*.txt</code>（第0~746章）全量 <code>grep -o</code> 逐字匹配，得<strong>出现次数（全书累计）</strong>。含&quot;多义包含&quot;（如&quot;姑娘&quot;含&quot;姑娘们&quot;），仅供风格定量参考。</p>
+</blockquote>
+<h3>3.1 结构性高频词</h3>
+<table>
+<thead>
+<tr>
+<th>词</th>
+<th>约计次数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>说道</td>
+<td>约 10248</td>
+<td>对话最高频标记，重对白</td>
+</tr>
+<tr>
+<td>陛下</td>
+<td>约 5528</td>
+<td>帝王称谓高频，权谋底色</td>
+</tr>
+<tr>
+<td>看着</td>
+<td>约 5074</td>
+<td>高频观察动词（&quot;贴视角&quot;）</td>
+</tr>
+<tr>
+<td>京都</td>
+<td>约 3958</td>
+<td>场景核心</td>
+</tr>
+<tr>
+<td>监察院</td>
+<td>约 3675</td>
+<td>本书特色机构</td>
+</tr>
+<tr>
+<td>庆国</td>
+<td>约 2664</td>
+<td>—</td>
+</tr>
+<tr>
+<td>似乎</td>
+<td>约 2662</td>
+<td><strong>标志性模糊副词</strong>（作者偏爱&quot;似乎&quot;远胜&quot;仿佛&quot;）</td>
+</tr>
+<tr>
+<td>忽然</td>
+<td>约 2119</td>
+<td>转折高频</td>
+</tr>
+<tr>
+<td>天下</td>
+<td>约 1843</td>
+<td>格局词</td>
+</tr>
+<tr>
+<td>微微</td>
+<td>约 1697</td>
+<td>细微动作/表情修饰</td>
+</tr>
+<tr>
+<td>沉默</td>
+<td>约 1650</td>
+<td>克制腔调的直接证据</td>
+</tr>
+<tr>
+<td>缓缓</td>
+<td>约 1274</td>
+<td>节奏调速词</td>
+</tr>
+<tr>
+<td>朕</td>
+<td>约 1216</td>
+<td>帝王自谓</td>
+</tr>
+</tbody></table>
+<h3>3.2 描写 / 表情高频词</h3>
+<table>
+<thead>
+<tr>
+<th>词</th>
+<th>约计次数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>笑（含各种&quot;笑&quot;）</td>
+<td>约 8122</td>
+<td>&quot;笑&quot;是本书社交主语汇</td>
+</tr>
+<tr>
+<td>笑着 / 笑了起来</td>
+<td>约 697</td>
+<td>—</td>
+</tr>
+<tr>
+<td>苦笑</td>
+<td>约 571</td>
+<td>高频&quot;笑&quot;类型，衬无奈</td>
+</tr>
+<tr>
+<td>冷笑</td>
+<td>约 336</td>
+<td>高频&quot;笑&quot;类型，衬权谋</td>
+</tr>
+<tr>
+<td>笑容</td>
+<td>约 480</td>
+<td>—</td>
+</tr>
+<tr>
+<td>眸</td>
+<td>约 425</td>
+<td>文青化用眼（&quot;眼眸/眼瞳&quot;）</td>
+</tr>
+<tr>
+<td>眼瞳</td>
+<td>约 147</td>
+<td>—</td>
+</tr>
+<tr>
+<td>望着</td>
+<td>约 1051</td>
+<td>—</td>
+</tr>
+<tr>
+<td>自嘲</td>
+<td>约 270</td>
+<td>腔调关键词</td>
+</tr>
+<tr>
+<td>微嘲</td>
+<td>约 57</td>
+<td>帝王/反派口吻标志</td>
+</tr>
+</tbody></table>
+<h3>3.3 口语 / 幽默标记词</h3>
+<table>
+<thead>
+<tr>
+<th>词 / 句式</th>
+<th>约计次数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>老夫</td>
+<td>约 188</td>
+<td>太监 / 老臣腔</td>
+</tr>
+<tr>
+<td>他妈的 / 妈的</td>
+<td>约 24 / 63</td>
+<td>粗口吐槽</td>
+</tr>
+<tr>
+<td>你丫</td>
+<td>约 4（&quot;丫&quot;多含&quot;丫头&quot;）</td>
+<td>网络腔</td>
+</tr>
+<tr>
+<td>王八</td>
+<td>约 41</td>
+<td>市井骂词</td>
+</tr>
+<tr>
+<td>狗屎</td>
+<td>约 16</td>
+<td>自嘲用语（&quot;人生真是寂寞如狗屎&quot;）</td>
+</tr>
+<tr>
+<td>小强</td>
+<td>约 4</td>
+<td>现代网络梗</td>
+</tr>
+<tr>
+<td>嘁</td>
+<td>约 4</td>
+<td>少年口头禅</td>
+</tr>
+</tbody></table>
+<h3>3.4 偏好差异（重点给写手）</h3>
+<table>
+<thead>
+<tr>
+<th>作者偏爱</th>
+<th>作者几乎不用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;似乎&quot;（约 2662）× &quot;像是&quot;（约 928）</td>
+<td>&quot;仿佛&quot;（仅约 37）、&quot;宛如&quot;（仅约 11）</td>
+</tr>
+<tr>
+<td>短句 + 四字连击</td>
+<td>长定语堆砌</td>
+</tr>
+<tr>
+<td>以景 / 以物写情</td>
+<td>直白抒情独白</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>模仿要点</strong>：写心理的模糊感，用 <strong>&quot;似乎 / 像是&quot;</strong>，别用&quot;仿佛&quot;；写节奏，多 <strong>&quot;忽然 / 缓缓 / 微微&quot;</strong> 调速；写社交，多用 <strong>&quot;笑&quot;</strong> 系列（笑了起来 / 苦笑 / 冷笑）。</p>
+</blockquote>
+<hr>
+<h2>四、可模仿清单（写作者逐条照做）</h2>
+<p><strong>A. 定调与腔调</strong></p>
+<ol>
+<li>全篇保持<strong>冷调克制</strong>，情到深处反而放缓、放静；只在极少数&quot;理想/亲情&quot;爆点才允许正面抒情。</li>
+<li>每 3-5 场重头戏，安排一次<strong>叙述者下场吐槽 / 反讽</strong>（现代梗或网络腔），当减压阀。</li>
+</ol>
+<p><strong>B. 句式</strong><br>3. 打斗 / 高潮：<strong>短句为主 + 四字词连击</strong>（&quot;去得潇洒……退得却是狼狈不堪，惊心动魄&quot;）。<br>4. 写景 / 写境：<strong>长句 + 一个比喻</strong>，一气贯通，收在一句短叹。<br>5. 语录 / 关键表态：<strong>能短则短</strong>，四字以内最佳（&quot;那又如何？&quot;）。</p>
+<p><strong>C. 修辞与意象</strong><br>6. 情绪高点先找<strong>一件物 / 一处景</strong>寄托，再落笔（以景写心）。<br>7. 为人物配<strong>贯穿意象</strong>：主角配&quot;箱子&quot;，母亲配&quot;画像 / 石碑&quot;，帝王配&quot;彩虹 / 龙袍&quot;（详见 <code>16_意象符号</code>）。</p>
+<p><strong>D. 对话</strong><br>8. <strong>重对白、轻说明</strong>；世界观尽量&quot;借他人之口&quot;倾倒，不写上帝旁白。<br>9. <strong>一人一腔</strong>：帝王冷短、老臣刻薄、女主冲、村姑糙、主角&quot;现代腹黑&quot;。</p>
+<p><strong>E. 视角</strong><br>10. 贴着主角用<strong>自由间接引语</strong>写内心（不加引号，叙述即心声）。<br>11. 关键时刻<strong>切旁观者视角侧写主角威势</strong>（写&quot;众人退后 / 跪地&quot;，而非写主角多强）。</p>
+<p><strong>F. 文白与信息</strong><br>12. 文言 / 诗词 / 碑文只放<strong>钉子位置</strong>（庄重场合、遗言、章回标题），整体保持白话。<br>13. <strong>关键谈话不写全</strong>，只写余波；<strong>章末必留一个钩</strong>（断章 / 未竟之语）。</p>
+<hr>
+<h2>五、崩风格红线（禁写项）</h2>
+<table>
+<thead>
+<tr>
+<th>禁写项</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>❌ 直白大段的抒情内心独白、口号式升华</td>
+<td>原作靠&quot;以景/以物藏情&quot;，直接抒怀即出戏</td>
+</tr>
+<tr>
+<td>❌ 帝王 / 宗师被写得滑稽搞笑</td>
+<td>原作幽默只给主角与叙述者，强者始终有压迫感</td>
+</tr>
+<tr>
+<td>❌ 关键谜底一次性直白抖出、不留延宕</td>
+<td>违背&quot;层层留白、延后揭秘&quot;的结构</td>
+</tr>
+<tr>
+<td>❌ 用&quot;仿佛 / 宛如&quot;做模糊修饰</td>
+<td>原作几乎不用，惯用&quot;似乎 / 像是&quot;</td>
+</tr>
+<tr>
+<td>❌ 堆砌长定语、书面化欧化句</td>
+<td>原作是短句 + 口语骨架</td>
+</tr>
+<tr>
+<td>❌ 让主角主动膨胀野心（想当皇帝 / 改造世界）</td>
+<td>违背人设母题（应始终&quot;活着 / 护人 / 复仇&quot;驱动）</td>
+</tr>
+<tr>
+<td>❌ 无减压的全程高压&quot;燃&quot;</td>
+<td>违背冷热换挡的节奏引擎</td>
+</tr>
+<tr>
+<td>❌ 现代科技 / 网络梗滥用、破坏世界观沉浸</td>
+<td>梗是点缀，每卷寥寥数次，不可密集</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>六、附：精读代表章清单（本次选样依据）</h2>
+<table>
+<thead>
+<tr>
+<th>场景类型</th>
+<th>精读章</th>
+<th>关注点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开篇章 · 叙述腔调</td>
+<td>第0章（楔子·一块黑布）、第1章（故事会）</td>
+<td>反常细节先行、文青冷幽默定调</td>
+</tr>
+<tr>
+<td>童稚藏魂 · 反差</td>
+<td>第5章（闷枕）</td>
+<td>稚龄外壳 × 成熟内核</td>
+</tr>
+<tr>
+<td>高潮 · 燃</td>
+<td>第134章（千古风流）、第717章（苍山有雪剑有霜二）</td>
+<td>对白压场、短句四字连击</td>
+</tr>
+<tr>
+<td>幽默 · 现代语汇错位</td>
+<td>第263章（整风）、第349章（钦差大人因何发怒）</td>
+<td>恶搞 / 粗口 / 立威话术</td>
+</tr>
+<tr>
+<td>对白密集 · 寒</td>
+<td>第678章（监天察地不肯退）</td>
+<td>帝王对白、&quot;那又如何&quot;极简重锤</td>
+</tr>
+<tr>
+<td>心理独白 · 泪</td>
+<td>第686章（雨中送陈萍萍）</td>
+<td>克制反煽情、排比收情</td>
+</tr>
+<tr>
+<td>科幻吐槽 · 反差</td>
+<td>第726章（山里有座庙）</td>
+<td>&quot;神庙＝博物馆&quot;的市井式揭底</td>
+</tr>
+<tr>
+<td>日常过渡 · 温情收束</td>
+<td>第746章（末章·后来）</td>
+<td>闲笔收史诗、&quot;既来之，则安之&quot;</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>以上 9 章覆盖开篇 / 出场 / 对白 / 高潮 / 日常 / 心理独白 6 类场景，满足定稿选样要求。</p>
+</blockquote>
+
+</div>
+</body>
+</html>

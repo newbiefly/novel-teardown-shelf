@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03 · 核心设定（金手指 / 核心机制） · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>03 · 核心设定（金手指 / 核心机制）</h1>
+<blockquote>
+<p>依据：139 张单元卡「设定·名词」「人物动态」「力量升级」+ 金句/谜题/手法分片。<br>章号一律为<strong>全书连续编号</strong>（第0章=楔子，第1~745章=正文）。<br>用途：续写/仿写时&quot;不崩设定&quot;的底稿。所有硬设定条目仅供<strong>引用不可违背</strong>，非可发挥项。</p>
+</blockquote>
+<hr>
+<h2>一、总览：本书&quot;金手指&quot;的三层结构</h2>
+<p>《庆余年》不是单金手指爽文，而是<strong>三层外挂叠加</strong>、且每层都设了硬边界：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>外挂</th>
+<th>归属</th>
+<th>本质</th>
+<th>边界（不可越界处）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一层</td>
+<td><strong>穿越者现代记忆</strong></td>
+<td>范闲（灵魂=现代人范慎）</td>
+<td>知识型外挂（诗词/红楼梦/工程·经济·医学·军事）</td>
+<td>只&quot;搬运&quot;，不能造物；无法预知本世界未来</td>
+</tr>
+<tr>
+<td>第二层</td>
+<td><strong>霸道真气（无名功诀）</strong></td>
+<td>范闲继承自叶轻眉</td>
+<td>武力型外挂（越级成长）</td>
+<td>难控、有暴走隐患；上限被&quot;九品上&quot;卡死</td>
+</tr>
+<tr>
+<td>第三层</td>
+<td><strong>箱子（M82A1 重狙）</strong></td>
+<td>叶轻眉遗物</td>
+<td>跨文明碾压（对冷兵器降维）</td>
+<td>弹药有限、非人可练、只能&quot;绝境一击&quot;</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>三层的关系：记忆提供&quot;场面与格局&quot;（扬名、经商、立人设），真气提供&quot;活命与近战&quot;，重狙提供&quot;最后的杀招&quot;。<strong>三者缺一，主角都活不到结局</strong>；续写时若抽掉任一层，人物行为逻辑即崩。</p>
+</blockquote>
+<hr>
+<h2>二、穿越设定</h2>
+<h3>2.1 穿越机制</h3>
+<ul>
+<li><strong>前世身份</strong>：范慎，重症肌无力患者，父母早亡、孤身病亡于医院深夜。[第0章]</li>
+<li><strong>穿越瞬间</strong>：以&quot;生理疑点先行&quot;手法写出——病榻上咽喉肌松弛、呼吸渐绝者，竟能睁眼、伸手、伸舌舔泪、动手抹血，透过竹篓缝隙看见血案。[第0章]</li>
+<li><strong>投生落点</strong>：庆国纪元五十七年、京都郊外流晶河畔<strong>太平别院</strong>&quot;小姐&quot;（叶轻眉）之婴；出生即逢血案，生母被杀，被蒙黑布的少年仆人（五竹）携出。[第0章]</li>
+<li><strong>身份安排</strong>：坐轮椅的京都权贵（陈萍萍）与五竹议定，为之安排&quot;新的身份，不被打扰的人生&quot;，送养澹州港乳母处，名义上为<strong>司南伯爵</strong>（范建）之子。[第0章]</li>
+<li><strong>时间锚</strong>：庆国纪元五十七年（第0章）→ 庆历改元（单元03）→ 全书止于庆历十年及之后。[第0章]</li>
+</ul>
+<h3>2.2 现代记忆的边界（能做什么 / 不能做什么）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>✅ 能做（记忆可覆盖）</th>
+<th>❌ 不能做（记忆的硬边界）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>知识</td>
+<td>背诵海量诗词曲赋、抄写《红楼梦》、运用工程/经济/医学/军事常识</td>
+<td>无法凭记忆获得本世界武功；无法预知本世界的人物与事件走向</td>
+</tr>
+<tr>
+<td>武力</td>
+<td>用现代军事素养辅助练枪、练真气的&quot;效率&quot;（算风差、测距、体能训练）</td>
+<td>真气须本世界习得；记忆不能直接转化为战力</td>
+</tr>
+<tr>
+<td>生产</td>
+<td>凭知识设计产品、给内库工匠&quot;指方向&quot;（玻璃、肥皂、香水、棉布、军械）</td>
+<td>无现代工业能力，所有落地必须借内库/庆余堂工匠，不能凭空造出成品</td>
+</tr>
+<tr>
+<td>记忆本身</td>
+<td>大体保留前世记忆</td>
+<td><strong>记忆会损耗</strong>：会背错、记不全（&quot;我挥一挥衣袖，要把所有银子带走&quot;即改打油）[第330章]</td>
+</tr>
+<tr>
+<td>世界规则</td>
+<td>借知识抢占&quot;神童/诗仙/能臣&quot;叙事</td>
+<td>不能改变皇权/神权/武学规则本身，改变只能靠&quot;做事&quot;</td>
+</tr>
+</tbody></table>
+<p><strong>结论</strong>：现代记忆是&quot;叙事与阶层跃迁的杠杆&quot;，不是&quot;全知全能&quot;。凡把范闲写成能预言、能造现代机器的，即违背设定。</p>
+<h3>2.3 知识外挂的用法与限制（分门别类）</h3>
+<table>
+<thead>
+<tr>
+<th>外挂品类</th>
+<th>首现 / 代表章</th>
+<th>用法</th>
+<th>限制与代价</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>诗词曲赋</strong></td>
+<td>谎托辛弃疾《丑奴儿》[第13章] → 诗会《登高》[第68章] → 殿前三百诗（封&quot;诗仙&quot;）[第134章]</td>
+<td>扬名（京都才名）、传情（赠林婉儿/海棠）、讽世（&quot;先天下之忧而忧&quot;[第209章]）、自嘲</td>
+<td>只能&quot;搬运&quot;旧作、无法原创高水平；一旦被追问出处需圆谎（&quot;贩盐的老辛&quot;）；名高招忌（长公主杀意自此起）</td>
+</tr>
+<tr>
+<td><strong>《红楼梦》</strong></td>
+<td>提及[第44章] → 化名曹先生/雪芹先生[第246章] → 北齐皇帝逼问&quot;林妹妹&quot;[第250章]</td>
+<td>建立&quot;天下士人&quot;文化影响力；以书会友（司理理、北齐帝皆书迷）；化名保持双重身份</td>
+<td>触&quot;诽谤时政&quot;之忌（巧姐辞令之忌[第406章]），庄墨韩曾以&quot;犯忌讳&quot;警告[第251章]</td>
+</tr>
+<tr>
+<td><strong>现代医学/外科</strong></td>
+<td>开膛缝合手术（&quot;针刀之法&quot;+哥罗芳麻醉）[第306章]、静脉注射[第184章]</td>
+<td>绝境自救（悬空庙后开膛救己）、救人立信（止血医术）、辨毒解毒</td>
+<td>无现代器械药物，须借三处/太医资源；施术者须有真气与体力支撑</td>
+</tr>
+<tr>
+<td><strong>工程 / 经济 / 商业</strong></td>
+<td>内库经营与招标[第342章]、钱庄/契约[第483章]、&quot;知识就是力量&quot;[第346章]</td>
+<td>掌内库成&quot;庆国命脉&quot;；以商战败明家；建抱月楼情报网</td>
+<td>商业须依附皇权与制度，一旦皇权翻脸，产业即成把柄</td>
+</tr>
+<tr>
+<td><strong>军事 / 战术</strong></td>
+<td>狙击枪测距算风差[第152章]、黑骑奔袭调度[第547章]</td>
+<td>战术碾压（黑骑突袭）、体系化谋略</td>
+<td>本世界以真气+冷兵器为主，现代战术只&quot;提质&quot;不&quot;换代&quot;</td>
+</tr>
+<tr>
+<td><strong>人性 / 权谋</strong></td>
+<td>&quot;敌人都是纸老虎&quot;[第177章]、&quot;不要相信女人&quot;（朱格临终）[第144章]</td>
+<td>洞察人心、布局控局</td>
+<td>多为&quot;常识判断&quot;而非&quot;预知&quot;，必须靠自己搜集情报</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>三、霸道真气体系（设定逻辑）</h2>
+<blockquote>
+<p>力量体系的完整分级/宗师谱系归 <code>15_力量体系</code>；本节只锁&quot;霸道真气&quot;这一核心机制的机理与边界。</p>
+</blockquote>
+<h3>3.1 功法来路与结构</h3>
+<ul>
+<li><strong>无名功诀</strong>（初名&quot;无名黄书/霸道之卷&quot;）：叶轻眉所留，由五竹代授。[单元02]</li>
+<li><strong>分上下两卷</strong>：<ul>
+<li><strong>上卷·霸道</strong>——范闲所练。真气霸道凶戾、难控。[第2章]</li>
+<li><strong>下卷·王道</strong>——<strong>须&quot;无经脉者&quot;方能修</strong>，庆帝所练。[第577章]；庆帝体内本无经脉[第654章]。</li>
+</ul>
+</li>
+<li><strong>双修路线</strong>：范闲后期以<strong>天一道心法</strong>（苦荷一脉）与霸道双修，愈经脉、提速回复。[第340章]</li>
+</ul>
+<h3>3.2 真气机理（不可改的物理规则）</h3>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>气海位置</td>
+<td>真气蕴于**后腰&quot;雪山&quot;**处</td>
+<td>[第2章][第340章]</td>
+</tr>
+<tr>
+<td>运行特性</td>
+<td>霸道真气&quot;凶戾&quot;，逼近关口即不稳、易暴走</td>
+<td>[第2章][第14章]</td>
+</tr>
+<tr>
+<td>独门技巧</td>
+<td><strong>真气回流</strong>：逼出真气再收回（范闲自创，可攀崖）</td>
+<td>[第33章]</td>
+</tr>
+<tr>
+<td>真气外释</td>
+<td>隔空引物/离体剑气（后成范闲绝技）</td>
+<td>[第636章][第716章]</td>
+</tr>
+<tr>
+<td>大宗师双境界</td>
+<td><strong>实</strong>与<strong>势</strong>（&quot;实&quot;是凝实真气、&quot;势&quot;是意志/气场）</td>
+<td>[第530章]</td>
+</tr>
+<tr>
+<td>真元修复</td>
+<td>天地元气（实为辐射遗存）越北越浓，可加速修复经脉</td>
+<td>[第723章][第734章]</td>
+</tr>
+</tbody></table>
+<h3>3.3 范闲真气线的关键节点（成长与代价并存）</h3>
+<ul>
+<li>初成→关口不稳[第2章]→ 打通顶门大关[第32章]→ 临阵爆发首次杀敌[第88章]→ 越级斩八品[第93章]。</li>
+<li><strong>重大隐患</strong>：与谢必安一战后<strong>真气暴走、咳伤肺叶</strong>[第297-299章]→ 悬空庙刺<strong>经脉尽废、真气尽散</strong>[第304-305章]→ 得<strong>天一道心法</strong>重建[第340章]。</li>
+<li>恢复巅峰：<strong>九品上</strong>、&quot;大宗师之下第一流&quot;[第604章]→ 四顾剑法大成、离体剑气首成、被帝评为&quot;有洪四痒之实&quot;[第716章]→ 食指被碎、经脉重伤[第717章]。</li>
+<li><strong>结局</strong>：以元气+心境&quot;此生从未这样强大&quot;，重狙+斩指掌重创庆帝[第745章]。</li>
+</ul>
+<blockquote>
+<p>⚠️ 代价红线：范闲每一次&quot;越级&quot;都伴随<strong>透支/暴走/重伤</strong>（麻黄丸强提、燃生机[第561章]；食指被碎[第717章]）。续写不可写成&quot;无代价升级&quot;。</p>
+</blockquote>
+<hr>
+<h2>四、用毒 · 医术体系</h2>
+<h3>4.1 机制与要义</h3>
+<ul>
+<li><strong>用毒是范闲的&quot;第二金手指&quot;</strong>，与真气并列为近战保命技，后期被明写为**&quot;用毒/解毒天下第一&quot;**[第623章]。</li>
+<li>**三处（监察院制毒科）**为技术后盾。[单元23]</li>
+<li><strong>师承</strong>：费介（监察院，范闲毒术之师）。费介为<strong>三大用毒宗师之一</strong>（费介 / 肖恩 / 东夷怪人）。[第306章]</li>
+<li><strong>核心要义</strong>：&quot;解毒并不难，配毒也不难……<strong>最难的是下毒</strong>。&quot;[第14章，费介] —— 顶层的不是毒药配方，是&quot;送入口中/贴身&quot;的手法。</li>
+</ul>
+<h3>4.2 名毒 / 药物速查表</h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>性质 / 用途</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>猫扣子</td>
+<td>南方海岛之毒，毒在果实，混饭菜不易察觉，监察院密探常用</td>
+<td>[第22章]</td>
+</tr>
+<tr>
+<td>苦忍碱</td>
+<td>西蛮箭毒</td>
+<td>单元10</td>
+</tr>
+<tr>
+<td>红袖招 / 白袖招</td>
+<td>北齐&quot;毒人计划&quot;</td>
+<td>单元25</td>
+</tr>
+<tr>
+<td>哥罗芳</td>
+<td>迷药（曾迷司理理/肖恩/言冰云）</td>
+<td>[第306章][第542章]</td>
+</tr>
+<tr>
+<td>麻黄丸 / 麻黄素</td>
+<td>兴奋剂、提神续命，可强提境界但乱气伤身</td>
+<td>[第238章][第548章]</td>
+</tr>
+<tr>
+<td>一烟冰</td>
+<td>治肺痨洋药；服后需禁房事、疑损生育</td>
+<td>[第148章][第404章]</td>
+</tr>
+<tr>
+<td>散功药丸</td>
+<td>费介遗药，非毒，走&quot;散功敛气&quot;之路</td>
+<td>[第557章]</td>
+</tr>
+<tr>
+<td>旱芹 / 大蒜</td>
+<td>太医院称清热，实为<strong>杀精</strong>（范闲暗算庆帝绝嗣）</td>
+<td>[第698章][第700章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>五、续写红线：不可违背的硬设定清单</h2>
+<blockquote>
+<p>以下为&quot;改一条即全书失真&quot;的硬设定。续写/改写/仿写时逐条自检。</p>
+</blockquote>
+<h3>A. 穿越相关（不可动摇）</h3>
+<ol>
+<li><strong>穿越者唯一性</strong>：范闲是全书<strong>唯一</strong>携带异世界现代灵魂者。叶轻眉、五竹是&quot;神庙&quot;（前代文明）的造物/遗民，<strong>不是</strong>穿越者；苦荷得&quot;神庙天授&quot;亦非穿越者。[第0章][第731章]</li>
+<li><strong>记忆有损耗、非先知</strong>：现代记忆会背错、记不全，且<strong>不能预知</strong>本世界未来。[第330章]</li>
+<li><strong>&quot;既来之，则安之&quot;为价值根基</strong>：范闲字&quot;安之&quot;，人生信条即&quot;既来之，则安之&quot;。[第746章]（呼应 [第270章] &quot;安之&quot;二字真意）</li>
+</ol>
+<h3>B. 武学相关（机理不可改）</h3>
+<ol start="4">
+<li><strong>真气机理</strong>：气海在<strong>后腰雪山</strong>；霸道真气&quot;凶戾难控&quot;；<strong>无经脉者才能练下卷&quot;王道&quot;</strong>。[第2章][第654章]</li>
+<li><strong>九品上限</strong>：武者最高为<strong>九品上</strong>；之上只有<strong>大宗师</strong>（全书仅四人：庆帝·苦荷·四顾剑·叶流云），数量恒定，不可新增。[第528章]</li>
+<li><strong>大宗师凡胎化</strong>：大宗师&quot;以一人之力可抗国家机器&quot;[第527章]，但<strong>仍是人</strong>（会老、会伤、会死——苦荷/四顾剑被废、叶流云重伤、庆帝被重狙重创）。[第567章][第719章]</li>
+<li><strong>升级有代价</strong>：越级强提必透支生机/自伤，无&quot;无代价变强&quot;。[第561章][第717章]</li>
+</ol>
+<h3>C. 神庙 / 世界观底层（结尾反转，不可提前泄底或改写）</h3>
+<ol start="8">
+<li><strong>神庙真相</strong>：所谓&quot;神庙&quot;实为<strong>前代文明遗址（军事博物馆）</strong>；天地元气=核战后的<strong>辐射遗存</strong>；五竹、叶轻眉为神庙造物（受&quot;神庙四定律&quot;，即机器人三定律+第零定律约束）。[第726章][第731章]</li>
+<li><strong>世间无神</strong>：终极定调为&quot;世间本就没有神&quot;。[第744章]</li>
+<li><strong>天脉者</strong>：上天遗留人间的血脉，数百年苏醒一次，带来强大战力或智慧。[第0章]</li>
+</ol>
+<h3>D. 关键物件（不可无因消失/被复制）</h3>
+<ol start="11">
+<li><strong>箱子与重狙</strong>：黑皮箱为叶轻眉遗物，开箱得 <strong>M82A1 狙击枪</strong> + 身世信；<strong>弹药有限</strong>，是&quot;弑神杀君&quot;的最后一击，全书只数次关键使用。[第140-141章][第745章]</li>
+<li><strong>黑布（五竹）</strong>：五竹蒙眼黑布常年不摘；黑布下为&quot;彩虹&quot;（射线）——收束于庆帝临终亲手拂落。[第0章][第745章]</li>
+<li><strong>叶轻眉已死</strong>：全书之锚。她死于太平别院血案（庆帝主谋，秦家/神庙/北齐各占一环），<strong>不可复活</strong>。[第0章][第677章][第745章]</li>
+<li><strong>内库=叶家产业=庆国命脉</strong>：由叶轻眉所创、后收归皇室，是庆国强大两大源泉之一；范闲以&quot;公器&quot;论其归属。[第259章][第651章]</li>
+</ol>
+<h3>E. 组织 / 制度（构成不可乱）</h3>
+<ol start="15">
+<li><strong>监察院</strong>：叶轻眉创设，本意&quot;用来监察陛下&quot;，是<strong>公器</strong>；八大处/提司/院长制式固定。[第678章][第721章]</li>
+<li><strong>庆国朝局固定框架</strong>：皇权（皇帝）+ 六部/门下中书 + 都察院（监察百官、风闻议事）+ 大理寺（司法）+ 枢密院（军部）+ 十三城门司 + 内廷（含光殿太后、广信宫长公主、东宫太子）。[单元01][第259章]</li>
+<li><strong>九品制双义</strong>：官阶&quot;品级&quot;与武者&quot;品级&quot;<strong>同词不同义</strong>，最易混淆——文官&quot;五品/八品&quot;（如协律郎八品、太学院奉正五品）≠ 武者&quot;八品/九品&quot;。[第93章][第139章]</li>
+</ol>
+<h3>F. 人物底色（人设不可漂移）</h3>
+<ol start="18">
+<li><strong>范闲</strong>：清逸温柔外表 + 腹黑狠辣内核（&quot;人面双面法&quot;）；信奉&quot;低调的华丽，闷声吃猪肉&quot;[第256章]；底线是&quot;我在意的人&quot;（&quot;为了我在意的人，即便死上千万人又如何？&quot;[第687章]）。</li>
+<li><strong>五竹</strong>：只认&quot;小姐&quot;与&quot;范闲&quot;；寡言、绝对理性、无人类情绪（&quot;我从来不关心除了你之外其它任何人的死活&quot;[第90章]）。</li>
+<li><strong>庆帝</strong>：多疑与隐忍是<strong>刻意示弱</strong>（&quot;陛下多疑&quot;实为伪装，见 [第565章]）；他一生未败、以王道大宗师之身伪装凡人二十年。[第565章][第567章]</li>
+<li><strong>陈萍萍</strong>：轮椅、畏光、藏锋；护短为监察院铁板一块的根（&quot;我监察院……靠的不是赏罚分明，而是护短&quot;[第688章]）。</li>
+</ol>
+<hr>
+<h2>六、一句话记忆锚（供续写快速对表）</h2>
+<blockquote>
+<p>现代灵魂 × 霸道真气 × 一箱重狙 = 范闲；他要在&quot;无神&quot;的世界里，替母亲与自己在历史的进程里争一页。<br>三层金手指各有硬边界——<strong>记忆会损耗、真气有代价、药弹终有限</strong>。任何&quot;无限外挂&quot;写法，都是对本书核心设定的背叛。</p>
+</blockquote>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 · 人物设定集 · 主角 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>05 · 人物设定集 · 主角</h1>
+<blockquote>
+<p>本书：猫腻《庆余年》，745 章 / 约 307.4 万字。<br>数据源：人物台账（205 人）+ 关系台账（795 条）+ CP 分片 + 139 张章卡。<br>章号一律为<strong>全书连续编号</strong>。<br>本篇只写&quot;人物自身怎么变&quot;；两人之间关系怎么变见 <code>07_人物关系网.md</code>。<br>用法：AI 读完应能&quot;扮演&quot;范闲写对白且不崩人设；续写时以&quot;行为逻辑&quot;&quot;崩人设红线&quot;为对照。</p>
+</blockquote>
+<hr>
+<h2>一、范闲（字安之）</h2>
+<h3>1.1 档案（不变核心）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>范闲，字<strong>安之</strong>；前世名范慎</td>
+<td>[第270章]章题&quot;安之&quot;；[第0章]</td>
+</tr>
+<tr>
+<td>身世</td>
+<td>前世重症肌无力病死于现代 → 魂穿；<strong>生母叶轻眉、生父庆帝</strong>，自幼养于司南伯范建家（对外为&quot;私生子&quot;）</td>
+<td>[第0章][第140-141章][第321-324章身世惊雷]</td>
+</tr>
+<tr>
+<td>年龄</td>
+<td>初登场约 4 岁（婴儿被五竹救走）→ 16 岁离澹州入京 → 全书跨度十余年</td>
+<td>[第0章][第38章][第746章]</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>司南伯养子 / 监察院<strong>提司</strong> / 内库转运司正使 / <strong>澹泊公</strong> / 剑庐主人 / 范族族长之&quot;己子&quot;</td>
+<td>[第90章][第258-262章][第460-464章][第662章]</td>
+</tr>
+<tr>
+<td>外貌气质</td>
+<td>清秀俊朗、少年气足；前世病弱的躯壳里装着&quot;混不吝&quot;的活泼；常带三分嬉笑、目光却极冷</td>
+<td>[第40章][第56章]</td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>①护住身边人（范家/林婉儿/五竹）②查清母亲死因并复仇 ③活成&quot;不被摆布的人&quot;</td>
+<td>[第44章][第140章][第679章]</td>
+</tr>
+<tr>
+<td>恐惧</td>
+<td>至亲被自己牵连而死（陈萍萍之死为最痛）；&quot;自己变成庆帝那样的人&quot;</td>
+<td>[第685章][第745章]</td>
+</tr>
+<tr>
+<td>信物</td>
+<td>母亲遗留的<strong>黑皮箱</strong>（内藏钥匙与狙击枪/重狙）；叶轻眉的钥匙；费介的毒囊</td>
+<td>[第34-35章][第140-141章][第742-745章]</td>
+</tr>
+<tr>
+<td>力量定级</td>
+<td>六品→九品→准宗师级（&quot;小手段&quot;+霸道功诀+重狙，非纯武道大宗师）</td>
+<td>[第151-152章][第716章]</td>
+</tr>
+</tbody></table>
+<p><strong>外貌/气质补充</strong>：猫腻写范闲不堆辞藻，多借<strong>旁人眼里</strong>立起来——婉儿看他是&quot;少年郎&quot;，庆帝看他是&quot;像她&quot;的複制品，陈萍萍看他是&quot;像小姐&quot;的孩子。写好范闲的关键不是描脸，而是写出那股**&quot;在笑，但眼睛没笑&quot;**的错位感。</p>
+<h3>1.2 性格内核（从行为拆出，非套模板）</h3>
+<ul>
+<li><strong>主标签：扮猪吃虎的清醒利己者 + 护崽式深情</strong>。<br>他永远先装弱、装乖、装蠢（当着皇子自称&quot;微末小臣&quot;），实则步步算计；但一旦触及&quot;自己人&quot;，立刻不计代价——为救范建一党硬顶皇帝 [第642-646章]，为报陈萍萍之仇血洗京都 [第679-694章]。</li>
+<li><strong>辅标签一：记仇的&quot;体面派&quot;</strong>。<br>报仇要&quot;让被打的人知道是我打的&quot; [第73章]，讲究明面立誓、当众打脸（对贺宗纬&quot;名单+毒针当众断肠&quot; [第710章]），而不是暗杀——他要的是**&quot;你知道、天下知道&quot;**的解气。</li>
+<li><strong>辅标签二：现代人的怀疑主义</strong>。<br>&quot;这世上没有值得相信的人&quot;是五竹的告诫，也是范闲骨子里的信条（[第126章]）；他对谁都留一手——连陈萍萍、言冰云都反复怀疑。这既是护身符，也是他痛苦的来源。</li>
+<li><strong>反差点（最抓人处）：对苍生的温柔 vs 对仇敌的狠厉</strong>。<br>一边给素不相识的洪常青报仇、给桑文赎身、给西湖农人过小日子 [第285章][第746章]；一边能对明老太君弑母不眨眼、对言冰云&quot;我不原谅你&quot; [第687章][第393章]。他&quot;心温柔、手段狠&quot;（陈萍萍评语 [第98章] 的反面镜像）。</li>
+</ul>
+<h3>1.3 价值观 / 软肋</h3>
+<ul>
+<li><strong>价值观</strong>（全书主线母题的承载者）：<ol>
+<li><strong>&quot;我只站陛下这一边&quot;</strong> 只是权宜的生存姿态 [第78章]；真正的内核是叶轻眉碑文——&quot;<strong>希望庆国的人民都能成为不羁之民……不向豺虎献媚</strong>&quot; [第26章]。范闲一生为母亲复仇的过程，就是<strong>从&quot;独善其身的利己者&quot;走向&quot;继承母亲济世意志者&quot;</strong>。</li>
+<li><strong>&quot;做人做成神仙那样，又不能真的长生不老，感觉一定会很糟糕&quot;</strong> [第105章]——他拒绝成神、拒绝被工具化，最终选择<strong>退隐西湖</strong>而非问鼎。</li>
+</ol>
+</li>
+<li><strong>软肋</strong>：<ul>
+<li><strong>&quot;自己人&quot;</strong>：范建、婉儿、若若、五竹、陈萍萍、思思——凡涉及他们，他的理智会短路。</li>
+<li><strong>母亲</strong>：叶轻眉是他一生执念，也让他被庆帝当成&quot;她的複制品&quot;来用。</li>
+<li><strong>孤独</strong>：他其实极怕孤独（[第580章]&quot;不敢相见&quot;陈萍萍、[第689章]被五竹离弃的梦）。</li>
+</ul>
+</li>
+</ul>
+<h3>1.4 成长轨迹（分阶段，标章号）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>章范围</th>
+<th>处境</th>
+<th>心境</th>
+<th>手段</th>
+<th>关键行动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>① 澹州少年</td>
+<td>第1-39章</td>
+<td>私生子，被暗杀、被监视</td>
+<td>好玩、好奇、藏拙</td>
+<td>用毒、五竹授武、装病</td>
+<td>拜费介学毒、敲通大关、离澹州 [第4-7章][第21章][第38章]</td>
+</tr>
+<tr>
+<td>② 京都立身</td>
+<td>第40-153章</td>
+<td>权贵场中的&quot;新贵私生子&quot;</td>
+<td>从抵触婚事到动心、从棋子到棋手</td>
+<td>诗名、认亲、结盟友、借监察院</td>
+<td>庆庙定情、诗会扬名、夜窗定情、大婚 [第56章][第68章][第82章][第146章]</td>
+</tr>
+<tr>
+<td>③ 身世与出使</td>
+<td>第140-252章</td>
+<td>已知亲生父母是谁，被推上北齐棋局</td>
+<td>疏离、警惕、隐忍</td>
+<td>谍战、外交、用人</td>
+<td>取黑皮箱、押解肖恩、结海棠、救言冰云 [第140-141章][第183章][第221章]</td>
+</tr>
+<tr>
+<td>④ 掌权者</td>
+<td>第253-406章</td>
+<td>掌内库、收江南明家、权倾一时</td>
+<td>意气风发又处处提防</td>
+<td>权谋、商战、刑名</td>
+<td>御前定内库、办夏栖飞、夺明家家产 [第258章][第369-393章]</td>
+</tr>
+<tr>
+<td>⑤ 孤臣与决裂</td>
+<td>第407-584章</td>
+<td>与皇帝的博弈从暗到明</td>
+<td>从&quot;纯臣&quot;幻想破灭到冷眼旁观</td>
+<td>廷杖、孤臣自居、双面布局</td>
+<td>封公归宗、广信宫对峙、查长公主 [第460-470章][第499章]</td>
+</tr>
+<tr>
+<td>⑥ 血洗与复仇</td>
+<td>第585-694章</td>
+<td>陈萍萍之死撑开裂痕</td>
+<td>悲怒、决绝</td>
+<td>军政对抗、清洗、夺院</td>
+<td>血洗京都、布衣朝天子 [第679-694章]</td>
+</tr>
+<tr>
+<td>⑦ 弑父与归隐</td>
+<td>第695-745章</td>
+<td>与庆帝生死决战</td>
+<td>麻木、解脱</td>
+<td>重狙、五竹、影子王十三郎班底</td>
+<td>北行神庙、皇城狙杀、杀庆帝 [第724章][第718章][第745章]</td>
+</tr>
+</tbody></table>
+<h3>1.5 能力体系</h3>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>来源</th>
+<th>边界/代价</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用毒</strong></td>
+<td>费介所授（天下三大用毒家之一）</td>
+<td>需近身/下毒时机；对大宗师级基本无效</td>
+<td>[第4-7章][第14章]</td>
+</tr>
+<tr>
+<td><strong>真气·霸道功诀</strong></td>
+<td>幼时被注入霸道真气 + 五竹点拨 + 苦荷天一道心法交换</td>
+<td>真气霸道、易走火；大东山被叶流云一剑重伤可复原</td>
+<td>[第21章][第340章][第398章]</td>
+</tr>
+<tr>
+<td><strong>烛照&quot;小手段&quot;</strong></td>
+<td>自创近身杀法 + 暗器</td>
+<td>秒杀九品但惧宗师</td>
+<td>[第716章]</td>
+</tr>
+<tr>
+<td><strong>知识外挂</strong></td>
+<td>现代记忆：诗词（&quot;诗仙&quot;成名）、抄《红楼梦》（&quot;红迷&quot;轰动）、化学毒理、权术常识</td>
+<td>只可&quot;抄&quot;，不能凭空造出超越时代的技术（受限）；是<strong>社交与权谋工具</strong>而非战斗外挂</td>
+<td>[第68章][第95章][第270章]</td>
+</tr>
+<tr>
+<td><strong>权谋手腕</strong></td>
+<td>陈萍萍/范建/林若甫的言传身教</td>
+<td>需势力做背书；单打独斗会吃亏</td>
+<td>[第302章][第409-410章]</td>
+</tr>
+<tr>
+<td><strong>重狙</strong></td>
+<td>母亲黑皮箱所藏（对皇权/宗师的终极威慑）</td>
+<td>弹药有限、需五竹/影子配合、开一枪代价极大</td>
+<td>[第140-141章][第742-745章]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>续写红线</strong>：范闲的&quot;强&quot;从来不靠武力碾压，而靠<strong>信息差+人心算计+外物（毒/狙）+盟友</strong>。写成&quot;范闲一人横扫宗师&quot;即崩人设。</p>
+</blockquote>
+<h3>1.6 行为逻辑（他做决策的底层规则）</h3>
+<ol>
+<li><strong>先算退路，再谈道义</strong>：任何一次出头，他心里都先过一遍&quot;最坏结果能不能扛&quot;。</li>
+<li><strong>对外示弱、留白、不说满</strong>：对皇帝永远&quot;赤诚与赤忠&quot; [第637章]，对敌人永远&quot;给一次机会&quot;再动手。</li>
+<li><strong>报复必须&quot;体面&quot;</strong>：要么明面立誓、要么当众摊牌，绝不无声无息。</li>
+<li><strong>对&quot;自己人&quot;不计成本，对&quot;外人&quot;精算利弊</strong>：这是他区分敌我的唯一开关。</li>
+<li><strong>抗拒被&quot;赋予意义&quot;</strong>：别人越想把他当旗子/神像/继承人，他越退——最终退隐。</li>
+<li><strong>以&quot;母亲&quot;为最高准绳</strong>：凡与叶轻眉之死相关，他会放下一切算计。</li>
+</ol>
+<h3>1.7 名场面（≤8，标章号）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>场面</th>
+<th>章号</th>
+<th>为什么是名场面</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>庆庙香案下与&quot;鸡腿姑娘&quot;四目相对，留鸡腿为信物</td>
+<td>[第56-57章]</td>
+<td>全书最纯的甜，定情源头</td>
+</tr>
+<tr>
+<td>2</td>
+<td>牛栏街当街杀郭保坤、首开杀戒</td>
+<td>[第72-73章]</td>
+<td>少年第一次杀人，命运转折</td>
+</tr>
+<tr>
+<td>3</td>
+<td>诗会斗酒、&quot;诗仙&quot;扬名，抄《登高》</td>
+<td>[第68章]</td>
+<td>知识外挂的高光，一炮而红</td>
+</tr>
+<tr>
+<td>4</td>
+<td>身世揭晓：&quot;我就是范闲&quot;式的存在确认</td>
+<td>[第140-141章]</td>
+<td>主角身份之谜的核爆点</td>
+</tr>
+<tr>
+<td>5</td>
+<td>押解肖恩崖底交心，卸下神庙秘密</td>
+<td>[第237-241章]</td>
+<td>亦敌亦师的经典，情报与人性双收</td>
+</tr>
+<tr>
+<td>6</td>
+<td>陈萍萍凌迟法场，范闲情感决堤</td>
+<td>[第685章]</td>
+<td>全书最大泪点，决裂导火索</td>
+</tr>
+<tr>
+<td>7</td>
+<td>布衣朝天子、皇城前重狙对决</td>
+<td>[第711-718章]</td>
+<td>全书最高燃点，&quot;臣→敌&quot;摊牌</td>
+</tr>
+<tr>
+<td>8</td>
+<td>北行神庙、以血唤醒五竹、彩虹一击弑庆帝</td>
+<td>[第724-745章]</td>
+<td>终极名场面，复仇闭环</td>
+</tr>
+</tbody></table>
+<h3>1.8 人物弧光一句话</h3>
+<p><strong>从&quot;独善其身的穿越者、只想活好的利己者&quot; → 继承母亲济世意志、斩断父子枷锁的&quot;复仇者与退隐者&quot;</strong>。<br>他最终没有变成庆帝，也没有成为叶轻眉——他成为<strong>一个&quot;愿意为自己人拼命、但拒绝为天下人成神&quot;的普通人</strong>，这正是对&quot;不羁之民&quot;理想的另一种回答。</p>
+<h3>1.9 关键抉择时刻</h3>
+<ul>
+<li><strong>隐瞒林珙之死</strong> [第100章]：明知对婉儿残忍，仍选择隐瞒——他护人的方式就是&quot;替你背&quot;。</li>
+<li><strong>家法处置范思辙</strong> [第287-290章]：亲弟也要断腕，体现&quot;规则高于私情&quot;的一面。</li>
+<li><strong>当众打脸贺宗纬、列名单</strong> [第710章]：宿敌用&quot;毒针断肠&quot;作结，是他&quot;体面报仇&quot;哲学的终点。</li>
+<li><strong>对言冰云&quot;我不原谅你&quot;</strong> [第687章]：他可以为大局与旧友共事，但不肯假装原谅——<strong>原则不让步</strong>。</li>
+<li><strong>送走王启年、不肯尽言以保范闲</strong> [第582章] / <strong>与范建共谋&quot;第二内库&quot;</strong> [第651-652章]：护人与复仇两条线并行。</li>
+<li><strong>决定退隐西湖</strong> [第745-746章]：拒绝了&quot;当新朝柱石&quot;的诱惑，选择&quot;不受摆布&quot;。</li>
+</ul>
+<h3>1.10 崩人设红线（续写对照）</h3>
+<ul>
+<li>❌ 写成无脑热血、轻信他人 → 他骨子里怀疑一切。</li>
+<li>❌ 写成纯粹冷血 → 他对&quot;自己人&quot;的深情是底色。</li>
+<li>❌ 写成武力碾压的龙傲天 → 他的装备是&quot;毒/狙/盟友&quot;。</li>
+<li>❌ 写成大义凌然、甘为天下牺牲 → 他拒绝成神，是&quot;退隐的强者&quot;。</li>
+<li>✅ 正确味道：<strong>脸上笑嘻嘻、心里算盘响、遇自己人不要命、遇母亲之事不要命</strong>。</li>
+</ul>
+<hr>
+<h2>二、林婉儿（女主线）</h2>
+<h3>2.1 档案</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>锚点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名/封号</td>
+<td>林婉儿，封<strong>晨郡主</strong>；昵称&quot;鸡腿姑娘&quot;</td>
+<td>[第56章][第57章]</td>
+</tr>
+<tr>
+<td>身世</td>
+<td><strong>长公主李云睿与宰相林若甫之女</strong>，庆帝外甥女（名义上）</td>
+<td>[第103章][第330章]</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>范闲正妻；后主理范府与&quot;杭州会&quot;&quot;慈善会&quot;，成家中定海</td>
+<td>[第147章][第688章]</td>
+</tr>
+<tr>
+<td>外貌气质</td>
+<td>白衣、清秀、病弱（幼时肺疾）；外表柔净，内里<strong>政治敏感、有主意</strong></td>
+<td>[第56章][第80-81章]</td>
+</tr>
+<tr>
+<td>欲望</td>
+<td>与范闲安稳相守；对生母长公主既爱又惧</td>
+<td>[第153章][第330章]</td>
+</tr>
+<tr>
+<td>软肋</td>
+<td>身体旧疾；&quot;只能旁观&quot;丈夫行险的自责</td>
+<td>[第306章]</td>
+</tr>
+</tbody></table>
+<h3>2.2 感情线骨架（范闲 × 林婉儿）</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>章号</th>
+<th>关键节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>缘起</td>
+<td>[第56-57章]</td>
+<td>庆庙香案下四目相对、留鸡腿为信物</td>
+</tr>
+<tr>
+<td>破冰</td>
+<td>[第80-81章]</td>
+<td>乔装&quot;大夫&quot;探病、隔幔相认、&quot;羊奶鸡腿&quot;暗语</td>
+</tr>
+<tr>
+<td>定情</td>
+<td>[第82-87章]</td>
+<td>翻窗夜会、喂食、两情相悦</td>
+</tr>
+<tr>
+<td>成婚</td>
+<td>[第146-148章]</td>
+<td>大婚洞房（被费介质搅局）</td>
+</tr>
+<tr>
+<td>蜜月</td>
+<td>[第149-153章]</td>
+<td>苍山朝夕相处、夫妻夜话</td>
+</tr>
+<tr>
+<td>磨合</td>
+<td>[第255-257章][第401-405章]</td>
+<td>吃醋斗气→和好；&quot;停药&quot;争执→相拥；婉儿坦承寂寞</td>
+</tr>
+<tr>
+<td>患难</td>
+<td>[第306-307章][第688章]</td>
+<td>嚼药喂服、咬舌不诉；扶他洗脚、患难相守</td>
+</tr>
+<tr>
+<td>分离与守望</td>
+<td>[第538-548章]</td>
+<td>被长公主掳作人质，范闲隔宫牵挂、未能救回</td>
+</tr>
+<tr>
+<td>团圆与理解</td>
+<td>[第579章][第682章]</td>
+<td>洗脚、落泪相拥；以&quot;告诉他实情&quot;托底</td>
+</tr>
+<tr>
+<td>归隐</td>
+<td>[第745-746章]</td>
+<td>随范闲退隐西湖，&quot;寻常一家&quot;</td>
+</tr>
+</tbody></table>
+<p><strong>感情线逻辑</strong>：不是&quot;恋爱脑&quot;，而是**&quot;志趣相投的谋士式夫妻&quot;**——婉儿是范闲唯一能&quot;坦白最深谋算&quot;的人 [第404-406章]。她的成长线是&quot;被保护的病弱少女 → 主动承担、有政治判断力的当家人&quot;。</p>
+<h3>2.3 角色功能（三条）</h3>
+<ol>
+<li><strong>情感锚/回家符号</strong>：范闲所有杀伐之后，&quot;回府看婉儿&quot;是他人性的归处。</li>
+<li><strong>身世纽带</strong>：她是长公主之女、庆帝外甥女，把<strong>皇权、后宫、范家、宰相林家</strong>四条线缝在一起，是全书政治网络的活结 [第103章][第330章]。</li>
+<li><strong>柔中带刚的&quot;镜像&quot;</strong>：她与范闲的关系，是&quot;范闲渴望的平常人生&quot;的具体化——所以结局是两人一同归隐，主题闭环。</li>
+</ol>
+<h3>2.4 崩人设红线</h3>
+<ul>
+<li>❌ 写成纯粹柔弱、哭哭啼啼的工具人 → 她有政治敏感、能替范闲剖析后宫。</li>
+<li>❌ 写成宫斗心机女 → 她的&quot;心机&quot;只用在护家护夫，不争权。</li>
+<li>✅ 正确味道：<strong>病弱的身子、清明的脑子、倔强的心</strong>；对母亲长公主是&quot;爱恨撕扯&quot;。</li>
+</ul>
+<hr>
+<h2>附：主角线可复用规律（供续写）</h2>
+<ol>
+<li><strong>&quot;穿越者+身世之谜&quot;双引擎</strong>：现代记忆负责魅力与卖点（诗词/红楼），身世负责长线悬念与复仇动力。</li>
+<li><strong>能力与人格错位</strong>：他最强的不是武力，而是信息与人心——这让&quot;爽&quot;来自智斗而非碾压，耐读。</li>
+<li><strong>护崽开关</strong>：&quot;自己人&quot;是唯一能让他失控的按钮，反复用于制造高潮。</li>
+<li><strong>复仇必须&quot;体面&quot;</strong>：明面立誓、当众打脸，是本书爽点的固定发动机。</li>
+<li><strong>女主是&quot;网结&quot;而非&quot;花瓶&quot;</strong>：让女主身兼血缘枢纽 + 情感归处，一鱼两吃。</li>
+</ol>
+
+</div>
+</body>
+</html>

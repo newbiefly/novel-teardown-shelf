@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 · 力量体系（《庆余年》创作蓝图）</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,8,12,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity .2s;}
+.topbar a:hover{opacity:.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.wrap{max-width:1280px;margin:0 auto;padding:32px 24px 80px;position:relative;z-index:1;}
+h1{font-size:24px;color:var(--gold2);letter-spacing:3px;font-weight:900;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);margin-bottom:18px;}
+h2{font-size:18px;color:var(--gold2);letter-spacing:2px;margin:44px 0 16px;border-left:3px solid var(--gold);padding-left:14px;font-weight:700;}
+h3{font-size:14px;color:var(--gold2);letter-spacing:1px;margin:22px 0 10px;font-weight:700;}
+p{font-size:13px;line-height:1.95;color:#c9c6c0;margin-bottom:10px;}
+strong{color:var(--gold2);font-weight:600;}
+em{color:var(--gold);font-style:normal;}
+blockquote{background:rgba(201,169,97,0.05);border-left:3px solid rgba(201,169,97,0.3);border-radius:0 10px 10px 0;
+  padding:14px 20px;margin:14px 0;font-size:12.5px;color:#b6b3ad;line-height:1.9;}
+blockquote strong{color:var(--gold2);}
+code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.chart{background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px;margin:16px 0;overflow:hidden;}
+.chart svg{display:block;width:100%;height:auto;}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);}
+.legend span{font-size:11.5px;color:#a9a6a0;display:flex;align-items:center;gap:6px;}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none;}
+.grid{display:grid;gap:14px;}
+.g4{grid-template-columns:repeat(4,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g2{grid-template-columns:repeat(2,1fr);}
+@media(max-width:1020px){.g4{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:720px){.g4,.g3,.g2{grid-template-columns:1fr;}}
+.card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:15px 16px;transition:.2s;}
+.card:hover{border-color:rgba(201,169,97,0.5);background:rgba(201,169,97,0.05);transform:translateY(-2px);}
+.card h4{font-size:13px;color:var(--gold2);margin-bottom:9px;letter-spacing:1px;display:flex;align-items:center;gap:8px;}
+.card h4 .idx{font-size:11px;color:#08080c;background:var(--gold);border-radius:4px;padding:1px 6px;font-weight:700;flex:none;}
+.card p{font-size:12px;line-height:1.8;color:#c2bfb9;margin-bottom:6px;}
+.card .meta{font-size:11px;color:#8f8c86;line-height:1.7;}
+.card .meta b{color:var(--gold);font-weight:600;}
+.rule{background:rgba(217,107,107,0.04);border:1px solid rgba(217,107,107,0.18);border-radius:12px;padding:14px 16px;transition:.2s;}
+.rule:hover{border-color:rgba(217,107,107,0.45);background:rgba(217,107,107,0.08);transform:translateY(-2px);}
+.rule h4{font-size:12.5px;color:#e8b0b0;margin-bottom:7px;display:flex;gap:8px;align-items:center;}
+.rule h4 .idx{font-size:10px;color:#1a0f0f;background:#d96b6b;border-radius:4px;padding:1px 6px;font-weight:700;flex:none;}
+.rule p{font-size:11.5px;line-height:1.8;color:#c4b6b6;margin:0;}
+.rule p b{color:#e8c97a;}
+#tip{position:fixed;pointer-events:none;z-index:999;background:rgba(12,12,18,0.97);
+  border:1px solid rgba(201,169,97,0.45);border-radius:9px;padding:9px 12px;font-size:12px;color:#e8e6e3;
+  max-width:300px;line-height:1.65;display:none;box-shadow:0 10px 34px rgba(0,0,0,0.7);}
+#tip b{color:var(--gold2);}
+#tip span{color:#e8b0b0;}
+.hint{font-size:11px;color:#87847e;margin-top:8px;letter-spacing:.5px;line-height:1.8;}
+.hint strong{color:var(--gold2);}
+svg text{font-family:'PingFang SC','Microsoft YaHei',sans-serif;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">庆余年 · 力量体系蓝图</span>
+</div>
+<div class="wrap">
+  <h1>15 · 力量体系</h1>
+  <blockquote>
+    数据源：<code>拆解数据/蓝图/15_力量体系.md</code> ＋ <code>拆解数据/台账/力量升级台账.md</code><br>
+    章号口径：<strong>全书连续编号 第0章 ~ 第746章</strong>。本书武力是<strong>"低武 + 写实"的权谋底色</strong>——武力只是权谋工具之一（武力最高者庆帝恰是最大的权谋家）。
+  </blockquote>
+
+  <h2>一、等级阶梯 · 战力标尺</h2>
+  <p>自下而上七级台阶：<em>未入流 → 九品下 → 九品中 → 九品上 → 九品上·巅峰 → 大宗师 → 超越大宗师</em>；<strong>火器</strong>游离于体系之外，是跨文明的越级外挂。悬停每一级查看代表角色与战力定位。</p>
+  <div class="chart"><div id="ladder"></div>
+    <div class="hint">读法：九品上 → 大宗师是<strong>鸿沟</strong>（"范闲九品实力在宗师前连一丝还手可能都没有"，第397章）；越级斩杀只有主角靠毒/暗器/枪实现（非等级碾压）；五竹不属于品级体系，是"体系外答案"。</div>
+  </div>
+
+  <h2>二、角色定位散点图</h2>
+  <p>横轴＝登场 / 成名章号（0 → 746），纵轴＝等级。点＝角色；<strong>实心金点</strong>为大宗师，<strong>菱形</strong>为主角范闲，<strong>红点</strong>为体系外（五竹 / 火器）。悬停查看代表作战。</p>
+  <div class="chart"><div id="scatter"></div>
+    <div class="legend">
+      <span><i style="background:#e8c97a"></i>大宗师</span>
+      <span><i style="background:#c9a961;border:1px dashed #8a6f2f"></i>假宗师 / 幌子</span>
+      <span><i style="background:#7fb0c9"></i>九品（上 / 中 / 下）</span>
+      <span><i style="background:#8a8a92"></i>八品及以下</span>
+      <span><i style="background:#9d8fd0"></i>非品级（毒术）</span>
+      <span><i style="background:#d96b6b"></i>体系外（火器 / 神庙造物）</span>
+      <span><i style="background:#ffd84d"></i>范闲（主角）</span>
+    </div>
+  </div>
+
+  <h2>三、范闲升级曲线（19 个净推进节点）</h2>
+  <p>只记<strong>净等级 / 境界的实质变化</strong>；<span style="color:#d96b6b">★</span> ＝ 暴跌 / 回撤节点（共 5 处）。曲线的骨架是<strong>"阶梯式跃升 + 暴跌回撤"交替</strong>的锯齿。</p>
+  <div class="chart"><div id="curve"></div>
+    <div class="legend">
+      <span><i style="background:#e8c97a"></i>境界（净推进）</span>
+      <span><i style="background:#d96b6b"></i>★ 暴跌 / 回撤（5 处）</span>
+    </div>
+  </div>
+
+  <h3>升级节奏的可复用规律</h3>
+  <div class="grid g2">
+    <div class="card"><h4>1 · 阶梯跃升 + 暴跌回撤</h4><p>每次大升级前后设"暴跌"（第296章散功、第304章崩散）——<strong>强→弱→更强的锯齿曲线</strong>是力量节奏骨架，避免"一路顺风"。</p></div>
+    <div class="card"><h4>2 · "外物换功"是过坎法</h4><p>每遇瓶颈靠<strong>获取新功法 / 新资源</strong>突破（天一道心法、四顾剑剑法、苦荷遗册），而非闭关苦练。</p></div>
+    <div class="card"><h4>3 · 战力与权势同频</h4><p>力量巅峰期（第597章后）恰是权势巅峰（掌内库、监察院）——<strong>武力不是孤立的</strong>，二者互相成就。</p></div>
+    <div class="card"><h4>4 · 宗师之路刻意留白</h4><p>范闲始终"戳不破那张纸"（第629/636章），<strong>全书不给大宗师名分</strong>——终点是"弑宗师"而非"成宗师"。</p></div>
+  </div>
+
+  <h2>四、8 条力量线</h2>
+  <div class="grid g4" id="lines"></div>
+
+  <h2>五、续写红线（8 条）</h2>
+  <p>力量体系<strong>不可违背的硬规则</strong>——续写越线即崩。</p>
+  <div class="grid g2" id="redlines"></div>
+
+  <blockquote style="margin-top:28px">
+    <strong>一句话总纲：</strong>真气分品、九品为峰、宗师为巅、五竹在体系之外、火器在体系之上；主角靠"外物换功 + 毒枪并用"跨越鸿沟，且永远以"弑宗师"而非"成宗师"为终点。
+  </blockquote>
+</div>
+<div id="tip"></div>
+<script>
+/* —— tooltip 属性安全：属性值里禁止出现裸引号/尖括号（否则 SVG 解析崩坏），白名单标签保留 —— */
+function __esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function __tip(s){
+  var K=['<b>','</b>','<br>','<br/>','<span>','</span>','<em>','</em>'],t=String(s),i;
+  for(i=0;i<K.length;i++){t=t.split(K[i]).join('\u0001'+i+'\u0002');}
+  t=__esc(t);
+  for(i=0;i<K.length;i++){t=t.split('\u0001'+i+'\u0002').join(K[i]);}
+  return t;
+}
+
+/* ============ 力量线 & 红线 ============ */
+const LINES=[
+ ['真气','一切武道的基础能量，修于经脉、可外放 / 离体','全民武者','基础单位；与"西洋法术（辐射/元气）"暗含同一底层（第721-733章）'],
+ ['九品制','武道官方分级：一到九品，九品之上为大宗师','庆国 / 北齐 / 东夷通行','社会化的武力标尺，用于评价人（"九品高手""宗师"）'],
+ ['霸道功诀（无名功诀·上册）','范闲母系核心功法；真气霸道凶戾','叶轻眉 → 五竹 → 范闲','与穿越血脉绑定，是主角主功法'],
+ ['王道功诀（无名功诀·下册）','同源下半卷，庆帝独修成','庆帝（第四宗师）','上位功法，主角始终未习（第576-577章）'],
+ ['天一道心法','北齐苦荷一脉内功；柔缓可修经脉','苦荷 → 海棠、范若若；后授范闲','与霸道真气互补，主角"换功"根基（第339-342章）'],
+ ['流云散手 / 大劈棺、四顾剑法','叶流云 / 叶家拳术；四顾剑剑法','叶流云 → 叶家；四顾剑 → 剑庐 / 范闲','招式类外功，非内功'],
+ ['用毒 / 医术','毒、解剖、人体构造、易容、外科','费介 → 范闲；木蓬','本书独有"非武功的制胜力"：屡以毒/药/手术取胜'],
+ ['火器（重狙等）','M82A1 狙击枪（"箱子"）、轮椅火器、守城弩','叶轻眉遗物 → 范闲；庆帝方守城弩','跨文明降维武器，全书最强底牌，非人人可有']
+];
+const REDS=[
+ ['品级不可乱跳','九品 → 大宗师是鸿沟，<b>任何角色不可无铺垫越级</b>；主角越级杀敌只能靠毒/暗器/枪/阵法，不能靠"突然变强"。'],
+ ['火器不可扩散','全书现代火器只有"箱子（重狙）"与"轮椅火器"两件，来自叶轻眉 / 神庙遗物；<b>弹药有限、来源唯一</b>。不得出现第二把枪被量产 / 被普通角色获得。'],
+ ['真气有隐患设定','霸道真气<b>必然暴走</b>（长期弱化），天一道心法用于修经脉——主角的强必须伴随代价，不可写成无副作用的神功。'],
+ ['大宗师会老会死','宗师非无敌（大东山四宗师互有死伤），庆帝"已老"因大东山消耗 + 暗伤——续写<b>不可把大宗师写成不死之身</b>。'],
+ ['五竹属体系外','五竹不是"更高一品的武者"，是<b>神庙造物（机器人）</b>，黑布后为射线（"彩虹"）。不得写成"隐藏的第五宗师"。'],
+ ['内功与外功分工','霸道 / 王道 / 天一道是内功；流云散手、四顾剑法是招法；用毒 / 医术是制胜术。<b>三者不可混淆</b>，不可"内功一练招法自动满级"。'],
+ ['"西洋法术"是伏笔不是外挂','苦荷遗册（第656章）暗示前代科技 / 辐射元气，属未解之谜，须<b>保持模糊</b>，不可直接兑现为"魔法"。'],
+ ['主角不封顶大宗师','全书范闲停在"九品上·离体剑气大成"，<b>终极目标是弑宗师而非成宗师</b>；若让他突破大宗师，即背离"人的极限"母题。']
+];
+document.getElementById('lines').innerHTML=LINES.map((d,i)=>
+ `<div class="card"><h4><span class="idx">${String(i+1).padStart(2,'0')}</span>${d[0]}</h4>
+  <p>${d[1]}</p>
+  <div class="meta"><b>归属：</b>${d[2]}<br><b>定位：</b>${d[3]}</div></div>`).join('');
+document.getElementById('redlines').innerHTML=REDS.map((d,i)=>
+ `<div class="rule"><h4><span class="idx">红线${i+1}</span>${d[0]}</h4><p>${d[1]}</p></div>`).join('');
+
+/* ============ 阶梯图 ============ */
+(function(){
+ const LV=[
+  ['未入流','平民 · 文官','普通人／不能修武者',38,'<b>未入流</b><br>普通人／不能修武者 — 平民、文官'],
+  ['九品下（门槛）','范闲初入九品 · 第198章','可越级杀八品 · 远逊九品上',82,'<b>九品下（九品门槛）</b><br>可越级杀八品，远逊九品上 — 范闲初入九品（第198章）'],
+  ['九品中','（过渡层）','一方强手',126,'<b>九品中</b><br>一方强手 —（过渡层）'],
+  ['九品上','海棠·影子·云之澜·燕小乙等','宗师之下顶尖 · 一域无敌',178,'<b>九品上</b><br>宗师之下顶尖，一域无敌 — 海棠、影子、云之澜、燕小乙、秦业、狼桃、洪四庠(伪)'],
+  ['九品上 · 巅峰','范闲（第597章）· 王十三郎','触摸人类极限 · 宗师之下第一流',238,'<b>九品上·巅峰</b><br>触摸人类极限，大宗师之下第一流 — 范闲（第597-604章）、王十三郎（剑意大进后）'],
+  ['大宗师','庆帝·苦荷·四顾剑·叶流云','人类武力巅峰 · 一袖杀刺客',306,'<b>大宗师</b><br>人类武力巅峰 — 庆帝、苦荷、四顾剑、叶流云（第30-31章 / 第568章揭晓庆帝）'],
+  ['超越大宗师','五竹（神庙造物）','非人类 · 铁钎一击无人能避',384,'<b>超越大宗师</b><br>非人类，铁钎一击无人能避 — 五竹（神庙机器人，黑布后为"彩虹"，第745章）']
+ ];
+ let s='<svg viewBox="0 0 1360 660" width="100%" role="img" aria-label="等级阶梯图">';
+ s+='<defs><linearGradient id="gLad" x1="0" y1="1" x2="0" y2="0">'+
+    '<stop offset="0" stop-color="#c9a961" stop-opacity="0.04"/>'+
+    '<stop offset="1" stop-color="#e8c97a" stop-opacity="0.2"/></linearGradient></defs>';
+ s+='<text x="40" y="30" fill="#e8c97a" font-size="16" font-weight="700" letter-spacing="2">等级阶梯 · 武力标尺（自下而上）</text>';
+ s+='<rect x="1010" y="12" width="316" height="66" rx="9" fill="rgba(217,107,107,0.07)" stroke="rgba(217,107,107,0.4)" stroke-dasharray="4 3"/>';
+ s+='<text x="1030" y="38" fill="#e8b0b0" font-size="12.5" font-weight="700">外挂 · 火器（越级底牌）</text>';
+ s+='<text x="1030" y="58" fill="#c4b6b6" font-size="10.5">重狙 M82A1 ／ 轮椅火器 · 跨文明降维，可重创大宗师</text>';
+ const base=580;
+ LV.forEach((d,i)=>{
+   const x=40+i*182, cx=x+91, top=base-d[3];
+   s+=`<rect x="${x}" y="${top}" width="182" height="${d[3]}" fill="url(#gLad)" stroke="rgba(201,169,97,0.35)" stroke-width="1" rx="3" data-tip="${__tip(d[4])}"/>`;
+   s+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${base}" stroke="rgba(201,169,97,0.22)"/>`;
+   s+=`<text x="${cx}" y="${base-10}" text-anchor="middle" fill="rgba(201,169,97,0.45)" font-size="22" font-weight="900">${i+1}</text>`;
+   s+=`<text x="${cx}" y="${top-58}" text-anchor="middle" fill="#e8c97a" font-size="14.5" font-weight="700">${d[0]}</text>`;
+   s+=`<text x="${cx}" y="${top-40}" text-anchor="middle" fill="#e8e6e3" font-size="11">${d[1]}</text>`;
+   s+=`<text x="${cx}" y="${top-23}" text-anchor="middle" fill="#9a978f" font-size="10.5">${d[2]}</text>`;
+ });
+ s+=`<line x1="40" y1="${base}" x2="1320" y2="${base}" stroke="rgba(201,169,97,0.5)" stroke-width="1.5"/>`;
+ s+=`<text x="1320" y="${base+20}" text-anchor="end" fill="#8f8c86" font-size="11">战力递增 →</text>`;
+ s+='</svg>';
+ document.getElementById('ladder').innerHTML=s;
+})();
+
+/* ============ 散点图 ============ */
+(function(){
+ const tiers=['未入流 / 低品','八品','九品下','九品中 / 衰退','九品上','九品上·巅峰','大宗师','超越 / 火器'];
+ const COL={master:'#e8c97a',fake:'#c9a961',nine:'#7fb0c9',low:'#8a8a92',spec:'#9d8fd0',beyond:'#d96b6b',hero:'#ffd84d'};
+ const CH=[
+  {n:'五竹',c:0,t:7,k:'beyond',d:'<b>五竹</b>（神庙造物）<br>超越大宗师 · 铁钎一击无人能避<br>全程护范闲 · 第0章起 · 第745章"彩虹"贯穿庆帝'},
+  {n:'费介',c:4,t:4,k:'spec',d:'<b>费介</b><br>用毒 / 医术宗师级（非品级）<br>范闲的贴身底牌 · 第4章'},
+  {n:'叶流云',c:30,t:6,k:'master',d:'<b>叶流云</b>·大宗师<br>流云散手 / 大劈棺<br>第30章 · 一剑斩塌抱月楼顶楼（第397章）'},
+  {n:'苦荷',c:31,t:6,k:'master',dy:-7,d:'<b>苦荷</b>·大宗师<br>天一道心法<br>第31章 · 大东山被废、命不久（第568章）'},
+  {n:'四顾剑',c:31,t:6,k:'master',dy:7,d:'<b>四顾剑</b>·大宗师<br>四顾剑法<br>第31章 · 残躯一剑七杀→身死（第631章）'},
+  {n:'肖恩',c:191,t:3,k:'low',d:'<b>肖恩</b><br>前九品上（衰退）<br>借毒逼毒、越狱 · 第191章'},
+  {n:'海棠朵朵',c:198,t:4,k:'nine',d:'<b>海棠朵朵</b>·九品上<br>苦荷关门弟子 · 天一道<br>宗师之下少有人及 · 第198章'},
+  {n:'高达',c:213,t:1,k:'low',d:'<b>高达</b>·八品顶端<br>虎卫战力<br>第213章'},
+  {n:'狼桃',c:237,t:4,k:'nine',d:'<b>狼桃</b>·九品上<br>北齐苦荷门下<br>第237章'},
+  {n:'影子',c:310,t:4,k:'nine',d:'<b>影子</b>·九品上<br>天下第一刺客<br>以九品上之身正面重伤大宗师（第632章）'},
+  {n:'云之澜',c:338,t:4,k:'nine',d:'<b>云之澜</b>·九品上<br>东夷剑术大家 · 剑庐代表<br>第338章'},
+  {n:'洪四庠',c:340,t:6,k:'fake',d:'<b>洪四庠</b>·大宗师级（<b>假宗师</b>）<br>真气"是借的"，庆帝之幌子<br>第340章 · 第530章殒'},
+  {n:'燕小乙',c:455,t:4,k:'nine',d:'<b>燕小乙</b>·九品上<br>箭术，箭意令范闲低头受压<br>被范闲重狙杀（第525章）'},
+  {n:'秦业',c:555,t:4,k:'nine',d:'<b>秦业（秦老爷子）</b>·九品上<br>真气纯厚宏大 · 军中第一老将 · 旧案主谋<br>第555章'},
+  {n:'庆帝',c:568,t:6,k:'master',d:'<b>庆帝</b>·大宗师（第四位·隐藏）<br>王道真气 · 人类武力巅峰<br>隐藏至第568章揭晓 · 第745章身死'},
+  {n:'范闲',c:597,t:5,k:'hero',d:'<b>范闲</b>·九品上·巅峰<br>"快要触摸人类极限"，大宗师之下第一流<br>第597章 · 终局除庆帝外无人可敌'},
+  {n:'王十三郎',c:665,t:4,k:'nine',d:'<b>王十三郎</b>·九品上<br>剑庐幼徒→剑意大进（一剑逼退范闲）<br>第665章 · 第722章右臂经脉尽断'},
+  {n:'陈萍萍',c:679,t:7,k:'beyond',d:'<b>陈萍萍</b>（火器·体系外）<br>半身瘫痪、战力归零，轮椅火器可伤大宗师<br>唯一一次重创庆帝 · 第679-680章'},
+  {n:'叶完',c:706,t:4,k:'nine',d:'<b>叶完</b>·九品上<br>南庆第一高手 · 流云散手 · 叶家新生代<br>第706章'}
+ ];
+ const L=100,R=1320,TOP=64,BOT=428,MAXC=746;
+ const X=c=>L+c/MAXC*(R-L);
+ const Y=t=>400-t*46;
+ let s='<svg viewBox="0 0 1360 520" width="100%" role="img" aria-label="角色定位散点图">';
+ s+='<text x="24" y="26" fill="#e8c97a" font-size="15" font-weight="700" letter-spacing="1.5">角色定位 · 登场 / 成名章号 × 等级</text>';
+ tiers.forEach((name,t)=>{
+   const y=Y(t);
+   s+=`<line x1="${L}" y1="${y}" x2="${R}" y2="${y}" stroke="rgba(255,255,255,0.06)"/>`;
+   s+=`<text x="${L-10}" y="${y+4}" text-anchor="end" fill="#8f8c86" font-size="11">${name}</text>`;
+ });
+ for(let c=0;c<=700;c+=100){
+   s+=`<line x1="${X(c)}" y1="${TOP}" x2="${X(c)}" y2="${BOT}" stroke="rgba(255,255,255,0.03)"/>`;
+   s+=`<text x="${X(c)}" y="${BOT+26}" text-anchor="middle" fill="#767370" font-size="10.5">第${c}章</text>`;
+ }
+ s+=`<line x1="${L}" y1="${BOT}" x2="${R}" y2="${BOT}" stroke="rgba(201,169,97,0.4)"/>`;
+ s+=`<text x="${R}" y="${BOT+48}" text-anchor="end" fill="#8f8c86" font-size="11">登场 / 成名章号 →</text>`;
+ CH.forEach(d=>{
+   const x=X(d.c), y=Y(d.t)+(d.dy||0), col=COL[d.k];
+   const r=d.k==='hero'?8:(d.k==='master'?7:6);
+   if(d.k==='hero'){
+     s+=`<polygon points="${x},${y-9} ${x+9},${y} ${x},${y+9} ${x-9},${y}" fill="${col}" stroke="#08080c" stroke-width="1.5" data-tip="${__tip(d.d)}"/>`;
+   }else{
+     const dash=d.k==='fake'?'stroke-dasharray="3 2" stroke="#8a6f2f" stroke-width="1.5"':'stroke="#08080c" stroke-width="1"';
+     s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${col}" ${dash} data-tip="${__tip(d.d)}"/>`;
+   }
+   s+=`<text x="${x}" y="${y-12}" text-anchor="middle" fill="#b9b6b0" font-size="10">${d.n}</text>`;
+ });
+ s+='</svg>';
+ document.getElementById('scatter').innerHTML=s;
+})();
+
+/* ============ 范闲升级曲线 ============ */
+(function(){
+ const N=[
+  [1,0.45,'澹州启蒙 · 真气初成'],
+  [32,1.2,'打通顶门大关 · 功法小成'],
+  [88,1.6,'牛栏街刺杀 · 临阵爆发'],
+  [112,1.7,'京都"小手段"成型'],
+  [141,1.9,'盗钥开箱 · 得狙击枪'],
+  [145,1.45,'大婚 · 武力线休眠'],
+  [198,2.5,'雾渡猎虎 · 刚入九品门槛'],
+  [237,2.9,'绝壁神庙 · 九品初'],
+  [281,3.3,'抱月楼 · 霸道大成'],
+  [296,1.0,'雨街杀局 · 散功濒死'],
+  [301,1.35,'陈园议和 · 转控损'],
+  [304,0.5,'悬空庙刺 · 经脉尽废'],
+  [340,2.6,'换功赴苏 · 经脉重建'],
+  [374,3.35,'夜杀袁梦 · 悟四顾剑精髓'],
+  [597,4.5,'心战三日 · 九品上巅峰'],
+  [604,4.6,'十鞭新徒 · 九品上稳固'],
+  [657,4.85,'四顾剑之死 · 得剑庐十二剑'],
+  [716,5.5,'苍山剑有霜 · 离体剑气大成'],
+  [745,6.2,'神庙→终局 · 元气修复']
+ ];
+ const STARS=[5,9,10,11,12];
+ const SRE={5:'★ 回撤：武力线休眠（评级回撤）',9:'★ 暴跌：真气暴走、散功濒死',10:'★ 谷底：隐患转控损、低位盘整',11:'★ 全书谷底：真气崩散、经脉尽废',12:'★ 破而后立：废功后经脉重建'};
+ const L=72,R=1330,TOP=48,BOT=372,MAXC=746,MAXV=6.5;
+ const X=c=>L+c/MAXC*(R-L);
+ const Y=v=>BOT-v/MAXV*(BOT-TOP);
+ let s='<svg viewBox="0 0 1360 440" width="100%" role="img" aria-label="范闲升级曲线">';
+ s+='<defs><linearGradient id="gLine" x1="0" y1="0" x2="1" y2="0">'+
+    '<stop offset="0" stop-color="#7fb0c9"/><stop offset="0.45" stop-color="#e8c97a"/><stop offset="1" stop-color="#ffd84d"/></linearGradient>'+
+    '<linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">'+
+    '<stop offset="0" stop-color="#e8c97a" stop-opacity="0.22"/><stop offset="1" stop-color="#e8c97a" stop-opacity="0"/></linearGradient></defs>';
+ s+='<text x="24" y="26" fill="#e8c97a" font-size="15" font-weight="700" letter-spacing="1.5">范闲升级曲线 · 19 个净推进节点</text>';
+ [[0.45,'未入流'],[2.5,'九品下'],[3.3,'九品上'],[4.5,'九品上·巅峰'],[6.2,'近宗师·终局']].forEach(g=>{
+   const y=Y(g[0]);
+   s+=`<line x1="${L}" y1="${y}" x2="${R}" y2="${y}" stroke="rgba(255,255,255,0.05)"/>`;
+   s+=`<text x="${L-10}" y="${y+4}" text-anchor="end" fill="#7d7a75" font-size="10">${g[1]}</text>`;
+ });
+ for(let c=0;c<=700;c+=100){
+   s+=`<line x1="${X(c)}" y1="${TOP}" x2="${X(c)}" y2="${BOT}" stroke="rgba(255,255,255,0.03)"/>`;
+   s+=`<text x="${X(c)}" y="${BOT+26}" text-anchor="middle" fill="#767370" font-size="10.5">第${c}章</text>`;
+ }
+ const pts=N.map(d=>[X(d[0]),Y(d[1])]);
+ s+=`<polygon points="${L},${BOT} ${pts.map(p=>p[0]+','+p[1]).join(' ')} ${X(745)},${BOT}" fill="url(#gArea)"/>`;
+ s+=`<polyline points="${pts.map(p=>p[0]+','+p[1]).join(' ')}" fill="none" stroke="url(#gLine)" stroke-width="2.5" stroke-linejoin="round"/>`;
+ N.forEach((d,i)=>{
+   const x=X(d[0]), y=Y(d[1]);
+   const st=STARS.includes(i);
+   const col=st?'#d96b6b':'#e8c97a';
+   const tip=`<b>第${d[0]}章</b> · ${d[2]}${st?'<br><span>'+SRE[i]+'</span>':''}`;
+   if(st){
+     s+=`<circle cx="${x}" cy="${y}" r="7" fill="none" stroke="#d96b6b" stroke-width="1.5" data-tip="${__tip(tip)}"/>`;
+     s+=`<circle cx="${x}" cy="${y}" r="3.5" fill="#d96b6b" data-tip="${__tip(tip)}"/>`;
+     s+=`<text x="${x}" y="${y-14}" text-anchor="middle" fill="#e8b0b0" font-size="12">★</text>`;
+   }else{
+     s+=`<circle cx="${x}" cy="${y}" r="4.5" fill="${col}" stroke="#08080c" stroke-width="1" data-tip="${__tip(tip)}"/>`;
+   }
+   if([1,198,296,304,340,597,716,745].includes(d[0])){
+     s+=`<text x="${x}" y="${y+18}" text-anchor="middle" fill="#a9a6a0" font-size="9.5">${d[0]}</text>`;
+   }
+ });
+ s+='</svg>';
+ document.getElementById('curve').innerHTML=s;
+})();
+
+/* ============ tooltip ============ */
+const tip=document.getElementById('tip');
+document.addEventListener('mousemove',e=>{
+  const el=e.target.closest('[data-tip]');
+  if(el){
+    tip.innerHTML=el.getAttribute('data-tip');
+    tip.style.display='block';
+    let x=e.clientX+16,y=e.clientY+16;
+    const r=tip.getBoundingClientRect();
+    if(x+r.width>innerWidth-12)x=e.clientX-r.width-16;
+    if(y+r.height>innerHeight-12)y=e.clientY-r.height-16;
+    tip.style.left=Math.max(6,x)+'px';tip.style.top=Math.max(6,y)+'px';
+  }else tip.style.display='none';
+});
+</script>
+</body>
+</html>

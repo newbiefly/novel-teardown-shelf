@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14 · 视角分配表（《庆余年》创作蓝图） · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>14 · 视角分配表（《庆余年》创作蓝图）</h1>
+<blockquote>
+<p>数据源：<code>_extract/视角.md</code>（139 单元【视角标注】分片）<br>统计口径：全书 139 个情节单元、747 章（第0章~第746章，含楔子/末章）。<br>编写日期：2026-10-11｜<strong>群像多 POV 是本书硬特征</strong>，本篇是仿写本书时&quot;何时切、切给谁&quot;的唯一依据。</p>
+</blockquote>
+<h2>阅读指引</h2>
+<p>本篇回答三件事：<strong>① 各 POV 用多少（占比）；② 切换规则（何时切、怎么切）；③ 多 POV 群像的编排法（可复用清单）。</strong></p>
+<hr>
+<h2>一、POV 使用统计（基于 139 单元实际分片）</h2>
+<h3>1.1 主锚（单元主视角）分布</h3>
+<blockquote>
+<p>&quot;主锚&quot;＝该单元叙事主体跟随谁的视角（允许在其中切出他者短视角）。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>主锚类别</th>
+<th>单元数</th>
+<th>单元占比</th>
+<th>覆盖章数</th>
+<th>章数占比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>范闲主锚</strong></td>
+<td>92</td>
+<td>66.2%</td>
+<td>526</td>
+<td>70.4%</td>
+</tr>
+<tr>
+<td><strong>群像多 POV（无单一主锚）</strong></td>
+<td>44</td>
+<td>31.7%</td>
+<td>213</td>
+<td>28.5%</td>
+</tr>
+<tr>
+<td><strong>陈萍萍/庆帝 双人主锚</strong></td>
+<td>2</td>
+<td>1.4%</td>
+<td>7</td>
+<td>0.9%</td>
+</tr>
+<tr>
+<td><strong>林若甫/袁宏道 主锚</strong>（唯一一例非主角主锚）</td>
+<td>1</td>
+<td>0.7%</td>
+<td>1</td>
+<td>0.1%</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>139</td>
+<td>100%</td>
+<td>747</td>
+<td>100%</td>
+</tr>
+</tbody></table>
+<p><strong>结论</strong>：范闲承担约 <strong>70%</strong> 篇幅的主锚（稳）；<strong>约 30% 篇幅切给群像/他人</strong>（本书&quot;多 POV&quot;体量的来源）。</p>
+<h3>1.2 各 POV 出场单元数（主锚或切出，命中即计）</h3>
+<table>
+<thead>
+<tr>
+<th>POV 组</th>
+<th>出场单元数</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>范闲</td>
+<td>132</td>
+<td>95.0%</td>
+</tr>
+<tr>
+<td>庆帝/皇室（庆帝·太后·皇后·太子·长公主·二/大/三皇子…）</td>
+<td>73</td>
+<td>52.5%</td>
+</tr>
+<tr>
+<td>陈萍萍/监察院（陈萍萍·费介·言冰云·言若海·沐铁）</td>
+<td>45</td>
+<td>32.4%</td>
+</tr>
+<tr>
+<td>范氏家族（范建·范若若·范思辙·柳氏·婉儿）</td>
+<td>39</td>
+<td>28.1%</td>
+</tr>
+<tr>
+<td>海棠/北齐线（海棠·苦荷·战豆豆·司理理·狼桃·上杉虎·肖恩·沈重）</td>
+<td>34</td>
+<td>24.5%</td>
+</tr>
+<tr>
+<td>东夷线（四顾剑·云之澜·王十三郎·影子·剑庐）</td>
+<td>21</td>
+<td>15.1%</td>
+</tr>
+<tr>
+<td>五竹/神庙</td>
+<td>11</td>
+<td>7.9%</td>
+</tr>
+</tbody></table>
+<h3>1.3 关键单角色出场单元数（POV 权重排序）</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>出场单元</th>
+<th>角色</th>
+<th>出场单元</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>范闲</td>
+<td>132</td>
+<td>洪竹</td>
+<td>11</td>
+</tr>
+<tr>
+<td>陈萍萍</td>
+<td>30</td>
+<td>五竹</td>
+<td>11</td>
+</tr>
+<tr>
+<td>庆帝</td>
+<td>25</td>
+<td>三皇子</td>
+<td>6</td>
+</tr>
+<tr>
+<td>长公主</td>
+<td>18</td>
+<td>大皇子</td>
+<td>10</td>
+</tr>
+<tr>
+<td>太子</td>
+<td>18</td>
+<td>苦荷</td>
+<td>6</td>
+</tr>
+<tr>
+<td>二皇子</td>
+<td>15</td>
+<td>范思辙</td>
+<td>5</td>
+</tr>
+<tr>
+<td>范建</td>
+<td>15</td>
+<td>王十三郎</td>
+<td>5</td>
+</tr>
+<tr>
+<td>海棠</td>
+<td>14</td>
+<td>战豆豆</td>
+<td>4</td>
+</tr>
+<tr>
+<td>言冰云</td>
+<td>13</td>
+<td>林婉儿</td>
+<td>8</td>
+</tr>
+<tr>
+<td>王启年</td>
+<td>9</td>
+<td>范若若</td>
+<td>9</td>
+</tr>
+<tr>
+<td>费介</td>
+<td>9</td>
+<td>四顾剑/影子/云之澜</td>
+<td>各7</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>多 POV/切换描述</strong>出现的单元共 <strong>59 个</strong>（139 中占 42%），是本书&quot;群像感&quot;的直接证据。</p>
+<p>权重读法：<strong>范闲(132) ≫ 陈萍萍(30)/庆帝(25) &gt; 长公主·太子(18) &gt; 二皇子·范建·海棠(14-15) &gt; 其余</strong>——续写时切出视角的<strong>优先级顺序</strong>即此。</p>
+</blockquote>
+<hr>
+<h2>二、视角切换规则（何时切、如何切、节奏）</h2>
+<h3>2.1 四级切换粒度</h3>
+<table>
+<thead>
+<tr>
+<th>粒度</th>
+<th>用法</th>
+<th>典型例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>段内短切</strong></td>
+<td>主体视角内插入一段他者内视角（几段即回）</td>
+<td>第45章插范建独白；第57章中段切宫典；第86章尾切范建回忆</td>
+</tr>
+<tr>
+<td><strong>章内换角</strong></td>
+<td>一章之内从A视角切到B视角收束</td>
+<td>第100-103章切庆帝/陈萍萍/范建/林若甫；第147章末切皇帝看画像</td>
+</tr>
+<tr>
+<td><strong>章间并置</strong></td>
+<td>相邻章各跟一人，章末留白、下章另起一人</td>
+<td>第525-529章（澹州北峰↔大东山顶）；第654-665章（范闲↔陈萍萍车队）</td>
+</tr>
+<tr>
+<td><strong>卷级多线</strong></td>
+<td>整卷并行多条 POV 线</td>
+<td>京都线↔北齐线↔江南线↔东夷线（第5-7卷常态）</td>
+</tr>
+</tbody></table>
+<h3>2.2 &quot;何时切&quot;的五条判据</h3>
+<ol>
+<li><strong>主体视角够不到时切</strong>：范闲不在场的关键博弈，切给当事人（第104章林若甫/袁宏道主锚；第616章云之澜夜谈）。</li>
+<li><strong>要制造&quot;读者知而主角不知&quot;时切</strong>：切给反派/幕后（第309章陈萍萍与五竹夜谈、第472章陈萍萍察觉&quot;有人查&quot;）。</li>
+<li><strong>要侧写主角神秘感时切&quot;外人&quot;</strong>：借驿丞、魏无成、百姓等<strong>陌生人视角反衬范闲</strong>（第102/103/104单元反复用）。</li>
+<li><strong>群像高潮时切</strong>：大战/大朝会/大案，多点并置（第557-561章荆戈刺秦、第743-745章终局）。</li>
+<li><strong>断章钩子时切</strong>：章末切到他者场景留悬念（第88章末斗笠人冷眼旁观；第665章末&quot;血人&quot;预告范闲未知之事）。</li>
+</ol>
+<h3>2.3 切换节奏（可量化的规律）</h3>
+<ul>
+<li><strong>单线期</strong>：前 5 卷多数单元仍以范闲为绝对主轴，他者视角<strong>仅作&quot;插入段&quot;</strong>（占比小、回得快），保证读者不迷失。</li>
+<li><strong>群像期</strong>：第5卷（京华江南，第253章起）后，随盘面（内库/江南/北齐/东夷）扩张，<strong>&quot;章间并置&quot;成为常态</strong>——多线各推进一段再交汇（第494-499章雷雨宫变、第512-517章东山祭天）。</li>
+<li><strong>爆发期</strong>：第6-7卷高潮段（第525章后），<strong>同一事件里多人视角轮转</strong>（第567-570章四宗师战：苦荷/四顾剑/庆帝/王十三郎/五竹/皇帝轮切），把&quot;战斗&quot;写成&quot;多方心理博弈&quot;。</li>
+<li><strong>收束期</strong>：结局（第734-746章）回到&quot;多维轮换&quot;，但每个视角<strong>只给一小段</strong>，快速交代所有人归宿后收于范闲。</li>
+</ul>
+<h3>2.4 &quot;怎么切&quot;的技术手法</h3>
+<ul>
+<li><strong>另起一地另起一人</strong>（第500-505章采用，明言&quot;切换均以&#39;另起一地另起一人&#39;完成，无全知视角泄露&quot;）——<strong>视角切换不靠&quot;与此同时&quot;，靠场景物理隔离</strong>。</li>
+<li><strong>以他人之口转述</strong>替代直接切视角（第202-209章以林静/林文之口转述北齐国情的&quot;无切换&quot;处理）。</li>
+<li><strong>回忆视角</strong>作为特殊切法：插入整段倒叙（第628章四顾剑追忆叶轻眉、第632章影子复仇回忆）。</li>
+<li><strong>全知旁白</strong>作粘合剂：只用于交代局势、不泄露人物内心（第606章中段&quot;叙述者口吻勾勒京都产业与声望，无人物内心&quot;）。</li>
+</ul>
+<hr>
+<h2>三、多 POV 群像的编排法（可复用清单）</h2>
+<h3>3.1 核心公式：<strong>单锚点 + 卫星视角</strong></h3>
+<blockquote>
+<p><strong>主视角锚点（范闲）保证读者有&quot;回家的路&quot;，卫星视角按需切出、切完即回。</strong></p>
+</blockquote>
+<ul>
+<li>主锚（范闲）= 叙事&quot;主干道&quot;，占 ~70% 篇幅，读者始终知道&quot;主角在哪、要什么&quot;。</li>
+<li>卫星视角 = 从主干道<strong>嫁接出去的支线镜头</strong>，用于：扩视野、造信息差、侧写主角、烘托高潮。</li>
+<li><strong>红线</strong>：卫星视角<strong>不承担主线推进</strong>，只做&quot;补视角/补信息/补情绪&quot;，切完必须回到主锚或交给下一卫星。</li>
+</ul>
+<h3>3.2 切出视角的&quot;时机清单&quot;（可直接套用）</h3>
+<table>
+<thead>
+<tr>
+<th>时机</th>
+<th>切给谁</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主角不在场的重要博弈</td>
+<td>当事人/反派</td>
+<td>补剧情、埋信息差（第104/616章）</td>
+</tr>
+<tr>
+<td>主角的行动需要&quot;被看见&quot;</td>
+<td>外人/旁观者/群像</td>
+<td>侧写主角神秘与威慑（第102-104单元）</td>
+</tr>
+<tr>
+<td>主角即将获得重大信息</td>
+<td>信息持有者</td>
+<td>制造&quot;读者先觉&quot;或&quot;主角蒙在鼓里&quot;（第309/472章）</td>
+</tr>
+<tr>
+<td>大战/大典/大案</td>
+<td>多方参与者</td>
+<td>多点并置烘托宏大（第557-561/743-745章）</td>
+</tr>
+<tr>
+<td>章节收尾</td>
+<td>下一步事件的当事人</td>
+<td>断章钩子（第88/665章）</td>
+</tr>
+<tr>
+<td>群像高潮前的铺垫</td>
+<td>各线代表</td>
+<td>&quot;另起一地另起一人&quot;快速铺开盘面（第500-505章）</td>
+</tr>
+</tbody></table>
+<h3>3.3 群像编排的三条铁律</h3>
+<ol>
+<li><strong>主锚不失联</strong>：任何连续超过 2-3 个单元都不出现范闲视角，即需让他&quot;听消息/被提及&quot;回归（陈萍萍主线第119-122单元期间范闲线仍并行）。</li>
+<li><strong>切出必有用</strong>：每个卫星视角要么给<strong>新信息</strong>、要么给<strong>新情绪</strong>、要么给<strong>新视角反衬</strong>，绝不空切（对照第177章陈萍萍视角必有内幕）。</li>
+<li><strong>切出要&quot;多人一景&quot;而非&quot;一人一景&quot;</strong>：高潮段一次给<strong>多人</strong>（第567-570章同场切多人），让视角切换本身成为&quot;战况激烈&quot;的修辞。</li>
+</ol>
+<h3>3.4 与商业性的结合</h3>
+<ul>
+<li><strong>前 40 章</strong>（第1-40章）几乎不切、只跟范闲——<strong>新人读者友好期</strong>：先立主角代入，再放群像。</li>
+<li><strong>群像从第104章（林若甫主锚）开始加码</strong>，第253章后全面铺开——<strong>读者已养成追读习惯，才敢开多线</strong>。续写仿写时务必遵守这条&quot;先单线立人、后群像扩容&quot;的节奏。</li>
+</ul>
+<hr>
+<h2>四、仿写/续写操作清单（checklist）</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 主角（范闲）主锚篇幅<strong>不低于 60%</strong>，保持&quot;回家路&quot;。</li>
+<li><input disabled="" type="checkbox"> 切出视角按权重排序取材：陈萍萍/庆帝 &gt; 皇室诸人 &gt; 二皇子/范建/海棠 &gt; 其余。</li>
+<li><input disabled="" type="checkbox"> 每次切出问一句&quot;给读者什么新东西&quot;（信息/情绪/反衬），答不上来就不切。</li>
+<li><input disabled="" type="checkbox"> 切割手法优先&quot;另起一地另起一人&quot;，慎用&quot;与此同时&quot;。</li>
+<li><input disabled="" type="checkbox"> 大战/大典同场切<strong>多人</strong>，小节各给一小段，不拖长单一视角。</li>
+<li><input disabled="" type="checkbox"> 章末可切&quot;下一步当事人&quot;作钩子，但<strong>下章必须回到能承接主线的视角</strong>。</li>
+<li><input disabled="" type="checkbox"> 群像高潮前设&quot;铺垫段&quot;：以群像/各线代表速写盘面（学第500-505章的&quot;三段并置&quot;）。</li>
+<li><input disabled="" type="checkbox"> <strong>崩视角红线</strong>：不得让卫星视角人物&quot;知道&quot;他不可能知道的事（全知泄露）；不得在主角视角里写主角看不到的画面；不得连续多单元丢失主锚。</li>
+</ul>
+
+</div>
+</body>
+</html>

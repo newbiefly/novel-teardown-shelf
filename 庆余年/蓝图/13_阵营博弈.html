@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>庆余年 · 阵营博弈蓝图</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(201,169,97,.18);--card:rgba(255,255,255,.028);--muted:#9a978f;--ally:#c9a961;--hostile:#e05b5b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;background-attachment:fixed;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;background:rgba(8,8,12,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.topbar .back{font-size:14px;color:var(--muted);transition:.2s;}
+.topbar .back:hover{color:var(--gold2);}
+.topbar .title{font-size:15px;letter-spacing:.12em;color:var(--gold);font-weight:600;}
+.topbar .spacer{width:90px;}
+.container{max-width:1280px;margin:0 auto;padding:32px 24px 80px;}
+h1{font-size:30px;font-weight:700;letter-spacing:.06em;margin-bottom:8px;
+  background:linear-gradient(100deg,#fff 10%,var(--gold2) 55%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.sub{color:var(--muted);font-size:14px;line-height:1.9;margin-bottom:8px;}
+.sub b{color:var(--gold2);font-weight:600;}
+.coord{font-size:13px;color:#8d8a82;line-height:1.9;background:var(--card);border-left:2px solid var(--gold);
+  border-radius:0 6px 6px 0;padding:12px 16px;margin:18px 0 30px;}
+.coord code{color:var(--gold2);font-family:ui-monospace,Consolas,monospace;font-size:12.5px;}
+section{margin-bottom:48px;}
+.sec-h{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.sec-h .dot{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
+.sec-h h2{font-size:19px;font-weight:600;letter-spacing:.05em;color:#f0eee9;}
+.sec-h .en{font-size:11px;color:#6e6b64;letter-spacing:.18em;text-transform:uppercase;}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 14px 6px;}
+#net,#tl{display:block;width:100%;height:auto;}
+.netlegend{display:flex;flex-wrap:wrap;gap:14px 22px;font-size:12.5px;color:#b8b5ae;padding:6px 8px 14px;}
+.netlegend .lg{display:flex;align-items:center;gap:8px;}
+.netlegend .li{width:26px;height:0;border-top-width:2px;border-top-style:solid;}
+.tip{position:fixed;pointer-events:none;background:rgba(18,18,24,.98);border:1px solid var(--gold);border-radius:8px;
+  padding:9px 12px;font-size:12.5px;line-height:1.7;display:none;z-index:99;box-shadow:0 10px 34px rgba(0,0,0,.7);max-width:280px;}
+.tip .tt{color:var(--gold2);font-weight:600;font-size:13px;}
+.tip .td{color:#b0ada6;font-size:12px;}
+
+/* 阵营卡片 */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media(max-width:900px){.cards{grid-template-columns:1fr;}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;transition:.25s;}
+.card:hover{border-color:rgba(201,169,97,.55);background:rgba(201,169,97,.045);transform:translateY(-2px);}
+.card .bar{position:absolute;left:0;top:0;bottom:0;width:3px;}
+.card .hd{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
+.card .no{font-size:22px;font-weight:800;font-family:ui-monospace,Consolas,monospace;opacity:.9;}
+.card .nm{font-size:16px;font-weight:700;color:#f0eee9;letter-spacing:.03em;}
+.card .sb{font-size:11.5px;color:var(--muted);margin-left:auto;letter-spacing:.05em;}
+.card .fr{margin-top:9px;font-size:12.8px;line-height:1.85;}
+.card .fr .lb{display:inline-block;min-width:58px;color:var(--gold);font-weight:600;
+  background:rgba(201,169,97,.1);border-radius:4px;padding:1px 8px;font-size:11.5px;margin-right:6px;vertical-align:1px;}
+.card .fr .tx{color:#c4c1ba;}
+.card .fr .ch{color:var(--gold2);font-family:ui-monospace,Consolas,monospace;font-size:11.5px;}
+
+/* 权谋卡 */
+.moves{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:900px){.moves{grid-template-columns:1fr;}}
+.mv{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px;}
+.mv h4{font-size:14.5px;color:var(--gold2);margin-bottom:8px;letter-spacing:.04em;}
+.mv .def{font-size:12.8px;color:#b8b5ae;line-height:1.8;margin-bottom:9px;}
+.mv .ex{font-size:12.5px;color:#9ab0c4;line-height:1.8;border-left:2px solid rgba(91,143,214,.5);padding-left:10px;}
+.mv .ex b{color:#c9a961;font-weight:600;}
+.tmpl{background:#0b0b10;border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-top:16px;}
+.tmpl pre{font-family:ui-monospace,Consolas,monospace;font-size:12.8px;line-height:2.0;color:#c9a961;white-space:pre-wrap;word-break:break-word;}
+.tmpl pre .k{color:#7fc07f;}
+.tmpl pre .a{color:#5b8fd6;}
+.redlines{margin-top:16px;background:rgba(224,91,91,.05);border:1px solid rgba(224,91,91,.28);border-radius:10px;padding:16px 20px;}
+.redlines h4{color:#e08a8a;font-size:14px;margin-bottom:10px;letter-spacing:.05em;}
+.redlines ol{margin-left:18px;}
+.redlines li{font-size:13px;color:#c9c1c1;line-height:1.95;margin-bottom:6px;}
+.redlines li b{color:#f0b0b0;}
+
+.note{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;font-size:13.5px;line-height:2.0;color:#c4c1ba;}
+.note b{color:var(--gold2);}
+.note .splash{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+.note .sp{border:1px solid var(--line);border-radius:20px;padding:5px 15px;font-size:12.5px;color:#d8d5ce;background:rgba(201,169,97,.06);}
+.note .sp b{color:var(--gold);}
+.foot{text-align:center;color:#5f5c56;font-size:12px;margin-top:40px;letter-spacing:.1em;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="back" href="../index.html">← 返回总览</a>
+  <div class="title">庆余年 · 阵营博弈蓝图</div>
+  <div class="spacer"></div>
+</div>
+
+<div class="container">
+  <h1>阵营博弈 · 10 阵营 · 6 回合 · 24 演化节点</h1>
+  <p class="sub">《庆余年》猫腻 ｜ 745 章 / 307.4 万字 ｜ 数据源：139 张单元卡「阵营动态」字段</p>
+
+  <div class="coord">
+    <b>读图口径</b>：圆心<b>大小</b>＝阵营权重（影响力/实力）；圆心<b>位置邻近</b>＝关系亲疏；连线＝
+    <code>金色实线 = 联盟</code>／<code>红色虚线 = 敌对</code>／<code>金色虚线 = 隐性·阶段性·表面合作</code>。章号一律为全书连续编号。
+  </div>
+
+  <!-- 势力图 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>阵营势力图</h2><span class="en">Faction Power Map</span></div>
+    <div class="panel">
+      <svg id="net" width="100%" viewBox="0 0 1360 700" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="netlegend">
+        <div class="lg"><span class="li" style="border-color:#c9a961"></span>联盟</div>
+        <div class="lg"><span class="li" style="border-color:#e05b5b;border-top-style:dashed"></span>敌对</div>
+        <div class="lg"><span class="li" style="border-color:#c9a961;border-top-style:dashed"></span>隐性 / 阶段性合作</div>
+        <div class="lg" style="color:#8d8a82">悬停圆心可高亮该阵营的全部关系</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 回合时间线 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>权力博弈回合时间线</h2><span class="en">Round Timeline</span></div>
+    <div class="panel">
+      <svg id="tl" width="100%" viewBox="0 0 1360 300" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="netlegend">
+        <div class="lg"><span class="li" style="border-color:#c9a961;border-top-width:10px"></span>6 个代表回合（A–F，色块跨章范围）</div>
+        <div class="lg"><span class="li" style="border-color:#5b8fd6;border-top-width:10px;border-radius:50%"></span>24 个阵营演化节点</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 阵营卡片 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>10 阵营逐析</h2><span class="en">Faction Profiles</span></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- 权谋局设计法 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>可复用的「权谋局设计法」</h2><span class="en">Design Playbook</span></div>
+    <div class="moves" id="moves"></div>
+    <div class="tmpl">
+      <pre><span class="k">目标</span>（谁要什么）
+  └─ <span class="k">手段</span>（明面动作 + 一块「被对手以为在明处」的假棋）
+        └─ <span class="a">反制</span>（多来自隐藏第三方，让对手发现自己被多方算计）
+              └─ <span class="k">净变化</span>（力量对比改变：得/失 人·钱·兵·名；并留一个新钩子指向下一回合）</pre>
+    </div>
+    <div class="redlines">
+      <h4>三条结构红线（仿写时的「不要」）</h4>
+      <ol>
+        <li><b>不要让主角靠单打独斗赢</b>——本书每场逆转都靠「隐藏第三方」（五竹 / 叶家 / 陈萍萍的暗子）先布好的局，主角只是「收网的人」。独狼式胜利会让权谋味归零。</li>
+        <li><b>不要只写「两个阵营对打」</b>——每回合至少涉及 <b>3–4 方</b>（明敌、暗敌、隐藏友军、坐收渔利的皇帝），多方交叉才有「罗生门」味。</li>
+        <li><b>不要让一个反派打到底</b>——反派分级推进：家宅（二太太）→ 朝堂（长公主/太子/二皇子）→ 军方（秦家）→ 敌国（北齐/东夷）→ <b>终极反派（庆帝）</b>。层层加码，读者永远有更强的下一个。</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 演化总规律 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>阵营格局演化总规律</h2><span class="en">Grand Pattern</span></div>
+    <div class="note">
+      全书阵营格局经历 <b>四次大洗牌</b>：每一次都<b>先由范闲的局部胜利触发，再由皇帝的更大布局收编</b>，最后轮到范闲与皇帝正面对决。核心密码＝<b>「敌人越来越强、主角越来越强」的双螺旋</b>。
+      <div class="splash">
+        <span class="sp">① 后党倒 <b>第142章</b></span>
+        <span class="sp">② 皇子党灭 <b>第580章</b></span>
+        <span class="sp">③ 皇权威 <b>第584章</b></span>
+        <span class="sp">④ 皇权倒 <b>第745章</b></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">庆余年拆解 · 阵营博弈蓝图 ｜ 数据源：139 张单元卡【阵营动态】字段</div>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const NODES=[
+{id:'q1',name:'庆国朝堂本部',sub:'皇权中枢',x:680,y:150,w:100,c:'#c9a961',desc:'唯一真正掌权的阵营，不结盟、只用人'},
+{id:'q2',name:'监察院',sub:'陈萍萍系',x:840,y:300,w:72,c:'#5b8fd6',desc:'同时忠于皇权/叶轻眉/范闲，三种忠诚互相撕扯'},
+{id:'q3',name:'长公主一党',sub:'后党·信阳系',x:400,y:270,w:68,c:'#9b6bd6',desc:'中段主反派群，「经济链即敌营」样板'},
+{id:'q4',name:'二皇子党',sub:'靖王府系',x:235,y:430,w:48,c:'#7f93b0',desc:'被皇帝逼上夺嫡路的棋子'},
+{id:'q5',name:'太子党',sub:'东宫系',x:420,y:470,w:55,c:'#7fc07f',desc:'结构性天然继承人，一路被削'},
+{id:'q6',name:'北齐',sub:'镜像敌国',x:1105,y:150,w:62,c:'#5bc0c0',desc:'结构与庆国同构，互为影射'},
+{id:'q7',name:'东夷城',sub:'剑庐系',x:940,y:560,w:45,c:'#e08bb0',desc:'江湖与庙堂的缝合点，大宗师被「收购」'},
+{id:'q8',name:'西胡草原',sub:'部落联盟',x:1235,y:290,w:35,c:'#d99a5b',desc:'北齐「以空间换时间」的棋盘'},
+{id:'q9',name:'江南明家',sub:'财权阵营',x:1060,y:410,w:58,c:'#e05b5b',desc:'全书最完整的经济战样板'},
+{id:'q10',name:'范闲一系',sub:'主角阵营',x:700,y:440,w:88,c:'#e8c97a',desc:'滚雪球式阵营，与皇权从依附到对立'}
+];
+const EDGES=[
+['q1','q2','fragile'],['q1','q3','hostile'],['q1','q5','fragile'],['q1','q4','fragile'],
+['q1','q6','hostile'],['q1','q7','hostile'],['q1','q8','hostile'],['q1','q10','hostile'],
+['q3','q5','ally'],['q3','q4','ally'],['q3','q9','ally'],['q3','q6','ally'],
+['q2','q10','ally'],['q10','q9','hostile'],['q10','q4','hostile'],['q10','q5','hostile'],
+['q10','q7','ally'],['q10','q6','fragile'],['q6','q7','fragile'],['q6','q8','ally'],
+['q9','q7','fragile']
+];
+const CARD=[
+{no:'01',nm:'庆国朝堂本部',sb:'皇权中枢',c:'#c9a961',
+ need:'皇权独尊：压外戚、制军方、控财权、削藩镇，最终完成「三年一统天下」的霸业',
+ people:'庆帝（真身=最神秘大宗师）、太后与元老会、洪四痒（幌子）、叶重/宫典（禁军）、胡大学士/门下中书（文官）、贺宗纬（后期制衡刀）',
+ ally:'阶段性用任何人当工具：早期倚范家制后党，中期用范闲当诸皇子「磨刀石」，后期扶贺宗纬制监察院',
+ foe:'一切可能威胁皇权的力量——后党、军方秦家、监察院独立性、乃至范闲',
+ key:'①第274/219章「磨刀石」；②第459-462章借大朝会削监察院之权、御史换血；③第515-568章「大东山之变」以身为饵诱杀三大宗师、暴露真身；④第642-701章系统性削范闲党羽'},
+{no:'02',nm:'监察院',sb:'陈萍萍系',c:'#5b8fd6',
+ need:'守护叶轻眉留下的「铁规矩」（院内独立性、经费出自内库）；为范闲上位铺路',
+ people:'陈萍萍（院长）、言冰云、一处范闲系、六处影子、王启年/启年小组、袁宏道（最深钉子）、洪竹（宫中暗子）',
+ ally:'范家（第102章起暗盟）、皇帝（表面，经费与授权依赖皇权）、北齐谍网（第473章收编）',
+ foe:'刑部/都察院（言路）、贺宗纬系、皇权对独立性的侵蚀',
+ key:'①第102/197/216章陈萍萍逐层放权；②第263-269章「整风一处」立威；③第279-293章揪出抱月楼内鬼；④第671-687章「达州对峙→凌迟法场」，以死把四千黑骑与最忠部属转交范闲'},
+{no:'03',nm:'长公主一党',sb:'后党·信阳系',c:'#9b6bd6',
+ need:'保内库财权（走私链）、推太子上位、以母凭子贵对抗皇权与范闲',
+ people:'长公主（信阳）、太子、皇后、崔氏（姻亲）、盛怀仁（北齐心腹）、袁宏道（明面谋士）、都察院、君山会、叶流云（客卿）',
+ ally:'太子（血亲+私情）、二皇子（阶段性）、秦家（军方）、北齐部分势力（走私合作）、燕小乙（边疆军权）',
+ foe:'皇权（皇帝本人）、范闲、监察院',
+ key:'①第86-103章「牛栏街刺杀」被揭、后党失势；②第137-142章走私链被查、退信阳；③第330章回京「卷土重来」；④第461-493章「抓奸局」→皇帝雷霆清洗、长公主幽禁；⑤第548-571章京都宫变兵败、太平别院自尽'},
+{no:'04',nm:'二皇子党',sb:'靖王府系',c:'#7f93b0',
+ need:'夺嫡：借范闲掀翻太子，再反手吞掉范闲',
+ people:'二皇子、靖王世子、八家将、钦天监/吏部等党羽、叶家（阶段性靠山）',
+ ally:'长公主（阶段性「同床异梦」）、军方叶家、抱月楼幕后',
+ foe:'太子党、范闲、监察院',
+ key:'①第87章设宴拉拢范闲（夺嫡线启）；②第284-302章「抱月楼→打落尘埃」，被剪除经济（崔家）与官场势力、降爵软禁认输；③第548-574章宫变站队失败、服毒身亡'},
+{no:'05',nm:'太子党',sb:'东宫系',c:'#7fc07f',
+ need:'保储位、继大统',
+ people:'太子、皇后、郭攸之/郭保坤（前期臂助）、刑部尚书',
+ ally:'长公主（后期合流，实为私情+利害）、皇后',
+ foe:'二皇子党、范闲、监察院',
+ key:'①第162-169章「科场弊案」折损郭攸之；②第260/386章内库贪墨事发（四十万两流向东宫）；③第468-498章私情被曝、遣南诏（变相废储）；④第572-580章拒自焚而死'},
+{no:'06',nm:'北齐',sb:'镜像敌国',c:'#5bc0c0',
+ need:'自保与反制：清君侧、收回神庙之秘、以「拖时间」消耗庆国',
+ people:'战豆豆（小皇帝，女）、苦荷（国师/大宗师）、上杉虎（军方）、沈重（太后党）、海棠朵朵、庄墨韩、肖恩、长宁侯、司理理',
+ ally:'与庆国长公主信阳系走私合作（阶段性）；草原西胡（借为棋子）；东夷城（剑庐之争中站队）',
+ foe:'庆国、监察院谍网、自身内部帝后矛盾',
+ key:'①第154-253章「押解肖恩/换俘」，沈重死、上杉虎圈禁、崔家倒、北齐大清洗；②第478/622章范闲识破女帝（最大秘密成把柄）；③第616-657章「剑庐之争」小皇帝被掳为人质；④第703-717章「佯攻助东夷」又在庆宫埋撒手锏'},
+{no:'07',nm:'东夷城',sb:'剑庐系',c:'#e08bb0',
+ need:'保「契约自由」的独立大城、择主而事（在庆国/北齐间两面押注）',
+ people:'四顾剑（大宗师）、云之澜（主战/亲北齐）、王十三郎（亲范闲）、剑庐十二剑、城主府',
+ ally:'明家（江南，阶段性）；君山会（叶流云）；与北齐暗中勾连（云之澜线）',
+ foe:'南庆（庆帝吞城之心）、剑庐内部分裂（云之澜 vs 王十三郎）',
+ key:'①第502章「种子计划」四顾剑选王十三郎；②第616-634章「剑庐开庐」，血洗城主府统一上层、范闲以身入局；③第657章四顾剑逝、剑庐十二剑与太平钱庄归范闲；④第660-664章名义归附、大皇子驻军'},
+{no:'08',nm:'西胡草原',sb:'部落联盟',c:'#d99a5b',
+ need:'部落联盟扩张、趁乱南下抄掠',
+ people:'速必达（单于）、松芝仙令（海棠朵朵/北齐棋）、左贤王、七千雪原蛮骑',
+ ally:'北齐（暗中介入，「松芝仙令」即北齐派去之人）',
+ foe:'庆国定州/青州边军（范闲、李弘成、叶灵儿）',
+ key:'①第586-598章「心战三日」：范闲一击打散「王庭+松芝仙令+北蛮铁骑」联盟，左贤王遇刺、王庭北齐人尽灭；②第703-706章「青州大捷」：庆帝以叶完+定州军大败西胡、平定西凉'},
+{no:'09',nm:'江南明家',sb:'财权阵营',c:'#e05b5b',
+ need:'保江南内库外供的垄断地位、维持与各方（长公主/太子/二皇子/军方水师）的利益输送',
+ people:'明老太君、明青达、明兰石、明六爷/四爷、夏栖飞（明家七少/反水者）、招商钱庄、太平钱庄、君山会',
+ ally:'长公主信阳系、军方胶州水师、君山会、都察院郭铮',
+ foe:'范闲（钦差+监察院+内库）、夏栖飞、江南总督薛清（中立偏范）',
+ key:'①第343-350章范闲接内库、血洗司库、老掌柜复掌三大坊；②第356-393章「招标—夺标—官司」三段，天价夺标后资金枯竭、明老太君被亲子缢杀、周管家脱逃；③第484-493章「债转股」，招商钱庄以三成股+四百万两收网、明家易主'},
+{no:'10',nm:'范闲一系',sb:'主角阵营',c:'#e8c97a',
+ need:'全程升级：从「活下去」→「查母仇」→「掌权自保」→「以战止战、天下太平」',
+ people:'范闲、林婉儿、范建、陈萍萍（前期）、大皇子、言冰云、王启年/启年小组、洪竹、夏栖飞、王十三郎、海棠、影子',
+ ally:'监察院、内库、剑庐、东夷城、北齐（隐性）、江南水寨、庆余堂叶家旧人（财力根基）',
+ foe:'长公主一党、太子/二皇子党、秦家、明家，最终指向庆帝本人',
+ key:'①第102-197章接班监察院；②第259-493章掌内库、收江南；③第515-571章借大东山-京都宫变清场；④第616-664章收东夷城；⑤第671-745章与庆帝「父子冷战→热战→决战」，终局以五竹+箱子+影子弑帝'}
+];
+const MOVES=[
+{t:'磨刀石法',d:'上位者把主角当「消耗对手的工具人」，主角识破却不得不干，矛盾自然升级。',
+ ex:'皇帝用范闲磨二皇子/太子，又防范闲坐大大 <b>[第274/642章]</b>'},
+{t:'经济链即敌营',d:'用「资金/走私链」替代抽象的党争，让斗争可视化、可清算。',
+ ex:'长公主走私链（崔氏/信阳/盛怀仁）；明家内库外供'},
+{t:'示弱伪装',d:'真反派刻意示弱（「多疑失策」「以身冒险」），让读者深信其弱，反转时落差最大。',
+ ex:'皇帝大东山「以身为饵」<b>[第515章]</b>'},
+{t:'把柄前置',d:'每个对手的软肋都提前埋好（私盐、海盗、遗书、工艺图纸），收获时不用现编理由。',
+ ex:'明家私盐/海盗灭口/遗书 <b>[第346-495章]</b>'},
+{t:'双面钉子',d:'敌方阵营里的「心腹」其实是主角/第三方暗桩，晚揭身份时前文全部重读。',
+ ex:'袁宏道（长公主谋士=陈萍萍最深钉子）<b>[第137→493章]</b>；言若海双面身份 <b>[第435章]</b>'}
+];
+const TLPTS=[
+{n:'楔子血案',ch:'第0章'},{n:'范闲入京',ch:'第44章'},{n:'牛栏街刺杀善后',ch:'第86-142章'},{n:'范闲出使北齐',ch:'第154-253章'},
+{n:'御前定内库',ch:'第259章'},{n:'打落尘埃',ch:'第284-302章'},{n:'身世惊雷',ch:'第321-326章'},{n:'长公主回京',ch:'第330章'},
+{n:'江南收网',ch:'第484-493章'},{n:'雷霆清洗',ch:'第494-499章'},{n:'大东山之变',ch:'第511-571章'},{n:'京都宫变',ch:'第572-580章'},
+{n:'殿前恩宠',ch:'第581-584章'},{n:'剑庐开庐',ch:'第616-664章'},{n:'达州对峙',ch:'第665-687章'},{n:'君臣摊牌',ch:'第698-702章'},
+{n:'青州大捷',ch:'第703-706章'},{n:'血洗京都',ch:'第707-710章'},{n:'布衣朝天子',ch:'第711-715章'},{n:'皇城狙杀',ch:'第718-720章'},
+{n:'北行神庙',ch:'第721-723章'},{n:'神庙纪事',ch:'第730-733章'},{n:'南庆彩虹',ch:'第743-745章'},{n:'末章后来',ch:'第746章'}
+];
+const ROUNDS=[
+{k:'A',n:'牛栏街刺杀',ch:'第82-103章',a:82,b:103},
+{k:'B',n:'科场弊案',ch:'第162-177章',a:162,b:177},
+{k:'C',n:'抱月楼与打落尘埃',ch:'第279-302章',a:279,b:302},
+{k:'D',n:'江南明家收网',ch:'第343-493章',a:343,b:493},
+{k:'E',n:'大东山之变',ch:'第511-571章',a:511,b:571},
+{k:'F',n:'达州对峙·陈萍萍之死',ch:'第665-687章',a:665,b:687}
+];
+const TLPTS_CH=[0,44,86,154,259,284,321,330,484,494,511,572,581,616,665,698,703,707,711,718,721,730,743,746];
+
+const NS="http://www.w3.org/2000/svg";
+const tip=document.getElementById('tip');
+function E(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function T(a,s){const e=E('text',a);e.textContent=s;return e;}
+function R(w){return 16+w*0.38;}
+const NM={};NODES.forEach(n=>NM[n.id]=n);
+
+/* ===== 势力图 ===== */
+function drawNet(){
+  const svg=document.getElementById('net');
+  const defs=E('defs');
+  svg.appendChild(defs);
+  // 中心水印
+  svg.appendChild(T({x:1360/2,y:640,'text-anchor':'middle','font-size':12,fill:'#3a3833','letter-spacing':'.3em'},'权 力 结 构 地 图'));
+  // 边
+  const eg=[];
+  EDGES.forEach((e,i)=>{
+    const a=NM[e[0]],b=NM[e[1]];
+    let dash=null,col,wd,op=1;
+    if(e[2]==='ally'){col='#c9a961';wd=2;}
+    else if(e[2]==='hostile'){col='#e05b5b';wd=1.6;dash='7 5';op=.85;}
+    else {col='#c9a961';wd=1.4;dash='2 5';op=.7;}
+    const l=E('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:col,'stroke-width':wd,'stroke-opacity':op,
+      'data-a':e[0],'data-b':e[1],'data-ow':wd,'data-oop':op});
+    if(dash)l.setAttribute('stroke-dasharray',dash);
+    svg.appendChild(l);eg.push(l);
+  });
+  // 节点
+  NODES.forEach(n=>{
+    const g=E('g',{class:'node','data-id':n.id,style:'cursor:pointer'});
+    const r=R(n.w);
+    g.appendChild(E('circle',{cx:n.x,cy:n.y,r:r+5,fill:'none',stroke:n.c,'stroke-width':1,'stroke-opacity':.25}));
+    g.appendChild(E('circle',{cx:n.x,cy:n.y,r:r,fill:'rgba(10,10,14,.92)',stroke:n.c,'stroke-width':2}));
+    g.appendChild(E('circle',{cx:n.x,cy:n.y,r:r*0.55,fill:n.c,'fill-opacity':.13}));
+    g.appendChild(T({x:n.x,y:n.y-2,'text-anchor':'middle','font-size':n.name.length>6?14:15,'font-weight':700,fill:'#f0eee9'},n.name));
+    g.appendChild(T({x:n.x,y:n.y+18,'text-anchor':'middle','font-size':11,fill:n.c},n.sub));
+    g.appendChild(T({x:n.x,y:n.y+34,'text-anchor':'middle','font-size':10.5,fill:'#8d8a82'},'权重 '+n.w));
+    g.addEventListener('mouseenter',ev=>{hoverNode(n.id);showTip(ev,n);});
+    g.addEventListener('mousemove',ev=>moveTip(ev));
+    g.addEventListener('mouseleave',()=>{clearHover();tip.style.display='none';});
+    svg.appendChild(g);
+  });
+  svg._edges=eg;
+}
+function hoverNode(id){
+  const svg=document.getElementById('net');
+  svg._edges.forEach(l=>{
+    const on=(l.dataset.a===id||l.dataset.b===id);
+    l.setAttribute('stroke-opacity',on?1:0.07);
+    l.setAttribute('stroke-width',on?3:Math.max(1,l.dataset.ow-0.4));
+  });
+  svg.querySelectorAll('.node').forEach(g=>{
+    const ids=[];svg._edges.forEach(l=>{if(l.dataset.a===id)ids.push(l.dataset.b);if(l.dataset.b===id)ids.push(l.dataset.a);});
+    g.style.opacity=(g.dataset.id===id||ids.includes(g.dataset.id))?1:0.22;
+  });
+}
+function clearHover(){
+  const svg=document.getElementById('net');
+  svg._edges.forEach(l=>{l.setAttribute('stroke-opacity',l.dataset.oop);l.setAttribute('stroke-width',l.dataset.ow);});
+  svg.querySelectorAll('.node').forEach(g=>g.style.opacity=1);
+}
+function showTip(ev,n){
+  tip.style.display='block';
+  tip.innerHTML='<div class="tt">'+n.name+' · '+n.sub+'</div><div class="td">权重 '+n.w+' ｜ '+n.desc+'</div>';
+  moveTip(ev);
+}
+function moveTip(ev){
+  let x=ev.clientX+16,y=ev.clientY+14;
+  if(x>window.innerWidth-300)x=ev.clientX-290;
+  tip.style.left=x+'px';tip.style.top=y+'px';
+}
+
+/* ===== 时间线 ===== */
+function drawTL(){
+  const svg=document.getElementById('tl');
+  const L=60,R=1320,Y=190,TOT=746;
+  const X=ch=>L+Math.max(0,Math.min(ch,TOT))/TOT*(R-L);
+  // 轴
+  svg.appendChild(E('line',{x1:L,y1:Y,x2:R,y2:Y,stroke:'rgba(201,169,97,.4)','stroke-width':1.5}));
+  // 回合条
+  ROUNDS.forEach(r=>{
+    const x1=X(r.a),x2=X(r.b),w=Math.max(26,x2-x1);
+    svg.appendChild(E('rect',{x:x1,y:74,width:w,height:26,rx:5,fill:'rgba(201,169,97,.16)',stroke:'#c9a961','stroke-width':1}));
+    svg.appendChild(T({x:x1+w/2,y:92,'text-anchor':'middle','font-size':13,'font-weight':700,fill:'#e8c97a'},r.k));
+    svg.appendChild(T({x:x1+w/2,y:62,'text-anchor':'middle','font-size':11.5,fill:'#c4c1ba'},r.n));
+    svg.appendChild(T({x:x1+w/2,y:118,'text-anchor':'middle','font-size':10.5,fill:'#8d8a82'},r.ch));
+    svg.appendChild(E('line',{x1:x1+w/2,y1:118,x2:x1+w/2,y2:Y,stroke:'rgba(201,169,97,.2)','stroke-width':1,'stroke-dasharray':'2 4'}));
+  });
+  svg.appendChild(T({x:L,y:40,'font-size':12,fill:'#9a978f','letter-spacing':'.1em'},'代表回合（A–F）'));
+  // 节点
+  TLPTS.forEach((p,i)=>{
+    const x=X(TLPTS_CH[i]);
+    svg.appendChild(E('circle',{cx:x,cy:Y,r:4.2,fill:'#5b8fd6',stroke:'#08080c','stroke-width':1.5}));
+    const up=i%2===0;
+    const ly=up?Y-14:Y+22;
+    const len=p.n.length*10+16;
+    const rot=up?-52:52;
+    svg.appendChild(E('line',{x1:x,y1:Y+(up?-5:5),x2:x,y2:ly,stroke:'rgba(91,143,214,.35)','stroke-width':1}));
+    const g=E('g',{class:'node','data-n':p.n,'data-ch':p.ch,style:'cursor:pointer'});
+    g.appendChild(E('circle',{cx:x,cy:Y,r:9,fill:'transparent'}));
+    const t=T({x:x+4,y:ly,'font-size':10.5,fill:'#9ab0c4',transform:'rotate('+rot+' '+(x+4)+' '+ly+')'},p.n);
+    g.appendChild(t);
+    g.addEventListener('mouseenter',ev=>{tip.style.display='block';tip.innerHTML='<div class="tt">'+p.n+'</div><div class="td">'+p.ch+'</div>';moveTip(ev);});
+    g.addEventListener('mousemove',moveTip);
+    g.addEventListener('mouseleave',()=>tip.style.display='none');
+    svg.appendChild(g);
+    // 序号
+    svg.appendChild(T({x:x,y:up?(Y-26):(Y+34),'text-anchor':'middle','font-size':9,fill:'#5f6a75'},String(i+1)));
+  });
+  // x 轴刻度
+  [0,100,200,300,400,500,600,700,745].forEach(ch=>{
+    const x=X(ch);
+    svg.appendChild(E('line',{x1:x,y1:Y,x2:x,y2:Y+5,stroke:'rgba(255,255,255,.2)'}));
+    svg.appendChild(T({x:x,y:Y+18,'text-anchor':'middle','font-size':10.5,fill:'#6e6b64'},String(ch)));
+  });
+  svg.appendChild(T({x:(L+R)/2,y:285,'text-anchor':'middle','font-size':11.5,fill:'#6e6b64'},'章号（全书连续编号 0 → 746）'));
+}
+
+/* ===== 卡片 / 手法 ===== */
+function buildCards(){
+  const box=document.getElementById('cards');
+  CARD.forEach(c=>{
+    const d=document.createElement('div');d.className='card';
+    d.innerHTML='<div class="bar" style="background:'+c.c+'"></div>'+
+      '<div class="hd"><span class="no" style="color:'+c.c+'">'+c.no+'</span><span class="nm">'+c.nm+'</span><span class="sb">'+c.sb+'</span></div>'+
+      '<div class="fr"><span class="lb">利益诉求</span><span class="tx">'+c.need+'</span></div>'+
+      '<div class="fr"><span class="lb">核心人物</span><span class="tx">'+c.people+'</span></div>'+
+      '<div class="fr"><span class="lb">盟友</span><span class="tx">'+c.ally+'</span></div>'+
+      '<div class="fr"><span class="lb">敌人</span><span class="tx">'+c.foe+'</span></div>'+
+      '<div class="fr"><span class="lb">关键回合</span><span class="tx">'+c.key+'</span></div>';
+    box.appendChild(d);
+  });
+}
+function buildMoves(){
+  const box=document.getElementById('moves');
+  MOVES.forEach(m=>{
+    const d=document.createElement('div');d.className='mv';
+    d.innerHTML='<h4>'+m.t+'</h4><div class="def">'+m.d+'</div><div class="ex">用例：'+m.ex+'</div>';
+    box.appendChild(d);
+  });
+}
+
+drawNet();drawTL();buildCards();buildMoves();
+</script>
+</body>
+</html>

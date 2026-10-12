@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 · 人物关系网 · 庆余年蓝图</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;background-attachment:fixed;}
+body::-webkit-scrollbar{width:6px;height:6px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.25);border-radius:6px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.9);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:13px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+
+.wrap{max-width:1280px;margin:0 auto;padding:32px 24px 80px;position:relative;z-index:1;}
+
+.hero h1{font-size:26px;color:var(--gold2);letter-spacing:3px;font-weight:900;margin-bottom:10px;}
+.hero p{font-size:13px;color:#9a9a9a;line-height:1.9;margin-bottom:18px;}
+.stat-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;}
+.stat{flex:1 1 150px;background:rgba(201,169,97,0.05);border:1px solid rgba(201,169,97,0.18);border-radius:12px;padding:16px 18px;}
+.stat b{display:block;font-size:26px;color:var(--gold2);font-weight:900;letter-spacing:1px;}
+.stat span{font-size:12px;color:#a8a8a8;letter-spacing:1px;}
+
+h2.sec{font-size:17px;color:var(--gold2);letter-spacing:2px;font-weight:700;margin:44px 0 6px;
+  border-left:3px solid var(--gold);padding-left:14px;}
+.sec-desc{font-size:12px;color:#8f8f8f;line-height:1.9;margin:0 0 20px 17px;}
+
+/* 图谱 */
+.graph-box{background:radial-gradient(ellipse at 50% 48%,rgba(201,169,97,0.05),transparent 65%);
+  border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:6px;margin-bottom:14px;overflow:hidden;}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.lg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:#b5b5b5;padding:4px 11px;border-radius:20px;
+  border:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.025);cursor:pointer;transition:all .2s;user-select:none;}
+.lg-item:hover{border-color:rgba(201,169,97,0.5);color:var(--gold2);}
+.lg-item.off{opacity:.3;}
+.lg-dot{width:9px;height:9px;border-radius:50%;}
+.lg-line{width:14px;height:3px;border-radius:2px;}
+svg .node{cursor:pointer;transition:opacity .2s;}
+svg .edge{transition:opacity .2s;}
+
+/* 甘特 */
+.gantt-box{border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:6px;background:rgba(255,255,255,0.012);margin-bottom:12px;overflow:hidden;}
+.phase-legend{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px;}
+.ph{display:flex;align-items:center;gap:6px;font-size:11px;color:#b5b5b5;}
+.ph i{width:14px;height:9px;border-radius:2px;display:inline-block;}
+
+/* 阵营分布 */
+.camps{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
+.camp-card{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.008));
+  border:1px solid rgba(255,255,255,0.07);border-left:4px solid var(--cc);border-radius:12px;padding:16px 18px;transition:all .22s;}
+.camp-card:hover{border-color:rgba(201,169,97,0.4);transform:translateY(-2px);}
+.camp-card .ttl{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.camp-card .ttl b{font-size:14px;color:var(--gold2);letter-spacing:1px;}
+.camp-card .ttl span{font-size:10.5px;color:var(--cc);border:1px solid var(--cc);border-radius:20px;padding:2px 9px;opacity:.9;}
+.camp-card .core{font-size:11.5px;color:#d8d8d8;line-height:1.8;margin-bottom:9px;}
+.camp-card .core b{color:var(--gold);}
+.camp-card .mem{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;}
+.camp-card .mem span{font-size:10.5px;color:#b0b0b0;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:3px 9px;}
+.camp-card .meta{font-size:11px;color:#9a9a9a;line-height:1.75;border-top:1px dashed rgba(255,255,255,0.08);padding-top:8px;}
+.camp-card .meta b{color:#c9a961;font-weight:600;}
+
+/* 设计法 */
+.methods{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;}
+.method{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px 18px;transition:all .22s;}
+.method:hover{border-color:rgba(201,169,97,0.45);background:rgba(201,169,97,0.045);}
+.method b{display:block;color:var(--gold2);font-size:13.5px;letter-spacing:1px;margin-bottom:7px;font-weight:700;}
+.method p{font-size:12px;color:#b0b0b0;line-height:1.9;}
+
+.crack{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px;}
+.crack span{font-size:11.5px;color:#c8c8c8;background:rgba(192,64,64,0.09);border:1px solid rgba(192,64,64,0.32);border-radius:9px;padding:7px 13px;}
+
+/* 选中节点高亮 */
+svg g.node.selected circle{stroke:#e8c97a;stroke-width:3.2;}
+
+
+/* 关系线：路径 + 标签 + 命中区 */
+svg .edge{transition:opacity .18s;}
+svg .edge .epath{fill:none;transition:stroke-opacity .18s,stroke-width .18s;}
+svg .edge .ehit{fill:none;stroke:transparent;stroke-width:16;pointer-events:stroke;cursor:pointer;}
+svg .edge .elabel{font-size:9.5px;letter-spacing:.3px;opacity:0;transition:opacity .18s;pointer-events:none;
+  paint-order:stroke;stroke:#08080c;stroke-width:4px;stroke-linejoin:round;font-weight:600;}
+svg .edge.on .epath{stroke-opacity:1 !important;stroke-width:3 !important;}
+svg .edge.on .elabel{opacity:1;}
+svg .edge.off .epath{stroke-opacity:.05 !important;}
+svg .edge.off .elabel{opacity:0;}
+svg g.node.off{opacity:.1;}
+svg g.node.lock circle{stroke-width:3.4;filter:drop-shadow(0 0 8px currentColor);}
+
+/* 悬浮详情面板 */
+#tip{position:fixed;z-index:300;display:none;max-width:360px;pointer-events:none;
+  background:rgba(16,17,23,0.975);border:1px solid rgba(201,169,97,0.3);border-radius:12px;
+  padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,0.66);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+#tip.wide{max-width:566px;}
+.tip-name{font-size:16px;font-weight:800;letter-spacing:1px;}
+.tip-role{font-size:11px;color:#8b93a7;margin-top:3px;letter-spacing:.4px;line-height:1.6;}
+.tip-desc{font-size:11.5px;line-height:1.8;color:#c3cadb;margin-top:9px;
+  border-top:1px dashed rgba(255,255,255,0.09);padding-top:10px;}
+.tip-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px;}
+.tip-tags span{font-size:10px;padding:2px 8px;border-radius:999px;color:#aab2c6;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);}
+.tip-kdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle;}
+.rl-title{margin-top:9px;border-top:1px dashed rgba(255,255,255,0.09);padding-top:8px;
+  font-size:10px;color:#6f788c;letter-spacing:1.2px;margin-bottom:7px;}
+.tip-rels{display:flex;flex-direction:column;gap:2px;}
+.tip-rels.two{display:block;column-count:2;column-gap:20px;}
+.tip-rels.two .tip-rel{break-inside:avoid;margin-bottom:3px;}
+.tip-rel{font-size:10.5px;line-height:1.6;color:#a2abc0;}
+.tip-rel b{color:#dfe3ee;font-weight:600;}
+.tip-rel .ch{color:#6f788c;font-size:10px;}
+
+@media (max-width:640px){
+  .wrap{padding:22px 14px 60px;}
+  .topbar{padding:11px 16px;}
+  .hero h1{font-size:20px;letter-spacing:2px;}
+  .stat b{font-size:22px;}
+}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">庆余年 · 关系网蓝图</span>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>07 · 人物关系网</h1>
+    <p>猫腻《庆余年》· 745 章 / 约 307.4 万字 &nbsp;|&nbsp; 数据源：<b style="color:var(--gold2)">关系台账（795 条流水）</b> + 人物台账（205 人）+ 阵营分片。章号一律为全书连续编号。本篇讲"人与人之间怎么变"。</p>
+    <div class="stat-row">
+      <div class="stat"><b>30</b><span>图谱节点（双中心）</span></div>
+      <div class="stat"><b>39</b><span>带标签关系线</span></div>
+      <div class="stat"><b>22</b><span>关系演变甘特行</span></div>
+      <div class="stat"><b>10</b><span>权力阵营</span></div>
+      <div class="stat"><b>7</b><span>可复用人物网设计法</span></div>
+    </div>
+  </div>
+
+  <h2 class="sec">一 · 主关系图谱（双中心：范闲 / 庆帝）</h2>
+  <p class="sec-desc">左半以「范闲」为枢纽，右半以「庆帝」为枢纽；节点色＝阵营，曲线＝关系。悬停任一人物 → 点亮其全部关系线并浮出档案面板（身份 / 一句话 / 全部关系及描述 / 关键章号），<strong style="color:var(--gold2)">关系线上同时显示描述文字</strong>；<strong>点击</strong>可锁定、再点取消；悬停曲线本身看该关系；点击图例按阵营筛选。</p>
+  <div class="legend" id="campLegend"></div>
+  <div class="legend" id="typeLegend" style="margin-bottom:14px"></div>
+  <div class="graph-box">
+    <svg id="graph" width="100%" viewBox="0 0 1360 1000" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <h2 class="sec">二 · 关系演变甘特图（第 0 → 746 章）</h2>
+  <p class="sec-desc">横轴＝章号，每行＝一条核心关系；彩色段落＝该关系在各章阶段的<strong style="color:var(--gold2)">性质</strong>，段落上标关键章号。段内悬停可查看该阶段说明。</p>
+  <div class="phase-legend" id="phaseLegend"></div>
+  <div class="gantt-box">
+    <svg id="gantt" width="100%" viewBox="0 0 1360 870" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <h2 class="sec">三 · 阵营分布</h2>
+  <p class="sec-desc">全书七大战力 / 权力阵营（按原表 9 行展开）：核心、成员、诉求、结局一览。</p>
+  <div class="camps" id="camps"></div>
+  <div class="crack">
+    <span>裂痕 ①　皇权 vs 监察院：庆帝 vs 陈萍萍，终决裂</span>
+    <span>裂痕 ②　范家 vs 后党 / 长公主：贯穿全书的主对立</span>
+    <span>裂痕 ③　军方 vs 监察院：秦业 / 燕小乙 vs 范闲，因山谷一役留裂痕 [第437章]</span>
+  </div>
+
+  <h2 class="sec">四 · 可复用的人物网设计法（7 条）</h2>
+  <p class="sec-desc">从本书关系网提炼的工程学规律。</p>
+  <div class="methods" id="methods"></div>
+
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ============ 配色 ============ */
+var CAMPS={
+  chaoran:{name:'超然 · 血脉',color:'#e8c97a'},
+  fanjia:{name:'范家 / 盟友',color:'#c9a961'},
+  dongyi:{name:'东夷城 / 剑庐',color:'#4fb8b0'},
+  beiqi:{name:'北齐',color:'#6ac07a'},
+  jcy:{name:'监察院',color:'#5a8fd0'},
+  sudi:{name:'军 / 文宿敌',color:'#d08080'},
+  huangquan:{name:'南庆皇权',color:'#9a6fd0'},
+  chang:{name:'长公主党',color:'#d06a6a'},
+  taizi:{name:'东宫（太子党）',color:'#d08f5a'},
+  erhuang:{name:'二皇子党',color:'#c07ad0'}
+};
+var CAMPORDER=['chaoran','fanjia','dongyi','beiqi','jcy','sudi','huangquan','chang','taizi','erhuang'];
+var RTYPE={亲缘:'#e0a0a0',师徒:'#8fd0a0',君臣:'#8fb0e0',友:'#e8d08a',敌:'#e07070',主从:'#b8a0e0',情:'#e8a0d0'};
+var RTYPENAME=['亲缘','师徒','君臣','友','敌','主从','情'];
+
+/* ============ 节点（31） ============ */
+var N7=[
+ {n:'范建',c:'fanjia',s:'fan',r:'司南伯 · 户部尚书 · 养父'},
+ {n:'范若若',c:'fanjia',s:'fan',r:'范闲幼妹 · 天一道医者'},
+ {n:'林婉儿',c:'fanjia',s:'fan',r:'范闲妻（谋士式同盟）'},
+ {n:'林若甫',c:'fanjia',s:'fan',r:'南庆宰相 · 范闲岳父'},
+ {n:'李弘成',c:'fanjia',s:'fan',r:'靖王世子 · 范闲挚友'},
+ {n:'陈萍萍',c:'jcy',s:'fan',r:'监察院院长 · 范闲引路人'},
+ {n:'言冰云',c:'jcy',s:'fan',r:'北谍头目 · 第三任提司'},
+ {n:'费介',c:'jcy',s:'fan',r:'三处主办 · 范闲用毒之师'},
+ {n:'影子',c:'jcy',s:'fan',r:'六处头目 · 天下第一刺客'},
+ {n:'战豆豆',c:'beiqi',s:'fan',r:'北齐小皇帝 · 女扮男装'},
+ {n:'苦荷',c:'beiqi',s:'fan',r:'北齐国师 · 大宗师'},
+ {n:'海棠朵朵',c:'beiqi',s:'fan',r:'北齐圣女 · 天一道掌门'},
+ {n:'司理理',c:'beiqi',s:'fan',r:'北齐女谍 · 理贵妃'},
+ {n:'上杉虎',c:'beiqi',s:'fan',r:'北齐第一名将'},
+ {n:'四顾剑',c:'dongyi',s:'fan',r:'东夷城剑圣 · 大宗师'},
+ {n:'王十三郎',c:'dongyi',s:'fan',r:'四顾剑关门弟子 · 生死之交'},
+ {n:'叶轻眉',c:'chaoran',s:'fan',r:'范闲生母 · 神庙来人（已逝）'},
+ {n:'五竹',c:'chaoran',s:'fan',r:'叶轻眉蒙眼仆人 · 非人'},
+ {n:'洪四庠',c:'huangquan',s:'qing',r:'宫中老太监 · 大宗师级'},
+ {n:'三皇子李承平',c:'huangquan',s:'qing',r:'范闲学生 · 南庆新帝'},
+ {n:'大皇子',c:'huangquan',s:'qing',r:'征西军名将 · 范闲兄弟同盟'},
+ {n:'叶重',c:'sudi',s:'qing',r:'定州大都督 · 皇帝伏棋'},
+ {n:'长公主',c:'chang',s:'qing',r:'李云睿 · 君山会主使'},
+ {n:'庄墨韩',c:'beiqi',s:'fan',r:'北齐文坛领袖 · 使团'},
+ {n:'太子李承乾',c:'taizi',s:'qing',r:'庆帝长子 · 储君'},
+ {n:'二皇子李承泽',c:'erhuang',s:'qing',r:'叶家之婿 · 清雅名士'},
+ {n:'燕小乙',c:'sudi',s:'qing',r:'九品上箭手 · 范闲死敌'},
+ {n:'贺宗纬',c:'sudi',s:'qing',r:'左都御史 · 范闲宿敌'}
+];
+/* 边：hub 边 + 跨阵营边 */
+var EHUB=[
+ ['范闲','范建','亲缘'],['范闲','范若若','亲缘'],['范闲','林婉儿','情'],['范闲','林若甫','亲缘'],['范闲','李弘成','友'],
+ ['范闲','陈萍萍','主从'],['范闲','言冰云','君臣'],['范闲','费介','师徒'],['范闲','影子','主从'],
+ ['范闲','战豆豆','情'],['范闲','苦荷','友'],['范闲','海棠朵朵','情'],['范闲','司理理','情'],['范闲','上杉虎','敌'],
+ ['范闲','四顾剑','师徒'],['范闲','王十三郎','友'],['范闲','叶轻眉','亲缘'],['范闲','五竹','师徒'],
+ ['庆帝','洪四庠','主从'],['庆帝','三皇子李承平','亲缘'],['庆帝','大皇子','亲缘'],['庆帝','叶重','主从'],
+ ['庆帝','长公主','亲缘'],['庆帝','太子李承乾','亲缘'],['庆帝','二皇子李承泽','亲缘'],['庆帝','燕小乙','主从']
+];
+var ECROSS=[
+ ['范闲','庆帝','亲缘'],['庆帝','陈萍萍','君臣'],['庆帝','叶轻眉','情'],
+ ['范闲','长公主','敌'],['范闲','三皇子李承平','师徒'],['范闲','大皇子','友'],
+ ['范闲','太子李承乾','敌'],['范闲','二皇子李承泽','敌'],['长公主','林婉儿','亲缘'],
+  ['范闲','燕小乙','敌'],['范闲','贺宗纬','敌'],['范闲','庄墨韩','敌'],['范闲','叶重','敌']
+];
+
+/* ============ 甘特数据（22 行） ============ */
+var KIND={n:'#3f3f4a',a:'#5a8fd0',j:'#6ac07a',m:'#e8a0d0',w:'#d0a050',e:'#d06a6a',d:'#c04040',h:'#c9a961',g:'#8a7ac0'};
+var KINDNAME=[['n','中立 / 未识'],['a','相识 / 同盟'],['j','亲密 / 守护'],['m','暧昧 / 情'],['w','裂痕 / 嫌隙'],['e','决裂 / 敌对'],['d','死斗 / 死亡'],['h','和解 / 互认'],['g','成长 / 终局']];
+var ROWS=[
+ ['范闲 ↔ 林婉儿',[[0,55,'n','未识'],[56,145,'a','庆庙定情'],[146,687,'j','大婚·亲密'],[688,746,'j','患难相守']]],
+ ['范闲 ↔ 庆帝',[[0,258,'n','名义父子'],[259,273,'a','恩宠·孤臣'],[274,684,'w','冷战'],[685,686,'w','裂痕'],[687,717,'e','死斗'],[718,745,'d','弑父'],[746,746,'g','终局']]],
+ ['陈萍萍 ↔ 庆帝',[[0,675,'j','君臣知己'],[676,686,'e','决裂·行刺'],[687,687,'d','凌迟']]],
+ ['范闲 ↔ 陈萍萍',[[0,25,'n','未显'],[26,175,'a','暗中护航'],[176,261,'j','祖孙温情'],[262,269,'j','传承提司'],[270,684,'j','视如子侄'],[685,687,'d','生死诀别']]],
+ ['范闲 ↔ 海棠朵朵',[[0,196,'n','未知'],[197,399,'a','斗嘴冤家'],[400,401,'m','暧昧临界'],[402,594,'m','知己'],[595,596,'e','立场决裂'],[597,746,'m','余情·雪原相依']]],
+ ['范闲 ↔ 五竹',[[0,730,'j','守护·师徒'],[731,746,'j','唤醒·相随']]],
+ ['范闲 ↔ 言冰云',[[0,220,'w','隐敌'],[221,468,'a','结盟'],[469,686,'w','忠诚分歧'],[687,746,'e','分道（不原谅）']]],
+ ['庆帝 ↔ 长公主',[[0,491,'n','兄妹·隐忍'],[492,498,'e','决裂·幽禁'],[499,570,'g','幽禁→自尽']]],
+ ['范闲 ↔ 长公主',[[0,128,'n','陌生'],[129,138,'e','结怨'],[139,538,'e','打压·敌对'],[539,565,'e','政变幽禁'],[566,571,'h','临终互认'],[572,746,'g','终结']]],
+ ['范闲 ↔ 燕小乙',[[0,138,'n','无感'],[139,437,'e','一箭之仇'],[438,478,'e','立誓'],[479,524,'e','死仇'],[525,525,'d','丧命箭阵']]],
+ ['范闲 ↔ 王启年',[[0,52,'n','未识'],[53,90,'a','相识'],[91,583,'j','亲信'],[584,668,'w','假死三年'],[669,692,'j','抗命报讯'],[693,746,'j','重逢返核心']]],
+ ['范闲 ↔ 大皇子',[[0,253,'n','无感'],[254,301,'w','争道结怨'],[302,558,'h','尽释前嫌'],[559,746,'j','兄弟同盟']]],
+ ['范闲 ↔ 司理理',[[0,96,'n','未识'],[97,98,'w','审讯受刑'],[99,190,'m','暧昧'],[191,618,'m','情丝'],[619,746,'m','旧情重叙']]],
+ ['范闲 ↔ 战豆豆',[[0,207,'n','客套'],[208,619,'a','亲厚·合作'],[620,625,'w','人质'],[626,746,'m','实质男女']]],
+ ['范闲 ↔ 叶轻眉',[[0,139,'n','未知'],[140,746,'g','精神联结·母仇']]],
+ ['范闲 ↔ 王十三郎',[[0,433,'n','未识'],[434,595,'a','投名状'],[596,746,'j','生死之交']]],
+ ['范闲 ↔ 影子',[[0,335,'a','主从'],[336,693,'a','并肩'],[694,746,'j','复仇同盟']]],
+ ['范闲 ↔ 三皇子李承平',[[0,329,'n','初识'],[330,402,'a','师生同行'],[403,744,'j','正式确立'],[745,746,'h','登基·平等']]],
+ ['苦荷 ↔ 范若若',[[0,340,'n','未识'],[341,746,'j','师徒·遗命']]],
+ ['二皇子 ↔ 叶灵儿',[[0,157,'n','未婚'],[158,421,'j','夫妻'],[422,575,'e','嫌隙→败亡']]],
+ ['林若甫 ↔ 长公主',[[0,102,'a','同盟'],[103,746,'e','决裂']]],
+ ['范闲 ↔ 林若甫',[[0,114,'n','未识'],[115,173,'j','翁婿确立'],[174,746,'a','授业同盟']]]
+];
+
+/* ============ 阵营分布 ============ */
+var CAMPBLOCKS=[
+ {k:'fanjia',name:'范家 / 范闲一党',core:'范闲、范建、范若若',mem:['王启年','启年小组','荆戈黑骑','邓子越','史阐立','夏栖飞','许茂才'],need:'护家、查母仇、争权自保',end:'退隐，门生故旧掌新朝'},
+ {k:'jcy',name:'监察院',core:'陈萍萍 → 范闲 → 言冰云',mem:['言若海','费介','沐铁','沐风儿','苏文茂','影子','洪竹'],need:'"监察院监察皇帝"的信仰',end:'陈萍萍殉道，言冰云守院'},
+ {k:'huangquan',name:'南庆皇权',core:'庆帝',mem:['洪四庠','宫典','叶重','三皇子'],need:'中央集权、削平外戚',end:'庆帝死，三皇子登基'},
+ {k:'chang',name:'长公主一党 / 君山会',core:'长公主李云睿',mem:['袁宏道','三石大师','张德清','侯公公','崔氏','盛怀仁','二姨太'],need:'复起夺权、以君山会行事',end:'长公主自尽，党羽覆灭'},
+ {k:'taizi',name:'东宫（太子党）',core:'太子李承乾、皇后',mem:['郭攸之','辛其物'],need:'保储、夺嫡',end:'太子软禁将死，皇后堕城自尽'},
+ {k:'erhuang',name:'二皇子党',core:'二皇子李承泽',mem:['靖王世子（早期）','八家将（谢必安、范无救）','贺宗纬（后分流）'],need:'夺嫡',end:'二皇子服毒自尽'},
+ {k:'beiqi',name:'北齐',core:'战豆豆、苦荷',mem:['上杉虎','狼桃','何道人','木蓬','卫华','司理理','海棠','庄墨韩','沈重（太后党）','北齐太后'],need:'与南庆博弈、帝后相争',end:'与范闲结盟 / 依附'},
+ {k:'dongyi',name:'东夷城 / 剑庐',core:'四顾剑',mem:['云之澜','王十三郎','李伯华','吕思思','影子（弟）'],need:'城与剑的存续',end:'归附范闲（名义共治）'},
+ {k:'sudi',name:'西胡 / 草原',core:'速必达单于',mem:['左贤王','胡歌','玛索索'],need:'南下侵边',end:'遭伏击、内乱'}
+];
+
+/* ============ 7 条设计法 ============ */
+var METHODS=[
+ ['① 单核放射 + 多圈层','以主角为核心，向外分三圈——血缘圈（护崽软肋）/ 事业圈（盟友与对手）/ 情感圈（红颜与牵挂）。每圈各安排"一个必死 / 必叛 / 必背离的人"，制造成长扳机。'],
+ ['② 枢纽人物（hub）','全网至少放 2-3 个"多方共用"的枢纽（长公主＝后党＋内库＋北齐；言冰云＝北方谍网＋监察院）。动枢纽，多条链同时震动，是制造"多线并进高潮"的工程学。'],
+ ['③ 杠杆即"扳机"','把"主角的转变"外包给配角的命运——不是主角想变，而是陈萍萍的死逼他变。这比主角自我觉醒更可信、更有冲击力。'],
+ ['④ 一物一关系','让重要关系都挂在一个实物 / 秘密上（黑皮箱＝母仇、君山会＝长公主、神庙＝终极谜）。关系要"看得见摸得着"，不能只有抽象的感情。'],
+ ['⑤ 背叛是调色盘','每方阵营都预设 1-2 个"可背叛者"（袁宏道、朱格、言冰云、范无救、侯季常），用背叛制造信息差与危机，也给阵营博弈加变量。'],
+ ['⑥ 和解要"体面"不能"廉价"','本书极少真正原谅，多是"互认 / 投降 / 依附"式收场——保持关系的道德张力，比大团圆更有余味。'],
+ ['⑦ 双阵营镜像','给主角配一个"路径不同、目标相似"的镜像（言冰云＝为庆国的另一种忠诚；海棠＝为和平的另一种正义），用镜像拷问主角的选择，让价值观冲突有对手戏。']
+];
+
+/* ============ 渲染：阵营分布 ============ */
+document.getElementById('camps').innerHTML=CAMPBLOCKS.map(function(c){
+  var col=CAMPS[c.k].color;
+  return '<div class="camp-card" style="--cc:'+col+'">'
+   +'<div class="ttl"><b>'+c.name+'</b><span>'+CAMPS[c.k].name+'</span></div>'
+   +'<div class="core"><b>核心：</b>'+c.core+'</div>'
+   +'<div class="mem">'+c.mem.map(function(m){return '<span>'+m+'</span>';}).join('')+'</div>'
+   +'<div class="meta"><b>诉求：</b>'+c.need+'　·　<b>结局：</b>'+c.end+'</div>'
+   +'</div>';
+}).join('');
+
+/* ============ 渲染：设计法 ============ */
+document.getElementById('methods').innerHTML=METHODS.map(function(m){
+  return '<div class="method"><b>'+m[0]+'</b><p>'+m[1]+'</p></div>';
+}).join('');
+
+/* ============ 渲染：主关系图谱 ============ */
+(function(){
+  var svg=document.getElementById('graph'), NS='http://www.w3.org/2000/svg';
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a){e.setAttribute(k,a[k]);}return e;}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function hexA(hex,a){var n=parseInt(hex.slice(1),16);
+    return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+','+a+')';}
+  function solid(hex,t){var n=parseInt(hex.slice(1),16),bg=[8,8,12];
+    return 'rgb('+Math.round(bg[0]*(1-t)+(n>>16&255)*t)+','+Math.round(bg[1]*(1-t)+(n>>8&255)*t)+','+Math.round(bg[2]*(1-t)+(n&255)*t)+')';}
+
+  var tipEl=document.getElementById('tip');
+  var locked=null, state={mode:'none'}, campSel=null;
+
+  var FAN={x:400,y:500}, QING={x:960,y:500};
+  var pos={};
+  pos['范闲']={x:FAN.x,y:FAN.y}; pos['庆帝']={x:QING.x,y:QING.y};
+
+  var fanN=N7.filter(function(n){return n.s==='fan';});
+  var qingN=N7.filter(function(n){return n.s==='qing';});
+  function place(arr,hub,a0,a1,rIn,rOut){
+    var step=(a1-a0)/(arr.length-1);
+    arr.forEach(function(n,i){
+      var deg=a0+i*step, rad=(i%2===0)?rIn:rOut;
+      var r=deg*Math.PI/180;
+      n.x=hub.x+rad*Math.cos(r); n.y=hub.y+rad*Math.sin(r); n.deg=deg;
+      pos[n.n]={x:n.x,y:n.y};
+    });
+  }
+  place(fanN,FAN,95,265,250,352);
+  place(qingN,QING,-87,87,270,375);
+
+  /* ---- 人物档案（身份 + 一句话，源自人物台账 / 蓝图 07） ---- */
+  var HUBINFO={
+    '范闲':{c:'fanjia',r:'叶轻眉与庆帝之子 · 范建养子 · 监察院提司 · 内库转运司正使 · 澹泊公 · 剑庐主人',
+      d:'前世病死→魂穿司南伯之子重生澹州；拜费介学毒、五竹授武，16 岁入京认亲。终以重狙弑父，成为关系网左枢纽。'},
+    '庆帝':{c:'huangquan',r:'南庆皇帝 · 四大宗师之一（隐藏身份）· 叶轻眉恋人',
+      d:'澹州血案幕后布局者、安排范闲身世；借奏章廷杖历练其为孤臣与接班人。全书真正的终极反派，关系网右枢纽。'}
+  };
+  var DESC={
+    '范建':'范闲养父、范族族长、南庆户部尚书、叶轻眉旧人。由反对牵涉监察院到共谋造"第二内库"动摇国本；与陈萍萍冰释，辞官归澹州。',
+    '范若若':'范建之女、范闲幼妹；医者。由书信启蒙到拜苦荷为师赴北齐行医，归京成眼线与证人；终以重狙重伤皇帝、又以医术相救。',
+    '林婉儿':'长公主与林若甫之女、庆帝外甥女、范闲之妻。庆庙"鸡腿姑娘"定情，主理范府与杭州会；母女情与护夫心撕扯，终随范闲隐退。',
+    '林若甫':'南庆宰相、林婉儿之父。丧子后与东宫/长公主决裂转联范；被长公主与陛下联手逼退请辞归老，由"千古奸相"转"诲婿之翁"。',
+    '李弘成':'靖王世子、范闲挚友。主动示好成京都第一位盟友；受二皇子之命拉拢仍坦诚，被当面拆穿后友情破裂，自请投征西军。',
+    '陈萍萍':'监察院院长、庆帝潜邸旧仆、叶轻眉旧识。暗中护航范家二十二年；以火器行刺庆帝被凌迟，临终显"监察院监察皇帝"之信仰。',
+    '言冰云':'监察院北谍头目、四处主事、第三任提司。理想主义"一切为了庆国"；由隐敌转盟友，终因忠于朝廷多于范闲而分道。',
+    '费介':'监察院三处主办、天下用毒三大家之一、范闲用毒之师。澹州授毒、赠药并警告别练真气；终随叶流云远赴西洋，与爱徒重逢即永别。',
+    '影子':'监察院六处真正头目、天下第一刺客、四顾剑之弟。五竹的崇拜模仿者；正面单挑大宗师并把四顾剑刺成重伤；因陈萍萍之死提"杀他时喊我"。',
+    '战豆豆':'北齐皇帝、女扮男装、红迷。17 岁同龄天子，与太后相争；被范闲识破女子身、成"范闲的女人"，被锁定为第三大法宝。',
+    '苦荷':'北齐国师、大宗师、天一道创立者。收范若若为徒；识破范闲身世决意昭告天下以乱南庆；大东山与洪四庠对掌，临终托付道门、拒说神庙所在。',
+    '海棠朵朵':'北齐圣女、苦荷高徒（天一道掌门）。由被范闲春药暗算结怨，转"斗嘴冤家"到知己暧昧；抱定"平息天下干戈"之志。',
+    '司理理':'京都头牌名妓、北齐女谍、庆国皇族遗孙，后为北齐理贵妃。天牢受刑吐供以命换活口，对范闲由怨转信、情丝未断。',
+    '上杉虎':'北齐第一名将、肖恩义父。被召回京挂闲职仅余百私兵；为救义父犯"天条"劫囚、终陷沈重之围，决意留京。',
+    '四顾剑':'东夷城剑圣、大宗师、剑庐之主、影子之兄。以一根树枝表明偏帮范闲；授剑并点破影子身世与"种子"计划；临终托付东夷城与剑庐给范闲。',
+    '王十三郎':'四顾剑关门弟子、范闲心腹。入庆游历主动投范闲；为践诺刺左贤王重伤而归；以壮烈一剑刺伤大宗师、右臂经脉半废。',
+    '叶轻眉':'范闲生母、神庙来人、庆余堂与内库创立者、五竹之主人。已死于太平别院血案；遗下黑皮箱、内库产业、监察院石碑与庆余堂。',
+    '五竹':'叶轻眉的蒙眼仆人、宗师级护卫、神庙前使者。澹州暗中护持、授武并交黑皮箱；黑布落下"彩虹"一击击穿庆帝。',
+    '洪四庠':'宫中老太监、皇帝身边深不可测的护卫、大宗师级。大东山直身显露霸道真气、护帝并与苦荷对掌；实为庆帝之刀与替身幌子。',
+    '三皇子李承平':'南庆三皇子、宜贵嫔之子、范闲学生、南庆新帝。九岁童言点破太子逻辑；随范闲体察民生渐信服，终登基敬范闲为先生。',
+    '大皇子':'南庆大皇子、宁才人之子、征西军名将。由沙场回京、因斩马记恨范闲→放下争道旧怨成兄弟同盟；军功换取闲职、兵权被夺。',
+    '叶重':'京都守备→定州大都督、叶家名将、二皇子岳父。拼死救驾牵累叶家；实为皇帝伏棋，助守宫城追剿秦家，护圣一枪被影子重创就此废去。',
+    '长公主':'庆帝之妹、林婉儿生母、君山会主使。借庄墨韩构陷范闲、与北齐皇帝双重交易；宫廷政变被幽禁，读"朕回来了"后遣散部属自尽。',
+    '庄墨韩':'北齐文坛领袖、苦荷首徒。受长公主指使构陷范闲（赌七十年清名）；吐血认输后病逝前赔罪赠书，以死完成与范闲的和解与传承。',
+    '太子李承乾':'南庆太子、庆帝长子。病弱懦弱→与母后决裂、性情由怯转狠；兵败东华门主动投降，南诏归京被软禁，临终拒逃生静候死亡。',
+    '二皇子李承泽':'南庆二皇子、叶灵儿之夫（叶家之婿）。以清雅名士示人、自陈被皇帝逼上夺嫡路；抱月楼事败与范闲决裂被软禁，夺嫡失败服毒自尽。',
+    '燕小乙':'庆国九品上箭手、枢密院/军方。一箭惊宫；为子（燕慎独）复仇私自回京设伏、公开立誓索命结死仇；大东山中箭阵亡，杀子之仇终未报。',
+    '贺宗纬':'寒门才子→左都御史→门下中书大学士。借吴伯安案投机入都察院，转"主动布局的复仇者"构陷杨万里、打压范系；以毒针断肠当众而亡。'
+  };
+
+  /* ---- 关系线（label/ch 全部取自 蓝图 07 + 关系台账，非虚构） ---- */
+  var EDGES=[
+    /* 以范闲为中心 */
+    {a:'范闲',b:'叶轻眉',k:'亲缘',label:'母子 · 精神联结',ch:'第34、140–141章',hero:1},
+    {a:'范闲',b:'范建',k:'亲缘',label:'养父子 → 复仇同盟',ch:'第78–86、439、651–652章'},
+    {a:'范闲',b:'范若若',k:'亲缘',label:'兄妹 · 书信知己 → 各自为战',ch:'第15、41、640–641、745章'},
+    {a:'范闲',b:'林婉儿',k:'情',label:'夫妻 · 谋士式同盟',ch:'第56、146、688章',hero:1},
+    {a:'范闲',b:'林若甫',k:'亲缘',label:'翁婿 → 授业同盟',ch:'第115、409–410章'},
+    {a:'范闲',b:'李弘成',k:'友',label:'挚友 → 站队分歧 → 友情破裂',ch:'第159、260、276章'},
+    {a:'范闲',b:'五竹',k:'师徒',label:'师徒兼守护 · 唤醒相随',ch:'第16–21、34、731–745章',hero:1},
+    {a:'范闲',b:'费介',k:'师徒',label:'师徒 → 忘年交 · 海畔永别',ch:'第4–7、14、658章'},
+    {a:'范闲',b:'陈萍萍',k:'主从',label:'视如子侄 · 传承提司 → 生死诀别',ch:'第26、176–177、262–269、685–687章',hero:1},
+    {a:'范闲',b:'言冰云',k:'君臣',label:'隐敌 → 结盟 → 忠诚分歧 → 分道',ch:'第221、469、687章'},
+    {a:'范闲',b:'影子',k:'主从',label:'主从 → 并肩 → 复仇同盟',ch:'第336、618、694章'},
+    {a:'范闲',b:'海棠朵朵',k:'情',label:'结怨 → 知己 → 暧昧临界',ch:'第197、400–401、595–596章'},
+    {a:'范闲',b:'司理理',k:'情',label:'受刑者 → 暧昧 · 旧情重叙',ch:'第97–98、191、619章'},
+    {a:'范闲',b:'战豆豆',k:'情',label:'客套 → 人质 → 实质男女',ch:'第208、620–625章'},
+    {a:'范闲',b:'大皇子',k:'友',label:'争道结怨 → 尽释前嫌 → 兄弟同盟',ch:'第254–256、302、559章'},
+    {a:'范闲',b:'三皇子李承平',k:'师徒',label:'师生 · 政治选择 → 危局登基',ch:'第330、403、745章'},
+    {a:'范闲',b:'王十三郎',k:'友',label:'投名状 → 生死之交',ch:'第434、596、620章'},
+    {a:'范闲',b:'四顾剑',k:'师徒',label:'由敌转合作 → 授业之师',ch:'第502、621–630章'},
+    {a:'范闲',b:'苦荷',k:'敌',label:'一脉结怨 → 追杀因果',ch:'第200、236–237、317–318章'},
+    {a:'范闲',b:'上杉虎',k:'敌',label:'借刀合作 → 因肖恩之死起怨',ch:'第232、234章'},
+    {a:'范闲',b:'庄墨韩',k:'敌',label:'构陷对头 → 赔罪赠书 · 弟子礼',ch:'第137–138、251–252章'},
+    {a:'范闲',b:'燕小乙',k:'敌',label:'一箭之仇 → 公开死仇',ch:'第139、438–439、525章'},
+    {a:'范闲',b:'贺宗纬',k:'敌',label:'敌视 → 复仇者 → 当众作结',ch:'第188、610、710章'},
+    {a:'范闲',b:'叶重',k:'敌',label:'疑忌 → 心照不宣的同谋者',ch:'第562、613章'},
+    {a:'范闲',b:'长公主',k:'敌',label:'结怨 → 打压 → 临终互认',ch:'第129–138、142–145、539、565–571章',hero:1},
+    {a:'范闲',b:'太子李承乾',k:'敌',label:'东宫拉拢 → 政敌 → 托孤式谈判',ch:'第119–126、160、564–572章'},
+    {a:'范闲',b:'二皇子李承泽',k:'敌',label:'拉拢 → 抱月楼决裂 → 托孤',ch:'第158、279–290、575章'},
+    {a:'范闲',b:'庆帝',k:'亲缘',label:'父子（名义养子 · 实为亲子）＋ 杀母仇人',ch:'第326–327、711–715、745章',hero:1},
+    /* 以庆帝为中心 */
+    {a:'庆帝',b:'陈萍萍',k:'君臣',label:'君臣知己 → 决裂 → 凌迟',ch:'第101–132、423–424、492–493、638、679–687章',hero:1},
+    {a:'庆帝',b:'长公主',k:'亲缘',label:'兄妹 → 决裂 → 幽禁 → 自尽',ch:'第321–323、492–498章'},
+    {a:'庆帝',b:'叶轻眉',k:'情',label:'旧情 · 根本差别 —— "她舍不得用天下威胁朕、朕却舍得"',ch:'第715章'},
+    {a:'庆帝',b:'洪四庠',k:'主从',label:'主仆二十年"演局" · 以死成全',ch:'第526、567–568章'},
+    {a:'庆帝',b:'太子李承乾',k:'亲缘',label:'父厌子 → 最后一次帝王心术传授与诀别',ch:'第495–499、578章'},
+    {a:'庆帝',b:'二皇子李承泽',k:'亲缘',label:'父子 · 被逼上夺嫡路 → 服毒自尽',ch:'第158章起'},
+    {a:'庆帝',b:'三皇子李承平',k:'亲缘',label:'父子（君臣）· 裂痕显性化',ch:'第684、719章'},
+    {a:'庆帝',b:'大皇子',k:'亲缘',label:'父子 · 征西名将 → 降秩夺兵权',ch:'第253章起'},
+    {a:'庆帝',b:'燕小乙',k:'主从',label:'君臣 · 九品上箭手，死于大东山箭阵',ch:'第139、525章'},
+    {a:'庆帝',b:'叶重',k:'主从',label:'君臣旧账 → 召见入宫、君臣托付',ch:'第719、729章'},
+    /* 配角之间 */
+    {a:'长公主',b:'林婉儿',k:'亲缘',label:'母女 → 修复 → 以女为饵彻底反目',ch:'第330、499、539章'}
+  ];
+
+  var ALL=[{n:'范闲',c:'fanjia',s:'fan'}].concat([{n:'庆帝',c:'huangquan',s:'qing'}]).concat(N7);
+  var byName={}; ALL.forEach(function(n){byName[n.n]=n;});
+  var nbr={}; ALL.forEach(function(n){nbr[n.n]={};});
+  EDGES.forEach(function(e){if(nbr[e.a]&&nbr[e.b]){nbr[e.a][e.b]=1;nbr[e.b][e.a]=1;}});
+
+  function campColor(nm){
+    var m=byName[nm]; if(!m) return '#c9a961';
+    if(nm==='范闲') return '#e8c97a';
+    if(nm==='庆帝') return '#9a6fd0';
+    return (CAMPS[m.c]||{color:'#c9a961'}).color;
+  }
+  function campNameZh(nm){
+    var m=byName[nm]; if(!m) return '';
+    return (CAMPS[m.c]||{name:''}).name;
+  }
+  function roleOf(nm){
+    if(HUBINFO[nm]) return HUBINFO[nm].r;
+    var m=byName[nm]; return m?m.r:'';
+  }
+
+  /* ---- 自适应二次贝塞尔：挑一条不穿过其它节点的弧 ---- */
+  function qpt(A,C,B,t){var u=1-t;return [u*u*A.x+2*u*t*C.x+t*t*B.x, u*u*A.y+2*u*t*C.y+t*t*B.y];}
+  function minDist(A,C,B,a,b){
+    var m=Infinity;
+    for(var i=0;i<=20;i++){
+      var p=qpt(A,C,B,i/20), min=Infinity;
+      ALL.forEach(function(n){
+        var q=pos[n.n]; if(!q||n.n===a||n.n===b) return;
+        var d=Math.hypot(q.x-p[0],q.y-p[1])-22;
+        if(d<min) min=d;
+      });
+      if(min<m) m=min;
+    }
+    return m;
+  }
+  function bestCurve(a,b){
+    var A=pos[a], B=pos[b];
+    var dx=B.x-A.x, dy=B.y-A.y, len=Math.hypot(dx,dy)||1;
+    var nx=-dy/len, ny=dx/len, mx=(A.x+B.x)/2, my=(A.y+B.y)/2;
+    var KS=[0,0.07,0.13,0.19,0.26,0.34,0.42,0.5];
+    var best=null;
+    for(var s=0;s<2;s++){
+      var sg=s?-1:1;
+      for(var i=0;i<KS.length;i++){
+        var C={x:mx+nx*sg*KS[i]*len, y:my+ny*sg*KS[i]*len};
+        var sc=minDist(A,C,B,a,b);
+        if(!best||sc>best.sc) best={sc:sc,C:C};
+        if(best.sc>14) break;
+      }
+      if(best.sc>14) break;
+    }
+    return best.C;
+  }
+
+  var gE=el('g',{}), gN=el('g',{}); svg.appendChild(gE); svg.appendChild(gN);
+
+  /* ---- 画关系线 ---- */
+  /* 线上下文字：压缩为「起始→终局」短式，完整描述见悬浮面板 */
+  function shortLabel(s){
+    var t=String(s).replace(/（[^）]*）/g,'').replace(/\([^)]*\)/g,'').trim();
+    var seg=t.split(/→/).map(function(x){return x.replace(/^[\s·]+|[\s·]+$/g,'');}).filter(Boolean);
+    var head=seg[0]||'', tail=(seg.length>1)?seg[seg.length-1]:'';
+    var out=head;
+    if(tail&&tail!==head) out=head+'→'+tail;
+    else{
+      var p=t.split(' · ').map(function(x){return x.trim();}).filter(Boolean);
+      out=p.length>=2?p[0]+' · '+p[1]:t;
+    }
+    return out.length>13?out.slice(0,13)+'…':out;
+  }
+
+  var edgeEls=[];
+  EDGES.forEach(function(e,ei){
+    if(!pos[e.a]||!pos[e.b]) return;
+    var col=RTYPE[e.k]||'#8a8a8a';
+    var A=pos[e.a], B=pos[e.b], C=bestCurve(e.a,e.b);
+    var d='M'+A.x.toFixed(1)+' '+A.y.toFixed(1)+' Q'+C.x.toFixed(1)+' '+C.y.toFixed(1)+' '+B.x.toFixed(1)+' '+B.y.toFixed(1);
+    var g=el('g',{'class':'edge','data-a':e.a,'data-b':e.b,'data-k':e.k});
+    var w=e.hero?2.1:1.3;
+    g.appendChild(el('path',{'class':'epath',d:d,stroke:col,'stroke-width':w,
+      'stroke-opacity':e.hero?0.5:0.26,'stroke-linecap':'round'}));
+    g.appendChild(el('path',{'class':'ehit',d:d}));
+    /* 标签沿曲线错开停靠点，避免枢纽附近扎堆重叠 */
+    var lt=0.62+(ei%4)*0.08;
+    var lp=qpt(A,C,B,lt);
+    var t=el('text',{'class':'elabel',x:lp[0].toFixed(1),y:(lp[1]+(ei%2?-3:11)).toFixed(1),
+      'text-anchor':'middle',fill:col});
+    t.textContent=shortLabel(e.label);
+    g.appendChild(t);
+    e.__col=col;
+    var o={g:g,e:e,el:t}; edgeEls.push(o);
+    gE.appendChild(g);
+  });
+
+  /* ---- 画节点 ---- */
+  var nodeEls={};
+  function drawNode(name,camp,r,isHub){
+    var col=campColor(name);
+    var g=el('g',{'class':'node'+(isHub?' hub':''),'data-name':name});
+    var x=pos[name].x, y=pos[name].y;
+    if(isHub){
+      g.appendChild(el('circle',{cx:x,cy:y,r:r+13,fill:'none',stroke:col,'stroke-width':'1',opacity:'0.3','stroke-dasharray':'4 6'}));
+    }
+    g.appendChild(el('circle',{cx:x,cy:y,r:r,fill:solid(col,isHub?1:0.9),stroke:col,'stroke-width':isHub?'2':'1.5','data-ring':'1'}));
+    var inner=el('text',{x:x,y:y+(isHub?6:4),'text-anchor':'middle','font-size':isHub?'17':'10','font-weight':'900',fill:isHub?'#08080c':hexA(col,0.95),'pointer-events':'none'});
+    inner.textContent=isHub?name:name.slice(0,2);
+    g.appendChild(inner);
+    var below=(y>=500);
+    var ty=below? y+r+15 : y-r-8;
+    var lbl=el('text',{x:x,y:ty,'text-anchor':'middle','font-size':isHub?'14':'11.5','font-weight':'700',
+      fill:isHub?col:'#d6d6d6','pointer-events':'none'});
+    lbl.textContent=name;
+    g.appendChild(lbl);
+    gN.appendChild(g);
+    nodeEls[name]=g;
+
+    g.addEventListener('mouseenter',function(ev){
+      if(locked) return;
+      state={mode:'node',id:name}; apply();
+      showTip(nodeHtml(name),(isHub||deg(name)>=10),ev);
+    });
+    g.addEventListener('mousemove',function(ev){ if(!locked) moveTip(ev); });
+    g.addEventListener('mouseleave',function(){
+      if(locked) return;
+      state={mode:'none'}; apply(); hideTip();
+    });
+    g.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      if(locked===name){ locked=null; state={mode:'none'}; apply(); hideTip(); markLock(null); }
+      else { locked=name; state={mode:'node',id:name}; apply(); showTip(nodeHtml(name),true,ev); markLock(name); }
+    });
+  }
+  function deg(nm){var c=0;for(var k in nbr[nm])c++;return c;}
+  function relsOf(nm){
+    var arr=[];
+    EDGES.forEach(function(e){
+      if(e.a!==nm&&e.b!==nm) return;
+      arr.push({other:e.a===nm?e.b:e.a,label:e.label,ch:e.ch,k:e.k});
+    });
+    var order=['亲缘','情','师徒','主从','君臣','友','敌'];
+    arr.sort(function(x,y){return order.indexOf(x.k)-order.indexOf(y.k);});
+    return arr;
+  }
+  function nodeHtml(nm){
+    var col=campColor(nm), camp=campNameZh(nm), role=roleOf(nm);
+    var desc=HUBINFO[nm]?HUBINFO[nm].d:(DESC[nm]||'');
+    var rels=relsOf(nm);
+    var cnt={}; rels.forEach(function(r){cnt[r.k]=(cnt[r.k]||0)+1;});
+    var tags=Object.keys(cnt).map(function(k){return '<span><i class="tip-kdot" style="background:'+(RTYPE[k]||'#888')+'"></i>'+k+' '+cnt[k]+'</span>';}).join('');
+    tags='<span>关系 '+rels.length+' 条</span>'+tags;
+    var rows=rels.map(function(r){
+      return '<div class="tip-rel"><b style="color:'+campColor(r.other)+'">'+esc(r.other)+'</b>'
+        +'<span class="tip-kdot" style="background:'+(RTYPE[r.k]||'#888')+'"></span>'
+        +esc(r.label)+' <span class="ch">['+esc(r.ch)+']</span></div>';
+    }).join('');
+    return '<div class="tip-name" style="color:'+col+'">'+esc(nm)+'</div>'
+      +'<div class="tip-role">'+(camp?esc(camp)+'　·　':'')+esc(role)+'</div>'
+      +(desc?'<div class="tip-desc">'+esc(desc)+'</div>':'')
+      +'<div class="tip-tags">'+tags+'</div>'
+      +'<div class="rl-title">关 系 · '+rels.length+' 条（按 亲缘→情→师徒→主从→君臣→友→敌 排序）</div>'
+      +'<div class="tip-rels'+(rels.length>11?' two':'')+'">'+rows+'</div>';
+  }
+  function edgeHtml(e){
+    return '<div class="tip-name" style="color:'+(RTYPE[e.k]||'#888')+'">'+esc(e.a)+' ⟷ '+esc(e.b)+'</div>'
+      +'<div class="tip-role">关系性质：'+esc(e.k)+'</div>'
+      +'<div class="tip-desc">'+esc(e.label)+'</div>'
+      +'<div class="rl-title">关键章号</div><div class="tip-rels"><div class="tip-rel">'+esc(e.ch)+'</div></div>';
+  }
+
+  drawNode('范闲','fanjia',40,true);
+  drawNode('庆帝','huangquan',40,true);
+  fanN.concat(qingN).forEach(function(n){drawNode(n.n,n.c,19,false);});
+
+  /* ---- 高亮 ---- */
+  function apply(){
+    var onId = state.mode==='node'?state.id:null;
+    var onEd = state.mode==='edge'?state.edge:null;
+    var camp = state.mode==='camp'?state.camp:null;
+    edgeEls.forEach(function(o){
+      var on=false;
+      if(onId) on=(o.e.a===onId||o.e.b===onId);
+      else if(onEd) on=(o===onEd);
+      else if(camp) on=(byName[o.e.a]&&byName[o.e.a].c===camp)||(byName[o.e.b]&&byName[o.e.b].c===camp);
+      o.g.classList.toggle('on',on);
+      o.g.classList.toggle('off',state.mode!=='none'&&!on);
+    });
+    ALL.forEach(function(n){
+      var on=true;
+      if(onId) on=(n.n===onId||!!nbr[onId][n.n]);
+      else if(onEd) on=(n.n===onEd.e.a||n.n===onEd.e.b);
+      else if(camp) on=(n.c===camp)||n.n==='范闲'||n.n==='庆帝';
+      var g=nodeEls[n.n]; if(g) g.classList.toggle('off',!on);
+    });
+  }
+  function markLock(nm){
+    for(var k in nodeEls) nodeEls[k].classList.toggle('lock',k===nm);
+  }
+  function rset(){
+    edgeEls.forEach(function(o){o.g.classList.remove('on','off');});
+    ALL.forEach(function(n){if(nodeEls[n.n])nodeEls[n.n].classList.remove('off');});
+  }
+
+  /* ---- 悬浮面板 ---- */
+  function showTip(html,wide,ev){
+    tipEl.innerHTML=html;
+    tipEl.classList.toggle('wide',!!wide);
+    tipEl.style.display='block';
+    if(ev) moveTip(ev);
+  }
+  function hideTip(){tipEl.style.display='none';}
+  function moveTip(ev){
+    var r=tipEl.getBoundingClientRect();
+    var x=ev.clientX+18, y=ev.clientY+18;
+    if(x+r.width>innerWidth-12) x=ev.clientX-r.width-18;
+    if(y+r.height>innerHeight-12) y=Math.max(10,ev.clientY-r.height-18);
+    tipEl.style.left=Math.max(8,x)+'px';
+    tipEl.style.top=Math.max(8,y)+'px';
+  }
+  /* 关系线 hover */
+  edgeEls.forEach(function(o){
+    var hit=o.g.querySelector('.ehit');
+    if(!hit) return;
+    hit.addEventListener('mouseenter',function(ev){
+      if(locked) return;
+      state={mode:'edge',edge:o}; apply(); showTip(edgeHtml(o.e),false,ev);
+    });
+    hit.addEventListener('mousemove',function(ev){ if(!locked) moveTip(ev); });
+    hit.addEventListener('mouseleave',function(){
+      if(locked) return;
+      state={mode:'none'}; apply(); hideTip();
+    });
+  });
+
+  /* 空白处点击取消 */
+  svg.addEventListener('click',function(e){
+    if(!(e.target.closest&&e.target.closest('g.node'))){ locked=null; state={mode:'none'}; apply(); hideTip(); markLock(null); }
+  });
+
+  /* ---- 图例：阵营筛选 ---- */
+  var cl=document.getElementById('campLegend');
+  cl.innerHTML='<span style="font-size:11px;color:#7a7a7a;padding:4px;letter-spacing:1px">阵营筛选 ▸</span>'
+   +CAMPORDER.map(function(c){return '<span class="lg-item" data-c="'+c+'"><i class="lg-dot" style="background:'+CAMPS[c].color+'"></i>'+CAMPS[c].name+'</span>';}).join('');
+  cl.querySelectorAll('.lg-item').forEach(function(it){
+    it.addEventListener('click',function(){
+      locked=null; markLock(null); hideTip();
+      var c=it.dataset.c;
+      if(campSel===c){campSel=null;state={mode:'none'};cl.querySelectorAll('.lg-item').forEach(function(x){x.classList.remove('off');});}
+      else{campSel=c;state={mode:'camp',camp:c};cl.querySelectorAll('.lg-item').forEach(function(x){x.classList.toggle('off',x.dataset.c!==c);});}
+      apply();
+    });
+  });
+
+  var tl=document.getElementById('typeLegend');
+  tl.innerHTML='<span style="font-size:11px;color:#7a7a7a;padding:4px;letter-spacing:1px">关系性质 ▸</span>'
+   +RTYPENAME.map(function(t){return '<span class="lg-item" style="cursor:default"><i class="lg-line" style="background:'+RTYPE[t]+'"></i>'+t+'</span>';}).join('');
+
+  /* 自检 */
+  (function(){
+    var bad=0,OOB=[];
+    for(var i=0;i<ALL.length;i++){
+      var a=ALL[i],pa=pos[a.n];
+      if(pa.x-19<0||pa.y-19<0||pa.x+19>1360||pa.y+19>1000) OOB.push(a.n);
+      for(var j=i+1;j<ALL.length;j++){
+        var pb=pos[ALL[j].n], dd=Math.hypot(pa.x-pb.x,pa.y-pb.y);
+        if(dd<38){bad++; if(window.console)console.warn('[重叠]',a.n,ALL[j].n,dd.toFixed(1));}
+      }
+    }
+    if(window.console) console.log('[图谱自检] 节点',ALL.length,'边',EDGES.length,'重叠',bad,'越界',OOB.length,OOB);
+  })();
+})();
+
+/* ============ 渲染：关系演变甘特图 ============ */
+(function(){
+  var svg=document.getElementById('gantt'), NS='http://www.w3.org/2000/svg';
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a){e.setAttribute(k,a[k]);}return e;}
+  var X0=252, X1=1334, W=X1-X0, MAX=746, RH=34, Y0=76;
+  var H=Y0+ROWS.length*RH+34;
+  svg.setAttribute('viewBox','0 0 1360 '+H);
+  function xf(c){return X0+(c/MAX)*W;}
+
+  /* 轴刻度 */
+  var gax=el('g',{});
+  for(var c=0;c<=746;c+=100){
+    var x=xf(c);
+    gax.appendChild(el('line',{x1:x,y1:Y0-14,x2:x,y2:Y0+ROWS.length*RH,stroke:'rgba(255,255,255,0.06)','stroke-width':'1'}));
+    var t=el('text',{x:x,y:Y0-22,'text-anchor':'middle','font-size':'10',fill:'#7f7f7f'});
+    t.textContent=c; gax.appendChild(t);
+  }
+  gax.appendChild(el('line',{x1:xf(746),y1:Y0-14,x2:xf(746),y2:Y0+ROWS.length*RH,stroke:'rgba(201,169,97,0.28)','stroke-width':'1'}));
+  var t746=el('text',{x:xf(746),y:Y0-22,'text-anchor':'middle','font-size':'10',fill:'#c9a961','font-weight':'700'});
+  t746.textContent='746'; gax.appendChild(t746);
+  var ttl=el('text',{x:X0,y:26,fill:'#9a9a9a','font-size':'11.5','letter-spacing':'1'});
+  ttl.textContent='横轴 · 章号（全书连续编号 0 → 746）'; gax.appendChild(ttl);
+  svg.appendChild(gax);
+
+  ROWS.forEach(function(row,ri){
+    var y=Y0+ri*RH;
+    if(ri%2===0){svg.appendChild(el('rect',{x:X0-8,y:y,width:W+14,height:RH,fill:'rgba(255,255,255,0.014)'}));}
+    /* 行标签 */
+    var lb=el('text',{x:X0-16,y:y+RH/2+4,'text-anchor':'end','font-size':'11.5',fill:'#d6d6d6','font-weight':'600'});
+    lb.textContent=row[0]; svg.appendChild(lb);
+    /* 段落 */
+    row[1].forEach(function(s){
+      var seg=row[1];
+      var from=s[0], to=s[1], kind=s[2], note=s[3];
+      var x=xf(from), w=Math.max(1.5, xf(to)-xf(from));
+      var last=(to>=746);
+      var r=el('rect',{x:x,y:y+8,width:w,height:RH-16,rx:2.5,fill:KIND[kind],opacity:'0.86'});
+      var tt=el('title',{});
+      tt.textContent=row[0]+'　第'+from+(from===to?'章':'–'+to+'章')+'　｜　'+note+'（'+kindLabel(kind)+'）';
+      r.appendChild(tt);
+      svg.appendChild(r);
+      if(w>=52){
+        var lc=el('text',{x:x+4,y:y+RH/2+4,'font-size':'9',fill: darkText(kind)?'#08080c':'rgba(255,255,255,0.85)','font-weight':'700','pointer-events':'none'});
+        lc.textContent=(from===0?'':'')+from;
+        svg.appendChild(lc);
+      }
+      if(last){
+        var lc2=el('text',{x:x+w-3,y:y+RH/2+4,'text-anchor':'end','font-size':'9',fill: darkText(kind)?'#08080c':'rgba(255,255,255,0.85)','font-weight':'700','pointer-events':'none'});
+        lc2.textContent='746'; svg.appendChild(lc2);
+      }
+    });
+  });
+
+  function darkText(k){return k==='m'||k==='j'||k==='h'||k==='a';}
+  function kindLabel(k){for(var i=0;i<KINDNAME.length;i++){if(KINDNAME[i][0]===k)return KINDNAME[i][1];}return '';}
+
+  /* 阶段图例 */
+  document.getElementById('phaseLegend').innerHTML=KINDNAME.map(function(k){
+    return '<span class="ph"><i style="background:'+KIND[k[0]]+'"></i>'+k[1]+'</span>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

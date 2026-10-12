@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 · 世界观设定集 · 创作蓝图</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+body::-webkit-scrollbar{width:4px;}
+body::-webkit-scrollbar-track{background:transparent;}
+body::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.2);border-radius:4px;}
+
+.topbar{position:sticky;top:0;z-index:100;
+  background:rgba(8,8,12,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 28px;}
+.topbar a{color:var(--gold);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;transition:opacity 0.2s;}
+.topbar a:hover{opacity:0.7;}
+.topbar .title{font-size:13px;color:var(--gold2);letter-spacing:2px;font-weight:700;}
+.author-badge{position:fixed;top:14px;right:20px;z-index:1000;font-size:12px;color:var(--gold);letter-spacing:1px;font-weight:500;
+  background:rgba(8,8,12,0.72);border:1px solid rgba(201,169,97,0.3);border-radius:16px;padding:5px 14px;backdrop-filter:blur(8px);white-space:nowrap;pointer-events:none;}
+.author-badge b{color:var(--gold2);font-weight:700;}
+@media(max-width:480px){.author-badge{font-size:11px;top:10px;right:10px;padding:4px 10px;}}
+
+.content{max-width:820px;margin:0 auto;padding:40px 32px 80px;position:relative;z-index:1;}
+
+.content h1{
+  font-size:26px;color:var(--gold2);margin-bottom:24px;padding-bottom:14px;
+  border-bottom:2px solid rgba(201,169,97,0.25);letter-spacing:4px;font-weight:900;
+}
+.content h2{
+  font-size:18px;color:var(--gold2);margin:36px 0 14px;
+  border-left:3px solid var(--gold);padding-left:14px;letter-spacing:2px;font-weight:700;
+}
+.content h3{
+  font-size:15px;color:var(--gold2);margin:24px 0 10px;letter-spacing:1px;font-weight:700;
+}
+.content h4{
+  font-size:14px;color:#ccc;margin:18px 0 8px;font-weight:700;
+}
+.content p{font-size:14px;line-height:2;color:#ddd;margin-bottom:12px;}
+.content strong{color:var(--gold2);font-weight:600;}
+.content em{color:var(--gold);font-style:normal;font-weight:500;}
+
+.content blockquote{
+  background:rgba(201,169,97,0.04);border-left:3px solid rgba(201,169,97,0.3);
+  padding:14px 20px;margin:16px 0;border-radius:0 10px 10px 0;
+  font-size:13px;color:#bbb;line-height:1.9;
+}
+
+.content ul,.content ol{padding-left:22px;margin:8px 0 16px;}
+.content li{font-size:13px;line-height:2;color:#ddd;margin-bottom:3px;}
+.content li strong{color:var(--gold2);}
+
+.content table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:12px;}
+.content thead{background:rgba(201,169,97,0.15);}
+.content th{padding:10px 14px;text-align:left;font-weight:700;color:var(--gold2);letter-spacing:1px;font-size:12px;}
+.content td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.05);color:#ccc;line-height:1.8;vertical-align:top;}
+.content tbody tr:hover{background:rgba(201,169,97,0.03);}
+
+.content code{background:rgba(201,169,97,0.1);color:var(--gold);padding:2px 6px;border-radius:4px;font-size:12px;font-family:inherit;}
+.content pre{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd;padding:20px;border-radius:10px;overflow-x:auto;margin:16px 0;font-size:12px;line-height:1.8;}
+.content pre code{background:none;color:inherit;padding:0;}
+
+.content hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,0.2),transparent);margin:32px 0;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="author-badge">作者 <b>五竹</b> · 微信 wuzhuv2</div>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <span class="title">创作蓝图</span>
+</div>
+<div class="content">
+<h1>04 · 世界观设定集</h1>
+<blockquote>
+<p>依据：139 张单元卡「设定·名词」「阵营动态」「场景地点」+ 谜题/金句分片。<br>章号一律为<strong>全书连续编号</strong>。<br><strong>分工边界</strong>：本篇只讲&quot;势力/组织/制度/地理是什么&quot;（客观存在的派系、机构、规则与场所）；具体人与人的恩怨、关系变化归 <code>07_人物关系网</code>。</p>
+</blockquote>
+<hr>
+<h2>一、总览：天下格局</h2>
+<p><strong>时代</strong>：架空古代。前代文明（核战）毁灭后，幸存者重建的文明；&quot;天地元气&quot;实为核战后辐射遗存。[第726章][第731章]</p>
+<p><strong>地理母题</strong>：以&quot;南庆—北齐—东夷城&quot;三足鼎立为主轴，外圈为<strong>南蛮（南诏）<strong>与</strong>西胡（草原）</strong>；极北为<strong>大雪山·神庙</strong>，东海为澹州、大东山、东夷海岸。[单元31][第411章]</p>
+<pre><code>                 〔极北大雪山 · 神庙〕
+                        │
+    〔西胡 · 草原〕——〔北齐 · 上京〕——〔东夷城 · 剑庐/临海〕
+                        │                    │
+                  〔雾渡河·庆齐界河〕    〔澹州 · 东海港〕
+                        │
+                  〔南庆 · 京都〕——〔江南 · 杭州/内库〕——〔大东山 · 东海石山〕
+                        │
+                    〔南诏 · 瘴气〕
+</code></pre>
+<p><strong>三足关系（核心矛盾引擎）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>势力</th>
+<th>对庆国</th>
+<th>对北齐</th>
+<th>对东夷城</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>南庆</strong></td>
+<td>—</td>
+<td>世仇·征伐</td>
+<td>欲收东夷（&quot;鹿肉&quot;）</td>
+</tr>
+<tr>
+<td><strong>北齐</strong></td>
+<td>世仇·互防</td>
+<td>—</td>
+<td>联手抗庆（相对较弱）</td>
+</tr>
+<tr>
+<td><strong>东夷城</strong></td>
+<td>以&quot;钱与剑&quot;自保</td>
+<td>云之澜宁联齐抗庆</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>格局总纲：<strong>&quot;天下者，庆国最强、北齐次之、东夷以商与剑夹缝求生&quot;</strong>；庆帝一生所图&quot;不过二事：天下、传承&quot;[第462章]。</p>
+</blockquote>
+<hr>
+<h2>二、三大势力</h2>
+<h3>2.1 庆国（南庆）——主角国·超级大国</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>都城</td>
+<td>京都（内廷/皇城/六部/十三城门）</td>
+<td>单元06</td>
+</tr>
+<tr>
+<td>发家</td>
+<td>开国·北伐北魏（曾独大之国）；三十年前始有&quot;大宗师&quot;</td>
+<td>[第239章][第527章]</td>
+</tr>
+<tr>
+<td>政治底色</td>
+<td>皇权高度集中、重军功、重权术；&quot;马上可夺天下，却不可马上治天下&quot;</td>
+<td>[第259章]</td>
+</tr>
+<tr>
+<td>经济两大源泉</td>
+<td><strong>内库</strong>（叶家产业）与<strong>监察院</strong></td>
+<td>[第651章]</td>
+</tr>
+<tr>
+<td>死穴</td>
+<td>皇位传承之争（太子/二皇子/三皇子/大皇子）；权臣（长公主/秦家）与皇权相轧</td>
+<td>单元84-100</td>
+</tr>
+<tr>
+<td>结局</td>
+<td>庆帝死、李承平（三皇子）继位；范闲成超然于帝权的力量</td>
+<td>[第745章]</td>
+</tr>
+</tbody></table>
+<h3>2.2 北齐——由北魏演化的敌国</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前身</td>
+<td>大魏/北魏，三十余年前独大之国，后被庆国北伐削弱</td>
+<td>[第239章]</td>
+</tr>
+<tr>
+<td>都城</td>
+<td>上京（奢侈品街&quot;秀水街&quot;、畔山林、百岁松居）</td>
+<td>单元28</td>
+</tr>
+<tr>
+<td>政权格局</td>
+<td><strong>&quot;三面&quot;格局</strong>：太后（垂帘）/ 皇帝（战豆豆，<strong>女扮男装</strong>）/ 上杉虎（名将）</td>
+<td>单元29</td>
+</tr>
+<tr>
+<td>国师</td>
+<td>苦荷（四大宗师之一，天一道掌门，苦行僧）</td>
+<td>单元02</td>
+</tr>
+<tr>
+<td>特务机构</td>
+<td><strong>锦衣卫 / 镇抚司</strong>（指挥使卫华接替沈重）</td>
+<td>[第506章]</td>
+</tr>
+<tr>
+<td>文学正统</td>
+<td>北齐自认&quot;文学正统&quot;；庄墨韩为文坛大家</td>
+<td>单元27</td>
+</tr>
+<tr>
+<td>名将</td>
+<td>上杉虎（庆国北伐的心腹大患）</td>
+<td>单元128</td>
+</tr>
+</tbody></table>
+<h3>2.3 东夷城——以&quot;钱与剑&quot;立身的商业城邦</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>位置</td>
+<td>临海，海航强；与澹州隔峭壁密林</td>
+<td>[第411章]</td>
+</tr>
+<tr>
+<td>建城</td>
+<td>&quot;建城极晚，从一开始就没有修过城墙&quot;；大兄（四顾剑）即其城墙</td>
+<td>[第615章]</td>
+</tr>
+<tr>
+<td>核心</td>
+<td><strong>剑庐</strong>（武道圣地，四顾剑门下十三徒，门下十二九品）+ <strong>太平钱庄</strong>（天下最大钱庄）</td>
+<td>[第601章][第660章]</td>
+</tr>
+<tr>
+<td>商业底色</td>
+<td>&quot;基本上已经有了某种契约关系的雏形&quot;（vs 庆国江南的朝廷垄断）</td>
+<td>[第615章]</td>
+</tr>
+<tr>
+<td>归属</td>
+<td>四顾剑死后，东夷以&quot;五十年不变/驻军/质子&quot;协议归附庆国（名义归顺）</td>
+<td>单元118</td>
+</tr>
+</tbody></table>
+<h3>2.4 南蛮 · 西胡 · 南诏（外围势力）</h3>
+<ul>
+<li><strong>西胡（草原）</strong>：左贤王帐、单于速必达、部族王庭（月牙海/孤山）；名王女玛索索（玉钩信物）；北蛮南迁曾逾万铁骑。[单元102-104]</li>
+<li><strong>松芝仙令</strong>：海棠朵朵的草原身份（喀尔纳王姓&quot;松芝&quot;）。[第593章]</li>
+<li><strong>南诏</strong>：瘴气之地；太子曾赴南诏（实为慢性处死）。[第499章]</li>
+<li><strong>定州军（叶家军）/ 燕京大营 / 北大营</strong>：庆国北方三大边军。[单元108]</li>
+</ul>
+<hr>
+<h2>三、四大宗师 与 四顾剑</h2>
+<h3>3.1 四大宗师（&quot;以一人之力可抗国家机器&quot;的存在）</h3>
+<blockquote>
+<p>三十年前始现；天下恒定仅四人，成&quot;天花板&quot;设定。[第527章][第528章]</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>宗师</th>
+<th>势力</th>
+<th>绝学</th>
+<th>结局</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>庆帝</strong></td>
+<td>庆国皇帝</td>
+<td>无名功诀<strong>下卷·王道</strong>（体内无经脉）</td>
+<td>被范闲以重狙+斩指掌重创，彩虹贯体而逝[第745章]</td>
+</tr>
+<tr>
+<td><strong>苦荷</strong></td>
+<td>北齐国师</td>
+<td><strong>天一道</strong>（天人合一）</td>
+<td>大东山被废、命不久，谢幕于回忆中[第568章][第584章]</td>
+</tr>
+<tr>
+<td><strong>四顾剑</strong></td>
+<td>东夷城剑庐</td>
+<td><strong>四顾剑</strong>（以身为剑、&quot;无剑意志&quot;杀人）</td>
+<td>残躯一剑七杀后油尽灯枯；死前授范闲剑道[第631章][第658章]</td>
+</tr>
+<tr>
+<td><strong>叶流云</strong></td>
+<td>庆国（定州叶家）</td>
+<td><strong>流云散手 / 大劈棺</strong>（弃剑后悟得）</td>
+<td>大东山重伤；&quot;为送别而来&quot;后海上永去[第658章]</td>
+</tr>
+</tbody></table>
+<p><strong>四顾剑补充</strong>：本名不见于众，人称依其剑意&quot;顾前不顾后，顾左不顾右&quot;——<strong>&quot;所谓四顾，其实便是不顾&quot;</strong>[第374章]；剑庐十三徒（门下有十二位九品），关门弟子王十三郎（青幡/铁相/王羲）；其弟即监察院六处主办<strong>影子</strong>（天下第一刺客）。</p>
+<p><strong>宗师谱系之下的高手梯队</strong>：九品上 → 九品 → 八品 …（见 §五）；洪四庠为&quot;幌子·假宗师&quot;（内廷老太监）[第567章]。</p>
+<hr>
+<h2>四、庙堂制度（庆国）</h2>
+<h3>4.1 皇权核心</h3>
+<table>
+<thead>
+<tr>
+<th>机构/场所</th>
+<th>功能</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>御书房</strong>（皇帝议政处）</td>
+<td>七位大臣有座、皇子站位；私下议政</td>
+<td>[第259章]</td>
+</tr>
+<tr>
+<td><strong>兴庆宫</strong></td>
+<td>皇帝居所</td>
+<td>单元17</td>
+</tr>
+<tr>
+<td><strong>含光殿</strong></td>
+<td>太后居所（&quot;控人之处&quot;，床榻有暗格）</td>
+<td>[第137章][第572章]</td>
+</tr>
+<tr>
+<td><strong>广信宫</strong></td>
+<td>长公主居所（宫外宫女亦带修为）</td>
+<td>[第469章]</td>
+</tr>
+<tr>
+<td><strong>东宫</strong></td>
+<td>太子居所</td>
+<td>单元78</td>
+</tr>
+<tr>
+<td><strong>太极殿</strong></td>
+<td>皇宫最高点（结局决战地）</td>
+<td>单元131</td>
+</tr>
+</tbody></table>
+<h3>4.2 相权与文官系统（&quot;宰相不设&quot;）</h3>
+<ul>
+<li><strong>门下中书省</strong>：相阁职能，由<strong>大学士</strong>领衔（胡大学士、舒芜、贺宗纬）。[第330章][第461章]</li>
+<li><strong>六部</strong>：户部、刑部、礼部、兵部（后改<strong>枢密院</strong>）等；&quot;庆国三院六部&quot;（监察院、教育院/太学、军事院）。[第26章]</li>
+<li><strong>都察院</strong>：天子耳目风纪之司，<strong>仅存言罪特权</strong>、&quot;风闻议事无罪&quot;；左都御史（贺宗纬曾兼看监察院）。[第270章][第461章]</li>
+<li><strong>大理寺</strong>：司法审判；<strong>太常寺</strong>：掌皇族宗室婚配、宫中走动极多（太常寺正卿）；<strong>鸿胪寺</strong>：外交。[第473章]</li>
+<li><strong>科举/教育</strong>：会试三场（春闱）、糊名抄录防弊、太学（旧称同文馆）；&quot;居中郎&quot;掌糊名。[单元21-22]</li>
+</ul>
+<h3>4.3 大内与皇城防务</h3>
+<ul>
+<li><strong>大内统领</strong>（燕小乙，九品）、禁军统领（宫典）、<strong>十三城门司</strong>（守城门，直属皇帝）。[第139章][第531章]</li>
+<li><strong>内廷</strong>（内务部，皇帝暗控监察院的桥梁）；常守太监；洪四庠/洪竹为宫中红人。[第113章][第479章]</li>
+</ul>
+<h3>4.4 开国元老会（历史遗留）</h3>
+<ul>
+<li>开国初期由<strong>皇太后及元老会执政</strong>；皇帝与司南伯爵在外征西蛮。[单元01]</li>
+<li>太后在权力体系中长期保有极大影响力（逼政、控人、掌废立舆论）。[单元84-91]</li>
+</ul>
+<hr>
+<h2>五、九品制（官阶 vs 武者等级——本书最易混淆处）</h2>
+<blockquote>
+<p>⚠️ <strong>同名双义系统</strong>：庆国&quot;品级&quot;一词同时用于<strong>官阶</strong>与<strong>武道等级</strong>，二者含义不同、不可混用。这是世界观理解的第一道坑。</p>
+</blockquote>
+<h3>5.1 武者品级（武道）</h3>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>说明</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一~七品</td>
+<td>一般武者</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>八品</strong></td>
+<td>高手（军方、大内中坚）</td>
+<td>程巨树[第93章]、虎卫高达（八品顶端）[第669章]</td>
+</tr>
+<tr>
+<td><strong>九品</strong></td>
+<td>一流高手</td>
+<td>范闲（中后期）、燕小乙、云之澜（九品上）、海棠（九品上）</td>
+</tr>
+<tr>
+<td><strong>九品上</strong></td>
+<td>武者巅峰</td>
+<td>海棠朵朵、狼桃、云之澜、影子、燕小乙</td>
+</tr>
+<tr>
+<td><strong>大宗师</strong></td>
+<td>九品之上，全书仅四人</td>
+<td>见 §三</td>
+</tr>
+</tbody></table>
+<ul>
+<li>特殊：五竹、叶流云、四顾剑等**&quot;没级&quot;**（超脱品阶之外）。[第16章]</li>
+<li>范闲自陈&quot;七级真气、三级控制&quot;合成五级[第16章]→&quot;八品上九品下&quot;[第140章]→九品→九品上。</li>
+</ul>
+<h3>5.2 官阶品级（文/武官）</h3>
+<table>
+<thead>
+<tr>
+<th>品级</th>
+<th>实例</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正一品</td>
+<td>江南路总督（兼殿阁大学士）、正一品大都督（王志昆）</td>
+<td>[第343章][单元106]</td>
+</tr>
+<tr>
+<td>从二品</td>
+<td>巡抚、燕京守领（梅执礼）</td>
+<td>[第343章]</td>
+</tr>
+<tr>
+<td>五品</td>
+<td><strong>太学院奉正</strong>（文官虚职）</td>
+<td>[第144章]</td>
+</tr>
+<tr>
+<td>八品</td>
+<td><strong>协律郎</strong>（太常寺八品官，驸马成婚前必任）</td>
+<td>[第93章]</td>
+</tr>
+<tr>
+<td>超品</td>
+<td><strong>澹泊公</strong>（超品公爵、三等公，庆国开国最年轻公爷）</td>
+<td>[第461章]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>混淆点提醒：<strong>&quot;九品（武）&quot;≠&quot;九品（官）&quot;</strong>；&quot;五品太学院奉正&quot;是官，不是武者五品。续写时须看语境判断。</p>
+</blockquote>
+<hr>
+<h2>六、内库（叶轻眉所创 · 经济命脉）</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>来历</td>
+<td>叶家曾为<strong>天下第一商号</strong>；叶轻眉死后产业收归<strong>皇室内库</strong>（广惠库/承运库）</td>
+<td>[第34章][第259章]</td>
+</tr>
+<tr>
+<td>地位</td>
+<td>庆国强大两大源泉之一；&quot;内库不是内库，它自某世迢迢而来，应造福于当世之民&quot;</td>
+<td>[第651章]</td>
+</tr>
+<tr>
+<td>组织</td>
+<td><strong>内库转运司 + 三大坊</strong>：甲坊（玻璃/工艺品/香水/烈酒）、乙坊（棉布/纱布/稻种/钢）、丙坊（船舶/军械）</td>
+<td>[第347章]</td>
+</tr>
+<tr>
+<td>人事</td>
+<td>司库/主事（技术官僚）；<strong>庆余堂十七位叶姓掌柜</strong>（叶家旧人，授徒）</td>
+<td>[第350章][第109章]</td>
+</tr>
+<tr>
+<td>制度</td>
+<td>内库<strong>开门招标</strong>（十六出项、四成定银、明标明银、价高者得）；五条封锁线</td>
+<td>[第354章][第346章]</td>
+</tr>
+<tr>
+<td>产品</td>
+<td>玻璃、肥皂、香水、棉布、钢、军械、线拉屏风扇、内库报纸</td>
+<td>单元28</td>
+</tr>
+<tr>
+<td>与监察院</td>
+<td>&quot;内库利润划拨监察院经费&quot;是<strong>叶轻眉铁规矩</strong></td>
+<td>[第262章]</td>
+</tr>
+<tr>
+<td>十家村</td>
+<td>闽北内库旧址所在，本名&quot;叶家村&quot;（去&quot;口&quot;字）；重建内库之基</td>
+<td>[第648章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>七、监察院（叶轻眉创设 · 恐怖机构）</h2>
+<h3>7.1 定位与特权</h3>
+<ul>
+<li><strong>庆国三院之一</strong>（监察院、教育院、军事院），权力最大：有<strong>独立调查/逮捕/奉旨审判权</strong>，无机构可监管。[第26章]</li>
+<li><strong>创设者=叶轻眉</strong>；本意&quot;<strong>从一开始的时候，就是用来监察你的</strong>&quot;（监察皇帝）——是<strong>公器</strong>。[第678章][第721章]</li>
+<li>门口<strong>石碑</strong>：叶轻眉撰&quot;不羁之民&quot;碑文，落款&quot;叶轻眉&quot;，<strong>后两句被隐去</strong>。[第26章][第423章]</li>
+</ul>
+<h3>7.2 编制：院长 / 提司 / 八大处</h3>
+<table>
+<thead>
+<tr>
+<th>职衔</th>
+<th>说明</th>
+<th>历任 / 代表</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>院长</strong></td>
+<td>最高首长，坐轮椅、畏光</td>
+<td>陈萍萍（首任）→ 范闲（第二任）→ 言冰云（第三任）</td>
+<td>[第26章][第423章][第644章]</td>
+</tr>
+<tr>
+<td><strong>提司</strong></td>
+<td>独立于八大处、与八大处主办平级的<strong>超然存在</strong>，最高凭证为提司腰牌</td>
+<td>五竹（第一任）→ 范闲（第二任）→ 言冰云</td>
+<td>[第90章][第97章][第423章]</td>
+</tr>
+</tbody></table>
+<p><strong>八大处职能</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>处</th>
+<th>职能</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一处</td>
+<td>监察京都百官（总掌京中官员监察）</td>
+<td>[第262章]</td>
+</tr>
+<tr>
+<td>二处</td>
+<td>情报归拢</td>
+<td>单元23</td>
+</tr>
+<tr>
+<td>三处</td>
+<td>药物、偏门武器（制毒科）</td>
+<td>单元23</td>
+</tr>
+<tr>
+<td>四处</td>
+<td>监察各郡路（外地事务，驻江南/北齐等）</td>
+<td>[第26章][第335章]</td>
+</tr>
+<tr>
+<td>五处</td>
+<td><strong>黑骑</strong>（武力最强、无坐衙之人，限千人之内）</td>
+<td>单元63[第559章]</td>
+</tr>
+<tr>
+<td>六处</td>
+<td>暗杀（剑手/刺客，主办=影子）</td>
+<td>单元23[第414章]</td>
+</tr>
+<tr>
+<td>七处</td>
+<td>刑讯（天牢，最深层&quot;黄泉&quot;）</td>
+<td>单元122</td>
+</tr>
+<tr>
+<td>八处</td>
+<td>宣传（文英总校处）+ 掌外地事务（四处并称）</td>
+<td>[第42章]</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>启年小组</strong>：王启年一手组建、直属范闲的秘密小组（王启年三年&quot;藏身&quot;于院长身边无人察觉）。[第690章][第693章]</li>
+<li><strong>监察院改制</strong>（结局）：撤院长制。[第746章]</li>
+<li><strong>削权</strong>（庆历中期）：一处抓人须四十八时辰内交大理寺；言官（都察院）入监察院。[第460章][第461章]</li>
+</ul>
+<hr>
+<h2>八、货币 · 交通 · 军制</h2>
+<h3>8.1 货币与金融</h3>
+<ul>
+<li><strong>白银/银两</strong>为硬通货（&quot;箱中有银十三万八千八百八十两整&quot;[第343章]）。</li>
+<li><strong>钱庄</strong>：<strong>太平钱庄</strong>（东夷城资金、天下最大）；<strong>招商钱庄</strong>（范闲借北齐沈重遗产+东夷之资所设）。[第344章][第484章]</li>
+<li>金融工具：<strong>现票 / 期票、债转股、死契、干股、浅水价</strong>。[第485-490章]</li>
+<li><strong>庆律</strong>：庆国法典（有《户婚》《疏义》《辑注》《会典》《总疏》等篇）。[第370章][第719章]</li>
+</ul>
+<h3>8.2 交通与信息</h3>
+<ul>
+<li><strong>邮路</strong>：依《通邮法令》建立；有&quot;一级邮路&quot;（一级邮路[单元85]）；驿马八百里加急。[第15章]</li>
+<li><strong>内廷报纸/邸报/院报</strong>：皇帝亲审样刊的&quot;报纸&quot;，发各路州县。[第15章][第513章]</li>
+<li><strong>河道</strong>：渭河/流晶河/大江为主干；江南水师官船&quot;三翼船&quot;速度极快。[第330章][第334章]</li>
+</ul>
+<h3>8.3 军制</h3>
+<table>
+<thead>
+<tr>
+<th>军种</th>
+<th>说明</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>枢密院</strong></td>
+<td>军部（由兵部改），正使叶重</td>
+<td>[第513章]</td>
+</tr>
+<tr>
+<td><strong>京都守备师</strong></td>
+<td>京畿近卫</td>
+<td>[第73章]</td>
+</tr>
+<tr>
+<td><strong>十三城门司</strong></td>
+<td>守城，直属皇帝</td>
+<td>[第531章]</td>
+</tr>
+<tr>
+<td><strong>五路边军 / 七路州军</strong></td>
+<td>边军+地方军</td>
+<td>[第73章]</td>
+</tr>
+<tr>
+<td><strong>黑骑</strong></td>
+<td>监察院五处，天下第一骑兵，庆律限千人以下</td>
+<td>[第559章][第689章]</td>
+</tr>
+<tr>
+<td><strong>三大水师</strong></td>
+<td>沙湖水师、胶州水师、泉州水师（泉州为叶家旧产）</td>
+<td>[第413章][第419章]</td>
+</tr>
+<tr>
+<td><strong>北方三大边军</strong></td>
+<td>定州军（叶家军）、燕京大营（庆帝三十年经营）、北大营</td>
+<td>单元108</td>
+</tr>
+<tr>
+<td><strong>虎卫</strong></td>
+<td>皇家特训护卫（七虎卫，赐范闲；大东山尽亡）</td>
+<td>[第311章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>九、地理要地速查</h2>
+<table>
+<thead>
+<tr>
+<th>地名</th>
+<th>性质 / 意义</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>澹州</strong></td>
+<td>庆国东海避世港、范闲故乡（伯爵府/悬崖/杂货铺旧址）</td>
+<td>[第0章][第427章]</td>
+</tr>
+<tr>
+<td><strong>京都</strong></td>
+<td>庆国都城（内廷/皇城/一石居/流晶河/抱月楼/瘦湖）</td>
+<td>单元06</td>
+</tr>
+<tr>
+<td><strong>江南</strong></td>
+<td>内库三大坊所在、明家/崔家/江南水寨、杭州会</td>
+<td>[第332章]</td>
+</tr>
+<tr>
+<td><strong>杭州</strong></td>
+<td>江南繁华地（范闲西湖宅）</td>
+<td>[第338章][第746章]</td>
+</tr>
+<tr>
+<td><strong>大东山</strong></td>
+<td>东海石山，临海绝壁、庆庙、出美玉；&quot;宗师会东山&quot;之地</td>
+<td>[第425章][第528章]</td>
+</tr>
+<tr>
+<td><strong>苍山</strong></td>
+<td>大东山余脉，范闲养伤/蜜月别业</td>
+<td>[第150章]</td>
+</tr>
+<tr>
+<td><strong>上京</strong></td>
+<td>北齐都城</td>
+<td>单元27</td>
+</tr>
+<tr>
+<td><strong>东夷城</strong></td>
+<td>临海商业城邦（剑庐/城主府/龙山近郊）</td>
+<td>[第411章][第615章]</td>
+</tr>
+<tr>
+<td><strong>燕京</strong></td>
+<td>庆北重镇，&quot;庆帝三十年经营&quot;、燕京派</td>
+<td>单元105</td>
+</tr>
+<tr>
+<td><strong>定州</strong></td>
+<td>西凉路重镇、叶家军/定州军所在</td>
+<td>[第102章]</td>
+</tr>
+<tr>
+<td><strong>龙山</strong></td>
+<td>东夷城近郊&quot;天下第一雄城&quot;</td>
+<td>[第615章]</td>
+</tr>
+<tr>
+<td><strong>雾渡河</strong></td>
+<td>庆齐界河/小镇</td>
+<td>单元26</td>
+</tr>
+<tr>
+<td><strong>燕山绝壁</strong></td>
+<td>上京西，石壁光滑如镜，大宗师亦难攀</td>
+<td>[第237章]</td>
+</tr>
+<tr>
+<td><strong>大雪山·神庙</strong></td>
+<td>极北雪原，终年极昼极夜；真神庙所在</td>
+<td>[第239章][第726章]</td>
+</tr>
+<tr>
+<td><strong>太平别院</strong></td>
+<td>京都郊外流晶河畔，叶轻眉旧居、血案发生地，后收归皇室</td>
+<td>[第0章][第107章][第564章]</td>
+</tr>
+<tr>
+<td><strong>澹州港 / 大青山 / 悬空庙</strong></td>
+<td>澹州周边（悬空庙=庆国最早神庙、依崖而建）</td>
+<td>[第303章]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>十、专有名词速查表（续写查典用）</h2>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>释义</th>
+<th>章号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>天脉者</td>
+<td>上天遗留人间的血脉，数百年苏醒一次</td>
+<td>[第0章]</td>
+</tr>
+<tr>
+<td>神庙</td>
+<td>&quot;供神之庙&quot;；实为前代文明遗址（军事博物馆）</td>
+<td>单元31[第726章]</td>
+</tr>
+<tr>
+<td>天地元气</td>
+<td>实为核战辐射遗存；越北越浓</td>
+<td>[第726章][第734章]</td>
+</tr>
+<tr>
+<td>霸道功诀</td>
+<td>无名功诀上卷（范闲所练）</td>
+<td>[第2章]</td>
+</tr>
+<tr>
+<td>王道</td>
+<td>无名功诀下卷（庆帝所练，须无经脉者）</td>
+<td>[第577章]</td>
+</tr>
+<tr>
+<td>天一道</td>
+<td>苦荷一脉无上心法（天人合一）</td>
+<td>[第340章]</td>
+</tr>
+<tr>
+<td>四顾剑</td>
+<td>东夷剑意（顾前不顾后，实为&quot;不顾&quot;）</td>
+<td>[第374章]</td>
+</tr>
+<tr>
+<td>流云散手/大劈棺</td>
+<td>叶流云武学</td>
+<td>[第112章]</td>
+</tr>
+<tr>
+<td>提司</td>
+<td>监察院超然职司（独立于八大处）</td>
+<td>[第90章]</td>
+</tr>
+<tr>
+<td>黑骑</td>
+<td>监察院五处骑兵，限千人以下</td>
+<td>[第559章]</td>
+</tr>
+<tr>
+<td>庆余堂</td>
+<td>叶家十七位掌柜</td>
+<td>[第109章]</td>
+</tr>
+<tr>
+<td>十家村</td>
+<td>本名&quot;叶家村&quot;，闽北内库旧址</td>
+<td>[第648章]</td>
+</tr>
+<tr>
+<td>君山会</td>
+<td>长公主所组的松散而实力惊人的秘密组织</td>
+<td>[第379章]</td>
+</tr>
+<tr>
+<td>无间道</td>
+<td>庆国史上最强潜伏计划</td>
+<td>[第562章]</td>
+</tr>
+<tr>
+<td>内库三大坊</td>
+<td>甲坊（奢侈品）/乙坊（生活资料）/丙坊（军械船舶）</td>
+<td>[第347章]</td>
+</tr>
+<tr>
+<td>澹泊公</td>
+<td>范闲的超品公爵封号（&quot;非澹泊无以明志&quot;）</td>
+<td>[第461章]</td>
+</tr>
+<tr>
+<td>神庙四定律</td>
+<td>机器人三定律 + 第零定律</td>
+<td>[第731章]</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>说明：本篇覆盖全书已拆解的 139 个单元。凡卷名/机构名/地名，续写时以本表为准；人名动向与恩怨不再本篇展开，见 <code>07_人物关系网</code>。</p>
+</blockquote>
+
+</div>
+</body>
+</html>

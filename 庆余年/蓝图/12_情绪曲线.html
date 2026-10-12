@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>庆余年 · 情绪曲线蓝图</title>
+<style>
+:root{--bg:#08080c;--gold:#c9a961;--gold2:#e8c97a;--line:rgba(201,169,97,.18);--card:rgba(255,255,255,.028);--muted:#9a978f;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#e8e6e3;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;background-attachment:fixed;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;background:rgba(8,8,12,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.topbar .back{font-size:14px;color:var(--muted);transition:.2s;}
+.topbar .back:hover{color:var(--gold2);}
+.topbar .title{font-size:15px;letter-spacing:.12em;color:var(--gold);font-weight:600;}
+.topbar .spacer{width:90px;}
+.container{max-width:1280px;margin:0 auto;padding:32px 24px 80px;}
+h1{font-size:30px;font-weight:700;letter-spacing:.06em;margin-bottom:8px;
+  background:linear-gradient(100deg,#fff 10%,var(--gold2) 55%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.sub{color:var(--muted);font-size:14px;line-height:1.9;margin-bottom:8px;}
+.sub b{color:var(--gold2);font-weight:600;}
+.coord{font-size:13px;color:#8d8a82;line-height:1.9;background:var(--card);border-left:2px solid var(--gold);
+  border-radius:0 6px 6px 0;padding:12px 16px;margin:18px 0 30px;}
+.coord code{color:var(--gold2);font-family:ui-monospace,Consolas,monospace;font-size:12.5px;}
+section{margin-bottom:44px;}
+.sec-h{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.sec-h .dot{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
+.sec-h h2{font-size:19px;font-weight:600;letter-spacing:.05em;color:#f0eee9;}
+.sec-h .en{font-size:11px;color:#6e6b64;letter-spacing:.18em;text-transform:uppercase;}
+
+/* 分布条 */
+.distbar{display:flex;width:100%;height:46px;border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+.distbar .seg{display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;
+  color:#0b0b0f;transition:.25s;position:relative;cursor:default;min-width:0;overflow:hidden;white-space:nowrap;}
+.distbar .seg:hover{filter:brightness(1.25);}
+.distbar .seg span{opacity:.92;}
+.distlegend{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:16px;}
+.distlegend .item{display:flex;align-items:center;gap:8px;font-size:13px;color:#cfccc6;}
+.distlegend .sw{width:12px;height:12px;border-radius:3px;}
+.distlegend .num{color:var(--gold2);font-weight:600;font-family:ui-monospace,Consolas,monospace;}
+.distlegend .ok{color:var(--muted);font-size:12px;}
+
+/* 图表 */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 18px 12px;}
+.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:6px;}
+.btns{display:flex;gap:8px;}
+.btn{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:12.5px;padding:7px 15px;border-radius:20px;
+  cursor:pointer;transition:.2s;font-family:inherit;}
+.btn:hover{color:var(--gold2);border-color:var(--gold);}
+.btn.on{background:linear-gradient(100deg,var(--gold),var(--gold2));color:#0b0b0f;border-color:transparent;font-weight:600;}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:#b8b5ae;}
+.legend .lg{display:flex;align-items:center;gap:6px;}
+.legend .sw{width:10px;height:10px;border-radius:50%;}
+#chart{display:block;width:100%;height:auto;}
+.tip{position:fixed;pointer-events:none;background:rgba(18,18,24,.97);border:1px solid var(--gold);border-radius:8px;
+  padding:10px 13px;font-size:12.5px;line-height:1.7;display:none;z-index:99;box-shadow:0 10px 34px rgba(0,0,0,.65);max-width:260px;}
+.tip .t-ch{color:var(--gold2);font-weight:600;font-size:13px;}
+.tip .t-m{color:#cfccc6;}
+.tip .t-k{color:#8d8a82;}
+
+/* 峰谷卡 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:860px){.grid2{grid-template-columns:1fr;}}
+.pk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+.pk h3{font-size:14.5px;color:var(--gold2);letter-spacing:.08em;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.pk h3 .tag{font-size:10.5px;background:rgba(201,169,97,.14);border:1px solid var(--line);color:var(--gold);padding:2px 8px;border-radius:10px;letter-spacing:.05em;}
+.pk .row{display:flex;gap:12px;padding:10px 0;border-top:1px dashed rgba(255,255,255,.07);}
+.pk .row:first-of-type{border-top:none;}
+.pk .idx{flex:none;width:52px;font-size:12px;color:var(--muted);font-family:ui-monospace,Consolas,monospace;padding-top:2px;}
+.pk .body{flex:1;}
+.pk .nm{font-size:13.5px;color:#f0eee9;font-weight:600;margin-bottom:3px;}
+.pk .de{font-size:12.5px;color:#b0ada6;line-height:1.7;}
+.pk .de .ch{color:var(--gold);}
+.rules{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;}
+.rules ol{margin-left:18px;}
+.rules li{font-size:13.5px;color:#c4c1ba;line-height:2.0;margin-bottom:4px;}
+.rules li b{color:var(--gold2);}
+.foot{text-align:center;color:#5f5c56;font-size:12px;margin-top:40px;letter-spacing:.1em;}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="back" href="../index.html">← 返回总览</a>
+  <div class="title">庆余年 · 情绪曲线蓝图</div>
+  <div class="spacer"></div>
+</div>
+
+<div class="container">
+  <h1>情绪曲线 · 全书 139 单元逐单元走势</h1>
+  <p class="sub">《庆余年》猫腻 ｜ 全书 <b>745 章 / 139 个情节单元</b> ｜ 数据源：139 张单元卡「情绪设计」字段</p>
+
+  <div class="coord">
+    <b>取值口径</b>：纵轴「情绪强度」= <code>名场面★数 × 主基调烈度系数 × 10</code>。<br>
+    烈度系数：燃/虐 <code>1.00</code> ｜ 泪 <code>0.90</code> ｜ 寒 <code>0.88</code> ｜ 悬 <code>0.82</code> ｜ 爽 <code>0.78</code> ｜
+    甜 <code>0.58</code> ｜ 谐 <code>0.52</code> ｜ 暖 <code>0.50</code> ｜ 温 <code>0.45</code>。<br>
+    说明：名场面★数取单元卡★计数（1–3 个）；烈度系数反映该基调的情绪冲击力（燃/虐最烈，谐/暖为呼吸位）。数据点按<b>主基调</b>着色。
+  </div>
+
+  <!-- 分布条 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>主基调分布</h2><span class="en">Tone Distribution / 139 Units</span></div>
+    <div class="distbar" id="distbar"></div>
+    <div class="distlegend" id="distlegend"></div>
+  </section>
+
+  <!-- 折线图 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>情绪强度折线（139 单元 · 七卷分色）</h2><span class="en">Emotion Intensity Curve</span></div>
+    <div class="panel">
+      <div class="toolbar">
+        <div class="btns">
+          <button class="btn on" data-view="unit">逐单元视图</button>
+          <button class="btn" data-view="vol">按卷聚合视图</button>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <svg id="chart" width="100%" viewBox="0 0 1360 520" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+  </section>
+
+  <!-- 峰谷 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>曲线峰谷分析</h2><span class="en">Peaks &amp; Valleys</span></div>
+    <div class="grid2">
+      <div class="pk">
+        <h3>情绪高峰段 <span class="tag">峰 1–5</span></h3>
+        <div class="row"><div class="idx">峰 1</div><div class="body"><div class="nm">前段最高峰 · 单元18</div><div class="de"><span class="ch">第134-141章</span>｜燃★5→寒★2：殿前诗仙三百首、开箱得枪读母信</div></div></div>
+        <div class="row"><div class="idx">峰 2</div><div class="body"><div class="nm">悬空庙刺驾段 · 单元44-48</div><div class="de"><span class="ch">第303-324章</span>｜燃★高：悬空庙刺驾重伤、身世惊雷、雪夜宗师战</div></div></div>
+        <div class="row"><div class="idx">峰 3</div><div class="body"><div class="nm">大东山·宫变段 · 单元88-98</div><div class="de"><span class="ch">第518-570章</span>｜燃/反转★最高：大东山宗师战、庆帝真身、雷雨宫变、正阳血战</div></div></div>
+        <div class="row"><div class="idx">峰 4</div><div class="body"><div class="nm">全书最高峰 · 单元121-124</div><div class="de"><span class="ch">第675-689章</span>｜虐/寒★最高：陈萍萍孤车入城、火器行刺、凌迟法场、抱尸</div></div></div>
+        <div class="row"><div class="idx">峰 5</div><div class="body"><div class="nm">终极峰 · 单元134-138</div><div class="de"><span class="ch">第724-745章</span>｜悬→燃★最高：神庙揭底、五竹独闯皇宫、彩虹贯帝、庆帝身死</div></div></div>
+      </div>
+      <div class="pk">
+        <h3>过渡低谷段 <span class="tag">谷 1–5</span></h3>
+        <div class="row"><div class="idx">谷 1</div><div class="body"><div class="nm">澹州日常 · 单元02-03</div><div class="de"><span class="ch">第1-22章</span>｜谐：澹州日常、学毒、抄书——轻谐铺陈</div></div></div>
+        <div class="row"><div class="idx">谷 2</div><div class="body"><div class="nm">苍山蜜月 · 单元20</div><div class="de"><span class="ch">第149-153章</span>｜甜：大战前的甜暖留白</div></div></div>
+        <div class="row"><div class="idx">谷 3</div><div class="body"><div class="nm">北齐收束 · 单元32-33</div><div class="de"><span class="ch">第242-252章</span>｜谐：上京闲谈、长亭送别——北齐线收束的缓和</div></div></div>
+        <div class="row"><div class="idx">谷 4</div><div class="body"><div class="nm">宫变前家族温情 · 单元70-71</div><div class="de"><span class="ch">第422-432章</span>｜暖/悬：托孤、澹州省亲</div></div></div>
+        <div class="row"><div class="idx">谷 5</div><div class="body"><div class="nm">卷七初市井回甘 · 单元105-106</div><div class="de"><span class="ch">第598-607章</span>｜暖/谐：悬尸回京、十鞭新徒</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 节奏规律 -->
+  <section>
+    <div class="sec-h"><span class="dot"></span><h2>情绪节奏规律（可复用）</h2><span class="en">Rhythm Rules</span></div>
+    <div class="rules">
+      <ol>
+        <li><b>宏观三段式</b>：谐/甜（卷一—卷二 澹州京华日常）→ 燃/爽（卷三—卷四 扬名·北齐）→ 悬/寒（卷五—卷六 江南·京都权谋）→ 虐/寒·燃（卷七 陈萍萍赴死·弑君）→ 温/谐（末章 西湖释然）。形态＝慢起的「双峰递进曲线」。</li>
+        <li><b>爽点节奏</b>：平均 <b>8–10 章一次</b>小爽（诗会打脸、堂上震棍、亮牌、夺标、斩人立威），卷三—卷五最密（约每 5–7 章一次）。</li>
+        <li><b>虐点节奏</b>：全书集中三处——单元41（家法鞭弟）、单元104（草原心战）、单元121-124（陈萍萍赴死·凌迟·抱尸）。<b>间隔极长（约 60–80 章一次）但一次比一次重</b>，是「低频率、超高强度」用法。</li>
+        <li><b>泪点</b>：与虐点错开，落在单元05（离澹州）、117（四顾剑之死）、124（雨中送萍）、139（末章墓前），多承担「一个时代的落幕」。</li>
+        <li><b>爆点公式</b>：长线伏笔（埋 50–200 章）+ 短期加速（3–5 章密集铺垫）→ 一击引爆；「静场 + 暴起」对切。</li>
+        <li><b>呼吸规律</b>：每 2–3 卷之间必有一次「谐/甜/暖」呼吸段；「寒/虐」之后必给「暖/温」回甘。</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="foot">庆余年拆解 · 情绪曲线蓝图 ｜ 数据源：139 张单元卡【情绪设计】字段</div>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const K={燃:1.00,虐:1.00,泪:0.90,寒:0.88,悬:0.82,爽:0.78,甜:0.58,谐:0.52,暖:0.50,温:0.45};
+const C={爽:'#e05b5b',虐:'#9b6bd6',悬:'#5b8fd6',燃:'#e08a3c',泪:'#5bc0c0',反转:'#c9a961',甜:'#e08bb0',谐:'#7fc07f',寒:'#7f93b0',暖:'#d99a5b',温:'#9fb8a8'};
+// [章范围, 主基调, ★数]
+const UNITS=[
+["第0章","悬",1],["第1-11章","谐",1],["第12-22章","谐",2],["第23-33章","悬",2],["第34-39章","泪",2],
+["第40-50章","谐",2],["第51-61章","甜",3],["第62-73章","爽",2],["第74-81章","悬",2],["第82-88章","甜",2],
+["第89-95章","悬",3],["第96-103章","寒",3],["第104章","寒",1],["第105-112章","暖",3],["第113-120章","甜",3],
+["第121-126章","悬",1],["第127-133章","悬",2],["第134-141章","燃",2],["第142-148章","爽",2],["第149-153章","甜",2],
+["第154-161章","悬",2],["第162-169章","爽",2],["第170-177章","燃",3],["第178-185章","悬",2],["第186-193章","寒",2],
+["第194-201章","悬",3],["第202-209章","谐",3],["第210-217章","谐",2],["第218-225章","悬",3],["第226-233章","燃",3],
+["第234-241章","悬",3],["第242-248章","谐",3],["第249-252章","谐",3],["第253-257章","谐",3],["第258-261章","悬",2],
+["第262-265章","悬",2],["第266-270章","悬",3],["第271-276章","燃",3],["第277-283章","悬",3],["第284-289章","燃",3],
+["第290-295章","寒",2],["第296-299章","爽",2],["第300-302章","谐",2],["第303-305章","燃",2],["第306-309章","悬",2],
+["第310-315章","悬",2],["第316-320章","悬",2],["第321-324章","悬",2],["第325-330章","悬",3],["第331-334章","谐",3],
+["第335-338章","悬",2],["第339-342章","甜",2],["第343-346章","爽",2],["第347-350章","寒",2],["第351-355章","悬",2],
+["第356-360章","悬",3],["第361-365章","悬",3],["第366-369章","悬",3],["第370-373章","谐",3],["第374-377章","寒",3],
+["第378-383章","悬",3],["第384-388章","悬",2],["第389-393章","寒",3],["第394-398章","悬",3],["第399-403章","甜",3],
+["第404-406章","谐",3],["第407-411章","谐",3],["第412-416章","悬",3],["第417-421章","寒",3],["第422-427章","悬",3],
+["第428-432章","暖",2],["第433-437章","悬",2],["第438-442章","寒",2],["第443-448章","悬",2],["第449-453章","悬",3],
+["第454-459章","悬",3],["第460-464章","悬",3],["第465-469章","悬",3],["第470-474章","悬",3],["第475-479章","悬",3],
+["第480-483章","暖",3],["第484-487章","悬",3],["第488-493章","悬",3],["第494-499章","寒",3],["第500-505章","悬",3],
+["第506-511章","悬",2],["第512-517章","悬",2],["第518-524章","悬",3],["第525-529章","燃",3],["第530-534章","悬",3],
+["第535-539章","悬",3],["第540-543章","悬",3],["第544-547章","燃",3],["第548-551章","寒",3],["第552-556章","燃",3],
+["第557-561章","燃",3],["第562-566章","悬",2],["第567-570章","燃",3],["第571-575章","寒",2],["第576-580章","寒",3],
+["第581-584章","悬",3],["第585-588章","悬",2],["第589-593章","悬",3],["第594-597章","虐",3],["第598-602章","暖",3],
+["第603-607章","谐",3],["第608-611章","悬",3],["第612-616章","悬",3],["第617-620章","悬",2],["第621-625章","谐",2],
+["第626-630章","谐",2],["第631-634章","寒",2],["第635-638章","悬",2],["第639-643章","寒",3],["第644-647章","谐",3],
+["第648-653章","悬",3],["第654-659章","泪",3],["第660-665章","悬",3],["第666-670章","悬",3],["第671-674章","悬",3],
+["第675-678章","寒",3],["第679-681章","寒",3],["第682-685章","虐",3],["第686-689章","虐",3],["第690-693章","寒",3],
+["第694-697章","悬",3],["第698-702章","寒",3],["第703-706章","寒",3],["第707-710章","寒",3],["第711-715章","悬",3],
+["第716-717章","燃",2],["第718-720章","燃",3],["第721-723章","寒",3],["第724-729章","悬",3],["第730-733章","悬",3],
+["第734-739章","寒",3],["第740-742章","悬",3],["第743-745章","燃",3],["第746章","温",3]
+];
+const VOLS=[
+{name:"卷一·澹州",from:1,to:5,ch:"第0–39章"},
+{name:"卷二·京华",from:6,to:13,ch:"第40–104章"},
+{name:"卷三·北齐",from:14,to:20,ch:"第105–153章"},
+{name:"卷四·归朝",from:21,to:33,ch:"第154–252章"},
+{name:"卷五·江南",from:34,to:66,ch:"第253–406章"},
+{name:"卷六·宫变",from:67,to:101,ch:"第407–584章"},
+{name:"卷七·决战",from:102,to:138,ch:"第585–745章"},
+{name:"末章·西湖",from:139,to:139,ch:"第746章"}
+];
+const LABELS={
+18:{t:"殿前诗仙三百首·开箱读母信",d:1},44:{t:"悬空庙刺驾重伤",d:-1},47:{t:"身世惊雷·雪夜宗师战",d:1},
+88:{t:"大东山宗师战",d:1},96:{t:"孤城绝境·火海焚敌",d:-1},98:{t:"宗师陨落·朕回来了",d:1},
+104:{t:"草原心战·三天甜中藏刀",d:-1},117:{t:"拆庙之愿·后山坐化",d:1},121:{t:"陈萍萍孤车入城",d:1},
+124:{t:"法场抱尸·血水洗手",d:-1},135:{t:"神庙四定律·名字唤不回",d:1},138:{t:"彩虹贯帝·读遗信",d:1}
+};
+
+const W=1360,H=520,L=90,R=1330,T=72,B=440,YMAX=32;
+const xAt=i=>L+(i-1)*(R-L)/138;
+const yAt=v=>B-Math.max(0,Math.min(v,YMAX))/YMAX*(B-T);
+const NS="http://www.w3.org/2000/svg";
+const svg=document.getElementById('chart');
+const tip=document.getElementById('tip');
+function E(tag,attrs){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+function txt(attrs,s){const e=E('text',attrs);e.textContent=s;return e;}
+function strength(u){return u[2]*K[u[1]]*10;}
+
+/* 分布条 */
+function buildDist(){
+  const order=["悬","寒","谐","燃","甜","爽","暖","虐","泪","温"];
+  const cnt={};UNITS.forEach(u=>cnt[u[1]]=(cnt[u[1]]||0)+1);
+  const bar=document.getElementById('distbar'),lg=document.getElementById('distlegend');
+  order.forEach(k=>{const n=cnt[k]||0;if(!n)return;
+    const seg=document.createElement('div');seg.className='seg';
+    seg.style.width=(n/139*100)+'%';seg.style.background=C[k];seg.style.color='#0b0b0f';
+    seg.title=k+' '+n+' 单元 ('+(n/139*100).toFixed(1)+'%)';
+    if(n>=15)seg.innerHTML='<span>'+k+' '+n+'</span>';else seg.innerHTML='<span>'+k+'</span>';
+    bar.appendChild(seg);
+  });
+  order.forEach(k=>{const n=cnt[k]||0;
+    const it=document.createElement('div');it.className='item';
+    it.innerHTML='<span class="sw" style="background:'+C[k]+'"></span>'+k+' <span class="num">'+n+'</span> <span class="ok">('+(n/139*100).toFixed(1)+'%)</span>';
+    lg.appendChild(it);
+  });
+}
+
+/* 图例 */
+function buildLegend(){
+  const order=["悬","寒","谐","燃","甜","爽","暖","虐","泪","温"];
+  const lg=document.getElementById('legend');
+  order.forEach(k=>{const it=document.createElement('div');it.className='lg';
+    it.innerHTML='<span class="sw" style="background:'+C[k]+'"></span>'+k;lg.appendChild(it);});
+}
+
+let view="unit";
+function clearSvg(){while(svg.firstChild)svg.removeChild(svg.firstChild);}
+function smooth(pts){if(pts.length<2)return"";let d='M '+pts[0][0]+' '+pts[0][1];
+  for(let i=0;i<pts.length-1;i++){const p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;
+    const c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;
+    d+=' C '+c1x.toFixed(1)+' '+c1y.toFixed(1)+', '+c2x.toFixed(1)+' '+c2y.toFixed(1)+', '+p2[0].toFixed(1)+' '+p2[1].toFixed(1);}
+  return d;}
+
+function drawVolBands(){
+  VOLS.forEach((v,k)=>{
+    const x1=xAt(v.from)-6, x2=xAt(v.to)+6;
+    const g=E('rect',{x:x1,y:52,width:Math.max(2,x2-x1),height:16,rx:3,
+      fill:v.from===v.to?'rgba(201,169,97,.16)':'rgba(255,255,255,'+(k%2?0.03:0.055)+')'});
+    svg.appendChild(g);
+    const cx=(x1+x2)/2;
+    const t=txt({x:cx,y:64,'text-anchor':'middle','font-size':11,fill:'#8d8a82',style:'pointer-events:none'},v.name);
+    if((x2-x1)>70)svg.appendChild(t);
+  });
+}
+function drawAxes(){
+  [0,8,16,24,32].forEach(v=>{
+    const y=yAt(v);
+    svg.appendChild(E('line',{x1:L,y1:y,x2:R,y2:y,stroke:'rgba(255,255,255,'+(v===0?0.18:0.06)+')','stroke-width':1}));
+    svg.appendChild(txt({x:L-12,y:y+4,'text-anchor':'end','font-size':12,fill:'#6e6b64'},v));
+  });
+  svg.appendChild(txt({x:L-40,y:(T+B)/2,'text-anchor':'middle','font-size':12.5,fill:'#9a978f',
+    transform:'rotate(-90 '+(L-40)+' '+((T+B)/2)+')'},'情绪强度'));
+  const marks=[{i:1,t:'第0章'},{i:6,t:'第40章'},{i:14,t:'第105章'},{i:21,t:'第154章'},
+    {i:34,t:'第253章'},{i:67,t:'第407章'},{i:102,t:'第585章'},{i:139,t:'第746章'}];
+  marks.forEach(m=>{const x=xAt(m.i);
+    svg.appendChild(E('line',{x1:x,y1:B,x2:x,y2:B+6,stroke:'rgba(201,169,97,.4)','stroke-width':1}));
+    svg.appendChild(txt({x:x,y:B+22,'text-anchor':m.i===1?'start':(m.i===139?'end':'middle'),'font-size':11,fill:'#6e6b64'},m.t));});
+  svg.appendChild(txt({x:(L+R)/2,y:B+44,'text-anchor':'middle','font-size':12,fill:'#9a978f'},'章号 （139 单元 · 全书连续编号）'));
+}
+
+function drawUnits(){
+  drawVolBands();drawAxes();
+  const pts=UNITS.map((u,k)=>[xAt(k+1),yAt(strength(u))]);
+  const area=smooth(pts)+' L '+R+' '+B+' L '+L+' '+B+' Z';
+  svg.appendChild(E('path',{d:area,fill:'rgba(201,169,97,.055)',stroke:'none'}));
+  svg.appendChild(E('path',{d:smooth(pts),fill:'none',stroke:'rgba(201,169,97,.62)','stroke-width':2.2,
+    'stroke-linejoin':'round','stroke-linecap':'round'}));
+  UNITS.forEach((u,k)=>{
+    const i=k+1,x=xAt(i),y=yAt(strength(u));
+    const c=E('circle',{cx:x,cy:y,r:u[2]>=3?3.6:3,fill:C[u[1]],stroke:'rgba(8,8,12,.85)','stroke-width':1,
+      class:'pt',style:'cursor:pointer'});
+    c.dataset.i=i;c.dataset.ch=u[0];c.dataset.m=u[1];c.dataset.n=u[2];c.dataset.s=strength(u).toFixed(1);
+    svg.appendChild(c);
+  });
+  for(const key in LABELS){
+    const i=+key,u=UNITS[i-1],x=xAt(i),y=yAt(strength(u)),lab=LABELS[key];
+    const ly=y+(lab.d===1?-14:20);
+    svg.appendChild(E('line',{x1:x,y1:y+(lab.d===1?-6:6),x2:x,y2:ly+(lab.d===1?4:-4),stroke:'rgba(201,169,97,.5)','stroke-width':1}));
+    svg.appendChild(E('circle',{cx:x,cy:y,r:5.4,fill:'none',stroke:'#c9a961','stroke-width':1.2,opacity:.75}));
+    svg.appendChild(txt({x:x+(i>=130?-6:6),y:ly,'text-anchor':i>=130?'end':'start','font-size':9.6,fill:'#e8c97a',
+      style:'paint-order:stroke;stroke:#08080c;stroke-width:2.6px'},lab.t));
+  }
+}
+function drawVolumes(){
+  const agg=VOLS.map(v=>{let s=0,n=0;for(let i=v.from;i<=v.to;i++){s+=strength(UNITS[i-1]);n++;}return {v,avg:s/n};});
+  drawAxes();
+  const n=agg.length,step=(R-L)/n;
+  const pts=agg.map((a,k)=>[L+step*k+step/2, yAt(a.avg)]);
+  const area=smooth(pts)+' L '+pts[n-1][0]+' '+B+' L '+pts[0][0]+' '+B+' Z';
+  svg.appendChild(E('path',{d:area,fill:'rgba(201,169,97,.06)',stroke:'none'}));
+  svg.appendChild(E('path',{d:smooth(pts),fill:'none',stroke:'rgba(201,169,97,.62)','stroke-width':2.4}));
+  agg.forEach((a,k)=>{
+    const x=pts[k][0],y=pts[k][1];
+    svg.appendChild(E('rect',{x:x-26,y:y,width:52,height:B-y,rx:4,fill:'rgba(201,169,97,.14)',stroke:'rgba(201,169,97,.35)','stroke-width':1}));
+    svg.appendChild(E('circle',{cx:x,cy:y,r:5,fill:'#e8c97a',stroke:'#08080c','stroke-width':1.5}));
+    svg.appendChild(txt({x:x,y:y-12,'text-anchor':'middle','font-size':12,fill:'#e8c97a','font-weight':600},a.avg.toFixed(1)));
+    svg.appendChild(txt({x:x,y:y-26,'text-anchor':'middle','font-size':11.5,fill:'#f0eee9'},a.v.name));
+    svg.appendChild(txt({x:x,y:B+22,'text-anchor':'middle','font-size':11,fill:'#6e6b64'},a.v.ch));
+  });
+  svg.appendChild(txt({x:(L+R)/2,y:B+44,'text-anchor':'middle','font-size':12,fill:'#9a978f'},'按卷聚合 · 卷内单元情绪强度均值'));
+}
+
+function render(){clearSvg();if(view==="unit")drawUnits();else drawVolumes();}
+document.querySelectorAll('.btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.btn').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');view=b.dataset.view;render();
+}));
+
+svg.addEventListener('mousemove',e=>{
+  const t=e.target;
+  if(t.classList&&t.classList.contains('pt')){
+    tip.style.display='block';
+    tip.innerHTML='<div class="t-ch">单元 '+t.dataset.i+' ｜ '+t.dataset.ch+'</div>'+
+      '<div class="t-m">主基调 <b style="color:'+C[t.dataset.m]+'">'+t.dataset.m+'</b> ｜ 名场面 ★'+t.dataset.n+'</div>'+
+      '<div class="t-k">情绪强度 '+t.dataset.s+'</div>';
+    let px=e.clientX+16,py=e.clientY+14;
+    if(px>window.innerWidth-280)px=e.clientX-270;
+    tip.style.left=px+'px';tip.style.top=py+'px';
+  }else{tip.style.display='none';}
+});
+svg.addEventListener('mouseleave',()=>tip.style.display='none');
+
+buildDist();buildLegend();render();
+</script>
+</body>
+</html>
