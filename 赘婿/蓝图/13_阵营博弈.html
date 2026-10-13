@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《赘婿》蓝图 · 阵营博弈</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.phases{grid-template-columns:1fr}}
+.phase{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;position:relative;overflow:hidden}
+.phase::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--pc,#c9a961)}
+.phase .pn{font-size:11px;color:var(--txt3);letter-spacing:2px}
+.phase .pt{font-size:16px;color:var(--gold2);font-weight:600;margin:4px 0 2px}
+.phase .pc2{font-size:12px;color:var(--txt3);margin-bottom:10px}
+.phase .pd{font-size:12.5px;color:var(--txt2);line-height:1.75}
+.phase .pd b{color:var(--txt)}
+.bul{margin:0;padding-left:18px;color:var(--txt2);font-size:12.5px;line-height:1.78}
+.bul li{margin:6px 0}
+.bul b{color:var(--txt)}
+.fac-card .cb{color:var(--txt2)}
+.pills-row{margin-top:2px}
+.sub-block{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.sub-block .sh{color:var(--gold2);font-weight:600;font-size:14px;margin-bottom:4px}
+.sub-block .sb{color:var(--txt2);font-size:12.5px;line-height:1.75}
+.note{color:var(--txt3);font-size:11.5px;margin-top:10px;line-height:1.7}
+.fnode{cursor:pointer}
+.fnode rect{transition:.15s}
+.fnode:hover rect{fill:rgba(201,169,97,0.09)}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__hidewx">.author-badge,.qr,.qr-float{display:none !important;}</style></head><body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="ttl">创作蓝图 · <b>阵营博弈</b></div>
+</div>
+<div class="wrap">
+  <div class="h1">阵营博弈</div>
+  <div class="sub">《赘婿》· 愤怒的香蕉 · 1031章 / 约424.7万字</div>
+
+  <div class="section">
+    <span class="sec-tag">总览 · 三阶段</span>
+    <h2>全书博弈格局总览</h2>
+    <div class="desc">本书定位：穿越·架空历史·权谋战争·群像。核心是「多方势力在武朝崩解 → 南北对峙 → 华夏重建」的大棋局里反复结盟、背叛、吞并。本篇讲<b>势力之间的博弈</b>（利益 / 冲突 / 联盟 / 背叛 / 走势）；人与人之间的私人恩怨、情感关系归「人物关系网」。</div>
+    <div class="phases">
+      <div class="phase" style="--pc:#69db7c">
+        <div class="pn">阶段一</div>
+        <div class="pt">江宁商战期</div>
+        <div class="pc2">第0-160章</div>
+        <div class="pd">一城之内，商帮家族内斗。<br><b>苏家三房夺产 ↔ 苏/薛/乌三足鼎立 ↔ 竹记崛起</b></div>
+      </div>
+      <div class="phase" style="--pc:#ffa94d">
+        <div class="pn">阶段二</div>
+        <div class="pt">江湖朝堂期</div>
+        <div class="pc2">第161-650章</div>
+        <div class="pd">由江宁入朝堂、入绿林、入战争。<br><b>密侦司·右相府 ↔ 梁山/方腊/绿林 ↔ 新旧党争</b></div>
+      </div>
+      <div class="phase" style="--pc:#ff6b6b">
+        <div class="pn">阶段三</div>
+        <div class="pt">天下裂变期</div>
+        <div class="pc2">第650-1031章</div>
+        <div class="pd">武朝崩解，女真南下，群雄并起。<br><b>华夏军（黑旗）↔ 女真/西夏/蒙古 ↔ 反黑旗集团/晋王/福州</b></div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">贯穿全书的博弈底层逻辑：宁毅一方始终以「商业 / 技术 / 情报」这种<b>非暴力资源</b>撬动武力与政治杠杆（松花蛋→竹记→密侦司→火器→卖技术），而各武力集团（梁山、方腊、女真、田虎）则反复被「阳谋」（放俘、投毒、反间、公开处决）拖入被动。这一逻辑是全书阵营博弈的「第一性原理」。</div>
+  </div>
+
+  <div class="section">
+    <span class="sec-tag">势力图 · NETWORK</span>
+    <h2>势力总览图</h2>
+    <div class="desc">以宁毅 · 华夏军（黑旗）为中心，各方势力环绕；连线与标签表示博弈主轴（hover 节点 / 连线看详情）。</div>
+    <div class="svgwrap"><div id="net"></div></div>
+    <div class="legend">
+      <span><span class="dot" style="background:#ff6b6b"></span>对抗 / 仇杀</span>
+      <span><span class="dot" style="background:#69db7c"></span>联盟 / 同盟</span>
+      <span><span class="dot" style="background:#ffa94d"></span>由敌转商 / 扶植</span>
+      <span><span class="dot" style="background:#66d9e8"></span>体制接口 / 从属</span>
+      <span><span class="dot" style="background:#c9a961"></span>根基 / 联姻</span>
+      <span><span class="dot" style="background:#adb5bd"></span>通商 / 借刀</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="sec-tag">各方 · 九方</span>
+    <h2>势力逐方拆解</h2>
+    <div class="desc">每方：核心利益与目标 / 核心人物 / 与其他势力的关系演变 / 关键博弈事件（带 <span class="chip">第X章</span> 锚点）。长内容点击卡片展开。</div>
+  </div>
+
+  <div id="factions"></div>
+
+  <div class="section">
+    <span class="sec-tag">力量消长 · TREND</span>
+    <h2>力量消长走势</h2>
+    <div class="desc">横轴＝章号（0–1031），纵轴＝势力强度（定性刻度 0–5），按蓝图所载关键博弈事件映射。<b>非原著量化数据</b>，仅用于呈现各方兴衰的相对轨迹。</div>
+    <div class="svgwrap"><div id="trend"></div></div>
+    <div class="legend" id="trend-legend"></div>
+    <div class="note">关键拐点参照：武朝朝堂于<span class="chip">第650-651章</span>景翰朝一日倾覆后仅余新朝 / 福州残势；金 / 女真自<span class="chip">第582-609章</span>破武朝封顶，<span class="chip">第816-820章</span>林州之战首次正面惨败后转衰；华夏军（黑旗）自<span class="chip">第650章</span>起家，<span class="chip">第680-685章</span>董志塬、<span class="chip">第816-820章</span>林州、<span class="chip">第947-951章</span>团山逐级登顶；梁山<span class="chip">第431-436章</span>覆灭、方腊<span class="chip">第489-493章</span>覆灭；蒙古自<span class="chip">第855-859章</span>十三翼登场后一路上扬。</div>
+  </div>
+
+  <div class="section">
+    <span class="sec-tag">联盟 / 背叛 · TABLE</span>
+    <h2>联盟 / 背叛关系表</h2>
+    <div class="desc">联盟永远是「暂时的」——因利合、因利散，背叛是常态而非意外。</div>
+    <div class="svgwrap">
+      <table class="tb">
+        <thead><tr><th>关系对</th><th>性质</th><th>起于</th><th>演变 / 结局</th></tr></thead>
+        <tbody>
+          <tr><td>苏家 ↔ 薛家 / 乌家</td><td>商战竞争</td><td><span class="chip">第0-4章</span></td><td>围绕皇商资格竞争，「苏薛乌三足鼎立」被打破；乌家皇商得主坠入危局（布褪色），苏家单方翻盘 <span class="chip">第123-146章</span></td></tr>
+          <tr><td>苏家 ↔ 席君煜外乡武装 / 梁山</td><td>主谋 + 外乡武装</td><td><span class="chip">第142-146章</span></td><td>大房联合百刀盟围剿、打成两败俱伤，梁山阴影浮现；百刀盟被梁山众灭门 <span class="chip">第147-151章</span> / <span class="chip">第316-320章</span></td></tr>
+          <tr><td>密侦司 ↔ 成国公主府 ↔ 徐州军方</td><td>三方临时联盟</td><td><span class="chip">第350-354章</span></td><td>联手诱歼水匪、救回小侯爷；抛「晒死俘虏」引蛇出洞 <span class="chip">第355-359章</span></td></tr>
+          <tr><td>密侦司 ↔ 卢俊义</td><td>反间内应</td><td><span class="chip">第355-359章</span></td><td>以反间剥离卢俊义、将其化为内应、釜底抽薪，决定战家坳胜负 <span class="chip">第360-364章</span></td></tr>
+          <tr><td>方腊 ↔ 霸刀营（宁毅）</td><td>敌营联姻 → 决裂</td><td><span class="chip">第249-254章</span></td><td>包道乙之死令两方彻底翻脸、公开宣战 <span class="chip">第298-302章</span>；因刘西瓜「金殿认情」被迫转向议婚、联姻格局成形</td></tr>
+          <tr><td>包道乙 ↔ 厉天闰 ↔ 霸刀营</td><td>内部火并</td><td><span class="chip">第278-302章</span></td><td>左刀营 ↔ 包道乙 ↔ 厉天闰三方火并；厉天闰回城掌清算、方腊朝内部肃杀 <span class="chip">第283-287章</span></td></tr>
+          <tr><td>武朝朝堂 主战 ↔ 主和（旧党）</td><td>党争</td><td><span class="chip">第223章</span></td><td>「先平内乱还是先北伐」角力、定策「先南后北」；主战主和彻底撕裂 <span class="chip">第582-586章</span></td></tr>
+          <tr><td>金 ↔ 西夏</td><td>暗中结盟</td><td><span class="chip">第659-663章</span></td><td>「南取武朝」默契，小苍河、青木寨两端商路被南北封死；就封锁吕梁达成默契 <span class="chip">第664-668章</span></td></tr>
+          <tr><td>晋王 / 田家 ↔ 华夏军</td><td>准同盟</td><td><span class="chip">第765-770章</span></td><td>田家新政权与黑旗结成准同盟；楼舒婉主导下选定抗金路线、公开抗金 <span class="chip">第793-802章</span></td></tr>
+          <tr><td>戴梦微 ↔ 刘光世</td><td>反黑旗同盟</td><td><span class="chip">第947-951章</span></td><td>加速结盟、形成反黑旗第二集团；邹旭叛出后联手（戴掌政治民生、邹掌军队格物）<span class="chip">第1030-1031章</span></td></tr>
+          <tr><td>郭药师 ↔ 张令徽 / 刘舜仁</td><td>结义背叛</td><td><span class="chip">第566-569章</span></td><td>临阵背叛、割衣断义、恩断义绝；直接导致雁门关洞开、武朝北防崩溃</td></tr>
+          <tr><td>梁山 ↔ 洪泽湖水匪</td><td>临时合作</td><td><span class="chip">第346-349章</span></td><td>合作劫生辰纲得手、顺势收编水匪嫁名，却对「幕后运筹者」生出忌惮 <span class="chip">第350-354章</span></td></tr>
+          <tr><td>华夏军 ↔ 成都各方（刘光世 / 戴梦微 / 吴启梅）</td><td>三方角力</td><td><span class="chip">第972-976章</span></td><td>华夏军以「卖技术」为阳谋分化各方、刘光世抢先进场 <span class="chip">第967-971章</span></td></tr>
+          <tr><td>福州新朝 ↔ 华夏军</td><td>桥梁交易</td><td><span class="chip">第995-998章</span></td><td>经左家这座「桥梁」酝酿一桩「很大的交易」，左家保持几乎对等的盟友地位</td></tr>
+          <tr><td>华夏军 内部「平等派」（老牛头）</td><td>内部分化</td><td><span class="chip">第849-854章</span></td><td>以老牛头为起点悄悄分家、成为第三股独立力量</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="sec-tag">小结 · SUMMARY</span>
+    <h2>博弈走势小结（对续写 / 仿写）</h2>
+    <div class="grid g2">
+      <div class="card" style="cursor:default"><div class="acc" style="background:var(--gold)"></div>
+        <div class="ct">1 · 非暴力资源撬动武力</div>
+        <div class="cb">本书阵营博弈的独有解法——商战、情报、技术、舆论，四把刀轮番上。仿写时，主角方应始终掌握一项「别人没有的软资源」。</div></div>
+      <div class="card" style="cursor:default"><div class="acc" style="background:var(--orange)"></div>
+        <div class="ct">2 · 联盟永远是「暂时的」</div>
+        <div class="cb">苏薛乌、方腊霸刀、密侦司—公主府—军方、晋王—黑旗、戴梦微—刘光世，无一不「因利合、因利散」。<b style="color:var(--txt)">背叛是常态而非意外</b>。</div></div>
+      <div class="card" style="cursor:default"><div class="acc" style="background:var(--red)"></div>
+        <div class="ct">3 · 旧势力的覆灭都遵循「阳谋三连」</div>
+        <div class="cb">诱敌深入 → 内部投毒（放俘 / 反间 / 腐化）→ 公开处决立威。梁山、方腊、西夏、女真西路军均被此套路瓦解。</div></div>
+      <div class="card" style="cursor:default"><div class="acc" style="background:var(--purple)"></div>
+        <div class="ct">4 · 后期博弈升维为「制度之争」</div>
+        <div class="cb">戴梦微「古法」 vs 华夏军「今法」、福州「尊王攘夷」 vs 「与士大夫共治天下」。这是全书主题（反儒立新）在阵营层的投影。</div></div>
+    </div>
+  </div>
+</div>
+<script src="_shared.js"></script>
+<script>
+(function(){
+  /* ---------- 势力图 ---------- */
+  var C={x:580,y:335,w:216,h:88,c:'#c9a961',t:'宁毅 · 华夏军（黑旗）',sub:'非暴力资源撬动武力'};
+  var NODES=[
+    {id:'liao',x:580,y:65,w:150,h:56,c:'#adb5bd',t:'辽',sub:'耶律大石 · 义胜军',tip:"<div class='th'>辽</div>辽金冲突中求存，向武朝求救求盟，图谋「武辽通商」利益网。义胜军（辽人）反水随女真南侵［第570-573章］。<br>核心：耶律大石、萧干、陆陀、义胜军。"},
+    {id:'jin',x:815,y:101,w:150,h:56,c:'#ff6b6b',t:'金 / 女真',sub:'阿骨打 · 宗翰 · 兀术',tip:"<div class='th'>金 / 女真</div>先灭辽、后图武（「可取武朝」），内部围绕是否南下 / 立储分裂为东西两府。［第582-609章］破武朝；［第947-951章］团山被击溃。<br>核心：阿骨打、吴乞买、完颜宗翰、完颜宗望、完颜希尹、完颜宗弼（兀术）、完颜娄室。"},
+    {id:'mongol',x:987,y:200,w:150,h:56,c:'#e599f7',t:'蒙古 · 草原',sub:'铁木真 · 扎木合',tip:"<div class='th'>蒙古 · 草原</div>十三翼登场后成为脱离既有棋局之外的第三极。［第884章］扎木合携铁木真意志踏足中原；［第929章］叩关雁门；［第934-940章］云中府围城，与金国西府直接冲突。"},
+    {id:'xixia',x:1050,y:335,w:150,h:56,c:'#ffa94d',t:'西夏',sub:'李乾顺 · 野利 · 妹勒',tip:"<div class='th'>西夏</div>趁女真南下南侵武朝、兵逼绥延；［第680-685章］董志塬十万大军被黑旗不足万人正面击溃，转与黑旗通商；因蒙古崛起而面临生存危机。"},
+    {id:'wanqi',x:987,y:470,w:170,h:56,c:'#f783ac',t:'晚期诸侯 / 割据',sub:'戴梦微 · 邹旭 · 福州 · 伪齐',tip:"<div class='th'>晚期诸侯 / 割据势力</div>武朝崩解后，天下裂为多股「反黑旗」或「自立」势力：戴梦微（汉水 / 蜀中士人集团）、邹旭（华夏军叛将）、福州「振兴」新朝（君武 / 周佩一系）、公平党（何文、许昭南）、刘光世（军阀）、伪齐（刘豫）。［第1030-1031章］邹旭遣丁嵩南密联戴梦微，结成最强对手联盟。"},
+    {id:'jianghu',x:815,y:569,w:150,h:56,c:'#b197fc',t:'绿林 · 江湖',sub:'陆红提 · 楼舒婉 · 林宗吾',tip:"<div class='th'>绿林 · 江湖</div>各股绿林争夺吕梁 / 山东 / 晋地商路地盘；大光明教以宗教与武力蚕食名门；青木寨凭地利「待价而沽」。［第548-552章］霍川岭之战后青木寨成吕梁最强。<br>核心：陆红提、楼舒婉、田虎、林宗吾、司空南、周侗、史进、燕青。"},
+    {id:'jinwang',x:580,y:605,w:160,h:56,c:'#e8c97a',t:'晋王 / 田家',sub:'楼舒婉 · 田实 · 于玉麟',tip:"<div class='th'>晋王（田虎 → 田家新政权 → 楼舒婉一系）</div>据晋地（汾州—威胜），在女真、华夏军、武朝之间自保牟利。［第765-770章］与黑旗结成准同盟；［第798-802章］公开抗金并与女真西路军开战；［第808-810章］田实死后分裂重组。"},
+    {id:'fangla',x:345,y:569,w:160,h:56,c:'#ff8787',t:'方腊 · 霸刀营',sub:'方腊 · 包道乙 · 刘西瓜',tip:"<div class='th'>方腊起义军（永乐朝 / 霸刀营支线）</div>以「永乐朝」立国对抗武朝；内部因招安派 / 主战派、厉家 / 包道乙 / 霸刀营等多股势力持续内耗，［第489-493章］彻底覆灭。<br>核心：方腊、方百花、方七佛、包道乙、厉天闰、刘西瓜、闻人不二。"},
+    {id:'liangshan',x:173,y:470,w:150,h:56,c:'#69db7c',t:'梁山',sub:'宋江 · 卢俊义 · 林冲',tip:"<div class='th'>梁山</div>以水泊为根据地扩张、劫掠生辰纲等财货，对苏家复仇；后期成为中原抗金的孤岛。［第431-436章］在战家坳被内外夹击、势力覆灭；［第827-832章］幸存者回聚。<br>核心：宋江、吴用、卢俊义、燕青、朱武、关胜、林冲、李逵、史进、席君煜（引路人）。"},
+    {id:'jiangning',x:110,y:335,w:160,h:56,c:'#c9a961',t:'江宁商界',sub:'苏家 / 竹记',tip:"<div class='th'>江宁商界（苏家 / 竹记）</div>苏家争家族接班权与「皇商」资格；竹记以食货（松花蛋）、文娱为根基，成为宁毅一方的经济与舆论底盘。<br>核心：苏愈、苏檀儿、宁毅、聂云竹、元锦儿、小婵。"},
+    {id:'mizhen',x:173,y:200,w:150,h:56,c:'#66d9e8',t:'密侦司',sub:'闻人不二 · 成舟海',tip:"<div class='th'>密侦司</div>武朝体制内的特务 / 情报机关，对外侦察辽 / 金 / 西夏与江湖势力，对内反间、清除隐患；后期成为宁毅一方的体制渠道与武力背书。<br>核心：闻人不二、成舟海、纪坤、尧祖年、宁毅、齐家三兄弟、岳校尉、岳飞（早期）、燕青。"},
+    {id:'court',x:345,y:101,w:160,h:56,c:'#74c0fc',t:'武朝朝堂 · 新旧党',sub:'周喆 · 李纲 · 蔡京',tip:"<div class='th'>武朝朝堂 · 新旧党</div>主战（李纲、秦嗣源）联金抗辽→守城抗金；主和 / 旧党（蔡京、童贯、王黼、梁师成、李邦彦、秦桧）以买城、称臣、割地换苟安，并借战事清算政敌。［第650-651章］景翰朝一日倾覆。"}
+  ];
+  var CE=[
+    ['jin','不死不休','#ff6b6b',0],
+    ['court','打垮再重装','#ff6b6b',0],
+    ['wanqi','反黑旗集团','#ff6b6b',0],
+    ['jianghu','「心魔」寻仇','#ff6b6b',0],
+    ['liangshan','后期同盟 / 孤岛','#69db7c',0],
+    ['jinwang','准同盟','#69db7c',1],
+    ['xixia','由敌转商','#ffa94d',0],
+    ['mongol','第三极威胁','#ffa94d',1],
+    ['mizhen','体制接口','#66d9e8',1],
+    ['jiangning','经济 / 舆论根基','#c9a961',0],
+    ['fangla','霸刀营 · 联姻','#c9a961',0],
+    ['liao','义胜军反水（辽亡）','#adb5bd',1]
+  ];
+  var IE=[
+    ['court','mizhen','#adb5bd'],['court','jin','#ff6b6b'],['court','liao','#74c0fc'],
+    ['jin','liao','#ff6b6b'],['jin','xixia','#69db7c'],['jin','mongol','#ff6b6b'],
+    ['jin','wanqi','#ffa94d'],['mongol','xixia','#ff6b6b'],['liangshan','jiangning','#ff6b6b'],
+    ['fangla','court','#ff6b6b'],['jianghu','court','#adb5bd']
+  ];
+  function byId(id){for(var i=0;i<NODES.length;i++)if(NODES[i].id===id)return NODES[i];return null;}
+  var s='<svg viewBox="0 0 1160 660" width="1140" height="660" style="min-width:1000px">';
+  // inter edges
+  IE.forEach(function(e){var a=byId(e[0]),b=byId(e[1]);
+    s+='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="'+e[2]+'" stroke-opacity="0.22" stroke-width="1" stroke-dasharray="3 4"/>';});
+  // center edges
+  CE.forEach(function(e){var n=byId(e[0]);
+    var x1=C.x,y1=C.y,x2=n.x,y2=n.y;
+    s+='<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+e[2]+'" stroke-opacity="0.5" stroke-width="1.4"'+(e[3]?' stroke-dasharray="5 5"':'')+'/>';
+    var lx=x1+(x2-x1)*0.56,ly=y1+(y2-y1)*0.56;
+    s+='<text x="'+lx+'" y="'+ly+'" fill="'+e[2]+'" font-size="10" text-anchor="middle" opacity="0.95" style="paint-order:stroke;stroke:#08080c;stroke-width:3px">'+e[1]+'</text>';});
+  // nodes
+  function node(n){return '<g class="fnode" data-tip="'+n.tip+'">'
+    +'<rect x="'+(n.x-n.w/2)+'" y="'+(n.y-n.h/2)+'" width="'+n.w+'" height="'+n.h+'" rx="13" fill="rgba(255,255,255,0.035)" stroke="'+n.c+'" stroke-opacity="0.62"/>'
+    +'<text x="'+n.x+'" y="'+(n.y-3)+'" text-anchor="middle" fill="'+n.c+'" font-size="13.5" font-weight="600">'+n.t+'</text>'
+    +'<text x="'+n.x+'" y="'+(n.y+15)+'" text-anchor="middle" fill="#a8a5a0" font-size="10">'+n.sub+'</text></g>';}
+  NODES.forEach(function(n){s+=node(n);});
+  // center last
+  s+='<g class="fnode" data-tip="<div class=\'th\'>西南华夏军（黑旗）</div>从「天下反贼」起家，西迁小苍河练兵屯粮，以「反儒立新」为纲领、以火器与制度优势在西南立国（成都 / 张村），公开与女真「不死不休」，并以「卖技术、开放」的阳谋分化天下。<br>核心：宁毅、秦绍谦、秦绍和、宁忌、岳飞（后期）、祝彪、毛一山、闻人不二、方承业、老牛头、汤敏杰、卢明坊。">'
+    +'<rect x="'+(C.x-C.w/2)+'" y="'+(C.y-C.h/2)+'" width="'+C.w+'" height="'+C.h+'" rx="18" fill="rgba(201,169,97,0.10)" stroke="'+C.c+'" stroke-width="2"/>'
+    +'<text x="'+C.x+'" y="'+(C.y-6)+'" text-anchor="middle" fill="#e8c97a" font-size="16" font-weight="700">'+C.t+'</text>'
+    +'<text x="'+C.x+'" y="'+(C.y+16)+'" text-anchor="middle" fill="#a8a5a0" font-size="10.5">'+C.sub+'</text></g>';
+  s+='</svg>';
+  document.getElementById('net').innerHTML=s;
+
+  /* ---------- 力量消长 ---------- */
+  var SER=[
+    {name:'武朝朝堂',c:'#74c0fc',pts:[[0,2.5],[90,3],[220,4],[494,3.5],[582,3],[650,0.5],[686,1.8],[765,2],[845,2],[860,1.2],[895,1.5],[1020,1]]},
+    {name:'金 / 女真',c:'#ff6b6b',pts:[[90,2],[157,2.5],[191,3],[296,3.5],[494,4],[555,4.5],[582,5],[609,5],[650,4.2],[686,4],[816,3.4],[888,3],[947,2],[1001,1.5]]},
+    {name:'华夏军（黑旗）',c:'#c9a961',pts:[[650,0.6],[669,1.5],[685,2.5],[705,3],[765,3.2],[820,4],[894,4.5],[951,5],[1001,5],[1030,5]]},
+    {name:'梁山',c:'#69db7c',pts:[[316,3],[335,3.5],[404,4.5],[415,3.5],[421,2.5],[431,0.6],[436,0],[827,0.5]]},
+    {name:'方腊',c:'#ff8787',pts:[[226,3],[249,4],[260,3.6],[283,3.4],[303,2],[447,0.6],[489,0]]},
+    {name:'蒙古',c:'#e599f7',pts:[[191,0.5],[458,1],[719,2],[859,3],[884,3.5],[929,4],[940,4.5]]},
+    {name:'西夏',c:'#ffa94d',pts:[[652,3.5],[664,3.4],[685,1],[693,1],[719,0.5]]}
+  ];
+  var X0=64,X1=1100,Y0=40,Y1=370,MAXC=1031,MAXV=5;
+  function px(c){return X0+(c/MAXC)*(X1-X0);}
+  function py(v){return Y1-(v/MAXV)*(Y1-Y0);}
+  var t='<svg viewBox="0 0 1140 430" width="1140" height="430" style="min-width:1000px">';
+  // phase bands
+  t+='<rect x="'+X0+'" y="'+Y0+'" width="'+(px(160)-X0)+'" height="'+(Y1-Y0)+'" fill="rgba(105,219,124,0.05)"/>';
+  t+='<rect x="'+px(160)+'" y="'+Y0+'" width="'+(px(650)-px(160))+'" height="'+(Y1-Y0)+'" fill="rgba(255,169,77,0.05)"/>';
+  t+='<rect x="'+px(650)+'" y="'+Y0+'" width="'+(X1-px(650))+'" height="'+(Y1-Y0)+'" fill="rgba(255,107,107,0.05)"/>';
+  t+='<text x="'+(X0+(px(160)-X0)/2)+'" y="'+(Y0-12)+'" fill="#69db7c" font-size="10.5" text-anchor="middle">① 江宁商战期</text>';
+  t+='<text x="'+((px(160)+px(650))/2)+'" y="'+(Y0-12)+'" fill="#ffa94d" font-size="10.5" text-anchor="middle">② 江湖朝堂期</text>';
+  t+='<text x="'+((px(650)+X1)/2)+'" y="'+(Y0-12)+'" fill="#ff6b6b" font-size="10.5" text-anchor="middle">③ 天下裂变期</text>';
+  // grid
+  for(var v=1;v<=5;v++){t+='<line x1="'+X0+'" y1="'+py(v)+'" x2="'+X1+'" y2="'+py(v)+'" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>'
+    +'<text x="'+(X0-10)+'" y="'+(py(v)+4)+'" fill="#6f6c68" font-size="10" text-anchor="end">'+v+'</text>';}
+  // x ticks
+  for(var c=0;c<=1000;c+=100){t+='<line x1="'+px(c)+'" y1="'+Y1+'" x2="'+px(c)+'" y2="'+(Y1+5)+'" stroke="rgba(255,255,255,0.15)"/>'
+    +'<text x="'+px(c)+'" y="'+(Y1+20)+'" fill="#6f6c68" font-size="10" text-anchor="middle">'+c+'</text>';}
+  t+='<line x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'" stroke="rgba(255,255,255,0.18)"/>';
+  t+='<text x="'+((X0+X1)/2)+'" y="'+(Y1+40)+'" fill="#a8a5a0" font-size="11" text-anchor="middle">章号</text>';
+  // series
+  SER.forEach(function(se){
+    var d=se.pts.map(function(p,i){return (i?'L':'M')+px(p[0])+' '+py(p[1]);}).join(' ');
+    t+='<path d="'+d+'" fill="none" stroke="'+se.c+'" stroke-width="2" stroke-opacity="0.9"/>';
+    se.pts.forEach(function(p){
+      t+='<circle cx="'+px(p[0])+'" cy="'+py(p[1])+'" r="3.2" fill="'+se.c+'" stroke="#08080c" stroke-width="1.2" style="cursor:pointer" data-tip="<div class=\'th\'>'+se.name+'</div>第 '+p[0]+' 章 · 强度 '+p[1]+' / 5"/>';
+    });
+  });
+  t+='</svg>';
+  document.getElementById('trend').innerHTML=t;
+  document.getElementById('trend-legend').innerHTML=SER.map(function(se){return '<span><span class="dot" style="background:'+se.c+'"></span>'+se.name+'</span>';}).join('');
+
+  /* ---------- 逐方拆解 ---------- */
+  function pills(arr){return arr.map(function(x){return '<span class="pill">'+x+'</span>';}).join('');}
+  var FACS=[
+    {n:1,c:'#74c0fc',t:'武朝朝堂与新旧党',
+      goal:'皇帝<b>周喆</b>维持皇权平衡，防武将坐大，在战 / 和之间反复腾挪，晚年「千金买骨」收拢军心。主战派（李纲、秦嗣源）联金抗辽→守城抗金，主张倚重边军与民间武力；主和派 / 旧党（蔡京、童贯、王黼、梁师成、李邦彦、秦桧）以买城、称臣、割地换苟安，同时借战事清算政敌、瓜分权力。',
+      people:['李纲','秦嗣源','周喆','蔡京','童贯','王黼','梁师成','秦桧','谭稹','唐恪','吴敏','曹令柔'],
+      rel:[
+        '<b>对金</b>：主战（连金伐辽）压过主守（连辽抗金），进入细节商议 <span class="chip">第90-94章</span> → 金辽正式开战、秦嗣源复起、联金抗辽格局成形 <span class="chip">第191-196章</span> → 武朝纳张觉降、与金关系骤紧、金人震怒 <span class="chip">第503-506章</span> → 对金示弱，常胜军与雁门军队转消极防御 <span class="chip">第515-518章</span> → 主战主和彻底撕裂 <span class="chip">第582-586章</span>',
+        '<b>对绿林 / 起义军</b>：就「先平内乱还是先北伐」角力 <span class="chip">第221-225章</span> → 定策「先南后北」（童贯南下、王杨北上）<span class="chip">第233-238章</span> → 对招安田虎、粮价各怀立场 <span class="chip">第498-502章</span>',
+        '<b>内部党争</b>：因薛德义折子卷入党争，相府与持商人势力官员走近 <span class="chip">第503-506章</span> → 御史台（秦桧）自断罗谨言一案、与蔡太师一系暗中角力 <span class="chip">第556-559章</span>'
+      ],
+      ev:[
+        '<b>右相一系的盛衰弧线（全书最完整的「权臣覆灭」线）</b>：复起 <span class="chip">第191-196章</span> → 幕僚与密侦司合流 <span class="chip">第365-369章</span> → 与买城集团既合作又暗防 <span class="chip">第463-467章</span> → 被罗织「七虎」之名、弹劾蜂起 <span class="chip">第627-631章</span> → 三系与周喆合力清算 <span class="chip">第632-637章</span> → 下狱、竹记关张、<b>全面覆灭</b> <span class="chip">第638-644章</span>',
+        '<b>周喆的打压与「千金买骨」</b>：以张觉之死打压李秦二相、抬蔡京等旧党 <span class="chip">第515-518章</span> → 决意削权兼收武瑞营 <span class="chip">第627-631章</span> → 谭稹与童贯军权交接，周喆「千金买骨」引李纲等集体反对 <span class="chip">第566-569章</span>',
+        '<b>武朝政权终结</b>：权力向蔡京 / 童贯 / 李邦彦 / 秦桧瓜分 <span class="chip">第645-649章</span> → <b>景翰朝一日之内倾覆</b>（皇帝被弑、军队叛变、都城被攻破）<span class="chip">第650-651章</span> → 南面筹备拥立新帝、实际已弃黄河以北 <span class="chip">第659-663章</span>',
+        '<b>太尉府（高俅一系）作为朝堂「内患」支线</b>：与右相府暗中各成气候 <span class="chip">第365-369章</span> → 害死民女而无人能动 <span class="chip">第375-379章</span> → 借周侗之手向宁毅出手未成 <span class="chip">第442-446章</span> → 借放子出京向大名府梁中书衔结 <span class="chip">第498-502章</span>',
+        '<b>新朝（建朔 / 临安）阶段的朝堂</b>：启用岳飞练兵、太子府自成一股力量 <span class="chip">第686-689章</span> → 转向「先除黑旗、肃清武人乱权、私下与女真递话」<span class="chip">第765-770章</span> → 海上小朝廷与丹阳君武分裂 <span class="chip">第855-865章</span>'
+      ]},
+    {n:2,c:'#66d9e8',t:'密侦司',
+      goal:'武朝体制内的<b>特务 / 情报机关</b>，对外侦察敌国（辽、金、西夏）与江湖势力，对内反间、清除隐患；后期成为宁毅一方的体制渠道与武力背书。',
+      people:['闻人不二','成舟海','纪坤','尧祖年','宁毅','齐家三兄弟','岳校尉','岳飞（早期）','燕青'],
+      rel:[
+        '<b>对梁山</b>：从追查 <span class="chip">第327-334章</span> → 结盟岳校尉转入追查 <span class="chip">第335-339章</span> → 成为对抗梁山与筹备北伐的暗线 <span class="chip">第340-345章</span> → 三方联手擒敌、反间卢俊义 <span class="chip">第355-364章</span>',
+        '<b>对右相府</b>：幕僚与密侦司合流 <span class="chip">第365-369章</span> → 深度介入宁毅私事与东行 <span class="chip">第400-403章</span> → 与竹记交割分离 <span class="chip">第638-640章</span>',
+        '<b>对刑部 / 江湖</b>：以查摩尼教为名南下介入 <span class="chip">第478-483章</span> → 以榆木炮与弩阵强势插入、逼刑部承认功劳、离间刑部与司空南 <span class="chip">第489-493章</span>',
+        '<b>组织变动</b>：吸纳齐家三兄弟、拉拢宁毅 <span class="chip">第321-326章</span> → 分兵两路 <span class="chip">第473-477章</span> → 秦嗣源覆灭后与竹记分离 <span class="chip">第638-640章</span> → 宁毅自相府转入童贯府、竹记改名图存 <span class="chip">第645-649章</span>'
+      ],
+      ev:[
+        '<b>吸纳宁毅</b>（宁毅入密侦司、决意上京）<span class="chip">第316章</span>、<span class="chip">第321-326章</span>',
+        '<b>三方联手（密侦司—成国公主府—徐州军方）诱歼水匪、救回小侯爷</b> <span class="chip">第350-354章</span>；抛「晒死俘虏」引蛇出洞 <span class="chip">第355-359章</span>',
+        '<b>对梁山的完整情报战</b>：从追查到反间卢俊义、争取郭药师降武朝立功劳 <span class="chip">第360-364章</span>'
+      ]},
+    {n:3,c:'#ff6b6b',t:'金 / 女真',
+      goal:'先灭辽、后图武（「可取武朝」），完成南北一统；内部围绕「是否南下」「立储与权力分配」分裂为东西两府。',
+      people:['阿骨打','吴乞买','完颜宗翰（粘罕）','完颜宗望','完颜希尹','完颜宗辅','完颜宗弼（兀术）','完颜娄室','完颜昌','完颜青珏','设也马','斜保'],
+      rel:[
+        '<b>对辽 / 武朝</b>：冷眼押注武朝「可有可无」<span class="chip">第90-94章</span> → 金辽停战、黑水之盟涌动 <span class="chip">第157-161章</span> → 金辽正式开战 <span class="chip">第191-196章</span> → 对武朝态度转冷 <span class="chip">第293-297章</span> → 因武朝纳张觉降而震怒 <span class="chip">第503-506章</span> → 阿骨打遗命「可取武朝」<span class="chip">第553-555章</span>',
+        '<b>对西夏 / 蒙古</b>：女真—西夏暗中结盟（「南取武朝」），小苍河、青木寨两端商路将被南北封死 <span class="chip">第659-663章</span> → 就封锁吕梁达成默契 <span class="chip">第664-668章</span> → 与蒙古云中府围城直接冲突 <span class="chip">第934-940章</span>',
+        '<b>对华夏军（黑旗）</b>：图谋明年伐武 <span class="chip">第686-689章</span> → 把黑旗军列入「必取」<span class="chip">第690-693章</span> → 第三度伐武 <span class="chip">第694-697章</span> → 三路南侵 <span class="chip">第698-704章</span> → 林州之战正面被击溃（<b>女真首次正面惨败</b>）<span class="chip">第816-820章</span> → 团山正面被击溃 <span class="chip">第947-951章</span>',
+        '<b>对代理人（伪齐 / 戴梦微）</b>：扶植刘豫伪齐守御南方 <span class="chip">第712-715章</span>；撤出西南、将汉水以南交戴梦微 <span class="chip">第930-933章</span>'
+      ],
+      ev:[
+        '<b>南下灭武进程</b>：完成南下动员分东西两路 <span class="chip">第566-569章</span> → 义胜军反水、雁门洞开 <span class="chip">第570-573章</span> → 完颜宗望独力破武朝百万之师 <span class="chip">第582-586章</span> → 九路分兵摧破汴梁城外二十万武朝军 <span class="chip">第587-591章</span> → 围城、强攻、由「破城」转向「杀人」<span class="chip">第592-609章</span>',
+        '<b>内部权力斗争</b>：因吴乞买中风而明争暗斗 <span class="chip">第756-764章</span> → 战败失势的西府兼程奔上京力争帝位 <span class="chip">第1002-1006章</span> → 以「立小辈完颜亶」勉强避免全境分裂 <span class="chip">第1007-1012章</span> → 东府借「完颜麟奇被绑」案对西府施以致命打击 <span class="chip">第1013-1016章</span>',
+        '<b>战略拐点</b>：以兀术奇兵直取临安 <span class="chip">第839-843章</span> → 外交「割地 / 称臣 / 杀韩世忠」搅乱临安、重心移向「西进灭黑旗」<span class="chip">第844-848章</span> → 破镇江、撕开长江防线 <span class="chip">第849-854章</span> → 五十万压向梓州一线 <span class="chip">第878-881章</span> → 雨水溪被华夏军击溃、被迫收缩 <span class="chip">第888-894章</span>'
+      ]},
+    {n:4,c:'#adb5bd',t:'辽',
+      goal:'在辽金冲突中求存，向武朝求救求盟，图谋「武辽通商」利益网；义胜军（辽人）则是辽亡后寄身武朝的武装。',
+      people:['耶律大石','萧干','陆陀','义胜军'],
+      rel:[
+        '辽向武朝求救求盟，金冷眼押注武朝「可有可无」<span class="chip">第90-94章</span>',
+        '金辽停战、战争延后、黑水之盟 <span class="chip">第157-161章</span>',
+        '辽人一支潜入江宁行刺宁毅未遂，赖「武辽通商」利益网劫走同伴 <span class="chip">第167-172章</span>；秦家剿杀辽人刺客，南下这一支（陆陀除外）被清除 <span class="chip">第179-184章</span>',
+        '金辽正式开战 <span class="chip">第191-196章</span>；常胜军与萧干一战奠定北伐真胜 <span class="chip">第494-497章</span>',
+        '辽亡后，<b>义胜军（辽人）反水随女真南侵</b> <span class="chip">第570-573章</span>'
+      ],
+      ev:[
+        '辽在「联金伐辽」定策中被当作武朝的赌注 <span class="chip">第90-94章</span>',
+        '武辽通商利益网成为辽人刺客能在江宁逃逸的体制性庇护 <span class="chip">第167-172章</span>',
+        '义胜军反水直接导致雁门关洞开、武朝北防崩溃 <span class="chip">第566-573章</span>'
+      ]},
+    {n:5,c:'#ffa94d',t:'西夏',
+      goal:'趁女真南下之机南侵武朝（兵逼绥延），后期转向与黑旗通商牟利；因蒙古崛起而面临生存危机。',
+      people:['李乾顺','野利','妹勒','那古','阿沙敢不','禹藏麻','没藏已青','辞不失'],
+      rel:[
+        '趁女真南下南侵、兵逼绥延 <span class="chip">第652-655章</span> → 破清涧延州、种家西军覆灭 <span class="chip">第656-658章</span>',
+        '与金国就封锁吕梁达成默契，小苍河成被南北合围的「死地」<span class="chip">第664-668章</span>',
+        '黑旗军出击西夏、从「被围困者」转为「出击者」<span class="chip">第669-673章</span>',
+        '李乾顺亲率十万大军东压 <span class="chip">第674-679章</span> → 董志塬被黑旗以不足万人正面击溃十万大军、举国南下吞入的果实被挤出 <span class="chip">第680-685章</span>',
+        '由敌手转为贸易方、青盐生意开张 <span class="chip">第690-693章</span>；蒙古（铁木真）崛起，西夏将危 <span class="chip">第716-719章</span>'
+      ],
+      ev:[
+        '<b>董志塬之战</b>：西夏十万 vs 黑旗不足万人，被正面击溃，成为西北格局的决定性转折 <span class="chip">第680-685章</span>',
+        '田虎（虎王）一方经楼舒婉归附西夏、借势打乱小苍河布局 <span class="chip">第664-668章</span>'
+      ]},
+    {n:6,c:'#ff8787',t:'方腊起义军（永乐朝 / 霸刀营支线）',
+      goal:'以「永乐朝」立国对抗武朝；内部因招安派 / 主战派、厉家 / 包道乙 / 霸刀营等多股势力而持续内耗。',
+      people:['方腊','方百花','方七佛','方书常','邵仙英','安惜福','陈凡','厉天闰','厉天佑','包道乙','刘大彪','刘西瓜','闻人不二','齐元康','祖士远'],
+      rel:[
+        '<b>对武朝</b>：杭州围城血战、里应外合陷城 <span class="chip">第226-232章</span> → 由「攻嘉兴」转「据杭州以守」<span class="chip">第260-263章</span> → 杭州城破、残部西逃青溪 <span class="chip">第303-306章</span> → 南方永乐残部营救方七佛 <span class="chip">第457-462章</span> → 彻底覆灭（方七佛授首、方百花伏诛）<span class="chip">第489-493章</span>',
+        '<b>内部斗争</b>：包道乙系陈大木与陈凡对立 <span class="chip">第239-243章</span> → 厉天闰将回城清洗 <span class="chip">第255-259章</span> → 镇压齐元康叛乱、清洗招安派 <span class="chip">第264-268章</span> → 方腊朝内部肃杀 <span class="chip">第278-282章</span>',
+        '<b>建政</b>：建「永乐朝」、称帝、绿林大会造势 <span class="chip">第249-254章</span> → 制度初见、招安派与主战派暗斗 <span class="chip">第255-259章</span>',
+        '<b>与霸刀营（宁毅一方）</b>：被纳入霸刀营 <span class="chip">第249-254章</span> → 与宣威营（厉家）结梁子 <span class="chip">第264-273章</span> → 与包道乙由暗斗转公开火并、被厉天闰压停 <span class="chip">第283-287章</span> → 全面决裂、公开宣战 <span class="chip">第293-297章</span> → 联姻格局成形 <span class="chip">第298-302章</span>',
+        '<b>与武朝密侦司</b>：武朝遣闻人不二潜入杭州营救宁毅，两方暗线首次交汇 <span class="chip">第255-259章</span>'
+      ],
+      ev:[
+        '<b>杭州守城战</b>：杭州军民（武德营、钱家）↔ 方腊军围城 <span class="chip">第221-232章</span>；武德营残兵一战成名、连破方腊三将 <span class="chip">第239-243章</span>',
+        '<b>方腊内部火并</b>：霸刀营 ↔ 包道乙 ↔ 厉天闰三方 <span class="chip">第278-302章</span>',
+        '<b>霸刀营联姻</b>：因刘西瓜「金殿认情」被迫议婚、联姻格局成形 <span class="chip">第298-302章</span>',
+        '<b>方腊收场</b>：以方腊授首、邵仙英殉、余部四散收场 <span class="chip">第447-451章</span>；方百花、陈凡在青溪败亡后互为声援却已无救人之力 <span class="chip">第463-467章</span>',
+        '<b>宁毅归队</b>：借清奸细替霸刀营剪断朝廷暗线，本人正式归队朝廷（秦嗣源）一方 <span class="chip">第307章</span>'
+      ]},
+    {n:7,c:'#69db7c',t:'梁山',
+      goal:'以水泊为根据地扩张、劫掠生辰纲等财货，对苏家复仇；后期成为中原抗金的孤岛。',
+      people:['宋江','吴用','卢俊义','燕青','朱武','张顺','秦明','杨林','丁得孙','孙新','吕方','陈达','关胜','林冲','李逵','史进','鲁智深','席君煜（引路人）'],
+      rel:[
+        '<b>对苏家（复仇线）</b>：由席君煜引路，百刀盟被梁山众灭门 <span class="chip">第316-320章</span> → 对苏家与江宁大狱同时动手、苏家死伤近半 <span class="chip">第327-334章</span> → 劫狱、血洗苏家后撤离 <span class="chip">第335-339章</span> → 返泊，方腊余党（狼盗）在山东剪径 <span class="chip">第340-345章</span>',
+        '<b>对密侦司 / 朝廷</b>：与洪泽湖水匪结成临时合作、意图劫生辰纲 <span class="chip">第346-354章</span> → 折损燕青暴露、卢俊义等四头领被擒 <span class="chip">第355-359章</span> → 折损惨重（孙新、吕方被斩，卢俊义「死」）<span class="chip">第360-364章</span> → 借狼盗与独龙岗进入对垒前的暗战 <span class="chip">第400-403章</span>',
+        '<b>对独龙岗三庄</b>：全力伐独龙岗、万家岭，声势登顶 <span class="chip">第404-410章</span> → 一再踩入阳谋、被迫由攻转守 <span class="chip">第411-415章</span> → 阵前折将、损兵过万 <span class="chip">第416-420章</span>',
+        '<b>覆灭过程</b>：独龙岗败退、六月二十二陷落 <span class="chip">第421-426章</span> → 残部转流亡、以烧村传扬恶迹向官府施压 <span class="chip">第427-430章</span> → 战家坳被内外夹击、主力被歼、<b>势力就此覆灭</b> <span class="chip">第431-436章</span>',
+        '<b>后期归顺与孤岛</b>：归顺的原梁山人被秦嗣源择用、洗白 <span class="chip">第452-456章</span>；后期梁山成中原抗金孤岛、幸存者回聚 <span class="chip">第827-832章</span>；与女真东路军转向「谈判让路」<span class="chip">第963-966章</span>'
+      ],
+      ev:[
+        '<b>独龙岗攻防战（梁山由盛转亡的关键）</b>：宁毅化名「雷锋」潜入独龙岗、借放归俘虏向梁山内部投毒 <span class="chip">第404-410章</span> → 祝家庄—扈家庄—朝廷结成临时同盟 <span class="chip">第411-415章</span> → 梁山阵前折将、损兵过万 <span class="chip">第416-420章</span> → 最终陷落 <span class="chip">第421-426章</span>',
+        '<b>反间卢俊义</b>：抛「晒死俘虏」引蛇出洞、以反间剥离卢俊义 <span class="chip">第355-359章</span> → 化为内应、釜底抽薪 <span class="chip">第360-364章</span>',
+        '<b>山东绿林「心魔」寻仇</b>：因「心魔」之说，山东绿林结成松散的寻仇同盟、与宁毅在安平正面对峙 <span class="chip">第437-441章</span>'
+      ]},
+    {n:8,c:'#c9a961',t:'西南华夏军（黑旗）',
+      goal:'从「天下反贼」起家，西迁小苍河练兵屯粮，最终以「反儒立新」为纲领、以火器与制度优势在西南立国（成都 / 张村），公开与女真「不死不休」，并以「卖技术、开放」的阳谋分化天下。',
+      people:['宁毅','秦绍谦','秦绍和','宁忌','岳飞（后期）','祝彪','卓永青','毛一山','渠正言','罗业','刘承宗','闻人不二','方承业','老牛头','汤敏杰','卢明坊'],
+      rel:[
+        '<b>出身</b>：武瑞营＋吕梁骑兵＋霸刀营＋竹记武者合流为叛军集团 <span class="chip">第650-651章</span> → 西迁小苍河 <span class="chip">第652-655章</span> → 出兵西夏、连破延州 <span class="chip">第656-679章</span>',
+        '<b>对西夏</b>：由被围困转出击 <span class="chip">第669-673章</span>，董志塬决战击溃十万西夏军 <span class="chip">第680-685章</span> → 胁降通商、青盐生意开张 <span class="chip">第686-693章</span>',
+        '<b>对金</b>：守「不投外邦」<span class="chip">第686-689章</span> → 正式对女真西路军开战、救延州 <span class="chip">第698-704章</span> → 与种家结盟、孤悬西北正面抗战 <span class="chip">第705-715章</span> → 在泽州复出、与虎王 / 大光明教正面摊牌 <span class="chip">第731-734章</span> → 与女真在襄阳—邓州正面交锋 <span class="chip">第743-746章</span> → 掳刘豫、嫁祸武朝 <span class="chip">第761-764章</span>',
+        '<b>对武朝</b>：黑旗因旧情出手救人 <span class="chip">第739-742章</span>；武朝太子一系借岳飞之口抛橄榄枝（回归 / 改国号），被搁置但未绝 <span class="chip">第747-752章</span>',
+        '<b>对川西地方 / 武襄军</b>：暗中合流围剿华夏军使者 <span class="chip">第776-780章</span> → 正式开战 <span class="chip">第781-786章</span> → 「出凉山」接管川西 <span class="chip">第787-797章</span>',
+        '<b>对晋王 / 田家</b>：华夏军按兵不动、拒绝援晋 <span class="chip">第798-802章</span> → 田家新政权 ↔ 黑旗结成准同盟 <span class="chip">第765-770章</span>',
+        '<b>对蒙古 / 天下</b>：以「卖技术、开放」继续分化天下 <span class="chip">第977-982章</span> → 被天下各方共认为「迟早要从那边杀出来」的终极威胁 <span class="chip">第1030-1031章</span>'
+      ],
+      ev:[
+        '<b>小苍河—董志塬立国战</b>：九千黑旗军主动出山直扑西夏防线 <span class="chip">第669-673章</span> → 连破延州、覆灭铁鹞子 <span class="chip">第674-679章</span> → 以不足万人在董志塬正面击溃西夏十万大军 <span class="chip">第680-685章</span>',
+        '<b>林州之战</b>：女真三万五千精锐＋三万余汉军攻林州，华夏军联合林州守军将计就计、明王军驰援，正面击溃术列速三万余精锐（女真首次正面惨败）<span class="chip">第816-820章</span>',
+        '<b>雨水溪反攻</b>：由守转攻、正面击溃女真主力并策反大量降汉军 <span class="chip">第888-894章</span> → 延山卫被成建制击溃、统帅被俘 <span class="chip">第906-910章</span> → 团山正面击溃西路军、设也马被杀 <span class="chip">第947-951章</span>',
+        '<b>政治宣告</b>：以公开宣判、处决女真战俘宣告「与金人从此不死不休」<span class="chip">第999-1001章</span>',
+        '<b>内部分化</b>：内部「平等派」以老牛头为起点悄悄分家、成为第三股独立力量 <span class="chip">第849-854章</span>；因扩张暴露邹旭式腐化变节 <span class="chip">第952-956章</span>',
+        '<b>成都三方角力</b>：华夏军、刘光世、戴梦微吴启梅三股势力成形，华夏军以「卖技术」为阳谋分化各方 <span class="chip">第972-976章</span>；对成都行刺之局完成布防 <span class="chip">第988-990章</span>'
+      ]},
+    {n:9,c:'#e8c97a',t:'江宁商界（苏家 / 竹记）',
+      goal:'苏家：家族接班权与「皇商」资格；竹记：以食货（松花蛋）、文娱为根基，成为宁毅一方的经济与舆论底盘。',
+      people:['苏愈','苏檀儿','苏伯庸','苏仲堪','苏云方','宁毅','聂云竹','元锦儿','小婵','薛家（薛氏 / 席君煜）','乌家（乌启隆 / 董德成）','顾燕桢','楼家（楼近临 / 楼书恒 / 楼书望）'],
+      rel:[
+        '<b>苏家内部三房角力</b>：宁毅入赘打破二房三房「把苏檀儿嫁出去」的指望 <span class="chip">第0-4章</span> → 苏太公以宁毅教书布局 <span class="chip">第5-9章</span> → 二房三房欲借宋茂打击宁毅、谋划落空 <span class="chip">第23-33章</span> → 大房因苏伯庸遇刺而空虚 <span class="chip">第107-112章</span> → 内斗升级至宗族大会 <span class="chip">第128-132章</span> → 二房三房全面落败、大房苏檀儿上位 <span class="chip">第142-146章</span>',
+        '<b>苏 ↔ 薛 / 乌（江宁布行商战）</b>：确立竞争关系 <span class="chip">第0-4章</span> → 围绕皇商资格竞争 <span class="chip">第90-94章</span> → 燕翠楼一夜争风斗富 <span class="chip">第101-106章</span> → 乌家联董德成夺皇商、「三足鼎立」被打破 <span class="chip">第123-127章</span> → 乌家坠入危局（布褪色）<span class="chip">第128-137章</span> → 苏家单方翻盘、「十步一算」之名扩散 <span class="chip">第142-146章</span>',
+        '<b>苏 ↔ 席君煜外乡武装 / 梁山</b>：势力浮出水面 <span class="chip">第142-146章</span> → 大房联合百刀盟围剿、<b>梁山阴影开始浮现</b> <span class="chip">第147-151章</span> → 百刀盟被梁山众灭门 <span class="chip">第316-320章</span>',
+        '<b>苏 ↔ 聂云竹 / 竹记</b>：松花蛋精品高价路线切入酒楼渠道 <span class="chip">第42-52章</span> → 借官府与康贤之口立正宗名号 <span class="chip">第64-69章</span> → 纳元锦儿入股 <span class="chip">第90-94章</span> → 结成事实上的同盟 <span class="chip">第321-326章</span> → 依托成国公主府在江宁站稳 <span class="chip">第312-315章</span>',
+        '<b>苏 ↔ 杭州（开疆线）</b>：携账房、掌柜南下杭州开疆 <span class="chip">第197-200章</span> → 与楼家由「热情招待」转为结怨 <span class="chip">第209-215章</span> → 杭州政商关系成新筹码 <span class="chip">第308-311章</span>',
+        '<b>竹记品牌与舆论</b>：以竹记为基构建独立舆论体系之计划成形 <span class="chip">第375-379章</span> → 与矾楼（李师师、李蕴）结成宣传协作 <span class="chip">第457-462章</span> → 向北方渗透 <span class="chip">第560-565章</span>',
+        '<b>后期</b>：携技术北上吕梁、建走私中枢与守御体系 <span class="chip">第523-526章</span>；推进「改组竹记、苏氏，把所有东西揉进华夏人民政府」<span class="chip">第967-971章</span>'
+      ],
+      ev:[
+        '<b>争夺皇商（江宁篇高潮）</b>：乌家收买席君煜、联董德成夺皇商 <span class="chip">第118-127章</span> → 乌家皇商危局（布褪色）<span class="chip">第128-132章</span> → 苏檀儿针对乌家的暗布局逐步显形、反守为攻 <span class="chip">第128-137章</span> → 苏家翻盘',
+        '<b>宗族大会夺产局</b>：大房表面势孤、暗中已收网 <span class="chip">第138-141章</span> → 厅堂一场翻盘、大房全胜 <span class="chip">第321-326章</span>',
+        '<b>百刀盟 / 席君煜火并</b> <span class="chip">第147-151章</span>',
+        '<b>苏家分家</b>：大房北上、二房三房留守守成 <span class="chip">第335-339章</span>；大房转向长江以北发展 <span class="chip">第340-345章</span>'
+      ]},
+    {n:10,c:'#b197fc',t:'绿林 · 江湖',
+      goal:'各股绿林势力争夺吕梁 / 山东 / 晋地等要地的商路、地盘与名分；大光明教以宗教与武力蚕食名门；青木寨凭地利「待价而沽」。',
+      people:['陆红提（吕梁山 / 青木寨）','梁秉夫','福端云','楼舒婉','田虎（后为晋王）','大光明教林宗吾 / 司空南 / 林恶禅 / 严楚湘','周侗（宗师）','史进','游鸿卓','福禄','仇鹤年','王狮童（饿鬼）','燕青','关胜'],
+      rel:[
+        '<b>陆红提线</b>：女刺客被通缉、藏身江宁 <span class="chip">第64-69章</span> → 吕梁独立于招安与田虎两方 <span class="chip">第157-161章</span> → 因一次清洗筛去不可靠之人、由险局转为重整 <span class="chip">第370-374章</span> → 掌权、以「血菩萨」名威慑吕梁 <span class="chip">第523-526章</span>',
+        '<b>田虎扩张</b>：招安与扩张并行、触手伸向吕梁 <span class="chip">第519-522章</span> → 图谋与青木寨联姻 <span class="chip">第523-526章</span> → 联合追杀竹记商队、反被火器击溃 <span class="chip">第527-531章</span>',
+        '<b>吕梁各股势力逼宫</b>：以楼舒婉为推手串联 <span class="chip">第537-541章</span> → 青木寨在聚义大厅正面对撞 <span class="chip">第542-547章</span> → 在霍川岭正面击溃吕梁盗联军、由「待价而沽」转为吕梁最强 <span class="chip">第548-552章</span>',
+        '<b>大光明教</b>：由南向北扩张、以「礼貌挑战」蚕食绿林名门 <span class="chip">第494-497章</span> → 因司空南之死全力南扑追杀陈凡夫妇 <span class="chip">第560-565章</span> → 在泽州聚拢绿林 <span class="chip">第725-730章</span> → 晋地分裂完成、林宗吾大光明教最先出局 <span class="chip">第821-826章</span>',
+        '<b>山东绿林「心魔」</b>：因「心魔」之说对宁毅滋生敌意 <span class="chip">第427-430章</span> → 结成松散的寻仇同盟、与宁毅在安平正面对峙 <span class="chip">第437-441章</span> → 桃亭死局让「心魔」恶名坐实 <span class="chip">第519-522章</span>',
+        '<b>绿林散勇抗金</b>：以周侗为名号自发北聚 <span class="chip">第570-573章</span> → 以刺杀女真元帅为目标结成临时联合 <span class="chip">第574-576章</span>',
+        '<b>饿鬼（王狮童）</b>：势力膨胀、成为独立于金、武、黑旗之外的一股灾祸 <span class="chip">第753-755章</span> → 华夏军主动出击饿鬼、王狮童死 <span class="chip">第816-820章</span>'
+      ],
+      ev:[
+        '<b>霍川岭之战</b>：青木寨正面击溃吕梁盗联军、由「待价而沽」转为吕梁最强 <span class="chip">第548-552章</span>',
+        '<b>青木寨制度化</b>：由「吕梁最强」走向制度化经营（规划、执法队、收编辽人残部）<span class="chip">第553-555章</span>',
+        '<b>江湖搏杀线</b>：大光明教（司空南）↔ 陈凡 / 霸刀 / 苗疆在秦口正面碰撞 <span class="chip">第556-559章</span>'
+      ]},
+    {n:11,c:'#f783ac',t:'晚期诸侯 / 割据势力',
+      goal:'武朝崩解后，天下裂为多股「反黑旗」或「自立」势力，是第三阶段博弈的主角。',
+      people:['戴梦微','邹旭','晋王（田虎 → 田家新政权 → 楼舒婉一系）','福州新朝（君武 / 周佩一系）','公平党（何文、许昭南）','刘光世','伪齐（刘豫）','蒙古'],
+      subs:[
+        {h:'11.1 戴梦微（汉水 / 蜀中士人集团）',b:'核心利益：据汉水，以「古法」治世与西南「今法」相抗；兼有贩卖人口与骗捕商队。<br>演变：由女真西路军撤出西南后扶植的「刘豫式」代理人 <span class="chip">第930-933章</span> → 与刘光世加速结盟、形成反黑旗的第二集团 <span class="chip">第947-951章</span> → 汉人反黑旗集团与福州「振兴」新朝裂出 <span class="chip">第952-956章</span> → 占「大义」之势 <span class="chip">第957-962章</span> → 成都三方角力 <span class="chip">第972-976章</span> → 据汉水、以「古法」治世 <span class="chip">第1025-1029章</span>。<br>关键事件：邹旭叛出华夏军后遣丁嵩南密联戴梦微 <span class="chip">第1030-1031章</span>。'},
+        {h:'11.2 邹旭（华夏军叛将）',b:'演变：华夏军内部因扩张暴露「邹旭式腐化变节」<span class="chip">第952-956章</span> → 叛出后遣丁嵩南密联戴梦微、欲以「戴掌政治民生、邹掌军队格物」联手抗西南 <span class="chip">第1030-1031章</span>。'},
+        {h:'11.3 晋王（田虎 → 田家新政权 → 楼舒婉一系）',b:'核心利益：据晋地（汾州—威胜），在女真、华夏军、武朝之间自保牟利。<br>演变：田虎（晋王）在汾州内斗 <span class="chip">第656-658章</span> → 归附西夏 <span class="chip">第664-668章</span> → 清洗黑旗余孽 <span class="chip">第720-724章</span> → 政权全面崩解、楼舒婉—田实—于玉麟一系接盘 <span class="chip">第735-738章</span> → 田家新政权三方角力 <span class="chip">第756-760章</span> → 与黑旗结成准同盟 <span class="chip">第765-770章</span> → 公开抗金并与女真西路军开战 <span class="chip">第798-802章</span> → 田实死后分裂重组 <span class="chip">第808-810章</span>。<br>关键事件：女真以杀田实、分化晋地、破黑旗「连消带打」<span class="chip">第808-810章</span>；借西南技术分利而「合利」士绅 <span class="chip">第1017-1019章</span>。'},
+        {h:'11.4 福州「振兴」新朝（武朝新君 / 君武周佩一系）',b:'核心利益：以「尊王攘夷」对抗「与士大夫共治天下」，推行集权革新。<br>演变：周佩推动新皇定都应天、南下拥立 <span class="chip">第680-685章</span> → 周君武 / 周佩在福州 <span class="chip">第921-926章</span> → 确立「学黑旗之长以自强」的路线 <span class="chip">第952-956章</span> → 以「尊王攘夷」取泉州 <span class="chip">第963-966章</span> → 推行集权革新、面临财政与运输的联手掣肘 <span class="chip">第1020-1024章</span>。<br>与华夏军：经左家这座「桥梁」酝酿一桩「很大的交易」<span class="chip">第995-998章</span>。'},
+        {h:'11.5 公平党（何文、许昭南）',b:'演变：在江南扩张、势力日盛 <span class="chip">第1017-1019章</span> → 吞并铁彦吴启梅、九月于江宁办英雄大会 <span class="chip">第1030-1031章</span>；在江宁办「英雄大会」借势拆台 <span class="chip">第1025-1029章</span>。'},
+        {h:'11.6 刘光世（军阀）',b:'演变：江陵密会 <span class="chip">第921-926章</span> → 与戴梦微加速结盟 <span class="chip">第947-951章</span> → 率先派团入局成都 <span class="chip">第967-971章</span> → 借成都盛会成军工订单最大客户、几乎复制整套军工产业 <span class="chip">第1007-1012章</span> → 被丁嵩南贬为「和稀泥」<span class="chip">第1030-1031章</span>。'},
+        {h:'11.7 伪齐（刘豫）',b:'演变：登基、掘陵、大征兵、为女真守御南方 <span class="chip">第712-715章</span> → 在女真扶植下统治中原、内部却潜伏黑旗暗桩 <span class="chip">第716-719章</span> → 在内忧与外压间愈发虚弱、刘麟渡淮大败 <span class="chip">第756-760章</span>；宁毅掳刘豫、嫁祸武朝 <span class="chip">第761-764章</span>。'},
+        {h:'11.8 蒙古',b:'演变：铁木真崛起、西夏将危 <span class="chip">第716-719章</span> → 十三翼登场、第三方强权正式登场 <span class="chip">第855-859章</span> → 携铁木真意志入中原觅军火 <span class="chip">第882-887章</span> → 先噬雇主廖义仁、后叩雁门关，成为脱离既有棋局之外的第三极 <span class="chip">第927-929章</span> → 云中府围城、与金国西府直接冲突 <span class="chip">第934-940章</span>。'}
+      ]}
+  ];
+  var fh=document.getElementById('factions');
+  FACS.forEach(function(f){
+    var sec=document.createElement('div');
+    sec.className='section';
+    var peopleHtml=f.people.map(function(p){return '<span class="pill">'+p+'</span>';}).join('');
+    var html='<span class="sec-tag" style="color:'+f.c+';background:rgba(255,255,255,0.05);border-color:'+f.c+'">阵营 '+('0'+f.n).slice(-2)+'</span>'
+      +'<h2 style="color:'+f.c+'">'+f.t+'</h2>'
+      +'<div class="grid g2">'
+      +'<div class="card fac-card" style="cursor:default"><div class="ct">核心利益与目标</div><div class="cb">'+f.goal+'</div></div>'
+      +'<div class="card fac-card" style="cursor:default"><div class="ct">核心人物</div><div class="cb pills-row">'+peopleHtml+'</div></div>'
+      +'</div>';
+    if(f.subs){
+      html+='<div class="grid g2" style="margin-top:14px">';
+      f.subs.forEach(function(sb){html+='<div class="sub-block"><div class="sh">'+sb.h+'</div><div class="sb">'+sb.b+'</div></div>';});
+      html+='</div>';
+    }else{
+      html+='<h3>与其他势力的关系演变</h3>'
+        +'<div class="card" style="cursor:pointer"><div class="ct">关系演变（'+f.rel.length+' 条，带锚点）</div>'
+        +'<div class="cb">点击展开逐条演变记录</div>'
+        +'<div class="exp"><ul class="bul">'+f.rel.map(function(r){return '<li>'+r+'</li>';}).join('')+'</ul></div>'
+        +'<div class="hint">点击展开</div></div>'
+        +'<h3>关键博弈事件</h3>'
+        +'<div class="card" style="cursor:pointer"><div class="ct">关键博弈事件（'+f.ev.length+' 条）</div>'
+        +'<div class="cb">点击展开全部事件与锚点</div>'
+        +'<div class="exp"><ul class="bul">'+f.ev.map(function(r){return '<li>'+r+'</li>';}).join('')+'</ul></div>'
+        +'<div class="hint">点击展开</div></div>';
+    }
+    sec.innerHTML=html;
+    fh.appendChild(sec);
+  });
+})();
+</script>
+</body></html>

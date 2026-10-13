@@ -1,0 +1,107 @@
+/* 《赘婿》浏览页 · 蓝图维度详情页 共享样式（深色科技感 · 金字） */
+:root{
+  --bg:#08080c; --panel:rgba(255,255,255,0.02); --line:rgba(255,255,255,0.07);
+  --gold:#c9a961; --gold2:#e8c97a; --red:#ff6b6b; --green:#69db7c;
+  --blue:#74c0fc; --purple:#b197fc; --orange:#ffa94d; --cyan:#66d9e8;
+  --txt:#e8e6e3; --txt2:#a8a5a0; --txt3:#6f6c68;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--txt);
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px),
+    radial-gradient(ellipse 80% 40% at 50% -5%,rgba(201,169,97,0.10),transparent 70%);
+  background-size:60px 60px,60px 60px,100% 100%;
+  min-height:100vh;padding:0 0 60px;
+}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(201,169,97,0.4);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:rgba(201,169,97,0.65)}
+
+/* topbar */
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 22px;background:rgba(8,8,12,0.82);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)}
+.topbar a{color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:.5px;
+  border:1px solid rgba(201,169,97,0.3);border-radius:8px;padding:5px 13px;transition:.2s}
+.topbar a:hover{background:rgba(201,169,97,0.14)}
+.topbar .ttl{color:var(--txt);font-size:14px;letter-spacing:1px}
+.topbar .ttl b{color:var(--gold2);font-weight:600}
+
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px}
+.h1{font-size:26px;color:var(--gold2);font-weight:700;letter-spacing:1px;margin:6px 0 4px}
+.sub{color:var(--txt2);font-size:13px;margin-bottom:22px}
+
+/* section card */
+.section{background:var(--panel);border:1px solid var(--line);border-radius:18px;
+  padding:34px 28px 24px;margin-bottom:20px;position:relative;overflow:visible}
+.sec-tag{position:absolute;top:-1px;left:-1px;font-size:10px;color:#fff;letter-spacing:2px;font-weight:600;
+  background:rgba(201,169,97,0.2);border:1px solid rgba(201,169,97,0.3);
+  border-top-left-radius:18px;border-bottom-right-radius:10px;padding:4px 14px 4px 12px}
+.section h2{font-size:18px;color:var(--gold2);margin-bottom:6px;font-weight:600}
+.section h2 .n{color:var(--gold);opacity:.8;margin-right:8px;font-weight:700}
+.section .desc{color:var(--txt2);font-size:13px;margin-bottom:16px}
+.section h3{font-size:15px;color:var(--gold);margin:18px 0 8px;font-weight:600}
+
+/* pills */
+.pill{display:inline-block;font-size:12px;color:var(--gold2);background:rgba(201,169,97,0.10);
+  border:1px solid rgba(201,169,97,0.28);border-radius:999px;padding:3px 12px;margin:3px 6px 3px 0}
+.pill.g{color:var(--green);border-color:rgba(105,219,124,0.35);background:rgba(105,219,124,0.08)}
+.pill.r{color:var(--red);border-color:rgba(255,107,107,0.35);background:rgba(255,107,107,0.08)}
+.pill.b{color:var(--blue);border-color:rgba(116,192,252,0.35);background:rgba(116,192,252,0.08)}
+.pill.p{color:var(--purple);border-color:rgba(177,151,252,0.35);background:rgba(177,151,252,0.08)}
+.pill.o{color:var(--orange);border-color:rgba(255,169,77,0.35);background:rgba(255,169,77,0.08)}
+
+/* grid cards */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:12px;
+  padding:16px 16px 14px;transition:.2s;position:relative;cursor:pointer}
+.card:hover{border-color:rgba(201,169,97,0.4);background:rgba(201,169,97,0.05);transform:translateY(-2px)}
+.card .ct{color:var(--gold2);font-size:14px;font-weight:600;margin-bottom:6px}
+.card .cn{color:var(--gold);opacity:.7;font-size:12px;margin-right:6px}
+.card .cb{color:var(--txt2);font-size:12.5px;line-height:1.7}
+.card .acc{position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:2px;background:var(--gold)}
+
+/* collapsible */
+.exp{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--txt2);font-size:12.5px}
+.card.open .exp, .exp.open{max-height:1200px}
+.hint{color:var(--txt3);font-size:11px;margin-top:6px}
+a.anchor{color:var(--gold);text-decoration:none;border-bottom:1px dashed rgba(201,169,97,0.4)}
+.chip{display:inline-block;font-size:11px;color:var(--gold);background:rgba(201,169,97,0.08);
+  border:1px solid rgba(201,169,97,0.22);border-radius:6px;padding:1px 7px;margin:2px 4px 2px 0;white-space:nowrap}
+
+/* quote block */
+.quote{border-left:3px solid var(--gold);background:rgba(201,169,97,0.05);
+  padding:14px 20px;border-radius:0 12px 12px 0;color:var(--gold2);font-size:15px;line-height:1.8}
+
+/* table */
+table.tb{width:100%;border-collapse:collapse;font-size:12.5px}
+table.tb th{background:rgba(201,169,97,0.10);color:var(--gold2);font-weight:600;
+  padding:9px 10px;text-align:left;border-bottom:1px solid rgba(201,169,97,0.25);white-space:nowrap}
+table.tb td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--txt2);vertical-align:top}
+table.tb tr:hover td{background:rgba(201,169,97,0.04)}
+table.tb td b,table.tb td strong{color:var(--txt)}
+
+/* tooltip */
+.tip{position:fixed;z-index:200;max-width:320px;background:#12121a;border:1px solid rgba(201,169,97,0.45);
+  border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--txt);line-height:1.65;
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);pointer-events:none;opacity:0;transition:opacity .15s}
+.tip.show{opacity:1}
+.tip .th{color:var(--gold2);font-weight:600;margin-bottom:4px;font-size:13px}
+
+/* nodes / dots */
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:12px;color:var(--txt2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+
+.svgwrap{width:100%;overflow-x:auto}
+svg{display:block}

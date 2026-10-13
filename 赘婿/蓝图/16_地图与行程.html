@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《赘婿》蓝图 · 地图与行程</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+svg .st{cursor:pointer}
+svg .st:hover circle{filter:brightness(1.4)}
+.region .rn{color:var(--gold2);font-weight:600;font-size:13.5px}
+.region .rl{color:var(--txt);font-size:12px;margin-top:6px}
+.region .rf{color:var(--txt2);font-size:12px;margin-top:4px}
+.stage{position:relative}
+.stage .sn{color:var(--txt3);font-size:11px;letter-spacing:1px}
+.stage .st2{color:var(--gold2);font-weight:600;font-size:13.5px;margin:2px 0 6px}
+.stage .sb{color:var(--txt2);font-size:12px;line-height:1.65}
+.mapflow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0;font-size:12.5px}
+.mapflow .k{color:var(--gold2);font-weight:600}
+.mapflow .v{color:var(--txt2)}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__hidewx">.author-badge,.qr,.qr-float{display:none !important;}</style></head><body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="ttl">创作蓝图 · <b>地图与行程</b></div>
+</div>
+<div class="wrap">
+  <div class="h1">地图与行程</div>
+  <div class="sub">《赘婿》· 愤怒的香蕉 · 1031章 / 约424.7万字</div>
+
+  <!-- ① 主要地理板块 -->
+  <div class="section">
+    <span class="sec-tag">地图与行程</span>
+    <h2><span class="n">01</span>主要地理板块</h2>
+    <div class="desc">全书的空间骨架——十一个地理板块，各有其主要地点与势力功能。</div>
+    <div class="grid g3">
+      <div class="region card" style="cursor:default"><div class="rn">江宁（秦淮）</div><div class="rl">苏府、秦淮河湾、豫山书院、白鹭洲、石头城、秦淮河畔诸小楼</div><div class="rf">宁毅起点与“家”；苏家商号的根基；商战、宅斗、感情线主场<br><span class="chip">第0-200章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">杭州（后期“临安”）</div><div class="rl">西湖、小瀛洲（三潭印月）、太平巷、钱唐门、文烈书院、细柳街、霸刀营</div><div class="rf">方腊之乱主战场；宁毅“血手人屠”成名地；后期成武朝南渡后的临安小朝廷<br><span class="chip">第201-311章</span><span class="chip">临安 第716-719章起</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">汴京（汴梁／东京）</div><div class="rl">皇城、矾楼、右相府、宁府、延和里、牟驼岗、夏村、新酸枣门、宣化门</div><div class="rf">武朝都城，全书政治中枢；北伐、守城、弑君的发生地<br><span class="chip">第90-94章（首现）</span><span class="chip">第365-655章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">山东（梁山泊）</div><div class="rl">梁山水泊（八百余里，黄河决堤改道而成）、独龙岗（祝家庄/李家庄/扈家庄）、济州、郓州、秦津渡、曾是曾头市</div><div class="rf">剿梁山主战场；宁毅第一次独立领军<br><span class="chip">第320-451章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">吕梁（晋地）</div><div class="rl">青木寨、霍川岭、吕梁山脉、老村</div><div class="rf">陆红提／田虎势力；宁毅与红提成亲地；后为黑旗的西北跳板<br><span class="chip">第370-555章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">汴梁外围·黄河一线</div><div class="rl">牟驼岗、天驷监、夏村山谷（黄河堤防旁）、黄河北岸渡头、陈桥门</div><div class="rf">汴梁保卫战、夏村之战的战场<br><span class="chip">第582-626章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">西北（小苍河—延州—庆州）</div><div class="rl">小苍河（谷地、窑洞）、延州、庆州、原州、董志塬、青涧城、横山</div><div class="rf">武瑞营叛军→华夏军（黑旗）的初生地；董志塬大败西夏之地<br><span class="chip">第652-704章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">中原（晋—豫—江淮）</div><div class="rl">威胜（天极宫）、泽州、林州、汾阳、大名府、邓州、新野、襄阳、樊城、徐州、扬州、淮河一线</div><div class="rf">黑旗与女真／伪齐／晋王势力的拉锯战场<br><span class="chip">第720-859章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">西南（成都—梓州—剑阁—汉中）</div><div class="rl">成都、集山（工业重镇）、和登、梓州、黄明县、雨水溪、剑阁（剑门关）、昭化、汉中、望远桥、狮岭</div><div class="rf">华夏军的根据地与最终基业；汉中会战、大决战战场；华夏人民政府建都成都<br><span class="chip">第747-1031章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">江南（镇江—苏州—常州—嘉兴—福州—太湖）</div><div class="rl">镇江、常州、无锡、苏州、嘉兴、福州、太湖、平江、江宁</div><div class="rf">逃亡路线；后期武朝／南渡朝廷（福州、临安）与华夏军江南战场<br><span class="chip">第197-311章</span><span class="chip">第833-976章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">北地（燕云—河东—金国腹地）</div><div class="rl">燕云十六州（雁门关、景州、蓟州、卢龙岭）、太原、忻州、代县、朔州、云中府（大同）、丰州；金国上京会宁府、临潢府</div><div class="rf">女真势力范围；北伐与太原之战、北地谍报线<br><span class="chip">第498-1016章</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">边疆／海外（点景）</div><div class="rl">蒙古草原、西夏横山/黑水、吐蕃达央、大理、辽东山海关外</div><div class="rf">更大天下格局的远景铺垫，为蒙古崛起等埋线<br><span class="chip">第686-929章 等</span></div></div>
+      <div class="region card" style="cursor:default"><div class="rn">苗疆</div><div class="rl">蓝寰侗（刘西瓜）</div><div class="rf">江湖支线的隐居地<br><span class="chip">第447-451章 等</span></div></div>
+    </div>
+  </div>
+
+  <!-- ② 主线行程 -->
+  <div class="section">
+    <span class="sec-tag">地图与行程</span>
+    <h2><span class="n">02</span>主线行程路线 · 宁毅本人</h2>
+    <div class="desc">十一个阶段串成一条“换地图＝换人生阶段”的主线；<b>悬停节点查看详细路线与锚点。</b></div>
+    <div class="svgwrap">
+      <svg viewBox="0 0 1180 560" width="100%" role="img" aria-label="宁毅主线行程路线图">
+        <text x="20" y="30" fill="#6f6c68" font-size="12">起点 · 江宁（苏家赘婿）</text>
+        <text x="1160" y="30" text-anchor="end" fill="#6f6c68" font-size="12">终点 · 成都（华夏人民政府）</text>
+
+        <!-- route path -->
+        <path d="M90,130 L1090,130 L1090,330 L90,330" fill="none" stroke="rgba(201,169,97,0.55)" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M90,130 L1090,130 L1090,330 L90,330" fill="none" stroke="rgba(201,169,97,0.18)" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- row1 nodes 1..6  y=130 -->
+        <!-- 1 -->
+        <g class="st" data-tip="<div class='th'>① 江宁立身</div>路线：（不出城）江宁城内 → 南亭村（近润州）→ 首次拉出江宁<br>· 起点为苏家赘婿 <span class='chip'>第0-4章</span><br>· 首到南亭村 <span class='chip'>第84-89章</span><br>· 镜头首进东京 <span class='chip'>第90-94章</span><br>· 乘画舫首次较大幅南下（长江／镇江／丹阳／常州）<span class='chip'>第197-200章</span>">
+          <circle cx="90" cy="130" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="90" y="134" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">1</text>
+          <text x="90" y="160" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">① 江宁立身</text>
+          <text x="90" y="178" text-anchor="middle" fill="#a8a5a0" font-size="11">江宁城内·南亭村</text>
+        </g>
+        <!-- 2 -->
+        <g class="st" data-tip="<div class='th'>② 南下杭州</div>路线：江宁→常州→无锡→苏州→嘉兴→杭州（太平巷置宅）<br>· 落点杭州太平巷 <span class='chip'>第201-208章</span><br>· 地震 <span class='chip'>第221-225章</span><br>· 方腊围城、弃城渡河 <span class='chip'>第226-232章</span>">
+          <circle cx="290" cy="130" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="290" y="134" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">2</text>
+          <text x="290" y="160" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">② 南下杭州</text>
+          <text x="290" y="178" text-anchor="middle" fill="#a8a5a0" font-size="11">常州→苏州→杭州</text>
+        </g>
+        <!-- 3 -->
+        <g class="st" data-tip="<div class='th'>③ 杭州—湖州逃亡 → 镇江会合</div>路线：杭州城→杭州湖州交界（石桥渡／清风寨／小洛镇）→福州→折返杭州→（青溪西北流亡）→镇江<br>· 逃亡与失散 <span class='chip'>第233-243章</span><br>· “二人的孤岛” <span class='chip'>第244-248章</span><br>· 青溪西北山野流亡，刘西瓜追上 <span class='chip'>第303-307章</span><br>· 景翰十年二月二十七抵镇江，与苏檀儿、小婵会合 <span class='chip'>第308-311章</span>">
+          <circle cx="490" cy="130" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="490" y="134" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">3</text>
+          <text x="490" y="160" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">③ 杭州逃亡→镇江</text>
+          <text x="490" y="178" text-anchor="middle" fill="#a8a5a0" font-size="11">石桥渡·清风寨</text>
+        </g>
+        <!-- 4 -->
+        <g class="st" data-tip="<div class='th'>④ 回江宁</div>路线：镇江→溯长江北上→江宁<br>· 归江宁，小婵正式过门 <span class='chip'>第312-345章</span><br>· 苏家变故、梁山夜袭苏府 <span class='chip'>第327-339章</span>">
+          <circle cx="690" cy="130" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="690" y="134" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">4</text>
+          <text x="690" y="160" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">④ 回江宁</text>
+          <text x="690" y="178" text-anchor="middle" fill="#a8a5a0" font-size="11">镇江→长江北上</text>
+        </g>
+        <!-- 5 -->
+        <g class="st" data-tip="<div class='th'>⑤ 上京汴梁（走运河北上）</div>路线：江宁→长江转大运河→盱眙→洪泽湖→徐州地界→宋州／开封→汴梁<br>· 乘驸马府船队上京 <span class='chip'>第345章</span><br>· 途中梁山劫生辰纲 <span class='chip'>第355-364章</span><br>· 抵汴梁入右相府 <span class='chip'>第370-374章</span>">
+          <circle cx="890" cy="130" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="890" y="134" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">5</text>
+          <text x="890" y="160" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">⑤ 上京汴梁</text>
+          <text x="890" y="178" text-anchor="middle" fill="#a8a5a0" font-size="11">大运河→汴梁</text>
+        </g>
+        <!-- 6 -->
+        <g class="st" data-tip="<div class='th'>⑥ 山东剿梁山</div>路线：汴梁→独龙岗（祝家庄／扈家庄／李家庄）→梁山泊→郓州／济州→战家坳→安平→仪元县→回汴梁<br>· 独龙岗鏖战与破梁山 <span class='chip'>第404-436章</span><br>· 安平长街周侗出手 <span class='chip'>第442-446章</span><br>· 八月回汴梁 <span class='chip'>第447-451章</span>">
+          <circle cx="1090" cy="130" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="1090" y="134" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">6</text>
+          <text x="1090" y="160" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">⑥ 山东剿梁山</text>
+          <text x="1090" y="178" text-anchor="middle" fill="#a8a5a0" font-size="11">独龙岗→梁山泊</text>
+        </g>
+
+        <!-- row2 nodes 7..11  y=330  (right→left) -->
+        <!-- 7 -->
+        <g class="st" data-tip="<div class='th'>⑦ 汴梁经营 → 北上吕梁</div>路线：汴梁 →（北上吕梁）青木寨 → 回汴梁<br>· 汴梁暗置产业 <span class='chip'>第452-522章</span><br>· 率竹记商队北上吕梁，与陆红提成亲 <span class='chip'>第523-555章</span>（成亲 <span class='chip'>第553-555章</span>）">
+          <circle cx="1090" cy="330" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="1090" y="334" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">7</text>
+          <text x="1090" y="272" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">⑦ 汴梁→北上吕梁</text>
+          <text x="1090" y="290" text-anchor="middle" fill="#a8a5a0" font-size="11">青木寨</text>
+        </g>
+        <!-- 8 -->
+        <g class="st" data-tip="<div class='th'>⑧ 汴梁北伐与守城 → 弑君</div>路线：汴梁城外（牟驼岗／夏村）→ 汴梁<br>· 汴梁保卫战、夏村之战 <span class='chip'>第582-626章</span><br>· 入宫当庭刺杀周喆 <span class='chip'>第650-651章</span>">
+          <circle cx="840" cy="330" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="840" y="334" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">8</text>
+          <text x="840" y="272" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">⑧ 北伐守城→弑君</text>
+          <text x="840" y="290" text-anchor="middle" fill="#a8a5a0" font-size="11">牟驼岗·夏村</text>
+        </g>
+        <!-- 9 -->
+        <g class="st" data-tip="<div class='th'>⑨ 西迁小苍河</div>路线：汴梁→（西北）小苍河<br>· 汴梁破后西迁，小苍河初雪、聚居区渐成 <span class='chip'>第652-658章</span>">
+          <circle cx="590" cy="330" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="590" y="334" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">9</text>
+          <text x="590" y="272" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">⑨ 西迁小苍河</text>
+          <text x="590" y="290" text-anchor="middle" fill="#a8a5a0" font-size="11">汴梁→小苍河</text>
+        </g>
+        <!-- 10 -->
+        <g class="st" data-tip="<div class='th'>⑩ 西北立国 → 南撤西南</div>路线：小苍河→延州→庆州／董志塬→（中原转战）→襄阳／邓州→南撤西南→集山／成都／梓州<br>· 董志塬 <span class='chip'>第674-693章</span><br>· 南撤西南救岳云银瓶 <span class='chip'>第747-752章</span><br>· 集山工业重镇 <span class='chip'>第753-755章</span><br>· 成都、梓州、剑阁、汉中会战 <span class='chip'>第874-956章</span>">
+          <circle cx="340" cy="330" r="11" fill="#c9a961" stroke="#08080c" stroke-width="3"/>
+          <text x="340" y="334" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">10</text>
+          <text x="340" y="272" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">⑩ 西北立国→南撤</text>
+          <text x="340" y="290" text-anchor="middle" fill="#a8a5a0" font-size="11">延州→襄阳→成都</text>
+        </g>
+        <!-- 11 -->
+        <g class="st" data-tip="<div class='th'>⑪ 成都定鼎</div>路线：成都及周边（张村、集山、和登）<br>· 华夏人民政府成立 <span class='chip'>第972章</span><br>· 阅兵献俘 <span class='chip'>第999-1001章</span>">
+          <circle cx="90" cy="330" r="11" fill="#e8c97a" stroke="#08080c" stroke-width="3"/>
+          <text x="90" y="334" text-anchor="middle" fill="#08080c" font-size="10" font-weight="700">11</text>
+          <text x="90" y="272" text-anchor="middle" fill="#e8c97a" font-size="12" font-weight="600">⑪ 成都定鼎</text>
+          <text x="90" y="290" text-anchor="middle" fill="#a8a5a0" font-size="11">成都·张村·集山</text>
+        </g>
+
+        <!-- 返程箭头提示 -->
+        <text x="590" y="470" text-anchor="middle" fill="#6f6c68" font-size="11.5">上行：江宁 → 杭州 → 汴梁 → 梁山　｜　下行：吕梁 → 北伐 → 小苍河 → 西南 → 成都</text>
+        <text x="590" y="494" text-anchor="middle" fill="#6f6c68" font-size="11">悬停任一节点查看该阶段完整路线与关键节点锚点</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ③ 领地扩张 -->
+  <div class="section">
+    <span class="sec-tag">地图与行程</span>
+    <h2><span class="n">03</span>行军路线与领地扩张 · 华夏军拓地过程</h2>
+    <div class="desc">从武瑞营叛军到华夏人民政府，黑旗军的立足、扩张、转战与建政。</div>
+    <div class="grid g3">
+      <div class="stage card"><span class="acc green"></span><div class="sn">起家</div><div class="st2">小苍河立足</div><div class="sb">武瑞营叛军驻小苍河，对外称“华夏军”（黑旗军）；改编为班—排—连—营—团—特种团。<span class="chip">第659-663章</span></div></div>
+      <div class="stage card"><span class="acc green"></span><div class="sn">立足西北</div><div class="st2">破延州 · 董志塬大捷</div><div class="sb">黑旗军破延州；董志塬大败西夏十六万；按“华夏”二字分粮安民，李乾顺退归横山以北。<span class="chip">第674-693章</span></div></div>
+      <div class="stage card"><span class="acc orange"></span><div class="sn">抗女真西线</div><div class="st2">正面对撞西路军</div><div class="sb">延州城东北与女真西路军首次正面对撞（火炮齐射）；庆州重岗、杀狼岭、黄头坡连战，斩言振国、破折家。<span class="chip">第705-719章</span></div></div>
+      <div class="stage card"><span class="acc green"></span><div class="sn">中原扩张</div><div class="st2">一夕变色</div><div class="sb">联手王巨云、田实、于玉麟等，汾阳／威胜／晋宁／盖州／泽州一夕变色；黑旗取曾头市、克林州、破大名府外围。<span class="chip">第739-786章</span></div></div>
+      <div class="stage card"><span class="acc orange"></span><div class="sn">大破汉军</div><div class="st2">以寡击众</div><div class="sb">黑旗一万 vs 李细枝十七万（凿穿＋内应）溃之；中原会战击溃武襄军十万。<span class="chip">第787-802章</span></div></div>
+      <div class="stage card"><span class="acc blue"></span><div class="sn">南撤西南</div><div class="st2">转进与工业重镇</div><div class="sb">自襄阳／邓州南撤，救岳云银瓶、俘完颜青珏；立足集山、梓州、成都，建工业重镇。<span class="chip">第747-786章</span></div></div>
+      <div class="stage card"><span class="acc green"></span><div class="sn">西南大会战</div><div class="st2">剑阁—昭化—汉中</div><div class="sb">两万人击溃宗翰、希尹十万，宗翰再丧二子；势力扩及汉中、安康方向。<span class="chip">第934-956章</span></div></div>
+      <div class="stage card"><span class="acc green"></span><div class="sn">建政拓地</div><div class="st2">成都建政 · 东城工业镇</div><div class="sb">成都华夏人民政府成立；使节团赴晋地传授工艺、拓建威胜东城工业镇。<span class="chip">第972章</span><span class="chip">第1017-1019章</span></div></div>
+      <div class="stage card"><span class="acc red"></span><div class="sn">隐忧</div><div class="st2" style="color:var(--red)">易帜 · 割据 · 叛出</div><div class="sb">剑阁易帜（司忠显降金）、戴梦微割据镇巴—安康、邹旭叛出。<span class="chip">第874-877章</span><span class="chip">第1030-1031章</span></div></div>
+    </div>
+  </div>
+
+  <!-- ④ 场景切换的叙事节奏 -->
+  <div class="section">
+    <span class="sec-tag">地图与行程</span>
+    <h2><span class="n">04</span>场景切换的叙事节奏</h2>
+    <div class="desc">地图不只是背景——它的切换节奏本身就是叙事装置。</div>
+    <div class="grid g2">
+      <div class="card"><span class="acc"></span>
+        <div class="ct">1 · 长篇的“地理＝身份”对应律</div>
+        <div class="cb">每一次大场景迁移，都对应宁毅身份与格局的一次跃迁——<b>换地图＝换人生阶段</b>，读者凭地名即知主角当下生态位。</div>
+        <div class="mapflow">
+          <span class="k">江宁</span><span class="arr" style="color:var(--txt3)">=</span><span class="v">赘婿／商人</span>
+          <span class="arr" style="color:var(--txt3)">→</span>
+          <span class="k">杭州</span><span class="arr" style="color:var(--txt3)">=</span><span class="v">江湖客／兵祸中的谋局者</span>
+          <span class="arr" style="color:var(--txt3)">→</span>
+          <span class="k">汴梁</span><span class="arr" style="color:var(--txt3)">=</span><span class="v">朝堂幕僚／密侦司／北伐守城者</span>
+          <span class="arr" style="color:var(--txt3)">→</span>
+          <span class="k">梁山</span><span class="arr" style="color:var(--txt3)">=</span><span class="v">独当一面的领军者</span>
+          <span class="arr" style="color:var(--txt3)">→</span>
+          <span class="k">小苍河</span><span class="arr" style="color:var(--txt3)">=</span><span class="v">割据者／建国者</span>
+          <span class="arr" style="color:var(--txt3)">→</span>
+          <span class="k">西南</span><span class="arr" style="color:var(--txt3)">=</span><span class="v">新政权的执政者</span>
+        </div>
+      </div>
+
+      <div class="card"><span class="acc"></span>
+        <div class="ct">2 · 早期“锁城”，后期“多线并置”</div>
+        <div class="cb">前 36 个单元几乎锁定江宁一城，“家”的稳定感是全书情感地锚；自第233-238章起出现多地并置，越到后期越密集，由“跟着主角走”变为“跟着局势走”，节奏由线成网。</div>
+        <div class="exp">
+          <p>· 前 36 个单元（约<span class="chip">第0-197章</span>）几乎<b>锁定江宁一城</b>，直到 <span class="chip">第197-200章</span> 才首次大幅南下、<span class="chip">第90-94章</span> 才首次把镜头甩到东京——<b>“家”的稳定感是全书情感地锚</b>。</p>
+          <p>· 自 <span class="chip">第233-238章</span> 起，单元内开始出现<b>多地并置</b>（汴京→江宁→杭州城同单元切换），越到后期越密集（如单元114 <span class="chip">第577-581章</span> 同含太原+寿张+汴梁+东平府，单元144 <span class="chip">第716-719章</span> 同含临安+西北+大同+大名府+江宁+大理+西夏+吐蕃+蒙古），由“跟着主角走”变为“跟着局势走”，节奏由线成网。</p>
+        </div>
+        <div class="hint">▸ 点击展开实例</div>
+      </div>
+
+      <div class="card"><span class="acc"></span>
+        <div class="ct">3 · 大战役前必有“点景／远景”铺垫</div>
+        <div class="cb">女真南侵前先行金国大殿、潮白河、雁门关等远景点染 <span class="chip">第566-573章</span>；杭州陷落前先铺方腊阵营群像——<b>先用异地把危机“预告”给读者，再回到主角身边引爆</b>。</div>
+      </div>
+
+      <div class="card"><span class="acc"></span>
+        <div class="ct">4 · 逃亡路线的“地形即命运”</div>
+        <div class="cb">杭州—湖州交界的山道溪流（逃亡）、青溪西北的山野流亡（落魄）、江南运河水网（梁山与朝廷的博弈场）、西北窑洞谷地（新生政权的贫瘠根基）——<b>地形本身承担情绪</b>：平原水网写繁华与权谋，山地窑洞写坚韧与新生。</div>
+      </div>
+
+      <div class="card"><span class="acc"></span>
+        <div class="ct">5 · 收尾的“收缩与并线”</div>
+        <div class="cb">后期场景从“天下多点”再度收束到<b>西南一隅（成都—梓州—汉中）</b>，把散落各条线的角色（岳飞、陈凡、刘西瓜、宁忌）汇聚到同一战场，呼应“华夏人民政府”的立国落点，完成从“散”到“合”的封闭结构。</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="_shared.js"></script>
+<script>/* 16 地图与行程：节点 tooltip 与卡片折叠由 _shared.js 提供 */</script>
+</body></html>

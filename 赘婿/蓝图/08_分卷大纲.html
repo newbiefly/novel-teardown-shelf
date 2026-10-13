@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《赘婿》蓝图 · 分卷大纲</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+/* ===== 分卷总览表占比条 ===== */
+.mini{display:inline-block;height:7px;border-radius:4px;vertical-align:middle;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));min-width:2px;margin-left:6px}
+
+/* ===== 纵向时间线 ===== */
+.tl{position:relative;margin-top:6px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,rgba(201,169,97,0.05),var(--gold) 6%,var(--gold2) 50%,var(--gold) 94%,rgba(201,169,97,0.05));
+  box-shadow:0 0 12px rgba(201,169,97,0.45)}
+.ep{position:relative;margin-bottom:16px}
+.ep>.ndot{position:absolute;left:-29px;top:16px;width:12px;height:12px;border-radius:50%;
+  background:var(--gold2);border:2px solid #08080c;box-shadow:0 0 12px 2px rgba(232,201,122,0.8)}
+.ep.pre>.ndot{background:var(--txt3);box-shadow:0 0 10px 1px rgba(160,160,160,0.5)}
+.ep.final>.ndot{background:var(--red);box-shadow:0 0 14px 3px rgba(255,107,107,0.75)}
+.epbody{background:rgba(255,255,255,0.022);border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px 14px;transition:.2s}
+.epbody:hover{border-color:rgba(201,169,97,0.35)}
+.epname{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:4px}
+.epname .t{font-size:16px;font-weight:700;color:var(--gold2)}
+.epname .badge{font-size:10.5px;color:#0b0b10;background:var(--gold);border-radius:6px;padding:1px 8px;font-weight:700}
+.epname .badge.gray{background:var(--txt2)}
+.epname .badge.hot{background:var(--red);color:#fff}
+.epmeta{color:var(--txt2);font-size:12px;margin-bottom:8px}
+.epbrief{color:var(--txt);font-size:13px;margin-bottom:4px}
+.epbrief::before{content:"阶段目标 · ";color:var(--gold);font-size:11px;letter-spacing:1px}
+.bar{height:7px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden;margin:9px 0 11px;position:relative}
+.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.tbtns{display:flex;flex-wrap:wrap;gap:8px}
+.tbtn{font-size:11.5px;color:var(--gold2);background:rgba(201,169,97,0.08);border:1px solid rgba(201,169,97,0.28);
+  border-radius:8px;padding:3px 12px;cursor:pointer;user-select:none;transition:.15s}
+.tbtn:hover{background:rgba(201,169,97,0.2)}
+.lyr{margin-top:10px;border-top:1px dashed rgba(201,169,97,0.2);padding-top:10px}
+.lyr .row{margin:5px 0;font-size:12.5px;color:var(--txt2);line-height:1.75}
+.lyr .row .k{color:var(--gold2);font-weight:600;margin-right:6px}
+.lyr .row.chain{color:var(--txt)}
+.lyr .row.chain b{color:var(--gold2)}
+.lbl{display:inline-block;font-size:10.5px;border-radius:5px;padding:1px 7px;margin-right:6px;font-weight:600}
+.lbl.rev{color:var(--red);background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.32)}
+.lbl.peak{color:var(--orange);background:rgba(255,169,77,0.12);border:1px solid rgba(255,169,77,0.32)}
+.lbl.hook{color:var(--blue);background:rgba(116,192,252,0.12);border:1px solid rgba(116,192,252,0.32)}
+
+/* 开放线索 */
+.olist{list-style:none;counter-reset:ol}
+.olist li{position:relative;padding:10px 0 10px 34px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12.5px;color:var(--txt2)}
+.olist li::before{counter-increment:ol;content:counter(ol);position:absolute;left:0;top:9px;width:22px;height:22px;
+  border-radius:7px;background:rgba(201,169,97,0.12);border:1px solid rgba(201,169,97,0.3);color:var(--gold2);
+  font-size:11px;font-weight:700;display:grid;place-items:center}
+.olist li b{color:var(--gold2)}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__hidewx">.author-badge,.qr,.qr-float{display:none !important;}</style></head><body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="ttl">创作蓝图 · <b>分卷大纲</b></div>
+</div>
+<div class="wrap">
+  <div class="h1">分卷大纲</div>
+  <div class="sub">《赘婿》· 愤怒的香蕉 · 1031章 / 约424.7万字</div>
+
+  <!-- 总览表 -->
+  <div class="section">
+    <div class="sec-tag">分卷大纲</div>
+    <h2><span class="n">00</span>分卷总览</h2>
+    <div class="desc">切分依据：按主角目标变化切阶段 + 原文已有的 11 集骨架（集名据原文标题页 + 作者小结判定）。归纳范围：楔子 ~ 第1031章。</div>
+    <div class="svgwrap">
+    <table class="tb">
+      <tr><th>集</th><th>集名</th><th>章区间</th><th>章数</th><th>字数</th><th>占比</th><th>主角阶段目标</th></tr>
+      <tr><td>—</td><td><b>楔子</b> 繁华过眼开一季</td><td>楔子</td><td>1</td><td>1939</td><td>0.05%<span class="mini" style="width:3px"></span></td><td>穿越落点：金融巨头身死，魂入赘婿</td></tr>
+      <tr><td>1</td><td><b>江宁晨风</b></td><td>第1-33章</td><td>33</td><td>11.2万</td><td>2.6%<span class="mini" style="width:16px"></span></td><td>装失忆攒钱、伺机离开苏家</td></tr>
+      <tr><td>2</td><td><b>暗战之池</b></td><td>第34-157章</td><td>124</td><td>43.0万</td><td>10.1%<span class="mini" style="width:62px"></span></td><td>在江宁商界立稳、护住苏家</td></tr>
+      <tr><td>3</td><td><b>龙蛇</b></td><td>第158-307章</td><td>150</td><td>56.3万</td><td>13.2%<span class="mini" style="width:81px"></span></td><td>由家入国，被乱世卷入更大棋局</td></tr>
+      <tr><td>4</td><td><b>野火</b></td><td>第308-450章</td><td>143</td><td>53.2万</td><td>12.5%<span class="mini" style="width:76px"></span></td><td>换"汴京副本"、入密侦司、剿梁山</td></tr>
+      <tr><td>5</td><td><b>盛宴</b>（过渡集）</td><td>第451-518章</td><td>68</td><td>27.3万</td><td>6.4%<span class="mini" style="width:39px"></span></td><td>淡出上流圈子、暗中蓄力做长线</td></tr>
+      <tr><td>6</td><td><b>胡马度阴山</b></td><td>第519-576章</td><td>58</td><td>24.3万</td><td>5.7%<span class="mini" style="width:35px"></span></td><td>北上吕梁、抗金护国</td></tr>
+      <tr><td>7</td><td><b>君王社稷</b></td><td>第577-651章</td><td>75</td><td>35.1万</td><td>8.3%<span class="mini" style="width:51px"></span></td><td>汴梁保卫战与朝堂忠奸抉择</td></tr>
+      <tr><td>8</td><td><b>老苍河</b></td><td>第652-719章</td><td>68</td><td>30.4万</td><td>7.2%<span class="mini" style="width:44px"></span></td><td>沦陷后建根据地、开始"打天下"</td></tr>
+      <tr><td>9</td><td><b>辽阔的大地</b></td><td>第720-859章</td><td>140</td><td>63.7万</td><td>15.0%<span class="mini" style="width:92px"></span></td><td>逐鹿天下，与女真及四方博弈</td></tr>
+      <tr><td>10</td><td><b>长夜过春时</b></td><td>第860-1016章</td><td>157</td><td>72.5万</td><td>17.1%<span class="mini" style="width:105px"></span></td><td>觉醒与并起：决战女真 + 政权成型</td></tr>
+      <tr><td>11</td><td><b>人间水长东</b>（连载中）</td><td>第1017-1031章</td><td>15</td><td>7.7万</td><td>1.8%<span class="mini" style="width:11px"></span></td><td>收线与开放结局（连载中）</td></tr>
+    </table>
+    </div>
+    <div class="hint" style="margin-top:12px;font-size:12.5px;color:var(--txt2)">
+      全书共 1031 章 + 楔子；字数为索引累加值。<b style="color:var(--gold2)">第九集、第十集合计占 32.1%</b>，是全书高潮最密集的两卷；第八集小结载"接下来整本书可能还有三集左右"<span class="chip">第八集小结</span>，实为十一集。
+    </div>
+  </div>
+
+  <!-- 纵向时间线 -->
+  <div class="section">
+    <div class="sec-tag">分卷大纲</div>
+    <h2><span class="n">01</span>主线阶段时间线</h2>
+    <div class="desc">默认显示阶段名 + 章节 + 占比；点击「展开详情」看目标/核心事件/转折/高潮/钩子，点击「因果链」看该卷因果推导。<span class="chip">第X章</span> 为章号锚点。</div>
+    <div class="tl">
+
+      <!-- 楔子 -->
+      <div class="ep pre">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">楔子 · 繁华过眼开一季</span><span class="badge gray">楔子 | 1章 | 0.05%</span></div>
+          <div class="epbrief">穿越落点：金融巨头身死，魂入赘婿</div>
+          <div class="tbtns"><span class="tbtn" data-exp="s0l1">展开详情 ▾</span></div>
+          <div class="exp lyr" id="s0l1">
+            <div class="row"><span class="k">核心事件</span>现代金融巨头被属下唐明远设局围杀身死，醒来穿越成江宁苏家上门赘婿宁毅（字立恒）；发现身处"武"朝、定都汴梁，历史与已知不同，决意装失忆、攒银子伺机离开 <span class="chip">第0-4章</span>。</div>
+            <div class="row"><span class="k">目标/结果</span>确立"隐身自保"的初始姿态，为全书压下一个<b>反差的起点</b>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>成婚当日苏檀儿逃婚、苏家上下等着看他出丑——身份困局初显 <span class="chip">第1-4章</span>。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第一集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第一集 · 江宁晨风</span><span class="badge">第1-33章 | 33章 | 2.6%</span></div>
+          <div class="epbrief">装失忆攒钱、伺机离开苏家</div>
+          <div class="bar"><i style="width:15%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e1l1">展开详情 ▾</span><span class="tbtn" data-exp="e1l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e1l1">
+            <div class="row"><span class="k">核心事件</span>被大川布行薛进暗算昏倒数日 <span class="chip">第1-4章</span>；结识秦淮摆棋摊的秦老（秦嗣源）与康老（康贤），以野路子棋法折服二老 <span class="chip">第1-9章</span>；去豫山书院任教、讲三国 <span class="chip">第5-9章</span>；中秋教小婵唱《水调歌头》并赠词稿，于止水诗会引爆江宁，宁毅成"江宁第一才子" <span class="chip">第10-22章</span>；与聂云竹研出松花蛋、一句"寿州"撬动商局 <span class="chip">第23-29章</span>；年关藏书楼考校、宋茂盛赞"此人大才" <span class="chip">第23-29章</span>；廊下"摊牌"互认怪人 <span class="chip">第33章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅想"隐身离开"，苏檀儿想借他当挡箭牌做皇商/大房生意。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第33章 夫妻摊牌</b>——"相公是个怪人""娘子也是吧"，夫妻关系破冰，宁毅由"想走"变为"留下来看一看"。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第10-15章</b> 止水诗会《水调歌头》引爆（★5 反转，满座无声→扬名满城）<span class="chip">第10-15章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>上元夜将至，江宁暗流已起——第二集标题页"白首相知犹按剑"预告"暗战"登场 <span class="chip">第33-34章</span>。</div>
+          </div>
+          <div class="exp lyr" id="e1l2">
+            <div class="row chain">宁毅为"攒钱离开"随手露才（诗词/商机） → 反被推成江宁话题中心 → 苏檀儿由防他转为用他 → 二人在廊下互认怪人。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第二集 · 暗战之池</span><span class="badge">第34-157章 | 124章 | 10.1%</span></div>
+          <div class="epbrief">在江宁商界立稳、护住苏家</div>
+          <div class="bar"><i style="width:59%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e2l1">展开详情 ▾</span><span class="tbtn" data-exp="e2l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e2l1">
+            <div class="row"><span class="k">核心事件</span>上元夜黑衣女刺客陆红提行刺武烈军都尉宋宪未成 <span class="chip">第34-36章</span>；宁毅旧雨楼作《青玉案》压倒薛进、苏崇华 <span class="chip">第37-41章</span>；花魁赛会场走水，宁毅借驸马马车救下力竭的陆红提、取回小院养伤 <span class="chip">第53-69章</span>；顾燕桢雇亡命徒绑架宁毅，反杀杨氏兄弟一伙 <span class="chip">第70-77章</span>；山居学内功、为吕梁山制定组织规划 <span class="chip">第78-83章</span>；写赈灾防疫章程、请秦老收聂云竹为义女 <span class="chip">第78-89章</span>；燕翠楼一曲压全场为苏家挣脸 <span class="chip">第107-112章</span>；苏伯庸施粥遇刺→苏檀儿病倒→宁毅接掌大房、坦白皇商之败 <span class="chip">第107-117章</span>；织造局总会怒斥乌家掷锦盒 <span class="chip">第123-127章</span>；乌家灿金锦诡异褪色、宁毅"偶遇"乌启隆摊牌索产 <span class="chip">第133-141章</span>；宗族大会苏檀儿摊牌翻盘 <span class="chip">第142-151章</span>；十步坡一役点破席君煜为主谋、宁毅"十步一算"成名 <span class="chip">第147-156章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅由"自保"转为<b>主动护住苏家并在商界立威</b>。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第128章</b> 乌家灿金锦开始褪色（宁毅的局开始收口）；<b>第147-151章</b> 主谋暴露（苏家内鬼=席君煜，矛盾指向梁山）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第147-151章</b> 十步坡/主谋揭露（★5，"忍四个月一朝掀桌"的翻盘逻辑）<span class="chip">第147-151章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>第157章《光明与黑暗》在温情日常后骤然切入乱世血腥底色 <span class="chip">第157-161章</span>，为第三集"龙蛇起陆"埋雷。</div>
+          </div>
+          <div class="exp lyr" id="e2l2">
+            <div class="row chain">苏伯庸遇刺 + 皇商之败 → 苏檀儿病倒、宁毅接权 → 以"褪色锦"布局反噬乌家（方子其实出自苏家）→ 一招索产、宗族翻盘 → 逼出内鬼席君煜与梁山勾连。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第三集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第三集 · 龙蛇</span><span class="badge">第158-307章 | 150章 | 13.2%</span></div>
+          <div class="epbrief">由家入国，被乱世卷入更大棋局</div>
+          <div class="bar"><i style="width:77%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e3l1">展开详情 ▾</span><span class="tbtn" data-exp="e3l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e3l1">
+            <div class="row"><span class="k">核心事件</span>李频入仕、时局明暗并起 <span class="chip">第157-161章</span>；农历二月竹记酒楼辽人刺客围杀秦嗣源，宁毅持突火枪、手榴弹相助炸退刺客 <span class="chip">第167-172章</span>；秦老、康贤引鱼现身的刺杀局收网、徐州山神庙截杀刺客 <span class="chip">第179-184章</span>；周君武论"格物之学"立"格物党" <span class="chip">第197-200章</span>；画舫南下杭州、小瀛洲诗会宁毅扇楼书恒入水连伤十余人、当场作《望海潮》 <span class="chip">第209-220章</span>；立秋地震、救娟儿、组织太平巷挖掘防疫 <span class="chip">第221-225章</span>；方腊军杀至杭州、宁毅组织"密约"自保 <span class="chip">第226-232章</span>；七月初三夜刘西瓜率众杀入刘氏武馆，宁毅引爆火药炸退众高手、"血手人屠宁立恒"扬名 <span class="chip">第226-232章</span>；杭州陷落、亡命逃亡 <span class="chip">第232-243章</span>；与小婵困于漏雨破屋的"二人孤岛" <span class="chip">第244-248章</span>；琢磨以"公平"为基础的造反纲领 <span class="chip">第255-259章</span>；与刘西瓜/霸刀营周旋、杀包道乙 <span class="chip">第269-302章</span>；苏檀儿潜回杭州、"我来接人"杀入楼府一枪爆头 <span class="chip">第293-297章</span>；农历十一月十二与刘茜茜（刘西瓜）成亲 <span class="chip">第303-306章</span>；第307章陆红提架住霸刀、刘西瓜以刀架颈。</div>
+            <div class="row"><span class="k">目标</span>宁毅由"护家"被洪流推向<b>在乱世里保命、并在江湖势力中埋下前手</b>。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第226-232章 杭州陷落 / 引爆火药脱身</b>（书生正式蜕变为"血手人屠"）；<b>第293-297章 我来接人</b>（宁毅第一次以暴烈姿态碾碎地方豪强楼家）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第293-297章</b> "我来接人，今天有人说一个不字，我杀你全家"——杀入楼府、一枪打爆楼书望 <span class="chip">第293-297章</span>（作者：第三集最初只定了四件事，此为其一 <span class="chip">第三集小结</span>）。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>第307章"撕心痛哭 不净莲华"——刚强人物的唯一一次崩溃 <span class="chip">第307章</span>；第四集标题页"人在这个世界上，会遇上老虎"预告上京与梁山之局。</div>
+          </div>
+          <div class="exp lyr" id="e3l2">
+            <div class="row chain">东京密议连金伐辽 + 方腊起义 → 杭州陷落、宁毅被困 → 以密约/火药/血手人屠立威 → 在霸刀营与刘西瓜阵营中埋下"炸弹"（其人日后接掌吕梁）→ 苏檀儿冒险归来、两家团聚。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第四集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第四集 · 野火</span><span class="badge">第308-450章 | 143章 | 12.5%</span></div>
+          <div class="epbrief">换"汴京副本"、入密侦司、剿梁山</div>
+          <div class="bar"><i style="width:73%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e4l1">展开详情 ▾</span><span class="tbtn" data-exp="e4l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e4l1">
+            <div class="row"><span class="k">核心事件</span>镇江会合、小婵正式过门为妾 <span class="chip">第308-320章</span>；二房三房妇孺砸秦淮小楼打聂云竹，宁毅三堂会审砸断苏文兴的腿 <span class="chip">第321-326章</span>；苏檀儿诞下男婴 <span class="chip">第321-326章</span>；梁山强匪借雨幕由席君煜引路杀入苏家、逐院屠戮 <span class="chip">第327-339章</span>；苏愈当众捅死苏文季、宁毅现身与林冲对峙、正式入密侦司 <span class="chip">第335-339章</span>；苏伯庸过世、夫妻搬出苏家 <span class="chip">第335-339章</span>；宁毅与聂云竹定情、上京 <span class="chip">第340-349章</span>；梁山劫生辰纲、周佩藏箱随船北上 <span class="chip">第346-349章</span>；抵汴梁入右相府、受命赴山东剿梁山 <span class="chip">第370-374章</span>；独龙岗鏖战生擒索超、离间梁山 <span class="chip">第404-426章</span>；宋江率万人强攻祝家庄、梁山被破 <span class="chip">第416-436章</span>；陆红提下山连杀梁山高手、为其"立威" <span class="chip">第431-436章</span>；安平长街混战、周侗受太尉府之命出手重伤红提、逐林冲出师门 <span class="chip">第442-446章</span>；建营地收编梁山降卒入竹记 <span class="chip">第447-451章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅进入<b>"国家棋盘"</b>——以密侦司身份剿灭梁山、上京布局。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第335-339章 苏愈捅死苏文季 / 宁毅正式入密侦司</b>（家变推向新阶段）；<b>第427-436章 梁山被破</b>（一路宿敌清场）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第327-339章</b> 梁山强匪"暴雨"屠苏家（家变血战）<span class="chip">第327-339章</span>；<b>第427-436章</b> 横城一剑、梁山覆灭 <span class="chip">第427-436章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>第450章"南北均安 天下大好"是假象，第五集标题页"少年被风吹大，容颜未改心犹怕"接棒；作者明示"该换汴京副本"<span class="chip">第三集小结</span>。</div>
+          </div>
+          <div class="exp lyr" id="e4l2">
+            <div class="row chain">席君煜引梁山屠苏家 → 苏家彻底破家、宁毅再无退路 → 入密侦司、上京 → 以"打散梁山"为目标布局独龙岗 → 灭梁山、收降卒 → 竹记急速膨胀。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第五集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第五集 · 盛宴</span><span class="badge gray">过渡集</span><span class="badge">第451-518章 | 68章 | 6.4%</span></div>
+          <div class="epbrief">淡出上流圈子、暗中蓄力做长线</div>
+          <div class="bar"><i style="width:37%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e5l1">展开详情 ▾</span><span class="tbtn" data-exp="e5l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e5l1">
+            <div class="row"><span class="k">核心事件</span>宁毅以相府幕僚挂名、淡出上流圈子，暗中置办铁匠铺、造纸坊，收公孙胜研试火药 <span class="chip">第452-456章</span>；与李师师谈定竹记宣传合作 <span class="chip">第457-467章</span>；方七佛兵败被俘、陈凡入京求援被擒又结情谊 <span class="chip">第457-472章</span>；方百花残部与摩尼教司空南激战，宁毅以破六道传声介入、放箭击杀司空南部众、"心魔"之名震慑绿林 <span class="chip">第478-502章</span>；秦嗣源与宁毅发动赈灾粮价战（竹记游商售粮、逼大户放粮）<span class="chip">第503-510章</span>；张觉降武后遭王安中杀害，成武朝对金的"完美背刺"、秦嗣源几乎昏厥 <span class="chip">第511-518章</span>；雪后赈灾总攻、宁毅宣布将娶云竹、锦儿进门 <span class="chip">第511-518章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅做<b>"长线"</b>——不争一时声名，暗中经营产业、民望与舆论。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第511-518章 张觉被刺 / 秦嗣源因背信之事几乎昏厥</b>（对金局势不可逆）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第515-518章</b> 天下为难 无人认错（★5，一位老人的一生学问与人世责任压在一句话里）<span class="chip">第515-518章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>作者小结末句"欢迎进入第六集《胡马度阴山》"<span class="chip">小结兼求票</span>——铁马冰河，女真南下在即。</div>
+          </div>
+          <div class="exp lyr" id="e5l2">
+            <div class="row chain">灭梁山后名声在外 → 宁毅主动"隐身蓄力" → 以竹记/赈灾介入国计民生、赢得民心 → 张觉事件暴露武朝对金的背信 → 对金关系恶化，为女真南侵埋因。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第六集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第六集 · 胡马度阴山</span><span class="badge">第519-576章 | 58章 | 5.7%</span></div>
+          <div class="epbrief">北上吕梁、抗金护国</div>
+          <div class="bar"><i style="width:33%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e6l1">展开详情 ▾</span><span class="tbtn" data-exp="e6l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e6l1">
+            <div class="row"><span class="k">核心事件</span>宁毅率竹记商队北上吕梁、与青木寨陆红提重逢，击溃小响马裘孟堂部与田虎军 <span class="chip">第523-536章</span>；楼舒婉奉田虎之命入吕梁（暗与灭门仇人宁毅对抗）<span class="chip">第523-536章</span>；宁毅与红提摊牌、"我会嫁他" <span class="chip">第537-547章</span>；林宗吾拜山被太极拳重伤、宁毅定为"平局" <span class="chip">第542-552章</span>；霍川岭之战青木寨以少破吕梁六千盗联军 <span class="chip">第551-552章</span>；宁毅为青木寨立总纲、与红提成亲 <span class="chip">第553-555章</span>；梁秉夫、福端云相继而逝 <span class="chip">第555章</span>；金主吴乞买以武朝使臣徐泽润祭旗誓师南伐 <span class="chip">第566-569章</span>；女真破关、雁门关义胜军开城投降 <span class="chip">第570-573章</span>；周侗忻州召七十余绿林行刺粘罕事败身死 <span class="chip">第574-581章</span>；九月初三女真总攻汴梁，李纲募弓箭手驰援击退登城金兵 <span class="chip">第582-586章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅由"经营长线"转为<b>北上抗金、护国护家</b>。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第566-569章</b> 金主吴乞买誓师南伐 / <b>第570章</b> 女真破关（天下大乱正式开始）；<b>第574-576章 周侗之死</b>（精神符号+主角被"推上神坛"）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第574-576章</b> 一代宗师 英雄再见（周侗刺粘罕，"世间若有豪杰在，何惜此头见英雄"）<span class="chip">第574-581章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>第576章后即第六集小结，作者自省"主角连缺五章"却坚持写周侗的分量 <span class="chip">第六集小结</span>；第七集标题页"聚九州铁，铸一字错"预告忠奸之错将铸成靖平之耻。</div>
+          </div>
+          <div class="exp lyr" id="e6l2">
+            <div class="row chain">张觉事件 → 金主誓师南伐 → 女真破关、武朝北疆崩溃 → 宁毅北上吕梁、结青木寨 → 周侗之死成为天下绿林的精神符号 → 汴梁被围，第七集"君王社稷"开局。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第七集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第七集 · 君王社稷</span><span class="badge hot">整本书最重要的一集</span><span class="badge">第577-651章 | 75章 | 8.3%</span></div>
+          <div class="epbrief">汴梁保卫战与朝堂忠奸抉择</div>
+          <div class="bar"><i style="width:48%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e7l1">展开详情 ▾</span><span class="tbtn" data-exp="e7l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e7l1">
+            <div class="row"><span class="k">核心事件</span>汴梁保卫战（李纲、种师道发动全城数十万人死守，挡女真攻城一个多月）<span class="chip">第592-597章</span>；姚平仲夜袭牟驼岗、二十万武朝大军反被分兵冲溃 <span class="chip">第587-591章</span>；宁毅组侦查小队刺探牟驼岗、老卒郑叔坠冰殉职 <span class="chip">第598-601章</span>；牟驼岗大营之战，岳飞领步兵迎战、红提潜入烧粮、宁毅里应外合破营 <span class="chip">第602-605章</span>；夏村之战以地雷阵大破郭药师三万六千常胜军 <span class="chip">第606-617章</span>；女真总攻太原、秦绍和李频成舟海死守并突围求援 <span class="chip">第627-637章</span>；太原陷落遭屠城 <span class="chip">第632-637章</span>；秦嗣源下狱受审、宁毅以木板护其父子回天牢遭满街辱骂 <span class="chip">第638-640章</span>；秦嗣源判流三千里 <span class="chip">第641-644章</span>；绿林大会挑战"心魔" <span class="chip">第641-644章</span>；景翰十四年六月初九宁毅入宫当庭刺杀周喆、武瑞营韩敬同时发难、吕梁宣布造反 <span class="chip">第650-651章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅在<b>忠臣与乱臣的抉择中</b>，从"护国"走向与旧朝决裂。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第632-637章 太原陷落屠城</b>（国难顶点）；<b>第638-644章 秦嗣源下狱流放</b>（宁毅与旧朝恩义彻底割裂）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第650-651章</b> 宁毅刺杀周喆——"用九，见群龙无首，吉"<span class="chip">第650-651章</span>（作者：悟道建议此章名 <span class="chip">第七集小结</span>）。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>君死国乱、靖平之耻将临；第八集标题页"筚路蓝缕，以启山林"预告"沦陷—重建"。</div>
+          </div>
+          <div class="exp lyr" id="e7l2">
+            <div class="row chain">汴梁保卫战的忠勇 → 姚平仲之败/太原屠城/秦嗣源被构陷 → 宁毅认清"聚九州铁，铸一字错"的朝堂必败 → 入宫刺杀周喆，武朝中枢崩塌。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第八集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第八集 · 老苍河</span><span class="badge">第652-719章 | 68章 | 7.2%</span></div>
+          <div class="epbrief">沦陷后建根据地、开始"打天下"</div>
+          <div class="bar"><i style="width:42%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e8l1">展开详情 ▾</span><span class="tbtn" data-exp="e8l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e8l1">
+            <div class="row"><span class="k">核心事件</span>郭京"六甲神兵"开宣化门、汴梁外城沦陷 <span class="chip">第652-655章</span>；小苍河初雪、宁毅议西北取舍 <span class="chip">第656-658章</span>；汴梁被榨干、张邦昌继位改元大楚 <span class="chip">第659-663章</span>；小苍河聚居区渐成、以格物讲学、墨会/华炎社涌现 <span class="chip">第659-663章</span>；罗业献计游说平阳粮商霍廷、宁毅"抓壮丁"充实军队核心 <span class="chip">第664-668章</span>；宁毅亮真意"我要砸掉这个儒家"、欲使士农工商平等 <span class="chip">第674-679章</span>；黑旗军破延州、破董志塬铁鹞子 <span class="chip">第674-685章</span>；<b>董志塬大败西夏十六万大军</b> <span class="chip">第686-689章</span>；回延州按"华夏"分粮安民、庆州谈判提出让百姓投票自选归属 "让天下人皆能选择自己的路" <span class="chip">第690-693章</span>；确认赎回武朝俘虏的密线、女真正在研究火炮 <span class="chip">第694-697章</span>；徐州陷落知州王复殉城、卓永青刺杀女真名将完颜娄室、扬州陷落 <span class="chip">第712-715章</span>；临安公主府周佩收西北战报当席吐血昏倒 <span class="chip">第716-719章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅由"抗金者"转为<b>建根据地、自成一方</b>（"打天下"的起点）。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第652-655章 汴梁沦陷</b>（旧时代终结，宁毅再无"朝廷"可依）；<b>第674-679章 亮出"砸掉儒家"真意</b>（目标从护国升级到改制度）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第686-689章</b> 董志塬大败西夏十六万（华夏军立威"第一战"）<span class="chip">第686-689章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>第719章"花开彼岸 人老苍河"收束；第八集小结称"承上启下、剧情走向有些快"<span class="chip">第八集小结</span>，第九集标题页"秦失其鹿"预告天下逐鹿。</div>
+          </div>
+          <div class="exp lyr" id="e8l2">
+            <div class="row chain">汴京沦陷、武朝名存 → 宁毅退守小苍河、立"华夏"理念 → 黑旗军破西夏树立旗帜 → 庆州"百姓自选归属"首次抛出核心主张 → 女真加压、周佩线引入朝局崩坏。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第九集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第九集 · 辽阔的大地</span><span class="badge hot">作者最满意 / 全书最长</span><span class="badge">第720-859章 | 140章 | 15.0%</span></div>
+          <div class="epbrief">逐鹿天下，与女真及四方博弈</div>
+          <div class="bar"><i style="width:88%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e9l1">展开详情 ▾</span><span class="tbtn" data-exp="e9l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e9l1">
+            <div class="row"><span class="k">核心事件</span>游鸿卓（狗子）家破人亡、夜屠山庙结拜又遭出卖流落江湖 <span class="chip">第720-724章</span>；泽州孙琪大兴株连、大光明教借"救人"收编绿林 <span class="chip">第731-734章</span>；英雄会林宗吾击飞史进、自认天下第一 <span class="chip">第735-738章</span>；黑旗联手王巨云、田实、于玉麟在中原同时发动、汾阳等地一夕变色 <span class="chip">第739-742章</span>；高宠等浴血搏杀 <span class="chip">第743-746章</span>；宁毅南撤救下岳飞儿女岳云银瓶、俘完颜青珏 <span class="chip">第747-752章</span>；集山成近六万人工业重镇、格物与蒸汽机方向 <span class="chip">第753-755章</span>；金主吴乞买中风瘫倒、史进当街行刺宗翰 <span class="chip">第756-760章</span>；刘豫"血书反正"、以毒计逼武朝咽下 <span class="chip">第765-770章</span>；史进夺得周侗遗枪"苍龙伏" <span class="chip">第771-775章</span>；<b>林冲受托送名单力竭战死</b>"人间再无豹子头" <span class="chip">第776-780章</span>；秦桧力推"先捣黑旗再御女真" <span class="chip">第787-792章</span>；晋王田实发檄文宣战女真 <span class="chip">第798-802章</span>；建朔十年正月女真东西两路南下、正月二十二田实于孤松驿遇刺身亡 <span class="chip">第808-810章</span>；林州之战卢俊义以命换命重创术列速 <span class="chip">第816-820章</span>；岷江抗洪、陈嵩决堤被擒 <span class="chip">第827-832章</span>；江南战场宗弼"天女散花"、岳飞出襄阳围点打援大胜邓州 <span class="chip">第833-838章</span>；镇江之战君武绞杀劝降使者 <span class="chip">第849-854章</span>；秦桧劝周雍议和、割让襄樊以西千里 <span class="chip">第855-859章</span>；君武整军杀入江宁拒降、江宁绝地反击击退宗辅 <span class="chip">第860-869章</span>；临安陷落、周佩投海 <span class="chip">第855-859章</span>；<b>蒙古骑兵裂地而来</b>（第三极登场）<span class="chip">第859章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅<b>逐鹿天下</b>——同时面对女真、武朝残部、西夏、蒙古与地方军阀。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第765-770章 刘豫"血书反正"</b>（黑旗蛰伏三年后以阳谋宣告回归）；<b>第776-780章 林冲之死</b>（旧江湖精神落幕）；<b>第855-859章 武朝覆灭</b>（大格局重排）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第776-780章</b> 林冲之死（"世界上最苦的一把枪"，★5）<span class="chip">第776-780章</span>；<b>第855-859章</b> 武朝覆灭 + 周佩投海 + 蒙古登场 <span class="chip">第855-859章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>第859章末"蒙古骑兵裂地而来，血浪绽放"<span class="chip">第859章</span>；第十集标题页取鲁迅诗"城头变幻大王旗/怒向刀丛觅小诗"，预告"诸侯并起 + 觉醒"。</div>
+          </div>
+          <div class="exp lyr" id="e9l2">
+            <div class="row chain">汴京沦陷后武朝名存实亡 → 华夏军崛起、女真分兵南北 → 忠勇者接连殒命（林冲、田实、卢俊义）→ 武朝主和派卖国、临安陷落 → 武朝正式覆灭、蒙古登场 → 天下从三方变多方。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第十集 -->
+      <div class="ep">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第十集 · 长夜过春时</span><span class="badge hot">群像大爆发</span><span class="badge">第860-1016章 | 157章 | 17.1%</span></div>
+          <div class="epbrief">觉醒与并起：决战女真 + 政权成型</div>
+          <div class="bar"><i style="width:100%"></i></div>
+          <div class="tbtns"><span class="tbtn" data-exp="e10l1">展开详情 ▾</span><span class="tbtn" data-exp="e10l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e10l1">
+            <div class="row"><span class="k">核心事件</span>君武江宁发动绝地反击、宗辅率十余万女真西撤 <span class="chip">第866-869章</span>；荆湖之战陈凡夜袭武峰营 <span class="chip">第870-873章</span>；梓州整军、剑阁因守将司忠显被劝降而天平倒向女真 <span class="chip">第874-877章</span>；黄明县血战、拔离速驱赶平民攻城 <span class="chip">第882-887章</span>；鹰嘴岩血雨、宁忌遇刺 <span class="chip">第888-894章</span>；望远桥决战、完颜斜保发起进攻 <span class="chip">第906-910章</span>；狮岭阻击战、宁毅携"帝江"火箭弹抵狮岭、"女真满万不可敌的年代彻底过去" <span class="chip">第911-917章</span>；斜保首级被送上谈判桌 <span class="chip">第918-920章</span>；齐新翰奔袭樊城、希尹清理隐患 <span class="chip">第927-929章</span>；华夏军抵剑阁、以"帝江"火箭弹强攻 <span class="chip">第934-940章</span>；拔离速力竭战死、汉中巷战 <span class="chip">第941-946章</span>；<b>汉中会战宗翰、希尹十万大军被两万击溃、宗翰再丧一子</b> <span class="chip">第947-956章</span>；戴梦微与希尹江畔密约 <span class="chip">第952-956章</span>；何文率公平党破城入太湖立"公平王" <span class="chip">第963-966章</span>；成都"天下第一比武大会"、<b>华夏人民政府正式成立</b> <span class="chip">第972-976章</span>；成都骚乱镇压 <span class="chip">第991-994章</span>；八月初一成都首次阅兵、女真俘虏游街 <span class="chip">第999-1001章</span>；金国云中战败、北地谍报进入"睡眠"（卢明坊牺牲、汤敏杰接任）<span class="chip">第1002-1006章</span>；完颜吴乞买驾崩、希尹献策另立幼君 <span class="chip">第1007-1012章</span>；汤敏杰落下"痛苦的棋子" <span class="chip">第1013-1016章</span>。</div>
+            <div class="row"><span class="k">目标</span>宁毅方<b>完成"从军到政"的转折</b>——打垮女真西路军主力，并把政权制度化。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第934-940章 剑阁/帝江火箭弹强攻</b>（转入战略反攻期）；<b>第972-976章 华夏人民政府成立</b>（政权成型）。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第947-956章</b> 汉中会战（十万女真被两万击溃，宗翰再丧一子）<span class="chip">第947-956章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>第十集小结明示"小丑"这个"中级复杂"人物是给后文的"图穷匕见"打招呼 <span class="chip">第十集小结</span>；第十一集标题页"萧瑟秋风今又是，换了人间"预告时代转向。</div>
+          </div>
+          <div class="exp lyr" id="e10l2">
+            <div class="row chain">蒙古登场、多方并立 → 华夏军转入战略反攻（帝江火箭弹）→ 汉中会战击溃宗翰 → 借大胜之威成立人民政府、阅兵立威 → 金国内乱、谍战转入长期相持。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第十一集 -->
+      <div class="ep final">
+        <span class="ndot"></span>
+        <div class="epbody">
+          <div class="epname"><span class="t">第十一集 · 人间水长东</span><span class="badge hot">收尾 · 连载中</span><span class="badge">第1017-1031章 | 15章 | 1.8%</span></div>
+          <div class="epbrief">收线与开放结局（连载中）</div>
+          <div class="bar"><i style="width:11%"></i></div>
+          <div style="color:var(--txt2);font-size:12px;margin:6px 0">
+            作者自述：<b style="color:var(--gold2)">第十一集为最后一集，体量较大，时间线跨越十多年，无数人物与线索在此走向终点</b><span class="chip">第十集小结</span>。本卷当前仅拆至第1031章，后文待补。
+          </div>
+          <div class="tbtns"><span class="tbtn" data-exp="e11l1">展开详情 ▾</span><span class="tbtn" data-exp="e11l2">因果链 ▾</span></div>
+          <div class="exp lyr" id="e11l1">
+            <div class="row"><span class="k">核心事件</span>晋地楼舒婉拓建东城工业镇、华夏军使节团赴晋传艺 <span class="chip">第1017-1019章</span>；宁毅整军定"军队不得插手政治商业"之规 <span class="chip">第1020-1024章</span>；宁忌随商队出川、经剑门关见西南大变 <span class="chip">第1025-1029章</span>；福州海商暗算与文翰苑血夜 <span class="chip">第1022-1026章</span>；宁毅"立论"密谈 <span class="chip">第1028-1029章</span>；宁忌与"腐儒五人组"入戴梦微辖境、见其法制清明 <span class="chip">第1030-1031章</span>；范恒路边崩溃痛哭丧子 <span class="chip">第1030章</span>；<b>戴梦微密会邹旭特使丁嵩南</b>"戴公有道、邹帅有术"、欲联手抗西南 <span class="chip">第1031章</span>；安康城西刺杀、游鸿卓出手救老八 <span class="chip">第1031章</span>；全书末句"各种事象的曲线，擦肩而过" <span class="chip">第1031章</span>。</div>
+            <div class="row"><span class="k">目标</span>收线并"换了人间"——由主角视角转向<b>下一代的眼与多方并存的乱世新局</b>。</div>
+            <div class="row"><span class="lbl rev">关键转折</span><b>第1022-1026章 时代大潮/文翰苑血夜</b>；<b>第1030-1031章 戴梦微—邹旭暗盟浮出</b>。</div>
+            <div class="row"><span class="lbl peak">高潮章</span><b>第1030-1031章</b> 崩溃 乱世（全书末章以多个互不相识者的碎片视角收束，★寒）<span class="chip">第1030-1031章</span>。</div>
+            <div class="row"><span class="lbl hook">卷末钩子</span>全书以"曲线擦肩而过"作开放式收束 <span class="chip">第1031章</span>。</div>
+          </div>
+          <div class="exp lyr" id="e11l2">
+            <div class="row chain">华夏政权成型后 → 天下进入"各方并存、互相观望"的相持 → 主角之子（宁忌）出川见世面 → 旧敌（戴梦微）、叛将（邹旭）、江湖（公平党英雄大会）各自谋篇 → 以"曲线擦肩而过"开放式收束。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 开放线索 -->
+  <div class="section">
+    <div class="sec-tag">分卷大纲</div>
+    <h2><span class="n">02</span>未完待续（开放线索）</h2>
+    <div class="desc">均取自第1013-1031章章卡"埋"项与末两单元"章末钩子"，为续写/仿写时的接续点。</div>
+    <ol class="olist">
+      <li><b>公平党江宁"英雄大会"</b>：公平党学华夏军路数，定九月在江宁大办英雄大会、广发英雄帖，林宗吾或坐镇"试遍天下英雄"；宁忌正赴此会。<span class="chip">第1027章</span><span class="chip">第1030章</span></li>
+      <li><b>戴梦微 × 邹旭暗盟</b>：丁嵩南"戴公有道、邹帅有术"，欲联手抗西南；"唯独戴公与邹帅联手这件事，或许能够给宁先生吃上一惊"。<span class="chip">第1031章</span></li>
+      <li><b>游鸿卓的双面身份</b>：游鸿卓已把戴梦微内幕发去西南，此番出手救老八、金成虎，后续走向未定。<span class="chip">第1031章</span></li>
+      <li><b>"小丑"与"汉夫人"的置换</b>：汤敏杰失去小丑身份、为南方带回汉夫人的仁慈；陈文君穿走小丑影响，两人"背负着远比目前剧情复杂几倍的立意"（作者明言将在第十一集写出）。<span class="chip">第1013-1016章</span><span class="chip">第十集小结</span></li>
+      <li><b>蒙古十三翼</b>：蒙古骑兵裂地而来、第三方强权正式登场，走向未定。<span class="chip">第859章</span></li>
+      <li><b>东南小朝廷与君武新朝</b>：福州朝廷为黑旗造势、君武自立路线（背嵬军核心），新朝与华夏军如何相处待明。<span class="chip">第957-962章</span><span class="chip">第866-869章</span></li>
+      <li><b>华夏军的制度命题</b>："军队不得插手政治商业"之规、取士与民权布局，能否经受后续考验。<span class="chip">第1020-1029章</span></li>
+      <li><b>周佩生死</b>：六月二十四投海后生死未明。<span class="chip">第859章</span></li>
+      <li><b>金国内斗</b>：完颜吴乞买驾崩后另立幼君、东西两府新一轮角力，汤敏杰落下的"痛苦的棋子"。<span class="chip">第1007-1016章</span></li>
+    </ol>
+    <div class="hint" style="margin-top:12px;font-size:12.5px">补充说明：本书（截至拆解范围）尚未完结，第十一集《人间水长东》为作者预告的最后一集，故以上线索为"进行中"状态，非终局。</div>
+  </div>
+
+</div>
+<script src="_shared.js"></script>
+<script>
+/* 两层折叠由共享脚本的 [data-exp] 逻辑驱动；此处仅保证初始收起 */
+document.querySelectorAll('.lyr').forEach(function(el){el.style.maxHeight='0';});
+</script>
+</body></html>

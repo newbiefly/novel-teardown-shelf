@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《赘婿》蓝图 · 战斗对决记录</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+/* ===== 纵向时间线（战斗） ===== */
+.tl{position:relative;padding-left:36px}
+.tl::before{content:"";position:absolute;left:12px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,rgba(201,169,97,0.05),var(--gold) 4%,var(--gold2) 50%,var(--gold) 96%,rgba(201,169,97,0.05));
+  box-shadow:0 0 12px rgba(201,169,97,0.4)}
+
+/* 阶段头 */
+.stage{position:relative;margin:26px 0 12px}
+.stage:first-child{margin-top:0}
+.stage .sdot{position:absolute;left:-31px;top:3px;width:16px;height:16px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));border:2px solid #08080c;
+  box-shadow:0 0 14px 3px rgba(232,201,122,0.75)}
+.stage .sname{font-size:16px;font-weight:700;color:var(--gold2);letter-spacing:.5px}
+.stage .sname .stg{font-size:11px;color:#0b0b10;background:var(--gold);border-radius:6px;padding:1px 8px;margin-left:8px;font-weight:700}
+.stage .sm{display:block;color:var(--txt2);font-size:12px;margin-top:3px}
+
+/* 单场战斗 */
+.bt{position:relative;margin-bottom:12px}
+.bt .bdot{position:absolute;left:-27px;top:15px;width:10px;height:10px;border-radius:50%;border:2px solid #08080c}
+.bt .bdot.personal{background:var(--blue);box-shadow:0 0 10px 2px rgba(116,192,252,0.65)}
+.bt .bdot.battle{background:var(--red);box-shadow:0 0 10px 2px rgba(255,107,107,0.7)}
+.btbody{background:rgba(255,255,255,0.022);border:1px solid var(--line);border-left:3px solid var(--line);
+  border-radius:12px;padding:13px 16px 12px;transition:.2s}
+.bt .btbody{border-left-color:rgba(116,192,252,0.55)}
+.bt.b .btbody{border-left-color:rgba(255,107,107,0.55)}
+.btbody:hover{border-color:rgba(201,169,97,0.35);border-left-color:var(--gold)}
+.bthead{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.btag{font-size:10.5px;font-weight:700;border-radius:6px;padding:2px 9px}
+.btag.personal{color:var(--blue);background:rgba(116,192,252,0.12);border:1px solid rgba(116,192,252,0.35)}
+.btag.battle{color:var(--red);background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.35)}
+.btv{color:var(--txt);font-size:13.5px;font-weight:600;margin-bottom:5px;line-height:1.6}
+.btr{color:var(--txt2);font-size:12.5px;line-height:1.7}
+.btr b{color:var(--gold2)}
+.btr .tag{color:var(--red);font-weight:600}
+.hit{color:var(--gold2)}
+.btbtn{margin-top:8px}
+.tbtn{display:inline-block;font-size:11.5px;color:var(--gold2);background:rgba(201,169,97,0.08);
+  border:1px solid rgba(201,169,97,0.28);border-radius:8px;padding:3px 12px;cursor:pointer;user-select:none;transition:.15s}
+.tbtn:hover{background:rgba(201,169,97,0.2)}
+.lyr{margin-top:9px;border-top:1px dashed rgba(201,169,97,0.2);padding-top:9px;color:var(--txt2);font-size:12.5px;line-height:1.75}
+.lyr .k{color:var(--gold2);font-weight:600;margin-right:6px}
+
+/* 图例/统计 */
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:8px}
+@media(max-width:620px){.statrow{grid-template-columns:1fr}}
+.stat{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:12px;padding:13px 16px;text-align:center}
+.stat .num{font-size:26px;font-weight:800;color:var(--gold2);line-height:1.2}
+.stat .num.b{color:var(--blue)}
+.stat .num.r{color:var(--red)}
+.stat .lab{color:var(--txt2);font-size:12px;margin-top:3px}
+
+/* 规律卡 */
+.rule{position:relative;padding:12px 0 12px 40px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12.5px;color:var(--txt2);line-height:1.75}
+.rule:last-child{border-bottom:none}
+.rule .rn{position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));color:#0b0b10;font-weight:800;font-size:13px}
+.rule b{color:var(--gold2)}
+.rule .chain{color:var(--gold2);font-weight:600}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__hidewx">.author-badge,.qr,.qr-float{display:none !important;}</style></head><body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="ttl">创作蓝图 · <b>战斗对决记录</b></div>
+</div>
+<div class="wrap">
+  <div class="h1">战斗对决记录</div>
+  <div class="sub">《赘婿》· 愤怒的香蕉 · 1031章 / 约424.7万字</div>
+
+  <!-- 概览 -->
+  <div class="section">
+    <div class="sec-tag">战斗对决记录</div>
+    <h2><span class="n">00</span>概览与图例</h2>
+    <div class="desc">归纳依据：208 张单元卡的「战斗记录」字段 + 时间线台账校对。选录标准：重要战斗/战役（改变格局的大战 + 有代表性的个人武斗/名场面），琐碎遭遇战从略。取材范围：全书（楔子 ~ 第1031章）。</div>
+    <div class="statrow">
+      <div class="stat"><div class="num">48</div><div class="lab">收录战斗 / 战役</div></div>
+      <div class="stat"><div class="num b">18</div><div class="lab">个人武斗</div></div>
+      <div class="stat"><div class="num r">30</div><div class="lab">大战役</div></div>
+    </div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--blue)"></i>个人武斗 · 单挑 / 突袭 / 宗师对决</span>
+      <span><i class="dot" style="background:var(--red)"></i>大战役 · 军队级 / 改变格局的会战</span>
+      <span><span class="tbtn" style="pointer-events:none">战术/经过 ▾</span> 点击展开战斗细节</span>
+    </div>
+  </div>
+
+  <!-- 时间线 -->
+  <div class="section">
+    <div class="sec-tag">战斗对决记录</div>
+    <h2><span class="n">01</span>九阶段战斗时间线</h2>
+    <div class="desc">默认显示章节 + 双方 + 结果；点击卡片内按钮展开战术/经过。<span class="chip">第X章</span> 为章号锚点。</div>
+    <div class="tl">
+
+      <!-- ===== 第一阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第一阶段 · 江宁立身<span class="stg">第34-200章</span></div>
+        <span class="sm">个人武斗与商战杀局</span>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第34-41章</span></div>
+          <div class="btv">陆红提（黑衣女刺客） vs 武烈军六人</div>
+          <div class="btr">连杀数人后全身而退，行刺武烈军都尉宋宪未成；埋下陆红提线，宁毅尾随追踪</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s1a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s1a"><span class="k">战术</span>单剑短身、小范围躲避、以身合撞刺、掷剑杀马</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第58-63章</span></div>
+          <div class="btv">陆红提 vs 宋宪车队（终结）</div>
+          <div class="btr"><b>宋宪被重创击飞撞墙而死</b>，陆红提自身重伤；宁毅借驸马马车救下力竭的陆红提——二人结缘，吕梁山仇敌伏诛</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s1b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s1b"><span class="k">经过</span>黑夜伏击、剑斩奔马、破车厢、贴身追杀</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第70-77章</span></div>
+          <div class="btv">宁毅 vs 杨翼、杨横、顾燕桢等绑匪</div>
+          <div class="btr">绑匪尽灭，顾燕桢被弩弓射中后逼供杀死；<span class="tag">"凶残宁立恒"之名初起</span>，商场仇敌被剪除</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s1c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s1c"><span class="k">战术</span>灭灯、秤砣击脑、滚油引火、门后梁木+弩箭陷阱、弩弓射杀</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第147-156章</span></div>
+          <div class="btv">百刀盟＋苏檀儿一方 vs 席君煜一伙（欧鹏、马麟、蒋敬）</div>
+          <div class="btr">对方死伤惨重，欧鹏拖重伤席君煜突围；宁毅<b>"十步一算"成名</b>，揭破席君煜为刺父主谋</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s1d">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s1d"><span class="k">战术</span>十步坡设伏、烟火为号合围、程烈单挑、宁毅火器截断去路</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第162-172章</span></div>
+          <div class="btv">宁毅、宋千等 vs 五名辽人刺客；元锦儿 vs 贵公子</div>
+          <div class="btr">刺客逃二人、贵公子被擒；引出秦嗣源遇刺案与辽人谍战线</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s1e">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s1e"><span class="k">战术</span>宁毅掷枪诱敌、火枪炸膛，宋千近战缠斗；锦儿抱敌坠河以发簪重创</div>
+        </div>
+      </div>
+
+      <!-- ===== 第二阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第二阶段 · 杭州 · 方腊之乱<span class="stg">第209-307章</span></div>
+        <span class="sm">从诗会到围城血战</span>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第209-215章</span></div>
+          <div class="btv">宁毅 vs 楼书恒及起哄书生、拔刀书生</div>
+          <div class="btr">打伤十余人、始终不退稳住局面；与楼家结下深怨</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2a"><span class="k">经过</span>回身耳光扇入水池；以内力与要害知识留手逐一放倒；空手入白刃反剪</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第221-232章</span></div>
+          <div class="btv">宁毅（火药连环设伏） vs 石宝等方腊高手</div>
+          <div class="btr">炸死苟正、炸伤石宝，击退刘西瓜，宁毅登筏脱身自道<b>"在下血手人屠宁立恒"</b>；七月初四钱唐门告破，一日后杭州陷落，八百里加急入汴京</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2b"><span class="k">战术</span>预埋火药遍布太平巷逃亡路线、以身为饵诱敌入火；怀中火器击退凌空之敌</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第244-248章</span></div>
+          <div class="btv">陈凡 vs 樟山陈大木</div>
+          <div class="btr">陈大木死，陈凡胜（"二人的孤岛"背景支线）</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2c"><span class="k">经过</span>徒手强斗、抡梁柱撞击</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第269-277章</span></div>
+          <div class="btv">宁毅、刘大彪 vs 齐家三兄弟＋宣威营精锐</div>
+          <div class="btr">齐家三兄弟被打得踉跄瓦解，宁毅头破中刀仍脱身；方腊阵营内斗（齐家vs娄家）</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2d">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2d"><span class="k">战术</span>宁毅以桌布缠枪、飞掷军刀、火铳近距射杀；刘大彪以霸刀巨刃/小金刚连拳硬拼</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第283-287章</span></div>
+          <div class="btv">陈凡 vs 包道乙；霸刀营（两百余） vs 包道乙部（近两千）</div>
+          <div class="btr">包道乙被斩发受刀伤、陈凡重伤；霸刀营三十余人守街口斩杀多人——<b>"惊神一刺"，陈凡扬名</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2e">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2e"><span class="k">战术</span>炮锤对拂尘、石灰爆眼、双刀刺杀；霸刀营以《侠客行》诗句为节拍列阵分进合击</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第293-297章</span></div>
+          <div class="btv">宁毅一行 vs 楼府</div>
+          <div class="btr"><b>"我过来接人"</b>——接走苏檀儿一行，杀楼书望、楼近临，楼家由此衰败</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2f">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2f"><span class="k">战术</span>长途奔袭、长驱直入、射杀主事以慑众</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第298-302章</span></div>
+          <div class="btv">童贯军 vs 杭州守军（方腊）；陆红提、宁毅 vs 包道乙</div>
+          <div class="btr">童贯两次突入被反夺、攻城暂停；<b>景翰九年十一月初八包道乙身死</b>，方腊阵营衰</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2g">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2g"><span class="k">战术</span>童贯趁雪猛攻、内应接应；陆红提自上而降剑走肋下绕刺，宁毅持火铳配合</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第303-307章</span></div>
+          <div class="btv">童贯军（内应开北门） vs 杭州守军；陆红提 vs 刘西瓜</div>
+          <div class="btr"><b>杭州城破，方腊军溃散西逃</b>；逃亡途中刘西瓜追上宁毅却砍不下去，为后续"宁毅当军师"留线</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s2h">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s2h"><span class="k">战术</span>强攻、巷战、衔尾追杀；红提单剑未出鞘架刀、以巧卸力</div>
+        </div>
+      </div>
+
+      <!-- ===== 第三阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第三阶段 · 回江宁 · 上京 · 剿梁山<span class="stg">第308-451章</span></div>
+        <span class="sm">从苏府血夜到梁山覆灭</span>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第316-320章</span></div>
+          <div class="btv">李逵等十余名黑蓑衣人 vs 百刀盟程烈一伙</div>
+          <div class="btr">百刀盟灭门，程烈被斧劈死；梁山势力入江宁，席君煜迎来林冲等梁山众人</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3a"><span class="k">战术</span>蓑衣掩貌、雨幕突袭</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第327-339章</span></div>
+          <div class="btv">梁山众 vs 苏家；宁毅 vs 鲍旭、薛永</div>
+          <div class="btr"><b>苏家死伤近半</b>；宁毅反杀鲍旭、薛永，娟儿刺伤席君煜；宁毅正式入密侦司，苏愈当众捅死苏文季并斥梁山</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3b"><span class="k">战术</span>梁山雨幕突袭、分组屠戮；宁毅以网、石灰、阴招连环、铁甲诱敌</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第355-364章</span></div>
+          <div class="btv">宁毅、齐家兄弟、闻人不二 vs 燕青；徐州军方三千 vs 梁山两百</div>
+          <div class="btr">燕青重伤破窗跃河脱逃；梁山留下百余尸、被擒四十三人；<b>劫生辰纲失败，卢俊义"死"</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3c"><span class="k">战术</span>舱内奇袭合围、铁片倒钩与小箭暗算；十则围之、放燕青入内、箭雨合围</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第360-364章</span></div>
+          <div class="btv">宁毅率官兵 vs 梁山逃众</div>
+          <div class="btr">孙新、吕方被斩，陈达被围，朱武、张顺、燕青数人逃出</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3d">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3d"><span class="k">战术</span>火箭立威、合围分割、火铳冷枪、近身砍杀</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第404-415章</span></div>
+          <div class="btv">栾廷玉·祝家庄 vs 索超；宁毅以放俘离间</div>
+          <div class="btr">生擒索超及三百余人；宁毅<b>"放回俘虏令其自相猜疑"离间梁山</b>；独龙岗苦撑</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3e">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3e"><span class="k">战术</span>佯败诱敌、依赖地形做时间差合围、四十余弩弓轮射</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第416-420章</span></div>
+          <div class="btv">梁山一万余 vs 祝家庄三千；秦明 vs 栾廷玉·祝彪</div>
+          <div class="btr">鏖战一个时辰梁山伤亡近三千未破庄；秦明被栾廷玉一棒、祝彪一枪打死；张顺被长枪刺穿而死</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3f">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3f"><span class="k">战术</span>五倍兵力强攻石墙、梯子登墙、巨木撞门，祝家庄以开水火球石块箭矢防御</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第421-426章</span></div>
+          <div class="btv">呼延灼·朱武 vs 扈家庄；李应庄户 vs 宁毅一行</div>
+          <div class="btr">扈成重伤、扈太公中箭；李家庄速败被瓜分——宁毅以"勾结梁山"清算李应</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3g">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3g"><span class="k">战术</span>冷枪抢庄门放火；宁毅火铳开路、四十余弩弓齐射</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第427-436章</span></div>
+          <div class="btv">陆红提 vs 梁山林冲、鲁智深等；梁山三千 vs 战家坳营地（八千伏兵）</div>
+          <div class="btr">鲁智深死、林冲且战且走；<b>梁山主力被歼、宋江残部逃散立誓与宁毅不共戴天</b>——梁山被破</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3h">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3h"><span class="k">战术</span>昼夜袭扰、拖人倒退断其四肢肌腱；夜袭破釜沉舟却落入雁行合围</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第437-441章</span></div>
+          <div class="btv">宁毅 vs 李逵；孙立·陆文虎·吞云和尚 vs 宁毅一行</div>
+          <div class="btr">李逵死、梁山残部尽灭；宁毅中袖、陆红提硬接两掌受伤</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3i">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3i"><span class="k">战术</span>李逵负伤突进、宁毅以铁棒正面两棒打死；众高手车轮围攻</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第442-446章</span></div>
+          <div class="btv">周侗（受太尉府之命） vs 陆红提</div>
+          <div class="btr">红提被震成重伤，周侗收手；周侗击毙虞候陆谦、逐林冲出师门——<b>周侗立威</b>，宁毅与天下第一结线</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s3j">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s3j"><span class="k">经过</span>太极步夺身抢攻、卸力反弹、红提硬接三拳</div>
+        </div>
+      </div>
+
+      <!-- ===== 第四阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第四阶段 · 汴梁北伐<span class="stg">第523-651章</span></div>
+        <span class="sm">吕梁立威与汴梁保卫战</span>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第523-536章</span></div>
+          <div class="btv">竹记商队 vs 裘孟堂部/田虎帐下精锐；血菩萨（陆红提） vs 裘孟堂及心腹</div>
+          <div class="btr">山匪伤亡过半、联军崩溃、于玉麟部溃退；<b>裘孟堂及三名心腹死</b>，竹记北线立威</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s4a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s4a"><span class="k">战术</span>小队分散抱团借山势、弩箭补漏；山坳口草埋地雷拉线齐爆、榆木炮交叉射击；红提暗中瞬杀斩首</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第542-552章</span></div>
+          <div class="btv">陆红提（血菩萨） vs 林宗吾（大光明教主）；青木寨军（1400） vs 吕梁盗联军（近6000）</div>
+          <div class="btr">林宗吾被击飞撞碎两墙重伤、宁毅判"平局"；<b>霍川岭之战近六千联军一个时辰内崩溃</b>，方义阳被踩死、栾三狼被俘</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s4b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s4b"><span class="k">战术</span>太极转劲单掌接石柱、右掌拍胸；五/十/三十/百人编队、火器惊马、正面切穿</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第582-586章</span></div>
+          <div class="btv">汴梁守军 vs 女真攻城部队</div>
+          <div class="btr">九月初三女真一度登城被击退，城上禁军伤亡上千</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s4c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s4c"><span class="k">战术</span>滚油、箭矢、白刃混战；李纲调宫廷弓箭手驰援二十余里</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第587-591章</span></div>
+          <div class="btv">姚平仲三万姚家军 vs 万余女真骑兵；武瑞营/武胜军/武威军 vs 女真东路军；竹记+岳飞三百余 vs 苏克纳千人骑队</div>
+          <div class="btr">二十万武朝大军反被女真骑兵分兵冲溃；竹记折损近半但苏克纳被炸翻斩首——<b>北伐全面崩溃</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s4d">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s4d"><span class="k">战术</span>姚平仲夜袭被冲散；武瑞营以步兵枪阵对抗连环马；竹记以周侗小阵、弩矢、渔网、马车引爆</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第592-626章</span></div>
+          <div class="btv">宁毅、秦绍谦、岳飞、陆红提 vs 牟驼岗留守女真；夏村守军（近两万） vs 郭药师常胜军（三万六千怨军）</div>
+          <div class="btr">牟驼岗破、粮草被烧、约三分之一俘虏被救出；<b>夏村之战以地雷阵大破常胜军</b>，刘舜仁部覆没、郭药师弃炮灰撤走；汴梁城以人命填缺口死守月余</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s4e">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s4e"><span class="k">战术</span>铁甲重骑开道、轻骑跟进、步兵列方阵；红提白衣队凿冰泅渡烧粮；榆木炮成排封锁、重骑虚晃、破口外地雷阵三列齐爆</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第627-637章</span></div>
+          <div class="btv">女真军 vs 太原守军；武胜军 vs 术列速女真军</div>
+          <div class="btr"><b>太原城破屠城</b>，守军突围失败；武胜军如泥沙崩解、陈彦殊自杀；秦绍和、李频、成舟海死守突围</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s4f">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s4f"><span class="k">战术</span>宗望回攻、大规模总攻；武胜军七万拼凑强令进攻</div>
+        </div>
+      </div>
+
+      <!-- ===== 第五阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第五阶段 · 汴梁弑君与西迁<span class="stg">第650-655章</span></div>
+        <span class="sm">京城变局</span>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第650-651章</span></div>
+          <div class="btv">宁毅 vs 周喆、童贯；韩敬重骑 vs 李炳文；杜杀、霸刀营 vs 万胜门守军</div>
+          <div class="btr"><b>景翰十四年六月初九宁毅入宫当庭刺杀周喆</b>、童贯被打飞；武瑞营韩敬同时发难，吕梁宣布造反——武朝崩解，宁毅西迁</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s5a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s5a"><span class="k">战术</span>突火枪＋近身掌击；"推"字令列阵冲杀；持刀开路逐层压上；榆木炮隔街炮击</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第652-655章</span></div>
+          <div class="btv">郭京"六甲神兵"（7777人） vs 金军</div>
+          <div class="btr">一触即溃、金兵直入城门，<b>靖平元年十一月十八汴梁外城沦陷</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s5b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s5b"><span class="k">经过</span>念咒作法应战</div>
+        </div>
+      </div>
+
+      <!-- ===== 第六阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第六阶段 · 西北 · 黑旗崛起<span class="stg">第669-719章</span></div>
+        <span class="sm">董志塬之战</span>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第669-673章</span></div>
+          <div class="btv">黑旗军先锋（罗业等二百余） vs 西夏碎石庄驻军</div>
+          <div class="btr">碎石庄速破，魁宏被追杀五里斩于野外</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s6a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s6a"><span class="k">战术</span>斥候狙杀瞭望、双路盾刀洪流突入、"冲进去杀光"的疾袭</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第674-685章</span></div>
+          <div class="btv">黑旗军（约九千） vs 西夏平山铁鹞子重骑（妹勒）+ 籍辣塞勒部</div>
+          <div class="btr"><b>黑旗军九千余大败西夏十六万大军</b>，炸毁铁鹞子、妹勒被斩、十万大军亥时崩解；<b>"打响震惊天下的第一战"</b>，黑旗回延州按"华夏"二字分粮安民</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s6b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s6b"><span class="k">战术</span>前列斩马刀阵迎敌、百余门榆木炮群发、木箱炸药总攻、拒马+长枪+铁锤白刃；热气球投弹、铁甲重骑步战</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第698-711章</span></div>
+          <div class="btv">黑旗军 vs 女真西路军（八月二十五夜延州城东北）；华夏军 vs 言振国七万 / 女真娄室军</div>
+          <div class="btr">黑旗军未被推垮、正面抗住女真；破言振国全线、连下同华潼关之外多地——<b>西北立足</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s6c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s6c"><span class="k">战术</span>盾阵对骑兵、火炮齐射、火墙对抗；热气球掷炸药包、驱溃兵冲阵、半月形推杀</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第712-719章</span></div>
+          <div class="btv">华夏军 vs 女真西路军（庆州重岗）；华夏军 vs 言振国、折家联军（杀狼岭）；韩世忠水师 vs 兀术（黄天荡）</div>
+          <div class="btr">庆州重岗歼敌数千、吕梁外斩姬文康万余；杀狼岭阵斩言振国、破折家；<b>黄天荡武朝大败</b>（金人挖渠突围）——华夏军渐成气候</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s6d">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s6d"><span class="k">战术</span>热气球掷炸药包、炮阵轰击；突袭；大船封锁围困</div>
+        </div>
+      </div>
+
+      <!-- ===== 第七阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第七阶段 · 南撤西南 · 中原会战<span class="stg">第739-802章</span></div>
+        <span class="sm">高宠 · 陆陀 · 李细枝</span>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第739-750章</span></div>
+          <div class="btv">高宠 vs 陆陀及众高手；黑旗众人 vs 陆陀</div>
+          <div class="btr">高宠重伤远遁、杀数人；<b>"凶阎王"陆陀被打中斩首身亡</b>；刘西瓜杀李晚莲</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s7a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s7a"><span class="k">战术</span>战阵百炼悍勇冲阵；铁盾、飞梭、长鞭、渔网限制方位，十余道突火枪齐射</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第781-786章</span></div>
+          <div class="btv">黑旗二百 vs 恒罄部落数千；光武军三万 vs 大名府守军五万；黑旗一万一千 vs 曾头市守军两万</div>
+          <div class="btr">恒罄败、食猛死、李显农被擒；光武军取大名府；<b>黑旗取曾头市</b>（王纪牙被关胜斩首）</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s7b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s7b"><span class="k">战术</span>结阵冲锋、火枪狙杀酋王、杜杀侧翼突袭；里应外合半日强攻；突袭东城巷战</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第787-802章</span></div>
+          <div class="btv">黑旗一万 vs 李细枝十七万；黑旗/绿林 vs 女真粮草部队</div>
+          <div class="btr"><b>十七万溃败、李细枝死</b>；女真粮草受损、齐砚脱身而两子一孙死——中原腹地被黑旗撕开</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s7c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s7c"><span class="k">战术</span>凿穿作战＋内应倒戈（卢建云、汤定仪）＋引爆辎重火药；突袭放火刺杀</div>
+        </div>
+      </div>
+
+      <!-- ===== 第八阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第八阶段 · 江南 · 大决战<span class="stg">第833-956章</span></div>
+        <span class="sm">格局逆转</span>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第833-848章</span></div>
+          <div class="btv">宗弼 vs 解元（天长）；韩世忠 vs 兀术（扬州）；岳飞背嵬军 vs 阿里刮</div>
+          <div class="btr">解元弃城南撤、扬州斩女真三千余兀术落马险被擒、重创新野援军近三千——<b>江南战场胶着</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s8a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s8a"><span class="k">战术</span>宗弼首用"天女散花"（空心石弹配引线投石抛射）＋强攻；韩世忠假意弃城设伏反扑；围点打援、铁炮阵地</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第849-854章</span></div>
+          <div class="btv">女真（希尹） vs 镇江守军；君武守军 vs 女真入城部队</div>
+          <div class="btr"><b>四月二十五凌晨镇江破</b>（邹天池死），君武中箭不倒——武朝江南危急</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s8b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s8b"><span class="k">战术</span>传单离间＋内应开门＋开花弹猛攻；巷战护送百姓出逃</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第860-876章</span></div>
+          <div class="btv">君武江宁军 vs 宗辅（含百万降军）；蒙古军 vs 府州折家</div>
+          <div class="btr"><b>宗辅侧翼失守、率十余万女真西撤四十里、死伤失踪近三万</b>；府州破、折家被屠</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s8c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s8c"><span class="k">战术</span>开门绝地反击、镇海正面、背嵬包抄驱降军；内应开门＋火炮</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第870-873章</span></div>
+          <div class="btv">陈凡黑旗（七千） vs 武峰营（四万五千）</div>
+          <div class="btr">武峰营溃、俘六千余、黑旗伤亡不过百——<b>荆湖之战黑旗扬威</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s8d">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s8d"><span class="k">战术</span>夜袭、摸哨塔、点火药炸营</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第882-920章</span></div>
+          <div class="btv">华夏第五军+第七军 vs 拔离速、希尹、宗翰（女真西路军）；宁毅携"帝江"火箭弹抵狮岭</div>
+          <div class="btr">拔离速力竭战死、剑阁破；<b>宁毅断言"女真满万不可敌的年代彻底过去"</b>；斜保被擒斩</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s8e">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s8e"><span class="k">战术</span>剑阁认点拔点强攻、水车灭火、云梯；帝江火箭弹覆盖、火枪三排轮射、划断后路</div>
+        </div>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第934-956章</span></div>
+          <div class="btv">华夏军（约两万） vs 宗翰、希尹十万（汉中会战）</div>
+          <div class="btr"><b>两万人击溃宗翰、希尹十万大军，宗翰再丧一子</b>（设也马被斩、斜保被擒斩杀）；汉中会战结束——西南大捷，天下格局逆转</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s8f">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s8f"><span class="k">战术</span>乔装溃兵骗开南门、巷战；陈亥三千余人硬扛希尹万余；散兵排级冲锋、"走停冲"反制</div>
+        </div>
+      </div>
+
+      <!-- ===== 第九阶段 ===== -->
+      <div class="stage">
+        <span class="sdot"></span>
+        <div class="sname">第九阶段 · 建国与收网<span class="stg">第963-1031章</span></div>
+        <span class="sm">华夏人民政府成立 · 乱世未完</span>
+      </div>
+
+      <div class="bt b">
+        <span class="bdot battle"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag battle">大战役</span><span class="chip">第963-966章</span></div>
+          <div class="btv">公平党流民 vs 平江府小县城大族；背嵬军 vs 泉州</div>
+          <div class="btr">何文破城接管立"公平王"之名；泉州四天攻取——江南各方势力重新洗牌</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s9a">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s9a"><span class="k">战术</span>里应外合破城；里应外合攻取</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第972-976章</span></div>
+          <div class="btv">—（成都）</div>
+          <div class="btr">天下第一比武大会开幕；<b>华夏人民政府正式成立</b>，竹记、苏氏并入</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s9b">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s9b"><span class="k">经过</span>成都"天下第一比武大会"（原文无对阵双方，属政权成立的标志性事件）。</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第988-1001章</span></div>
+          <div class="btv">华夏军 vs 徐元宗一伙、施元猛刺杀集团</div>
+          <div class="btr">宗师徐元宗被王岱斩杀、成都骚乱被镇压；八月初一成都首次阅兵、女真俘虏游街</div>
+          <div class="btbtn"><span class="tbtn" data-exp="s9c">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s9c"><span class="k">战术</span>夜战突袭、列队排枪围杀；施元猛囤火药行刺被内线引爆炸死</div>
+        </div>
+      </div>
+
+      <div class="bt">
+        <span class="bdot personal"></span>
+        <div class="btbody">
+          <div class="bthead"><span class="btag personal">个人武斗</span><span class="chip">第1007-1031章</span></div>
+          <div class="btv">完颜希尹 vs 完颜宗弼、宗翰（金国内斗）；宁忌/游鸿卓 等 vs 戴梦微卫队</div>
+          <div class="btr">金国东西两府角力酝酿（希尹谋另立幼君）；西南戴梦微割据成型、邹旭叛出——<b>乱世未完，留开放线索</b></div>
+          <div class="btbtn"><span class="tbtn" data-exp="s9d">战术/经过 ▾</span></div>
+          <div class="exp lyr" id="s9d"><span class="k">战术</span>近身缠斗、头槌；斗篷遮掩近身、弩矢长刀爆炸石灰粉齐用</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 规律 -->
+  <div class="section">
+    <div class="sec-tag">战斗对决记录</div>
+    <h2><span class="n">02</span>全书战斗的几条规律（供创作参考）</h2>
+    <div class="rule"><span class="rn">1</span><b>个人武斗的"阵法化"</b>：后期宁毅一方的个人战力（陆红提、陈凡、刘西瓜、高宠）常与团队战阵结合（白衣队、霸刀营、《侠客行》节拍列阵、铁盾渔网突火枪围杀宗师）——<b>用组织与火器弥补个人武力的差距</b>，是本书区别于纯武侠之处。</div>
+    <div class="rule"><span class="rn">2</span><b>火器的代际碾压</b>：从突火枪（<span class="chip">第167-172章</span>）→ 榆木炮（<span class="chip">第489-493章</span>）→ 地雷阵（<span class="chip">第606-617章</span>）→ 热气球投弹（<span class="chip">第686-689章</span>）→ "帝江"火箭弹（<span class="chip">第911-917章</span>）——<b>一场场火器升级直接改写战斗结果</b>，"格物"兑现为战场的降维打击。</div>
+    <div class="rule"><span class="rn">3</span><b>宗师之战的"留白与平局"</b>：周侗 vs 陆红提、陆红提 vs 林宗吾等顶级对决常以"重伤未死/判平局"收束，<b>保留顶级高手的悬念与后续价值</b>，不以简单胜败推进。</div>
+    <div class="rule"><span class="rn">4</span><b>大战役的"以小博大"公式</b>：董志塬九千 vs 十六万、汉中两万 vs 十万——<b>弱者靠地形+武器代差+心理战（驱溃兵、内应、诈降）以少胜多</b>，是全书战争场面的核心爽点。</div>
+    <div class="rule"><span class="rn">5</span><b>每场大战都改变势力版图</b>：<span class="chain">杭州陷落→方腊转折；梁山被破→宁毅立威；汴梁沦陷→武朝崩解；董志塬→黑旗立国；汉中会战→格局逆转</span>——<b>战斗不是孤立的胜负，而是格局的开关</b>。</div>
+  </div>
+
+</div>
+<script src="_shared.js"></script>
+<script>
+document.querySelectorAll('.lyr').forEach(function(el){el.style.maxHeight='0';});
+</script>
+</body></html>

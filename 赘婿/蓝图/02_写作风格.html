@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《赘婿》蓝图 · 写作风格</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .dim{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px 16px;position:relative;cursor:pointer;transition:.2s}
+  .dim:hover{border-color:rgba(201,169,97,0.42);background:rgba(201,169,97,0.045)}
+  .dim .acc{position:absolute;left:0;top:16px;bottom:16px;width:4px;border-radius:3px;background:var(--gold)}
+  .dim .dhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .dim .dnum{font-size:11px;color:var(--gold);background:rgba(201,169,97,0.12);
+    border:1px solid rgba(201,169,97,0.3);border-radius:7px;padding:2px 9px;letter-spacing:1px;font-weight:600}
+  .dim .dtitle{color:var(--gold2);font-size:15.5px;font-weight:700}
+  .dim .core{color:var(--txt);font-size:13px;line-height:1.8;margin:2px 0 8px}
+  .dim .core b{color:var(--gold2)}
+  .kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .sect-intro{color:var(--txt2);font-size:13px;margin-bottom:14px}
+  .impress{border-left:3px solid var(--gold);padding:10px 16px;background:rgba(201,169,97,0.04);
+    border-radius:0 10px 10px 0;color:var(--txt2);font-size:13px;margin-bottom:9px}
+  .impress b{color:var(--gold2)}
+  .ck{list-style:none;font-size:12.5px;color:var(--txt2);line-height:1.9}
+  .ck li{padding-left:22px;position:relative;margin-bottom:4px}
+  .ck li::before{content:"▢";position:absolute;left:0;color:var(--gold);font-size:13px}
+  .ck li b{color:var(--txt)}
+  .redlist{list-style:none;counter-reset:r}
+  .redlist li{counter-increment:r;position:relative;padding:10px 14px 10px 40px;margin-bottom:9px;
+    background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.28);border-radius:10px;
+    color:var(--txt2);font-size:13px;line-height:1.7}
+  .redlist li::before{content:counter(r);position:absolute;left:12px;top:10px;width:20px;height:20px;
+    display:flex;align-items:center;justify-content:center;border-radius:50%;
+    background:rgba(255,107,107,0.18);border:1px solid rgba(255,107,107,0.4);
+    color:var(--red);font-size:11px;font-weight:700}
+  .redlist li b{color:#ffb3b3}
+  .freqtag{display:flex;align-items:baseline;gap:4px;background:rgba(201,169,97,0.08);
+    border:1px solid rgba(201,169,97,0.22);border-radius:8px;padding:4px 11px}
+  .freqtag .w{color:var(--gold2);font-size:14px;font-weight:600}
+  .freqtag .c{color:var(--txt3);font-size:11px}
+  .poemcard{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:12px;padding:15px 16px;cursor:pointer;transition:.2s}
+  .poemcard:hover{border-color:rgba(201,169,97,0.4);background:rgba(201,169,97,0.05)}
+  .poemcard .pt{color:var(--gold2);font-size:13.5px;font-weight:600;margin-bottom:6px}
+  .poemcard .pc{color:var(--txt2);font-size:12.5px;line-height:1.75}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__hidewx">.author-badge,.qr,.qr-float{display:none !important;}</style></head><body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="ttl">创作蓝图 · <b>写作风格</b></div>
+</div>
+<div class="wrap">
+  <div class="h1">写作风格</div>
+  <div class="sub">《赘婿》· 愤怒的香蕉 · 1031章 / 约424.7万字</div>
+
+  <!-- 一、初稿印象 -->
+  <div class="section">
+    <span class="sec-tag">写作风格</span>
+    <h2><span class="n">一</span>初稿印象</h2>
+    <div class="desc">判题材时扑面而来的语言印象（扫描阶段初稿，已由下文定稿覆盖）。数据源：精读原文 6 章 + 楔子。</div>
+    <div class="impress"><b>白话叙述里嵌一口现代人脑内吐槽</b> —— 穿越者宁毅的心理独白全是现代口吻的讥诮自嘲（"群众演员""这不是楚门的世界"），历史叙事外壳下始终有一层"现代人的旁白"。</div>
+    <div class="impress"><b>文白分层、谁说话像谁</b> —— 叙述层是干净利落的现代白话，人物对白却按身份分层：士人老者文绉绉，丫鬟市井一口白话，主角两种腔调自由切换。</div>
+    <div class="impress"><b>克制到近乎冷的语气写热血与死亡</b> —— 越是大场面、大生死，句式越短、越不抒情，用"史笔"式的静写死亡，情绪反而更重。</div>
+    <div class="impress"><b>群像多 POV、一线一段硬切</b> —— 同一时间窗内多条支线并置，段首用地名/人名/时辰硬切，主角可长时间不在场。</div>
+    <div class="impress"><b>大量"背诗"桥段</b> —— 主角以现代记忆里的诗词在文会中扬名、解围、立身，诗词直接参与情节。</div>
+    <div style="margin-top:14px">
+      <span class="pill">现代人旁白</span><span class="pill">文白分层</span><span class="pill">冷写生死</span>
+      <span class="pill">群像多POV</span><span class="pill">背诗桥段</span><span class="pill">史笔克制</span>
+      <span class="pill">反讽自嘲</span><span class="pill">留白</span>
+    </div>
+  </div>
+
+  <!-- 二、8 维度 -->
+  <div class="section">
+    <span class="sec-tag">写作风格</span>
+    <h2><span class="n">二</span>8 维度定稿</h2>
+    <div class="desc">各带原文例句 + 锚点；点击卡片展开全部要点与例证。词频为全书 1032 个章回单元实数统计。</div>
+
+    <!-- 维度1 -->
+    <div class="dim" style="margin-bottom:14px">
+      <div class="acc" style="background:var(--gold)"></div>
+      <div class="dhead"><span class="dnum">维度 1</span><span class="dtitle">句式特征</span><span class="pill">长短句配比</span><span class="pill">文白比例</span><span class="pill">段落结构</span></div>
+      <div class="core"><b>中短句为骨，长句为肉，极短句为顿挫点。</b>叙述以中短句推进；涉及分析铺陈议论时拉成长复合句；情绪转折点用极短句甚至单句独立成段砸下去。文白比例：叙述层约九成现代白话，对白层文白夹杂——<b>文白之差即身份之差</b>。段落常见的双层骨架："外部动作/场景 + 一段心理或议论补白"，段末喜以短句、省略号收束。</div>
+      <div class="quote">没有死。 <span class="chip">第1章</span>　·　死于刺杀。 <span class="chip">第808章</span></div>
+      <div class="exp">
+        <h3>极短句独立成段</h3>
+        <p>"<b>没有死。</b>" <span class="chip">第1章</span>　·　单句成段收束："<b>死于刺杀。</b>" <span class="chip">第808章</span>　·　口语短句推进："<b>大手笔啊，唐明远你弄这个得花多少钱才行？</b>" <span class="chip">第1章</span></p>
+        <h3>复合长句（铺陈+递进+转折）</h3>
+        <p>"老式的房屋、老式的床、桌椅板凳，虽然用料和做工都不错，但整个房间都是仿古的摆设，也有看起来很棒的瓷器，但任何现代化的电子设备都不存在了。" <span class="chip">第1章</span></p>
+        <p>描写性长句（四字词组连缀成画面）："廊院阁楼，园林亭台，细雨潇潇，将白石青瓦冲刷得格外清澈……" <span class="chip">第3章</span></p>
+        <h3>文白分层</h3>
+        <p>士人文白："<b>下棋乃君子之学……</b>" <span class="chip">第2章</span>；"<b>如此甚好……</b>" <span class="chip">第2章</span><br>
+        市井白话："<b>姑爷你、你欺负人！</b>" <span class="chip">第3章</span>；"<b>就欺负你了，你怎么滴吧？</b>" <span class="chip">第3章</span><br>
+        主角夹带现代词："<b>群众演员。</b>" <span class="chip">第1章</span>；"<b>这不是楚门的世界，他也不是从出生以来就被关在摄影棚里的楚门。</b>" <span class="chip">第1章</span></p>
+        <h3>段落结构</h3>
+        <p>段末以短句/省略号收束留一口气："还是被拦回来了……" <span class="chip">第1章</span>；"<b>挺好的，我不碰你，你也别来烦我</b>……<b>古代生活，挺悠闲。</b>" <span class="chip">第1章</span></p>
+        <p><b>省略号"……"是本书最高频的标点级风格符</b>：对白内沉吟拖腔 + 叙述留白未尽。"啧，演技不错……"<span class="chip">第1章</span>；"认命吧……"<span class="chip">第1章</span>；"不过，最后这些话还是没有说出来……"<span class="chip">第120章</span></p>
+      </div>
+      <div class="hint">点击展开全部例证与锚点 ▾</div>
+    </div>
+
+    <!-- 维度2 -->
+    <div class="dim" style="margin-bottom:14px">
+      <div class="acc" style="background:var(--blue)"></div>
+      <div class="dhead"><span class="dnum">维度 2</span><span class="dtitle">叙述腔调</span><span class="pill b">冷热</span><span class="pill b">反讽</span><span class="pill b">距离感</span></div>
+      <div class="core"><b>表层冷静克制，底层温热悲悯；市井段轻松谐趣，战争段苍凉悲壮。</b>作者很少替人物抒情，让动作与场景自己产生重量。关键特征：高潮与死亡场面刻意"降温"，用史笔式客观陈述、精确到时辰的时间戳代替一切抒情，越静越重。</div>
+      <div class="quote">建朔十年正月二十二日夜，亥时三刻……<b>静静地离开了人世</b>。 <span class="chip">第808章</span></div>
+      <div class="exp">
+        <h3>反讽与自嘲（主角内面底色）</h3>
+        <p>"<b>老板当太久，魔怔了……他这样笑骂自己</b>" <span class="chip">第2章</span>　·　"啧，演技不错……" <span class="chip">第1章</span>　·　"几十年后，还不会有人记得，<b>这世界上最可怕的果然不是神一样的对手，而是猪一样的同伴！</b>"（口语化反讽）<span class="chip">第226-232章</span></p>
+        <h3>高潮与死亡刻意"降温"</h3>
+        <p>"建朔十年正月二十二日夜，亥时三刻，晋王田实靠在那屋檐下的柱子便，<b>静静地离开了人世</b>。" <span class="chip">第808章</span>　·　"他伸手擦了一下，紧了紧风衣"（濒死之际只写动作，不写心理）<span class="chip">楔子</span></p>
+        <h3>距离感：全知叙述者抽身介入</h3>
+        <p>作"后世记录""多年之后"式预叙与定评，制造史诗纵深："<b>人们在许多年后，才能从幸存者的口中</b>，将晋地的事情，整理出一个大概的轮廓来……"<span class="chip">第929章</span>；"晋王田实的死去，<b>即将给整个中原带来巨大的冲击</b>。"<span class="chip">第808章</span></p>
+        <h3>特殊的元叙事腔调</h3>
+        <p>部分章节正文后直接附作者创作随笔，第一人称打破第四面墙。第929章正文后接《三十四岁生日随笔——复杂》，以"<b>大家好，我叫曾小浪。</b>"起笔 <span class="chip">第929章</span>（注：此为作者附笔，非剧情视角，续写时不应混入正文）。</p>
+      </div>
+      <div class="hint">点击展开全部例证与锚点 ▾</div>
+    </div>
+
+    <!-- 维度3 -->
+    <div class="dim" style="margin-bottom:14px">
+      <div class="acc" style="background:var(--purple)"></div>
+      <div class="dhead"><span class="dnum">维度 3</span><span class="dtitle">视角与调度</span><span class="pill p">多视角</span><span class="pill p">切换规则</span><span class="pill p">留白</span></div>
+      <div class="core"><b>群像多 POV。</b>前半程"宁毅限知主视角 + 零星支线"，约第160章后转"多线并置"，约第650章后进入"无固定主视角的全知群像 + 史笔"。切换以<b>段首硬切</b>为主：地名/人名/时辰做标识，不在激烈冲突中途跳视角，多在场景收束处切。</div>
+      <div class="quote">……<b>另一边，苏檀儿回到了闺房。</b> <span class="chip">第1章</span></div>
+      <div class="exp">
+        <h3>段首硬切实例</h3>
+        <p>"……<b>另一边，苏檀儿回到了闺房。</b>" <span class="chip">第1章</span>　·　一段一句逐线点名（薛延薛进 → 苏家二房 → 聂云竹/元锦儿 → 驸马府）："……<b>在眼下的江宁城，唯一抱持着不同猜测的，或许只在城市一侧的驸马府中。</b>" <span class="chip">第120章</span>　·　一章内跨数线（于玉麟 → 田实 → 楼舒婉 → 完颜希尹 → 周佩/闻人不二 → 宁毅/宁忌）并置 <span class="chip">第808章</span></p>
+        <h3>旁观者侧写主角</h3>
+        <p>极少正面夸主角，常借敌人/旁人"拼图"来标定其分量。敌方误判式侧写（反衬）："<b>书生便是书生。</b>"薛延摇着头，"想要做些事情，一开始总是心比天高……<b>庸才就是庸才，纸上谈兵……</b>" <span class="chip">第120章</span>　·　借旁人一句话点出主角能量："<b>你檀儿妹子，她只是个妇道人家。</b>"（秦嗣源语）<span class="chip">第30-33章</span></p>
+        <h3>留白：心理只写"半句"</h3>
+        <p>关键处不及物、不点破："而<b>至于这个世界，他目前还有些弄不清楚。</b>" <span class="chip">第1章</span>　·　"不过，最后这些话还是没有说出来……" <span class="chip">第120章</span></p>
+      </div>
+      <div class="hint">点击展开全部例证与锚点 ▾</div>
+    </div>
+
+    <!-- 维度4 -->
+    <div class="dim" style="margin-bottom:14px">
+      <div class="acc" style="background:var(--green)"></div>
+      <div class="dhead"><span class="dnum">维度 4</span><span class="dtitle">对白特点</span><span class="pill g">一人一腔</span><span class="pill g">潜台词</span><span class="pill g">语气词</span></div>
+      <div class="core"><b>对白是"交锋与试探"的载体，不是信息说明书。</b>大量关键信息靠对白的潜台词侧漏，而非直述。一人一腔，按身份分层；语气词密集（呃/啊/哦/嗯/唔/嘛/吧/哩），是口语质感的来源；语言错位制造笑点（现代梗 vs 古代语感）。</div>
+      <div class="quote">下棋求胜，就像两军对垒，<b>哪有手段之分？</b> <span class="chip">第2章</span></div>
+      <div class="exp">
+        <h3>藏锋式机锋</h3>
+        <p>"下棋求胜，就像两军对垒，<b>哪有手段之分？</b>" / "下棋乃君子之学……" / "老人家觉得下棋可以看出一个人的心性。……<b>准吗？</b>" / "<b>倒是不怎么准。</b>" <span class="chip">第2章</span>　·　死亡对白："<b>没有防到，便是愿赌服输</b>" <span class="chip">第808章</span></p>
+        <h3>一人一腔，按身份分层</h3>
+        <p>丫鬟小婵（撒娇白话+叠词+敬语混用）："<b>小婵……小婵虽然是个什么事都不懂的小丫鬟，可也不会拿这种事情乱嚼舌根的</b>" <span class="chip">第3章</span><br>
+        士人老者（文白雅正）："<b>你这人倒也算是不学有术的，入赘的事情……真是可惜了……</b>" <span class="chip">第3章</span><br>
+        主角宁毅（现代口语、短促、讥诮）："<b>没的看了，小婵付账吧。</b>"<span class="chip">第2章</span>；"<b>你们能看懂就怪了……</b>"<span class="chip">第2章</span></p>
+        <h3>语气词密集</h3>
+        <p>"<b>呃……</b>"宁毅愣了愣，看看天色，"<b>一般啦……好吧。</b>" <span class="chip">第2章</span>　·　"那伤员涨红了脸：'二公子……<b>对我们好着哩</b>……'" <span class="chip">第808章</span></p>
+        <h3>语言错位制造笑点</h3>
+        <p>"就欺负你了，你怎么滴吧？" → "<b>'滴吧……'婵儿眨了眨眼睛</b>，随后又生起气来，'又说婵儿听不懂的话……'" <span class="chip">第3章</span></p>
+        <h3>潜台词用"转述+模仿"呈现</h3>
+        <p>"<b>娟儿学了宁毅的声音："小姐，姑爷说'替我谢谢娘子了'。"</b>" <span class="chip">第2章</span></p>
+      </div>
+      <div class="hint">点击展开全部例证与锚点 ▾</div>
+    </div>
+
+    <!-- 维度5 -->
+    <div class="dim" style="margin-bottom:14px">
+      <div class="acc" style="background:var(--orange)"></div>
+      <div class="dhead"><span class="dnum">维度 5</span><span class="dtitle">描写手法</span><span class="pill o">环境</span><span class="pill o">外貌</span><span class="pill o">动作</span><span class="pill o">心理</span></div>
+      <div class="core">环境：密度中等、工笔带诗意，四字词组铺成"水墨/工笔"画面。外貌：简笔勾勒，一两个特征点睛。<b>动作：细密、生活化，小动作即人物关系。心理：密度最高，是本书"内心戏"的主载体</b>——大量自由间接引语，夹叙夹议，且常带现代分析框架。</div>
+      <div class="quote">廊院阁楼，园林亭台，细雨潇潇，<b>将白石青瓦冲刷得格外清澈</b>…… <span class="chip">第3章</span></div>
+      <div class="exp">
+        <h3>环境</h3>
+        <p>"廊院阁楼，园林亭台，细雨潇潇，<b>将白石青瓦冲刷得格外清澈</b>……这时候看了，才会觉得一切<b>犹如水墨画中一样</b>" <span class="chip">第3章</span>　·　"<b>马车离开了军营，一路往南，视野前方，便是一片铅青色的草原与低岭了。</b>" <span class="chip">第808章</span>　·　"帐外的天地里，<b>白皑皑的积雪仍未有丝毫消融的痕迹</b>……" <span class="chip">第808章</span></p>
+        <h3>外貌（简笔点睛）</h3>
+        <p>"为首的女子<b>身材高挑婀娜，瓜子脸</b>，一头乌黑的长发用束带绑起，直垂到腰际" <span class="chip">第1章</span>　·　"那<b>圆圆的脸蛋红彤彤的</b>"（小婵）<span class="chip">第1章</span></p>
+        <h3>动作（小动作即关系）</h3>
+        <p>"宁毅忽然伸出双手，<b>掐住她的两边脸颊将她的脸拉成了一张大饼</b>……" <span class="chip">第3章</span>　·　"<b>小男孩在旁边扮演啄米的小鸡。</b>" <span class="chip">第120章</span></p>
+        <h3>心理（自由间接引语 + 现代参照）</h3>
+        <p>"<b>至于自己，也就是宁毅</b>……他觉得……"（叙述直接滑入人物心思）<span class="chip">第1章</span>　·　"<b>大约是将自己当成了真正老实木讷的男人</b>……<b>于是每次在一起吃饭，宁毅都会想起电影《史密斯夫妇》里的两人。</b>"<span class="chip">第2章</span></p>
+      </div>
+      <div class="hint">点击展开全部例证与锚点 ▾</div>
+    </div>
+
+    <!-- 维度6 -->
+    <div class="dim" style="margin-bottom:14px">
+      <div class="acc" style="background:var(--cyan)"></div>
+      <div class="dhead"><span class="dnum">维度 6</span><span class="dtitle">修辞偏好</span><span class="pill">明喻</span><span class="pill">排比复沓</span><span class="pill">对比反差</span><span class="pill">拟人</span><span class="pill">反讽</span></div>
+      <div class="core"><b>① 明喻为最常用，喻体生活化、带现代感；② 排比/复沓用于情绪高潮与抒情段；③ 对比/反差是结构级修辞，"最低身份承载最大能力"是全书总修辞；④ 拟人/意象化点题；⑤ 反讽/冷幽默收束。</b></div>
+      <div class="quote">女真人就像是乌云，横压这一世人。 <span class="chip">第808章</span></div>
+      <div class="exp">
+        <h3>① 明喻</h3>
+        <p>"<b>女真人……女真人就像是乌云，横压这一世人</b>" <span class="chip">第808章</span>　·　"犹如刚刚发明石刀石斧的原始人一般" <span class="chip">楔子</span>　·　"眼泪如<b>断线珍珠</b>一般自眼中滚落出来了" <span class="chip">第3章</span></p>
+        <h3>② 排比 / 复沓</h3>
+        <p>"<b>有人愕然、有人惶恐、有人从这样的战果之中感到振奋，也有人为之警惕。</b>" <span class="chip">第929章</span>　·　"有的被火焰烧得面目全非，有的肢体已残" <span class="chip">第808章</span>　·　"多杀一点，再多杀一点……<b>再再多杀一点……</b>" <span class="chip">第1002-1006章</span></p>
+        <h3>③ 对比 / 反差（结构级总修辞）</h3>
+        <p>"<b>一个受够了勾心斗角、生死打拼的金融界巨头……进入一商贾之家最没地位的赘婿身体</b>" <span class="chip">简介</span>；正文落地为第1章"赘婿"身份认知整段 <span class="chip">第1章</span></p>
+        <h3>④ 拟人 / 意象化点题</h3>
+        <p>"<b>猛虎展露了獠牙。</b>" <span class="chip">第929章</span>　·　"傍晚的红日，又化为漫天的星辰，复变作白日里翻腾的云霞。" <span class="chip">第929章</span></p>
+        <h3>⑤ 反讽 / 冷幽默</h3>
+        <p>"令人哭笑不得" <span class="chip">第929章</span>　·　"仿佛是在为这一切感到<b>哭笑不得</b>" <span class="chip">第808章</span>　·　"咸吃萝卜淡操心" <span class="chip">第3章</span></p>
+      </div>
+      <div class="hint">点击展开全部例证与锚点 ▾</div>
+    </div>
+
+    <!-- 维度7 -->
+    <div class="dim" style="margin-bottom:14px">
+      <div class="acc" style="background:var(--gold2)"></div>
+      <div class="dhead"><span class="dnum">维度 7</span><span class="dtitle">高频词 / 标志性表达</span><span class="pill">语气指纹</span><span class="pill">微表情</span><span class="pill">称谓</span><span class="pill">口头禅</span></div>
+      <div class="core"><b>全书实数统计，均 ≥3 次。</b>样本为全书 1032 个单元。下表"标志性表达"按词性/功能分组，出处为可核验的样本章锚点。详见下方「高频词表」。</div>
+      <div class="kw">
+        <span class="freqtag"><span class="w">其实</span><span class="c">2760</span></span>
+        <span class="freqtag"><span class="w">吧</span><span class="c">2458</span></span>
+        <span class="freqtag"><span class="w">如此</span><span class="c">2061</span></span>
+        <span class="freqtag"><span class="w">倒是</span><span class="c">1843</span></span>
+        <span class="freqtag"><span class="w">笑着</span><span class="c">1203</span></span>
+        <span class="freqtag"><span class="w">大概</span><span class="c">1240</span></span>
+      </div>
+      <div style="margin-top:10px"><span class="hint">完整四组词表见「三、高频词 / 标志性表达」</span></div>
+    </div>
+
+    <!-- 维度8 -->
+    <div class="dim">
+      <div class="acc" style="background:var(--red)"></div>
+      <div class="dhead"><span class="dnum">维度 8</span><span class="dtitle">诗词 / 典故 / 俗谚</span><span class="pill r">背诗桥段</span><span class="pill r">题记</span><span class="pill r">典故史谚</span></div>
+      <div class="core">本书无原创格律诗词，但有两类"诗词用法"：<b>（A）主角以现代记忆中的诗词入古扬名（最大特色）</b>；<b>（B）各集题记 / 章题记的引句</b>。另有大量典故、史谚、俗谚。详见下方「四、诗词 / 典故 / 俗谚」。</div>
+      <div class="quote">但愿人长久，千里共婵娟。 <span class="chip">第9-10章</span></div>
+    </div>
+  </div>
+
+  <!-- 三、高频词 -->
+  <div class="section">
+    <span class="sec-tag">写作风格</span>
+    <h2><span class="n">三</span>高频词 / 标志性表达</h2>
+    <div class="desc">计数方法：cat 原文/*.txt | grep -o &lt;词&gt; | wc -l，样本为全书 1032 个单元。</div>
+
+    <h3>（1）叙述高频虚词 / 副词 —— 本书最鲜明的"语气指纹"</h3>
+    <table class="tb">
+      <tr><th>词</th><th>全书次数</th><th>样本锚点例句</th></tr>
+      <tr><td><b>其实</b></td><td>2760</td><td>"三个丫鬟<b>其实</b>都有学过诗文算数"<span class="chip">第2章</span></td></tr>
+      <tr><td><b>吧</b></td><td>2458</td><td>"没的看了，小婵付账<b>吧</b>。"<span class="chip">第2章</span></td></tr>
+      <tr><td><b>如此</b></td><td>2061</td><td>"<b>如此</b>又是一个多月下来，与苏家人的关系没什么大的发展"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>倒是</b></td><td>1843</td><td>"宁毅<b>倒是</b>也笑着挥了挥手，算是告别"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>微微</b></td><td>1533</td><td>"才<b>微微</b>叹了口气"<span class="chip">第1章</span>、"<b>微微</b>有些无奈"<span class="chip">第120章</span></td></tr>
+      <tr><td><b>大概</b></td><td>1240</td><td>"<b>大概</b>是将自己当成了真正老实木讷的男人"<span class="chip">第2章</span></td></tr>
+      <tr><td><b>毕竟</b></td><td>1218</td><td>"苏家在江宁<b>毕竟</b>是织造的三大巨头之一"<span class="chip">第120章</span></td></tr>
+      <tr><td><b>似乎</b></td><td>1115</td><td>"拿起了丫鬟手上拿着的<b>似乎</b>是给他穿的袍子"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>终究</b></td><td>1050</td><td>"功名利禄之事，怕是<b>终究</b>落不到你的身上了"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>过得</b></td><td>922</td><td>"<b>过得</b>片刻，小丫头跟了上来"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>颇为</b></td><td>616</td><td>"<b>颇为</b>无聊"<span class="chip">第3章</span>、"<b>颇为</b>感慨"<span class="chip">第808章</span></td></tr>
+      <tr><td><b>仿佛</b></td><td>358</td><td>"<b>仿佛</b>全没有她在新婚那天走掉的事情发生"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>大抵</b></td><td>325</td><td>"这十天半个月的空白期，<b>大抵</b>也是她为了让自己看清楚形势的一种警告"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>淡淡</b></td><td>87</td><td>"宁毅自然也<b>淡淡</b>地回答几句"<span class="chip">第1章</span></td></tr>
+    </table>
+
+    <h3>（2）"一人一动作"的标志性微表情 / 小动作（人物调度用，几乎每章出现）</h3>
+    <table class="tb">
+      <tr><th>表达</th><th>全书次数</th><th>样本锚点例句</th></tr>
+      <tr><td><b>笑着</b></td><td>1203</td><td>"宁毅<b>笑着</b>挥了挥手"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>笑了笑</b></td><td>861</td><td>"宁毅收拾着棋子，<b>倒是笑了笑</b>"<span class="chip">第2章</span></td></tr>
+      <tr><td><b>说道</b></td><td>792</td><td>"丫鬟打扮的女人立即是一个激灵……讷讷<b>说道</b>"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>点了点头</b></td><td>728</td><td>"宁毅点点头，<b>耸了耸肩</b>"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>摇了摇头</b></td><td>582</td><td>"宁毅<b>摇了摇头</b>，端了围棋回房"<span class="chip">第2章</span></td></tr>
+      <tr><td><b>叹了口气</b></td><td>405</td><td>"微微<b>叹了口气</b>"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>笑了起来</b></td><td>337</td><td>"婵儿<b>笑了起来</b>"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>愣了愣</b></td><td>307</td><td>"宁毅<b>愣了愣</b>，看看天色"<span class="chip">第2章</span></td></tr>
+      <tr><td><b>忍不住</b></td><td>291</td><td>"小婵倒是涨红了脸，<b>忍不住</b>凑过来了"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>下意识</b></td><td>245</td><td>（叙述常用调度词，全书高密度）<span class="chip">第1章</span></td></tr>
+      <tr><td><b>耸了耸肩</b></td><td>31</td><td>"宁毅点点头，<b>耸了耸肩</b>"<span class="chip">第3章</span></td></tr>
+    </table>
+
+    <h3>（3）身份称谓 / 世界观标志词（一眼定位本书）</h3>
+    <table class="tb">
+      <tr><th>表达</th><th>全书次数</th><th>样本锚点例句</th></tr>
+      <tr><td><b>先生</b></td><td>1055</td><td>"<b>宁先生！</b>故人远来求见"<span class="chip">第747-752章</span></td></tr>
+      <tr><td><b>姑爷</b></td><td>785</td><td>"<b>姑爷</b>醒来了，<b>姑爷</b>醒来了……"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>家伙</b></td><td>304</td><td>"想起那戴眼镜的<b>家伙</b>"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>丫头</b></td><td>138</td><td>"那漂亮<b>丫头</b>走过来时"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>小姑娘</b></td><td>123</td><td>"<b>小姑娘</b>说话的声音越来越小"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>血手人屠</b></td><td>101</td><td>"在下宁立恒，江湖人送匪号<b>血手人屠</b>"<span class="chip">第226-232章</span></td></tr>
+      <tr><td><b>勾心斗角</b></td><td>82</td><td>"商场暗战，<b>勾心斗角</b>"<span class="chip">第1章</span></td></tr>
+      <tr><td><b>宁人屠</b></td><td>59</td><td>"那次青木寨之行，<b>宁人屠</b>"<span class="chip">第808章</span></td></tr>
+      <tr><td><b>这年头</b></td><td>36</td><td>"<b>这年头</b>的仕女才是真正有仕女气质的"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>上辈子</b></td><td>13</td><td>"想起<b>上辈子</b>的事情。"<span class="chip">第1章</span></td></tr>
+    </table>
+
+    <h3>（4）作者口头禅 / 招牌短语</h3>
+    <table class="tb">
+      <tr><th>表达</th><th>全书次数</th><th>样本锚点例句</th></tr>
+      <tr><td><b>哈哈</b></td><td>745</td><td>"<b>哈哈</b>，你这老头，咸吃萝卜淡操心"<span class="chip">第3章</span></td></tr>
+      <tr><td><b>呵呵</b></td><td>163</td><td>"<b>呵呵</b>，今天说楼姑娘"<span class="chip">第808章</span></td></tr>
+      <tr><td><b>哭笑不得</b></td><td>34</td><td>"感到<b>哭笑不得</b>"<span class="chip">第808章</span>、"令人<b>哭笑不得</b>"<span class="chip">第929章</span></td></tr>
+      <tr><td><b>小手段</b></td><td>20</td><td>"被宁毅接二连三的<b>小手段</b>杀得溃不成军"<span class="chip">第2章</span></td></tr>
+      <tr><td><b>笑骂</b></td><td>17</td><td>"<b>他这样笑骂自己</b>"<span class="chip">第2章</span>（同族"这样想着"55次、"这样说着"50次）</td></tr>
+      <tr><td><b>云淡风轻</b></td><td>16</td><td>"他就一路<b>云淡风轻</b>地过来了"<span class="chip">第1章</span></td></tr>
+    </table>
+  </div>
+
+  <!-- 四、诗词典故 -->
+  <div class="section">
+    <span class="sec-tag">写作风格</span>
+    <h2><span class="n">四</span>诗词 / 典故 / 俗谚</h2>
+
+    <h3>（A）穿越者"背诗"桥段（现代/后世名句入古，直接参与情节）</h3>
+    <div class="grid g2">
+      <div class="poemcard">
+        <div class="pt">苏轼《水调歌头》</div>
+        <div class="pc">"人有悲欢离合，月有阴晴圆缺。此事古难全……但愿人长久，千里共婵娟。"<br>
+        <b>用法：</b>教小婵唱并赠稿 <span class="chip">第9-10章</span>；濮园诗会泄露传遍江宁 <span class="chip">第10-15章</span>；疑剽窃 <span class="chip">第16-22章</span>；燕翠楼重唱 <span class="chip">第107-112章</span>。<br><span class="pill r">扬名之始、文名反噬之始</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">辛弃疾《青玉案·元夕》</div>
+        <div class="pc">"东风夜放花千树。更吹落，星如雨。宝马雕车香满路……"<br>
+        <b>用法：</b>旧雨楼写下、半个时辰传遍江宁 <span class="chip">第37-41章</span>（词牌见 <span class="chip">第38-43章</span>；"东风夜放花千树"另见 <span class="chip">第625章</span>）。<br><span class="pill r">解围之作，坐实"江宁第一才子"</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">《望海潮》</div>
+        <div class="pc"><b>用法：</b>小瀛洲诗会当场所呈 <span class="chip">第216-220章</span>。<br><span class="pill r">灾变前夜的高光，与地震形成乐极生悲的反差</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">苏轼《定风波》</div>
+        <div class="pc">"竹杖芒鞋轻胜马，谁怕！一蓑烟雨任平生！"<br>
+        <b>用法：</b><span class="chip">第142-146章</span>（"定风波"作章名见 <span class="chip">第143-145章</span>；"竹杖芒鞋"另见 <span class="chip">第152章</span>）。<br><span class="pill r">以词自况藏锋心态</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">《怪诗》（现代诗入古）</div>
+        <div class="pc">"有人在高楼，有人在深沟，有人光万丈，有人一身锈……斯人若彩虹，遇上方知有。"<br>
+        <b>用法：</b><span class="chip">第191章</span>（"斯人若彩虹"另见 <span class="chip">第192章</span>）。<br><span class="pill r">旁人辨不出出处，标记主角"异类"底色</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">李白《侠客行》</div>
+        <div class="pc">"赵客缦胡缨，吴钩霜雪明……十步杀一人，千里不留行……"<br>
+        <b>用法：</b><span class="chip">第283-287章</span>（"赵客缦胡缨"<span class="chip">第285章</span>；"十步杀一人"<span class="chip">第263章</span>、<span class="chip">第299章</span>）。<br><span class="pill r">用作霸刀营战阵节拍号令，诗与刀合一</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">毛泽东《忆秦娥·娄山关》</div>
+        <div class="pc">"雄关漫道真如铁，而今迈步从头越。从头越，苍山如海……残阳如血。"<br>
+        <b>用法：</b><span class="chip">第303-306章</span>（"雄关漫道"<span class="chip">第305章</span>）。<br><span class="pill r">流亡途中的自我激励，标志阶段转折</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">"自信人生二百年"</div>
+        <div class="pc">"自信人生二百年，会当水击三千里。"<br>
+        <b>用法：</b><span class="chip">第400-403章</span>（<span class="chip">第401章</span>）。<br><span class="pill r">对垒权贵的气魄写照</span></div>
+      </div>
+      <div class="poemcard">
+        <div class="pt">苏轼《浣溪沙·端午》</div>
+        <div class="pc">"轻汗微微透碧纨，明朝端午浴芳兰……佳人相见一千年。"<br>
+        <b>用法：</b>周佩吟旧词 <span class="chip">第860章</span>。<br><span class="pill r">长公主线的抒情回声</span></div>
+      </div>
+    </div>
+    <div style="margin-top:12px" class="sect-intro">其他被带入的名句（均可核验）：</div>
+    <div>
+      <span class="chip">"人生自古谁无死……"（文天祥）第18章 / 第414章</span>
+      <span class="chip">"此情可待成追忆……"（李商隐）第341章</span>
+      <span class="chip">"风萧萧兮易水寒……"第187章 / 第905章</span>
+      <span class="chip">"黄沙百战穿金甲……"（王昌龄）第694章</span>
+      <span class="chip">"虽千万人吾往矣。"（孟子）第48章 / 第447章</span>
+      <span class="chip">"亦余心之所善……"（屈原）第556章</span>
+      <span class="chip">"卖炭翁……"第451章 / 第562章</span>
+      <span class="chip">"琵琶行"第165章</span>
+      <span class="chip">"孔雀东南飞"第18章</span>
+      <span class="chip">"怒发冲冠……"（岳飞）第395章 / 第658章 / 第696章</span>
+      <span class="chip">"大江东去……"（苏轼）第926章 / 第1018章</span>
+      <span class="chip">念奴娇 第385-387章</span>
+      <span class="chip">卜算子/寂寞沙洲冷 第194章</span>
+      <span class="chip">声声慢 第287章</span>
+      <span class="chip">破阵子 第666章</span>
+      <span class="chip">将进酒/千古一人李太白 第387章</span>
+    </div>
+
+    <h3>（B）书中题记 / 原创警句（近乎原创，带强烈主题性）</h3>
+    <table class="tb">
+      <tr><th>句子</th><th>出处</th></tr>
+      <tr><td>"天地如炉，造化为工，阴阳为炭，万物为铜"（化用贾谊《鵩鸟赋》，全书母题）</td><td><span class="chip">第553-555章</span><span class="chip">第六集小结</span></td></tr>
+      <tr><td>"逃不过墓碑下那孤独的长眠"（第一集题记）</td><td><span class="chip">第一集</span></td></tr>
+      <tr><td>"地发杀机，龙蛇起陆"（第三集题记，语出《阴符经》）</td><td><span class="chip">第三集</span></td></tr>
+      <tr><td>"少年被风吹大，容颜未改心犹怕"（第五集题记）</td><td><span class="chip">第五集</span></td></tr>
+      <tr><td>"铁马冰河入梦来"（第六集题记，陆游句）</td><td><span class="chip">第六集</span></td></tr>
+      <tr><td>"聚九州铁，铸一字错"（第七集题记）</td><td><span class="chip">第七集</span></td></tr>
+      <tr><td>"秦失其鹿"（第九集题记）</td><td><span class="chip">第九集</span></td></tr>
+      <tr><td>"用九，见群龙无首，吉。"（《易经·乾卦》章题记）</td><td><span class="chip">第651章题记</span></td></tr>
+      <tr><td>"尘世似秋风，人生如落叶。"</td><td><span class="chip">第771-775章</span></td></tr>
+      <tr><td>"不思为一世开太平者，难为万世开太平。"</td><td><span class="chip">第244-248章</span></td></tr>
+    </table>
+
+    <h3>（C）典故 / 史谚（给历史与人物定调）</h3>
+    <table class="tb">
+      <tr><th>典故 / 史谚</th><th>出处</th></tr>
+      <tr><td>"女真不满万，满万不可敌。"（史谚）</td><td><span class="chip">第587-591章</span></td></tr>
+      <tr><td>"善攻者动于九天之上，善守者藏于九地之下。"（《孙子兵法》）</td><td><span class="chip">第316-320章</span></td></tr>
+      <tr><td>"人人皆可为尧舜。"（孟子/王阳明，秦嗣源"大同之念"）</td><td><span class="chip">第365-369章</span></td></tr>
+      <tr><td>"律法不外乎人情。"（古谚）</td><td><span class="chip">第255-259章</span></td></tr>
+      <tr><td>"握不住的沙，随手扬了它。"（现代俗谚，反复出现）</td><td><span class="chip">第452-456章</span><span class="chip">第627-631章</span></td></tr>
+      <tr><td>"路可以由别人指，但命得自己挣！"</td><td><span class="chip">第239-243章</span></td></tr>
+      <tr><td>"一个不成熟的人会为了伟大的事情勇敢地死去，一个成熟的人，会为了伟大的事情屈辱地活着。"（化用塞林格语）</td><td><span class="chip">第473-477章</span></td></tr>
+      <tr><td>"革命，不是请客吃饭。"（毛泽东语入文）</td><td><span class="chip">第991-994章</span></td></tr>
+      <tr><td>"只有起错的人名，哪有叫错的外号。"（俗谚，全书末）</td><td><span class="chip">第1030-1031章</span></td></tr>
+    </table>
+
+    <h3>（D）楔子与开篇的"现代人叙述梗"</h3>
+    <p class="sect-intro">不是引诗，但同属"语言错位"风格：楔子以拟声词开篇："咔嚓……砰……" <span class="chip">楔子</span>；主角内心不断以现代作品作参照："<b>这不是楚门的世界，他也不是从出生以来就被关在摄影棚里的楚门。</b>"<span class="chip">第1章</span>；"会想起电影《史密斯夫妇》里的两人"<span class="chip">第2章</span>。</p>
+  </div>
+
+  <!-- 五、可模仿清单 -->
+  <div class="section">
+    <span class="sec-tag">写作风格</span>
+    <h2><span class="n">五</span>可模仿清单</h2>
+    <div class="desc">续写 / 改写时逐项对照的 checklist。</div>
+    <div class="grid g2">
+      <div class="card"><div class="acc"></div><div class="ct">句法层</div>
+        <ul class="ck">
+          <li>叙述以中短句为主；每段至多一处长句，且长句用于分析/铺陈，不用于抒情。</li>
+          <li>情绪转折处用<b>极短句独立成段</b>（"没有死。""死于刺杀。"）。</li>
+          <li>段落默认"场景/动作 + 一句心理或议论补白"，段末以短句或"……"收束。</li>
+        </ul>
+      </div>
+      <div class="card"><div class="acc" style="background:var(--blue)"></div><div class="ct">腔调层</div>
+        <ul class="ck">
+          <li>主角内面保持"现代人的冷眼 + 自嘲 + 一点讥诮"；市井段可谐趣，战争段要苍凉。</li>
+          <li>大场面、死亡、牺牲：<b>用动作与时间戳写，不写抒情句</b>，越克制越重。</li>
+          <li>允许"多年之后/后世记录"式预叙定评，制造距离感与宿命感（一章至多一两处）。</li>
+        </ul>
+      </div>
+      <div class="card"><div class="acc" style="background:var(--green)"></div><div class="ct">语言层次</div>
+        <ul class="ck">
+          <li>士人/老者说雅言（文白夹杂），丫鬟/市井说白话（带"哩/嘛/吧/呃/唔"），阶层语感不得混淆。</li>
+          <li>主角可甩现代词（影视、商业、逻辑词），但要有"错位"自觉，让旁人听不懂、被逗笑。</li>
+          <li>口语中揉短句讥诮，一两句即可，别变成段子集。</li>
+        </ul>
+      </div>
+      <div class="card"><div class="acc" style="background:var(--purple)"></div><div class="ct">视角层</div>
+        <ul class="ck">
+          <li>群像多 POV：切换在<b>场景收束处</b>进行，段首用<b>地名/人名/时辰</b>硬切，不在冲突中途跳。</li>
+          <li>写主角的强大时，<b>优先切到敌人/旁观者</b>，用"拼图"代替正面吹捧。</li>
+          <li>关键心理留白：只写半句，用"……"或"没有说出来"收住。</li>
+        </ul>
+      </div>
+      <div class="card"><div class="acc" style="background:var(--orange)"></div><div class="ct">内容层</div>
+        <ul class="ck">
+          <li>每两三章埋一次"背诗/名句"桥段，且必须<b>服务情节</b>（扬名/解围/打脸/立身），不能为炫技而炫技。</li>
+          <li>多用四字词组铺环境画面，收在一两个意象上，密度中等、不堆砌辞藻。</li>
+          <li>高频虚词自然铺开：其实/倒是/毕竟/似乎/终究/大概/微微/颇为/大抵——是语气指纹，但需克制（每段 1-2 次）。</li>
+        </ul>
+      </div>
+      <div class="card"><div class="acc" style="background:var(--red)"></div><div class="ct">元叙事（慎用）</div>
+        <ul class="ck">
+          <li>作者随笔只出现在章末、明显分段隔开，绝不混入正文的限知视角。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 六、崩风格红线 -->
+  <div class="section">
+    <span class="sec-tag">写作风格</span>
+    <h2><span class="n">六</span>崩风格红线</h2>
+    <div class="desc">禁写项：写了就不像《赘婿》。</div>
+    <ol class="redlist">
+      <li><b>禁大段纯抒情/排比煽情收尾。</b>本书越悲壮越用史笔冷写；若高潮章通篇"啊/苍天啊/血与火"式渲染，立刻崩。</li>
+      <li><b>禁让所有人说同一种腔调。</b>抹平士人文白与市井白话的分层，是最致命的崩法。</li>
+      <li><b>禁主角变成"热血少年"或"话痨段子手"。</b>宁毅的语气底色是冷眼、藏锋、自嘲、点到即止；让他滔滔不绝讲道理、情绪外露，即崩。</li>
+      <li><b>禁正面夸耀主角厉害。</b>本书靠"敌人/旁观者侧写"立威；若改成叙述者直接吹捧，崩。</li>
+      <li><b>禁在冲突中途乱跳视角、或混用镜头语言</b>（如突然第一人称"我"）破坏限知。</li>
+      <li><b>禁把"背诗"写成万能金手指。</b>诗词须与情节咬合、且常伴随"文名反噬"（被疑剽窃、被推着走）；无代价地一遍打脸，崩。</li>
+      <li><b>禁滥用现代词/网络用语到出戏程度。</b>现代梗只用于主角内心与少数错位笑点，且书中世界<b>无人听懂</b>；让古代人熟练使用现代词汇，崩。</li>
+      <li><b>禁给死亡、离别配上煽情配乐式修辞。</b>本书的死亡（田实、周侗、林冲等）都是"静"的，用体面的克制换分量。</li>
+      <li><b>禁把群像写成"主角开挂的个人秀"。</b>后半程主角可长时间缺席、由配角撑场，这是本书的硬特征，不可回收。</li>
+      <li><b>禁堆砌四字成语与华丽辞藻。</b>本书文白比例是"白话为骨、文言点缀"，一旦通篇骈四俪六，崩。</li>
+    </ol>
+  </div>
+
+</div>
+<script src="_shared.js"></script>
+<script>
+/* 本页无需额外交互：折叠由 _shared.js 的 .card/.dim 点击处理，此处补充 .dim 的 max-height 同步 */
+document.addEventListener('click',function(e){
+  var d=e.target.closest('.dim');
+  if(d){var ex=d.querySelector('.exp');
+    if(ex){d.classList.toggle('open');
+      ex.style.maxHeight=d.classList.contains('open')?(ex.scrollHeight+40)+'px':'0';}}
+});
+</script>
+</body></html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《赘婿》蓝图 · 人物设定集·主角</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+/* 明信片 + 时间线 */
+.pc-layout{display:grid;grid-template-columns:308px 1fr;gap:28px;align-items:start}
+@media(max-width:860px){.pc-layout{grid-template-columns:1fr}}
+.postcard{border:1px solid rgba(201,169,97,0.38);border-radius:16px;padding:24px 20px 20px;position:relative;
+  background:linear-gradient(160deg,rgba(201,169,97,0.12),rgba(201,169,97,0.02) 55%,rgba(255,255,255,0.02))}
+.postcard::after{content:'';position:absolute;inset:7px;border:1px dashed rgba(201,169,97,0.22);border-radius:11px;pointer-events:none}
+.pc-stamp{position:absolute;top:14px;right:14px;width:46px;height:56px;border:1px solid rgba(201,169,97,0.4);
+  border-radius:6px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1px;
+  font-size:15px;color:var(--gold2);background:rgba(201,169,97,0.07);line-height:1;letter-spacing:1px}
+.pc-name{font-size:31px;color:var(--gold2);font-weight:900;letter-spacing:5px}
+.pc-word{font-size:12px;color:var(--txt2);margin-top:3px;letter-spacing:2px}
+.pc-alias{display:flex;flex-wrap:wrap;gap:5px;margin:13px 0 2px}
+.pc-alias .a{font-size:11px;color:var(--gold);border:1px solid rgba(201,169,97,0.26);border-radius:6px;
+  padding:2px 7px;background:rgba(201,169,97,0.06)}
+.pc-quote{font-size:13.5px;color:var(--gold2);border-left:2px solid var(--gold);padding:2px 0 2px 13px;
+  margin:15px 0;line-height:1.85}
+.pc-role{font-size:12px;color:var(--txt2);line-height:1.95;margin-bottom:12px}
+.pc-role b{color:var(--gold)}
+.pc-attr .r{display:flex;gap:10px;padding:7px 0;border-top:1px solid rgba(255,255,255,0.06);font-size:12.5px}
+.pc-attr .k{color:var(--gold);min-width:64px;font-weight:600;flex-shrink:0}
+.pc-attr .v{color:var(--txt2);line-height:1.7}
+
+.tl{position:relative;padding-left:30px}
+.tl::before{content:'';position:absolute;left:9px;top:10px;bottom:10px;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,var(--gold2),var(--gold) 45%,rgba(201,169,97,0.12))}
+.tnode{position:relative;margin-bottom:15px}
+.tnode .tdot{position:absolute;left:-27px;top:16px;width:14px;height:14px;border-radius:50%;
+  background:var(--gold2);box-shadow:0 0 12px rgba(232,201,122,0.75),0 0 0 3px rgba(232,201,122,0.14)}
+.tst{border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:rgba(255,255,255,0.022);
+  cursor:pointer;transition:.2s}
+.tst:hover{border-color:rgba(201,169,97,0.45);background:rgba(201,169,97,0.05)}
+.ttl2{font-size:14px;color:var(--gold2);font-weight:600;margin-bottom:5px}
+.tline{font-size:12.5px;color:var(--txt2);line-height:1.7}
+.tinfo{padding:13px 15px 14px;border:1px solid var(--line);border-radius:0 0 12px 12px;margin-top:-7px;
+  background:rgba(255,255,255,0.012)}
+.tinfo .row{display:flex;gap:10px;padding:7px 0;font-size:12.5px;border-top:1px solid rgba(255,255,255,0.045)}
+.tinfo .row:first-child{border-top:none;padding-top:2px}
+.tinfo .k{color:var(--gold);min-width:56px;font-weight:600;flex-shrink:0}
+.tinfo .v{color:var(--txt2);line-height:1.75}
+.tinfo .feat{color:var(--red);border-color:rgba(255,107,107,0.32)}
+
+/* 女主明信片块 */
+.pc2{position:relative}
+.pc2 .p2-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.pc2 .p2-name{font-size:18px;color:var(--gold2);font-weight:700;letter-spacing:2px}
+.pc2 .p2-id{font-size:11.5px;color:var(--txt2)}
+.pc2 .p2-tag{font-size:12px;color:var(--gold);margin:6px 0 2px}
+.pc2 .p2-quote{font-size:12.5px;color:var(--gold2);border-left:2px solid var(--gold);padding-left:11px;
+  margin:10px 0 8px;line-height:1.8}
+.pc2 .p2-note{font-size:12px;color:var(--txt2);line-height:1.7}
+.pc2 .exp{border-top:1px solid rgba(255,255,255,0.05);margin-top:8px}
+.pc2 .st{font-size:12px;color:var(--txt2);padding:6px 0 6px 10px;border-left:2px solid rgba(201,169,97,0.28);margin:6px 0}
+.pc2 .st b{color:var(--gold2);font-weight:600}
+.pc2 .st .chip{margin-left:2px}
+.arc-quote{font-size:15px;line-height:1.95}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__hidewx">.author-badge,.qr,.qr-float{display:none !important;}</style></head><body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="ttl">创作蓝图 · <b>人物设定集·主角</b></div>
+</div>
+<div class="wrap">
+  <div class="h1">人物设定集·主角</div>
+  <div class="sub">《赘婿》· 愤怒的香蕉 · 1031章 / 约424.7万字</div>
+
+  <!-- ===== 01 明信片 + 成长时间线 ===== -->
+  <div class="section">
+    <div class="sec-tag">人物设定集·主角</div>
+    <h2><span class="n">01</span>宁毅 · 明信片与成长时间线</h2>
+    <div class="desc">左：主角明信片（身份贯穿 · 金句 · 核心属性）；右：八段纵向成长时间线 —— 点击任意阶段展开「处境 / 心境 / 手段 / 关键行动」。</div>
+    <div class="pc-layout">
+      <!-- 明信片 -->
+      <div class="postcard">
+        <div class="pc-stamp">华夏<br>军</div>
+        <div class="pc-name">宁毅</div>
+        <div class="pc-word">字立恒 · 唯一主角</div>
+        <div class="pc-alias">
+          <span class="a">雷锋<span style="opacity:.6">[400]</span></span>
+          <span class="a">成舟海<span style="opacity:.6">[484]</span></span>
+          <span class="a">心魔 / 心魔宁立恒<span style="opacity:.6">[484]</span></span>
+          <span class="a">宁先生 / 老师<span style="opacity:.6">[731]</span></span>
+        </div>
+        <div class="pc-quote">「结果必须是积极的，<br>计算过程必须是冰冷的。」</div>
+        <div class="pc-role"><b>身份贯穿：</b>江宁苏家入赘赘婿 → 豫山书院先生 → 武朝密侦司成员 / 相府客卿 → 小苍河反贼之主 → 华夏军（黑旗）领袖 → 立国主政者。</div>
+        <div class="pc-attr">
+          <div class="r"><span class="k">身世</span><span class="v">现代金融巨头身死魂穿，落为江宁苏家入赘赘婿；前世倦于勾心斗角，本欲「攒点银子就离开」<span class="chip">第0-4章</span></span></div>
+          <div class="r"><span class="k">外貌</span><span class="v">对外一副「文弱书生」表象；左手曾自焚火器烧成重伤、几近废掉、需半年医治<span class="chip">第70-77章</span></span></div>
+          <div class="r"><span class="k">核心欲望</span><span class="v">前期攒够银子、过悠闲日子<span class="chip">第0-4章</span>；中期「找些事情做」、弄清武学与时代底细<span class="chip">第16-22章</span>；后期抗金、改变时代、重建天下秩序<span class="chip">第515-518章</span></span></div>
+          <div class="r"><span class="k">核心恐惧</span><span class="v">对「被人盯着却不知是谁」最不能容忍<span class="chip">第70-77章</span>；晚年最深一层恐惧是「每个人心底的潜意识」<span class="chip">第977-982章</span></span></div>
+          <div class="r"><span class="k">信念</span><span class="v">「天地不仁，万物有灵」<span class="chip">第733章</span>；「信因果不信果报」<span class="chip">第577-581章</span></span></div>
+          <div class="r"><span class="k">行事准则</span><span class="v">「对敌人狠、对自己也狠」<span class="chip">第70-77章</span>；「好人是活不下去的」<span class="chip">第519-522章</span>；但绝不对身边人下手、对家人始终存「亏欠」</span></div>
+          <div class="r"><span class="k">技能</span><span class="v">诗词（宋体、瘦金体）、格物（松花蛋 / 味精、黑火药、火铳、地雷、榆木炮、高炉炼钢）、商业（竹记）、武学（巴子拳金刚八式、陆红提所授二流内功）、谋略（「十步一算」）</span></div>
+          <div class="r"><span class="k">信物</span><span class="v">竹记（商号 / 舆论体系）；词稿；火器与技术图纸；「华夏军」旗号</span></div>
+        </div>
+      </div>
+
+      <!-- 成长时间线 -->
+      <div class="tl">
+        <div class="tnode">
+          <div class="tdot"></div>
+          <div class="tst" data-exp="st1">
+            <div class="ttl2">阶段一｜江宁赘婿 · 蛰伏期</div>
+            <div class="tline"><span class="chip">第0-33章</span> 现代身死魂穿，成苏家入赘赘婿，身家性命悬于家族内斗；中秋一阕《水调歌头》名动江宁。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st1"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">现代身死魂穿，成苏家入赘赘婿，身家性命悬于家族内斗<span class="chip">第0-4章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">倦于勾心斗角，只想「攒点银子就离开」、享清闲，视诗词为可用资源、不以虚名为意<span class="chip">第10-15章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">装失忆书呆子、用诗词与格物立名、系统锻炼身体、试探性接触内功<span class="chip">第5-22章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">中秋一阕《水调歌头》名动江宁<span class="chip">第10-15章</span>；雪夜二楼回廊与苏檀儿首次「摊牌」、互认「怪人」、分食松花蛋 → 「第一步」<span class="chip">第30-33章</span></span></div>
+          </div></div>
+        </div>
+
+        <div class="tnode">
+          <div class="tdot"></div>
+          <div class="tst" data-exp="st2">
+            <div class="ttl2">阶段二｜苏家立威 · 商场操盘期</div>
+            <div class="tline"><span class="chip">第34-156章</span> 才名渐固，苏伯庸遇刺后接手苏家大房主事；灭顾家一门，「十步一算」成名。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st2"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">才名渐固，苏伯庸遇刺后接手苏家大房主事<span class="chip">第107-112章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">由旁观转为「我来试试吧」、决心调阅七年账册接手危局；同时锁定「味精 / 松花蛋」与「学武」两件事<span class="chip">第34-41/113-117章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">以退为进、「十步一算」式布局收网；收留通缉女刺客陆红提、首度主动介入江湖<span class="chip">第58-63章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">灭顾家一门、「血手人屠」坐实<span class="chip">第70-77章</span>；向乌家摊牌收网、「十步一算」成名<span class="chip">第133-137章</span>；与苏檀儿正式圆房<span class="chip">第152-156章</span></span></div>
+          </div></div>
+        </div>
+
+        <div class="tnode">
+          <div class="tdot"></div>
+          <div class="tst" data-exp="st3">
+            <div class="ttl2">阶段三｜江湖初涉 → 杭州囚居期</div>
+            <div class="tline"><span class="chip">第157-311章</span> 由书院先生卷入刺杀秦嗣源之局，杭州方腊之乱中守城、力战后被俘入霸刀营，又操盘脱身。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st3"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">由书院先生卷入刺杀秦嗣源之局<span class="chip">第162-166章</span>，杭州方腊之乱中守城、力战后被俘入霸刀营<span class="chip">第226-232章</span>，又操盘脱身<span class="chip">第293-297章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">随遇而安、看透己方把自己当诱饵留下，却暗地维持生机；对「理想 / 野心」命题主动与陈凡、刘西瓜交锋<span class="chip">第244-248/260-263章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">火铳实战、写纲领、育人、以「护国公主驸马」假婚之名运作实际军务<span class="chip">第269-273/303-306章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">当堂斩杀宣威营精锐<span class="chip">第269-273章</span>；被刘西瓜点为「革新」军师<span class="chip">第283-287章</span>；身份暴露后决裂、清理奸细<span class="chip">第307章</span>；归江宁入密侦司、决意上京<span class="chip">第308-320章</span></span></div>
+          </div></div>
+        </div>
+
+        <div class="tnode">
+          <div class="tdot"></div>
+          <div class="tst" data-exp="st4">
+            <div class="ttl2">阶段四｜相府客卿 · 密侦司布局期</div>
+            <div class="tline"><span class="chip">第312-496章</span> 上京助秦嗣源，竹记与密侦司双线布局；化名潜入独龙岗灭梁山诸恶。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st4"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">上京助秦嗣源，竹记与密侦司双线布局；化名潜入独龙岗灭梁山诸恶<span class="chip">第340-345/404-410章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">由一时复仇转向长远布局，杀伐决断、进退从容；对「出仕」始终无兴趣<span class="chip">第360-364章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">反间（策反卢俊义为梁山内应）<span class="chip">第355-359章</span>；心战、「信任链条」理论、认罪营驯化降卒<span class="chip">第411-415/447-451章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">四平岗以「心魔宁立恒」真名现身、斩故人之师<span class="chip">第484-493章</span>；对「做好人」彻底抛弃幻想（「好人是活不下去的」）<span class="chip">第519-522章</span></span></div>
+          </div></div>
+        </div>
+
+        <div class="tnode">
+          <div class="tdot" style="background:var(--red);box-shadow:0 0 14px rgba(255,107,107,.8),0 0 0 3px rgba(255,107,107,.16)"></div>
+          <div class="tst" data-exp="st5" style="border-color:rgba(255,107,107,0.28)">
+            <div class="ttl2">阶段五｜相府倾覆 → 弑君叛出期 <span class="pill r" style="margin-left:6px">全书总断裂</span></div>
+            <div class="tline"><span class="chip">第497-651章</span> 深度介入赈灾经济、得罪屯粮士族；秦嗣源之死令他彻底走上与天下为敌之路。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st5"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">深度介入赈灾经济，得罪大半个国家的屯粮士族<span class="chip">第498-518章</span>；秦嗣源之死令他彻底走上与天下为敌之路<span class="chip">第641-644章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">面对开战讯息「所有感情褪去、只剩纯粹理智」<span class="chip">第566-569章</span>；由竭力一搏到彻底心冷、决意「靖康就靖康吧」<span class="chip">第627-631章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">坚壁清野、决黄河为诱饵、把指挥权逐步交予更善战的秦绍谦与岳飞<span class="chip">第592-609章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">夏村之战地雷阵逆转<span class="chip">第610-614章</span>；安葬秦嗣源后转入童贯一系以「商人」自污<span class="chip">第645-649章</span>；弑君破城、成「天下反贼」<span class="chip">第650-651章</span></span></div>
+          </div></div>
+        </div>
+
+        <div class="tnode">
+          <div class="tdot"></div>
+          <div class="tst" data-exp="st6">
+            <div class="ttl2">阶段六｜小苍河 · 抗金立旗期</div>
+            <div class="tline"><span class="chip">第652-719章</span> 率叛军西迁小苍河、建反贼根据地，被南北隔绝、粮荒逼近。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st6"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">率叛军西迁小苍河、建反贼根据地，被南北隔绝、粮荒逼近<span class="chip">第652-658章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">从「守住那座城」到「天地崩落」的无力与坚持并陈<span class="chip">第652-658章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">「反儒立新」的思想纲领、三权分立的制度实验、以「华夏之人不投外邦」立族旗<span class="chip">第659-663/674-679章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">说破「反儒立新」纲领<span class="chip">第674-679章</span>；对女真宣战、以「我们不是救世主、为了自己的生存而出兵」定全军之心<span class="chip">第698-704章</span></span></div>
+          </div></div>
+        </div>
+
+        <div class="tnode">
+          <div class="tdot"></div>
+          <div class="tst" data-exp="st7">
+            <div class="ttl2">阶段七｜泽州复出 · 转西南期</div>
+            <div class="tline"><span class="chip">第720-859章</span> 隐身近两年后于泽州「露面」，转入西南凉山割据。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st7"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">隐身近两年后于泽州「露面」，转入西南凉山割据<span class="chip">第731-734章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">讲出「天地不仁，万物有灵」的处世准则，自认从事「可爱迷人的反派角色」，残酷计算里仍有苦涩与疲惫<span class="chip">第731-734章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">以「老师」身份指挥黑旗布局；以治安官＋契约精神治境；把「分裂」做成可持续的试错<span class="chip">第821-826/849-854章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">拒援武朝、按兵不动、「自卫」立威<span class="chip">第803-807/781-786章</span>；坐镇成都、以成都为基地推「锄奸令」<span class="chip">第839-843章</span></span></div>
+          </div></div>
+        </div>
+
+        <div class="tnode">
+          <div class="tdot"></div>
+          <div class="tst" data-exp="st8">
+            <div class="ttl2">阶段八｜立国 · 华夏政府期</div>
+            <div class="tline"><span class="chip">第860-1031章</span> 由战场胜利者转向建国与制度设计者，面对「十一股力量」与内部腐化。</div>
+            <div class="hint">点击展开 处境 / 心境 / 手段 / 关键行动</div>
+          </div>
+          <div class="exp" id="st8"><div class="tinfo">
+            <div class="row"><span class="k">处境</span><span class="v">由战场胜利者转向建国与制度设计者，面对「十一股力量」与内部腐化<span class="chip">第947-956章</span></span></div>
+            <div class="row"><span class="k">心境</span><span class="v">正视「死的人太多」「该死的不死」，从享受胜利转向对未来的筹谋与焦虑（人手、人才、腐化）<span class="chip">第947-951章</span>；晚年面对「无形之物」（思想论战、制度惯性、技术事故），自知「唯死撑尔」<span class="chip">第1020-1024章</span></span></div>
+            <div class="row"><span class="k">手段</span><span class="v">人民代表大会、格物与资本的长线路线<span class="chip">第947-951章</span>；公开「放戴梦微」的反直觉决策<span class="chip">第952-956章</span></span></div>
+            <div class="row"><span class="k">关键行动</span><span class="v">亲赴剑阁、放手把主战场交给第七军<span class="chip">第941-946章</span>；确立「珍惜每一次流血、总结为后世探路者所用」的路线<span class="chip">第995-998章</span></span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 02 性格标签 ===== -->
+  <div class="section">
+    <div class="sec-tag">人物设定集·主角</div>
+    <h2><span class="n">02</span>性格标签 · 从行为拆出</h2>
+    <div class="desc">先用行为说话，再借词库命名。点击卡片展开行为佐证（锚点保留）。</div>
+    <div class="grid g2">
+      <div class="card" style="cursor:pointer">
+        <div class="acc" style="background:var(--gold)"></div>
+        <div class="ct">主标签｜谋略家 · 赌注计算者（「十步一算」）</div>
+        <div class="cb">把一切当作可计算、可布局的棋局。</div>
+        <div class="exp">
+          <div style="padding-top:8px" class="cb">
+            · 以「以强胜弱」的现代分析框架第一次系统讲出对武学的判断<span class="chip">第48-52章</span><br>
+            · 「十步一算」之名的由来：布完局后隐身、从容收网，向乌家摊牌只给两条路<span class="chip">第133-137章</span><span class="chip">第138-141章</span><br>
+            · 弑君时「做一件事先已经反复练习一千万次的工作」，以近乎机械的平静完成<span class="chip">第650-651章</span><br>
+            · 明确自陈行事根本：「结果必须是积极的，计算过程必须是冰冷的」<span class="chip">第731-734章</span>；「按部就班、不做奇谋」<span class="chip">第421-426章</span>
+          </div>
+        </div>
+        <div class="hint">点击展开</div>
+      </div>
+
+      <div class="card" style="cursor:pointer">
+        <div class="acc" style="background:var(--blue)"></div>
+        <div class="ct">辅标签①｜扮猪吃虎的隐藏者</div>
+        <div class="cb">藏拙是第一生存术。</div>
+        <div class="exp">
+          <div style="padding-top:8px" class="cb">
+            · 魂穿后对外装失忆书呆子<span class="chip">第0-4章</span><br>
+            · 商场年会上「当众败退、名声扫地」，把「败」做成布局的一步<span class="chip">第123-127章</span><br>
+            · 化名「雷锋」潜入独龙岗、「成舟海」双面周旋<span class="chip">第400-403章</span><span class="chip">第484-488章</span>
+          </div>
+        </div>
+        <div class="hint">点击展开</div>
+      </div>
+
+      <div class="card" style="cursor:pointer">
+        <div class="acc" style="background:var(--red)"></div>
+        <div class="ct">辅标签②｜狠戾的杀伐者（「血手人屠」「心魔」）</div>
+        <div class="cb">该动手时毫不迟疑。</div>
+        <div class="exp">
+          <div style="padding-top:8px" class="cb">
+            · 灭顾家一门、左手几废，「血手人屠」由戏称转实<span class="chip">第70-77章</span><br>
+            · 当堂斩杀宣威营精锐<span class="chip">第269-273章</span>；市集上断苏文兴的腿<span class="chip">第321-326章</span><br>
+            · 「我接受他们全死，但我不能接受他们活着来害我」式的定项思路<span class="chip">第431-436章</span>
+          </div>
+        </div>
+        <div class="hint">点击展开</div>
+      </div>
+
+      <div class="card" style="cursor:pointer">
+        <div class="acc" style="background:var(--purple)"></div>
+        <div class="ct">反差点｜对身边人极重 vs 对敌人极狠</div>
+        <div class="cb">护、亏欠、柔软 —— 杀伐不留情。</div>
+        <div class="exp">
+          <div style="padding-top:8px" class="cb">
+            · 狠的一侧：「我断他这条腿，不是因为他做了什么事，而是因为他存的这颗心！」<span class="chip">第321-326章</span><br>
+            · 重的一侧：为苏檀儿落水露出「二十岁年轻人的彷徨与空洞」<span class="chip">第638-640章</span>；对家人「多少心怀内疚」<span class="chip">第656-658章</span>；晚年仍自认「我也走不过，因为我害怕每个人心底的潜意识」<span class="chip">第977-982章</span><br>
+            · 张力的根由：他「把一切都当数字处理」以避亲见饿死<span class="chip">第498-502章</span>，却唯独对身边的女人、孩子算不动账。
+          </div>
+        </div>
+        <div class="hint">点击展开</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 03 弧光 + 关键抉择 ===== -->
+  <div class="section">
+    <div class="sec-tag">人物设定集·主角</div>
+    <h2><span class="n">03</span>人物弧光与关键抉择</h2>
+    <div class="quote arc-quote" style="margin-bottom:18px">
+      从一个「只想攒够银子就离开、把权谋仅当自保手段」的现代游离者，变成一个「主动扛起文明存续、以冷到极致的计算去完成最热理想」的立国者与殉道式改革者。
+    </div>
+    <div class="grid g2">
+      <div class="card" style="cursor:pointer">
+        <div class="acc" style="background:var(--red)"></div>
+        <div class="ct">抉择一｜弑君 <span class="chip">第650-651章</span></div>
+        <div class="cb">在「做一件事先已经反复练习一千万次的工作」般的机械平静中弑君破城，从「臣」彻底站到「天下反贼」。</div>
+        <div class="exp"><div style="padding-top:8px" class="cb">这不是冲动，而是他把「与天下为敌」当成唯一出路的最终确认。</div></div>
+        <div class="hint">点击展开</div>
+      </div>
+      <div class="card" style="cursor:pointer">
+        <div class="acc" style="background:var(--green)"></div>
+        <div class="ct">抉择二｜公开「放戴梦微」 <span class="chip">第952-956章</span></div>
+        <div class="cb">在可杀、可囚的绝对优势下，反直觉地放走最危险的知识型对手，转而以制度、开放与长线落子应对。</div>
+        <div class="exp"><div style="padding-top:8px" class="cb">定义了他「从战场胜利者转向建国者」的成熟，也定义了他与旧式枭雄的根本分野。</div></div>
+        <div class="hint">点击展开</div>
+      </div>
+    </div>
+    <div class="card" style="cursor:pointer;margin-top:14px">
+      <div class="acc" style="background:var(--gold)"></div>
+      <div class="ct">补充侧写 · 一狠一重的两次亮牌</div>
+      <div class="cb"><span class="chip">第321-326章</span> 市集当众断苏文兴的腿；<span class="chip">第632-637章</span> 长街夜候李师师、许诺「派人劫你走」、一句「我如果能回来……」未说完。</div>
+      <div class="exp"><div style="padding-top:8px" class="cb">前者是「对敌人狠」的一次集中亮牌——「不是因为他做了什么事，而是因为他存的这颗心」；后者是「对身边人重」的一次侧写。两处并读，可见其反差的根。</div></div>
+      <div class="hint">点击展开</div>
+    </div>
+  </div>
+
+  <!-- ===== 04 女主线明信片 ===== -->
+  <div class="section">
+    <div class="sec-tag">人物设定集·主角</div>
+    <h2><span class="n">04</span>女主线 · 伴侣群像明信片</h2>
+    <div class="desc">每条线对应宁毅人生的一个侧面（家 / 底层温情 / 商业 / 武道 / 政治 / 文化 / 后宅 / 门第），合起来才拼出完整的宁毅。点击卡片展开「人生阶段 + 关键抉择」。</div>
+    <div class="grid g2">
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">苏檀儿</span><span class="pill">正妻 · 「家」的锚点</span></div>
+        <div class="p2-id">苏家大小姐，掌苏家布行，宁毅正妻（入赘）</div>
+        <div class="p2-tag">主标签｜隐忍贤妻 · 女强人｜辅标签｜刚烈决绝</div>
+        <div class="p2-quote">从一个「要用婚事与家业证明自己、又怕被取代」的女强人，变成「能与丈夫共担乱世、把『家』守成定海神针」的伴侣。</div>
+        <div class="p2-note"><b>反差点｜</b>商场上的杀伐果决 vs 情感上的患得患失：能掌控全局收网，却私约聂云竹「验处子之身」，验后又替她拉上衣襟独自落泪、当夜哭诉「你是我相公啊……可是你就是入赘的嘛」<span class="chip">第327-334章</span></div>
+        <div class="exp">
+          <div class="st"><b>台前主事人</b><span class="chip">第0-107章</span><br>掌苏家布行、志在皇商，与夫君表面琴瑟实有距离；因《水调歌头》重新审视丈夫。</div>
+          <div class="st"><b>病倒托付</b><span class="chip">第107-156章</span><br>父瘫、配方褪色的双重打击下心力交瘁病倒；由崩溃不甘转为信任托付（把事交给宁毅、约定圆房）。</div>
+          <div class="st"><b>掌权人</b><span class="chip">第157-457章</span><br>南下杭州拓生意；当众表白、共跪拒改婚书；杭州小巷重逢（身孕）、主动提退婚保夫。</div>
+          <div class="st"><b>裂痕与考验</b><span class="chip">第457-573章</span><br>因聂云竹出走生心结、被迫两地分居；北上与否第一次正面冲突，以跪地挽留、相拥长谈收场。</div>
+          <div class="st"><b>老伴式相守</b><span class="chip">第573-1031章</span><br>别苑一夜「留下了回忆」；三年多别离后灯下重逢「你好啊」；张村团聚夜谈整风与「是否变成坏人」。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第327-334章</span> 私约验身、最终替她把衣拉上、独自落泪；<span class="chip">第216-220章</span> 当众表白、与宁毅共跪拒改婚书。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">小婵</span><span class="pill b">妾室 · 私域温情</span></div>
+        <div class="p2-id">苏家丫鬟 → 宁毅妾室</div>
+        <div class="p2-tag">主标签｜依恋型的忠仆 · 安全感匮乏者｜辅标签｜藏拙机变</div>
+        <div class="p2-quote">从一个怯生生的苏家小丫鬟，变成宁毅无论多忙都会回去的「家」里最安稳的那一块。</div>
+        <div class="p2-note"><b>反差点｜</b>怯懦温顺的外表 vs 危急时刻的机敏果敢：日常是被掐脸调笑的小丫鬟，危急时却能一眼看破己方的圈套。</div>
+        <div class="exp">
+          <div class="st"><b>仰慕期</b><span class="chip">第0-84章</span><br>教下五子棋破冰、珍藏词稿，单向崇拜；求同房，宁毅守礼并约定不伤身。</div>
+          <div class="st"><b>夫妻确立</b><span class="chip">第209-320章</span><br>宁毅当众承认将纳其为妾；雨夜圆房；向苏檀儿敬茶正式纳妾、正式过门。</div>
+          <div class="st"><b>稳定温情</b><span class="chip">第320章后</span><br>几乎无波动的妾室与随身亲信，小苍河闲居、成都团聚；宁毅瞒着她动身赴梓州。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第244-248章</span> 雨夜点破诱饵、当夜以身相许——用最朴素的方式替宁毅分忧，也把自己的一生押上。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">聂云竹</span><span class="pill o">外室 · 商业与「金丝雀」困局</span></div>
+        <div class="p2-id">江宁歌女（花魁）→ 竹记东家 → 宁毅外室妻子</div>
+        <div class="p2-tag">主标签｜温柔隐忍的知己｜辅标签｜柔中带刚</div>
+        <div class="p2-quote">从一个身不由己、只能被赎买命运的歌女，变成能独立掌竹记、与宁毅在「平等」里相守的外室妻子。</div>
+        <div class="p2-note"><b>反差点｜</b>淡泊恬静的外表 vs 为爱连自尊都能不要的炽烈：素来恬静，却答应苏檀儿「验处子之身」这般过分的要求<span class="chip">第327-334章</span>。</div>
+        <div class="exp">
+          <div class="st"><b>陌路 → 师友</b><span class="chip">第5-52章</span><br>落水相救反被打耳光、次日帮其杀鸡；「他教她做生意」确立师友关系。</div>
+          <div class="st"><b>定情</b><span class="chip">第53-196章</span><br>男装折扇调戏、同去献花；露台抚琴、亲吻表白，被元锦儿撞破；词作相赠、进入「话别」式苦涩。</div>
+          <div class="st"><b>外室相守</b><span class="chip">第340-826章</span><br>以身相许、接受「养在外面」；风雪夜相守、宁毅自省「金丝雀」之困；村落后山夜谈「平等」、草地依偎。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第340-345章</span> 以身相许、「养在外面」，定下全书最典型的「意难平」结构；<span class="chip">第327-334章</span> 坦然登门、答应验身。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">陆红提</span><span class="pill r">妻 · 武道与军事的伙伴</span></div>
+        <div class="p2-id">通缉女刺客 → 吕梁山人头目 → 宁毅之妻；绰号「血菩萨」（与宁毅「宁人屠」相对）<span class="chip">第527-531章</span></div>
+        <div class="p2-tag">主标签｜孤高重义的武者｜辅标签｜清醒的自持</div>
+        <div class="p2-quote">从一个不肯信人的独行通缉刺客，变成与丈夫并肩、能独当一面的华夏军栋梁与正经妻子。</div>
+        <div class="p2-note"><b>反差点｜</b>刺客的杀伐冷厉 vs 认准了就坦荡到底的热：能一剑封喉，也能当众一句「我会嫁他」<span class="chip">第537-541章</span>。</div>
+        <div class="exp">
+          <div class="st"><b>敌对试探 → 挚友</b><span class="chip">第58-83章</span><br>收留、剑抵颈项、赠二流内功武艺。</div>
+          <div class="st"><b>主动收敛的低谷</b><span class="chip">第288-311章</span><br>五年计划、赠两万四千两银票、江岸作别，明言走江湖之义。</div>
+          <div class="st"><b>二次升温 → 成婚</b><span class="chip">第437-555章</span><br>冲出救宁毅、硬接两掌受伤；洞中互诉身世、强留承诺不走；当众「我会嫁他」、成亲。</div>
+          <div class="st"><b>战友式相守</b><span class="chip">第555章后</span><br>雪中坦白「想把娟儿送走」；「你要做什么，我都跟着你的」；战场并肩、率队肃清断后；「红提是有孩子的人了」。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第288-311章</span> 主动放下情愫、江岸作别——全书唯一走完「暧昧→收敛→复燃→成婚」完整折线的折返点；<span class="chip">第537-541章</span> 当众一句「我会嫁他」。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">刘西瓜</span><span class="pill p">假婚 → 有名无实 · 政治线最紧</span></div>
+        <div class="p2-id">霸刀营首领（护国公主）→ 宁毅之妻（「有名无实」贯穿近三百章）</div>
+        <div class="p2-tag">主标签｜霸气外露的理想主义者｜辅标签｜执拗的深情</div>
+        <div class="p2-quote">从一个「想收服一个风流名士」的绿林公主，变成与宁毅理念分歧却情分日笃、始终不肯放手的论辩者与同盟。</div>
+        <div class="p2-note"><b>反差点｜</b>强横的绿林领袖 vs 被背叛后「我不会放过你的」的破碎：能执掌一营、金殿力保，也会在身份暴露后追奔、架刀质问、捶打大哭<span class="chip">第307章</span>。</div>
+        <div class="exp">
+          <div class="st"><b>单向欣赏 → 同盟知己</b><span class="chip">第226-287章</span><br>由点他当军师到互改称呼、授武授诗；政见同盟、写诗。</div>
+          <div class="st"><b>认情成亲</b><span class="chip">第298-306章</span><br>金殿力保、当众认情、夜召宣布成亲；假婚转真情。</div>
+          <div class="st"><b>断崖崩解 → 长期冷却</b><span class="chip">第307-522章</span><br>身份暴露、架刀质问、决裂中带不舍；「死不见尸」而失态；信件的「傲慢」拉开距离、酸楚「无法面对」。</div>
+          <div class="st"><b>缓慢解冻 → 老夫老妻式默契</b><span class="chip">第652-1031章</span><br>并马闲谈、风雪夜长谈「至少也该有一个僵硬的拥抱」；明确「我不会离开你的」；街头牵手互诉理想。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第298-306章</span> 金殿力保、当众认情、假婚——把「政治联姻」当成庇护宁毅的盾；<span class="chip">第307章</span> 身份暴露后的追奔质问与决裂（全书波动最大的一条感情线的崩点）。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">李师师</span><span class="pill">精神知己 · 「求而不得」的克制</span></div>
+        <div class="p2-id">京师名妓（花魁），童年旧识 → 宁毅「点到即止」的精神知己</div>
+        <div class="p2-tag">主标签｜长袖善舞的台前幕后两面人｜辅标签｜克制的清醒</div>
+        <div class="p2-quote">从一个身陷风月的名妓旧识，变成宁毅最克制、始终「不越界」却彼此都懂的精神知己。</div>
+        <div class="p2-note"><b>反差点｜</b>风月场上的圆融 vs 决绝疏远：最会周旋的人，却主动北上、拒绝南下见面，一句「可我却不愿意见他了」<span class="chip">第781-786章</span>。</div>
+        <div class="exp">
+          <div class="st"><b>暗生好感</b><span class="chip">第173-196章</span><br>童年旧识重逢、男装相见、凉亭相戏「王家小妹」「我会用力反抗的」。</div>
+          <div class="st"><b>疏离低谷</b><span class="chip">第503-506章</span><br>登竹记、宁毅追出相邀「下次找你」、师师婉拒、判其「变质」。</div>
+          <div class="st"><b>回暖 · 同盟</b><span class="chip">第507-514章</span><br>暗中相助、误会消解、结为同盟。</div>
+          <div class="st"><b>反复疏远</b><span class="chip">第618-786章</span><br>深夜长谈同看死绝之家、「小心地拉了拉他的衣袖」；长街夜候、宁毅许诺「派人劫你走」、师师笑着落泪；主动北上、拒绝见面。</div>
+          <div class="st"><b>重逢与「突破」</b><span class="chip">第901-971章</span><br>梓州城门重逢、词不达意落泪；湖畔书房互诉十九年、师师「不想死的时候还有遗憾」、宁毅「有的」（确认好感）。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第781-786章</span> 主动北上、拒绝南下见面——用疏远保护一段感情；<span class="chip">第967-971章</span> 湖畔互诉十九年，全书最接近「告白」却仍留在「知己」刻度的一次。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">元锦儿</span><span class="pill g">妻 · 后宅轻松面（择要）</span></div>
+        <div class="p2-id">江宁名妓 → 竹记 → 宁毅之妻；外向泼辣、爱斗嘴</div>
+        <div class="p2-tag">主标签｜欢喜冤家 · 直率泼辣｜辅标签｜粗中有细</div>
+        <div class="p2-quote">从「与宁毅斗气取乐的欢喜冤家」，变成「细腻经营后宅、约定『回江宁弄个木楼』的妻子」<span class="chip">第659-697章</span>。</div>
+        <div class="p2-note"><b>反差点｜</b>泼辣斗嘴的外壳 vs 痛哭表白的赤诚：最会吵的人，最先把心意嚷出来——「我喜欢你」<span class="chip">第375-379章</span>。</div>
+        <div class="exp">
+          <div class="st"><b>互怼期</b><span class="chip">第90-170章</span> → 调侃「登徒子」欢喜冤家初立；落水被救后往他怀里靠。</div>
+          <div class="st"><b>冤家式亲近 → 表白僵持</b><span class="chip">第170-393章</span> → 点破宁毅的「责任」执念；痛哭表白「我喜欢你」。</div>
+          <div class="st"><b>定情成婚</b><span class="chip">第394-526章</span> → 由僵持到定情，圆房「你该叫我相公」。</div>
+          <div class="st"><b>稳定温情</b><span class="chip">第526章后</span> → 丧子后仍能劝他「我着人帮你找你姐姐」。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第375-379章</span> 痛哭表白「我喜欢你」——用最不体面也最真诚的方式破局。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+      <div class="card pc2">
+        <div class="p2-top"><span class="p2-name">周佩</span><span class="pill b">徒弟 · 求不得的门第线（择要）</span></div>
+        <div class="p2-id">江宁郡主 → 江南长公主府主人；宁毅名义上的「徒弟」（谐）</div>
+        <div class="p2-tag">主标签｜单向暗恋的执念者｜辅标签｜务实掌家的硬</div>
+        <div class="p2-quote">从「骄纵的郡主徒弟」，变成「务实掌家却始终消化不了那段单恋的长公主」。</div>
+        <div class="p2-note"><b>反差点｜</b>在人前冷静处理政商 vs 闻宁毅死讯精神崩溃、吐血<span class="chip">第716章</span>。</div>
+        <div class="exp">
+          <div class="st"><b>师徒谐趣</b><span class="chip">第118-166章</span> → 以「师父」相伴、藏箱追随；开箱被救、喂粥换药。</div>
+          <div class="st"><b>单向暗恋渐深</b><span class="chip">第316-403章</span> → 提点择婿、为其出头。</div>
+          <div class="st"><b>被单方收束 / 告别</b><span class="chip">第457-462章</span> → 临行提点、就此告别；定亲后决意遗忘（宁毅侧收束）。</div>
+          <div class="st"><b>旧情余温</b><span class="chip">第716-865章</span> → 闻死讯崩溃吐血；借词声落泪追忆当年师生。</div>
+          <div class="st" style="border-left-color:rgba(255,107,107,.5)"><b>关键抉择</b>：<span class="chip">第388-403章</span> 临行提点、送出庄园、单向告别（由宁毅侧完成）；<span class="chip">第716章</span> 闻死讯崩溃吐血。</div>
+        </div>
+        <div class="hint">点击展开 阶段与抉择</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<script src="_shared.js"></script>
+<script>
+/* 本页无需额外交互：折叠由 _shared.js 统一处理 */
+</script>
+</body></html>

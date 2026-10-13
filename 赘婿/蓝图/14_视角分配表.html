@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《赘婿》蓝图 · 视角分配表</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.stats{grid-template-columns:1fr}}
+  .stat{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:13px;padding:16px 18px;position:relative;overflow:hidden}
+  .stat .v{font-size:27px;font-weight:700;color:var(--gold2);line-height:1.2}
+  .stat .v small{font-size:13px;color:var(--gold);font-weight:400;margin-left:3px}
+  .stat .k{color:var(--txt2);font-size:12.5px;margin-top:4px}
+  .stat .bar{position:absolute;left:0;bottom:0;height:3px;border-radius:2px}
+  .ringwrap{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+  .ringwrap .cap{font-size:12.5px;color:var(--txt2);line-height:1.9}
+  .ringwrap .cap b{color:var(--gold2)}
+  .barrow{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+  .barrow .nm{width:74px;flex:none;font-size:12.5px;color:var(--txt);text-align:right}
+  .barrow .track{flex:1;height:16px;background:rgba(255,255,255,0.04);border-radius:5px;overflow:hidden}
+  .barrow .fill{height:100%;border-radius:5px;transition:width .4s}
+  .barrow .fv{width:34px;flex:none;font-size:11.5px;color:var(--txt3);text-align:left}
+  .stage{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:13px;
+    padding:16px 16px 14px;position:relative;cursor:pointer;transition:.2s;border-top:3px solid var(--gold)}
+  .stage:hover{background:rgba(201,169,97,0.05);transform:translateY(-2px)}
+  .stage .sn{font-size:11px;color:var(--gold);letter-spacing:1px;font-weight:600}
+  .stage .st{color:var(--gold2);font-size:14.5px;font-weight:700;margin:3px 0 5px}
+  .stage .sr{font-size:11.5px;color:var(--txt3);margin-bottom:7px}
+  .stage .sc{color:var(--txt2);font-size:12.5px;line-height:1.7}
+  .povc{background:rgba(255,255,255,0.025);border:1px solid var(--line);border-radius:12px;padding:14px 15px;transition:.2s}
+  .povc:hover{border-color:rgba(201,169,97,0.4);background:rgba(201,169,97,0.045)}
+  .povc .pn{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .povc .pname{color:var(--gold2);font-size:14.5px;font-weight:600}
+  .povc .pfreq{font-size:11.5px;color:var(--gold)}
+  .povc .pfun{color:var(--txt2);font-size:12.5px;line-height:1.7}
+  .povc .pbar{height:5px;border-radius:3px;background:rgba(255,255,255,0.05);margin-top:9px;overflow:hidden}
+  .povc .pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px}
+  .leg-ring{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--txt2);margin-top:8px}
+  .leg-ring span{display:inline-flex;align-items:center;gap:6px}
+.qr-float{position:fixed;right:18px;bottom:18px;z-index:950;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(8,8,12,0.82);border:1px solid rgba(201,169,97,0.3);border-radius:12px;padding:8px;backdrop-filter:blur(10px);box-shadow:0 8px 26px rgba(0,0,0,0.5);transition:all .22s;}.qr-float img{width:68px;height:68px;display:block;border-radius:6px;background:#fff;}.qr-float span{font-size:9px;color:#c9a961;letter-spacing:1px;white-space:nowrap;}.qr-float:hover{border-color:rgba(201,169,97,0.6);transform:translateY(2px);}@media(max-width:560px){.qr-float{right:10px;bottom:10px;padding:6px;}.qr-float img{width:52px;height:52px;}.qr-float span{display:none;}}</style>
+<style id="__hidewx">.author-badge,.qr,.qr-float{display:none !important;}</style></head><body>
+<div class="topbar">
+  <a href="../index.html">← 返回总览</a>
+  <div class="ttl">创作蓝图 · <b>视角分配表</b></div>
+</div>
+<div class="wrap">
+  <div class="h1">视角分配表</div>
+  <div class="sub">《赘婿》· 愤怒的香蕉 · 1031章 / 约424.7万字 · 208 个章回单元</div>
+
+  <!-- 一、使用概况 -->
+  <div class="section">
+    <span class="sec-tag">视角分配表</span>
+    <h2><span class="n">一</span>全书视角使用概况</h2>
+    <div class="desc">基于 208 个单元的「视角标注」统计。群像多 POV 是本书硬特征：绝大多数单元是"宁毅主视角 + 多条支线视角并置"，中后期更接近"没有唯一主视角的全知群像"。</div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">208<small>个</small></div><div class="k">总单元数（覆盖第0-1031章）</div><div class="bar" style="width:100%;background:var(--gold)"></div></div>
+      <div class="stat"><div class="v">76<small>个</small></div><div class="k">明确标注"以宁毅视角/主视角为主"</div><div class="bar" style="width:36.5%;background:var(--green)"></div></div>
+      <div class="stat"><div class="v">189<small>/208</small></div><div class="k">提及"宁毅"的单元</div><div class="bar" style="width:90.9%;background:var(--blue)"></div></div>
+      <div class="stat"><div class="v">约130<small>个</small></div><div class="k">标注"多视角/多线并置/群像"</div><div class="bar" style="width:62.5%;background:var(--purple)"></div></div>
+    </div>
+
+    <div class="ringwrap" style="margin-top:22px">
+      <div>
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="22"/>
+          <!-- 宁毅贯穿度 90.87% of circumference 439.82 => 399.6 -->
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#c9a961" stroke-width="22"
+            stroke-dasharray="399.6 439.82" stroke-dashoffset="0" transform="rotate(-90 100 100)" stroke-linecap="butt"/>
+          <text x="100" y="94" text-anchor="middle" fill="#e8c97a" font-size="26" font-weight="700">90.9%</text>
+          <text x="100" y="116" text-anchor="middle" fill="#a8a5a0" font-size="11">宁毅贯穿度</text>
+          <text x="100" y="132" text-anchor="middle" fill="#6f6c68" font-size="10">189 / 208 单元</text>
+        </svg>
+      </div>
+      <div class="cap">
+        <b>结论：</b>"宁毅为绝对核心的限知主视角"在前半程 + <b>群像多 POV 并置</b>在后半程"的渐变结构。<br>
+        宁毅是唯一贯穿全书的锚点人物（提及率 90.9%），但后半程他越来越退为"群像中的一线"；<br>
+        明确以宁毅主视角为主的 76 个单元 <span class="pill g">全部集中在第0-500章前后</span>。
+        <div class="leg-ring">
+          <span><span class="dot" style="background:var(--gold)"></span>提及宁毅的单元 189</span>
+          <span><span class="dot" style="background:rgba(255,255,255,0.15)"></span>未提及 19</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>POV 权重条形图（角色名在 208 处「视角标注」中的提及次数）</h3>
+    <div id="povbars"></div>
+  </div>
+
+  <!-- 二、分期演变 -->
+  <div class="section">
+    <span class="sec-tag">视角分配表</span>
+    <h2><span class="n">二</span>视角策略的分期演变</h2>
+    <div class="desc">从"单主角"到"群像"的四个渐变阶段；点击卡片展开。</div>
+    <div class="grid g4">
+      <div class="stage" style="border-top-color:var(--green)">
+        <div class="sn">分期一</div><div class="st">单主视角期</div>
+        <div class="sr">第0-160章 · 单元001-029</div>
+        <div class="sc">以宁毅第三人称限知为主，零星穿插苏檀儿/聂云竹/敌方视角。</div>
+      </div>
+      <div class="stage" style="border-top-color:var(--blue)">
+        <div class="sn">分期二</div><div class="st">江宁群像期</div>
+        <div class="sr">第161-230章</div>
+        <div class="sc">商战收网，敌方（乌家/苏家二房）视角大量进入，多线程并置。<br><span class="chip">单元025「敌手的面目」</span><span class="chip">单元024「寒意」</span></div>
+      </div>
+      <div class="stage" style="border-top-color:var(--purple)">
+        <div class="sn">分期三</div><div class="st">多线时局期</div>
+        <div class="sr">第231-650章</div>
+        <div class="sc">杭州/汴梁/东京/北方雪原多地并置，进入"一单元跨数地"。<br><span class="chip">单元029「光明与黑暗」</span><span class="chip">单元041「火夜（一）」</span></div>
+      </div>
+      <div class="stage" style="border-top-color:var(--red)">
+        <div class="sn">分期四</div><div class="st">全知群像·战争期</div>
+        <div class="sr">第651-1031章</div>
+        <div class="sc">多线并置成为常态，出现全知俯视/"后世记录"史笔，"无固定主视角"。<br><span class="chip">单元115「泽国江山入战图」</span><span class="chip">单元187「烈潮（上）」</span><span class="chip">单元208「崩溃 乱世」</span></div>
+      </div>
+    </div>
+
+    <div class="quote" style="margin-top:16px">
+      <b>关键拐点</b>　单元029「光明与黑暗」<span class="chip">第157-161章</span> 自陈"本单元视角跨度最大"——李频（东京）、宁毅（江宁）、北方雪原（铁木真）、吕梁（陆红提）、濮阳逸/唐煦/绮兰（听涛阁）、周佩（书院）多线并置，属"一单元跨数地"的时局篇。<br>
+      这是全书从"单主角"转向"群像"的<b>分水岭</b>。
+    </div>
+  </div>
+
+  <!-- 三、POV 角色清单 -->
+  <div class="section">
+    <span class="sec-tag">视角分配表</span>
+    <h2><span class="n">三</span>POV 角色清单与承担功能</h2>
+    <div class="desc">出现频次 = 该角色名在 208 处「视角标注」中的提及次数（近似反映 POV 权重）。</div>
+
+    <h3>2.1 第一梯队（主视角级，≥ 20 次）</h3>
+    <div class="grid g3">
+      <div class="povc"><div class="pn"><span class="pname">宁毅</span><span class="pfreq">346 次</span></div>
+        <div class="pfun">全书锚点；操盘手/智谋的"内面视角"；后期论史、制度设计的思辨承载。</div>
+        <div class="pbar"><i style="width:100%"></i></div>
+        <div class="hint">首次为视角人物：第0-4章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">苏檀儿</span><span class="pfreq">62 次</span></div>
+        <div class="pfun">江宁商战线女主；女性内面、家族经营；夫妻感情线的对象视角。</div>
+        <div class="pbar"><i style="width:17.9%"></i></div>
+        <div class="hint">首次为视角人物：第10-15章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">楼舒婉</span><span class="pfreq">51 次</span></div>
+        <div class="pfun">第三方（楼家→吕梁→晋王女相）的独立政治线；"另一个聪明女人"的对照视角。</div>
+        <div class="pbar"><i style="width:14.7%"></i></div>
+        <div class="hint">首次为视角人物：第199章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">周佩</span><span class="pfreq">47 次</span></div>
+        <div class="pfun">皇室/临安朝局；后期江南长公主府的政治主角；对宁毅的情感线。</div>
+        <div class="pbar"><i style="width:13.6%"></i></div>
+        <div class="hint">首次为视角人物：第340-345章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">李师师</span><span class="pfreq">34 次</span></div>
+        <div class="pfun">汴梁名妓/矾楼；情报与宣传的节点；赈灾线的"轮廓拼图"主视角。</div>
+        <div class="pbar"><i style="width:9.8%"></i></div>
+        <div class="hint">首次为视角人物：第173-178章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">陈凡</span><span class="pfreq">29 次</span></div>
+        <div class="pfun">江湖搏杀线（苗疆、长沙）；绿林与霸刀营的武力视角。</div>
+        <div class="pbar"><i style="width:8.4%"></i></div>
+        <div class="hint">首次为视角人物：第244章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">李频</span><span class="pfreq">24 次</span></div>
+        <div class="pfun">士人/旁观者；"商业救国"论的思想对话者；赈灾全貌的映照视角。</div>
+        <div class="pbar"><i style="width:6.9%"></i></div>
+        <div class="hint">首次为视角人物：第95章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">席君煜</span><span class="pfreq">24 次</span></div>
+        <div class="pfun">敌方内部视角（苏家内鬼→梁山引路人）；"背叛者"的心路。</div>
+        <div class="pbar"><i style="width:6.9%"></i></div>
+        <div class="hint">首次为视角人物：第90-94章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">刘西瓜</span><span class="pfreq">24 次</span></div>
+        <div class="pfun">霸刀营/方腊营女主；西南—南方线的武力与情感。</div>
+        <div class="pbar"><i style="width:6.9%"></i></div>
+        <div class="hint">首次为视角人物：第260章</div></div>
+      <div class="povc"><div class="pn"><span class="pname">宁忌</span><span class="pfreq">23 次</span></div>
+        <div class="pfun">少年线主角（后期）；以"限知"见证华夏军后继一代。</div>
+        <div class="pbar"><i style="width:6.6%"></i></div>
+        <div class="hint">首次为视角人物：第870章</div></div>
+    </div>
+
+    <h3>2.2 第二梯队（重要支线 POV，10-19 次）</h3>
+    <table class="tb">
+      <tr><th>角色</th><th>频次</th><th>承担功能</th></tr>
+      <tr><td><b>秦绍谦</b></td><td>21</td><td>华夏军战场指挥官视角（夏村、延州、林州）</td></tr>
+      <tr><td><b>陆红提</b></td><td>19</td><td>吕梁/青木寨江湖线；与宁毅的婚姻感情线</td></tr>
+      <tr><td><b>铁天鹰</b></td><td>18</td><td>密侦司/刑部，后期临安官方视角</td></tr>
+      <tr><td><b>秦嗣源</b></td><td>18</td><td>朝堂/右相府政略线（全书最高层的"老成谋国"视角）</td></tr>
+      <tr><td><b>宗翰</b></td><td>18</td><td>金国西路军主帅视角（敌方顶层）</td></tr>
+      <tr><td><b>聂云竹</b></td><td>16</td><td>竹记/文娱圈；江宁后方与竹记运营</td></tr>
+      <tr><td><b>汤敏杰</b></td><td>16</td><td>北地潜伏谍战（代号"小丑"），后期云中情报线</td></tr>
+      <tr><td><b>史进</b></td><td>16</td><td>梁山余部→抗金游侠的江湖视角</td></tr>
+      <tr><td><b>林冲</b></td><td>15</td><td>梁山旧将（化名穆易）的悲剧线；"世界上最苦的一把枪"</td></tr>
+      <tr><td><b>元锦儿</b></td><td>15</td><td>竹记/名妓；江宁文娱与情感</td></tr>
+      <tr><td><b>岳飞</b></td><td>14</td><td>华夏军/南武将领视角（背嵬军）</td></tr>
+      <tr><td><b>周喆</b></td><td>14</td><td>皇帝视角（朝堂腾挪、被架空的无奈）</td></tr>
+      <tr><td><b>康贤</b></td><td>13</td><td>江宁权贵/驸马府；旁观者与"护才者"</td></tr>
+      <tr><td><b>秦桧</b></td><td>12</td><td>权臣视角（后期"先打黑旗"之策的中流砥柱）</td></tr>
+      <tr><td><b>闻人不二</b></td><td>11</td><td>密侦司/霸刀营武将，见证宁毅布局</td></tr>
+      <tr><td><b>游鸿卓</b></td><td>10</td><td>绿林少年视角（后期"新人"眼睛看大变局）</td></tr>
+      <tr><td><b>楼书恒</b></td><td>10</td><td>杭州楼家纨绔（反派受挫视角）</td></tr>
+      <tr><td><b>周君武</b></td><td>10</td><td>太子/新朝（格物党魁→"武朝正统"）</td></tr>
+    </table>
+
+    <h3>2.3 第三梯队（功能性 / 势力代言 POV，≤ 9 次）</h3>
+    <table class="tb">
+      <tr><th>角色</th><th>频次</th><th>承担功能</th></tr>
+      <tr><td><b>郭药师</b></td><td>8</td><td>常胜军统帅（敌营/降将视角）</td></tr>
+      <tr><td><b>方七佛</b></td><td>7</td><td>方腊军高层</td></tr>
+      <tr><td><b>安惜福</b></td><td>7</td><td>方腊军（黑翎卫）内部</td></tr>
+      <tr><td><b>钱希文 / 楼近临</b></td><td>6 / 4</td><td>杭州本地望族的"看客"目光（侧写苏家与宁毅）</td></tr>
+      <tr><td><b>童贯、蔡京、李纲</b></td><td>5 / 2 / 3</td><td>武朝旧党权臣视角</td></tr>
+      <tr><td><b>方百花、方腊</b></td><td>5 / 3</td><td>永乐朝/方腊军顶层</td></tr>
+      <tr><td><b>王狮童（饿鬼）</b></td><td>5</td><td>中原独立灾祸势力</td></tr>
+      <tr><td><b>戴梦微</b></td><td>5</td><td>反黑旗集团（后期主要对手）</td></tr>
+      <tr><td><b>燕青、卢俊义</b></td><td>5 / 3</td><td>梁山好汉（被反间/归顺线）</td></tr>
+      <tr><td><b>何文</b></td><td>5</td><td>公平党/黑旗囚徒</td></tr>
+      <tr><td><b>刘光世</b></td><td>3</td><td>江南军阀</td></tr>
+      <tr><td><b>娄静之、刘大彪、完颜青珏、完颜希尹</b></td><td>2-5</td><td>各方势力代言</td></tr>
+    </table>
+
+    <h3>功能分工总结</h3>
+    <div class="grid g3">
+      <div class="card"><div class="acc"></div><div class="ct">朝廷</div><div class="cb">秦嗣源、周喆、秦桧、李纲、童贯、蔡京</div></div>
+      <div class="card"><div class="acc" style="background:var(--red)"></div><div class="ct">北方 / 敌国</div><div class="cb">完颜希尹、宗翰、完颜宗望、郭药师、汤敏杰（潜伏）</div></div>
+      <div class="card"><div class="acc" style="background:var(--orange)"></div><div class="ct">敌营侧写宁毅</div><div class="cb">乌启隆、楼书恒、席君煜、梁山众、西夏诸将（"敌人眼中的宁毅"）</div></div>
+      <div class="card"><div class="acc" style="background:var(--green)"></div><div class="ct">江湖绿林</div><div class="cb">陆红提、陈凡、游鸿卓、史进、林冲、刘西瓜</div></div>
+      <div class="card"><div class="acc" style="background:var(--blue)"></div><div class="ct">战争进程</div><div class="cb">秦绍谦、岳飞、铁天鹰、卓永青、毛一山（士兵/指挥官双向）</div></div>
+      <div class="card"><div class="acc" style="background:var(--purple)"></div><div class="ct">皇权更替 / 江南政治</div><div class="cb">周佩、周君武、周雍</div></div>
+      <div class="card"><div class="acc" style="background:var(--cyan)"></div><div class="ct">第三方 / 对照</div><div class="cb">楼舒婉、戴梦微、刘光世、宁忌</div></div>
+    </div>
+  </div>
+
+  <!-- 四、切换规则 -->
+  <div class="section">
+    <span class="sec-tag">视角分配表</span>
+    <h2><span class="n">四</span>视角切换规则</h2>
+
+    <h3>3.1 何时切（切换时机）</h3>
+    <div class="grid g2">
+      <div class="card"><div class="acc"></div><div class="ct"><span class="cn">1</span>场景 / 单元结束时</div>
+        <div class="cb">绝大多数切换发生在场景段落收束处，不在激烈冲突的中途强行跳视角。如单元025「敌手的面目」在驸马府对谈→乌家正厅→苏府小楼三处并置 <span class="chip">第138章</span>。</div></div>
+      <div class="card"><div class="acc"></div><div class="ct"><span class="cn">2</span>一单元跨数地</div>
+        <div class="cb">时局类单元刻意在多地之间轮转，制造"天下同时发生"的纵深感。如单元029 <span class="chip">第157-161章</span>、单元041「火夜（一）」杭州/汴京/方腊三线并置 <span class="chip">第221-225章</span>。</div></div>
+      <div class="card"><div class="acc"></div><div class="ct"><span class="cn">3</span>同一时间窗汇合</div>
+        <div class="cb">后期大量使用"同一时刻、多地同时"的并置。如单元191 <span class="chip">第954-956章</span> 以"五月初一凌晨"为同一时间切口；单元205 <span class="chip">第1017-1019章</span> 以"振兴二年夏季"为共同时间窗。</div></div>
+      <div class="card"><div class="acc"></div><div class="ct"><span class="cn">4</span>信息需要"另一侧"补足时</div>
+        <div class="cb">当需要展示"敌人在想什么"或"宁毅之死的余波"时，切到相关人物。如宁毅"死讯"后，以周佩吐血、众人反应层层折射 <span class="chip">第716-719章</span>。</div></div>
+    </div>
+
+    <h3>3.2 怎么切（切换方式）</h3>
+    <div class="grid g2">
+      <div class="card"><div class="acc" style="background:var(--blue)"></div><div class="ct"><span class="cn">1</span>地名人名硬切</div>
+        <div class="cb">段首以地名/人名/时辰作标识完成转换，本书最常用。单元043「英雄多故谋夫病（一）」自陈"以场景为单位硬切，段首以地名人名或时辰标识转换" <span class="chip">第233-238章</span>；单元044「回家的路（五）」"以时间、地点硬切" <span class="chip">第239-243章</span>。</div></div>
+      <div class="card"><div class="acc" style="background:var(--purple)"></div><div class="ct"><span class="cn">2</span>全知俯视 / 史笔过渡</div>
+        <div class="cb">以一段"后世记录""俯瞰式旁白"作为两条人物线的中间桥梁。单元078 <span class="chip">第404-410章</span> 辅以"俯瞰式旁白交代战场全貌与战局推移"；单元188 <span class="chip">第940章</span> 以"后世记录"宏观视角总结战果。</div></div>
+      <div class="card"><div class="acc" style="background:var(--cyan)"></div><div class="ct"><span class="cn">3</span>物视角 / 意象化过渡</div>
+        <div class="cb">罕见的意象化处理——如单元118 <span class="chip">第599章</span> 以"石头"的物视角起笔衔接场景。</div></div>
+      <div class="card"><div class="acc" style="background:var(--green)"></div><div class="ct"><span class="cn">4</span>旁观者引入</div>
+        <div class="cb">借一个"外来旁观者"的眼睛带读者进入新场景。如单元106 <span class="chip">第542-547章</span> "以吕梁豪侠辛铁城这个外来旁观者的视角为主，借他的眼睛看宗师之会"。</div></div>
+      <div class="card"><div class="acc" style="background:var(--orange)"></div><div class="ct"><span class="cn">5</span>特殊全知</div>
+        <div class="cb">作者会使用"读者才是全知"的特殊视角。如单元041 <span class="chip">第224章</span> 的方腊"雨幕密谈"被标注为"一种旁观读者才是全知的特殊视角"。</div></div>
+    </div>
+
+    <h3>3.3 切换处的衔接手法（带实例）</h3>
+    <table class="tb">
+      <tr><th>手法</th><th>说明</th><th>实例</th></tr>
+      <tr><td><b>悬念截断</b></td><td>在一条线的关键时刻截断，切到无关的另一线，制造吊胃口</td><td>单元085 <span class="chip">第444章</span> 末"以'无论哪一边都未曾预料到的人'作旁观式截断"</td></tr>
+      <tr><td><b>同一动作的双面</b></td><td>同一事件用攻守双方视角各写一遍</td><td>单元150「风急火烈」以高宠、完颜青珏、陆陀多方视角交替写同一场厮杀 <span class="chip">第743-746章</span></td></tr>
+      <tr><td><b>引子式长独白</b></td><td>切走前给足一段内心独白，让读者"住进"新视角</td><td>单元066 <span class="chip">第347章</span> 插入周佩的大段独白</td></tr>
+      <tr><td><b>被动旁观侧写</b></td><td>主角不出场，全由旁人视角"侧写"其分量</td><td>单元040 <span class="chip">第216-220章</span> 以陆推之、宋知谦、钱希文等围观视角侧写《望海潮》与宁毅</td></tr>
+      <tr><td><b>结尾回锚</b></td><td>一个单元无论切多少线，末章常回到宁毅或全知叙述收束</td><td>单元072 <span class="chip">第375-379章</span> 末收于宁毅视角；单元089 <span class="chip">第463-467章</span> 群像短镜收束</td></tr>
+    </table>
+  </div>
+
+  <!-- 五、叙事效果 -->
+  <div class="section">
+    <span class="sec-tag">视角分配表</span>
+    <h2><span class="n">五</span>视角策略对叙事的效果</h2>
+    <div class="grid g2">
+      <div class="card"><div class="acc" style="background:var(--red)"></div><div class="ct">4.1　信息差：借"敌营之口"侧写主角</div>
+        <div class="cb">本书极少正面夸耀宁毅的强大，而是频繁切到敌手/旁观者视角，让"敌人拼出主角轮廓"的过程本身制造敬畏。</div>
+        <div class="exp">
+          <p>· 乌启隆在乌家正厅众目睽睽下"词穷，不知该用什么样的词来形容这样一个人" <span class="chip">第138章</span>。</p>
+          <p>· 单元025 的章卡把这一手法提炼为"<b>敌友双镜法</b>"：同一桩布局，用"友方赞叹"（康贤向周雍解释）与"敌方复盘"（乌启隆向族人拼图）两副镜子各照一遍 <span class="chip">第138-141章</span>。</p>
+          <p>· 宁毅"死讯"后，作者不写其生死，改由周佩吐血、临安众人反应"层层折射" <span class="chip">第716-719章</span>。</p>
+        </div>
+        <div class="hint">点击展开实例 ▾</div></div>
+
+      <div class="card"><div class="acc" style="background:var(--green)"></div><div class="ct">4.2　群像塑造：为每个势力配一个"代言 POV"</div>
+        <div class="cb">每个大势力至少有一个稳定 POV 承担其"内部声音"：方腊军有方七佛/安惜福、梁山有燕青/卢俊义/席君煜、金国有宗翰/希尹、西夏有李乾顺/妹勒、江南有周佩/周君武。这让"阵营博弈"（见 13_阵营博弈）有了<b>人的温度</b>，而非报表式势力对抗。</div></div>
+
+      <div class="card"><div class="acc" style="background:var(--purple)"></div><div class="ct">4.3　悬念：全知读者 vs 限知角色</div>
+        <div class="cb">三种机制叠加制造悬念。</div>
+        <div class="exp">
+          <p>· <b>"读者全知"特例</b>：方腊雨幕密谈用"旁观读者才是全知"的视角，让读者比剧中人更早知道阴谋 <span class="chip">第224章</span>。</p>
+          <p>· <b>误读滚雪球</b>：《定风波》经小七→苏崇华→陈禄三手，写者无心、拾者轻蔑、传者肃然，"三种误读层层叠加" <span class="chip">第139-141章</span>，埋下暗雷。</p>
+          <p>· <b>预言式旁白</b>：后期大量"多年后他会想起这一天""不久之后，两人或将不期而遇"的追忆式旁白制造宿命感（如单元204 <span class="chip">第1013-1016章</span>、单元082 <span class="chip">第427-430章</span>）。</p>
+        </div>
+        <div class="hint">点击展开实例 ▾</div></div>
+
+      <div class="card"><div class="acc" style="background:var(--blue)"></div><div class="ct">4.4　距离感与史诗感：从"限知"到"史笔"</div>
+        <div class="cb">后期（约第650章后）大量引入"<b>后世记录</b>""全知史笔"的宏观插叙为战果定性（单元115、188、189、190 等），把群像视角的碎切收拢到"历史正在发生"的史诗框架里，是全书视角策略的最终形态。</div></div>
+    </div>
+  </div>
+
+  <!-- 六、续写建议 -->
+  <div class="section">
+    <span class="sec-tag">视角分配表</span>
+    <h2><span class="n">六</span>续写 / 仿写的视角使用建议</h2>
+    <ol style="list-style:none;counter-reset:s">
+      <li class="card" style="margin-bottom:10px"><div class="acc"></div><div class="ct">锚点不可缺</div><div class="cb">宁毅是唯一贯穿全书的视角锚点，任何新增章节都应保证"宁毅或其后继者（宁忌）在一到两章内出现一次"，防止群像失焦。</div></li>
+      <li class="card" style="margin-bottom:10px"><div class="acc"></div><div class="ct">一个势力配一个 POV</div><div class="cb">新增势力时，同步指定一个"内部代言人"承担其视角，与「阵营博弈」文档一一对应。</div></li>
+      <li class="card" style="margin-bottom:10px"><div class="acc"></div><div class="ct">切换时机守则</div><div class="cb">只在场景收束处切，不在冲突中途跳；切换点用"地名+人名/时辰"标识，供读者快速定位。</div></li>
+      <li class="card" style="margin-bottom:10px"><div class="acc"></div><div class="ct">善用"敌营侧写"</div><div class="cb">描写主角强大时，优先切到敌手/旁观者视角，用"敌人拼出轮廓"代替正面夸赞。</div></li>
+      <li class="card"><div class="acc"></div><div class="ct">结尾回锚</div><div class="cb">多线单元务必在末章回到核心视角或全知总述，避免收束发散。</div></li>
+    </ol>
+    <div class="desc" style="margin-top:16px">附：本表基于全部 208 个单元卡（第0-1031章）的「视角标注」字段归纳，覆盖全书。出现频次为「视角标注」文本中的角色名提及计数，用于反映 POV 权重，非精确到"章节归属"的统计。</div>
+  </div>
+
+</div>
+<script src="_shared.js"></script>
+<script>
+/* POV 权重条形图（数据来自 14_视角分配表.md 的频次，最大 346 归一化到 100%） */
+(function(){
+  var data=[["宁毅",346],["苏檀儿",62],["楼舒婉",51],["周佩",47],["李师师",34],["陈凡",29],
+    ["李频",24],["席君煜",24],["刘西瓜",24],["宁忌",23],["秦绍谦",21],["陆红提",19],
+    ["铁天鹰",18],["秦嗣源",18],["宗翰",18],["聂云竹",16],["汤敏杰",16],["史进",16],["林冲",15],["元锦儿",15]];
+  var max=346, wrap=document.getElementById('povbars');
+  var colors=['#c9a961','#e8c97a','#74c0fc','#b197fc','#69db7c','#ffa94d','#66d9e8','#ff6b6b'];
+  var html='';
+  data.forEach(function(d,i){
+    var w=(d[1]/max*100);
+    html+='<div class="barrow"><div class="nm">'+d[0]+'</div>'+
+      '<div class="track"><div class="fill" style="width:'+w.toFixed(1)+'%;background:'+colors[i%colors.length]+'"></div></div>'+
+      '<div class="fv">'+d[1]+'</div></div>';
+  });
+  wrap.innerHTML=html;
+})();
+</script>
+</body></html>
